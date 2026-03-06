@@ -1,0 +1,43 @@
+name: "Deploy to Cloudflare + Sync to IDrive E2"
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy-and-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy . --project-name=abest-co
+
+      - name: Configure AWS CLI for IDrive E2
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.IDRIVE_E2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.IDRIVE_E2_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: us-east-1
+        run: |
+          aws --version
+          aws configure set aws_access_key_id "$AWS_ACCESS_KEY_ID"
+          aws configure set aws_secret_access_key "$AWS_SECRET_ACCESS_KEY"
+          aws configure set default.region "$AWS_DEFAULT_REGION"
+
+      - name: Sync site to IDrive E2 bucket
+        env:
+          IDRIVE_E2_ENDPOINT: ${{ secrets.IDRIVE_E2_ENDPOINT }}
+          IDRIVE_E2_BUCKET: ${{ secrets.IDRIVE_E2_BUCKET }}
+        run: |
+          aws s3 sync . "s3://$IDRIVE_E2_BUCKET/site" \
+            --endpoint-url "$IDRIVE_E2_ENDPOINT" \
+            --exclude ".git/*" \
+            --exclude ".github/*" \
+            --exclude ".wrangler/*"
