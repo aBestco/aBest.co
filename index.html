@@ -3,134 +3,164 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>aBest.co | Global Development Projects</title>
+    <!-- SEO Optimization -->
+    <meta name="description"
+        content="Personal projects in real estate, infrastructure and commercial developments in USA, Germany and Turkey.">
+
     <link rel="stylesheet" href="index.css">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
+    <!-- Background Layer -->
     <div class="background-wrapper">
-        <img src="bg_main_blurred_1772751916680.png" alt="Blurred City Background" class="main-bg">
+        <img src="./bg_main_blurred_new.png" alt="Blurred Abstract City Background" class="main-bg" id="hero-bg">
+        <div class="bg-gradient-overlay"></div>
     </div>
 
-    <div class="smartphone-frame">
-        <div class="smartphone-notch"></div>
-        <div class="smartphone-content">
-            <header>
-                <div class="logo">a<span>Best</span>.co</div>
-                <div class="nav-icon">
-                    <span></span>
-                    <span></span>
-                </div>
-            </header>
+    <!-- Main App Container -->
+    <div class="app-container">
 
-            <main>
-                <section class="hero">
-                    <h1>Global Development Projects — <br><span>Germany • USA • Turkey</span></h1>
+        <!-- Header -->
+        <header class="app-header fade-in-up" style="animation-delay: 0.1s;">
+            <div class="logo">a<span>Best</span>.co</div>
+            <div class="nav-icon" id="menu-btn">
+                <span></span>
+                <span></span>
+            </div>
+        </header>
+
+        <main class="scroll-content">
+
+            <!-- Hero Section -->
+            <section class="hero fade-in-up" style="animation-delay: 0.2s;">
+                <div class="hero-content glass-chip">
+                    <h1>Global Development Projects<br><span class="highlight">Germany • USA • Turkey</span></h1>
                     <p class="subtext">Entrepreneur in real estate & commercial development.</p>
-                </section>
-
-                <section class="countries">
-                    <div class="glass-card country-card">
-                        <img src="bg_usa_1772751929084.png" alt="USA">
-                        <div class="card-overlay">
-                            <span class="flag">🇺🇸</span> United States
-                        </div>
-                    </div>
-                    <div class="glass-card country-card">
-                        <img src="bg_germany_1772751943372.png" alt="Germany">
-                        <div class="card-overlay">
-                            <span class="flag">🇩🇪</span> Germany
-                        </div>
-                    </div>
-                    <div class="glass-card country-card">
-                        <img src="bg_turkey_1772751956125.png" alt="Turkey">
-                        <div class="card-overlay">
-                            <span class="flag">🇹🇷</span> Turkey
-                        </div>
-                    </div>
-                </section>
-
-                <section class="about section-spacing">
-                    <div class="glass-panel">
-                        <h2>About Me</h2>
-                        <div class="divider"></div>
-                        <p>Personal projects in real estate, infrastructure and commercial developments.</p>
-                    </div>
-                </section>
-
-                <section class="featured section-spacing">
-                    <div class="glass-panel featured-card">
-                        <div class="label">Featured Project</div>
-                        <div class="divider"></div>
-                        <h3>Los Angeles Commercial Development</h3>
-                        <p class="project-tags">EV Charging, Retail & Food</p>
-
-                        <div class="icons-row">
-                            <div class="icon-item">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="1" y="3" width="22" height="13" rx="2" />
-                                    <path d="M7 21h10" />
-                                    <path d="M12 16v5" />
-                                </svg>
-                            </div>
-                            <div class="icon-item">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M18 8h1a4 4 0 0 1 0 8h-1" />
-                                    <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
-                                    <line x1="6" y1="1" x2="6" y2="4" />
-                                    <line x1="10" y1="1" x2="10" y2="4" />
-                                    <line x1="14" y1="1" x2="14" y2="4" />
-                                </svg>
-                            </div>
-                            <div class="icon-item">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M18 20l4-4" />
-                                    <path d="M22 20l-4-4" />
-                                    <path d="M3 3h18" />
-                                    <path d="M3 3l1.5 13h13L19 3" />
-                                    <path d="M9 11V3" />
-                                    <path d="M13 11V3" />
-                                </svg>
-                            </div>
-                            <div class="icon-item">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="9" cy="21" r="1" />
-                                    <circle cx="20" cy="21" r="1" />
-                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-                                </svg>
-                            </div>
-                        </div>
-
-                        <div class="image-preview">
-                            <img src="bg_la_project_1772751970135.png" alt="LA Project">
-                        </div>
-
-                        <button class="glass-button">View Project</button>
-                    </div>
-                </section>
-
-                <div class="pagination-dots">
-                    <span class="dot active"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
                 </div>
-            </main>
+            </section>
 
-            <div class="home-indicator"></div>
-        </div>
+            <!-- Countries Row -->
+            <section class="countries fade-in-up" style="animation-delay: 0.3s;">
+                <div class="glass-card country-card">
+                    <img src="./bg_usa_new.png" alt="USA">
+                    <div class="card-overlay">
+                        <span class="flag">🇺🇸</span> United States
+                    </div>
+                </div>
+                <div class="glass-card country-card">
+                    <img src="./bg_germany_new.png" alt="Germany">
+                    <div class="card-overlay">
+                        <span class="flag">🇩🇪</span> Germany
+                    </div>
+                </div>
+                <div class="glass-card country-card">
+                    <img src="./bg_turkey_new.png" alt="Turkey">
+                    <div class="card-overlay">
+                        <span class="flag">🇹🇷</span> Turkey
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section class="about section-spacing fade-in-up" style="animation-delay: 0.4s;">
+                <div class="glass-panel">
+                    <div class="panel-header">
+                        <h2>About Me</h2>
+                        <div class="glow-dot"></div>
+                    </div>
+                    <div class="divider"></div>
+                    <p>Driving innovative personal projects in real estate, modern infrastructure, and high-end
+                        commercial developments globally.</p>
+                </div>
+            </section>
+
+            <!-- Featured Project -->
+            <section class="featured section-spacing fade-in-up" style="animation-delay: 0.5s;">
+                <div class="glass-panel featured-card interactive">
+                    <div class="label-badge">Featured Detail</div>
+                    <div class="divider mt-2"></div>
+
+                    <div class="featured-header">
+                        <h3>Los Angeles Commercial Development</h3>
+                        <p class="project-tags">EV Charging • Retail • High-End Food</p>
+                    </div>
+
+                    <div class="icons-row">
+                        <div class="icon-item tooltip" data-tooltip="Architecture">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                                <line x1="3" y1="9" x2="21" y2="9" />
+                                <line x1="9" y1="21" x2="9" y2="9" />
+                            </svg>
+                        </div>
+                        <div class="icon-item tooltip" data-tooltip="EV Charging">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                            </svg>
+                        </div>
+                        <div class="icon-item tooltip" data-tooltip="Infrastructure">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242" />
+                                <path d="M12 12v9" />
+                                <path d="m8 17 4 4 4-4" />
+                            </svg>
+                        </div>
+                        <div class="icon-item tooltip" data-tooltip="Location">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                                <circle cx="12" cy="10" r="3" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="image-preview">
+                        <img src="./bg_la_project_new.png" alt="LA Project Render">
+                        <div class="play-btn-overlay">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                                <polygon points="5 3 19 12 5 21 5 3" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <button class="glass-button ripple js-explore-btn">Explore Project</button>
+                </div>
+            </section>
+
+            <!-- Spacing for bottom scrolling on sticky mode -->
+            <div style="height: 60px;"></div>
+        </main>
+
     </div>
+
+    <script>
+        // Simple ripple effect for glass buttons
+        document.querySelectorAll('.ripple').forEach(button => {
+            button.addEventListener('click', function (e) {
+                const x = e.clientX - e.target.getBoundingClientRect().left;
+                const y = e.clientY - e.target.getBoundingClientRect().top;
+
+                const ripples = document.createElement('span');
+                ripples.style.left = x + 'px';
+                ripples.style.top = y + 'px';
+                ripples.classList.add('ripple-effect');
+                this.appendChild(ripples);
+
+                setTimeout(() => {
+                    ripples.remove()
+                }, 600);
+            });
+        });
+    </script>
 </body>
 
 </html>
