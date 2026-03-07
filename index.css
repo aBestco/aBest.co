@@ -1,4 +1,5 @@
 :root {
+    /* Header Icons Addition - Verified 2026-03-07 */
     /* Apple-like colors */
     --primary-blue: #0A84FF;
     --primary-green: #30D158;
@@ -206,6 +207,7 @@ body {
     stroke: currentColor;
     fill: none;
     stroke-width: 2;
+    display: block;
 }
 
 .header-actions {
