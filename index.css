@@ -752,70 +752,49 @@ address {
     opacity: 1;
 }
 
-/* Footer Styling */
+/* Slim Footer Styling */
 .app-footer {
-    margin-top: 2rem;
     padding-bottom: 2rem;
 }
 
-.footer-content {
+.slim-footer-content {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--glass-border);
+    margin-top: 2rem;
+}
+
+@media (min-width: 640px) {
+    .slim-footer-content {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+.footer-links {
+    display: flex;
     gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-.footer-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-}
-
-.footer-info h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
-    color: var(--text-main);
-}
-
-.company-name {
-    font-weight: 700;
-    color: var(--text-main);
-    margin-bottom: 0.25rem;
-}
-
-.footer-email {
-    margin-bottom: 0.5rem;
-}
-
-.footer-email a {
-    color: var(--text-accent);
+.footer-links a {
+    color: var(--text-muted);
     text-decoration: none;
+    font-size: 0.9rem;
     transition: var(--transition-fast);
 }
 
-.footer-email a:hover {
-    text-decoration: underline;
-}
-
-address {
-    font-style: normal;
-    color: var(--text-muted);
-    font-size: 0.9rem;
-    line-height: 1.6;
-}
-
-.footer-bottom {
-    text-align: center;
+.footer-links a:hover {
+    color: var(--text-main);
 }
 
 .copyright {
     font-size: 0.85rem;
     color: var(--text-muted);
     opacity: 0.8;
-}
-
-@media (min-width: 768px) {
-    .footer-grid {
-        grid-template-columns: 1fr;
-        text-align: left;
-    }
 }
