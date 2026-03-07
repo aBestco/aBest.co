@@ -954,3 +954,14 @@ address {
         background-position: -200% 0;
     }
 }
+
+/* Brand Styling */
+.brand-style {
+    font-weight: 600;
+}
+
+.brand-a,
+.brand-dot-co {
+    color: var(--primary-blue);
+    display: inline;
+}
