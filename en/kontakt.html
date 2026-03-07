@@ -58,12 +58,24 @@
                 <div class="glass-panel text-center">
                     <h2>Contact</h2>
                     <div class="divider mt-2"></div>
-                    <p style="margin-bottom: 2rem;">Wir freuen uns über partnerschaftliche und investitionsbezogene
-                        Anfragen. Zögern Sie nicht, uns anzuschreiben.</p>
-                    <a href="mailto:i@aBest.co" class="glass-button ripple"
-                        style="text-decoration: none; display: inline-block; width: auto; padding: 16px 32px;">
-                        eMail an: i@aBest.co
-                    </a>
+                    <p style="margin-bottom: 2rem;">We welcome partnership and investment inquiries. Please fill out the
+                        form below to contact us.</p>
+                    <form id="contact-form" class="glass-form" onsubmit="handleContactSubmit(event)">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" class="form-textarea" required></textarea>
+                        </div>
+                        <button type="submit" class="glass-button ripple"
+                            style="width: 100%; padding: 14px; margin-top: 10px;">Send Message</button>
+                    </form>
                 </div>
             </section>
             <!-- Spacing for bottom scrolling on sticky mode -->
@@ -77,15 +89,16 @@
                     <a href="datenschutz.html">Privacy Policy</a>
                     <a href="kontakt.html">Contact</a>
                 </div>
-                    <div class="language-switcher">
-                <button class="lang-btn" onclick="document.getElementById('lang-dropdown').classList.toggle('show')">EN ▾</button>
-                <div id="lang-dropdown" class="lang-dropdown">
-                    <a href="/en/">EN - English</a>
-                    <a href="/es/">ES - Español</a>
-                    <a href="/de/">DE - Deutsch</a>
-                    <a href="/tr/">TR - Türkçe</a>
+                <div class="language-switcher">
+                    <button class="lang-btn"
+                        onclick="document.getElementById('lang-dropdown').classList.toggle('show')">EN ▾</button>
+                    <div id="lang-dropdown" class="lang-dropdown">
+                        <a href="/en/">EN - English</a>
+                        <a href="/es/">ES - Español</a>
+                        <a href="/de/">DE - Deutsch</a>
+                        <a href="/tr/">TR - Türkçe</a>
+                    </div>
                 </div>
-            </div>
                 <p class="copyright">&copy; 2026 aBest.co</p>
             </div>
         </footer>

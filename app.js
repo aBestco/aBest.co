@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const rect = card.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
-            
+
             // Set CSS variables for the spotlight position on each card
             card.style.setProperty('--spotlight-x', `${x}px`);
             card.style.setProperty('--spotlight-y', `${y}px`);
@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (modalClose) {
         modalClose.addEventListener('click', closeModal);
     }
-    
+
     window.addEventListener('click', (e) => {
         if (e.target === modal) closeModal();
     });
@@ -139,14 +139,14 @@ function setLang(lang) {
     localStorage.setItem('aBest_lang', lang);
 }
 
-document.addEventListener('click', function(event) {
+document.addEventListener('click', function (event) {
     var isClickInsideBtn = event.target.closest('.lang-btn');
     var isClickInsideDropdown = event.target.closest('.lang-dropdown');
-    
+
     // Select all dropdowns (though usually only one is visible)
     var dropdowns = document.querySelectorAll('.lang-dropdown');
-    
-    dropdowns.forEach(function(dropdown) {
+
+    dropdowns.forEach(function (dropdown) {
         if (isClickInsideBtn && dropdown.previousElementSibling === event.target) {
             // Toggle the clicked one
             if (dropdown.style.display === 'block') {
@@ -163,3 +163,35 @@ document.addEventListener('click', function(event) {
         }
     });
 });
+
+// Contact Form Logic
+function handleContactSubmit(event) {
+    event.preventDefault();
+
+    var form = event.target;
+    var btn = form.querySelector('button[type="submit"]');
+    var originalText = btn.innerText;
+
+    btn.innerText = "...";
+    btn.style.opacity = "0.7";
+
+    var name = form.querySelector('#name').value;
+    var email = form.querySelector('#email').value;
+    var message = form.querySelector('#message').value;
+
+    setTimeout(() => {
+        var subject = encodeURIComponent("Contact Request from " + name);
+        var body = encodeURIComponent("Name: " + name + "\nEmail: " + email + "\n\nMessage:\n" + message);
+        window.location.href = "mailto:i@aBest.co?subject=" + subject + "&body=" + body;
+
+        btn.innerText = "✓";
+        btn.style.background = "rgba(40, 167, 69, 0.4)";
+
+        setTimeout(() => {
+            btn.innerText = originalText;
+            btn.style.background = "";
+            btn.style.opacity = "1";
+            form.reset();
+        }, 3000);
+    }, 800);
+}
