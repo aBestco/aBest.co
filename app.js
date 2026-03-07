@@ -209,8 +209,21 @@ function toggleLangMenu(show) {
 
 document.addEventListener('click', function (event) {
     const langBtn = event.target.closest('.lang-btn');
+    const langLink = event.target.closest('.lang-dropdown-link');
     const isClickInsideDropdown = event.target.closest('.lang-dropdown');
     const dropdown = document.querySelector('.lang-dropdown');
+
+    if (langLink) {
+        let href = langLink.getAttribute('href') || '/';
+        let lang = 'en';
+        const match = href.match(/^\/([a-z]{2})\//);
+        if (match) {
+            lang = match[1];
+        } else if (href === '/') {
+            lang = 'en';
+        }
+        setLang(lang);
+    }
 
     if (langBtn) {
         const isShow = dropdown.classList.contains('show');
