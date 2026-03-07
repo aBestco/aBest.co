@@ -810,7 +810,27 @@ address {
     opacity: 0.8;
 }
 
-/* Minimalist Language Switcher */
+/* Minimalist Language Switcher Modal */
+.lang-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 1500;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.lang-backdrop.show {
+    opacity: 1;
+    visibility: visible;
+}
+
 .language-switcher {
     position: relative;
     display: inline-flex;
@@ -843,17 +863,20 @@ address {
 
 .lang-dropdown {
     display: none !important;
-    position: absolute;
-    bottom: calc(100% + 15px);
+    position: fixed;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%) translateY(10px);
-    background: rgba(20, 20, 30, 0.98);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 20px;
-    padding: 12px;
-    z-index: 1000;
-    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.6);
+    transform: translate(-50%, -45%) scale(0.95);
+    width: 280px;
+    /* Compact width for grid */
+    background: rgba(28, 28, 30, 0.95);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 20px;
+    z-index: 1600;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
     opacity: 0;
     transition: opacity 0.3s var(--transition-smooth), transform 0.3s var(--transition-smooth);
 }
@@ -861,9 +884,9 @@ address {
 .lang-dropdown.show {
     display: grid !important;
     grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
+    gap: 16px;
     opacity: 1;
-    transform: translateX(-50%) translateY(0);
+    transform: translate(-50%, -50%) scale(1);
 }
 
 @media (max-width: 600px) {

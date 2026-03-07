@@ -140,29 +140,50 @@ function setLang(lang) {
     localStorage.setItem('aBest_lang', lang);
 }
 
-document.addEventListener('click', function (event) {
-    var isClickInsideBtn = event.target.closest('.lang-btn');
-    var isClickInsideDropdown = event.target.closest('.lang-dropdown');
+// Language Switcher Logic (Modal-style)
+function toggleLangMenu(show) {
+    const dropdown = document.querySelector('.lang-dropdown');
+    let backdrop = document.querySelector('.lang-backdrop');
 
-    // Select all dropdowns
-    var dropdowns = document.querySelectorAll('.lang-dropdown');
+    if (!backdrop) {
+        backdrop = document.createElement('div');
+        backdrop.className = 'lang-backdrop';
+        document.body.appendChild(backdrop);
+        backdrop.addEventListener('click', () => toggleLangMenu(false));
+    }
 
-    dropdowns.forEach(function (dropdown) {
-        if (isClickInsideBtn && (dropdown.previousElementSibling === event.target || dropdown.previousElementSibling.contains(event.target))) {
-            // Toggle the clicked one
-            if (dropdown.classList.contains('show')) {
-                dropdown.classList.remove('show');
-                setTimeout(() => { if (!dropdown.classList.contains('show')) dropdown.style.display = 'none'; }, 300);
-            } else {
-                dropdown.style.display = 'grid'; // Use grid as defined in CSS
-                setTimeout(() => dropdown.classList.add('show'), 10);
+    if (show) {
+        dropdown.style.display = 'grid';
+        backdrop.style.display = 'block';
+        setTimeout(() => {
+            dropdown.classList.add('show');
+            backdrop.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }, 10);
+    } else {
+        dropdown.classList.remove('show');
+        backdrop.classList.remove('show');
+        document.body.style.overflow = '';
+        setTimeout(() => {
+            if (!dropdown.classList.contains('show')) {
+                dropdown.style.display = 'none';
+                backdrop.style.display = 'none';
             }
-        } else if (!isClickInsideDropdown) {
-            // Close if clicked outside
-            dropdown.classList.remove('show');
-            setTimeout(() => { if (!dropdown.classList.contains('show')) dropdown.style.display = 'none'; }, 300);
-        }
-    });
+        }, 300);
+    }
+}
+
+document.addEventListener('click', function (event) {
+    const langBtn = event.target.closest('.lang-btn');
+    const isClickInsideDropdown = event.target.closest('.lang-dropdown');
+    const dropdown = document.querySelector('.lang-dropdown');
+
+    if (langBtn) {
+        const isShow = dropdown.classList.contains('show');
+        toggleLangMenu(!isShow);
+    } else if (!isClickInsideDropdown && dropdown.classList.contains('show')) {
+        toggleLangMenu(false);
+    }
 });
 
 // Contact Form Logic
