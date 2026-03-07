@@ -183,19 +183,46 @@ body {
     border-radius: 6px;
 }
 
-.nav-icon {
+.nav-icon,
+.header-icon {
     width: 40px;
     height: 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 6px;
     align-items: center;
     cursor: pointer;
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
     border-radius: 50%;
     transition: var(--transition-fast);
+    color: var(--text-main);
+    text-decoration: none;
+}
+
+.header-icon svg {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nav-icon {
+    gap: 6px;
+}
+
+.header-icon:hover {
+    background: var(--glass-border-hover);
+    transform: translateY(-2px);
+    border-color: var(--primary-blue);
+    color: var(--primary-blue);
 }
 
 .nav-icon span {
