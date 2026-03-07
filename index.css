@@ -140,7 +140,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 8px;
+    margin-bottom: 0;
     /* Sticky */
     position: sticky;
     top: 12px;
@@ -264,7 +264,7 @@ body {
 
 .hero-content {
     border-radius: 20px;
-    padding: clamp(0.5rem, 2vw, 1.5rem) clamp(1rem, 3vw, 2rem);
+    padding: clamp(0.25rem, 1vw, 0.75rem) clamp(1rem, 3vw, 2rem);
     position: relative;
     overflow: hidden;
     text-align: center;
@@ -273,7 +273,8 @@ body {
 .hero h1 {
     font-size: var(--font-size-h1);
     font-weight: 400;
-    margin-bottom: 1rem;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
     color: var(--text-muted);
 }
 
