@@ -6,6 +6,9 @@ on:
       - main
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   deploy-and-sync:
     runs-on: ubuntu-latest
@@ -21,11 +24,13 @@ jobs:
           npx wrangler pages deploy . --project-name=abest-co > deploy_log.txt 2>&1 || echo "DEPLOY_FAILED" >> deploy_log.txt
           cat deploy_log.txt
           
-      - name: Upload Logs
-        uses: actions/upload-artifact@v4
-        with:
-          name: deploy-logs
-          path: deploy_log.txt
+      - name: Commit Log
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add deploy_log.txt
+          git commit -m "chore: save deploy log with write permissions" || true
+          git push || true
 
 
       - name: Configure AWS CLI for IDrive E2
