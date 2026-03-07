@@ -1,41 +1,24 @@
 export default {
     async fetch(request, env) {
         const url = new URL(request.url);
-        const host = url.hostname;
         const pathname = url.pathname;
+        const host = url.hostname;
 
-        // --- 1. STATIC ASSET CHECK (Optimized for Cloudflare Pages) ---
-        // If the request is for a file with an extension, or common static paths, 
-        // let the Pages asset fetcher handle it directly.
-        if (pathname.includes('.') || pathname.startsWith('/assets/')) {
-            return env.ASSETS.fetch(request);
-        }
-
-        // --- 2. BASIC AUTHENTICATION MIDDLEWARE ---
-        // Protect /admin and sensitive API routes
-        const isAuthRequired = pathname.startsWith('/admin') ||
-            (pathname.startsWith('/api/inquiries') && ['GET', 'PUT', 'DELETE'].includes(request.method));
-
-        if (isAuthRequired) {
-            const authHeader = request.headers.get('Authorization');
-            const expectedUser = env.ADMIN_USER || 'admin';
-            const expectedPass = env.ADMIN_PASS || 'abest2026';
-            const expectedAuth = 'Basic ' + btoa(`${expectedUser}:${expectedPass}`);
-
-            if (authHeader !== expectedAuth) {
-                return new Response('Unauthorized', {
-                    status: 401,
-                    headers: { 'WWW-Authenticate': 'Basic realm="aBest.co Admin Area"' }
-                });
-            }
-        }
-
-        // --- 3. API ROUTES FOR INQUIRIES ---
+        // --- 1. API & ADMIN ROUTES (Must be handled first) ---
         if (pathname.startsWith('/api/inquiries')) {
+            // Check auth for sensitive methods
+            if (['GET', 'PUT', 'DELETE'].includes(request.method)) {
+                if (!checkAuth(request, env)) return unauthorizedResponse();
+            }
             return handleInquiriesApi(request, env);
         }
 
-        // --- 4. 301 REDIRECTS FOR OLD DOMAINS ---
+        if (pathname.startsWith('/admin')) {
+            if (!checkAuth(request, env)) return unauthorizedResponse();
+            // Let it fall through to ASSETS.fetch if auth passes
+        }
+
+        // --- 2. 301 REDIRECTS FOR OLD DOMAINS ---
         if (host === 'abest.com' || host === 'www.abest.com') {
             const newUrl = new URL(request.url);
             newUrl.hostname = 'abest.co';
@@ -43,12 +26,27 @@ export default {
             return Response.redirect(newUrl.toString(), 301);
         }
 
-        // --- 5. DEFAULT STATIC SERVING ---
-        // For standard paths (like /de/ or /en/kontakt.html), serve from assets.
-        // Cloudflare Pages handles index.html resolution automatically for directories.
+        // --- 3. ALL OTHER STATIC ASSETS ---
+        // This includes /assets/, /de/index.html, /en/terms.html, etc.
         return env.ASSETS.fetch(request);
     },
 };
+
+// Helper for Authentication
+function checkAuth(request, env) {
+    const authHeader = request.headers.get('Authorization');
+    const expectedUser = env.ADMIN_USER || 'admin';
+    const expectedPass = env.ADMIN_PASS || 'abest2026';
+    const expectedAuth = 'Basic ' + btoa(`${expectedUser}:${expectedPass}`);
+    return authHeader === expectedAuth;
+}
+
+function unauthorizedResponse() {
+    return new Response('Unauthorized', {
+        status: 401,
+        headers: { 'WWW-Authenticate': 'Basic realm="aBest.co Admin Area"' }
+    });
+}
 
 // --- API HANDLERS ---
 async function handleInquiriesApi(request, env) {
