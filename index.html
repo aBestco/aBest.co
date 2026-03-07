@@ -45,32 +45,56 @@
 <body>
     <div class="loader"></div>
     <script>
-        // Automatic Language Redirect
+        // Automatic Language & Location Redirect
         document.addEventListener('DOMContentLoaded', function() {
-            // Check if user has a saved language preference in localStorage
+            // 1. Check if user already has a saved language preference
             var savedLang = localStorage.getItem('aBest_lang');
-            
             if (savedLang) {
+                // If they explicitly saved a lang via the menu, just send them there
                 window.location.replace('/' + savedLang + '/');
                 return;
             }
 
-            // Get browser language
+            // 2. Detect Browser Language
             var userLang = navigator.language || navigator.userLanguage; 
             var langCode = userLang.split('-')[0].toLowerCase();
             
-            var targetUrl = '/en/'; // Default
+            var targetLangFolder = 'en'; // Default
             
-            if (langCode === 'de') {
-                targetUrl = '/de/';
-            } else if (langCode === 'es') {
-                targetUrl = '/es/';
-            } else if (langCode === 'tr') {
-                targetUrl = '/tr/';
+            if (['de', 'es', 'tr'].includes(langCode)) {
+                targetLangFolder = langCode;
             }
-            
-            // Redirect smoothly
-            window.location.replace(targetUrl);
+
+            // 3. Detect Visitor Location via GeoJS API
+            fetch('https://get.geojs.io/v1/ip/geo.json')
+                .then(response => response.json())
+                .then(data => {
+                    var country = data.country_code; // e.g., 'US', 'DE', 'TR'
+                    var targetPage = '';
+
+                    // Map country to a regional page
+                    if (country === 'US') {
+                        targetPage = 'usa.html';
+                    } else if (['DE', 'AT', 'CH'].includes(country)) {
+                        targetPage = 'deutschland.html';
+                    } else if (country === 'TR') {
+                        targetPage = 'turkiye.html';
+                    }
+
+                    // 4. Redirect
+                    if (targetPage) {
+                        // Redirect directly to the country region within their language
+                        window.location.replace('/' + targetLangFolder + '/' + targetPage);
+                    } else {
+                        // Redirect just to the language root if country not matched
+                        window.location.replace('/' + targetLangFolder + '/');
+                    }
+                })
+                .catch(err => {
+                    // Fallback on network error: just go to language root
+                    console.error("Geolocation fetch failed:", err);
+                    window.location.replace('/' + targetLangFolder + '/');
+                });
         });
     </script>
 </body>
