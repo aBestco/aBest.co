@@ -964,4 +964,53 @@ address {
 .brand-dot-co {
     color: var(--primary-blue);
     display: inline;
+}/* Horizontal Flag Switcher Styling */
+.flag-switcher-wrapper {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.5rem 0;
+    overflow-x: auto;
+    /* Hide scrollbars for a cleaner look */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+    display: flex;
+    justify-content: center;
+    /* Center if it doesn't overflow */
+}
+
+.flag-switcher-wrapper::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari and Opera */
+}
+
+.flag-switcher-container {
+    display: inline-flex;
+    gap: 1.25rem;
+    padding: 0 1rem;
+    /* Padding at ends for scrolling */
+    white-space: nowrap;
+    align-items: center;
+}
+
+.flag-link {
+    font-size: 1.75rem;
+    text-decoration: none;
+    transition: transform 0.2s ease, filter 0.2s ease;
+    cursor: pointer;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.flag-link:hover {
+    transform: scale(1.2);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+/* Adjust slim-footer-content layout */
+.slim-footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
 }
