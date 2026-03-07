@@ -50,7 +50,7 @@
                     <span style="color: var(--primary-blue);">a</span>Best<span style="color: var(--primary-blue);">.co</span>
                 </span>
             </a>
-            <div class="nav-icon" id="menu-btn">
+            <div class="nav-icon" id="menu-btn" aria-label="Toggle Navigation Menu">
                 <span></span>
                 <span></span>
             </div>
@@ -89,6 +89,7 @@
                     <!-- Map Location -->
                     <div
                         style="margin-top: 2rem; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
+                        <div class="map-skeleton" id="map-skeleton"></div>
                         <div class="osm-map" data-query="Half Moon Bay, CA" style="width: 100%; height: 400px; border-radius: 12px; z-index: 1;"></div>
                     </div>
 

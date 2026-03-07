@@ -181,6 +181,22 @@ function handleContactSubmit(event) {
     var phone = form.querySelector('#phone').value || '';
     var email = form.querySelector('#email').value;
     var message = form.querySelector('#message').value;
+    var honeypot = form.querySelector('#honeypot').value;
+
+    // Honeypot check for bots
+    if (honeypot) {
+        console.log("Honeypot detected. Submission ignored.");
+        return;
+    }
+
+    // Basic Phone Validation
+    if (phone && !/^\+?[\d\s\-]{7,}$/.test(phone)) {
+        alert("Please enter a valid phone number.");
+        btn.innerText = originalText;
+        btn.style.opacity = "1";
+        btn.disabled = false;
+        return;
+    }
 
     fetch("https://formsubmit.co/ajax/i@aBest.co", {
         method: "POST",
@@ -250,18 +266,27 @@ if (osmMaps.length > 0 && typeof L !== 'undefined') {
                     // Add a pin/marker
                     L.marker([lat, lon]).addTo(map);
 
+                    // EXPERT: Remove skeleton and show map
+                    mapDiv.classList.add('loaded');
+                    const skeleton = mapDiv.parentElement.querySelector('.map-skeleton');
+                    if (skeleton) skeleton.style.display = 'none';
+
                     // Optionally add zoom controls manually if you want them styled differently
                     L.control.zoom({
                         position: 'bottomright'
                     }).addTo(map);
                 } else {
                     console.error('Nominatim found no results for:', query);
-                    mapDiv.innerHTML = '<p style="text-align:center; padding-top:180px;">Map location not found.</p>';
+                    const skeleton = mapDiv.parentElement.querySelector('.map-skeleton');
+                    if (skeleton) skeleton.innerHTML = '<p style="text-align:center; padding-top:180px;">Map location not found.</p>';
                 }
             })
             .catch(err => {
                 console.error('Error fetching map data:', err);
+                const skeleton = mapDiv.parentElement.querySelector('.map-skeleton');
+                if (skeleton) skeleton.innerHTML = '<p style="text-align:center; padding-top:180px;">Map data could not be retrieved.</p>';
             });
+
     });
 }
 
