@@ -2,8 +2,18 @@ export default {
     async fetch(request, env) {
         const url = new URL(request.url);
         const pathname = url.pathname;
+        const host = url.hostname;
 
-        // --- 1. API ROUTES ---
+        // --- 1. LANGUAGE REDIRECTION FOR ROOT (/) ---
+        if (pathname === '/') {
+            const acceptLanguage = request.headers.get('Accept-Language') || 'en';
+            const langCode = acceptLanguage.split(',')[0].split('-')[0].toLowerCase();
+            const supportedLangs = ["en", "de", "tr", "es", "zh", "hi", "ar", "fr", "ru", "pt", "ur", "ku", "he", "hy"];
+            const targetLang = supportedLangs.includes(langCode) ? langCode : 'en';
+            return Response.redirect(`https://${host}/${targetLang}/`, 302);
+        }
+
+        // --- 2. API ROUTES ---
         if (pathname.startsWith('/api/inquiries')) {
             // Check auth for sensitive methods
             if (['GET', 'PUT', 'DELETE'].includes(request.method)) {
