@@ -1,4 +1,4 @@
-// Final deployment trigger - Mar 7, 2026
+// Final deployment trigger - Mar 7, 2026 13:27 (Protocol Test)
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Mobile Navigation Logic
     const menuBtn = document.getElementById('menu-btn');
