@@ -798,16 +798,17 @@ address {
     color: var(--text-muted);
     opacity: 0.8;
 }
+
 /* Language Switcher */
 .language-switcher {
     position: relative;
-    margin-right: 20px;
     display: inline-flex;
     align-items: center;
 }
+
 .lang-btn {
-    background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     color: white;
     padding: 6px 12px;
     border-radius: 8px;
@@ -816,43 +817,50 @@ address {
     font-size: 14px;
     transition: all 0.3s ease;
 }
+
 .lang-btn:hover {
-    background: rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.2);
 }
+
 .lang-dropdown {
     display: none;
     position: absolute;
-    top: 100%;
+    bottom: 100%;
     right: 0;
-    margin-top: 8px;
+    margin-bottom: 8px;
     background: rgba(20, 20, 30, 0.95);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
     overflow: hidden;
     z-index: 100;
     min-width: 120px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(10px);
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
+
 .lang-dropdown.show {
     display: block;
     opacity: 1;
     transform: translateY(0);
 }
+
 .lang-dropdown a {
     display: block;
     padding: 10px 16px;
     color: white;
     text-decoration: none;
-    border-bottom: 1px solid rgba(255,255,255,0.05); /* Added for separation */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    /* Added for separation */
     transition: background 0.3s ease;
 }
+
 .lang-dropdown a:hover {
-    background: rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.1);
 }
+
 .lang-dropdown a:last-child {
     border-bottom: none;
 }

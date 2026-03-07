@@ -84,15 +84,6 @@
                     aBest<span style="color: var(--primary-blue);">.co</span>
                 </span>
             </a>
-            <div class="language-switcher" style="position: relative; margin-right: 20px; display: inline-flex; align-items: center;">
-                <button class="lang-btn" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 8px; cursor: pointer; font-family: 'Outfit', sans-serif; font-size: 14px;" onclick="document.getElementById('lang-dropdown').classList.toggle('show')">TR ▾</button>
-                <div id="lang-dropdown" class="lang-dropdown" style="display: none; position: absolute; top: 100%; right: 0; margin-top: 8px; background: rgba(20, 20, 30, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; overflow: hidden; z-index: 100; min-width: 120px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-                    <a href="/en/" style="display: block; padding: 10px 16px; color: white; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.05);">EN - English</a>
-                    <a href="/es/" style="display: block; padding: 10px 16px; color: white; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.05);">ES - Español</a>
-                    <a href="/de/" style="display: block; padding: 10px 16px; color: white; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.05);">DE - Deutsch</a>
-                    <a href="/tr/" style="display: block; padding: 10px 16px; color: white; text-decoration: none;">TR - Türkçe</a>
-                </div>
-            </div>
             <div class="nav-icon" id="menu-btn">
                 <span></span>
                 <span></span>
@@ -132,6 +123,15 @@
                     <a href="datenschutz.html">Gizlilik Politikası</a>
                     <a href="kontakt.html">İletişim</a>
                 </div>
+                    <div class="language-switcher">
+                <button class="lang-btn" onclick="document.getElementById('lang-dropdown').classList.toggle('show')">TR ▾</button>
+                <div id="lang-dropdown" class="lang-dropdown">
+                    <a href="/en/">EN - English</a>
+                    <a href="/es/">ES - Español</a>
+                    <a href="/de/">DE - Deutsch</a>
+                    <a href="/tr/">TR - Türkçe</a>
+                </div>
+            </div>
                 <p class="copyright">&copy; 2026 aBest.co</p>
             </div>
         </footer>
