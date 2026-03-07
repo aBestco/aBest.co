@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600">
+  <rect width="1000" height="200" fill="#ED2024"/>
+  <rect y="200" width="1000" height="200" fill="#fff"/>
+  <rect y="400" width="1000" height="200" fill="#278E43"/>
+  <circle cx="500" cy="300" r="105" fill="#FDB913"/>
+  <g fill="#FDB913">
+    <polygon points="500,165 510,230 490,230"/>
+    <polygon points="500,435 510,370 490,370"/>
+    <polygon points="635,300 570,290 570,310"/>
+    <polygon points="365,300 430,290 430,310"/>
+    <polygon points="595,205 550,250 540,235"/>
+    <polygon points="405,395 450,350 460,365"/>
+    <polygon points="630,230 565,263 558,247"/>
+    <polygon points="370,370 435,337 442,353"/>
+    <polygon points="548,175 528,235 512,228"/>
+    <polygon points="452,425 472,365 488,372"/>
+    <polygon points="452,175 472,235 488,228"/>
+    <polygon points="548,425 528,365 512,372"/>
+    <polygon points="630,370 565,337 558,353"/>
+    <polygon points="370,230 435,263 442,247"/>
+    <polygon points="635,335 572,316 575,302"/>
+    <polygon points="365,265 428,284 425,298"/>
+    <polygon points="615,375 560,332 568,321"/>
+    <polygon points="385,225 440,268 432,279"/>
+    <polygon points="582,415 540,358 552,350"/>
+    <polygon points="418,185 460,242 448,250"/>
+    <polygon points="418,415 460,358 448,350"/>
+    <polygon points="582,185 540,242 552,250"/>
+  </g>
+</svg>
