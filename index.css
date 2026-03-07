@@ -185,7 +185,7 @@ body {
 }
 
 .nav-icon,
-.header-icon {
+.header-icon-v2 {
     width: 40px;
     height: 40px;
     display: flex;
@@ -201,7 +201,7 @@ body {
     text-decoration: none;
 }
 
-.header-icon svg {
+.header-icon-v2 svg {
     width: 20px;
     height: 20px;
     stroke: currentColor;
@@ -210,7 +210,7 @@ body {
     display: block;
 }
 
-.header-actions {
+.header-actions-v2 {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -220,7 +220,7 @@ body {
     gap: 6px;
 }
 
-.header-icon:hover {
+.header-icon-v2:hover {
     background: var(--glass-border-hover);
     transform: translateY(-2px);
     border-color: var(--primary-blue);
