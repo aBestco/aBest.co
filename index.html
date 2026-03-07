@@ -3,12 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>aBest.co | Global Development Projects</title>
     <!-- SEO Optimization -->
     <meta name="description"
         content="Personal projects in real estate, infrastructure and commercial developments in USA, Germany and Turkey.">
 
+    <link rel="icon" type="image/png" href="./favicon.png">
     <link rel="stylesheet" href="index.css">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,9 +28,19 @@
     <!-- Main App Container -->
     <div class="app-container">
 
+        <!-- Mobile Navigation -->
+        <nav class="mobile-nav" id="mobile-nav">
+            <a href="#" class="nav-link">Home</a>
+            <a href="#" class="nav-link">Projects</a>
+            <a href="#" class="nav-link">About</a>
+            <a href="#" class="nav-link">Contact</a>
+        </nav>
+
         <!-- Header -->
         <header class="app-header fade-in-up" style="animation-delay: 0.1s;">
-            <div class="logo">a<span>Best</span>.co</div>
+            <a href="#" class="logo-link">
+                <img src="./favicon.png" alt="aBest.co Logo" class="logo-img">
+            </a>
             <div class="nav-icon" id="menu-btn">
                 <span></span>
                 <span></span>
@@ -136,31 +148,174 @@
                 </div>
             </section>
 
+            <!-- Stats Table Section -->
+            <section class="section-spacing fade-in-up" style="animation-delay: 0.6s;">
+                <div class="glass-panel">
+                    <h2>Project Portfolio Stats</h2>
+                    <div class="divider"></div>
+                    <div class="table-container table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Project</th>
+                                    <th>Status</th>
+                                    <th>Location</th>
+                                    <th>Growth</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td data-label="Project">LA Commercial</td>
+                                    <td data-label="Status">In Progress</td>
+                                    <td data-label="Location">USA</td>
+                                    <td data-label="Growth">+12%</td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Project">Berlin Tech Hub</td>
+                                    <td data-label="Status">Completed</td>
+                                    <td data-label="Location">Germany</td>
+                                    <td data-label="Growth">+24%</td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Project">Istanbul Retail</td>
+                                    <td data-label="Status">Planning</td>
+                                    <td data-label="Location">Turkey</td>
+                                    <td data-label="Growth">+8%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Form Section -->
+            <section class="section-spacing fade-in-up" style="animation-delay: 0.7s;">
+                <div class="glass-panel">
+                    <h2>Get in Touch</h2>
+                    <div class="divider"></div>
+                    <form class="contact-form">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Email Address" required>
+                        <textarea placeholder="Message" rows="4" class="form-full" required></textarea>
+                        <button type="submit" class="glass-button ripple form-full">Send Inquiry</button>
+                    </form>
+                </div>
+            </section>
+
             <!-- Spacing for bottom scrolling on sticky mode -->
             <div style="height: 60px;"></div>
         </main>
 
-    </div>
+        <footer class="app-footer section-spacing fade-in-up" style="animation-delay: 0.8s;">
+            <div class="glass-panel footer-content">
+                <div class="footer-grid">
+                    <div class="footer-info">
+                        <h3>Impressum</h3>
+                        <div class="divider"></div>
+                        <p class="company-name">aBest.co</p>
+                        <p class="footer-email">eMail: <a href="mailto:i@aBest.co">i@aBest.co</a></p>
+                        <p>aUS2001 LLC</p>
+                        <address>
+                            30 N Gould St Ste R<br>
+                            Sheridan, WY 82801, USA
+                        </address>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="divider"></div>
+                    <p class="copyright">&copy; 2026 aBest.co</p>
+                </div>
+            </div>
+        </footer>
 
-    <script>
-        // Simple ripple effect for glass buttons
-        document.querySelectorAll('.ripple').forEach(button => {
-            button.addEventListener('click', function (e) {
-                const x = e.clientX - e.target.getBoundingClientRect().left;
-                const y = e.clientY - e.target.getBoundingClientRect().top;
+        <!-- Modal Overlay -->
+        <div class="modal-overlay" id="project-modal">
+            <div class="modal-content">
+                <button class="modal-close" id="modal-close">&times;</button>
+                <div id="modal-body">
+                    <!-- Content injected via JS -->
+                </div>
+            </div>
+        </div>
 
-                const ripples = document.createElement('span');
-                ripples.style.left = x + 'px';
-                ripples.style.top = y + 'px';
-                ripples.classList.add('ripple-effect');
-                this.appendChild(ripples);
+        <script>
+            // DOM Elements
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileNav = document.getElementById('mobile-nav');
+            const modal = document.getElementById('project-modal');
+            const modalClose = document.getElementById('modal-close');
+            const modalBody = document.getElementById('modal-body');
+            const exploreBtn = document.querySelector('.js-explore-btn');
 
-                setTimeout(() => {
-                    ripples.remove()
-                }, 600);
+            // Toggle Mobile Navigation
+            menuBtn.addEventListener('click', () => {
+                menuBtn.classList.toggle('active');
+                mobileNav.classList.toggle('active');
+                document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
             });
-        });
-    </script>
+
+            // Close Mobile Nav on link click
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    menuBtn.classList.remove('active');
+                    mobileNav.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
+
+            // Modal Logic
+            const openModal = (content) => {
+                modalBody.innerHTML = content;
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            };
+
+            const closeModal = () => {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            };
+
+            exploreBtn.addEventListener('click', () => {
+                const projectTitle = document.querySelector('.featured-header h3').innerText;
+                const projectTags = document.querySelector('.project-tags').innerText;
+                const projectImg = document.querySelector('.image-preview img').src;
+
+                const content = `
+                <img src="${projectImg}" alt="${projectTitle}" style="width:100%; border-radius:16px; margin-bottom:1.5rem;">
+                <h2 style="margin-bottom:0.5rem;">${projectTitle}</h2>
+                <p style="color:var(--text-accent); margin-bottom:1rem;">${projectTags}</p>
+                <p>Detailed project insights: This flagship development in Los Angeles integrates state-of-the-art EV charging infrastructure with premium retail and high-end dining experiences. The project emphasizes sustainable architecture and modern urban lifestyle.</p>
+                <div class="divider" style="margin: 1.5rem 0;"></div>
+                <button class="glass-button ripple" onclick="location.reload()">Back to Dashboard</button>
+            `;
+                openModal(content);
+            });
+
+            modalClose.addEventListener('click', closeModal);
+            window.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+
+            // Simple ripple effect for glass buttons
+            document.body.addEventListener('click', function (e) {
+                if (e.target.classList.contains('ripple')) {
+                    const button = e.target;
+                    const rect = button.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    const ripples = document.createElement('span');
+                    ripples.style.left = x + 'px';
+                    ripples.style.top = y + 'px';
+                    ripples.classList.add('ripple-effect');
+                    button.appendChild(ripples);
+
+                    setTimeout(() => {
+                        ripples.remove()
+                    }, 600);
+                }
+            });
+        </script>
 </body>
 
 </html>
