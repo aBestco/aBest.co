@@ -90,14 +90,50 @@ function renderTable() {
     tbody.innerHTML = '';
 
     let filtered = inquiries;
+    const theadTr = document.querySelector('.admin-table thead tr');
+
+    if (currentView === 'users') {
+        theadTr.innerHTML = `<th>Name</th><th>E-Mail</th><th>Rolle</th><th>Letzter Login</th><th>Status</th>`;
+        const mockUsers = [
+            { name: "Alan Best", email: "alan@abest.co", role: "Superadmin", status: "Aktiv", lastLogin: "Heute, 10:45" },
+            { name: "Michael Schmidt", email: "m.schmidt@abest.co", role: "Manager", status: "Aktiv", lastLogin: "Gestern, 15:30" },
+            { name: "Sarah Wagner", email: "s.wagner@abest.co", role: "Viewer", status: "Inaktiv", lastLogin: "Vor 5 Tagen" }
+        ];
+        tbody.innerHTML = mockUsers.map(u => `<tr>
+            <td><strong>${u.name}</strong></td>
+            <td><a href="mailto:${u.email}" style="color:var(--primary-blue)">${u.email}</a></td>
+            <td>${u.role}</td>
+            <td>${u.lastLogin}</td>
+            <td><span class="status-badge ${u.status === 'Aktiv' ? 'bg-erledigt' : 'bg-abgelehnt'}">${u.status}</span></td>
+        </tr>`).join('');
+        return;
+    } else if (currentView === 'docs') {
+        theadTr.innerHTML = `<th>Dateiname</th><th>Typ</th><th>Größe</th><th>Datum</th><th>Hochgeladen von</th>`;
+        const mockDocs = [
+            { name: "Pitch Deck 2026.pdf", type: "PDF", size: "4.2 MB", date: "05.03.2026", owner: "Alan Best" },
+            { name: "Investor_Relations_Q1.xlsx", type: "Excel", size: "1.1 MB", date: "01.03.2026", owner: "Michael Schmidt" },
+            { name: "NDAs_Templates.zip", type: "Archiv", size: "8.5 MB", date: "28.02.2026", owner: "System" }
+        ];
+        tbody.innerHTML = mockDocs.map(d => `<tr>
+            <td><strong>📄 ${d.name}</strong></td>
+            <td>${d.type}</td>
+            <td>${d.size}</td>
+            <td>${d.date}</td>
+            <td>${d.owner}</td>
+        </tr>`).join('');
+        return;
+    } else {
+        // Default headers for inquiries
+        theadTr.innerHTML = `<th>Typ</th><th>Name / Firma</th><th>Kategorie / Ort</th><th>Datum</th><th>Status</th>`;
+    }
 
     // View Filter
     if (currentView !== 'dashboard') {
-        const typeMap = { 'idee': 'Idee', 'investor': 'Investor', 'miete': 'Miete', 'kauf': 'Kauf' };
+        const typeMap = { 'idee': 'Idee', 'investor': 'Investor', 'miete': 'Miete', 'kauf': 'Kauf', 'kontakt': 'Kontakt' };
         if (typeMap[currentView]) {
-            filtered = filtered.filter(i => i.type === typeMap[currentView]);
+            filtered = filtered.filter(i => (i.type && i.type === typeMap[currentView]) || (currentView === 'kontakt' && !i.type));
         } else {
-            // views without real data yet (kontakt, users, docs)
+            // views without real data yet
             filtered = [];
             tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--text-muted);padding:30px;">In diesem Bereich gibt es noch keine Daten.</td></tr>';
             return;
