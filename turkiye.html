@@ -5,10 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>aBest.co | Global Development Projects</title>
-    <!-- SEO Optimization -->
+    <title>aBest.co | Global Premium Development</title>
+    <!-- SEO & Open Graph Meta Tags -->
     <meta name="description"
-        content="Personal projects in real estate, infrastructure and commercial developments in USA, Germany and Turkey.">
+        content="aBest.co develops premium land, energy, and commercial real estate projects globally. Partnerships with investors and brands.">
+    <meta property="og:title" content="aBest.co | Global Premium Development">
+    <meta property="og:description"
+        content="aBest.co develops premium land, energy, and commercial real estate projects globally. Partnerships with investors and brands.">
+    <meta property="og:image" content="https://www.abest.co/bg_main_blurred_new.png">
+    <meta property="og:url" content="https://www.abest.co">
+    <meta name="twitter:card" content="summary_large_image">
 
     <link rel="icon" type="image/png" href="./favicon.png">
     <link rel="stylesheet" href="index.css">
@@ -124,84 +130,7 @@
             </div>
         </div>
 
-        <script>
-            // DOM Elements
-            const menuBtn = document.getElementById('menu-btn');
-            const mobileNav = document.getElementById('mobile-nav');
-            const modal = document.getElementById('project-modal');
-            const modalClose = document.getElementById('modal-close');
-            const modalBody = document.getElementById('modal-body');
-            const exploreBtn = document.querySelector('.js-explore-btn');
-
-            // Toggle Mobile Navigation
-            menuBtn.addEventListener('click', () => {
-                menuBtn.classList.toggle('active');
-                mobileNav.classList.toggle('active');
-                document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
-            });
-
-            // Close Mobile Nav on link click
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.addEventListener('click', () => {
-                    menuBtn.classList.remove('active');
-                    mobileNav.classList.remove('active');
-                    document.body.style.overflow = '';
-                });
-            });
-
-            // Modal Logic
-            const openModal = (content) => {
-                modalBody.innerHTML = content;
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            };
-
-            const closeModal = () => {
-                modal.classList.remove('active');
-                document.body.style.overflow = '';
-            };
-
-            exploreBtn.addEventListener('click', () => {
-                const projectTitle = document.querySelector('.featured-header h3').innerText;
-                const projectTags = document.querySelector('.project-tags').innerText;
-                const projectImg = document.querySelector('.image-preview img').src;
-
-                const content = `
-                <img src="${projectImg}" alt="${projectTitle}" style="width:100%; border-radius:16px; margin-bottom:1.5rem;">
-                <h2 style="margin-bottom:0.5rem;">${projectTitle}</h2>
-                <p style="color:var(--text-accent); margin-bottom:1rem;">${projectTags}</p>
-                <p>Detailed project insights: This flagship development in Los Angeles integrates state-of-the-art EV charging infrastructure with premium retail and high-end dining experiences. The project emphasizes sustainable architecture and modern urban lifestyle.</p>
-                <div class="divider" style="margin: 1.5rem 0;"></div>
-                <button class="glass-button ripple" onclick="location.reload()">Back to Dashboard</button>
-            `;
-                openModal(content);
-            });
-
-            modalClose.addEventListener('click', closeModal);
-            window.addEventListener('click', (e) => {
-                if (e.target === modal) closeModal();
-            });
-
-            // Simple ripple effect for glass buttons
-            document.body.addEventListener('click', function (e) {
-                if (e.target.classList.contains('ripple')) {
-                    const button = e.target;
-                    const rect = button.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-
-                    const ripples = document.createElement('span');
-                    ripples.style.left = x + 'px';
-                    ripples.style.top = y + 'px';
-                    ripples.classList.add('ripple-effect');
-                    button.appendChild(ripples);
-
-                    setTimeout(() => {
-                        ripples.remove()
-                    }, 600);
-                }
-            });
-        </script>
+        <script src="./app.js"></script>
 </body>
 
 </html>
