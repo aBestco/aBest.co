@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        name="viewport" />
+    <title>aBest.co | Partnerschaften & Anfragen</title>
+    <meta
+        content="Reichen Sie Ihre Geschäftsidee ein, registrieren Sie sich als Investor oder stellen Sie Miet- und Kaufanfragen für unsere Projekte."
+        name="description" />
+    <link href="/favicon.png" rel="icon" type="image/png" />
+    <link href="/index.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+
+    <style>
+        .partner-cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-bottom: var(--spacing-section);
+        }
+
+        @media (min-width: 640px) {
+            .partner-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .partner-card {
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            min-height: 200px;
+            transition: all var(--transition-smooth);
+        }
+
+        .partner-card:hover {
+            border-color: var(--primary-blue);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(10, 132, 255, 0.2);
+        }
+
+        .partner-card h3 {
+            font-size: 1.5rem;
+            color: var(--text-main);
+            margin: 0;
+        }
+
+        .partner-card p {
+            font-size: 1rem;
+            margin: 0;
+            color: var(--text-muted);
+        }
+
+        .icon-circle {
+            width: 64px;
+            height: 64px;
+            background: rgba(10, 132, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: var(--primary-blue);
+            margin-bottom: 5px;
+        }
+
+        .form-section {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .form-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            background: none;
+            border: none;
+            font-size: 1rem;
+            font-family: inherit;
+            cursor: pointer;
+            padding: 0;
+            margin-bottom: 20px;
+            transition: color var(--transition-fast);
+        }
+
+        .back-btn:hover {
+            color: var(--text-main);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 14px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: var(--text-main);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition-fast);
+            appearance: none;
+        }
+
+        .form-group input[type="file"] {
+            padding: 10px;
+        }
+
+        .form-group select {
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23ffffff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+            background-repeat: no-repeat, repeat;
+            background-position: right .7em top 50%, 0 0;
+            background-size: .65em auto, 100%;
+        }
+
+        .form-group select option {
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            gap: 20px;
+            grid-template-columns: 1fr;
+        }
+
+        @media (min-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .form-info-box {
+            background: rgba(10, 132, 255, 0.05);
+            border-left: 4px solid var(--primary-blue);
+            padding: 15px 20px;
+            border-radius: 0 12px 12px 0;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(48, 209, 88, 0.1);
+            border: 1px solid rgba(48, 209, 88, 0.3);
+            border-radius: 20px;
+            margin-top: 20px;
+        }
+
+        .success-message h3 {
+            color: var(--primary-green);
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background-wrapper">
+        <img alt="Blurred Background" class="main-bg" id="hero-bg" src="/bg_main_blurred_new.png" />
+        <div class="bg-gradient-overlay"></div>
+    </div>
+
+    <div class="app-container">
+        <!-- Mobile Navigation -->
+        <nav class="mobile-nav" id="mobile-nav">
+            <a class="nav-link" href="/de/">Home</a>
+            <a class="nav-link" href="/de/usa.html">USA</a>
+            <a class="nav-link" href="/de/deutschland.html">Deutschland</a>
+            <a class="nav-link" href="/de/turkiye.html">Türkei</a>
+            <a class="nav-link" href="/de/partnerschaften.html">Anfragen</a>
+            <a class="nav-link" href="/de/kontakt.html">Kontakt</a>
+        </nav>
+
+        <!-- Header -->
+        <header class="app-header fade-in-up" style="animation-delay: 0.1s;">
+            <a class="logo-link" href="/de/">
+                <span style="font-size: 1.5rem; font-weight: 500; letter-spacing: -0.5px; color: var(--text-main);">
+                    <span style="color: var(--primary-blue);">a</span>Best<span
+                        style="color: var(--primary-blue);">.co</span>
+                </span>
+            </a>
+            <div aria-label="Toggle Navigation Menu" class="nav-icon" id="menu-btn">
+                <span></span>
+                <span></span>
+            </div>
+        </header>
+
+        <main class="scroll-content">
+            <section class="hero fade-in-up" style="animation-delay: 0.2s;">
+                <div class="hero-content glass-chip" style="padding: 2rem;">
+                    <h1>Partnerschaften &amp; <span class="highlight">Anfragen</span></h1>
+                    <p class="subtext">Wählen Sie Ihren Bereich, um schnell und unkompliziert mit uns in Kontakt zu
+                        treten.</p>
+                </div>
+            </section>
+
+            <section class="fade-in-up" style="animation-delay: 0.3s;">
+                <!-- Cards Selection View -->
+                <div id="cards-view">
+                    <div class="partner-cards">
+                        <!-- Card 1 -->
+                        <div class="glass-card partner-card" onclick="showForm('idea-form')">
+                            <div class="icon-circle">💡</div>
+                            <h3>Idee einreichen</h3>
+                            <p>Für Projektideen & strategische Partnerschaften (Investor gesucht)</p>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="glass-card partner-card" onclick="showForm('investor-form')">
+                            <div class="icon-circle">🤝</div>
+                            <h3>Als Investor registrieren</h3>
+                            <p>Für Investoren an unseren Projekten oder Grundstücken</p>
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="glass-card partner-card" onclick="showForm('rent-form')">
+                            <div class="icon-circle">🔑</div>
+                            <h3>Mieten</h3>
+                            <p>Immobilien oder Gewerbeflächen für Ihre Firma mieten</p>
+                        </div>
+                        <!-- Card 4 -->
+                        <div class="glass-card partner-card" onclick="showForm('buy-form')">
+                            <div class="icon-circle">🏢</div>
+                            <h3>Kaufen</h3>
+                            <p>Immobilien, Grundstücke oder Beteiligungen erwerben</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Forms Container -->
+                <div id="forms-container" style="display: none;">
+                    <div class="glass-panel">
+                        <button class="back-btn" onclick="showCards()">
+                            ← Zurück zur Auswahl
+                        </button>
+
+                        <div id="success-message" class="success-message glass-chip">
+                            <h3>✅ Vielen Dank für Ihre Anfrage!</h3>
+                            <p>Wir haben Ihre Daten erhalten und werden uns in Kürze bei Ihnen melden.</p>
+                            <br>
+                            <button class="glass-button" style="width: auto; padding: 10px 20px;"
+                                onclick="showCards()">Weitere Anfrage stellen</button>
+                        </div>
+
+                        <!-- Form 1: Idee einreichen -->
+                        <div id="idea-form" class="form-section">
+                            <h2 style="margin-bottom: 20px;">💡 Idee einreichen (Investor gesucht)</h2>
+                            <div class="form-info-box">
+                                Wenn Sie eine interessante Geschäftsidee haben und einen Investor oder strategischen
+                                Partner suchen, können Sie Ihre Idee bei uns einreichen. Wir prüfen jede Anfrage
+                                individuell. Wenn das Projekt zu uns passt, können wir selbst als Investor oder Partner
+                                einsteigen.
+                            </div>
+                            <form onsubmit="submitForm(event, 'Idee')">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Name *</label>
+                                        <input type="text" name="name" required placeholder="Ihr vollständiger Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Firma (optional)</label>
+                                        <input type="text" name="company" placeholder="Firmenname">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>E-Mail *</label>
+                                        <input type="email" name="email" required placeholder="ihre@email.com">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Telefon (optional)</label>
+                                        <input type="tel" name="phone" placeholder="+49 ...">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Land *</label>
+                                        <input type="text" name="location" required placeholder="Land der Umsetzung">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Stadt *</label>
+                                        <input type="text" name="city" required placeholder="Stadt">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Kategorie der Idee *</label>
+                                        <select name="category" required>
+                                            <option value="" disabled selected>Bitte wählen</option>
+                                            <option value="Immobilien">Immobilienentwicklung</option>
+                                            <option value="Technologie">Technologie / Start-up</option>
+                                            <option value="Energie">Erneuerbare Energien</option>
+                                            <option value="Handel">Handel & Gewerbe</option>
+                                            <option value="Sonstiges">Sonstiges</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Was wird gesucht? *</label>
+                                        <select name="looking_for" required>
+                                            <option value="" disabled selected>Bitte wählen</option>
+                                            <option value="Investor">Investor (Kapital)</option>
+                                            <option value="Partner">Strategischer Partner</option>
+                                            <option value="Fläche">Fläche / Grundstück</option>
+                                            <option value="Zusammenarbeit">Zusammenarbeit / Joint-Venture</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Benötigte Investitionssumme (optional)</label>
+                                    <input type="text" name="budget" placeholder="z.B. 500.000 EUR">
+                                </div>
+                                <div class="form-group">
+                                    <label>Beschreibung der Idee *</label>
+                                    <textarea name="message" rows="5" required
+                                        placeholder="Beschreiben Sie kurz Ihr Vorhaben..."></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Datei Upload (PDF oder Präsentation) - optional</label>
+                                    <input type="file" name="attachment" accept=".pdf,.ppt,.pptx,.doc,.docx" />
+                                </div>
+                                <button type="submit" class="glass-button ripple">Anfrage senden</button>
+                            </form>
+                        </div>
+
+                        <!-- Form 2: Investor -->
+                        <div id="investor-form" class="form-section">
+                            <h2 style="margin-bottom: 20px;">🤝 Als Investor registrieren</h2>
+                            <div class="form-info-box">
+                                Investoren können sich registrieren, um passende Projekte, Grundstücke oder
+                                Geschäftsmöglichkeiten mit uns zu besprechen.
+                            </div>
+                            <form onsubmit="submitForm(event, 'Investor')">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Name *</label>
+                                        <input type="text" name="name" required placeholder="Ihr vollständiger Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Firma *</label>
+                                        <input type="text" name="company" required
+                                            placeholder="Firmen- / Investmentname">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>E-Mail *</label>
+                                        <input type="email" name="email" required placeholder="ihre@email.com">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Telefon *</label>
+                                        <input type="tel" name="phone" required placeholder="+49 ...">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Bevorzugte Branche</label>
+                                        <input type="text" name="category" placeholder="z.B. Gewerbeimmobilien, Tech">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Bevorzugte Region</label>
+                                        <input type="text" name="location" placeholder="z.B. DACH, USA, Global">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Investitionsvolumen</label>
+                                    <input type="text" name="budget" placeholder="Geplantes Volumen">
+                                </div>
+                                <div class="form-group">
+                                    <label>Beschreibung / Nachricht *</label>
+                                    <textarea name="message" rows="4" required
+                                        placeholder="Kurze Beschreibung Ihres Investmentfokus..."></textarea>
+                                </div>
+                                <button type="submit" class="glass-button ripple">Als Investor registrieren</button>
+                            </form>
+                        </div>
+
+                        <!-- Form 3: Mieten -->
+                        <div id="rent-form" class="form-section">
+                            <h2 style="margin-bottom: 20px;">🔑 Mieten</h2>
+                            <p style="color: var(--text-muted); margin-bottom: 20px;">Für Personen oder Firmen, die
+                                Immobilien oder Flächen mieten möchten.</p>
+                            <form onsubmit="submitForm(event, 'Miete')">
+                                <div class="form-group">
+                                    <label>Was möchten Sie mieten? *</label>
+                                    <select name="category" required>
+                                        <option value="" disabled selected>Bitte wählen</option>
+                                        <option value="Grundstück">Grundstück</option>
+                                        <option value="Gewerbeobjekt">Gewerbeobjekt</option>
+                                        <option value="Ladenfläche">Ladenfläche</option>
+                                        <option value="Wohnung">Wohnung</option>
+                                        <option value="Büro">Büro</option>
+                                        <option value="Sonstiges">Sonstiges</option>
+                                    </select>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Name *</label>
+                                        <input type="text" name="name" required placeholder="Ihr Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Firma (optional)</label>
+                                        <input type="text" name="company" placeholder="Firmenname">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>E-Mail *</label>
+                                        <input type="email" name="email" required placeholder="ihre@email.com">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Telefon *</label>
+                                        <input type="tel" name="phone" required placeholder="+49 ...">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Ort / Region *</label>
+                                        <input type="text" name="location" required placeholder="Wo suchen Sie?">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Gewünschte Größe</label>
+                                        <input type="text" name="size" placeholder="z.B. 200 m²">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Budget</label>
+                                        <input type="text" name="budget" placeholder="Mietbudget pro Monat">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Nutzungszweck</label>
+                                        <input type="text" name="looking_for" placeholder="Zweck der Miete">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Nachricht *</label>
+                                    <textarea name="message" rows="4" required
+                                        placeholder="Weitere Details zu Ihrer Anfrage..."></textarea>
+                                </div>
+                                <button type="submit" class="glass-button ripple">Mietanfrage senden</button>
+                            </form>
+                        </div>
+
+                        <!-- Form 4: Kaufen -->
+                        <div id="buy-form" class="form-section">
+                            <h2 style="margin-bottom: 20px;">🏢 Kaufen</h2>
+                            <p style="color: var(--text-muted); margin-bottom: 20px;">Für Personen oder Firmen, die
+                                Immobilien oder Grundstücke kaufen möchten.</p>
+                            <form onsubmit="submitForm(event, 'Kauf')">
+                                <div class="form-group">
+                                    <label>Was möchten Sie kaufen? *</label>
+                                    <select name="category" required>
+                                        <option value="" disabled selected>Bitte wählen</option>
+                                        <option value="Grundstück">Grundstück</option>
+                                        <option value="Immobilie">Immobilie</option>
+                                        <option value="Gewerbeobjekt">Gewerbeobjekt</option>
+                                        <option value="Wohnung">Wohnung</option>
+                                        <option value="Beteiligung">Beteiligung an Projekt</option>
+                                        <option value="Sonstiges">Sonstiges</option>
+                                    </select>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Name *</label>
+                                        <input type="text" name="name" required placeholder="Ihr Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Firma (optional)</label>
+                                        <input type="text" name="company" placeholder="Firmenname">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>E-Mail *</label>
+                                        <input type="email" name="email" required placeholder="ihre@email.com">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Telefon *</label>
+                                        <input type="tel" name="phone" required placeholder="+49 ...">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Ort / Region *</label>
+                                        <input type="text" name="location" required placeholder="Wo suchen Sie?">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Budget</label>
+                                        <input type="text" name="budget" placeholder="Kaufbudget">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Anforderungen</label>
+                                    <input type="text" name="looking_for" placeholder="Spezifische Anforderungen">
+                                </div>
+                                <div class="form-group">
+                                    <label>Nachricht *</label>
+                                    <textarea name="message" rows="4" required
+                                        placeholder="Weitere Details zu Ihrer Anfrage..."></textarea>
+                                </div>
+                                <button type="submit" class="glass-button ripple">Kaufanfrage senden</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="app-footer section-spacing fade-in-up" style="animation-delay: 0.8s;">
+            <div class="slim-footer-content">
+                <a href="/de/terms.html" class="footer-link">Nutzungsbedingungen</a>
+                <span class="footer-separator">|</span>
+                <a href="/de/cookie-policy.html" class="footer-link">Cookie-Richtlinie</a>
+                <span class="footer-separator">|</span>
+                <a href="/de/disclaimer.html" class="footer-link">Disclaimer</a>
+                <span class="footer-separator">|</span>
+                <a href="/de/impressum.html" class="footer-link">Impressum</a>
+                <span class="footer-separator">|</span>
+                <a href="/de/datenschutz.html" class="footer-link">Datenschutz</a>
+                <span class="footer-separator">|</span>
+                <a href="/de/kontakt.html" class="footer-link">Kontakt</a>
+                <span class="footer-separator">|</span>
+                <p class="copyright">© 2026 <span class="brand-style"><span class="brand-a">a</span>Best<span
+                            class="brand-dot-co">.co</span></span></p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="/app.js"></script>
+    <script>
+        function showForm(formId) {
+            document.getElementById('cards-view').style.display = 'none';
+            document.getElementById('forms-container').style.display = 'block';
+            document.getElementById('success-message').style.display = 'none';
+
+            // Hide all forms
+            const forms = document.querySelectorAll('.form-section');
+            forms.forEach(f => f.classList.remove('active'));
+
+            // Show requested form
+            const formToShow = document.getElementById(formId);
+            if (formToShow) {
+                formToShow.classList.add('active');
+                formToShow.querySelector('form').reset(); // reset form
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showCards() {
+            document.getElementById('cards-view').style.display = 'block';
+            document.getElementById('forms-container').style.display = 'none';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        async function submitForm(event, type) {
+            event.preventDefault(); // Prevent page reload
+
+            const formObj = event.target;
+            const formData = new FormData(formObj);
+            const submitBtn = formObj.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerText;
+            submitBtn.innerText = 'Wird gesendet...';
+            submitBtn.disabled = true;
+
+            // Add missing fields
+            formData.append('type', type);
+            if (!formData.has('location') && formData.has('city')) {
+                formData.append('location', formData.get('city'));
+            }
+
+            try {
+                // Save to API
+                const response = await fetch('/api/inquiries', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) throw new Error('Network response was not ok');
+
+                // Show success message
+                const forms = document.querySelectorAll('.form-section');
+                forms.forEach(f => f.classList.remove('active'));
+                document.getElementById('success-message').style.display = 'block';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                alert('Es gab ein Problem beim Senden Ihrer Anfrage. Bitte versuchen Sie es später erneut.');
+            } finally {
+                submitBtn.innerText = originalText;
+                submitBtn.disabled = false;
+            }
+        }
+    </script>
+</body>
+
+</html>

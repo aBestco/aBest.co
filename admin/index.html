@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>aBest.co | Admin Dashboard</title>
+    <link href="/favicon.png" rel="icon" type="image/png" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link href="/admin/admin.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="brand">
+            <span>a</span>Best<span>.co</span> Admin
+        </div>
+        <div class="nav-menu">
+            <div class="nav-item active" data-view="dashboard" onclick="switchView('dashboard')">
+                <span>📊</span> Dashboard
+            </div>
+            <div class="nav-item" data-view="idee" onclick="switchView('idee')">
+                <span>💡</span> Ideen / Projekte
+            </div>
+            <div class="nav-item" data-view="investor" onclick="switchView('investor')">
+                <span>🤝</span> Investoren
+            </div>
+            <div class="nav-item" data-view="miete" onclick="switchView('miete')">
+                <span>🔑</span> Mietanfragen
+            </div>
+            <div class="nav-item" data-view="kauf" onclick="switchView('kauf')">
+                <span>🏢</span> Kaufanfragen
+            </div>
+            <div class="nav-item" data-view="kontakt" onclick="switchView('kontakt')">
+                <span>✉️</span> Kontaktanfragen
+            </div>
+            <div class="nav-item" data-view="users" onclick="switchView('users')">
+                <span>👥</span> Benutzer
+            </div>
+            <div class="nav-item" data-view="docs" onclick="switchView('docs')">
+                <span>📁</span> Dokumente
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header class="topbar">
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <button class="mobile-toggle" onclick="toggleSidebar()">☰</button>
+                <div class="topbar-title" id="topbar-title">Dashboard Übersicht</div>
+            </div>
+            <div class="role-selector">
+                <span style="font-size: 0.85rem; color: var(--text-muted);">Rolle:</span>
+                <select id="role-select" onchange="updateRole()">
+                    <option value="superadmin">Super Admin</option>
+                    <option value="manager">Manager</option>
+                    <option value="viewer">Viewer</option>
+                </select>
+            </div>
+        </header>
+
+        <div class="dashboard-container">
+            <!-- Stats -->
+            <div class="stats-grid" id="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-title">Neue Ideen</div>
+                    <div class="stat-value" id="stat-ideen">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-title">Neue Investoren</div>
+                    <div class="stat-value" id="stat-investoren">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-title">Offene Mietanfragen</div>
+                    <div class="stat-value" id="stat-mieten">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-title">Offene Kaufanfragen</div>
+                    <div class="stat-value" id="stat-kaufen">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-title">In Prüfung</div>
+                    <div class="stat-value" id="stat-pruefung" style="color: var(--primary-orange);">0</div>
+                </div>
+            </div>
+
+            <!-- Table -->
+            <div class="data-table-container">
+                <div class="table-header">
+                    <h3 id="table-title">Alle aktuellen Anfragen</h3>
+                    <div class="table-controls">
+                        <select class="search-input" id="filter-status" onchange="renderTable()">
+                            <option value="all">Alle Status</option>
+                            <option value="Neu">Neu</option>
+                            <option value="In Prüfung">In Prüfung</option>
+                            <option value="Interessant">Interessant</option>
+                            <option value="Erledigt">Erledigt</option>
+                            <option value="Abgelehnt">Abgelehnt</option>
+                        </select>
+                        <input type="text" id="search-box" class="search-input" placeholder="Suchen..."
+                            oninput="renderTable()" />
+                    </div>
+                </div>
+                <div style="overflow-x: auto;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Typ</th>
+                                <th>Name / Firma</th>
+                                <th>Kategorie / Ort</th>
+                                <th>Datum</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body">
+                            <!-- Injected by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Detail Modal -->
+    <div class="modal-overlay" id="detail-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Anfrage Details</h3>
+                <button class="modal-close" onclick="closeModal()">×</button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Injected via JS -->
+            </div>
+            <div class="modal-footer">
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <span style="font-size: 0.85rem; color: var(--text-muted);">Status ändern:</span>
+                    <select id="modal-status" class="search-input" style="padding: 6px 10px;">
+                        <option value="Neu">Neu</option>
+                        <option value="In Prüfung">In Prüfung</option>
+                        <option value="Interessant">Interessant</option>
+                        <option value="Kontakt aufnehmen">Kontakt aufnehmen</option>
+                        <option value="Erledigt">Erledigt</option>
+                        <option value="Abgelehnt">Abgelehnt</option>
+                        <option value="Archiv">Archiv</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary" id="save-btn" onclick="saveDetails()">Speichern</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/admin/admin.js"></script>
+</body>
+
+</html>
