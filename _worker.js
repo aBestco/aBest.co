@@ -2,16 +2,24 @@ export default {
     async fetch(request, env) {
         const url = new URL(request.url);
         const host = url.hostname;
+        const pathname = url.pathname;
 
-        // --- 1. BASIC AUTHENTICATION MIDDLEWARE ---
+        // --- 1. STATIC ASSET CHECK (Optimized for Cloudflare Pages) ---
+        // If the request is for a file with an extension, or common static paths, 
+        // let the Pages asset fetcher handle it directly.
+        if (pathname.includes('.') || pathname.startsWith('/assets/')) {
+            return env.ASSETS.fetch(request);
+        }
+
+        // --- 2. BASIC AUTHENTICATION MIDDLEWARE ---
         // Protect /admin and sensitive API routes
-        const isAuthRequired = url.pathname.startsWith('/admin') ||
-            (url.pathname.startsWith('/api/inquiries') && ['GET', 'PUT', 'DELETE'].includes(request.method));
+        const isAuthRequired = pathname.startsWith('/admin') ||
+            (pathname.startsWith('/api/inquiries') && ['GET', 'PUT', 'DELETE'].includes(request.method));
 
         if (isAuthRequired) {
             const authHeader = request.headers.get('Authorization');
             const expectedUser = env.ADMIN_USER || 'admin';
-            const expectedPass = env.ADMIN_PASS || 'abest2026'; // Fallback for demonstration
+            const expectedPass = env.ADMIN_PASS || 'abest2026';
             const expectedAuth = 'Basic ' + btoa(`${expectedUser}:${expectedPass}`);
 
             if (authHeader !== expectedAuth) {
@@ -22,12 +30,12 @@ export default {
             }
         }
 
-        // --- 2. API ROUTES FOR INQUIRIES ---
-        if (url.pathname.startsWith('/api/inquiries')) {
+        // --- 3. API ROUTES FOR INQUIRIES ---
+        if (pathname.startsWith('/api/inquiries')) {
             return handleInquiriesApi(request, env);
         }
 
-        // --- 3. 301 REDIRECTS FOR OLD DOMAINS ---
+        // --- 4. 301 REDIRECTS FOR OLD DOMAINS ---
         if (host === 'abest.com' || host === 'www.abest.com') {
             const newUrl = new URL(request.url);
             newUrl.hostname = 'abest.co';
@@ -35,7 +43,9 @@ export default {
             return Response.redirect(newUrl.toString(), 301);
         }
 
-        // --- Otherwise, serve static assets as normal ---
+        // --- 5. DEFAULT STATIC SERVING ---
+        // For standard paths (like /de/ or /en/kontakt.html), serve from assets.
+        // Cloudflare Pages handles index.html resolution automatically for directories.
         return env.ASSETS.fetch(request);
     },
 };
