@@ -133,6 +133,36 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('click', (e) => {
         if (e.target === modal) closeModal();
     });
+
+    // 6.5 Global Email Link to Contact Modal Logic
+    document.addEventListener('click', (e) => {
+        const link = e.target.closest('a');
+        if (!link) return;
+
+        const href = link.getAttribute('href') || '';
+        const text = link.innerText || '';
+
+        // Check if it's an email link or specifically contains the brand email
+        if (href.includes('mailto:i@aBest.co') || text.includes('i@aBest.co')) {
+            e.preventDefault();
+            openContactModal();
+        }
+    });
+
+    function openContactModal() {
+        const lang = document.documentElement.lang || 'en';
+        const content = getContactFormHTML(lang);
+        openModal(content);
+
+        // Re-initialize auto-expanding textarea for the new form
+        const newTextarea = document.querySelector('#modal-body #message');
+        if (newTextarea) {
+            newTextarea.addEventListener('input', function () {
+                this.style.height = '120px';
+                this.style.height = (this.scrollHeight) + 'px';
+            });
+        }
+    }
 });
 
 // Language Switcher Logic
@@ -153,6 +183,10 @@ function toggleLangMenu(show) {
     }
 
     if (show) {
+        // Ensure dropdown is moved to body so it's not trapped in footer stacking context
+        if (dropdown && dropdown.parentElement !== document.body) {
+            document.body.appendChild(dropdown);
+        }
         dropdown.style.display = 'grid';
         backdrop.style.display = 'block';
         setTimeout(() => {
@@ -257,6 +291,101 @@ function handleContactSubmit(event) {
                 btn.disabled = false;
             }, 4000);
         });
+}
+
+function getContactFormHTML(lang) {
+    const translations = {
+        de: {
+            title: "Kontakt",
+            desc: "Wir freuen uns über partnerschaftliche und investitionsbezogene Anfragen.",
+            firstName: "Vorname",
+            lastName: "Nachname",
+            phone: "Telefonnummer",
+            email: "E-Mail",
+            message: "Nachricht",
+            submit: "Nachricht Senden"
+        },
+        en: {
+            title: "Contact",
+            desc: "We welcome partnership and investment-related inquiries.",
+            firstName: "First Name",
+            lastName: "Last Name",
+            phone: "Phone Number",
+            email: "Email",
+            message: "Message",
+            submit: "Send Message"
+        },
+        tr: {
+            title: "İletişim",
+            desc: "Ortaklık ve yatırım taleplerini memnuniyetle karşılıyoruz.",
+            firstName: "Ad",
+            lastName: "Soyad",
+            phone: "Telefon",
+            email: "E-posta",
+            message: "Mesaj",
+            submit: "Mesaj Gönder"
+        },
+        es: {
+            title: "Contacto",
+            desc: "Agradecemos las consultas relacionadas con asociaciones e inversiones.",
+            firstName: "Nombre",
+            lastName: "Apellido",
+            phone: "Teléfono",
+            email: "Correo electrónico",
+            message: "Mensaje",
+            submit: "Enviar mensaje"
+        },
+        fr: {
+            title: "Contact",
+            desc: "Nous accueillons les demandes liées aux partenariats et aux investissements.",
+            firstName: "Prénom",
+            lastName: "Nom",
+            phone: "Téléphone",
+            email: "E-mail",
+            message: "Message",
+            submit: "Envoyer le message"
+        }
+        // Add more languages as needed, default to en
+    };
+
+    const t = translations[lang] || translations['en'];
+
+    return `
+        <div class="text-center">
+            <h2>${t.title}</h2>
+            <div class="divider mt-2"></div>
+            <p style="margin-bottom: 1.5rem;">${t.desc}</p>
+            <form class="glass-form" id="contact-form-modal" onsubmit="handleContactSubmit(event)">
+                <div class="form-row" style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                    <div class="form-group" style="flex: 1; text-align: left;">
+                        <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">${t.firstName}</label>
+                        <input class="form-input" id="first_name" required="" type="text" style="width: 100%;" />
+                    </div>
+                    <div class="form-group" style="flex: 1; text-align: left;">
+                        <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">${t.lastName}</label>
+                        <input class="form-input" id="last_name" required="" type="text" style="width: 100%;" />
+                    </div>
+                </div>
+                <div class="form-group" style="text-align: left; margin-bottom: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">${t.phone}</label>
+                    <input class="form-input" id="phone" type="tel" style="width: 100%;" />
+                </div>
+                <div class="form-group" style="text-align: left; margin-bottom: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">${t.email}</label>
+                    <input class="form-input" id="email" required="" type="email" style="width: 100%;" />
+                </div>
+                <div class="form-group" style="text-align: left; margin-bottom: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">${t.message}</label>
+                    <textarea class="form-textarea" id="message" required=""
+                        style="resize: none; overflow: hidden; min-height: 120px; width: 100%;"></textarea>
+                </div>
+                <button class="glass-button ripple" style="width: 100%; padding: 14px; margin-top: 10px;"
+                    type="submit">${t.submit}</button>
+                <div style="display:none;"><label>Leave this field empty</label><input id="honeypot"
+                        name="_honeypot" type="text" /></div>
+            </form>
+        </div>
+    `;
 }
 
 // 7. OpenStreetMap Initialization (Leaflet + Nominatim Geocoding)

@@ -32,7 +32,7 @@
     --font-size-h1: clamp(1.25rem, 4vw + 0.5rem, 2rem);
     --font-size-h2: clamp(1.1rem, 3vw + 0.5rem, 1.5rem);
     --font-size-body: clamp(0.9rem, 1vw + 0.75rem, 1rem);
-    --spacing-section: clamp(0.15rem, 1vw, 0.4rem);
+    --spacing-section: clamp(0.5rem, 2vw, 1rem);
 }
 
 * {
@@ -140,16 +140,20 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: calc(var(--spacing-section) * 0.5);
+    margin-bottom: 8px;
     /* Sticky */
     position: sticky;
-    top: 8px;
+    top: 12px;
     z-index: 1000;
     transition: var(--transition-smooth);
     margin-left: -8px;
     margin-right: -8px;
     padding: 8px 12px;
     border-radius: 12px;
+}
+
+.scroll-content {
+    padding-top: 0px;
 }
 
 .app-header.sticky {
@@ -260,7 +264,7 @@ body {
 
 .hero-content {
     border-radius: 20px;
-    padding: clamp(1rem, 3vw, 2rem);
+    padding: clamp(0.5rem, 2vw, 1.5rem) clamp(1rem, 3vw, 2rem);
     position: relative;
     overflow: hidden;
     text-align: center;
