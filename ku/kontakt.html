@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html lang="ku">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>Contact | aBest.co</title>
+<!-- SEO & Open Graph Meta Tags -->
+<meta content="Contactieren Sie aBest.co." name="description"/>
+<link href="/favicon.png" rel="icon" type="image/png"/>
+<link href="/index.css" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+
+
+
+
+
+<link href="https://abest.co/en/kontakt.html" hreflang="en" rel="alternate"/><link href="https://abest.co/de/kontakt.html" hreflang="de" rel="alternate"/><link href="https://abest.co/es/kontakt.html" hreflang="es" rel="alternate"/><link href="https://abest.co/tr/kontakt.html" hreflang="tr" rel="alternate"/><link href="https://abest.co/zh/kontakt.html" hreflang="zh" rel="alternate"/><link href="https://abest.co/hi/kontakt.html" hreflang="hi" rel="alternate"/><link href="https://abest.co/ar/kontakt.html" hreflang="ar" rel="alternate"/><link href="https://abest.co/fr/kontakt.html" hreflang="fr" rel="alternate"/><link href="https://abest.co/ru/kontakt.html" hreflang="ru" rel="alternate"/><link href="https://abest.co/pt/kontakt.html" hreflang="pt" rel="alternate"/><link href="https://abest.co/ur/kontakt.html" hreflang="ur" rel="alternate"/><link href="https://abest.co/ku/kontakt.html" hreflang="ku" rel="alternate"/><link href="https://abest.co/he/kontakt.html" hreflang="he" rel="alternate"/><link href="https://abest.co/hy/kontakt.html" hreflang="hy" rel="alternate"/><link href="https://abest.co/" hreflang="x-default" rel="alternate"/></head>
+<body>
+<!-- Background Layer -->
+<div class="background-wrapper">
+<img alt="Paşnava Bajarê Abstract Blurred" class="main-bg" id="hero-bg" src="/bg_main_blurred_new.png"/>
+<div class="bg-gradient-overlay"></div>
+</div>
+<!-- Main App Container -->
+<div class="app-container">
+<!-- Mobile Navigation -->
+<nav class="mobile-nav" id="mobile-nav">
+<a class="nav-link" href="index.html">Xane</a>
+<a class="nav-link" href="impressum.html">Şop</a>
+<a class="nav-link" href="datenschutz.html">Privacy Policy</a>
+<a class="nav-link" href="kontakt.html">Têkelî</a>
+</nav>
+<!-- Header -->
+<header class="app-header fade-in-up" style="animation-delay: 0.1s;">
+<a class="logo-link" href="index.html">
+<span style="font-size: 1.5rem; font-weight: 500; letter-spacing: -0.5px; color: var(--text-main);">
+<span style="color: var(--primary-blue);">a</span>Best<span style="color: var(--primary-blue);">.co</span>
+</span>
+</a>
+<div aria-label="Toggle Navigation Menu" class="nav-icon" id="menu-btn">
+<span></span>
+<span></span>
+</div>
+</header>
+<main class="scroll-content">
+<section class="section-spacing fade-in-up" style="animation-delay: 0.2s;">
+<div class="glass-panel text-center">
+<h2>Têkelî</h2>
+<div class="divider mt-2"></div>
+<p style="margin-bottom: 1rem;">Em pêşwazî li lêpirsînên hevkarî û veberhênanê dikin. Ji kerema xwe re dagirtin
+                        forma jêrîn da ku bi me re têkilî daynin.</p>
+<form class="glass-form" id="contact-form" onsubmit="handleContactSubmit(event)">
+<div class="form-row" style="display: flex; gap: 1rem;">
+<div class="form-group" style="flex: 1;">
+<label for="first_name">Nav</label>
+<input class="form-input" id="first_name" required="" type="text"/>
+</div>
+<div class="form-group" style="flex: 1;">
+<label for="last_name">Paşnav</label>
+<input class="form-input" id="last_name" required="" type="text"/>
+</div>
+</div>
+<div class="form-group">
+<label for="phone">Hejmara têlefonê (vebijarkî)</label>
+<input class="form-input" id="phone" type="tel"/>
+</div>
+<div class="form-group">
+<label for="email">Email</label>
+<input class="form-input" id="email" required="" type="email"/>
+</div>
+<div class="form-group">
+<label for="message">Agah</label>
+<textarea class="form-textarea" id="message" required="" style="resize: none; overflow: hidden; min-height: 120px;"></textarea>
+</div>
+<button class="glass-button ripple" style="width: 100%; padding: 14px; margin-top: 10px;" type="submit">Peyam bişîne</button>
+<div style="display:none;"><label>Vê qadê vala bihêlin</label><input id="honeypot" name="_honeypot" type="text"/></div>
+</form>
+</div>
+</section>
+<!-- Spacing for bottom scrolling on sticky mode -->
+</main>
+<footer class="app-footer fade-in-up" style="animation-delay: 0.8s;">
+<div class="slim-footer-content">
+<div class="footer-links">
+<a href="impressum.html">Şop</a>
+<a href="datenschutz.html">Privacy Policy</a>
+<a href="kontakt.html">Têkelî</a>
+</div>
+<div class="language-switcher"><button class="lang-btn" onclick="document.getElementById('lang-dropdown').classList.toggle('show')">KU ▾</button><div class="lang-dropdown" id="lang-dropdown"><a href="/en/">EN - English</a><a href="/de/">DE - Deutsch</a><a href="/es/">ES - Español</a><a href="/tr/">TR - Türkçe</a><a href="/zh/">ZH - 中文</a><a href="/hi/">HI - हिन्दी</a><a href="/ar/">AR - العربية</a><a href="/fr/">FR - Français</a><a href="/ru/">RU - Русский</a><a href="/pt/">PT - Português</a><a href="/ur/">UR - اردو</a><a href="/ku/">KU - Kurdî</a><a href="/he/">HE - עברית</a><a href="/hy/">HY - Հայերեն</a></div></div>
+<p class="copyright">© 2026<span class="brand-style"><span class="brand-a">a</span>Best<span class="brand-dot-co">.co</span></span></p>
+</div>
+</footer>
+<!-- Modal Overlay -->
+<div class="modal-overlay" id="project-modal">
+<div class="modal-content">
+<button class="modal-close" id="modal-close">×</button>
+<div id="modal-body">
+<!-- Content injected via JS -->
+</div>
+</div>
+</div>
+</div>
+<script src="/app.js"></script>
+</body>
+</html>

@@ -1,137 +1,102 @@
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Los Angeles Project | aBest.co</title>
-    <!-- SEO & Open Graph Meta Tags -->
-    <meta name="description" content="Premium Highway Commercial Development in Los Angeles by aBest.co.">
-    <link rel="icon" type="image/png" href="/favicon.png">
-    <link rel="stylesheet" href="/index.css">
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="alternate" hreflang="en" href="https://abest.co/en/usa-los-angeles.html" />
-    <link rel="alternate" hreflang="es" href="https://abest.co/es/usa-los-angeles.html" />
-    <link rel="alternate" hreflang="de" href="https://abest.co/de/usa-los-angeles.html" />
-    <link rel="alternate" hreflang="tr" href="https://abest.co/tr/usa-los-angeles.html" />
-    <link rel="alternate" hreflang="x-default" href="https://abest.co/" />
-    <!-- Leaflet for OpenStreetMap -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-</head>
-
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>Los Angeles Project | aBest.co</title>
+<!-- SEO & Open Graph Meta Tags -->
+<meta content="Premium Highway Commercial Development in Los Angeles by aBest.co." name="description"/>
+<link href="/favicon.png" rel="icon" type="image/png"/>
+<link href="/index.css" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://abest.co/en/usa-los-angeles.html" hreflang="en" rel="alternate"/><link href="https://abest.co/de/usa-los-angeles.html" hreflang="de" rel="alternate"/><link href="https://abest.co/es/usa-los-angeles.html" hreflang="es" rel="alternate"/><link href="https://abest.co/tr/usa-los-angeles.html" hreflang="tr" rel="alternate"/><link href="https://abest.co/zh/usa-los-angeles.html" hreflang="zh" rel="alternate"/><link href="https://abest.co/hi/usa-los-angeles.html" hreflang="hi" rel="alternate"/><link href="https://abest.co/ar/usa-los-angeles.html" hreflang="ar" rel="alternate"/><link href="https://abest.co/fr/usa-los-angeles.html" hreflang="fr" rel="alternate"/><link href="https://abest.co/ru/usa-los-angeles.html" hreflang="ru" rel="alternate"/><link href="https://abest.co/pt/usa-los-angeles.html" hreflang="pt" rel="alternate"/><link href="https://abest.co/ur/usa-los-angeles.html" hreflang="ur" rel="alternate"/><link href="https://abest.co/ku/usa-los-angeles.html" hreflang="ku" rel="alternate"/><link href="https://abest.co/he/usa-los-angeles.html" hreflang="he" rel="alternate"/><link href="https://abest.co/hy/usa-los-angeles.html" hreflang="hy" rel="alternate"/><link href="https://abest.co/" hreflang="x-default" rel="alternate"/></head>
 <body>
-    <!-- Background Layer -->
-    <div class="background-wrapper">
-        <img src="/bg_los_angeles.png" alt="Premium Background" class="main-bg" id="hero-bg">
-        <div class="bg-gradient-overlay"></div>
-    </div>
-
-    <!-- Main App Container -->
-    <div class="app-container">
-
-        <!-- Mobile Navigation -->
-        <nav class="mobile-nav" id="mobile-nav">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="usa.html" class="nav-link">USA</a>
-            <a href="deutschland.html" class="nav-link">Germany</a>
-            <a href="turkiye.html" class="nav-link">Türkiye</a>
-            <a href="kontakt.html" class="nav-link">Contact</a>
-        </nav>
-
-        <!-- Header -->
-        <header class="app-header fade-in-up" style="animation-delay: 0.1s;">
-            <a href="index.html" class="logo-link">
-                <span style="font-size: 1.5rem; font-weight: 500; letter-spacing: -0.5px; color: var(--text-main);">
-                    <span style="color: var(--primary-blue);">a</span>Best<span style="color: var(--primary-blue);">.co</span>
-                </span>
-            </a>
-            <div class="nav-icon" id="menu-btn" aria-label="Toggle Navigation Menu">
-                <span></span>
-                <span></span>
-            </div>
-        </header>
-
-        <main class="scroll-content">
-            <section class="section-spacing fade-in-up" style="animation-delay: 0.2s;">
-                <div class="glass-panel project-card">
-                    <div class="label-badge">Los Angeles</div>
-                    <div class="featured-header">
-                        <h2 style="margin-top: 1rem; margin-bottom: 0.5rem;">Highway Commercial Development</h2>
-                        <p class="project-tags">APN: 5663-003-002</p>
-                    </div>
-                    <div class="divider mt-2" style="margin-bottom: 1.5rem;"></div>
-
-                    <div style="margin-bottom: 1rem;">
-                        <h3 style="color: var(--text-accent); margin-bottom: 1rem;">Project Overview</h3>
-                        <p style="margin-bottom: 1rem;">
+<!-- Background Layer -->
+<div class="background-wrapper">
+<img alt="Premium Background" class="main-bg" id="hero-bg" src="/bg_los_angeles.png"/>
+<div class="bg-gradient-overlay"></div>
+</div>
+<!-- Main App Container -->
+<div class="app-container">
+<!-- Mobile Navigation -->
+<nav class="mobile-nav" id="mobile-nav">
+<a class="nav-link" href="index.html">Home</a>
+<a class="nav-link" href="usa.html">USA</a>
+<a class="nav-link" href="deutschland.html">Germany</a>
+<a class="nav-link" href="turkiye.html">Türkiye</a>
+<a class="nav-link" href="kontakt.html">Contact</a>
+</nav>
+<!-- Header -->
+<header class="app-header fade-in-up" style="animation-delay: 0.1s;">
+<a class="logo-link" href="index.html">
+<span style="font-size: 1.5rem; font-weight: 500; letter-spacing: -0.5px; color: var(--text-main);">
+<span style="color: var(--primary-blue);">a</span>Best<span style="color: var(--primary-blue);">.co</span>
+</span>
+</a>
+<div aria-label="Toggle Navigation Menu" class="nav-icon" id="menu-btn">
+<span></span>
+<span></span>
+</div>
+</header>
+<main class="scroll-content">
+<section class="section-spacing fade-in-up" style="animation-delay: 0.2s;">
+<div class="glass-panel project-card">
+<div class="label-badge">Los Angeles</div>
+<div class="featured-header">
+<h2 style="margin-top: 1rem; margin-bottom: 0.5rem;">Highway Commercial Development</h2>
+<p class="project-tags">APN: 5663-003-002</p>
+</div>
+<div class="divider mt-2" style="margin-bottom: 1.5rem;"></div>
+<div style="margin-bottom: 1rem;">
+<h3 style="color: var(--text-accent); margin-bottom: 1rem;">Project Overview</h3>
+<p style="margin-bottom: 1rem;">
                             This prime highway commercial development in Los Angeles offers incredible visibility and
                             access.
                             It is perfectly suited for businesses requiring high traffic and easy accessibility for
                             commuters and travelers.
                             [More detailed text can be added here in the future...]
                         </p>
-
-                        <h4 style="color: var(--text-accent); margin-bottom: 0.5rem; margin-top: 1.5rem;">Concept Ideas
+<h4 style="color: var(--text-accent); margin-bottom: 0.5rem; margin-top: 1.5rem;">Concept Ideas
                         </h4>
-                        <ul style="color: var(--text-muted); list-style-position: inside; margin-bottom: 1.5rem;">
-                            <li style="margin-bottom: 0.5rem;">EV charging station hub</li>
-                            <li style="margin-bottom: 0.5rem;">Supermarket & Restaurant complex</li>
-                            <li style="margin-bottom: 0.5rem;">Highway stop / Retail center</li>
-                        </ul>
-                    </div>
-
-                    <!-- Map Location -->
-                    <div
-                        style="margin-top: 2rem; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
-                        <div class="map-skeleton" id="map-skeleton"></div>
-                        <div class="osm-map" data-query="Los Angeles, CA" style="width: 100%; height: 400px; border-radius: 12px; z-index: 1;"></div>
-                    </div>
-
-                    <div style="margin-top: 2rem; text-align: center;">
-                        <a href="kontakt.html" class="glass-button ripple text-center"
-                            style="text-decoration: none; display: inline-block; width: auto; padding: 16px 32px;">Propose
+<ul style="color: var(--text-muted); list-style-position: inside; margin-bottom: 1.5rem;">
+<li style="margin-bottom: 0.5rem;">EV charging station hub</li>
+<li style="margin-bottom: 0.5rem;">Supermarket &amp; Restaurant complex</li>
+<li style="margin-bottom: 0.5rem;">Highway stop / Retail center</li>
+</ul>
+</div>
+<!-- Map Location -->
+<div style="margin-top: 2rem; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
+<div class="map-skeleton" id="map-skeleton"></div>
+<div class="osm-map" data-query="Los Angeles, CA" style="width: 100%; height: 400px; border-radius: 12px; z-index: 1;"></div>
+</div>
+<div style="margin-top: 2rem; text-align: center;">
+<a class="glass-button ripple text-center" href="kontakt.html" style="text-decoration: none; display: inline-block; width: auto; padding: 16px 32px;">Propose
                             Your Business Idea</a>
-                    </div>
-                </div>
-            </section>
-
-            <div style="text-align: center; margin-bottom: 1rem;">
-                <a href="usa.html"
-                    style="color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--glass-border); padding-bottom: 2px;">&larr;
+</div>
+</div>
+</section>
+<div style="text-align: center; margin-bottom: 1rem;">
+<a href="usa.html" style="color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--glass-border); padding-bottom: 2px;">←
                     Back to USA Overview</a>
-            </div>
-
-            <!-- Spacing for bottom scrolling on sticky mode -->
-            
-        </main>
-
-        <footer class="app-footer fade-in-up" style="animation-delay: 0.8s;">
-            <div class="slim-footer-content">
-                <div class="footer-links">
-                    <a href="impressum.html">Imprint</a>
-                    <a href="datenschutz.html">Privacy Policy</a>
-                    <a href="kontakt.html">Contact</a>
-                </div>
-                    <div class="language-switcher">
-                <button class="lang-btn" onclick="document.getElementById('lang-dropdown').classList.toggle('show')">EN ▾</button>
-                <div id="lang-dropdown" class="lang-dropdown">
-                    <a href="/en/">EN - English</a>
-                    <a href="/es/">ES - Español</a>
-                    <a href="/de/">DE - Deutsch</a>
-                    <a href="/tr/">TR - Türkçe</a>
-                </div>
-            </div>
-                <p class="copyright">&copy; 2026 <span class="brand-style"><span class="brand-a">a</span>Best<span class="brand-dot-co">.co</span></span></p>
-            </div>
-        </footer>
-
-    </div>
-    <script src="/app.js"></script>
+</div>
+<!-- Spacing for bottom scrolling on sticky mode -->
+</main>
+<footer class="app-footer fade-in-up" style="animation-delay: 0.8s;">
+<div class="slim-footer-content">
+<div class="footer-links">
+<a href="impressum.html">Imprint</a>
+<a href="datenschutz.html">Privacy Policy</a>
+<a href="kontakt.html">Contact</a>
+</div>
+<div class="language-switcher"><button class="lang-btn" onclick="document.getElementById('lang-dropdown').classList.toggle('show')">EN ▾</button><div class="lang-dropdown" id="lang-dropdown"><a href="/en/">EN - English</a><a href="/de/">DE - Deutsch</a><a href="/es/">ES - Español</a><a href="/tr/">TR - Türkçe</a><a href="/zh/">ZH - 中文</a><a href="/hi/">HI - हिन्दी</a><a href="/ar/">AR - العربية</a><a href="/fr/">FR - Français</a><a href="/ru/">RU - Русский</a><a href="/pt/">PT - Português</a><a href="/ur/">UR - اردو</a><a href="/ku/">KU - Kurdî</a><a href="/he/">HE - עברית</a><a href="/hy/">HY - Հայերեն</a></div></div>
+<p class="copyright">© 2026 <span class="brand-style"><span class="brand-a">a</span>Best<span class="brand-dot-co">.co</span></span></p>
+</div>
+</footer>
+</div>
+<script src="/app.js"></script>
 </body>
-
 </html>

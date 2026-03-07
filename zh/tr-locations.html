@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<html lang="zh">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>Turkey Locations | aBest.co</title>
+<!-- SEO & Open Graph Meta Tags -->
+<meta content="aBest.co 在土耳其的战略位置。" name="description"/>
+<link href="/favicon.png" rel="icon" type="image/png"/>
+<link href="/index.css" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+
+
+
+
+
+<!-- Leaflet for OpenStreetMap -->
+<link crossorigin="" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" rel="stylesheet">
+<script crossorigin="" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</link><link href="https://abest.co/en/tr-locations.html" hreflang="en" rel="alternate"/><link href="https://abest.co/de/tr-locations.html" hreflang="de" rel="alternate"/><link href="https://abest.co/es/tr-locations.html" hreflang="es" rel="alternate"/><link href="https://abest.co/tr/tr-locations.html" hreflang="tr" rel="alternate"/><link href="https://abest.co/zh/tr-locations.html" hreflang="zh" rel="alternate"/><link href="https://abest.co/hi/tr-locations.html" hreflang="hi" rel="alternate"/><link href="https://abest.co/ar/tr-locations.html" hreflang="ar" rel="alternate"/><link href="https://abest.co/fr/tr-locations.html" hreflang="fr" rel="alternate"/><link href="https://abest.co/ru/tr-locations.html" hreflang="ru" rel="alternate"/><link href="https://abest.co/pt/tr-locations.html" hreflang="pt" rel="alternate"/><link href="https://abest.co/ur/tr-locations.html" hreflang="ur" rel="alternate"/><link href="https://abest.co/ku/tr-locations.html" hreflang="ku" rel="alternate"/><link href="https://abest.co/he/tr-locations.html" hreflang="he" rel="alternate"/><link href="https://abest.co/hy/tr-locations.html" hreflang="hy" rel="alternate"/><link href="https://abest.co/" hreflang="x-default" rel="alternate"/></head>
+<body>
+<!-- Background Layer -->
+<div class="background-wrapper">
+<img alt="高级背景" class="main-bg" id="hero-bg" src="/bg_turkey.png"/>
+<div class="bg-gradient-overlay"></div>
+</div>
+<!-- Main App Container -->
+<div class="app-container">
+<!-- Mobile Navigation -->
+<nav class="mobile-nav" id="mobile-nav">
+<a class="nav-link" href="index.html">家</a>
+<a class="nav-link" href="usa.html">USA</a>
+<a class="nav-link" href="deutschland.html">德国</a>
+<a class="nav-link" href="turkiye.html">土耳其</a>
+<a class="nav-link" href="kontakt.html">接触</a>
+</nav>
+<!-- Header -->
+<header class="app-header fade-in-up" style="animation-delay: 0.1s;">
+<a class="logo-link" href="index.html">
+<span style="font-size: 1.5rem; font-weight: 500; letter-spacing: -0.5px; color: var(--text-main);">
+<span style="color: var(--primary-blue);">a</span>Best<span style="color: var(--primary-blue);">.co</span>
+</span>
+</a>
+<div aria-label="Toggle Navigation Menu" class="nav-icon" id="menu-btn">
+<span></span>
+<span></span>
+</div>
+</header>
+<main class="scroll-content">
+<section class="section-spacing fade-in-up" style="animation-delay: 0.2s;">
+<div class="glass-panel project-card">
+<div class="label-badge">Growth Markets</div>
+<div class="featured-header">
+<h2 style="margin-top: 1rem; margin-bottom: 0.5rem;">安塔利亚•伊斯坦布尔•加济安泰普</h2>
+<p class="project-tags">战略地点</p>
+</div>
+<div class="divider mt-2" style="margin-bottom: 1.5rem;"></div>
+<div style="margin-bottom: 1rem;">
+<h3 style="color: var(--text-accent); margin-bottom: 1rem;">项目概况</h3>
+<p style="margin-bottom: 1rem;">我们正在积极探索并瞄准土耳其境内的高增长地区。
+                            从安塔利亚等沿海旅游中心到历史和商业中心
+                            伊斯坦布尔和加济安泰普，
+                            这些市场为现代房地产和合资企业提供了巨大的机会
+                            倡议。
+                            [以后可以在这里添加更详细的文字...]</p>
+<h4 style="color: var(--text-accent); margin-bottom: 0.5rem; margin-top: 1.5rem;">重点领域</h4>
+<ul style="color: var(--text-muted); list-style-position: inside; margin-bottom: 1.5rem;">
+<li style="margin-bottom: 0.5rem;">高收益房地产开发</li>
+<li style="margin-bottom: 0.5rem;">旅游和酒店投资机会</li>
+<li style="margin-bottom: 0.5rem;">战略合资企业</li>
+</ul>
+</div>
+<!-- Map Location -->
+<div style="margin-top: 2rem; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
+<div class="map-skeleton" id="map-skeleton"></div>
+<div class="osm-map" data-query="Turkey" style="width: 100%; height: 400px; border-radius: 12px; z-index: 1;"></div>
+</div>
+<div style="margin-top: 2rem; text-align: center;">
+<a class="glass-button ripple text-center" href="kontakt.html" style="text-decoration: none; display: inline-block; width: auto; padding: 16px 32px;">求婚
+                            合作伙伴</a>
+</div>
+</div>
+</section>
+<div style="text-align: center; margin-bottom: 1rem;">
+<a href="turkiye.html" style="color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--glass-border); padding-bottom: 2px;">←
+                    返回土耳其概览</a>
+</div>
+<!-- Spacing for bottom scrolling on sticky mode -->
+</main>
+<footer class="app-footer fade-in-up" style="animation-delay: 0.8s;">
+<div class="slim-footer-content">
+<div class="footer-links">
+<a href="impressum.html">印记</a>
+<a href="datenschutz.html">隐私政策</a>
+<a href="kontakt.html">接触</a>
+</div>
+<div class="language-switcher"><button class="lang-btn" onclick="document.getElementById('lang-dropdown').classList.toggle('show')">ZH ▾</button><div class="lang-dropdown" id="lang-dropdown"><a href="/en/">EN - English</a><a href="/de/">DE - Deutsch</a><a href="/es/">ES - Español</a><a href="/tr/">TR - Türkçe</a><a href="/zh/">ZH - 中文</a><a href="/hi/">HI - हिन्दी</a><a href="/ar/">AR - العربية</a><a href="/fr/">FR - Français</a><a href="/ru/">RU - Русский</a><a href="/pt/">PT - Português</a><a href="/ur/">UR - اردو</a><a href="/ku/">KU - Kurdî</a><a href="/he/">HE - עברית</a><a href="/hy/">HY - Հայերեն</a></div></div>
+<p class="copyright">© 2026<span class="brand-style"><span class="brand-a">a</span>Best<span class="brand-dot-co">.co</span></span></p>
+</div>
+</footer>
+</div>
+<script src="/app.js"></script>
+</body>
+</html>
