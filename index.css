@@ -763,45 +763,54 @@ address {
     opacity: 1;
 }
 
-/* Slim Footer Styling */
+/* Horizontal Minimalist Footer Styling */
 .app-footer {
     padding-bottom: 2rem;
 }
 
 .slim-footer-content {
     display: flex;
-    flex-direction: column;
+    flex-wrap: nowrap;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
-    padding: 1.5rem 0;
+    gap: 0.75rem;
+    padding: 1.5rem 1rem;
     border-top: 1px solid var(--glass-border);
     margin-top: 2rem;
+    white-space: nowrap;
 }
 
-@media (min-width: 640px) {
+@media (max-width: 600px) {
     .slim-footer-content {
-        flex-direction: row;
-        justify-content: space-between;
+        overflow-x: auto;
+        -ms-overflow-style: none;
+        /* IE and Edge */
+        scrollbar-width: none;
+        /* Firefox */
+        justify-content: flex-start;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .slim-footer-content::-webkit-scrollbar {
+        display: none;
     }
 }
 
-.footer-links {
-    display: flex;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.footer-links a {
+.footer-link {
     color: var(--text-muted);
     text-decoration: none;
     font-size: 0.9rem;
     transition: var(--transition-fast);
 }
 
-.footer-links a:hover {
+.footer-link:hover {
     color: var(--text-main);
+}
+
+.footer-separator {
+    color: var(--glass-border);
+    user-select: none;
 }
 
 .copyright {
@@ -810,7 +819,7 @@ address {
     opacity: 0.8;
 }
 
-/* Language Switcher */
+/* Minimalist Language Switcher */
 .language-switcher {
     position: relative;
     display: inline-flex;
@@ -818,199 +827,55 @@ address {
 }
 
 .lang-btn {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: white;
-    padding: 6px 12px;
-    border-radius: 8px;
+    background: transparent;
+    border: none;
+    padding: 0 4px;
     cursor: pointer;
-    font-family: 'Outfit', sans-serif;
-    font-size: 14px;
-    transition: all 0.3s ease;
+    font-size: 1.25rem;
+    transition: transform 0.2s ease, filter 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .lang-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+    filter: drop-shadow(0 2px 4px rgba(255, 255, 255, 0.2));
 }
 
 .lang-dropdown {
     display: none;
     position: absolute;
-    bottom: 100%;
-    right: 0;
-    margin-bottom: 8px;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
     background: rgba(20, 20, 30, 0.95);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
-    overflow: hidden;
+    padding: 0.5rem;
     z-index: 100;
-    min-width: 120px;
-    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.5);
     opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .lang-dropdown.show {
-    display: block;
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.lang-dropdown a {
-    display: block;
-    padding: 10px 16px;
-    color: white;
-    text-decoration: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    /* Added for separation */
-    transition: background 0.3s ease;
-}
-
-.lang-dropdown a:hover {
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.lang-dropdown a:last-child {
-    border-bottom: none;
-}
-
-/* Contact Form Styling */
-.glass-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    text-align: left;
-    margin-top: 2rem;
-}
-
-.form-group {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
 }
 
-.form-group label {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    font-weight: 500;
-}
-
-.form-input,
-.form-textarea {
-    width: 100%;
-    padding: 12px 16px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    color: var(--text-main);
-    font-family: 'Outfit', sans-serif;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    box-sizing: border-box;
-}
-
-.form-input:focus,
-.form-textarea:focus {
-    outline: none;
-    border-color: rgba(255, 255, 255, 0.3);
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05);
-}
-
-.form-textarea {
-    resize: vertical;
-    min-height: 120px;
-}
-
-/* Map Skeleton Loader */
-.map-skeleton {
-    width: 100%;
-    height: 400px;
-    background: linear-gradient(90deg, #2c2c2e 25%, #3a3a3c 50%, #2c2c2e 75%);
-    background-size: 200% 100%;
-    animation: shimmer 1.5s infinite;
-    border-radius: 20px;
-    margin-bottom: 1rem;
-    display: block;
-}
-
-.osm-map.loaded+.map-skeleton,
-.osm-map.loaded {
-    display: block;
-}
-
-.osm-map:not(.loaded) {
-    display: none;
-}
-
-@keyframes shimmer {
-    0% {
-        background-position: 200% 0;
-    }
-
-    100% {
-        background-position: -200% 0;
-    }
-}
-
-/* Brand Styling */
-.brand-style {
-    font-weight: 600;
-}
-
-.brand-a,
-.brand-dot-co {
-    color: var(--primary-blue);
-    display: inline;
-}/* Horizontal Flag Switcher Styling */
-.flag-switcher-wrapper {
-    width: 100%;
-    margin-top: 1rem;
-    padding: 0.5rem 0;
-    overflow-x: auto;
-    /* Hide scrollbars for a cleaner look */
-    -ms-overflow-style: none;
-    /* IE and Edge */
-    scrollbar-width: none;
-    /* Firefox */
-    display: flex;
-    justify-content: center;
-    /* Center if it doesn't overflow */
-}
-
-.flag-switcher-wrapper::-webkit-scrollbar {
-    display: none;
-    /* Chrome, Safari and Opera */
-}
-
-.flag-switcher-container {
-    display: inline-flex;
-    gap: 1.25rem;
-    padding: 0 1rem;
-    /* Padding at ends for scrolling */
-    white-space: nowrap;
-    align-items: center;
-}
-
-.flag-link {
-    font-size: 1.75rem;
+.lang-dropdown-link {
+    font-size: 1.25rem;
     text-decoration: none;
-    transition: transform 0.2s ease, filter 0.2s ease;
-    cursor: pointer;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    transition: transform 0.2s ease;
+    display: block;
+    text-align: center;
 }
 
-.flag-link:hover {
-    transform: scale(1.2);
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
-}
-
-/* Adjust slim-footer-content layout */
-.slim-footer-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
+.lang-dropdown-link:hover {
+    transform: scale(1.1);
 }
