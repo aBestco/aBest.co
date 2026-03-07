@@ -174,24 +174,46 @@ function handleContactSubmit(event) {
 
     btn.innerText = "...";
     btn.style.opacity = "0.7";
+    btn.disabled = true;
 
     var name = form.querySelector('#name').value;
     var email = form.querySelector('#email').value;
     var message = form.querySelector('#message').value;
 
-    setTimeout(() => {
-        var subject = encodeURIComponent("Contact Request from " + name);
-        var body = encodeURIComponent("Name: " + name + "\nEmail: " + email + "\n\nMessage:\n" + message);
-        window.location.href = "mailto:i@aBest.co?subject=" + subject + "&body=" + body;
+    fetch("https://formsubmit.co/ajax/i@aBest.co", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            name: name,
+            email: email,
+            message: message
+        })
+    })
+        .then(response => response.json())
+        .then(data => {
+            btn.innerText = "✓";
+            btn.style.background = "rgba(40, 167, 69, 0.4)";
 
-        btn.innerText = "✓";
-        btn.style.background = "rgba(40, 167, 69, 0.4)";
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.style.background = "";
+                btn.style.opacity = "1";
+                btn.disabled = false;
+                form.reset();
+            }, 4000);
+        })
+        .catch(error => {
+            btn.innerText = "Error";
+            btn.style.background = "rgba(220, 53, 69, 0.4)";
 
-        setTimeout(() => {
-            btn.innerText = originalText;
-            btn.style.background = "";
-            btn.style.opacity = "1";
-            form.reset();
-        }, 3000);
-    }, 800);
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.style.background = "";
+                btn.style.opacity = "1";
+                btn.disabled = false;
+            }, 4000);
+        });
 }
