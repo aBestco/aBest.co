@@ -44,8 +44,14 @@ export default {
 // Helper for Authentication
 function checkAuth(request, env) {
     const authHeader = request.headers.get('Authorization');
-    const expectedUser = env.ADMIN_USER || 'admin'; // Fallback
-    const expectedPass = env.ADMIN_PASS || 'abest2026'; // Fallback
+    const expectedUser = env.ADMIN_USER;
+    const expectedPass = env.ADMIN_PASS;
+
+    if (!expectedUser || !expectedPass) {
+        console.error("Security Warning: ADMIN_USER or ADMIN_PASS environment variables are missing.");
+        return false; // Fail secure
+    }
+
     const expectedAuth = 'Basic ' + btoa(`${expectedUser}:${expectedPass}`);
     return authHeader === expectedAuth;
 }
