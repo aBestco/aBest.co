@@ -143,23 +143,23 @@ document.addEventListener('click', function (event) {
     var isClickInsideBtn = event.target.closest('.lang-btn');
     var isClickInsideDropdown = event.target.closest('.lang-dropdown');
 
-    // Select all dropdowns (though usually only one is visible)
+    // Select all dropdowns
     var dropdowns = document.querySelectorAll('.lang-dropdown');
 
     dropdowns.forEach(function (dropdown) {
-        if (isClickInsideBtn && dropdown.previousElementSibling === event.target) {
+        if (isClickInsideBtn && (dropdown.previousElementSibling === event.target || dropdown.previousElementSibling.contains(event.target))) {
             // Toggle the clicked one
-            if (dropdown.style.display === 'block') {
-                dropdown.style.display = 'none';
-                setTimeout(() => dropdown.classList.remove('show'), 10);
+            if (dropdown.classList.contains('show')) {
+                dropdown.classList.remove('show');
+                setTimeout(() => { if (!dropdown.classList.contains('show')) dropdown.style.display = 'none'; }, 300);
             } else {
-                dropdown.style.display = 'block';
+                dropdown.style.display = 'grid'; // Use grid as defined in CSS
                 setTimeout(() => dropdown.classList.add('show'), 10);
             }
         } else if (!isClickInsideDropdown) {
             // Close if clicked outside
             dropdown.classList.remove('show');
-            setTimeout(() => dropdown.style.display = 'none', 300); // Wait for transition
+            setTimeout(() => { if (!dropdown.classList.contains('show')) dropdown.style.display = 'none'; }, 300);
         }
     });
 });
