@@ -773,12 +773,21 @@ address {
     flex-direction: row !important;
     flex-wrap: nowrap !important;
     align-items: center !important;
-    justify-content: center !important;
+    justify-content: flex-start !important;
     gap: 0.75rem !important;
     padding: 1rem 0.5rem !important;
     border-top: 1px solid var(--glass-border);
     margin-top: 2rem;
     white-space: nowrap !important;
+    width: 100%;
+}
+
+.slim-footer-content span.footer-separator:nth-of-type(3) {
+    display: none !important;
+}
+
+.slim-footer-content .language-switcher {
+    margin-left: auto !important;
 }
 
 @media (max-width: 767px) {
@@ -788,8 +797,8 @@ address {
         /* IE and Edge */
         scrollbar-width: none;
         /* Firefox */
-        justify-content: center !important;
-        /* Keep it centered even on mobile */
+        justify-content: flex-start !important;
+        /* Left/Right align even on mobile */
         padding-left: 0.5rem !important;
         padding-right: 0.5rem !important;
     }
