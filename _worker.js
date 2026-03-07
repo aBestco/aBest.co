@@ -2,9 +2,8 @@ export default {
     async fetch(request, env) {
         const url = new URL(request.url);
         const pathname = url.pathname;
-        const host = url.hostname;
 
-        // --- 1. API & ADMIN ROUTES (Must be handled first) ---
+        // --- 1. API ROUTES ---
         if (pathname.startsWith('/api/inquiries')) {
             // Check auth for sensitive methods
             if (['GET', 'PUT', 'DELETE'].includes(request.method)) {
@@ -13,21 +12,21 @@ export default {
             return handleInquiriesApi(request, env);
         }
 
+        // --- 2. ADMIN AREA ---
         if (pathname.startsWith('/admin')) {
             if (!checkAuth(request, env)) return unauthorizedResponse();
-            // Let it fall through to ASSETS.fetch if auth passes
+            // Let ASSETS handle the static files in /admin
         }
 
-        // --- 2. 301 REDIRECTS FOR OLD DOMAINS ---
-        if (host === 'abest.com' || host === 'www.abest.com') {
+        // --- 3. 301 REDIRECTS ---
+        if (url.hostname === 'abest.com' || url.hostname === 'www.abest.com') {
             const newUrl = new URL(request.url);
             newUrl.hostname = 'abest.co';
-            newUrl.protocol = 'https:';
             return Response.redirect(newUrl.toString(), 301);
         }
 
-        // --- 3. ALL OTHER STATIC ASSETS ---
-        // This includes /assets/, /de/index.html, /en/terms.html, etc.
+        // --- 4. STATIC ASSETS & PAGES ---
+        // Cloudflare Pages handles /de/, /en/index.html, /assets/ etc. automatically
         return env.ASSETS.fetch(request);
     },
 };
@@ -35,8 +34,8 @@ export default {
 // Helper for Authentication
 function checkAuth(request, env) {
     const authHeader = request.headers.get('Authorization');
-    const expectedUser = env.ADMIN_USER || 'admin';
-    const expectedPass = env.ADMIN_PASS || 'abest2026';
+    const expectedUser = env.ADMIN_USER || 'admin'; // Fallback
+    const expectedPass = env.ADMIN_PASS || 'abest2026'; // Fallback
     const expectedAuth = 'Basic ' + btoa(`${expectedUser}:${expectedPass}`);
     return authHeader === expectedAuth;
 }
