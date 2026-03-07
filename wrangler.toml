@@ -1,9 +1,10 @@
 name = "abest-co"
 compatibility_date = "2026-03-05"
+pages_build_output_dir = "."
 
 [[kv_namespaces]]
 binding = "ABEST_INQUIRIES"
-id = "preview_id_only"
+id = "2530b4a2fd22426d90be9ed8343e3a14"
 
 
 
