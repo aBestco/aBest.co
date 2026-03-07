@@ -176,7 +176,9 @@ function handleContactSubmit(event) {
     btn.style.opacity = "0.7";
     btn.disabled = true;
 
-    var name = form.querySelector('#name').value;
+    var firstName = form.querySelector('#first_name').value;
+    var lastName = form.querySelector('#last_name').value;
+    var phone = form.querySelector('#phone').value || '';
     var email = form.querySelector('#email').value;
     var message = form.querySelector('#message').value;
 
@@ -187,7 +189,8 @@ function handleContactSubmit(event) {
             'Accept': 'application/json'
         },
         body: JSON.stringify({
-            name: name,
+            name: `${firstName} ${lastName}`,
+            phone: phone,
             email: email,
             message: message
         })
@@ -259,5 +262,16 @@ if (osmMaps.length > 0 && typeof L !== 'undefined') {
             .catch(err => {
                 console.error('Error fetching map data:', err);
             });
+    });
+}
+
+// 8. Auto-expanding Textarea for Contact Form
+const contactTextarea = document.querySelector('#message');
+if (contactTextarea) {
+    contactTextarea.addEventListener('input', function () {
+        // Reset height locally to shrink if user deletes text
+        this.style.height = '120px';
+        // Set new height based on scrollHeight, padding etc.
+        this.style.height = (this.scrollHeight) + 'px';
     });
 }
