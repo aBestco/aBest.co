@@ -16,8 +16,8 @@
     <meta property="og:url" content="https://www.abest.co">
     <meta name="twitter:card" content="summary_large_image">
 
-    <link rel="icon" type="image/png" href="./favicon.png">
-    <link rel="stylesheet" href="index.css">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="stylesheet" href="/index.css">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,7 +27,7 @@
 <body>
     <!-- Background Layer -->
     <div class="background-wrapper">
-        <img src="./bg_main_blurred_new.png" alt="Blurred Abstract City Background" class="main-bg" id="hero-bg">
+        <img src="/bg_main_blurred_new.png" alt="Blurred Abstract City Background" class="main-bg" id="hero-bg">
         <div class="bg-gradient-overlay"></div>
     </div>
 
@@ -50,6 +50,15 @@
                     aBest<span style="color: var(--primary-blue);">.co</span>
                 </span>
             </a>
+            <div class="language-switcher" style="position: relative; margin-right: 20px; display: inline-flex; align-items: center;">
+                <button class="lang-btn" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 8px; cursor: pointer; font-family: 'Outfit', sans-serif; font-size: 14px;" onclick="document.getElementById('lang-dropdown').classList.toggle('show')">DE ▾</button>
+                <div id="lang-dropdown" class="lang-dropdown" style="display: none; position: absolute; top: 100%; right: 0; margin-top: 8px; background: rgba(20, 20, 30, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; overflow: hidden; z-index: 100; min-width: 120px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                    <a href="/en/" style="display: block; padding: 10px 16px; color: white; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.05);">EN - English</a>
+                    <a href="/es/" style="display: block; padding: 10px 16px; color: white; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.05);">ES - Español</a>
+                    <a href="/de/" style="display: block; padding: 10px 16px; color: white; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.05);">DE - Deutsch</a>
+                    <a href="/tr/" style="display: block; padding: 10px 16px; color: white; text-decoration: none;">TR - Türkçe</a>
+                </div>
+            </div>
             <div class="nav-icon" id="menu-btn">
                 <span></span>
                 <span></span>
@@ -58,38 +67,39 @@
 
         <main class="scroll-content">
 
-            <!-- Hero Section Türkiye -->
+            <!-- Hero Section Deutschland -->
             <section class="hero fade-in-up" style="animation-delay: 0.2s;">
                 <div class="hero-content glass-chip"
-                    style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('./bg_turkey_new.png') center/cover; padding: 4rem 2rem;">
-                    <h1><span class="highlight" style="font-size: 3rem;">Türkiye</span><br>Development Opportunities
-                    </h1>
-                    <p class="subtext" style="color: #fff; max-width: 600px; margin: 0 auto;">We are open to
-                        partnerships and new development ideas across key cities in Türkiye.</p>
+                    style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('./bg_germany_new.png') center/cover; padding: 4rem 2rem;">
+                    <h1><span class="highlight" style="font-size: 3rem;">Deutschland</span><br>Berlin</h1>
+                    <p class="subtext" style="color: #fff; max-width: 600px; margin: 0 auto;">aBest.co operates in
+                        hospitality, real estate, and retail sectors in Berlin and welcomes new investment partnerships
+                        and business ideas.</p>
                 </div>
             </section>
 
-            <!-- Projects List -->
+            <!-- Active Sectors List -->
             <section class="projects-list section-spacing fade-in-up"
                 style="animation-delay: 0.3s; display: grid; gap: 2rem;">
-                <!-- Concept Card -->
+                <!-- Berlin Operations -->
                 <div class="glass-panel project-card interactive">
-                    <div class="label-badge">Growth Markets</div>
+                    <div class="label-badge">Active Sectors</div>
                     <div class="featured-header">
-                        <h3 style="margin-top: 1rem; margin-bottom: 0.5rem;">Antalya • Istanbul • Gaziantep</h3>
-                        <p class="project-tags">Strategic Locations</p>
+                        <h3 style="margin-top: 1rem; margin-bottom: 0.5rem;">Berlin</h3>
+                        <p class="project-tags">Capital City Operations</p>
                     </div>
                     <div class="divider mt-2" style="margin-bottom: 1.5rem;"></div>
                     <div style="display: grid; grid-template-columns: 1fr; gap: 1.5rem;">
                         <div>
                             <h4 style="color: var(--text-accent); margin-bottom: 0.5rem;">Focus Areas</h4>
                             <ul style="color: var(--text-muted); list-style-position: inside; margin-bottom: 1.5rem;">
+                                <li style="margin-bottom: 0.5rem;">Hotel industry</li>
+                                <li style="margin-bottom: 0.5rem;">Wedding and event venues</li>
                                 <li style="margin-bottom: 0.5rem;">Real estate development</li>
-                                <li style="margin-bottom: 0.5rem;">Investment opportunities</li>
-                                <li style="margin-bottom: 0.5rem;">Joint ventures</li>
+                                <li style="margin-bottom: 0.5rem;">Retail stores</li>
                             </ul>
                             <div style="margin-top: 1.5rem;">
-                                <a href="tr-locations.html" class="glass-button ripple text-center"
+                                <a href="de-berlin.html" class="glass-button ripple text-center"
                                     style="text-decoration: none; display: inline-block;">Details ansehen</a>
                             </div>
                         </div>
@@ -120,7 +130,7 @@
             </div>
         </div>
 
-        <script src="./app.js"></script>
+        <script src="/app.js"></script>
 </body>
 
 </html>

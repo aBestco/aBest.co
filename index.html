@@ -3,138 +3,76 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>aBest.co | Global Premium Development</title>
-    <!-- SEO & Open Graph Meta Tags -->
-    <meta name="description"
-        content="aBest.co develops premium land, energy, and commercial real estate projects globally. Partnerships with investors and brands.">
-    <meta property="og:title" content="aBest.co | Global Premium Development">
-    <meta property="og:description"
-        content="aBest.co develops premium land, energy, and commercial real estate projects globally. Partnerships with investors and brands.">
-    <meta property="og:image" content="https://www.abest.co/bg_main_blurred_new.png">
-    <meta property="og:url" content="https://www.abest.co">
-    <meta name="twitter:card" content="summary_large_image">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aBest.co</title>
+    <!-- Basic SEO tags -->
+    <meta name="description" content="aBest.co - Premium Global Development and Real Estate.">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <style>
+        body {
+            background-color: #0c0f14;
+            color: #ffffff;
+            font-family: 'Outfit', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
 
-    <link rel="icon" type="image/png" href="./favicon.png">
-    <link rel="stylesheet" href="index.css">
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        .loader {
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top: 3px solid #6b9cff;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <!-- Background Layer -->
-    <div class="background-wrapper">
-        <img src="./bg_main_blurred_new.png" alt="Blurred Abstract City Background" class="main-bg" id="hero-bg">
-        <div class="bg-gradient-overlay"></div>
-    </div>
+    <div class="loader"></div>
+    <script>
+        // Automatic Language Redirect
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user has a saved language preference in localStorage
+            var savedLang = localStorage.getItem('aBest_lang');
+            
+            if (savedLang) {
+                window.location.replace('/' + savedLang + '/');
+                return;
+            }
 
-    <!-- Main App Container -->
-    <div class="app-container">
-
-        <!-- Mobile Navigation -->
-        <nav class="mobile-nav" id="mobile-nav">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="usa.html" class="nav-link">USA</a>
-            <a href="deutschland.html" class="nav-link">Deutschland</a>
-            <a href="turkiye.html" class="nav-link">Türkiye</a>
-            <a href="kontakt.html" class="nav-link">Kontakt</a>
-        </nav>
-
-        <!-- Header -->
-        <header class="app-header fade-in-up" style="animation-delay: 0.1s;">
-            <a href="index.html" class="logo-link">
-                <span style="font-size: 1.5rem; font-weight: 500; letter-spacing: -0.5px; color: var(--text-main);">
-                    aBest<span style="color: var(--primary-blue);">.co</span>
-                </span>
-            </a>
-            <div class="nav-icon" id="menu-btn">
-                <span></span>
-                <span></span>
-            </div>
-        </header>
-
-        <main class="scroll-content">
-
-            <!-- Hero Section -->
-            <section class="hero fade-in-up" style="animation-delay: 0.2s;">
-                <div class="hero-content glass-chip">
-                    <h1>International Projects &<br><span class="highlight">Development Opportunities</span></h1>
-                    <p class="subtext">aBest.co develops land, energy, and commercial real estate projects and welcomes
-                        partnerships with investors, brands, and developers.</p>
-                </div>
-            </section>
-
-            <!-- Countries Row -->
-            <section class="countries fade-in-up" style="animation-delay: 0.3s;">
-                <a href="usa.html" style="text-decoration: none;">
-                    <div class="glass-card country-card">
-                        <img src="./bg_usa_new.png" alt="USA">
-                        <div class="card-overlay">
-                            <span class="flag">🇺🇸</span> USA
-                        </div>
-                    </div>
-                </a>
-                <a href="deutschland.html" style="text-decoration: none;">
-                    <div class="glass-card country-card">
-                        <img src="./bg_germany_new.png" alt="Deutschland">
-                        <div class="card-overlay">
-                            <span class="flag">🇩🇪</span> Deutschland
-                        </div>
-                    </div>
-                </a>
-                <a href="turkiye.html" style="text-decoration: none;">
-                    <div class="glass-card country-card">
-                        <img src="./bg_turkey_new.png" alt="Türkiye">
-                        <div class="card-overlay">
-                            <span class="flag">🇹🇷</span> Türkiye
-                        </div>
-                    </div>
-                </a>
-            </section>
-
-            <!-- Contact / Partnership Section -->
-            <section class="section-spacing fade-in-up" style="animation-delay: 0.4s;">
-                <div class="glass-panel text-center">
-                    <h2>Partnership & Investment Inquiries</h2>
-                    <div class="divider mt-2"></div>
-                    <p style="margin-bottom: 2rem;">We welcome collaboration with investors, developers, brands, and
-                        energy companies.</p>
-                    <a href="mailto:i@aBest.co" class="glass-button ripple"
-                        style="text-decoration: none; display: inline-block; width: auto; padding: 16px 32px;">
-                        Contact Us: i@aBest.co
-                    </a>
-                </div>
-            </section>
-
-            <!-- Spacing for bottom scrolling on sticky mode -->
-            <div style="height: 60px;"></div>
-        </main>
-
-        <footer class="app-footer section-spacing fade-in-up" style="animation-delay: 0.8s;">
-            <div class="slim-footer-content">
-                <div class="footer-links">
-                    <a href="impressum.html">Impressum</a>
-                    <a href="datenschutz.html">Datenschutz</a>
-                    <a href="kontakt.html">Kontakt</a>
-                </div>
-                <p class="copyright">&copy; 2026 aBest.co</p>
-            </div>
-        </footer>
-
-        <!-- Modal Overlay -->
-        <div class="modal-overlay" id="project-modal">
-            <div class="modal-content">
-                <button class="modal-close" id="modal-close">&times;</button>
-                <div id="modal-body">
-                    <!-- Content injected via JS -->
-                </div>
-            </div>
-        </div>
-
-        <script src="./app.js"></script>
+            // Get browser language
+            var userLang = navigator.language || navigator.userLanguage; 
+            var langCode = userLang.split('-')[0].toLowerCase();
+            
+            var targetUrl = '/en/'; // Default
+            
+            if (langCode === 'de') {
+                targetUrl = '/de/';
+            } else if (langCode === 'es') {
+                targetUrl = '/es/';
+            } else if (langCode === 'tr') {
+                targetUrl = '/tr/';
+            }
+            
+            // Redirect smoothly
+            window.location.replace(targetUrl);
+        });
+    </script>
 </body>
 
 </html>

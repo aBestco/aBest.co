@@ -133,3 +133,33 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target === modal) closeModal();
     });
 });
+
+// Language Switcher Logic
+function setLang(lang) {
+    localStorage.setItem('aBest_lang', lang);
+}
+
+document.addEventListener('click', function(event) {
+    var isClickInsideBtn = event.target.closest('.lang-btn');
+    var isClickInsideDropdown = event.target.closest('.lang-dropdown');
+    
+    // Select all dropdowns (though usually only one is visible)
+    var dropdowns = document.querySelectorAll('.lang-dropdown');
+    
+    dropdowns.forEach(function(dropdown) {
+        if (isClickInsideBtn && dropdown.previousElementSibling === event.target) {
+            // Toggle the clicked one
+            if (dropdown.style.display === 'block') {
+                dropdown.style.display = 'none';
+                setTimeout(() => dropdown.classList.remove('show'), 10);
+            } else {
+                dropdown.style.display = 'block';
+                setTimeout(() => dropdown.classList.add('show'), 10);
+            }
+        } else if (!isClickInsideDropdown) {
+            // Close if clicked outside
+            dropdown.classList.remove('show');
+            setTimeout(() => dropdown.style.display = 'none', 300); // Wait for transition
+        }
+    });
+});
