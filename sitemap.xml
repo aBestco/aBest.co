@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Homepage -->
+  <url>
+    <loc>https://www.abest.co/de/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.abest.co/de/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.abest.co/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.abest.co/"/>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.abest.co/en/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- USA -->
+  <url>
+    <loc>https://www.abest.co/de/usa.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.abest.co/de/usa.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.abest.co/en/usa.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.abest.co/en/usa.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.abest.co/de/usa-los-angeles.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.abest.co/de/usa-los-angeles.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.abest.co/en/usa-los-angeles.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.abest.co/en/usa-los-angeles.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.abest.co/de/usa-rosamond.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.abest.co/de/usa-rosamond.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.abest.co/en/usa-rosamond.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.abest.co/en/usa-rosamond.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.abest.co/de/usa-half-moon-bay.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.abest.co/de/usa-half-moon-bay.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.abest.co/en/usa-half-moon-bay.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.abest.co/en/usa-half-moon-bay.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Deutschland -->
+  <url>
+    <loc>https://www.abest.co/de/deutschland.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.abest.co/de/deutschland.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.abest.co/en/deutschland.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.abest.co/en/deutschland.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.abest.co/de/de-berlin.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.abest.co/de/de-berlin.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.abest.co/en/de-berlin.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.abest.co/en/de-berlin.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Türkei -->
+  <url>
+    <loc>https://www.abest.co/de/turkiye.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.abest.co/de/turkiye.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.abest.co/en/turkiye.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.abest.co/en/turkiye.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.abest.co/de/tr-locations.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.abest.co/de/tr-locations.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.abest.co/en/tr-locations.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.abest.co/en/tr-locations.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Ideen / Opportunities -->
+  <url>
+    <loc>https://www.abest.co/de/ideen.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.abest.co/de/ideen.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.abest.co/en/ideen.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.abest.co/en/ideen.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Kontakt -->
+  <url>
+    <loc>https://www.abest.co/de/kontakt.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.abest.co/de/kontakt.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.abest.co/en/kontakt.html"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.abest.co/en/kontakt.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Rechtliche Seiten -->
+  <url>
+    <loc>https://www.abest.co/de/impressum.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://www.abest.co/de/datenschutz.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://www.abest.co/de/disclaimer.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://www.abest.co/de/terms.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://www.abest.co/de/cookie-policy.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+</urlset>

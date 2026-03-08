@@ -934,3 +934,56 @@ if (contactTextarea) {
         this.style.height = (this.scrollHeight) + 'px';
     });
 }
+
+// ===== COOKIE CONSENT BANNER =====
+(function() {
+    if (localStorage.getItem('abest_cookie_consent')) return;
+
+    var lang = document.documentElement.lang || 'de';
+    var texts = {
+        de: {
+            msg: 'Diese Website verwendet technisch notwendige Cookies sowie Analyse-Dienste (Cloudflare Analytics). Mit der Nutzung der Seite stimmen Sie dem zu.',
+            accept: 'Akzeptieren',
+            decline: 'Ablehnen',
+            more: 'Mehr erfahren'
+        },
+        en: {
+            msg: 'This website uses essential cookies and analytics services (Cloudflare Analytics). By using this site, you agree to their use.',
+            accept: 'Accept',
+            decline: 'Decline',
+            more: 'Learn more'
+        }
+    };
+    var t = texts[lang] || texts['en'];
+    var cookiePolicyPath = '/' + lang + '/cookie-policy.html';
+
+    var banner = document.createElement('div');
+    banner.id = 'cookie-banner';
+    banner.setAttribute('role', 'dialog');
+    banner.setAttribute('aria-label', 'Cookie Consent');
+    banner.style.cssText = [
+        'position:fixed', 'bottom:0', 'left:0', 'right:0', 'z-index:99999',
+        'background:rgba(10,12,20,0.97)', 'backdrop-filter:blur(16px)',
+        'border-top:1px solid rgba(255,255,255,0.12)',
+        'padding:16px 20px', 'display:flex', 'flex-wrap:wrap',
+        'align-items:center', 'gap:12px', 'font-family:inherit',
+        'box-shadow:0 -4px 24px rgba(0,0,0,0.5)'
+    ].join(';');
+
+    banner.innerHTML = '<p style="margin:0;flex:1;min-width:200px;font-size:0.82rem;color:rgba(255,255,255,0.75);line-height:1.5;">' + t.msg + ' <a href="' + cookiePolicyPath + '" style="color:#4d9fff;text-decoration:underline;">' + t.more + '</a></p>' +
+        '<div style="display:flex;gap:8px;flex-shrink:0;">' +
+        '<button id="cookie-decline" style="background:transparent;border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.6);padding:8px 16px;border-radius:8px;cursor:pointer;font-size:0.8rem;font-family:inherit;">' + t.decline + '</button>' +
+        '<button id="cookie-accept" style="background:rgba(77,159,255,0.25);border:1px solid rgba(77,159,255,0.5);color:#fff;padding:8px 20px;border-radius:8px;cursor:pointer;font-size:0.8rem;font-weight:500;font-family:inherit;">' + t.accept + '</button>' +
+        '</div>';
+
+    document.body.appendChild(banner);
+
+    document.getElementById('cookie-accept').addEventListener('click', function() {
+        localStorage.setItem('abest_cookie_consent', 'accepted');
+        banner.remove();
+    });
+    document.getElementById('cookie-decline').addEventListener('click', function() {
+        localStorage.setItem('abest_cookie_consent', 'declined');
+        banner.remove();
+    });
+})();
