@@ -20,5 +20,5 @@ Getting User settings...
 │ Www.abest.co@gmail.com's Account │ 23a6b5565d032e6bf1ffee7931c279cc │
 └──────────────────────────────────┴──────────────────────────────────┘
 🔓 To see token permissions visit https://dash.cloudflare.com/profile/api-tokens.
-🪵  Logs were written to "/home/runner/.config/.wrangler/logs/wrangler-2026-03-08_21-45-35_692.log"
+🪵  Logs were written to "/home/runner/.config/.wrangler/logs/wrangler-2026-03-08_21-59-55_717.log"
 DEPLOY_FAILED
