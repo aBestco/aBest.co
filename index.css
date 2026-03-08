@@ -963,3 +963,77 @@ address {
 .lang-dropdown-link:hover {
     transform: scale(1.1);
 }
+
+/* Authentication Modal Styles */
+.auth-modal-wrapper {
+    padding: 10px 0;
+}
+
+.auth-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 5px;
+    border-radius: 16px;
+    border: 1px solid var(--glass-border);
+}
+
+.auth-tab {
+    flex: 1;
+    padding: 10px;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.auth-tab.active {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-main);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.auth-tab:hover:not(.active) {
+    color: var(--text-main);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.auth-separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.auth-separator::before,
+.auth-separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.auth-separator span {
+    padding: 0 10px;
+}
+
+.google-auth-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: white !important;
+    color: #3c4043 !important;
+    font-weight: 500;
+}
+
+.google-auth-btn:hover {
+    background: #f8f9fa !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}

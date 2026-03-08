@@ -146,6 +146,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (href.includes('mailto:i@aBest.co') || text.includes('i@aBest.co')) {
             e.preventDefault();
             openContactModal();
+        } else if (href.includes('/admin/') || href.includes('/admin')) {
+            e.preventDefault();
+            openAuthModal();
         }
     });
 
@@ -160,6 +163,33 @@ document.addEventListener('DOMContentLoaded', () => {
             newTextarea.addEventListener('input', function () {
                 this.style.height = '120px';
                 this.style.height = (this.scrollHeight) + 'px';
+            });
+        }
+    }
+
+    function openAuthModal() {
+        const lang = document.documentElement.lang || 'en';
+        const content = getAuthFormHTML(lang);
+        openModal(content);
+
+        // Add listeners for tab switching inside auth modal
+        const loginTab = document.getElementById('tab-login');
+        const regTab = document.getElementById('tab-register');
+        const loginForm = document.getElementById('login-form-content');
+        const regForm = document.getElementById('register-form-content');
+
+        if (loginTab && regTab && loginForm && regForm) {
+            loginTab.addEventListener('click', () => {
+                loginTab.classList.add('active');
+                regTab.classList.remove('active');
+                loginForm.style.display = 'block';
+                regForm.style.display = 'none';
+            });
+            regTab.addEventListener('click', () => {
+                regTab.classList.add('active');
+                loginTab.classList.remove('active');
+                regForm.style.display = 'block';
+                loginForm.style.display = 'none';
             });
         }
     }
@@ -399,6 +429,192 @@ function getContactFormHTML(lang) {
             </form>
         </div>
     `;
+}
+
+function getAuthFormHTML(lang) {
+    const translations = {
+        de: {
+            loginTab: "Login",
+            regTab: "Registrierung",
+            email: "E-Mail",
+            password: "Passwort",
+            loginBtn: "Anmelden",
+            regBtn: "Registrieren",
+            googleBtn: "Mit Google anmelden",
+            or: "oder"
+        },
+        en: {
+            loginTab: "Login",
+            regTab: "Register",
+            email: "Email",
+            password: "Password",
+            loginBtn: "Sign In",
+            regBtn: "Sign Up",
+            googleBtn: "Continue with Google",
+            or: "or"
+        },
+        tr: {
+            loginTab: "Giriş",
+            regTab: "Kaydol",
+            email: "E-posta",
+            password: "Şifre",
+            loginBtn: "Giriş Yap",
+            regBtn: "Kayıt Ol",
+            googleBtn: "Google ile devam et",
+            or: "veya"
+        },
+        es: {
+            loginTab: "Acceso",
+            regTab: "Registro",
+            email: "Correo",
+            password: "Contraseña",
+            loginBtn: "Iniciar sesión",
+            regBtn: "Registrarse",
+            googleBtn: "Continuar con Google",
+            or: "o"
+        },
+        fr: {
+            loginTab: "Connexion",
+            regTab: "Inscription",
+            email: "E-mail",
+            password: "Mot de passe",
+            loginBtn: "Se connecter",
+            regBtn: "S'inscrire",
+            googleBtn: "Continuer avec Google",
+            or: "ou"
+        }
+    };
+
+    const t = translations[lang] || translations['en'];
+
+    return `
+        <div class="auth-modal-wrapper text-center">
+            <div class="auth-tabs">
+                <button class="auth-tab active" id="tab-login">${t.loginTab}</button>
+                <button class="auth-tab" id="tab-register">${t.regTab}</button>
+            </div>
+            
+            <div class="divider mt-2 mb-2"></div>
+            
+            <!-- Login Form -->
+            <form class="glass-form auth-form-content" id="login-form-content" style="display: block;" onsubmit="handleAuthSubmit(event, 'login')">
+                <div class="form-group" style="text-align: left; margin-bottom: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">${t.email}</label>
+                    <input class="form-input" id="login_email" required type="email" style="width: 100%;" />
+                </div>
+                <div class="form-group" style="text-align: left; margin-bottom: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">${t.password}</label>
+                    <input class="form-input" id="login_password" required type="password" style="width: 100%;" />
+                </div>
+                <button class="glass-button ripple" style="width: 100%; padding: 12px; margin-top: 5px;" type="submit">${t.loginBtn}</button>
+            </form>
+            
+            <!-- Register Form -->
+            <form class="glass-form auth-form-content" id="register-form-content" style="display: none;" onsubmit="handleAuthSubmit(event, 'register')">
+                <div class="form-group" style="text-align: left; margin-bottom: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">${t.email}</label>
+                    <input class="form-input" id="reg_email" required type="email" style="width: 100%;" />
+                </div>
+                <div class="form-group" style="text-align: left; margin-bottom: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">${t.password}</label>
+                    <input class="form-input" id="reg_password" required type="password" style="width: 100%;" />
+                </div>
+                <button class="glass-button ripple" style="width: 100%; padding: 12px; margin-top: 5px;" type="submit">${t.regBtn}</button>
+            </form>
+            
+            <div class="auth-separator">
+                <span>${t.or}</span>
+            </div>
+            
+            <div id="g_id_onload"
+                 data-client_id="YOUR_GOOGLE_CLIENT_ID"
+                 data-context="signin"
+                 data-ux_mode="popup"
+                 data-callback="handleGoogleSignIn"
+                 data-auto_prompt="false">
+            </div>
+
+            <div class="g_id_signin"
+                 data-type="standard"
+                 data-shape="rectangular"
+                 data-theme="outline"
+                 data-text="continue_with"
+                 data-size="large"
+                 data-logo_alignment="left"
+                 style="display: flex; justify-content: center; margin-top: 10px;">
+            </div>
+        </div>
+    `;
+}
+
+// Auth Submit Logic
+async function handleAuthSubmit(event, type) {
+    event.preventDefault();
+    const form = event.target;
+    const btn = form.querySelector('button[type="submit"]');
+    const originalText = btn.innerText;
+
+    btn.innerText = '...';
+    btn.disabled = true;
+
+    const emailPrefix = type === 'login' ? 'login' : 'reg';
+    const email = document.getElementById(`${emailPrefix}_email`).value;
+    const password = document.getElementById(`${emailPrefix}_password`).value;
+
+    try {
+        const response = await fetch(`/api/auth/${type}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            btn.innerText = '✓';
+            if (data.token) {
+                localStorage.setItem('aBest_session', data.token);
+                window.location.href = '/admin/';
+            } else {
+                // E.g. successful registration but needs login
+                alert('Success! Please click Login.');
+                document.getElementById('tab-login').click();
+                btn.innerText = originalText;
+                btn.disabled = false;
+            }
+        } else {
+            alert(data.error || 'Authenication failed');
+            btn.innerText = originalText;
+            btn.disabled = false;
+        }
+    } catch (err) {
+        console.error('Auth error', err);
+        alert('An error occurred.');
+        btn.innerText = originalText;
+        btn.disabled = false;
+    }
+}
+
+// Google Sign In Callback
+async function handleGoogleSignIn(response) {
+    if (response.credential) {
+        try {
+            const res = await fetch('/api/auth/google', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ credential: response.credential })
+            });
+            const data = await res.json();
+            if (res.ok && data.token) {
+                localStorage.setItem('aBest_session', data.token);
+                window.location.href = '/admin/';
+            } else {
+                alert('Google Sign-In failed on server.');
+            }
+        } catch (err) {
+            console.error('Google Sign-In Error:', err);
+        }
+    }
 }
 
 // 7. OpenStreetMap Initialization (Leaflet + Nominatim Geocoding)
