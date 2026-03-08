@@ -50,43 +50,369 @@
 <span></span>
 </div></div>
 </header>
+<style>
+.stat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 1.5rem 0; }
+@media(min-width:600px){ .stat-grid { grid-template-columns: repeat(4, 1fr); } }
+.stat-box { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 16px 10px; text-align: center; }
+.stat-box .stat-val { font-size: 1.5rem; font-weight: 700; color: var(--primary-blue); display: block; }
+.stat-box .stat-label { font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+.highlight-bar { background: linear-gradient(135deg, rgba(0,122,255,0.18), rgba(0,200,150,0.10)); border-left: 3px solid var(--primary-blue); border-radius: 10px; padding: 14px 18px; margin: 1rem 0; font-size: 0.95rem; color: var(--text-main); }
+.tenant-section-title { font-size: 1rem; font-weight: 700; color: var(--text-accent); margin: 2rem 0 1rem; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 8px; }
+.tenant-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 0.5rem; }
+@media(min-width:600px){ .tenant-grid { grid-template-columns: repeat(3, 1fr); } }
+.tenant-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09); border-radius: 12px; padding: 12px 10px; display: flex; align-items: center; gap: 10px; transition: all 0.2s; }
+.tenant-card:hover { background: rgba(0,122,255,0.12); border-color: rgba(0,122,255,0.4); transform: translateY(-2px); }
+.tenant-icon { font-size: 1.4rem; flex-shrink: 0; }
+.tenant-name { font-size: 0.82rem; font-weight: 600; color: var(--text-main); line-height: 1.2; }
+.tenant-type { font-size: 0.68rem; color: var(--text-muted); margin-top: 2px; }
+.confirmed-badge { display: inline-block; background: rgba(0,200,100,0.18); border: 1px solid rgba(0,200,100,0.4); color: #00c864; font-size: 0.6rem; padding: 1px 6px; border-radius: 20px; font-weight: 700; margin-left: 4px; vertical-align: middle; }
+.advantage-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 1rem 0; }
+.advantage-item { background: rgba(255,255,255,0.04); border-radius: 10px; padding: 12px; font-size: 0.82rem; color: var(--text-muted); }
+.advantage-item strong { color: var(--text-main); display: block; margin-bottom: 2px; }
+.lease-info { background: rgba(0,122,255,0.07); border: 1px solid rgba(0,122,255,0.2); border-radius: 14px; padding: 18px; margin: 1.5rem 0; }
+.lease-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.85rem; }
+.lease-row:last-child { border-bottom: none; }
+.lease-row span:first-child { color: var(--text-muted); }
+.lease-row span:last-child { color: var(--text-main); font-weight: 600; }
+</style>
+
 <main class="scroll-content">
 <section class="section-spacing fade-in-up" style="animation-delay: 0.2s;">
 <div class="glass-panel project-card">
-<div class="label-badge">Los Angeles</div>
-<div class="featured-header">
-<h2 style="margin-top: 1rem; margin-bottom: 0.5rem;">Gewerbeentwicklung an der Autobahn</h2>
-<p class="project-tags">APN: 5663-003-002</p>
-</div>
-<div class="divider mt-2" style="margin-bottom: 1.5rem;"></div>
-<div style="margin-bottom: 1rem;">
-<h3 style="color: var(--text-accent); margin-bottom: 1rem;">Projektübersicht</h3>
-<p style="margin-bottom: 1rem;">
-                            Dieses erstklassige Gewerbeentwicklungsgrundstück an einer Hauptverkehrsader in Los Angeles bietet außergewöhnliche Sichtbarkeit und Erreichbarkeit. Es eignet sich ideal für Unternehmen, die auf hohen Verkehrsfluss und einfache Zugänglichkeit für Pendler und Reisende angewiesen sind.
-                        </p>
-<h4 style="color: var(--text-accent); margin-bottom: 0.5rem; margin-top: 1.5rem;">Konzeptideen
-                        </h4>
-<ul style="color: var(--text-muted); list-style-position: inside; margin-bottom: 1.5rem;">
-<li style="margin-bottom: 0.5rem;">E-Ladestationen-Hub</li>
-<li style="margin-bottom: 0.5rem;">Supermarkt & Restaurantkomplex</li>
-<li style="margin-bottom: 0.5rem;">Autobahnhalt / Einzelhandelszentrum</li>
-</ul>
-</div>
-<!-- Map Location -->
-<div style="margin-top: 2rem; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
-<div class="map-skeleton" id="map-skeleton"></div>
-<div class="osm-map" data-query="Solway St, Glendale, CA 91206, USA" style="width: 100%; height: 400px; border-radius: 12px; z-index: 1;"></div>
-</div>
-<div style="margin-top: 2rem; text-align: center;">
-<a class="glass-button ripple text-center" href="/de/kontakt.html" style="text-decoration: none; display: inline-block; width: auto; padding: 16px 32px;">Geschäftsidee einreichen</a>
-</div>
+
+  <!-- Header -->
+  <div class="label-badge" style="margin-bottom:0.5rem;">🇺🇸 Glendale · Los Angeles</div>
+  <h2 style="margin-top:0.5rem; margin-bottom:0.3rem; font-size:1.4rem;">Premium-Gewerbestandort an der Autobahn</h2>
+  <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:1rem;">APN: 5663-003-002 &nbsp;·&nbsp; Solway St, Glendale, CA 91206 &nbsp;·&nbsp; Nur Vermietung</p>
+
+  <!-- Key Stats -->
+  <div class="stat-grid">
+    <div class="stat-box">
+      <span class="stat-val">2,9 ac</span>
+      <span class="stat-label">Grundstücksgröße</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-val">11.735</span>
+      <span class="stat-label">Quadratmeter</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-val">50.000+</span>
+      <span class="stat-label">Fahrzeuge/Tag</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-val">3–4</span>
+      <span class="stat-label">Mieter möglich</span>
+    </div>
+  </div>
+
+  <!-- Highlight -->
+  <div class="highlight-bar">
+    ⚡ <strong>Tesla Supercharger — bestätigt.</strong> Der erste Mieter steht fest. Weitere Flächen ab sofort verfügbar. Seien Sie dabei und profitieren Sie vom täglichen Tesla-Kundenstrom.
+  </div>
+
+  <div class="divider mt-2" style="margin-bottom:1.5rem;"></div>
+
+  <!-- Standortvorteile -->
+  <h3 style="color:var(--text-accent); margin-bottom:1rem;">📍 Warum dieser Standort?</h3>
+  <div class="advantage-grid">
+    <div class="advantage-item"><strong>🚗 Maximale Sichtbarkeit</strong>Direkt an der Hauptverkehrsader — täglich tausende potenzielle Kunden fahren vorbei.</div>
+    <div class="advantage-item"><strong>⚡ Tesla-Ankermieter</strong>Tesla-Fahrer warten 20–40 Min. — perfekte Zeit für Ihren Umsatz.</div>
+    <div class="advantage-item"><strong>🏙️ Glendale / Greater LA</strong>200.000+ Einwohner direkt vor Ort. Millionen Besucher jährlich in der Metropolregion.</div>
+    <div class="advantage-item"><strong>📦 3–4 Einheiten</strong>Das Grundstück bietet Platz für mehrere Mieter — ideale Mischnutzung möglich.</div>
+  </div>
+
+  <div class="divider mt-2" style="margin-bottom:1.5rem;"></div>
+
+  <!-- Tenant Categories -->
+  <h3 style="color:var(--text-accent); margin-bottom:0.5rem;">🏢 Welche Unternehmen passen hierher?</h3>
+  <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:1rem;">Wir vermieten ausschließlich — das Grundstück bleibt in unserem Eigentum. Langfristige Mietverträge (5–20 Jahre) erwünscht.</p>
+
+  <!-- EV & Energie -->
+  <div class="tenant-section-title">⚡ EV-Laden & Energie</div>
+  <div class="tenant-grid">
+    <div class="tenant-card">
+      <span class="tenant-icon">⚡</span>
+      <div><div class="tenant-name">Tesla Supercharger <span class="confirmed-badge">✓ BESTÄTIGT</span></div><div class="tenant-type">EV-Schnellladung</div></div>
+    </div>
+    <div class="tenant-card">
+      <span class="tenant-icon">🔌</span>
+      <div><div class="tenant-name">Electrify America</div><div class="tenant-type">VW-Gruppe · EV-Ladung</div></div>
+    </div>
+    <div class="tenant-card">
+      <span class="tenant-icon">🔋</span>
+      <div><div class="tenant-name">EVgo</div><div class="tenant-type">Schnellladestationen</div></div>
+    </div>
+    <div class="tenant-card">
+      <span class="tenant-icon">🔋</span>
+      <div><div class="tenant-name">ChargePoint</div><div class="tenant-type">EV-Ladenetz</div></div>
+    </div>
+    <div class="tenant-card">
+      <span class="tenant-icon">☀️</span>
+      <div><div class="tenant-name">Shell Recharge</div><div class="tenant-type">Energie · EV Hybrid</div></div>
+    </div>
+    <div class="tenant-card">
+      <span class="tenant-icon">⛽</span>
+      <div><div class="tenant-name">Chevron / 76</div><div class="tenant-type">Tankstelle + EV</div></div>
+    </div>
+  </div>
+
+  <!-- Food & Beverage -->
+  <div class="tenant-section-title">☕ Food, Coffee & Drive-Through</div>
+  <div class="tenant-grid">
+    <div class="tenant-card">
+      <span class="tenant-icon">☕</span>
+      <div><div class="tenant-name">Starbucks</div><div class="tenant-type">Coffee · Drive-Through</div></div>
+    </div>
+    <div class="tenant-card">
+      <span class="tenant-icon">☕</span>
+      <div><div class="tenant-name">Dutch Bros Coffee</div><div class="tenant-type">Drive-Through · CA-Kette</div></div>
+    </div>
+    <div class="tenant-card">
+      <span class="tenant-icon">🍔</span>
+      <div><div class="tenant-name">McDonald's</div><div class="tenant-type">Fast Food · Drive-Through</div></div>
+    </div>
+    <div class="tenant-card">
+      <span class="tenant-icon">🍗</span>
+      <div><div class="tenant-name">Chick-fil-A</div><div class="tenant-type">Fast Food · Highway-Lage</div></div>
+    </div>
+    <div class="tenant-card">
+      <span class="tenant-icon">🍔</span>
+      <div><div class="tenant-name">In-N-Out Burger</div><div class="tenant-type">Kult-Burger · CA-Marke</div></div>
+    </div>
+    <div class="tenant-card">
+      <span class="tenant-icon">🥢</span>
+      <div><div class="tenant-name">Panda Express</div><div class="tenant-type">Asian Fast Food</div></div>
+    </div>
+    <div class="tenant-card">
+      <span class="tenant-icon">🌮</span>
+      <div><div class="tenant-name">Chipotle</div><div class="tenant-type">Mexican · Drive-Through</div></div>
+    </div>
+    <div class="tenant-card">
+      <span class="tenant-icon">🥗</span>
+      <div><div class="tenant-name">Panera Bread</div><div class="tenant-type">Café & Sandwiches</div></div>
+    </div>
+    <div class="tenant-card">
+      <span class="tenant-icon">🍗</span>
+      <div><div class="tenant-name">El Pollo Loco</div><div class="tenant-type">LA-Kette · Sehr beliebt</div></div>
+    </div>
+  </div>
+
+  <!-- Auto & Mobilitaet -->
+  <div class="tenant-section-title">🚗 Auto, Wäsche & Mobilität</div>
+  <div class="tenant-grid">
+    <div class="tenant-card">
+      <span class="tenant-icon">🚿</span>
+      <div><div class="tenant-name">Mister Car Wash</div><div class="tenant-type">Größte Kette Kaliforniens</div></div>
+    </div>
+    <div class="tenant-card">
+      <span class="tenant-icon">🔧</span>
+      <div><div class="tenant-name">Jiffy Lube</div><div class="tenant-type">Ölwechsel & Service</div></div>
+    </div>
+    <div class="tenant-card">
+      <span class="tenant-icon">🔧</span>
+      <div><div class="tenant-name">Valvoline</div><div class="tenant-type">Schnell-Service · Drive-In</div></div>
+    </div>
+    <div class="tenant-card">
+      <span class="tenant-icon">🚗</span>
+      <div><div class="tenant-name">Enterprise Rent-A-Car</div><div class="tenant-type">Fahrzeugvermietung</div></div>
+    </div>
+    <div class="tenant-card">
+      <span class="tenant-icon">🚗</span>
+      <div><div class="tenant-name">Hertz / Budget</div><div class="tenant-type">Mietwagen · Highway</div></div>
+    </div>
+    <div class="tenant-card">
+      <span class="tenant-icon">🔩</span>
+      <div><div class="tenant-name">AutoZone</div><div class="tenant-type">Autoteile & Zubehör</div></div>
+    </div>
+  </div>
+
+  <!-- Banken & Finanzen -->
+  <div class="tenant-section-title">🏦 Banken & Finanzdienstleistungen</div>
+  <div class="tenant-grid">
+    <div class="tenant-card">
+      <span class="tenant-icon">🏦</span>
+      <div><div class="tenant-name">Chase Bank</div><div class="tenant-type">Größte US-Bank</div></div>
+    </div>
+    <div class="tenant-card">
+      <span class="tenant-icon">🏦</span>
+      <div><div class="tenant-name">Bank of America</div><div class="tenant-type">Filiale + ATM</div></div>
+    </div>
+    <div class="tenant-card">
+      <span class="tenant-icon">🏦</span>
+      <div><div class="tenant-name">Wells Fargo</div><div class="tenant-type">US-Filialbank</div></div>
+    </div>
+    <div class="tenant-card">
+      <span class="tenant-icon">🏦</span>
+      <div><div class="tenant-name">East West Bank</div><div class="tenant-type">Asian Community · LA</div></div>
+    </div>
+    <div class="tenant-card">
+      <span class="tenant-icon">💳</span>
+      <div><div class="tenant-name">Western Union</div><div class="tenant-type">Geldtransfer · Global</div></div>
+    </div>
+    <div class="tenant-card">
+      <span class="tenant-icon">💰</span>
+      <div><div class="tenant-name">Check Into Cash</div><div class="tenant-type">Finanzservices</div></div>
+    </div>
+  </div>
+
+  <!-- Gesundheit & Apotheken -->
+  <div class="tenant-section-title">💊 Apotheken & Gesundheit</div>
+  <div class="tenant-grid">
+    <div class="tenant-card">
+      <span class="tenant-icon">💊</span>
+      <div><div class="tenant-name">CVS Pharmacy</div><div class="tenant-type">Apotheke · 20-J. Verträge</div></div>
+    </div>
+    <div class="tenant-card">
+      <span class="tenant-icon">💊</span>
+      <div><div class="tenant-name">Walgreens</div><div class="tenant-type">Apotheke & Drogerie</div></div>
+    </div>
+    <div class="tenant-card">
+      <span class="tenant-icon">🏥</span>
+      <div><div class="tenant-name">GoHealth Urgent Care</div><div class="tenant-type">Walk-in Klinik</div></div>
+    </div>
+    <div class="tenant-card">
+      <span class="tenant-icon">🦷</span>
+      <div><div class="tenant-name">Dental-Praxis</div><div class="tenant-type">Zahnklinik · Walk-in</div></div>
+    </div>
+  </div>
+
+  <!-- Farben & Baumarkt -->
+  <div class="tenant-section-title">🎨 Farben, Baustoffe & Einrichtung</div>
+  <div class="tenant-grid">
+    <div class="tenant-card">
+      <span class="tenant-icon">🎨</span>
+      <div><div class="tenant-name">Sherwin-Williams</div><div class="tenant-type">Farben · Farbmuster-Showroom</div></div>
+    </div>
+    <div class="tenant-card">
+      <span class="tenant-icon">🎨</span>
+      <div><div class="tenant-name">Benjamin Moore</div><div class="tenant-type">Premium-Farben · Beratung</div></div>
+    </div>
+    <div class="tenant-card">
+      <span class="tenant-icon">🏠</span>
+      <div><div class="tenant-name">Ace Hardware</div><div class="tenant-type">Baumarkt · Werkzeug</div></div>
+    </div>
+    <div class="tenant-card">
+      <span class="tenant-icon">🛋️</span>
+      <div><div class="tenant-name">Floor & Decor</div><div class="tenant-type">Böden & Fliesen</div></div>
+    </div>
+  </div>
+
+  <!-- Telekommunikation -->
+  <div class="tenant-section-title">📱 Telekommunikation & Technik</div>
+  <div class="tenant-grid">
+    <div class="tenant-card">
+      <span class="tenant-icon">📱</span>
+      <div><div class="tenant-name">T-Mobile</div><div class="tenant-type">Mobilfunk-Filiale</div></div>
+    </div>
+    <div class="tenant-card">
+      <span class="tenant-icon">📱</span>
+      <div><div class="tenant-name">Verizon</div><div class="tenant-type">Mobilfunk · USA #1</div></div>
+    </div>
+    <div class="tenant-card">
+      <span class="tenant-icon">📱</span>
+      <div><div class="tenant-name">AT&T</div><div class="tenant-type">Telekom & Internet</div></div>
+    </div>
+    <div class="tenant-card">
+      <span class="tenant-icon">🖥️</span>
+      <div><div class="tenant-name">uBreakiFix</div><div class="tenant-type">Handy- & Gerätereparatur</div></div>
+    </div>
+  </div>
+
+  <!-- Beauty & Pflege -->
+  <div class="tenant-section-title">✂️ Beauty, Friseur & Pflege</div>
+  <div class="tenant-grid">
+    <div class="tenant-card">
+      <span class="tenant-icon">✂️</span>
+      <div><div class="tenant-name">Great Clips</div><div class="tenant-type">Friseur · Keine Termine</div></div>
+    </div>
+    <div class="tenant-card">
+      <span class="tenant-icon">✂️</span>
+      <div><div class="tenant-name">Sport Clips</div><div class="tenant-type">Herrenfriseur · Kette</div></div>
+    </div>
+    <div class="tenant-card">
+      <span class="tenant-icon">💆</span>
+      <div><div class="tenant-name">Massage Envy</div><div class="tenant-type">Massage & Wellness</div></div>
+    </div>
+    <div class="tenant-card">
+      <span class="tenant-icon">💅</span>
+      <div><div class="tenant-name">Nail Salon / Spa</div><div class="tenant-type">Schönheitsstudio</div></div>
+    </div>
+  </div>
+
+  <!-- Convenience & Logistik -->
+  <div class="tenant-section-title">📦 Convenience, Versand & Services</div>
+  <div class="tenant-grid">
+    <div class="tenant-card">
+      <span class="tenant-icon">🏪</span>
+      <div><div class="tenant-name">7-Eleven</div><div class="tenant-type">24/7 Convenience</div></div>
+    </div>
+    <div class="tenant-card">
+      <span class="tenant-icon">📦</span>
+      <div><div class="tenant-name">The UPS Store</div><div class="tenant-type">Versand · Druck · Services</div></div>
+    </div>
+    <div class="tenant-card">
+      <span class="tenant-icon">📬</span>
+      <div><div class="tenant-name">FedEx Office</div><div class="tenant-type">Versand & Druckservice</div></div>
+    </div>
+    <div class="tenant-card">
+      <span class="tenant-icon">🧺</span>
+      <div><div class="tenant-name">Laundromat / WashHub</div><div class="tenant-type">Münzwäscherei · 24/7</div></div>
+    </div>
+  </div>
+
+  <!-- Hotel -->
+  <div class="tenant-section-title">🏨 Hotel & Übernachtung</div>
+  <div class="tenant-grid">
+    <div class="tenant-card">
+      <span class="tenant-icon">🏨</span>
+      <div><div class="tenant-name">Holiday Inn Express</div><div class="tenant-type">IHG · Highway-Lage</div></div>
+    </div>
+    <div class="tenant-card">
+      <span class="tenant-icon">🏨</span>
+      <div><div class="tenant-name">Extended Stay America</div><div class="tenant-type">Langzeit-Aufenthalt</div></div>
+    </div>
+    <div class="tenant-card">
+      <span class="tenant-icon">🏨</span>
+      <div><div class="tenant-name">WoodSpring Suites</div><div class="tenant-type">Budget-Hotel · LA</div></div>
+    </div>
+    <div class="tenant-card">
+      <span class="tenant-icon">🏨</span>
+      <div><div class="tenant-name">Courtyard by Marriott</div><div class="tenant-type">Business-Hotel</div></div>
+    </div>
+  </div>
+
+  <div class="divider mt-2" style="margin-bottom:1.5rem;"></div>
+
+  <!-- Mietkonditionen -->
+  <h3 style="color:var(--text-accent); margin-bottom:1rem;">📋 Mietkonditionen auf einen Blick</h3>
+  <div class="lease-info">
+    <div class="lease-row"><span>Grundstücksgröße</span><span>2,9 Acres · 11.735 m²</span></div>
+    <div class="lease-row"><span>Verfügbare Einheiten</span><span>2–3 weitere (Tesla belegt Zone A)</span></div>
+    <div class="lease-row"><span>Mindestlaufzeit</span><span>5 Jahre (bevorzugt 10–20 J.)</span></div>
+    <div class="lease-row"><span>Nutzungsart</span><span>Nur Vermietung — kein Verkauf</span></div>
+    <div class="lease-row"><span>Bebauung</span><span>Durch Mieter (Build-to-Suit möglich)</span></div>
+    <div class="lease-row"><span>Kontakt</span><span>i@aBest.co</span></div>
+  </div>
+
+  <!-- Map -->
+  <h3 style="color:var(--text-accent); margin-bottom:1rem; margin-top:1.5rem;">🗺️ Standort</h3>
+  <div style="border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
+    <div class="map-skeleton" id="map-skeleton"></div>
+    <div class="osm-map" data-lat="34.1459" data-lon="-118.2473" data-zoom="15" style="width: 100%; height: 380px; border-radius: 12px; z-index: 1;"></div>
+  </div>
+
+  <!-- CTA -->
+  <div style="margin-top: 2rem; text-align: center; padding: 1.5rem; background: rgba(0,122,255,0.07); border-radius: 14px; border: 1px solid rgba(0,122,255,0.2);">
+    <p style="font-size:1rem; font-weight:600; color:var(--text-main); margin-bottom:0.5rem;">Interesse? Kontaktieren Sie uns jetzt.</p>
+    <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:1.2rem;">Wir prüfen jede Anfrage individuell und melden uns innerhalb von 48 Stunden.</p>
+    <a class="glass-button ripple text-center" href="/de/partnerschaften.html" style="text-decoration: none; display: inline-block; width: auto; padding: 16px 32px;">📩 Mietanfrage stellen</a>
+  </div>
+
 </div>
 </section>
 <div style="text-align: center; margin-bottom: 1rem;">
-<a href="usa.html" style="color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--glass-border); padding-bottom: 2px;">←
-                    Zurück zur USA Übersicht</a>
+<a href="usa.html" style="color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--glass-border); padding-bottom: 2px;">← Zurück zur USA Übersicht</a>
 </div>
-<!-- Spacing for bottom scrolling on sticky mode -->
 </main>
 <footer class="app-footer section-spacing fade-in-up" style="animation-delay: 0.8s;">
     <div class="slim-footer-content">
