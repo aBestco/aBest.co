@@ -12,7 +12,7 @@
 <style>
 /* ── Dashboard Layout ──────────────────────────────────── */
 body { background: #0a0a0f; }
-.db-wrapper { min-height: 100vh; padding: 80px 16px 40px; max-width: 680px; margin: 0 auto; }
+.db-wrapper { min-height: 100vh; padding: 80px 16px 40px; max-width: 700px; margin: 0 auto; }
 
 /* Hero card */
 .db-hero { display: flex; align-items: center; gap: 20px; padding: 24px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10); border-radius: 20px; margin-bottom: 20px; }
@@ -23,8 +23,8 @@ body { background: #0a0a0f; }
 .db-badge.admin { background: rgba(255,165,0,0.15); border-color: rgba(255,165,0,0.4); color: #ffaa00; }
 
 /* Tab Nav */
-.db-tabs { display: flex; gap: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09); border-radius: 14px; padding: 5px; margin-bottom: 16px; }
-.db-tab { flex: 1; padding: 10px 8px; background: transparent; border: none; border-radius: 10px; color: var(--text-muted); font-size: 0.82rem; font-weight: 500; cursor: pointer; transition: all 0.2s; white-space: nowrap; font-family: inherit; }
+.db-tabs { display: flex; gap: 5px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09); border-radius: 14px; padding: 5px; margin-bottom: 16px; }
+.db-tab { flex: 1; padding: 10px 6px; background: transparent; border: none; border-radius: 10px; color: var(--text-muted); font-size: 0.78rem; font-weight: 500; cursor: pointer; transition: all 0.2s; white-space: nowrap; font-family: inherit; }
 .db-tab.active { background: rgba(0,122,255,0.15); border: 1px solid rgba(0,122,255,0.3); color: var(--primary-blue); }
 .db-tab:hover:not(.active) { background: rgba(255,255,255,0.06); color: var(--text-main); }
 
@@ -40,9 +40,11 @@ body { background: #0a0a0f; }
 /* Form field */
 .db-field { margin-bottom: 16px; }
 .db-field label { display: block; margin-bottom: 6px; font-size: 0.82rem; color: var(--text-muted); font-weight: 500; }
-.db-field input { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; padding: 11px 14px; color: var(--text-main); font-size: 0.9rem; font-family: inherit; outline: none; transition: border-color 0.2s; box-sizing: border-box; }
-.db-field input:focus { border-color: rgba(0,122,255,0.5); }
+.db-field input, .db-field select { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; padding: 11px 14px; color: var(--text-main); font-size: 0.9rem; font-family: inherit; outline: none; transition: border-color 0.2s; box-sizing: border-box; }
+.db-field input:focus, .db-field select:focus { border-color: rgba(0,122,255,0.5); }
 .db-field input[readonly] { opacity: 0.5; cursor: not-allowed; }
+.db-field select { appearance: none; cursor: pointer; }
+.db-field select option { background: #1a1a2e; color: #fff; }
 
 /* Buttons */
 .db-btn { width: 100%; padding: 13px; border: none; border-radius: 12px; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: inherit; }
@@ -70,6 +72,28 @@ body { background: #0a0a0f; }
 .danger-card { border-color: rgba(220,53,69,0.25); background: rgba(220,53,69,0.05); }
 .danger-card h4 { color: #dc3545; }
 
+/* Team tab */
+.team-add-form { background: rgba(0,122,255,0.05); border: 1px solid rgba(0,122,255,0.15); border-radius: 14px; padding: 18px; margin-bottom: 20px; }
+.team-add-form h4 { font-size: 0.88rem; font-weight: 600; color: var(--text-main); margin: 0 0 14px; }
+.team-add-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.team-add-row .db-field { flex: 1; min-width: 160px; margin-bottom: 10px; }
+.team-add-row .db-field:last-child { margin-bottom: 0; }
+.team-add-btn { padding: 11px 22px; background: rgba(0,122,255,0.2); border: 1px solid rgba(0,122,255,0.4); color: var(--primary-blue); border-radius: 10px; font-size: 0.88rem; font-weight: 600; cursor: pointer; font-family: inherit; white-space: nowrap; align-self: flex-end; margin-bottom: 10px; }
+.team-add-btn:hover { background: rgba(0,122,255,0.3); }
+.team-list { display: flex; flex-direction: column; gap: 10px; }
+.team-member-card { display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; }
+.tm-avatar { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.95rem; font-weight: 700; color: #fff; flex-shrink: 0; }
+.tm-info { flex: 1; min-width: 0; }
+.tm-info .tm-email { font-size: 0.85rem; color: var(--text-main); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tm-info .tm-date { font-size: 0.72rem; color: var(--text-muted); margin-top: 2px; }
+.tm-role-badge { font-size: 0.72rem; font-weight: 600; padding: 3px 10px; border-radius: 20px; white-space: nowrap; }
+.tm-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.tm-role-select { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 5px 8px; color: var(--text-main); font-size: 0.78rem; font-family: inherit; cursor: pointer; outline: none; }
+.tm-role-select option { background: #1a1a2e; }
+.tm-remove-btn { background: rgba(220,53,69,0.12); border: 1px solid rgba(220,53,69,0.25); color: #dc3545; border-radius: 8px; padding: 5px 10px; font-size: 0.75rem; cursor: pointer; font-family: inherit; white-space: nowrap; }
+.tm-remove-btn:hover { background: rgba(220,53,69,0.22); }
+.team-empty { text-align: center; padding: 30px; color: var(--text-muted); font-size: 0.85rem; border: 1px dashed rgba(255,255,255,0.12); border-radius: 12px; }
+
 /* Logout */
 .db-logout { text-align: center; margin-top: 28px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.07); }
 .db-logout a { color: var(--text-muted); font-size: 0.85rem; text-decoration: none; padding: 6px 16px; border-radius: 8px; transition: all 0.2s; }
@@ -77,7 +101,9 @@ body { background: #0a0a0f; }
 
 @media (max-width: 480px) {
   .db-hero { flex-direction: column; text-align: center; }
-  .db-tab { font-size: 0.75rem; padding: 9px 6px; }
+  .db-tab { font-size: 0.7rem; padding: 8px 4px; }
+  .team-member-card { flex-wrap: wrap; }
+  .tm-actions { width: 100%; justify-content: flex-end; }
 }
 </style>
 </head>
@@ -117,6 +143,7 @@ body { background: #0a0a0f; }
   <div class="db-tabs fade-in-up" style="animation-delay:0.1s;">
     <button class="db-tab active" onclick="switchTab('profil',this)">👤 Profil</button>
     <button class="db-tab" onclick="switchTab('messages',this)">💬 Mesajlar</button>
+    <button class="db-tab" onclick="switchTab('team',this)">👥 Ekip</button>
     <button class="db-tab" onclick="switchTab('settings',this)">⚙️ Ayarlar</button>
   </div>
 
@@ -167,6 +194,46 @@ body { background: #0a0a0f; }
     </div>
   </div>
 
+  <!-- ── TAB: TEAM ───────────────────────── -->
+  <div class="db-panel fade-in-up" id="panel-team" style="animation-delay:0.2s;">
+    <div class="glass-panel" style="padding:24px;">
+      <div class="db-section-header">
+        <h3>Ekip Yönetimi</h3>
+        <p>Kişi ekle ve rol ata</p>
+      </div>
+
+      <!-- Add member form -->
+      <div class="team-add-form">
+        <h4>+ Üye Ekle</h4>
+        <div class="team-add-row">
+          <div class="db-field">
+            <label>E-posta Adresi</label>
+            <input type="email" id="team-new-email" placeholder="Kişinin e-posta adresi"/>
+          </div>
+          <div class="db-field">
+            <label>Rol</label>
+            <select id="team-new-role">
+              <option value="" disabled selected>Rol seçin...</option>
+<option value="Assistant">Assistant</option>
+<option value="Accountant">Accountant</option>
+<option value="Marketing Manager">Marketing Manager</option>
+<option value="Team Member">Team Member</option>
+<option value="Administrator">Administrator</option>
+
+            </select>
+          </div>
+          <button class="team-add-btn" onclick="addTeamMember()">Ekle</button>
+        </div>
+        <div id="team-add-error" style="font-size:0.8rem;color:#dc3545;margin-top:6px;display:none;"></div>
+      </div>
+
+      <!-- Member list -->
+      <div class="team-list" id="team-member-list">
+        <div class="team-empty">Henüz ekip üyesi yok.</div>
+      </div>
+    </div>
+  </div>
+
   <!-- ── TAB: SETTINGS ──────────────────── -->
   <div class="db-panel fade-in-up" id="panel-settings" style="animation-delay:0.2s;">
     <div class="settings-card">
@@ -190,16 +257,44 @@ body { background: #0a0a0f; }
 </div><!-- /db-wrapper -->
 
 <script>
+const ROLE_COLORS = {
+  'Assistant': '#007aff',
+  'Accountant': '#34c759',
+  'Marketing Manager': '#ff9500',
+  'Team Member': '#5856d6',
+  'Administrator': '#ff3b30',
+  'Admin': '#ffaa00',
+  'Superadmin': '#ff3b30',
+};
+
+function getRoleBg(role) {
+  const c = ROLE_COLORS[role] || '#999';
+  return `background:${c}22;border:1px solid ${c}66;color:${c};`;
+}
+
+function getInitials(str) {
+  if (!str) return '?';
+  return str.split(/\s+/).map(w=>w[0]).slice(0,2).join('').toUpperCase();
+}
+
+function getAvatarBg(email) {
+  const colors = ['#007aff','#34c759','#ff9500','#ff3b30','#5856d6','#00c896'];
+  let h = 0;
+  for (let i=0;i<email.length;i++) h=(h*31+email.charCodeAt(i))&0xffffffff;
+  return colors[Math.abs(h)%colors.length];
+}
+
 // ── Tab switching ──────────────────────────────────────
 function switchTab(name, btn) {
   document.querySelectorAll('.db-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.db-tab').forEach(b => b.classList.remove('active'));
   document.getElementById('panel-' + name).classList.add('active');
   btn.classList.add('active');
-  if (name === 'messages') { loadMessages(); }
+  if (name === 'messages') loadMessages();
+  if (name === 'team') loadTeamMembers();
 }
 
-// ── Profile save (overrides app.js version to use new UI) ──
+// ── Profile save ──────────────────────────────────────
 window.saveUserProfile = async function(event) {
   event.preventDefault();
   const token = localStorage.getItem('aBest_session');
@@ -218,9 +313,9 @@ window.saveUserProfile = async function(event) {
         company: document.getElementById('profile-company').value
       })
     });
-    if (res.ok) { btn.innerText = '✓ Gespeichert'; setTimeout(()=>{btn.innerText=orig;btn.disabled=false;},2000); }
-    else { alert('Fehler beim Speichern.'); btn.innerText=orig; btn.disabled=false; }
-  } catch(e) { alert('Netzwerkfehler.'); btn.innerText=orig; btn.disabled=false; }
+    if (res.ok) { btn.innerText = '✓'; setTimeout(()=>{btn.innerText=orig;btn.disabled=false;},2000); }
+    else { btn.innerText=orig; btn.disabled=false; }
+  } catch(e) { btn.innerText=orig; btn.disabled=false; }
 };
 
 // ── Change Password ──────────────────────────────────
@@ -230,20 +325,19 @@ async function changePassword() {
   const cur = document.getElementById('pw-current').value;
   const nw = document.getElementById('pw-new').value;
   const conf = document.getElementById('pw-confirm').value;
-  if (!cur || !nw) return;
-  if (nw !== conf) { alert('Yeni Şifreyi Onayla'); return; }
+  if (!cur || !nw || nw !== conf) return;
   try {
     const res = await fetch('/api/auth/password', {
       method: 'PUT',
       headers: {'Content-Type':'application/json','Authorization':'Bearer '+token},
       body: JSON.stringify({currentPassword:cur, newPassword:nw})
     });
-    if (res.ok) { alert('✓'); ['pw-current','pw-new','pw-confirm'].forEach(id=>document.getElementById(id).value=''); }
-    else { const d=await res.json(); alert(d.error||'Fehler'); }
-  } catch(e) { alert('Netzwerkfehler'); }
+    if (res.ok) { ['pw-current','pw-new','pw-confirm'].forEach(id=>document.getElementById(id).value=''); }
+    else { const d=await res.json(); alert(d.error||'Error'); }
+  } catch(e) {}
 }
 
-// ── Load messages (override with new bubble UI) ───────
+// ── Load messages ─────────────────────────────────────
 window.loadMessages = async function() {
   const token = localStorage.getItem('aBest_session');
   if (!token) return;
@@ -286,6 +380,99 @@ window.sendMessage = async function() {
     if (res.ok) { input.value=''; loadMessages(); }
   } catch(e) {} finally { btn.disabled=false; }
 };
+
+// ── TEAM MANAGEMENT ───────────────────────────────────
+async function loadTeamMembers() {
+  const token = localStorage.getItem('aBest_session');
+  if (!token) return;
+  const list = document.getElementById('team-member-list');
+  try {
+    const res = await fetch('/api/team', {headers:{'Authorization':'Bearer '+token}});
+    if (!res.ok) throw new Error();
+    const members = await res.json();
+    renderTeamList(members);
+  } catch(e) {
+    list.innerHTML = '<div class="team-empty">Henüz ekip üyesi yok.</div>';
+  }
+}
+
+function renderTeamList(members) {
+  const list = document.getElementById('team-member-list');
+  if (!members.length) {
+    list.innerHTML = '<div class="team-empty">Henüz ekip üyesi yok.</div>';
+    return;
+  }
+  const ROLES = ['Assistant', 'Accountant', 'Marketing Manager', 'Team Member', 'Administrator'];
+  list.innerHTML = members.map(m => {
+    const initials = getInitials(m.name || m.email);
+    const bgColor = getAvatarBg(m.email);
+    const date = m.addedAt ? new Date(m.addedAt).toLocaleDateString() : '';
+    const roleOpts = ROLES.map(r => `<option value="${r}"${r===m.role?' selected':''}>${r}</option>`).join('');
+    return `
+    <div class="team-member-card" id="tm-${btoa(m.email).replace(/=/g,'')}">
+      <div class="tm-avatar" style="background:${bgColor}44;border:2px solid ${bgColor}88;">${initials}</div>
+      <div class="tm-info">
+        <div class="tm-email">${m.email}</div>
+        <div class="tm-date">Eklenme tarihi: ${date}</div>
+      </div>
+      <div class="tm-actions">
+        <select class="tm-role-select" onchange="updateTeamRole('${m.email}', this.value)">${roleOpts}</select>
+        <button class="tm-remove-btn" onclick="removeTeamMember('${m.email}')">Kaldır</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+async function addTeamMember() {
+  const token = localStorage.getItem('aBest_session');
+  if (!token) return;
+  const email = document.getElementById('team-new-email').value.trim();
+  const role = document.getElementById('team-new-role').value;
+  const errDiv = document.getElementById('team-add-error');
+  errDiv.style.display = 'none';
+
+  if (!email || !role) {
+    errDiv.textContent = 'E-posta ve rol gereklidir.';
+    errDiv.style.display = 'block';
+    return;
+  }
+  try {
+    const res = await fetch('/api/team', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json','Authorization':'Bearer '+token},
+      body: JSON.stringify({email, role})
+    });
+    const data = await res.json();
+    if (res.ok) {
+      document.getElementById('team-new-email').value = '';
+      document.getElementById('team-new-role').value = '';
+      loadTeamMembers();
+    } else {
+      errDiv.textContent = data.error === 'Already in team' ? 'Bu kişi zaten ekipte.' : (data.error || 'Error');
+      errDiv.style.display = 'block';
+    }
+  } catch(e) { errDiv.textContent = 'Error'; errDiv.style.display = 'block'; }
+}
+
+async function updateTeamRole(email, role) {
+  const token = localStorage.getItem('aBest_session');
+  if (!token) return;
+  await fetch(`/api/team/${encodeURIComponent(email)}`, {
+    method: 'PUT',
+    headers: {'Content-Type':'application/json','Authorization':'Bearer '+token},
+    body: JSON.stringify({role})
+  });
+}
+
+async function removeTeamMember(email) {
+  const token = localStorage.getItem('aBest_session');
+  if (!token) return;
+  const res = await fetch(`/api/team/${encodeURIComponent(email)}`, {
+    method: 'DELETE',
+    headers: {'Authorization':'Bearer '+token}
+  });
+  if (res.ok) loadTeamMembers();
+}
 
 // ── Enter key for message input ───────────────────────
 document.addEventListener('DOMContentLoaded', () => {

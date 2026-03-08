@@ -93,6 +93,10 @@ export default {
             return handleAuthApi(request, env);
         }
 
+        if (pathname.startsWith('/api/team')) {
+            return handleTeamApi(request, env);
+        }
+
         if (pathname.startsWith('/api/inquiries') || pathname.startsWith('/api/users') || pathname.startsWith('/api/messages')) {
             // Check auth for sensitive methods
             if (['GET', 'PUT', 'DELETE', 'POST'].includes(request.method)) {
@@ -597,6 +601,121 @@ async function handleAuthApi(request, env) {
         }
 
         return new Response('Not Found', { status: 404, headers: corsHeaders });
+    } catch (err) {
+        return new Response(JSON.stringify({ error: err.message }), {
+            status: 500, headers: { 'Content-Type': 'application/json', ...corsHeaders }
+        });
+    }
+}
+
+// --- TEAM API HANDLER ---
+async function handleTeamApi(request, env) {
+    const url = new URL(request.url);
+    const method = request.method;
+    const corsHeaders = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    };
+    if (method === 'OPTIONS') return new Response(null, { headers: corsHeaders });
+
+    const VALID_ROLES = ['Assistant', 'Accountant', 'Marketing Manager', 'Team Member', 'Administrator'];
+
+    try {
+        const ownerEmail = await checkAuth(request, env);
+        if (!ownerEmail) return unauthorizedResponse();
+
+        const teamKey = `team:${ownerEmail}`;
+        const loadTeam = async () => {
+            const raw = await env.ABEST_AUTH.get(teamKey);
+            return raw ? JSON.parse(raw) : [];
+        };
+
+        if (method === 'GET') {
+            const members = await loadTeam();
+            return new Response(JSON.stringify(members), {
+                headers: { 'Content-Type': 'application/json', ...corsHeaders }
+            });
+        }
+
+        if (method === 'POST') {
+            const body = await request.json();
+            const { email, role, name } = body;
+            if (!email || !role) return new Response(JSON.stringify({ error: 'email and role required' }), { status: 400, headers: corsHeaders });
+            if (!VALID_ROLES.includes(role)) return new Response(JSON.stringify({ error: 'Invalid role' }), { status: 400, headers: corsHeaders });
+            if (email === ownerEmail) return new Response(JSON.stringify({ error: 'Cannot add yourself' }), { status: 400, headers: corsHeaders });
+
+            const members = await loadTeam();
+            if (members.find(m => m.email === email)) return new Response(JSON.stringify({ error: 'Already in team' }), { status: 409, headers: corsHeaders });
+
+            let memberName = name || '';
+            if (!memberName && env.ABEST_AUTH) {
+                const profileStr = await env.ABEST_AUTH.get(`profile:${email}`);
+                if (profileStr) memberName = JSON.parse(profileStr).name || '';
+            }
+
+            members.push({ email, name: memberName, role, addedAt: new Date().toISOString() });
+            await env.ABEST_AUTH.put(teamKey, JSON.stringify(members));
+
+            if (env.ABEST_AUTH) {
+                const profileStr = await env.ABEST_AUTH.get(`profile:${email}`);
+                const profile = profileStr ? JSON.parse(profileStr) : { email };
+                profile.role = role;
+                profile.teamOwner = ownerEmail;
+                await env.ABEST_AUTH.put(`profile:${email}`, JSON.stringify(profile));
+            }
+
+            return new Response(JSON.stringify({ success: true, member: { email, name: memberName, role } }), {
+                headers: { 'Content-Type': 'application/json', ...corsHeaders }
+            });
+        }
+
+        if (method === 'PUT') {
+            const targetEmail = decodeURIComponent(url.pathname.replace('/api/team/', ''));
+            const { role } = await request.json();
+            if (!role || !VALID_ROLES.includes(role)) return new Response(JSON.stringify({ error: 'Invalid role' }), { status: 400, headers: corsHeaders });
+
+            const members = await loadTeam();
+            const member = members.find(m => m.email === targetEmail);
+            if (!member) return new Response(JSON.stringify({ error: 'Not found' }), { status: 404, headers: corsHeaders });
+
+            member.role = role;
+            await env.ABEST_AUTH.put(teamKey, JSON.stringify(members));
+
+            if (env.ABEST_AUTH) {
+                const profileStr = await env.ABEST_AUTH.get(`profile:${targetEmail}`);
+                if (profileStr) {
+                    const profile = JSON.parse(profileStr);
+                    profile.role = role;
+                    await env.ABEST_AUTH.put(`profile:${targetEmail}`, JSON.stringify(profile));
+                }
+            }
+            return new Response(JSON.stringify({ success: true }), { headers: { 'Content-Type': 'application/json', ...corsHeaders } });
+        }
+
+        if (method === 'DELETE') {
+            const targetEmail = decodeURIComponent(url.pathname.replace('/api/team/', ''));
+            let members = await loadTeam();
+            const before = members.length;
+            members = members.filter(m => m.email !== targetEmail);
+            if (members.length === before) return new Response(JSON.stringify({ error: 'Not found' }), { status: 404, headers: corsHeaders });
+            await env.ABEST_AUTH.put(teamKey, JSON.stringify(members));
+
+            if (env.ABEST_AUTH) {
+                const profileStr = await env.ABEST_AUTH.get(`profile:${targetEmail}`);
+                if (profileStr) {
+                    const profile = JSON.parse(profileStr);
+                    if (profile.teamOwner === ownerEmail) {
+                        profile.role = 'User';
+                        delete profile.teamOwner;
+                        await env.ABEST_AUTH.put(`profile:${targetEmail}`, JSON.stringify(profile));
+                    }
+                }
+            }
+            return new Response(JSON.stringify({ success: true }), { headers: { 'Content-Type': 'application/json', ...corsHeaders } });
+        }
+
+        return new Response('Method Not Allowed', { status: 405, headers: corsHeaders });
     } catch (err) {
         return new Response(JSON.stringify({ error: err.message }), {
             status: 500, headers: { 'Content-Type': 'application/json', ...corsHeaders }
