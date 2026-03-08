@@ -1639,13 +1639,20 @@ async function cpSubmit(){
     const r=await fetch('/api/role',{method:'POST',headers:{Authorization:'Bearer '+token},body:fd});
     if(r.ok){
       cpCancelConfirm();
-      // Show success feedback
-      const suc=document.getElementById('cp-deposit-success');
-      if(suc) suc.classList.add('show');
-      const sub=document.getElementById('cp-submit-main');
-      if(sub) sub.style.display='none';
+      // Open MyWallet immediately
+      document.getElementById('cp-form-section').style.display='none';
+      document.getElementById('cp-mywallet').style.display='block';
+      setTimeout(loadCapitalData, 350);
+    } else {
+      cpCancelConfirm();
+      const errEl=document.getElementById('cp-submit-err');
+      if(errEl){
+        errEl.textContent = r.status===401 ? 'सत्र समाप्त हो गया। कृपया पुनः लॉगिन करें।' : 'सबमिशन विफल। कृपया पुनः प्रयास करें।';
+        errEl.style.display='block';
+        setTimeout(()=>{errEl.style.display='none';}, 5000);
+      }
     }
-  }catch(e){}
+  }catch(e){ cpCancelConfirm(); }
 
   if(btn){ btn.disabled=false; btn.textContent='Confirm & Submit'; }
 }
