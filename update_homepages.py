@@ -154,10 +154,17 @@ def update_index(lang):
                             </div>
                         </div>
                         <div class="glass-card" style="overflow: hidden; border-radius: 16px;">
-                            <img src="/assets/project_commercial.png" alt="Commercial Real Estate" style="width: 100%; height: 160px; object-fit: cover; opacity: 0.8;">
+                            <img src="/assets/images/project_commercial.webp" alt="Commercial Real Estate" style="width: 100%; height: 160px; object-fit: cover; opacity: 0.8;">
                             <div style="padding: 15px;">
                                 <h4 style="margin-bottom: 5px; color: var(--text-main);">Commercial Properties</h4>
                                 <p style="font-size: 0.8rem; color: var(--text-muted);">Modern office spaces and retail centers.</p>
+                            </div>
+                        </div>
+                        <div class="glass-card" style="overflow: hidden; border-radius: 16px;">
+                            <img src="/assets/images/project_tech.png" alt="Future Technology &amp; AI" style="width: 100%; height: 160px; object-fit: cover; opacity: 0.8;">
+                            <div style="padding: 15px;">
+                                <h4 style="margin-bottom: 5px; color: var(--text-main);">Future Technology &amp; AI</h4>
+                                <p style="font-size: 0.8rem; color: var(--text-muted);">Investments in innovation, artificial intelligence, and global digital ecosystems.</p>
                             </div>
                         </div>
                     </div>
@@ -196,10 +203,17 @@ def update_index(lang):
                             </div>
                         </div>
                         <div class="glass-card" style="overflow: hidden; border-radius: 16px;">
-                            <img src="/assets/project_commercial.png" alt="Commercial Real Estate" style="width: 100%; height: 160px; object-fit: cover; opacity: 0.8; transition: transform 0.5s;">
+                            <img src="/assets/images/project_commercial.webp" alt="Commercial Real Estate" style="width: 100%; height: 160px; object-fit: cover; opacity: 0.8; transition: transform 0.5s;">
                             <div style="padding: 15px;">
                                 <h4 style="margin-bottom: 5px; color: var(--text-main);">Commercial Properties</h4>
                                 <p style="font-size: 0.8rem; color: var(--text-muted);">Modern office spaces and retail centers.</p>
+                            </div>
+                        </div>
+                        <div class="glass-card" style="overflow: hidden; border-radius: 16px;">
+                            <img src="/assets/images/project_tech.png" alt="Future Technology &amp; AI" style="width: 100%; height: 160px; object-fit: cover; opacity: 0.8; transition: transform 0.5s;">
+                            <div style="padding: 15px;">
+                                <h4 style="margin-bottom: 5px; color: var(--text-main);">Future Technology &amp; AI</h4>
+                                <p style="font-size: 0.8rem; color: var(--text-muted);">Investments in innovation, artificial intelligence, and global digital ecosystems.</p>
                             </div>
                         </div>
                     </div>
