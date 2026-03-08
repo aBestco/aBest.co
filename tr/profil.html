@@ -409,43 +409,238 @@ body { background: #0a0a0f; }
     </div>
       </div>
       <!-- Per-role unified forms -->
-      
   <div class="role-form" id="rf-founder">
     <p class="role-form-title">🚀 Kurucu</p>
-    <p class="role-form-sub">Bir iş fikrine sahip olup ortak veya yatırımcı arayan kişiler için.</p>
+    <p class="role-form-sub">İş ortağı veya yatırımcı arayan iş fikri olan kişiler için.</p>
     <div class="db-field">
       <label>Fikir / Proje Başlığı</label>
-      <input id="r-founder-title" type="text" placeholder="örn. Berlin'de Sürdürülebilir Konut Projesi"/>
+      <input id="r-founder-title" type="text" placeholder=""/>
     </div>
     <div class="db-field">
       <label>Açıklama / Konsept</label>
-      <textarea id="r-founder-desc" placeholder="Fikrinizi veya projenizi mümkün olduğunca ayrıntılı açıklayın ..." rows="6" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:12px 14px;color:var(--text-main);font-size:0.88rem;font-family:inherit;outline:none;box-sizing:border-box;resize:vertical;line-height:1.6;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(0,122,255,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.12)'"></textarea>
+      <textarea id="r-founder-desc" rows="6" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:12px 14px;color:var(--text-main);font-size:0.88rem;font-family:inherit;outline:none;box-sizing:border-box;resize:vertical;line-height:1.6;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(0,122,255,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.12)'"></textarea>
     </div>
-                        <div class="file-upload-wrap">
-      <div class="file-upload-area" id="fua-explorer"
-           data-err-size="Dosya çok büyük (maks. 50 MB)"
-           data-err-type="Dosya türüne izin verilmiyor">
+    <div class="file-upload-wrap">
+      <div class="file-upload-area" id="fua-founder" data-err-size="Dosya çok büyük (maks. 50 MB)" data-err-type="Dosya türüne izin verilmiyor">
         <span class="fu-icon">📎</span>
         <div class="fu-body">
-          <div class="fu-drag-text">Dosyayı buraya sürükleyin veya seçmek için tıklayın <span class="fu-btn-inline">Dosya Seç</span></div>
+          <div class="fu-drag-text">Dosyayı buraya sürükleyin veya seçmek için tıklayın <span class="fu-btn-inline">Dosya seç</span></div>
           <div class="fu-name"></div>
           <div class="fu-size"></div>
-          <div class="fu-hint">PDF, DOCX, PPTX, XLSX, JPG, PNG, ZIP, MP4 · 50 MB'a kadar · isteğe bağlı</div>
+          <div class="fu-hint">PDF, DOCX, PPTX, XLSX, JPG, PNG, ZIP, MP4 · maks. 50 MB · isteğe bağlı</div>
+          <div class="fu-error-text"></div>
+          <div class="fu-progress-wrap" id="fp-founder"><div class="fu-progress-bar" id="fpb-founder"></div></div>
+        </div>
+        <button class="fu-remove" onclick="fuRemove('founder')">✕</button>
+      </div>
+      <input class="file-input-hidden" type="file" id="fi-founder" accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.jpg,.jpeg,.png,.webp,.zip,.mp4,.mov,.txt"/>
+    </div>
+    <div class="role-submit-row">
+      <button class="db-btn db-btn-primary" style="max-width:200px;" onclick="submitRoleForm('founder')">Gönder</button>
+      <span class="role-submit-msg" id="rsm-founder">✓ Başarıyla gönderildi</span>
+    </div>
+    <div id="role-err-founder" style="font-size:0.78rem;color:#dc3545;margin-top:8px;display:none;"></div>
+  </div>
+  <div class="role-form" id="rf-investor">
+    <p class="role-form-title">💼 Yatırımcı</p>
+    <p class="role-form-sub">Umut verici projelere yatırım yapmak isteyen kişiler için.</p>
+    <div class="db-field">
+      <label>Fikir / Proje Başlığı</label>
+      <input id="r-investor-title" type="text" placeholder=""/>
+    </div>
+    <div class="db-field">
+      <label>Açıklama / Konsept</label>
+      <textarea id="r-investor-desc" rows="6" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:12px 14px;color:var(--text-main);font-size:0.88rem;font-family:inherit;outline:none;box-sizing:border-box;resize:vertical;line-height:1.6;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(0,122,255,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.12)'"></textarea>
+    </div>
+    <div class="file-upload-wrap">
+      <div class="file-upload-area" id="fua-investor" data-err-size="Dosya çok büyük (maks. 50 MB)" data-err-type="Dosya türüne izin verilmiyor">
+        <span class="fu-icon">📎</span>
+        <div class="fu-body">
+          <div class="fu-drag-text">Dosyayı buraya sürükleyin veya seçmek için tıklayın <span class="fu-btn-inline">Dosya seç</span></div>
+          <div class="fu-name"></div>
+          <div class="fu-size"></div>
+          <div class="fu-hint">PDF, DOCX, PPTX, XLSX, JPG, PNG, ZIP, MP4 · maks. 50 MB · isteğe bağlı</div>
+          <div class="fu-error-text"></div>
+          <div class="fu-progress-wrap" id="fp-investor"><div class="fu-progress-bar" id="fpb-investor"></div></div>
+        </div>
+        <button class="fu-remove" onclick="fuRemove('investor')">✕</button>
+      </div>
+      <input class="file-input-hidden" type="file" id="fi-investor" accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.jpg,.jpeg,.png,.webp,.zip,.mp4,.mov,.txt"/>
+    </div>
+    <div class="role-submit-row">
+      <button class="db-btn db-btn-primary" style="max-width:200px;" onclick="submitRoleForm('investor')">Gönder</button>
+      <span class="role-submit-msg" id="rsm-investor">✓ Başarıyla gönderildi</span>
+    </div>
+    <div id="role-err-investor" style="font-size:0.78rem;color:#dc3545;margin-top:8px;display:none;"></div>
+  </div>
+  <div class="role-form" id="rf-capital">
+    <p class="role-form-title">🏦 Sermaye Ortağı</p>
+    <p class="role-form-sub">Sermaye sağlayın ve istikrarlı getirilerden yararlanın</p>
+
+    <!-- Locked banner -->
+    <div class="cp-locked-banner" id="cp-locked-banner">
+      <span class="lb-icon">🔒</span>
+      <div><p class="lb-title">🔒 Talep Onaylandı</p><p class="lb-sub">Yatırımınız onaylandı. Koşullar artık değiştirilemez.</p></div>
+    </div>
+
+    <div class="cp-form" id="cp-form-inner">
+
+      <!-- 1. Amount -->
+      <div class="db-field" style="margin-bottom:18px;">
+        <label style="font-size:0.82rem;color:var(--text-muted);display:block;margin-bottom:8px;">Yatırım Miktarı</label>
+        <div class="cp-amount-row">
+          <div class="cp-currency-badge" id="cp-currency-badge">€</div>
+          <div class="db-field" style="margin-bottom:0;flex:1;">
+            <input type="number" id="cp-amount" min="1000" step="1000" placeholder="10 000"
+              style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:12px 14px;color:var(--text-main);font-size:1rem;font-family:inherit;outline:none;box-sizing:border-box;"
+              oninput="cpCalc()"/>
+            <p style="font-size:0.72rem;color:var(--text-muted);margin:6px 0 0;">Minimum: 1.000</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Year wheel -->
+      <div class="db-field" style="margin-bottom:18px;">
+        <label style="font-size:0.82rem;color:var(--text-muted);display:block;margin-bottom:4px;">Yatırım Süresi</label>
+        <div class="year-picker-wrap">
+          <div class="year-picker-drum">
+            <button class="yp-btn" onclick="ypChange(1)">▲</button>
+            <div class="yp-display"><span class="yp-number" id="yp-num">10</span></div>
+            <button class="yp-btn" onclick="ypChange(-1)">▼</button>
+          </div>
+          <div>
+            <div class="yp-unit">Yıl</div>
+            <div class="yp-range">1 – 99 yıl</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Rate bar -->
+      <div class="db-field" style="margin-bottom:18px;">
+        <label style="font-size:0.82rem;color:var(--text-muted);display:block;margin-bottom:8px;">Yıllık Getiri</label>
+        <div class="cp-rate-bar">
+          <div class="cp-rate-track"><div class="cp-rate-fill"></div></div>
+          <span class="cp-rate-label">Yıllık %5 (sabit)</span>
+        </div>
+      </div>
+
+      <!-- 4. Interest Options -->
+      <div class="db-field" style="margin-bottom:18px;">
+        <label style="font-size:0.82rem;color:var(--text-muted);display:block;margin-bottom:10px;">Faiz Seçeneği</label>
+        <div class="cp-option-card selected" id="cp-opt-a" onclick="cpSelectOption('a')">
+          <div class="cp-radio"></div>
+          <div class="cp-option-body">
+            <h4>Seçenek A – Faiz Ödemesi</h4>
+            <p>Faiz düzenli olarak ödenir</p>
+            <select class="cp-freq-select" id="cp-freq" onchange="cpCalc()">
+              <option value="12">Aylık</option>
+              <option value="4">Üç Aylık</option>
+              <option value="2">6 Aylık</option>
+              <option value="1" selected>Yıllık</option>
+            </select>
+          </div>
+        </div>
+        <div class="cp-option-card" id="cp-opt-b" onclick="cpSelectOption('b')">
+          <div class="cp-radio"></div>
+          <div class="cp-option-body">
+            <h4>Seçenek B – Bileşik Faiz</h4>
+            <p>Faiz sermayeye eklenir</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Summary -->
+      <div class="cp-summary">
+        <h4>📊 Yatırım Özeti</h4>
+        <div class="cp-sum-row"><span class="cp-sum-label">Yatırım Miktarı</span><span class="cp-sum-value" id="cs-amount">–</span></div>
+        <div class="cp-sum-row"><span class="cp-sum-label">Süre</span><span class="cp-sum-value" id="cs-period">–</span></div>
+        <div class="cp-sum-row"><span class="cp-sum-label">Yıllık Getiri</span><span class="cp-sum-value">5% p.a.</span></div>
+        <div class="cp-sum-row"><span class="cp-sum-label">Faiz Seçeneği</span><span class="cp-sum-value" id="cs-option">–</span></div>
+        <div class="cp-sum-row" id="cs-payout-row"><span class="cp-sum-label">Ödeme Aralığı</span><span class="cp-sum-value cp-sum-payout" id="cs-payout">–</span></div>
+        <div class="cp-sum-row"><span class="cp-sum-label">Faiz Kazancı</span><span class="cp-sum-value cp-sum-highlight" id="cs-return">–</span></div>
+        <div class="cp-sum-row"><span class="cp-sum-label">Tahmini Toplam Değer</span><span class="cp-sum-value cp-sum-highlight" id="cs-total">–</span></div>
+        <div class="cp-sum-row" id="cs-per-row"><span class="cp-sum-label">Aralık Başına Ödeme</span><span class="cp-sum-value cp-sum-payout" id="cs-per">–</span></div>
+      </div>
+
+      <!-- 6. Trust + Submit -->
+      <div class="cp-trust-row">
+        <span class="cp-trust-badge">🔒 Güvenli SSL</span>
+        <span class="cp-trust-badge">📋 Onaylı Sözleşme</span>
+        <span class="cp-trust-badge">⚖️ Yasal Güvence</span>
+      </div>
+      <button class="cp-submit-btn" id="cp-submit-btn" onclick="cpSubmit()">Yatırım Talebi Gönder</button>
+      <div class="cp-success" id="cp-success">
+        <p style="font-weight:700;color:#34c759;margin:0 0 4px;">✓ Talep Gönderildi</p>
+        <p style="font-size:0.78rem;color:var(--text-muted);margin:0;">Talebiniz inceleniyor.</p>
+      </div>
+    </div>
+  </div>
+  <div class="role-form" id="rf-seller">
+    <p class="role-form-title">🏠 Satıcı</p>
+    <p class="role-form-sub">Arazi veya gayrimenkul sahibi olup satmak isteyenler için.</p>
+    <div class="db-field">
+      <label>Fikir / Proje Başlığı</label>
+      <input id="r-seller-title" type="text" placeholder=""/>
+    </div>
+    <div class="db-field">
+      <label>Açıklama / Konsept</label>
+      <textarea id="r-seller-desc" rows="6" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:12px 14px;color:var(--text-main);font-size:0.88rem;font-family:inherit;outline:none;box-sizing:border-box;resize:vertical;line-height:1.6;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(0,122,255,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.12)'"></textarea>
+    </div>
+    <div class="file-upload-wrap">
+      <div class="file-upload-area" id="fua-seller" data-err-size="Dosya çok büyük (maks. 50 MB)" data-err-type="Dosya türüne izin verilmiyor">
+        <span class="fu-icon">📎</span>
+        <div class="fu-body">
+          <div class="fu-drag-text">Dosyayı buraya sürükleyin veya seçmek için tıklayın <span class="fu-btn-inline">Dosya seç</span></div>
+          <div class="fu-name"></div>
+          <div class="fu-size"></div>
+          <div class="fu-hint">PDF, DOCX, PPTX, XLSX, JPG, PNG, ZIP, MP4 · maks. 50 MB · isteğe bağlı</div>
+          <div class="fu-error-text"></div>
+          <div class="fu-progress-wrap" id="fp-seller"><div class="fu-progress-bar" id="fpb-seller"></div></div>
+        </div>
+        <button class="fu-remove" onclick="fuRemove('seller')">✕</button>
+      </div>
+      <input class="file-input-hidden" type="file" id="fi-seller" accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.jpg,.jpeg,.png,.webp,.zip,.mp4,.mov,.txt"/>
+    </div>
+    <div class="role-submit-row">
+      <button class="db-btn db-btn-primary" style="max-width:200px;" onclick="submitRoleForm('seller')">Gönder</button>
+      <span class="role-submit-msg" id="rsm-seller">✓ Başarıyla gönderildi</span>
+    </div>
+    <div id="role-err-seller" style="font-size:0.78rem;color:#dc3545;margin-top:8px;display:none;"></div>
+  </div>
+  <div class="role-form" id="rf-explorer">
+    <p class="role-form-title">🔍 Keşifçi</p>
+    <p class="role-form-sub">Proje ve yatırım fırsatlarını keşfetmek isteyen kullanıcılar için.</p>
+    <div class="db-field">
+      <label>Fikir / Proje Başlığı</label>
+      <input id="r-explorer-title" type="text" placeholder=""/>
+    </div>
+    <div class="db-field">
+      <label>Açıklama / Konsept</label>
+      <textarea id="r-explorer-desc" rows="6" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:12px 14px;color:var(--text-main);font-size:0.88rem;font-family:inherit;outline:none;box-sizing:border-box;resize:vertical;line-height:1.6;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(0,122,255,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.12)'"></textarea>
+    </div>
+    <div class="file-upload-wrap">
+      <div class="file-upload-area" id="fua-explorer" data-err-size="Dosya çok büyük (maks. 50 MB)" data-err-type="Dosya türüne izin verilmiyor">
+        <span class="fu-icon">📎</span>
+        <div class="fu-body">
+          <div class="fu-drag-text">Dosyayı buraya sürükleyin veya seçmek için tıklayın <span class="fu-btn-inline">Dosya seç</span></div>
+          <div class="fu-name"></div>
+          <div class="fu-size"></div>
+          <div class="fu-hint">PDF, DOCX, PPTX, XLSX, JPG, PNG, ZIP, MP4 · maks. 50 MB · isteğe bağlı</div>
           <div class="fu-error-text"></div>
           <div class="fu-progress-wrap" id="fp-explorer"><div class="fu-progress-bar" id="fpb-explorer"></div></div>
         </div>
         <button class="fu-remove" onclick="fuRemove('explorer')">✕</button>
       </div>
-      <input class="file-input-hidden" type="file" id="fi-explorer"
-             accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.jpg,.jpeg,.png,.webp,.zip,.mp4,.mov,.txt"/>
+      <input class="file-input-hidden" type="file" id="fi-explorer" accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.jpg,.jpeg,.png,.webp,.zip,.mp4,.mov,.txt"/>
     </div>
     <div class="role-submit-row">
       <button class="db-btn db-btn-primary" style="max-width:200px;" onclick="submitRoleForm('explorer')">Gönder</button>
-      <span class="role-submit-msg" id="rsm-explorer">✓ Başarıyla iletildi</span>
+      <span class="role-submit-msg" id="rsm-explorer">✓ Başarıyla gönderildi</span>
     </div>
     <div id="role-err-explorer" style="font-size:0.78rem;color:#dc3545;margin-top:8px;display:none;"></div>
   </div>
     </div>
+  </div>
   </div>
 
   <!-- ── TAB: SETTINGS ──────────────────── -->

@@ -409,43 +409,238 @@ body { background: #0a0a0f; }
     </div>
       </div>
       <!-- Per-role unified forms -->
-      
   <div class="role-form" id="rf-founder">
     <p class="role-form-title">🚀 Founder</p>
-    <p class="role-form-sub">For individuals with a business idea looking for partners or investors.</p>
+    <p class="role-form-sub">For people with a business idea seeking partners or investors.</p>
     <div class="db-field">
-      <label>خیال / منصوبے کا عنوان</label>
-      <input id="r-founder-title" type="text" placeholder="مثال: برلن میں پائیدار رہائشی کمپلیکس"/>
+      <label>Title of Idea / Project</label>
+      <input id="r-founder-title" type="text" placeholder=""/>
     </div>
     <div class="db-field">
-      <label>تفصیل / تصور</label>
-      <textarea id="r-founder-desc" placeholder="اپنے خیال یا منصوبے کو جتنا ممکن ہو تفصیل سے بیان کریں ..." rows="6" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:12px 14px;color:var(--text-main);font-size:0.88rem;font-family:inherit;outline:none;box-sizing:border-box;resize:vertical;line-height:1.6;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(0,122,255,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.12)'"></textarea>
+      <label>Description / Concept</label>
+      <textarea id="r-founder-desc" rows="6" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:12px 14px;color:var(--text-main);font-size:0.88rem;font-family:inherit;outline:none;box-sizing:border-box;resize:vertical;line-height:1.6;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(0,122,255,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.12)'"></textarea>
     </div>
-                        <div class="file-upload-wrap">
-      <div class="file-upload-area" id="fua-explorer"
-           data-err-size="فائل بہت بڑی ہے (زیادہ سے زیادہ 50 MB)"
-           data-err-type="فائل کی قسم کی اجازت نہیں">
+    <div class="file-upload-wrap">
+      <div class="file-upload-area" id="fua-founder" data-err-size="File too large (max 50 MB)" data-err-type="File type not allowed">
         <span class="fu-icon">📎</span>
         <div class="fu-body">
-          <div class="fu-drag-text">فائل یہاں گھسیٹیں یا منتخب کرنے کے لیے کلک کریں <span class="fu-btn-inline">فائل منتخب کریں</span></div>
+          <div class="fu-drag-text">Drag file here or click to select <span class="fu-btn-inline">Choose file</span></div>
           <div class="fu-name"></div>
           <div class="fu-size"></div>
-          <div class="fu-hint">PDF, DOCX, PPTX, XLSX, JPG, PNG, ZIP, MP4 · زیادہ سے زیادہ 50 MB · اختیاری</div>
+          <div class="fu-hint">PDF, DOCX, PPTX, XLSX, JPG, PNG, ZIP, MP4 · up to 50 MB · optional</div>
+          <div class="fu-error-text"></div>
+          <div class="fu-progress-wrap" id="fp-founder"><div class="fu-progress-bar" id="fpb-founder"></div></div>
+        </div>
+        <button class="fu-remove" onclick="fuRemove('founder')">✕</button>
+      </div>
+      <input class="file-input-hidden" type="file" id="fi-founder" accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.jpg,.jpeg,.png,.webp,.zip,.mp4,.mov,.txt"/>
+    </div>
+    <div class="role-submit-row">
+      <button class="db-btn db-btn-primary" style="max-width:200px;" onclick="submitRoleForm('founder')">Submit</button>
+      <span class="role-submit-msg" id="rsm-founder">✓ Successfully submitted</span>
+    </div>
+    <div id="role-err-founder" style="font-size:0.78rem;color:#dc3545;margin-top:8px;display:none;"></div>
+  </div>
+  <div class="role-form" id="rf-investor">
+    <p class="role-form-title">💼 Investor</p>
+    <p class="role-form-sub">For people looking to invest in promising projects.</p>
+    <div class="db-field">
+      <label>Title of Idea / Project</label>
+      <input id="r-investor-title" type="text" placeholder=""/>
+    </div>
+    <div class="db-field">
+      <label>Description / Concept</label>
+      <textarea id="r-investor-desc" rows="6" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:12px 14px;color:var(--text-main);font-size:0.88rem;font-family:inherit;outline:none;box-sizing:border-box;resize:vertical;line-height:1.6;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(0,122,255,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.12)'"></textarea>
+    </div>
+    <div class="file-upload-wrap">
+      <div class="file-upload-area" id="fua-investor" data-err-size="File too large (max 50 MB)" data-err-type="File type not allowed">
+        <span class="fu-icon">📎</span>
+        <div class="fu-body">
+          <div class="fu-drag-text">Drag file here or click to select <span class="fu-btn-inline">Choose file</span></div>
+          <div class="fu-name"></div>
+          <div class="fu-size"></div>
+          <div class="fu-hint">PDF, DOCX, PPTX, XLSX, JPG, PNG, ZIP, MP4 · up to 50 MB · optional</div>
+          <div class="fu-error-text"></div>
+          <div class="fu-progress-wrap" id="fp-investor"><div class="fu-progress-bar" id="fpb-investor"></div></div>
+        </div>
+        <button class="fu-remove" onclick="fuRemove('investor')">✕</button>
+      </div>
+      <input class="file-input-hidden" type="file" id="fi-investor" accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.jpg,.jpeg,.png,.webp,.zip,.mp4,.mov,.txt"/>
+    </div>
+    <div class="role-submit-row">
+      <button class="db-btn db-btn-primary" style="max-width:200px;" onclick="submitRoleForm('investor')">Submit</button>
+      <span class="role-submit-msg" id="rsm-investor">✓ Successfully submitted</span>
+    </div>
+    <div id="role-err-investor" style="font-size:0.78rem;color:#dc3545;margin-top:8px;display:none;"></div>
+  </div>
+  <div class="role-form" id="rf-capital">
+    <p class="role-form-title">🏦 Capital Partner</p>
+    <p class="role-form-sub">Provide capital and benefit from stable returns</p>
+
+    <!-- Locked banner -->
+    <div class="cp-locked-banner" id="cp-locked-banner">
+      <span class="lb-icon">🔒</span>
+      <div><p class="lb-title">🔒 Request Approved</p><p class="lb-sub">Your investment is confirmed. Terms cannot be changed.</p></div>
+    </div>
+
+    <div class="cp-form" id="cp-form-inner">
+
+      <!-- 1. Amount -->
+      <div class="db-field" style="margin-bottom:18px;">
+        <label style="font-size:0.82rem;color:var(--text-muted);display:block;margin-bottom:8px;">Investment Amount</label>
+        <div class="cp-amount-row">
+          <div class="cp-currency-badge" id="cp-currency-badge">€</div>
+          <div class="db-field" style="margin-bottom:0;flex:1;">
+            <input type="number" id="cp-amount" min="1000" step="1000" placeholder="10 000"
+              style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:12px 14px;color:var(--text-main);font-size:1rem;font-family:inherit;outline:none;box-sizing:border-box;"
+              oninput="cpCalc()"/>
+            <p style="font-size:0.72rem;color:var(--text-muted);margin:6px 0 0;">Minimum: 1,000</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Year wheel -->
+      <div class="db-field" style="margin-bottom:18px;">
+        <label style="font-size:0.82rem;color:var(--text-muted);display:block;margin-bottom:4px;">Investment Period</label>
+        <div class="year-picker-wrap">
+          <div class="year-picker-drum">
+            <button class="yp-btn" onclick="ypChange(1)">▲</button>
+            <div class="yp-display"><span class="yp-number" id="yp-num">10</span></div>
+            <button class="yp-btn" onclick="ypChange(-1)">▼</button>
+          </div>
+          <div>
+            <div class="yp-unit">Years</div>
+            <div class="yp-range">1 – 99 years</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Rate bar -->
+      <div class="db-field" style="margin-bottom:18px;">
+        <label style="font-size:0.82rem;color:var(--text-muted);display:block;margin-bottom:8px;">Annual Return</label>
+        <div class="cp-rate-bar">
+          <div class="cp-rate-track"><div class="cp-rate-fill"></div></div>
+          <span class="cp-rate-label">5% p.a. (fixed)</span>
+        </div>
+      </div>
+
+      <!-- 4. Interest Options -->
+      <div class="db-field" style="margin-bottom:18px;">
+        <label style="font-size:0.82rem;color:var(--text-muted);display:block;margin-bottom:10px;">Interest Option</label>
+        <div class="cp-option-card selected" id="cp-opt-a" onclick="cpSelectOption('a')">
+          <div class="cp-radio"></div>
+          <div class="cp-option-body">
+            <h4>Option A – Interest Payout</h4>
+            <p>Interest is paid out regularly</p>
+            <select class="cp-freq-select" id="cp-freq" onchange="cpCalc()">
+              <option value="12">Monthly</option>
+              <option value="4">Quarterly</option>
+              <option value="2">Every 6 Months</option>
+              <option value="1" selected>Annually</option>
+            </select>
+          </div>
+        </div>
+        <div class="cp-option-card" id="cp-opt-b" onclick="cpSelectOption('b')">
+          <div class="cp-radio"></div>
+          <div class="cp-option-body">
+            <h4>Option B – Compound Interest</h4>
+            <p>Interest is added to capital</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Summary -->
+      <div class="cp-summary">
+        <h4>📊 Investment Summary</h4>
+        <div class="cp-sum-row"><span class="cp-sum-label">Investment Amount</span><span class="cp-sum-value" id="cs-amount">–</span></div>
+        <div class="cp-sum-row"><span class="cp-sum-label">Period</span><span class="cp-sum-value" id="cs-period">–</span></div>
+        <div class="cp-sum-row"><span class="cp-sum-label">Annual Return</span><span class="cp-sum-value">5% p.a.</span></div>
+        <div class="cp-sum-row"><span class="cp-sum-label">Interest Option</span><span class="cp-sum-value" id="cs-option">–</span></div>
+        <div class="cp-sum-row" id="cs-payout-row"><span class="cp-sum-label">Payout Interval</span><span class="cp-sum-value cp-sum-payout" id="cs-payout">–</span></div>
+        <div class="cp-sum-row"><span class="cp-sum-label">Interest Gain</span><span class="cp-sum-value cp-sum-highlight" id="cs-return">–</span></div>
+        <div class="cp-sum-row"><span class="cp-sum-label">Est. Total Value</span><span class="cp-sum-value cp-sum-highlight" id="cs-total">–</span></div>
+        <div class="cp-sum-row" id="cs-per-row"><span class="cp-sum-label">Per Interval Payout</span><span class="cp-sum-value cp-sum-payout" id="cs-per">–</span></div>
+      </div>
+
+      <!-- 6. Trust + Submit -->
+      <div class="cp-trust-row">
+        <span class="cp-trust-badge">🔒 Secure SSL</span>
+        <span class="cp-trust-badge">📋 Verified Contract</span>
+        <span class="cp-trust-badge">⚖️ Legally Secured</span>
+      </div>
+      <button class="cp-submit-btn" id="cp-submit-btn" onclick="cpSubmit()">Submit Investment Request</button>
+      <div class="cp-success" id="cp-success">
+        <p style="font-weight:700;color:#34c759;margin:0 0 4px;">✓ Request Submitted</p>
+        <p style="font-size:0.78rem;color:var(--text-muted);margin:0;">Your request is under review.</p>
+      </div>
+    </div>
+  </div>
+  <div class="role-form" id="rf-seller">
+    <p class="role-form-title">🏠 Seller</p>
+    <p class="role-form-sub">For owners of land or real estate who wish to sell.</p>
+    <div class="db-field">
+      <label>Title of Idea / Project</label>
+      <input id="r-seller-title" type="text" placeholder=""/>
+    </div>
+    <div class="db-field">
+      <label>Description / Concept</label>
+      <textarea id="r-seller-desc" rows="6" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:12px 14px;color:var(--text-main);font-size:0.88rem;font-family:inherit;outline:none;box-sizing:border-box;resize:vertical;line-height:1.6;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(0,122,255,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.12)'"></textarea>
+    </div>
+    <div class="file-upload-wrap">
+      <div class="file-upload-area" id="fua-seller" data-err-size="File too large (max 50 MB)" data-err-type="File type not allowed">
+        <span class="fu-icon">📎</span>
+        <div class="fu-body">
+          <div class="fu-drag-text">Drag file here or click to select <span class="fu-btn-inline">Choose file</span></div>
+          <div class="fu-name"></div>
+          <div class="fu-size"></div>
+          <div class="fu-hint">PDF, DOCX, PPTX, XLSX, JPG, PNG, ZIP, MP4 · up to 50 MB · optional</div>
+          <div class="fu-error-text"></div>
+          <div class="fu-progress-wrap" id="fp-seller"><div class="fu-progress-bar" id="fpb-seller"></div></div>
+        </div>
+        <button class="fu-remove" onclick="fuRemove('seller')">✕</button>
+      </div>
+      <input class="file-input-hidden" type="file" id="fi-seller" accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.jpg,.jpeg,.png,.webp,.zip,.mp4,.mov,.txt"/>
+    </div>
+    <div class="role-submit-row">
+      <button class="db-btn db-btn-primary" style="max-width:200px;" onclick="submitRoleForm('seller')">Submit</button>
+      <span class="role-submit-msg" id="rsm-seller">✓ Successfully submitted</span>
+    </div>
+    <div id="role-err-seller" style="font-size:0.78rem;color:#dc3545;margin-top:8px;display:none;"></div>
+  </div>
+  <div class="role-form" id="rf-explorer">
+    <p class="role-form-title">🔍 Explorer</p>
+    <p class="role-form-sub">For users who want to explore projects and investment opportunities.</p>
+    <div class="db-field">
+      <label>Title of Idea / Project</label>
+      <input id="r-explorer-title" type="text" placeholder=""/>
+    </div>
+    <div class="db-field">
+      <label>Description / Concept</label>
+      <textarea id="r-explorer-desc" rows="6" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:12px 14px;color:var(--text-main);font-size:0.88rem;font-family:inherit;outline:none;box-sizing:border-box;resize:vertical;line-height:1.6;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(0,122,255,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.12)'"></textarea>
+    </div>
+    <div class="file-upload-wrap">
+      <div class="file-upload-area" id="fua-explorer" data-err-size="File too large (max 50 MB)" data-err-type="File type not allowed">
+        <span class="fu-icon">📎</span>
+        <div class="fu-body">
+          <div class="fu-drag-text">Drag file here or click to select <span class="fu-btn-inline">Choose file</span></div>
+          <div class="fu-name"></div>
+          <div class="fu-size"></div>
+          <div class="fu-hint">PDF, DOCX, PPTX, XLSX, JPG, PNG, ZIP, MP4 · up to 50 MB · optional</div>
           <div class="fu-error-text"></div>
           <div class="fu-progress-wrap" id="fp-explorer"><div class="fu-progress-bar" id="fpb-explorer"></div></div>
         </div>
         <button class="fu-remove" onclick="fuRemove('explorer')">✕</button>
       </div>
-      <input class="file-input-hidden" type="file" id="fi-explorer"
-             accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.jpg,.jpeg,.png,.webp,.zip,.mp4,.mov,.txt"/>
+      <input class="file-input-hidden" type="file" id="fi-explorer" accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.jpg,.jpeg,.png,.webp,.zip,.mp4,.mov,.txt"/>
     </div>
     <div class="role-submit-row">
-      <button class="db-btn db-btn-primary" style="max-width:200px;" onclick="submitRoleForm('explorer')">جمع کریں</button>
-      <span class="role-submit-msg" id="rsm-explorer">✓ کامیابی سے جمع ہو گیا</span>
+      <button class="db-btn db-btn-primary" style="max-width:200px;" onclick="submitRoleForm('explorer')">Submit</button>
+      <span class="role-submit-msg" id="rsm-explorer">✓ Successfully submitted</span>
     </div>
     <div id="role-err-explorer" style="font-size:0.78rem;color:#dc3545;margin-top:8px;display:none;"></div>
   </div>
     </div>
+  </div>
   </div>
 
   <!-- ── TAB: SETTINGS ──────────────────── -->
