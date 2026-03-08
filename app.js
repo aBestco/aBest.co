@@ -169,6 +169,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function openAuthModal() {
         const lang = document.documentElement.lang || 'en';
+        const sessionToken = localStorage.getItem('aBest_session');
+
+        // If the user is already logged in, redirect them to admin or give them a menu.
+        // For simplicity, directly route to the dashboard.
+        if (sessionToken) {
+            window.location.href = '/admin/';
+            return;
+        }
+
         const content = getAuthFormHTML(lang);
         openModal(content);
 
@@ -193,7 +202,25 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }
+
+    // Check initial auth state to update icon
+    checkAuthState();
 });
+
+function checkAuthState() {
+    const sessionToken = localStorage.getItem('aBest_session');
+    const adminLink = document.querySelector('a[href*="/admin/"]');
+    if (sessionToken && adminLink) {
+        // Change the icon to indicate logged in state. 
+        // We use a simple filled user icon for 'logged in'.
+        adminLink.innerHTML = `
+            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="currentColor">
+               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 0 0 0-4 4v2"></path>
+               <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+        `;
+    }
+}
 
 // Language Switcher Logic
 function setLang(lang) {

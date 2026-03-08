@@ -21,15 +21,16 @@ export default {
         if (pathname.startsWith('/api/inquiries')) {
             // Check auth for sensitive methods
             if (['GET', 'PUT', 'DELETE'].includes(request.method)) {
-                if (!checkAuth(request, env)) return unauthorizedResponse();
+                if (!(await checkAuth(request, env))) return unauthorizedResponse();
             }
             return handleInquiriesApi(request, env);
         }
 
         // --- 2. ADMIN AREA ---
         if (pathname.startsWith('/admin')) {
-            if (!checkAuth(request, env)) return unauthorizedResponse();
-            // Let ASSETS handle the static files in /admin
+            // For static assets in /admin, we can't easily secure them without a complex worker flow 
+            // since we depend on ASSETS.fetch. For true security, the static /admin page should verify token on load.
+            // Leaving ASSETS.fetch for now.
         }
 
         // --- 3. 301 REDIRECTS ---
@@ -46,24 +47,33 @@ export default {
 };
 
 // Helper for Authentication
-function checkAuth(request, env) {
+async function checkAuth(request, env) {
     const authHeader = request.headers.get('Authorization');
+    if (!authHeader || !authHeader.startsWith('Bearer ')) return false;
+
+    const token = authHeader.split(' ')[1];
+
+    // Check old hardcoded auth fallback (optional, remove later)
     const expectedUser = env.ADMIN_USER;
     const expectedPass = env.ADMIN_PASS;
+    const expectedBasic = 'Basic ' + btoa(`${expectedUser}:${expectedPass}`);
+    if (authHeader === expectedBasic) return true;
 
-    if (!expectedUser || !expectedPass) {
-        console.error("Security Warning: ADMIN_USER or ADMIN_PASS environment variables are missing.");
-        return false; // Fail secure
+    if (env.ABEST_AUTH && token) {
+        const session = await env.ABEST_AUTH.get(`session:${token}`);
+        if (session) return true;
     }
 
-    const expectedAuth = 'Basic ' + btoa(`${expectedUser}:${expectedPass}`);
-    return authHeader === expectedAuth;
+    return false;
 }
 
 function unauthorizedResponse() {
-    return new Response('Unauthorized', {
+    return new Response(JSON.stringify({ error: 'Unauthorized' }), {
         status: 401,
-        headers: { 'WWW-Authenticate': 'Basic realm="aBest.co Admin Area"' }
+        headers: {
+            'WWW-Authenticate': 'Bearer realm="aBest.co Admin"',
+            'Content-Type': 'application/json'
+        }
     });
 }
 

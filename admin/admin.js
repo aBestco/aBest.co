@@ -5,15 +5,37 @@ let currentInquiryId = null;
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
+    if (!checkToken()) return;
     loadData();
     switchView('dashboard');
     updateRole();
 });
 
+function checkToken() {
+    const token = localStorage.getItem('aBest_session');
+    if (!token) {
+        window.location.href = '/de/'; // Redirect to home to login
+        return false;
+    }
+    return true;
+}
+
 // Load data from API
 async function loadData() {
     try {
-        const response = await fetch('/api/inquiries');
+        const token = localStorage.getItem('aBest_session');
+        const response = await fetch('/api/inquiries', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if (response.status === 401) {
+            localStorage.removeItem('aBest_session');
+            window.location.href = '/de/';
+            return;
+        }
+
         if (!response.ok) throw new Error('Failed to load inquiries');
 
         inquiries = await response.json();
@@ -243,11 +265,21 @@ async function saveDetails() {
     const updates = { status: newStatus, notes: newNotes };
 
     try {
+        const token = localStorage.getItem('aBest_session');
         const response = await fetch(`/api/inquiries/${currentInquiryId}`, {
             method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
             body: JSON.stringify(updates)
         });
+
+        if (response.status === 401) {
+            localStorage.removeItem('aBest_session');
+            window.location.href = '/de/';
+            return;
+        }
 
         if (!response.ok) throw new Error('Failed to save inquiry');
 
