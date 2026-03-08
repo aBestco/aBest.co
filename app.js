@@ -515,52 +515,67 @@ function getAuthFormHTML(lang) {
         de: {
             loginTab: "Login",
             regTab: "Registrierung",
+            name: "Vor- und Nachname",
             email: "E-Mail",
             password: "Passwort",
+            confirmPassword: "Passwort bestätigen",
             loginBtn: "Anmelden",
-            regBtn: "Registrieren",
-            googleBtn: "Mit Google anmelden",
-            or: "oder"
+            regBtn: "Konto erstellen",
+            forgotPassword: "Passwort vergessen?",
+            pwMismatch: "Die Passwörter stimmen nicht überein.",
+            googleBtn: "Mit Google fortfahren"
         },
         en: {
             loginTab: "Login",
             regTab: "Register",
+            name: "Full Name",
             email: "Email",
             password: "Password",
+            confirmPassword: "Confirm Password",
             loginBtn: "Sign In",
-            regBtn: "Sign Up",
-            googleBtn: "Continue with Google",
-            or: "or"
+            regBtn: "Create Account",
+            forgotPassword: "Forgot password?",
+            pwMismatch: "Passwords do not match.",
+            googleBtn: "Continue with Google"
         },
         tr: {
             loginTab: "Giriş",
             regTab: "Kaydol",
+            name: "Ad Soyad",
             email: "E-posta",
             password: "Şifre",
+            confirmPassword: "Şifreyi Onayla",
             loginBtn: "Giriş Yap",
-            regBtn: "Kayıt Ol",
-            googleBtn: "Google ile devam et",
-            or: "veya"
+            regBtn: "Hesap Oluştur",
+            forgotPassword: "Şifremi unuttum?",
+            pwMismatch: "Şifreler eşleşmiyor.",
+            googleBtn: "Google ile devam et"
         },
         es: {
             loginTab: "Acceso",
             regTab: "Registro",
+            name: "Nombre completo",
             email: "Correo",
             password: "Contraseña",
+            confirmPassword: "Confirmar contraseña",
             loginBtn: "Iniciar sesión",
-            regBtn: "Registrarse",
-            googleBtn: "Continuar con Google",
-            or: "o"
+            regBtn: "Crear cuenta",
+            forgotPassword: "¿Olvidaste tu contraseña?",
+            pwMismatch: "Las contraseñas no coinciden.",
+            googleBtn: "Continuar con Google"
         },
         fr: {
             loginTab: "Connexion",
             regTab: "Inscription",
+            name: "Nom complet",
             email: "E-mail",
             password: "Mot de passe",
+            confirmPassword: "Confirmer le mot de passe",
             loginBtn: "Se connecter",
-            regBtn: "S'inscrire",
-            googleBtn: "Continuer avec Google",
-            or: "ou"
+            regBtn: "Créer un compte",
+            forgotPassword: "Mot de passe oublié ?",
+            pwMismatch: "Les mots de passe ne correspondent pas.",
+            googleBtn: "Continuer avec Google"
         }
     };
 
@@ -572,39 +587,48 @@ function getAuthFormHTML(lang) {
                 <button class="auth-tab active" id="tab-login">${t.loginTab}</button>
                 <button class="auth-tab" id="tab-register">${t.regTab}</button>
             </div>
-            
+
             <div class="divider mt-2 mb-2"></div>
-            
+
             <!-- Login Form -->
             <form class="glass-form auth-form-content" id="login-form-content" style="display: block;" onsubmit="handleAuthSubmit(event, '/api/auth/login', '/profile')">
                 <div class="form-group" style="text-align: left; margin-bottom: 1rem;">
                     <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">${t.email}</label>
-                    <input class="form-input" id="login_email" required type="email" style="width: 100%;" />
+                    <input class="form-input" id="login_email" required type="email" style="width: 100%;" autocomplete="email" />
                 </div>
-                <div class="form-group" style="text-align: left; margin-bottom: 1rem;">
+                <div class="form-group" style="text-align: left; margin-bottom: 0.5rem;">
                     <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">${t.password}</label>
-                    <input class="form-input" id="login_password" required type="password" style="width: 100%;" />
+                    <input class="form-input" id="login_password" required type="password" style="width: 100%;" autocomplete="current-password" />
+                </div>
+                <div style="text-align: right; margin-bottom: 1rem;">
+                    <a href="/de/kontakt.html" style="font-size: 0.8rem; color: var(--text-muted); text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--primary-blue)'" onmouseout="this.style.color='var(--text-muted)'">${t.forgotPassword}</a>
                 </div>
                 <button class="glass-button ripple" style="width: 100%; padding: 12px; margin-top: 5px;" type="submit">${t.loginBtn}</button>
             </form>
-            
+
             <!-- Register Form -->
-            <form class="glass-form auth-form-content" id="register-form-content" style="display: none;" onsubmit="return handleAuthSubmit(event, '/api/auth/register', '/profile')">
+            <form class="glass-form auth-form-content" id="register-form-content" style="display: none;" onsubmit="return handleRegisterSubmit(event, '${t.pwMismatch}')">
+                <div class="form-group" style="text-align: left; margin-bottom: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">${t.name}</label>
+                    <input class="form-input" id="reg_name" required type="text" style="width: 100%;" autocomplete="name" />
+                </div>
                 <div class="form-group" style="text-align: left; margin-bottom: 1rem;">
                     <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">${t.email}</label>
-                    <input class="form-input" id="reg_email" required type="email" style="width: 100%;" />
+                    <input class="form-input" id="reg_email" required type="email" style="width: 100%;" autocomplete="email" />
                 </div>
                 <div class="form-group" style="text-align: left; margin-bottom: 1rem;">
                     <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">${t.password}</label>
-                    <input class="form-input" id="reg_password" required type="password" style="width: 100%;" />
+                    <input class="form-input" id="reg_password" required type="password" style="width: 100%;" autocomplete="new-password" minlength="8" />
+                </div>
+                <div class="form-group" style="text-align: left; margin-bottom: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">${t.confirmPassword}</label>
+                    <input class="form-input" id="reg_confirm" required type="password" style="width: 100%;" autocomplete="new-password" minlength="8" />
                 </div>
                 <button class="glass-button ripple" style="width: 100%; padding: 12px; margin-top: 5px;" type="submit">${t.regBtn}</button>
             </form>
-            
-            <div class="auth-separator">
-                <span>${t.or}</span>
-            </div>
-            
+
+            <div style="margin: 20px 0; border-top: 1px solid var(--glass-border);"></div>
+
             <div id="g_id_onload"
                  data-client_id="660480949703-vmvtk8kqp6ueb1o8k0tui860mjmdm0n6.apps.googleusercontent.com"
                  data-context="signin"
@@ -620,10 +644,57 @@ function getAuthFormHTML(lang) {
                  data-text="continue_with"
                  data-size="large"
                  data-logo_alignment="left"
-                 style="display: flex; justify-content: center; margin-top: 10px;">
+                 style="display: flex; justify-content: center;">
             </div>
         </div>
     `;
+}
+
+// Register Submit — validates confirm-password, then calls API
+async function handleRegisterSubmit(event, pwMismatchMsg) {
+    event.preventDefault();
+    const form = event.target;
+    const pw = document.getElementById('reg_password').value;
+    const confirm = document.getElementById('reg_confirm').value;
+    if (pw !== confirm) {
+        alert(pwMismatchMsg || 'Passwords do not match.');
+        return false;
+    }
+    const btn = form.querySelector('button[type="submit"]');
+    const originalText = btn.innerText;
+    btn.innerText = '...';
+    btn.disabled = true;
+    const name = document.getElementById('reg_name').value.trim();
+    const email = document.getElementById('reg_email').value.trim();
+    try {
+        const response = await fetch('/api/auth/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, email, password: pw })
+        });
+        const data = await response.json();
+        if (response.ok) {
+            btn.innerText = '✓';
+            if (data.token) {
+                localStorage.setItem('aBest_session', data.token);
+                window.location.href = '/profile';
+            } else {
+                alert('Registrierung erfolgreich. Bitte anmelden.');
+                btn.innerText = originalText;
+                btn.disabled = false;
+            }
+        } else {
+            alert(data.error || 'Registrierung fehlgeschlagen.');
+            btn.innerText = originalText;
+            btn.disabled = false;
+        }
+    } catch (err) {
+        console.error('Register error', err);
+        alert('Netzwerkfehler. Bitte erneut versuchen.');
+        btn.innerText = originalText;
+        btn.disabled = false;
+    }
+    return false;
 }
 
 // Auth Submit Logic
