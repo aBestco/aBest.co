@@ -649,6 +649,181 @@ async function confirmDeleteAccount() {
   alert('Please contact support@abest.co to complete account deletion.');
 }
 
+// ── File Upload & Role Selection ─────────────────────
+const FU_MAX = 50 * 1024 * 1024; // 50 MB
+const FU_EXT = /\.(pdf|doc|docx|ppt|pptx|xls|xlsx|jpg|jpeg|png|webp|zip|mp4|mov|txt)$/i;
+const _fuFiles = {};
+let _selectedRole = null;
+
+function fuSetup(roleKey) {
+  const area = document.getElementById('fua-' + roleKey);
+  const inp  = document.getElementById('fi-'  + roleKey);
+  if (!area || !inp) return;
+  area.addEventListener('dragover',  e => { e.preventDefault(); area.classList.add('drag-over'); });
+  area.addEventListener('dragleave', () => area.classList.remove('drag-over'));
+  area.addEventListener('drop', e => {
+    e.preventDefault();
+    area.classList.remove('drag-over');
+    const f = e.dataTransfer.files[0];
+    if (f) fuHandleFile(roleKey, f);
+  });
+  area.addEventListener('click', () => inp.click());
+  inp.addEventListener('change', () => { if (inp.files[0]) fuHandleFile(roleKey, inp.files[0]); });
+}
+
+function fuHandleFile(roleKey, file) {
+  const area   = document.getElementById('fua-' + roleKey);
+  const errEl  = area ? area.querySelector('.fu-error-text') : null;
+  const nameEl = area ? area.querySelector('.fu-name') : null;
+  const sizeEl = area ? area.querySelector('.fu-size') : null;
+  const hintEl = area ? area.querySelector('.fu-hint') : null;
+  const dragTx = area ? area.querySelector('.fu-drag-text') : null;
+  const remBtn = area ? area.querySelector('.fu-remove') : null;
+  if (area) area.classList.remove('has-file','upload-error');
+  if (errEl) { errEl.style.display='none'; errEl.textContent=''; }
+  if (!FU_EXT.test(file.name)) {
+    if (area) area.classList.add('upload-error');
+    if (errEl) { errEl.textContent = area ? (area.dataset.errType||'File type not allowed') : 'File type not allowed'; errEl.style.display='block'; }
+    return;
+  }
+  if (file.size > FU_MAX) {
+    if (area) area.classList.add('upload-error');
+    if (errEl) { errEl.textContent = area ? (area.dataset.errSize||'File too large (max 50 MB)') : 'File too large'; errEl.style.display='block'; }
+    return;
+  }
+  _fuFiles[roleKey] = file;
+  const mb = file.size < 1048576 ? (file.size/1024).toFixed(0)+' KB' : (file.size/1048576).toFixed(1)+' MB';
+  if (nameEl) { nameEl.textContent = file.name; nameEl.style.display='block'; }
+  if (sizeEl) { sizeEl.textContent = mb; sizeEl.style.display='block'; }
+  if (dragTx) dragTx.style.display='none';
+  if (hintEl) hintEl.style.display='none';
+  if (remBtn) remBtn.style.display='block';
+  if (area)   area.classList.add('has-file');
+}
+
+function fuRemove(roleKey) {
+  event.stopPropagation();
+  _fuFiles[roleKey] = null;
+  const area   = document.getElementById('fua-' + roleKey);
+  const inp    = document.getElementById('fi-'  + roleKey);
+  if (inp) inp.value = '';
+  if (area) {
+    area.classList.remove('has-file','upload-error');
+    const nameEl = area.querySelector('.fu-name');
+    const sizeEl = area.querySelector('.fu-size');
+    const hintEl = area.querySelector('.fu-hint');
+    const dragTx = area.querySelector('.fu-drag-text');
+    const remBtn = area.querySelector('.fu-remove');
+    const errEl  = area.querySelector('.fu-error-text');
+    if (nameEl) { nameEl.textContent=''; nameEl.style.display='none'; }
+    if (sizeEl) sizeEl.style.display='none';
+    if (dragTx) dragTx.style.display='block';
+    if (hintEl) hintEl.style.display='block';
+    if (remBtn) remBtn.style.display='none';
+    if (errEl)  errEl.style.display='none';
+  }
+}
+
+function selectRole(key) {
+  _selectedRole = key;
+  document.querySelectorAll('.role-card').forEach(c => c.classList.remove('selected'));
+  const card = document.getElementById('rc-' + key);
+  if (card) card.classList.add('selected');
+  document.querySelectorAll('.role-form').forEach(f => f.classList.remove('active'));
+  const form = document.getElementById('rf-' + key);
+  if (form) { form.classList.add('active'); setTimeout(()=>form.scrollIntoView({behavior:'smooth',block:'nearest'}),50); }
+}
+
+async function submitRoleForm(key) {
+  const titleEl = document.getElementById('r-' + key + '-title');
+  const descEl  = document.getElementById('r-' + key + '-desc');
+  const errEl   = document.getElementById('role-err-' + key);
+  const msgEl   = document.getElementById('rsm-' + key);
+  const btn     = document.querySelector('#rf-' + key + ' button.db-btn');
+  const progWrap = document.getElementById('fp-' + key);
+  const progBar  = document.getElementById('fpb-' + key);
+  const token   = localStorage.getItem('aBest_session');
+  if (!token) return;
+  if (errEl) errEl.style.display = 'none';
+  if (!titleEl || !titleEl.value.trim()) {
+    if (errEl) { errEl.textContent = 'Bitte geben Sie einen Titel ein.'; errEl.style.display='block'; } return;
+  }
+  if (!descEl || !descEl.value.trim()) {
+    if (errEl) { errEl.textContent = 'Bitte beschreiben Sie Ihr Vorhaben.'; errEl.style.display='block'; } return;
+  }
+  const origText = btn ? btn.textContent : '';
+  if (btn) { btn.disabled=true; btn.style.opacity='0.6'; }
+  if (progWrap) progWrap.style.display='block';
+  if (progBar)  progBar.style.width='10%';
+  const fd = new FormData();
+  fd.append('role', key);
+  fd.append('title', titleEl.value.trim());
+  fd.append('description', descEl.value.trim());
+  const file = _fuFiles[key];
+  if (file) fd.append('file', file);
+  try {
+    await new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', '/api/role');
+      xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+      xhr.upload.onprogress = e => {
+        if (e.lengthComputable && progBar) progBar.style.width = Math.min(90, e.loaded/e.total*90) + '%';
+      };
+      xhr.onload = () => { if(progBar) progBar.style.width='100%'; xhr.status<300 ? resolve() : reject(new Error(xhr.statusText)); };
+      xhr.onerror = () => reject(new Error('Network error'));
+      xhr.send(fd);
+    });
+    setTimeout(() => { if(progWrap) progWrap.style.display='none'; if(progBar) progBar.style.width='0%'; }, 1200);
+    if (msgEl) { msgEl.style.display='inline'; setTimeout(()=>{msgEl.style.display='none';},5000); }
+    const pill = document.getElementById('role-current-pill');
+    const pillName = document.getElementById('role-current-name');
+    if (pill && pillName) {
+      const rc = document.getElementById('rc-' + key);
+      pillName.textContent = rc ? rc.querySelector('.rc-title').textContent : key;
+      pill.style.display = 'inline-flex';
+    }
+  } catch(e) {
+    if (progWrap) progWrap.style.display='none';
+    if (errEl) { errEl.textContent='Fehler: '+e.message; errEl.style.display='block'; }
+  } finally {
+    if (btn) { btn.disabled=false; btn.style.opacity='1'; if(origText) btn.textContent=origText; }
+  }
+}
+
+async function loadRoleData() {
+  const token = localStorage.getItem('aBest_session');
+  if (!token) return;
+  try {
+    const res = await fetch('/api/role', { headers: {'Authorization':'Bearer '+token} });
+    if (!res.ok) return;
+    const data = await res.json();
+    if (!data || !data.role) return;
+    const pill = document.getElementById('role-current-pill');
+    const pillName = document.getElementById('role-current-name');
+    if (pill && pillName) {
+      const rc = document.getElementById('rc-' + data.role);
+      pillName.textContent = rc ? rc.querySelector('.rc-title').textContent : data.role;
+      pill.style.display = 'inline-flex';
+    }
+    selectRole(data.role);
+    const d = data.data || {};
+    const fill = (id, val) => { const el=document.getElementById(id); if(el&&val) el.value=val; };
+    fill('r-'+data.role+'-title', d.title);
+    fill('r-'+data.role+'-desc', d.description);
+    if (d.fileName) {
+      const nameEl = document.querySelector(`#fua-${data.role} .fu-name`);
+      const area   = document.getElementById('fua-'+data.role);
+      if (nameEl) { nameEl.textContent=d.fileName; nameEl.style.display='block'; }
+      if (area) area.classList.add('has-file');
+    }
+  } catch(e) {}
+}
+
+// Init drag-and-drop on DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+  ['founder','investor','capital','seller','explorer'].forEach(k => fuSetup(k));
+});
+
 </script>
 
 <script src="/app.js"></script>
