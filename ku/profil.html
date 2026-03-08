@@ -2264,6 +2264,8 @@ function slSelectMain(type) {
 }
 
 function slGoBack(toStep) {
+  // Destroy Leaflet map so it re-initialises cleanly for the next subcategory
+  if (_slMap) { try { _slMap.remove(); } catch(e) {} _slMap = null; _slMarker = null; }
   if (toStep === 1) {
     document.getElementById('sl-s2').style.display = 'none';
     document.getElementById('sl-s3').style.display = 'none';
