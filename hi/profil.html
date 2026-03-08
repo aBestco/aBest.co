@@ -109,6 +109,27 @@ body { background: #0a0a0f; }
 .db-delete-link { text-align: center; margin-top: 10px; }
 .db-delete-link a { color: rgba(255,255,255,0.2); font-size: 0.75rem; text-decoration: none; transition: color 0.3s; }
 .db-delete-link a:hover { color: #dc3545; }
+
+/* ── Role Selection Tab ─────────────────────────────── */
+.role-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 24px; }
+@media(max-width:560px){ .role-grid { grid-template-columns: repeat(2,1fr); } }
+@media(max-width:360px){ .role-grid { grid-template-columns: 1fr; } }
+.role-card { padding: 18px 14px; background: rgba(255,255,255,0.03); border: 1.5px solid rgba(255,255,255,0.09); border-radius: 16px; cursor: pointer; transition: all 0.22s; text-align: center; user-select: none; }
+.role-card:hover { background: rgba(0,122,255,0.07); border-color: rgba(0,122,255,0.3); }
+.role-card.selected { background: rgba(0,122,255,0.12); border-color: rgba(0,122,255,0.55); box-shadow: 0 0 0 3px rgba(0,122,255,0.15); }
+.role-card .rc-icon { font-size: 2rem; margin-bottom: 8px; display: block; }
+.role-card .rc-title { font-size: 0.88rem; font-weight: 700; color: var(--text-main); margin: 0 0 3px; line-height: 1.2; }
+.role-card .rc-tag { font-size: 0.72rem; color: var(--primary-blue); font-weight: 600; margin: 0 0 6px; }
+.role-card .rc-desc { font-size: 0.72rem; color: var(--text-muted); line-height: 1.4; margin: 0; }
+.role-card.selected .rc-title { color: var(--primary-blue); }
+.role-form { display: none; background: rgba(0,122,255,0.04); border: 1px solid rgba(0,122,255,0.15); border-radius: 14px; padding: 20px; margin-bottom: 16px; }
+.role-form.active { display: block; }
+.role-form h4 { font-size: 0.9rem; font-weight: 700; color: var(--text-main); margin: 0 0 4px; }
+.role-form p { font-size: 0.78rem; color: var(--text-muted); margin: 0 0 16px; }
+.role-form select { appearance: none; cursor: pointer; }
+.role-form select option { background: #1a1a2e; color: #fff; }
+.role-current { display: inline-flex; align-items: center; gap: 8px; font-size: 0.8rem; color: var(--text-muted); background: rgba(0,122,255,0.08); border: 1px solid rgba(0,122,255,0.2); border-radius: 20px; padding: 4px 12px; margin-bottom: 16px; }
+.role-current strong { color: var(--primary-blue); }
 </style>
 </head>
 <body class="dark-mode">
@@ -148,6 +169,7 @@ body { background: #0a0a0f; }
     <button class="db-tab active" onclick="switchTab('profil',this)">👤 प्रोफ़ाइल</button>
     <button class="db-tab" onclick="switchTab('messages',this)">💬 संदेश</button>
     <button class="db-tab" onclick="switchTab('team',this)">👥 टीम</button>
+    <button class="db-tab" onclick="switchTab('role',this)">🎯 My Role</button>
     <button class="db-tab" onclick="switchTab('settings',this)">⚙️ सेटिंग्स</button>
   </div>
 
@@ -238,6 +260,108 @@ body { background: #0a0a0f; }
     </div>
   </div>
 
+
+  <!-- ── TAB: ROLLE ──────────────────────────── -->
+  <div class="db-panel fade-in-up" id="panel-role" style="animation-delay:0.2s;">
+    <div class="glass-panel" style="padding:24px;">
+      <div class="db-section-header">
+        <h3>Select Your Role</h3>
+        <p>Your choice determines what information you can submit</p>
+      </div>
+
+      <!-- Current saved role pill -->
+      <div class="role-current" id="role-current-pill" style="display:none;">
+        Current role: <strong id="role-current-name">—</strong>
+      </div>
+
+      <!-- Role cards grid -->
+      <div class="role-grid">
+        
+    <div class="role-card" id="rc-founder" onclick="selectRole('founder')">
+      <span class="rc-icon">🚀</span>
+      <h3 class="rc-title">Founder</h3>
+      <p class="rc-tag">Submit your Idea</p>
+      <p class="rc-desc">For individuals with a business idea looking for partners or investors to develop it.</p>
+    </div>
+    <div class="role-card" id="rc-investor" onclick="selectRole('investor')">
+      <span class="rc-icon">💰</span>
+      <h3 class="rc-title">Investor</h3>
+      <p class="rc-tag">Invest with Us</p>
+      <p class="rc-desc">For users who want to actively invest in projects, businesses, or opportunities.</p>
+    </div>
+    <div class="role-card" id="rc-capital" onclick="selectRole('capital')">
+      <span class="rc-icon">🏦</span>
+      <h3 class="rc-title">Capital Partner</h3>
+      <p class="rc-tag">Provide Capital</p>
+      <p class="rc-desc">For individuals or institutions who want to provide capital without being involved in daily operations.</p>
+    </div>
+    <div class="role-card" id="rc-seller" onclick="selectRole('seller')">
+      <span class="rc-icon">🏠</span>
+      <h3 class="rc-title">Seller</h3>
+      <p class="rc-tag">Sell Property or Business</p>
+      <p class="rc-desc">For users who want to sell land, real estate, or an existing business.</p>
+    </div>
+    <div class="role-card" id="rc-explorer" onclick="selectRole('explorer')">
+      <span class="rc-icon">🔍</span>
+      <h3 class="rc-title">Explorer</h3>
+      <p class="rc-tag">Discover Opportunities</p>
+      <p class="rc-desc">For users who want to explore projects and investment opportunities before taking further steps.</p>
+    </div>
+      </div>
+
+      <!-- Per-role forms -->
+      
+  <div class="role-form" id="rf-founder">
+    <h4>🚀 Founder</h4>
+    <p>For individuals with a business idea looking for partners or investors to develop it.</p>
+    <div class="db-field"><label>Project Name / Idea</label><input id="r-f-name" type="text" placeholder="Project Name / Idea"/></div>
+    <div class="db-field"><label>Describe your idea</label><textarea id="r-f-desc" placeholder="Please describe..." rows="3" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:11px 14px;color:var(--text-main);font-size:0.9rem;font-family:inherit;outline:none;box-sizing:border-box;resize:vertical;"></textarea></div>
+    <div class="db-field"><label>Industry</label><input id="r-f-industry" type="text" placeholder="e.g. Real Estate, Tech, Energy"/></div>
+    <div class="db-field"><label>Investment Needed (€)</label><input id="r-f-invest" type="text" placeholder="e.g. 50,000"/></div>
+    <div class="db-field"><label>Looking for</label><select id="r-f-looking"><option value="Partner">Partner</option><option value="Investor">Investor</option><option value="Both">Both</option></select></div>
+  </div>
+      
+  <div class="role-form" id="rf-investor">
+    <h4>💰 Investor</h4>
+    <p>For users who want to actively invest in projects, businesses, or opportunities.</p>
+    <div class="db-field"><label>Investment Budget (€)</label><input id="r-i-budget" type="text" placeholder="e.g. 50,000"/></div>
+    <div class="db-field"><label>Preferred Industries</label><input id="r-i-industries" type="text" placeholder="e.g. Real Estate, Tech, Energy"/></div>
+    <div class="db-field"><label>Investment Type</label><select id="r-i-type"><option value="Equity">Equity</option><option value="Loan / Debt">Loan / Debt</option><option value="Both">Both</option></select></div>
+    <div class="db-field"><label>Timeline</label><select id="r-i-timeline"><option value="< 1 Year">< 1 Year</option><option value="1–3 Years">1–3 Years</option><option value="3–5 Years">3–5 Years</option><option value="5+ Years">5+ Years</option></select></div>
+  </div>
+      
+  <div class="role-form" id="rf-capital">
+    <h4>🏦 Capital Partner</h4>
+    <p>For individuals or institutions who want to provide capital without being involved in daily operations.</p>
+    <div class="db-field"><label>Available Capital (€)</label><input id="r-c-capital" type="text" placeholder="e.g. 50,000"/></div>
+    <div class="db-field"><label>Preferred Structure</label><select id="r-c-structure"><option value="Silent Partner">Silent Partner</option><option value="Loan">Loan</option><option value="Equity">Equity</option><option value="Flexible">Flexible</option></select></div>
+    <div class="db-field"><label>Geographic Focus</label><input id="r-c-region" type="text" placeholder="e.g. Germany, EU, Global"/></div>
+  </div>
+      
+  <div class="role-form" id="rf-seller">
+    <h4>🏠 Seller</h4>
+    <p>For users who want to sell land, real estate, or an existing business.</p>
+    <div class="db-field"><label>Type of Listing</label><select id="r-s-type"><option value="Real Estate">Real Estate</option><option value="Business">Business</option><option value="Land">Land</option><option value="Other">Other</option></select></div>
+    <div class="db-field"><label>Location</label><input id="r-s-location" type="text" placeholder="e.g. Berlin, Istanbul"/></div>
+    <div class="db-field"><label>Asking Price (€)</label><input id="r-s-price" type="text" placeholder="e.g. 50,000"/></div>
+    <div class="db-field"><label>Brief description of the listing</label><textarea id="r-s-desc" placeholder="Please describe..." rows="3" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:11px 14px;color:var(--text-main);font-size:0.9rem;font-family:inherit;outline:none;box-sizing:border-box;resize:vertical;"></textarea></div>
+  </div>
+      
+  <div class="role-form" id="rf-explorer">
+    <h4>🔍 Explorer</h4>
+    <p>For users who want to explore projects and investment opportunities before taking further steps.</p>
+    <div class="db-field"><label>Areas of Interest</label><textarea id="r-e-interests" placeholder="e.g. Real Estate, Tech, Energy" rows="3" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:11px 14px;color:var(--text-main);font-size:0.9rem;font-family:inherit;outline:none;box-sizing:border-box;resize:vertical;"></textarea></div>
+    <div class="db-field"><label>Available Budget (€)</label><input id="r-e-budget" type="text" placeholder="e.g. 50,000"/></div>
+    <div class="db-field"><label>Looking for</label><select id="r-e-looking"><option value="Partnerships">Partnerships</option><option value="Investments">Investments</option><option value="Projects">Projects</option><option value="Everything">Everything</option></select></div>
+  </div>
+
+      <!-- Save button -->
+      <button class="db-btn db-btn-primary" id="role-save-btn" style="display:none;" onclick="saveRoleData()">
+        Save Information
+      </button>
+    </div>
+  </div>
+
   <!-- ── TAB: SETTINGS ──────────────────── -->
   <div class="db-panel fade-in-up" id="panel-settings" style="animation-delay:0.2s;">
     <div class="settings-card">
@@ -298,6 +422,7 @@ function switchTab(name, btn) {
   btn.classList.add('active');
   if (name === 'messages') loadMessages();
   if (name === 'team') loadTeamMembers();
+  if (name === 'role') loadRoleData();
 }
 
 // ── Profile save ──────────────────────────────────────

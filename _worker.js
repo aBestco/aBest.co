@@ -93,6 +93,10 @@ export default {
             return handleAuthApi(request, env);
         }
 
+        if (pathname.startsWith('/api/role')) {
+            return handleRoleApi(request, env);
+        }
+
         if (pathname.startsWith('/api/team')) {
             return handleTeamApi(request, env);
         }
@@ -713,6 +717,58 @@ async function handleTeamApi(request, env) {
                 }
             }
             return new Response(JSON.stringify({ success: true }), { headers: { 'Content-Type': 'application/json', ...corsHeaders } });
+        }
+
+        return new Response('Method Not Allowed', { status: 405, headers: corsHeaders });
+    } catch (err) {
+        return new Response(JSON.stringify({ error: err.message }), {
+            status: 500, headers: { 'Content-Type': 'application/json', ...corsHeaders }
+        });
+    }
+}
+
+// --- ROLE DATA API HANDLER ---
+async function handleRoleApi(request, env) {
+    const method = request.method;
+    const corsHeaders = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    };
+    if (method === 'OPTIONS') return new Response(null, { headers: corsHeaders });
+
+    try {
+        const userEmail = await checkAuth(request, env);
+        if (!userEmail) return unauthorizedResponse();
+
+        if (method === 'GET') {
+            const raw = await env.ABEST_AUTH.get(`role_data:${userEmail}`);
+            return new Response(raw || 'null', {
+                headers: { 'Content-Type': 'application/json', ...corsHeaders }
+            });
+        }
+
+        if (method === 'POST') {
+            const body = await request.json();
+            const { role, data } = body;
+            const VALID_ROLES = ['founder', 'investor', 'capital', 'seller', 'explorer'];
+            if (!role || !VALID_ROLES.includes(role)) {
+                return new Response(JSON.stringify({ error: 'Invalid role' }), { status: 400, headers: corsHeaders });
+            }
+            const entry = { role, data: data || {}, email: userEmail, updatedAt: new Date().toISOString() };
+            await env.ABEST_AUTH.put(`role_data:${userEmail}`, JSON.stringify(entry));
+
+            // Also tag the profile with the interest role for admin overview
+            if (env.ABEST_AUTH) {
+                const profileStr = await env.ABEST_AUTH.get(`profile:${userEmail}`);
+                const profile = profileStr ? JSON.parse(profileStr) : { email: userEmail };
+                profile.interestRole = role;
+                await env.ABEST_AUTH.put(`profile:${userEmail}`, JSON.stringify(profile));
+            }
+
+            return new Response(JSON.stringify({ success: true }), {
+                headers: { 'Content-Type': 'application/json', ...corsHeaders }
+            });
         }
 
         return new Response('Method Not Allowed', { status: 405, headers: corsHeaders });
