@@ -57,9 +57,9 @@ CONTENT = {
 }
 
 def update_index(lang):
-    file_path = os.path.join(BASE_DIR, lang, "index.html")
+    file_path = os.path.join(BASE_DIR, lang, "ideen.html")
     if lang == "": # Root index
-        file_path = os.path.join(BASE_DIR, "index.html")
+        file_path = os.path.join(BASE_DIR, "ideen.html")
         lang = "en"
     
     if not os.path.exists(file_path):
@@ -247,7 +247,7 @@ def update_index(lang):
 
     with open(file_path, 'w', encoding='utf-8') as f:
         f.write(content)
-    print(f"Updated {lang} index.html")
+    print(f"Updated {lang} ideen.html")
 
 # Run updates
 update_index("") # Root
