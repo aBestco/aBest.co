@@ -1053,8 +1053,7 @@ body { background: #0a0a0f; }
           <div class="sl-main-icon">🏘️</div>
           <h4>房地产</h4><p>土地、房屋、公寓 &amp; 商业</p>
         </div>
-          <h4>企业</h4><p>出售公司、寻找合伙人或投资者</p>
-        </div>
+
       </div>
     </div>
     <!-- STEP 2: Subcategory -->
@@ -1518,6 +1517,10 @@ function selectRole(key, _noPush) {
     const _rSlug = _roleSlugMap[key] || key;
     const _base = (window.location.pathname.match(/^(\/[a-z]{2}\/profil[e]?|\/profil[e]?)/) || [])[1] || '/profile';
     history.pushState({tab:'role', role:key}, '', _base + '/my-role/' + _rSlug);
+  }
+  // Auto-skip step 1 for seller (only Real Estate remains, no choice needed)
+  if (key === 'seller') {
+    setTimeout(function() { slSelectMain('realestate'); }, 30);
   }
 }
 
