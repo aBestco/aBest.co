@@ -12,19 +12,19 @@
 <style>
 /* ── Dashboard Layout ──────────────────────────────────── */
 body { background: #0a0a0f; }
-.db-wrapper { min-height: 100vh; padding: 80px 16px 40px; max-width: 700px; margin: 0 auto; }
+.db-wrapper { min-height: 100vh; padding: 66px 16px 16px; max-width: 700px; margin: 0 auto; }
 
 /* Hero card */
-.db-hero { display: flex; align-items: center; gap: 20px; padding: 24px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10); border-radius: 20px; margin-bottom: 20px; }
-.db-avatar { width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg,rgba(0,122,255,0.4),rgba(0,200,150,0.25)); border: 2px solid rgba(0,122,255,0.5); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; font-weight: 700; color: #fff; flex-shrink: 0; }
-.db-hero-info h2 { font-size: 1.1rem; font-weight: 600; color: var(--text-main); margin: 0 0 4px; }
+.db-hero { display: flex; align-items: center; gap: 14px; padding: 16px 18px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10); border-radius: 16px; margin-bottom: 12px; }
+.db-avatar { width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg,rgba(0,122,255,0.4),rgba(0,200,150,0.25)); border: 2px solid rgba(0,122,255,0.5); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 700; color: #fff; flex-shrink: 0; }
+.db-hero-info h2 { font-size: 1rem; font-weight: 600; color: var(--text-main); margin: 0 0 2px; }
 .db-hero-info p { font-size: 0.82rem; color: var(--text-muted); margin: 0 0 8px; }
 .db-badge { display: inline-block; font-size: 0.7rem; font-weight: 600; padding: 3px 10px; border-radius: 20px; background: rgba(0,122,255,0.15); border: 1px solid rgba(0,122,255,0.35); color: var(--primary-blue); text-transform: uppercase; letter-spacing: 0.06em; }
 .db-badge.admin { background: rgba(255,165,0,0.15); border-color: rgba(255,165,0,0.4); color: #ffaa00; }
 
 /* Tab Nav */
-.db-tabs { display: flex; gap: 5px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09); border-radius: 14px; padding: 5px; margin-bottom: 16px; }
-.db-tab { flex: 1; padding: 10px 6px; background: transparent; border: none; border-radius: 10px; color: var(--text-muted); font-size: 0.78rem; font-weight: 500; cursor: pointer; transition: all 0.2s; white-space: nowrap; font-family: inherit; }
+.db-tabs { display: flex; gap: 4px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09); border-radius: 12px; padding: 4px; margin-bottom: 12px; }
+.db-tab { flex: 1; padding: 8px 5px; background: transparent; border: none; border-radius: 10px; color: var(--text-muted); font-size: 0.78rem; font-weight: 500; cursor: pointer; transition: all 0.2s; white-space: nowrap; font-family: inherit; }
 .db-tab.active { background: rgba(0,122,255,0.15); border: 1px solid rgba(0,122,255,0.3); color: var(--primary-blue); }
 .db-tab:hover:not(.active) { background: rgba(255,255,255,0.06); color: var(--text-main); }
 
@@ -33,7 +33,7 @@ body { background: #0a0a0f; }
 .db-panel.active { display: block; }
 
 /* Section header */
-.db-section-header { margin-bottom: 20px; }
+.db-section-header { margin-bottom: 12px; }
 .db-section-header h3 { font-size: 1rem; font-weight: 600; color: var(--text-main); margin: 0 0 4px; }
 .db-section-header p { font-size: 0.8rem; color: var(--text-muted); margin: 0; }
 
@@ -67,13 +67,13 @@ body { background: #0a0a0f; }
 .msg-input-row button { padding: 11px 20px; background: rgba(0,122,255,0.2); border: 1px solid rgba(0,122,255,0.4); color: var(--primary-blue); border-radius: 10px; font-size: 0.88rem; font-weight: 600; cursor: pointer; font-family: inherit; white-space: nowrap; }
 
 /* Settings */
-.settings-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.09); border-radius: 14px; padding: 20px; margin-bottom: 14px; }
+.settings-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.09); border-radius: 14px; padding: 16px; margin-bottom: 10px; }
 .settings-card h4 { font-size: 0.88rem; font-weight: 600; color: var(--text-main); margin: 0 0 14px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.07); }
 .danger-card { border-color: rgba(220,53,69,0.25); background: rgba(220,53,69,0.05); }
 .danger-card h4 { color: #dc3545; }
 
 /* Team tab */
-.team-add-form { background: rgba(0,122,255,0.05); border: 1px solid rgba(0,122,255,0.15); border-radius: 14px; padding: 18px; margin-bottom: 20px; }
+.team-add-form { background: rgba(0,122,255,0.05); border: 1px solid rgba(0,122,255,0.15); border-radius: 14px; padding: 16px; margin-bottom: 14px; }
 .team-add-form h4 { font-size: 0.88rem; font-weight: 600; color: var(--text-main); margin: 0 0 14px; }
 .team-add-row { display: flex; gap: 10px; flex-wrap: wrap; }
 .team-add-row .db-field { flex: 1; min-width: 160px; margin-bottom: 10px; }
@@ -95,7 +95,7 @@ body { background: #0a0a0f; }
 .team-empty { text-align: center; padding: 30px; color: var(--text-muted); font-size: 0.85rem; border: 1px dashed rgba(255,255,255,0.12); border-radius: 12px; }
 
 /* Logout */
-.db-logout { text-align: center; margin-top: 28px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.07); }
+.db-logout { text-align: center; }
 .db-logout a { color: var(--text-muted); font-size: 0.85rem; text-decoration: none; padding: 6px 16px; border-radius: 8px; transition: all 0.2s; }
 .db-logout a:hover { color: #dc3545; background: rgba(220,53,69,0.08); }
 
@@ -111,7 +111,7 @@ body { background: #0a0a0f; }
 .db-delete-link a:hover { color: #dc3545; }
 
 /* ── Role Selection Tab ─────────────────────────────── */
-.role-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 24px; }
+.role-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 16px; }
 @media(max-width:560px){ .role-grid { grid-template-columns: repeat(2,1fr); } }
 @media(max-width:360px){ .role-grid { grid-template-columns: 1fr; } }
 .role-card { padding: 18px 14px; background: rgba(255,255,255,0.03); border: 1.5px solid rgba(255,255,255,0.09); border-radius: 16px; cursor: pointer; transition: all 0.22s; text-align: center; user-select: none; }
@@ -1053,17 +1053,16 @@ body { background: #0a0a0f; }
       <div class="db-field" style="margin-bottom:0;"><label>Confirm New Password</label><input type="password" id="pw-confirm" autocomplete="new-password"/></div>
       <button class="db-btn db-btn-primary" style="margin-top:16px;" onclick="changePassword()">Update Password</button>
     </div>
+    
+    <div class="settings-card danger-card" style="margin-top:6px;">
+      <h4>Sign Out</h4>
+      <button class="db-btn db-btn-danger" onclick="logout()">⎋ Sign Out</button>
     </div>
 
-  <!-- Logout -->
-  <div class="db-logout">
-    <a href="#" onclick="logout();return false;">⎋ Sign Out</a>
-  </div>
-
-
-  <!-- Delete account (hidden small link) -->
-  <div class="db-delete-link">
-    <a href="#" onclick="confirmDeleteAccount();return false;">Delete Account</a>
+    <div class="db-delete-link">
+      <a href="#" onclick="confirmDeleteAccount();return false;">Delete Account</a>
+    </div>
+    <!-- db-logout-settings-added -->
   </div>
 
 </div><!-- /db-wrapper -->
