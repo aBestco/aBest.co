@@ -458,6 +458,93 @@ body { background: #0a0a0f; }
 .cp-hist-amt.neg { color:#ff9500; }
 .cp-hist-amt.neu { color:var(--primary-blue); }
 .cp-hist-empty { font-size:0.8rem; color:var(--text-muted); text-align:center; padding:18px 0; }
+
+/* ═══════════════════════════════ MyWallet ═══════════════════════════════════ */
+#cp-mywallet { display:none; }
+
+.mw-header { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-bottom:22px; }
+.mw-header-left { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+.mw-title { font-size:1.65rem; font-weight:800; letter-spacing:-0.5px; background:linear-gradient(135deg,#fff 30%,rgba(0,122,255,0.85)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin:0; }
+.mw-cp-badge { background:rgba(0,122,255,0.18); border:1px solid rgba(0,122,255,0.35); color:#60b0ff; font-size:0.72rem; font-weight:600; padding:4px 10px; border-radius:20px; letter-spacing:0.5px; text-transform:uppercase; }
+.mw-new-btn { background:linear-gradient(135deg,#007aff,#0055cc); color:#fff; border:none; border-radius:10px; padding:9px 18px; font-size:0.85rem; font-weight:600; cursor:pointer; transition:opacity 0.2s,transform 0.15s; }
+.mw-new-btn:hover { opacity:0.88; transform:translateY(-1px); }
+
+/* KPI grid */
+.mw-kpi-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:10px; margin-bottom:16px; }
+.mw-kpi { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:14px 16px; }
+.mw-kpi-label { font-size:0.7rem; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:0.4px; margin-bottom:6px; line-height:1.3; }
+.mw-kpi-value { font-size:1.15rem; font-weight:700; color:#fff; white-space:nowrap; }
+.mw-kpi.green { border-color:rgba(52,199,89,0.25); }
+.mw-kpi.green .mw-kpi-value { color:#34c759; }
+.mw-kpi.blue { border-color:rgba(0,122,255,0.25); }
+.mw-kpi.blue .mw-kpi-value { color:#60b0ff; }
+.mw-kpi.gold { border-color:rgba(255,214,10,0.25); }
+.mw-kpi.gold .mw-kpi-value { color:#ffd60a; font-size:0.95rem; }
+
+/* Wallet balance bar */
+.mw-wallet-bar { background:linear-gradient(135deg,rgba(0,122,255,0.12),rgba(0,40,100,0.25)); border:1px solid rgba(0,122,255,0.3); border-radius:16px; padding:18px 20px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px; margin-bottom:20px; }
+.mw-wallet-left { display:flex; align-items:center; gap:14px; }
+.mw-wallet-icon { font-size:2rem; }
+.mw-wallet-label { font-size:0.75rem; color:rgba(255,255,255,0.55); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:2px; }
+.mw-wallet-amount { font-size:1.55rem; font-weight:800; color:#fff; }
+.mw-wallet-avail { font-size:0.72rem; color:rgba(255,255,255,0.4); margin-top:1px; }
+.mw-wallet-actions { display:flex; gap:10px; flex-wrap:wrap; }
+.mw-btn { border:none; border-radius:10px; padding:9px 18px; font-size:0.84rem; font-weight:600; cursor:pointer; transition:all 0.2s; }
+.mw-btn-pri { background:linear-gradient(135deg,#007aff,#0055cc); color:#fff; }
+.mw-btn-pri:hover { opacity:0.88; transform:translateY(-1px); }
+.mw-btn-sec { background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.18); color:#fff; }
+.mw-btn-sec:hover { background:rgba(255,255,255,0.16); }
+
+/* Tabs */
+.mw-tabs { display:flex; gap:4px; margin-bottom:16px; border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:0; }
+.mw-tab { background:none; border:none; border-bottom:2px solid transparent; color:rgba(255,255,255,0.45); font-size:0.83rem; font-weight:500; padding:8px 14px; cursor:pointer; margin-bottom:-1px; transition:all 0.2s; white-space:nowrap; }
+.mw-tab:hover { color:rgba(255,255,255,0.75); }
+.mw-tab.mw-tab-on { color:#fff; border-bottom-color:#007aff; font-weight:600; }
+.mw-pane { }
+
+/* Investment cards */
+.mw-inv-card { background:rgba(255,255,255,0.035); border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:16px 18px; margin-bottom:10px; }
+.mw-inv-card:last-child { margin-bottom:0; }
+.mw-inv-card.mw-pending { border-color:rgba(255,214,10,0.2); }
+.mw-inv-card.mw-approved { border-color:rgba(52,199,89,0.2); }
+.mw-inv-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; flex-wrap:wrap; gap:8px; }
+.mw-inv-id { font-size:0.78rem; color:rgba(255,255,255,0.4); font-family:monospace; }
+.mw-inv-status { font-size:0.7rem; font-weight:700; padding:3px 10px; border-radius:20px; text-transform:uppercase; letter-spacing:0.4px; }
+.mw-inv-status.pending { background:rgba(255,214,10,0.15); color:#ffd60a; border:1px solid rgba(255,214,10,0.3); }
+.mw-inv-status.active { background:rgba(52,199,89,0.15); color:#34c759; border:1px solid rgba(52,199,89,0.3); }
+.mw-inv-status.completed { background:rgba(255,255,255,0.08); color:rgba(255,255,255,0.55); border:1px solid rgba(255,255,255,0.15); }
+.mw-inv-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:8px; margin-bottom:12px; }
+.mw-inv-field { }
+.mw-inv-field-lbl { font-size:0.67rem; color:rgba(255,255,255,0.38); text-transform:uppercase; letter-spacing:0.3px; margin-bottom:2px; }
+.mw-inv-field-val { font-size:0.88rem; font-weight:600; color:#fff; }
+.mw-inv-field-val.green { color:#34c759; }
+.mw-inv-field-val.blue { color:#60b0ff; }
+.mw-inv-field-val.gold { color:#ffd60a; }
+/* Progress bar */
+.mw-progress-row { display:flex; align-items:center; gap:10px; }
+.mw-progress-track { flex:1; height:5px; background:rgba(255,255,255,0.08); border-radius:3px; overflow:hidden; }
+.mw-progress-fill { height:100%; border-radius:3px; background:linear-gradient(90deg,#007aff,#34c759); transition:width 0.6s ease; }
+.mw-progress-pct { font-size:0.72rem; color:rgba(255,255,255,0.45); min-width:32px; text-align:right; }
+.mw-inv-pending-info { font-size:0.76rem; color:rgba(255,214,10,0.75); margin-top:6px; padding:6px 10px; background:rgba(255,214,10,0.06); border-radius:8px; border-left:3px solid rgba(255,214,10,0.4); }
+
+/* Transaction history */
+.mw-tx-item { display:flex; align-items:center; justify-content:space-between; padding:11px 0; border-bottom:1px solid rgba(255,255,255,0.05); gap:10px; }
+.mw-tx-item:last-child { border-bottom:none; }
+.mw-tx-left { display:flex; align-items:center; gap:10px; }
+.mw-tx-icon { width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0; }
+.mw-tx-icon.deposit { background:rgba(0,122,255,0.15); }
+.mw-tx-icon.interest { background:rgba(52,199,89,0.15); }
+.mw-tx-icon.withdrawal { background:rgba(255,69,58,0.15); }
+.mw-tx-desc { font-size:0.84rem; font-weight:500; color:#fff; }
+.mw-tx-date { font-size:0.72rem; color:rgba(255,255,255,0.38); margin-top:1px; }
+.mw-tx-amount { font-size:0.92rem; font-weight:700; white-space:nowrap; }
+.mw-tx-amount.plus { color:#34c759; }
+.mw-tx-amount.minus { color:#ff453a; }
+.mw-tx-amount.neutral { color:rgba(255,255,255,0.6); }
+.mw-empty { text-align:center; color:rgba(255,255,255,0.35); font-size:0.85rem; padding:32px 0; }
+.mw-completed-note { font-size:0.75rem; color:rgba(255,255,255,0.3); text-align:center; padding:12px; border-top:1px solid rgba(255,255,255,0.06); margin-top:12px; }
+/* ══════════════════════════════════════════════════════════════════════════════ */
+
 </style>
 </head>
 <body class="dark-mode">
@@ -825,52 +912,66 @@ body { background: #0a0a0f; }
 
     <!-- ══════════════════ CONFIRMATION MODAL ══════════════════ -->
     <!-- ══════════════════════ DASHBOARD (post-approval) ══════════════════════ -->
-    <div id="cp-dashboard" style="display:none;">
+        <div id="cp-mywallet" style="display:none;">
 
-      <!-- Portfolio totals -->
-      <div class="cp-dash-section">
-        <span class="cp-dash-title">📁 Portfolio Overview</span>
-        <div class="cp-cards-grid">
-          <div class="cp-card"><span class="cp-card-label">Total Invested</span><span class="cp-card-value" id="dash-invested">–</span></div>
-          <div class="cp-card cp-card-green"><span class="cp-card-label">Total Earned Interest</span><span class="cp-card-value" id="dash-earned">–</span></div>
-          <div class="cp-card cp-card-blue"><span class="cp-card-label">Portfolio Value</span><span class="cp-card-value" id="dash-portfolio">–</span></div>
-          <div class="cp-card"><span class="cp-card-label">Active Deposits</span><span class="cp-card-value" id="dash-active-count">–</span></div>
+      <!-- Header -->
+      <div class="mw-header">
+        <div class="mw-header-left">
+          <h2 class="mw-title">MyWallet</h2>
+          <span class="mw-cp-badge">Capital Partner</span>
+        </div>
+        <button class="mw-new-btn" onclick="mwShowNewDeposit()">+ New Deposit</button>
+      </div>
+
+      <!-- KPI Cards -->
+      <div class="mw-kpi-grid">
+        <div class="mw-kpi"><div class="mw-kpi-label">Total Invested Capital</div><div class="mw-kpi-value" id="mw-total-invested">–</div></div>
+        <div class="mw-kpi green"><div class="mw-kpi-label">Total Interest Earned</div><div class="mw-kpi-value" id="mw-total-earned">–</div></div>
+        <div class="mw-kpi blue"><div class="mw-kpi-label">Monthly Interest</div><div class="mw-kpi-value" id="mw-monthly">–</div></div>
+        <div class="mw-kpi"><div class="mw-kpi-label">Active Investments</div><div class="mw-kpi-value" id="mw-count">–</div></div>
+        <div class="mw-kpi gold"><div class="mw-kpi-label">Next Payment</div><div class="mw-kpi-value" id="mw-next-payment">–</div></div>
+      </div>
+
+      <!-- Wallet Balance Bar -->
+      <div class="mw-wallet-bar">
+        <div class="mw-wallet-left">
+          <span class="mw-wallet-icon">💰</span>
+          <div>
+            <div class="mw-wallet-label">Wallet Balance</div>
+            <div class="mw-wallet-amount" id="mw-wallet-balance">–</div>
+            <div class="mw-wallet-avail" id="mw-wallet-avail">available</div>
+          </div>
+        </div>
+        <div class="mw-wallet-actions">
+          <button class="mw-btn mw-btn-sec" onclick="cpRequestPayout('interest')">Withdraw</button>
+          <button class="mw-btn mw-btn-pri" onclick="mwShowNewDeposit()">Reinvest</button>
         </div>
       </div>
 
-      <!-- Individual deposits list -->
-      <div class="cp-dash-section">
-        <span class="cp-dash-title">💰 My Deposits</span>
-        <div id="cp-deposits-list"></div>
+      <!-- Tabs -->
+      <div class="mw-tabs">
+        <button class="mw-tab mw-tab-on" id="mw-tab-btn-active" onclick="mwTab('active')">Active Investments</button>
+        <button class="mw-tab" id="mw-tab-btn-completed" onclick="mwTab('completed')">Completed</button>
+        <button class="mw-tab" id="mw-tab-btn-history" onclick="mwTab('history')">Transaction History</button>
       </div>
 
-      <!-- Chart -->
-      <div class="cp-dash-section">
-        <span class="cp-dash-title">📈 Capital Growth</span>
-        <div class="cp-chart-wrap"><canvas id="cp-chart" width="560" height="240"></canvas></div>
-        <div class="cp-chart-legend">
-          <span class="cp-leg-item cp-leg-blue">Capital Value</span>
-          <span class="cp-leg-item cp-leg-green">Interest</span>
-        </div>
+      <!-- Pane: Active Investments -->
+      <div id="mw-pane-active" class="mw-pane">
+        <div id="mw-active-list"></div>
       </div>
 
-      <!-- Payout -->
-      <div class="cp-dash-section" id="dash-payout-section">
-        <span class="cp-dash-title">💸 Request Payout</span>
-        <span class="cp-dash-sub">For approved Option B (Payout) deposits</span>
-        <div class="cp-payout-btns">
-          <button class="cp-payout-btn" onclick="cpRequestPayout('interest')">Withdraw Interest</button>
-          <button class="cp-payout-btn cp-payout-sec" onclick="cpRequestPayout('balance')">Withdraw Balance</button>
-        </div>
-        <div class="cp-payout-msg" id="dash-payout-msg"></div>
+      <!-- Pane: Completed -->
+      <div id="mw-pane-completed" class="mw-pane" style="display:none;">
+        <div id="mw-completed-list"></div>
+        <p class="mw-completed-note">Completed investments are stored for up to 10 years and are automatically removed afterwards.</p>
       </div>
 
-      <!-- History -->
-      <div class="cp-dash-section">
-        <span class="cp-dash-title">📋 Transaction History</span>
-        <div id="dash-history"></div>
+      <!-- Pane: Transaction History -->
+      <div id="mw-pane-history" class="mw-pane" style="display:none;">
+        <div id="mw-history-list"></div>
       </div>
-    </div>
+
+    </div><!-- /cp-mywallet -->
 
   </div><!-- /rf-capital -->
 
@@ -1565,221 +1666,347 @@ function cpResetForAnotherDeposit(){
 }
 
 // ── Load & render dashboard ───────────────────────────────────
-async function loadCapitalData(){
-  const token=localStorage.getItem('aBest_session'); if(!token) return;
-  try{
-    const r=await fetch('/api/role',{headers:{Authorization:'Bearer '+token}});
-    if(!r.ok) return;
-    const data=await r.json();
-    if(!data||data.role!=='capital') return;
 
-    const deposits=data.deposits||[];
-    const status=data.status||'';
+// ═══════════════════════════ MyWallet ═══════════════════════════════════════
+const _mwT = {
+    new_deposit: 'New Deposit',
+    capital_partner: 'Capital Partner',
+    total_invested: 'Total Invested Capital',
+    total_earned: 'Total Interest Earned',
+    monthly_interest: 'Monthly Interest',
+    active_investments: 'Active Investments',
+    wallet_balance: 'Wallet Balance',
+    withdraw: 'Withdraw',
+    reinvest: 'Reinvest',
+    tab_active: 'Active Investments',
+    tab_completed: 'Completed',
+    tab_history: 'Transaction History',
+    status_pending: 'Pending',
+    status_active: 'Active',
+    status_completed: 'Completed',
+    inv_id: 'Investment ID',
+    inv_amount: 'Invested Amount',
+    inv_currency: 'Currency',
+    inv_rate: 'Interest Rate',
+    inv_duration: 'Duration',
+    inv_start: 'Start Date',
+    inv_maturity: 'Maturity Date',
+    inv_earned: 'Interest Earned',
+    inv_projected: 'Projected Earnings',
+    inv_option: 'Interest Option',
+    opt_a: 'Compound Interest',
+    opt_b: 'Interest Payout',
+    per_year: '% p.a. (fixed)',
+    years_lbl: 'Years',
+    no_active: 'No active investments yet.',
+    no_completed: 'No completed investments yet.',
+    no_history: 'No transactions yet.',
+    pending_info: 'Awaiting approval from our team.',
+    completed_note: 'Completed investments are stored for up to 10 years and are automatically removed afterwards.',
+    tx_deposit: 'Deposit',
+    tx_interest: 'Interest Credit',
+    tx_withdrawal: 'Withdrawal',
+    tx_reinvest: 'Reinvestment',
+    elapsed: 'Elapsed',
+    remaining: 'Remaining',
+    final_value: 'Final Value (Projected)',
+    available: 'available',
+    next_payment: 'Next Payment',
+    projected: 'Projected',
+    add_deposit: '+ New Deposit',
+  };
 
-    // Show pending banner if any deposit is pending
-    const hasPending=deposits.some(d=>d.status==='pending'||(d.status!=='approved'));
-    const hasApproved=deposits.some(d=>d.status==='approved');
-
-    if(hasPending) document.getElementById('cp-banner-pending')?.classList.add('show');
-
-    if(hasApproved){
-      document.getElementById('cp-banner-approved')?.classList.add('show');
-      document.getElementById('cp-form-section').style.display='none';
-      document.getElementById('cp-dashboard').style.display='block';
-      cpRenderDashboard(deposits);
-    } else if(hasPending){
-      // Pending: hide form, show pending only
-      const sub=document.getElementById('cp-submit-main');
-      if(sub) sub.style.display='none';
-    }
-  }catch(e){}
+function mwFmt(n, cur) {
+  cur = cur || _cpCurrency || 'EUR';
+  const sym = cur === 'EUR' ? '€' : '$';
+  if (Math.abs(n) >= 1000) {
+    return sym + n.toLocaleString('de-DE', {maximumFractionDigits: 0});
+  }
+  return sym + n.toFixed(2).replace('.', ',');
 }
 
-function cpRenderDashboard(deposits){
-  let totalInvested=0, totalEarned=0, totalPortfolio=0;
-  const now=new Date();
-  const approvedDeps=deposits.filter(d=>d.status==='approved');
+function mwFmtDate(iso) {
+  if (!iso) return '–';
+  const d = new Date(iso);
+  return d.toLocaleDateString('ru', {day:'2-digit', month:'2-digit', year:'numeric'});
+}
 
-  approvedDeps.forEach(d=>{
-    _cpCurrency=d.currency||'EUR';
-    const amt=d.amount||0;
-    const yrs=d.years||0;
-    const opt=d.option||'a';
-    const startDate=new Date(d.approvedAt||d.submittedAt||now);
-    const daysElapsed=Math.max(0,(now-startDate)/(1000*60*60*24));
-    const yearsElapsed=daysElapsed/365;
+function mwAddMonths(date, months) {
+  const d = new Date(date);
+  d.setMonth(d.getMonth() + months);
+  return d;
+}
 
-    let currentVal, earnedInt;
-    if(opt==='a'){
-      currentVal=amt*Math.pow(1.05,yearsElapsed);
-      earnedInt=currentVal-amt;
-    } else {
-      currentVal=amt;
-      earnedInt=amt*0.05*yearsElapsed;
-    }
-    totalInvested+=amt;
-    totalEarned+=earnedInt;
-    totalPortfolio+=currentVal;
+function mwCalc(d) {
+  const now = new Date();
+  const amt = d.amount || 0;
+  const yrs = d.years || 0;
+  const opt = d.option || 'a';
+  const start = new Date(d.approvedAt || d.submittedAt || now);
+  const totalMonths = yrs * 12;
+  const msElapsed = Math.max(0, now - start);
+  const monthsElapsed = Math.min(msElapsed / (1000*60*60*24*30.44), totalMonths);
+  const yearsElapsed = monthsElapsed / 12;
+  const pct = totalMonths > 0 ? Math.round(monthsElapsed / totalMonths * 100) : 0;
+  const maturity = mwAddMonths(start, totalMonths);
+
+  let currentVal, earnedInt, projectedTotal, monthlyInterest;
+  if (opt === 'a') {
+    // Compound: A * 1.05^t
+    currentVal = amt * Math.pow(1 + 0.05/12, monthsElapsed);
+    earnedInt = currentVal - amt;
+    projectedTotal = amt * Math.pow(1.05, yrs) - amt;
+    monthlyInterest = 0; // no payout
+  } else {
+    // Payout: simple 5% p.a.
+    monthlyInterest = amt * 0.05 / 12;
+    earnedInt = monthlyInterest * monthsElapsed;
+    currentVal = amt;
+    projectedTotal = monthlyInterest * totalMonths;
+  }
+
+  return {amt, opt, start, maturity, totalMonths, monthsElapsed, pct,
+    currentVal, earnedInt, projectedTotal, monthlyInterest, yrs,
+    isApproved: d.status === 'approved'};
+}
+
+function mwTab(name) {
+  ['active','completed','history'].forEach(n => {
+    const pane = document.getElementById('mw-pane-' + n);
+    const btn = document.getElementById('mw-tab-btn-' + n);
+    if (pane) pane.style.display = n === name ? '' : 'none';
+    if (btn) btn.classList.toggle('mw-tab-on', n === name);
   });
-
-  const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
-  set('dash-invested', cpFmt(totalInvested));
-  set('dash-earned', cpFmt(totalEarned));
-  set('dash-portfolio', cpFmt(totalPortfolio));
-  set('dash-active-count', approvedDeps.length);
-
-  // Render deposit list
-  cpRenderDepositList(deposits);
-
-  // Chart (use largest approved deposit)
-  if(approvedDeps.length>0){
-    const biggest=approvedDeps.reduce((a,b)=>(a.amount||0)>(b.amount||0)?a:b);
-    cpDrawChart(biggest.amount||0, biggest.years||10, biggest.option||'a', new Date(biggest.approvedAt||biggest.submittedAt||now));
-  }
-
-  // History
-  cpRenderHistory(deposits);
 }
 
-function cpRenderDepositList(deposits){
-  const container=document.getElementById('cp-deposits-list');
-  if(!container) return;
-  if(!deposits||deposits.length===0){
-    container.innerHTML='<p class="cp-hist-empty">–</p>'; return;
-  }
-
-  const now=new Date();
-  container.innerHTML=deposits.map((d,i)=>{
-    const amt=d.amount||0;
-    const yrs=d.years||0;
-    const opt=d.option||'a';
-    const cur=d.currency||'EUR';
-    _cpCurrency=cur;
-    const date=new Date(d.submittedAt||now).toLocaleDateString();
-    const isApproved=d.status==='approved';
-    const badgeClass=isApproved?'approved':'pending';
-    const badgeLabel=isApproved?_cpT2.dep_approved:_cpT2.dep_pending;
-
-    let earnedInt=0, currentVal=amt;
-    if(isApproved){
-      const startDate=new Date(d.approvedAt||d.submittedAt||now);
-      const yearsElapsed=Math.max(0,(now-startDate)/(365*24*3600*1000));
-      if(opt==='a'){ currentVal=amt*Math.pow(1.05,yearsElapsed); earnedInt=currentVal-amt; }
-      else{ currentVal=amt; earnedInt=amt*0.05*yearsElapsed; }
-    }
-
-    const finalVal=opt==='a'?amt*Math.pow(1.05,yrs):amt+amt*0.05*yrs;
-    const optLabel=opt==='a'?_cpT2.opt_a_short:_cpT2.opt_b_short;
-
-    return `<div class="cp-deposit-item">
-      <div class="cp-dep-header">
-        <span class="cp-dep-num">#${i+1}</span>
-        <span class="cp-dep-badge ${badgeClass}">${badgeLabel}</span>
-      </div>
-      <div class="cp-dep-grid">
-        <div class="cp-dep-field"><span class="cp-dep-field-label">${_cpT2.dep_amount}</span><span class="cp-dep-field-value blue">${cpFmt(amt)}</span></div>
-        <div class="cp-dep-field"><span class="cp-dep-field-label">${_cpT2.dep_date}</span><span class="cp-dep-field-value">${date}</span></div>
-        <div class="cp-dep-field"><span class="cp-dep-field-label">${_cpT2.dep_option}</span><span class="cp-dep-field-value">${optLabel}</span></div>
-        <div class="cp-dep-field"><span class="cp-dep-field-label">${_cpT2.dep_period}</span><span class="cp-dep-field-value">${yrs} ${_cpT2.years_short}</span></div>
-        ${isApproved?`<div class="cp-dep-field"><span class="cp-dep-field-label">${_cpT2.dep_interest}</span><span class="cp-dep-field-value green">+${cpFmt(earnedInt)}</span></div>
-        <div class="cp-dep-field"><span class="cp-dep-field-label">${_cpT2.dep_value}</span><span class="cp-dep-field-value blue">${cpFmt(currentVal)}</span></div>`:''}
-      </div>
-    </div>`;
-  }).join('');
+function mwShowNewDeposit() {
+  document.getElementById('cp-mywallet').style.display = 'none';
+  document.getElementById('cp-form-section').style.display = 'block';
+  document.getElementById('cp-deposit-success').style.display = 'none';
+  document.getElementById('cp-submit-main').style.display = 'block';
+  window.scrollTo({top: document.getElementById('cp-form-section').offsetTop - 80, behavior: 'smooth'});
 }
 
-// ── Chart ─────────────────────────────────────────────────────
-function cpDrawChart(amt, yrs, opt, startDate){
-  const canvas=document.getElementById('cp-chart'); if(!canvas||!canvas.getContext) return;
-  const dpr=window.devicePixelRatio||1;
-  const W=canvas.offsetWidth||560, H=240;
-  canvas.width=W*dpr; canvas.height=H*dpr;
-  canvas.style.width=W+'px'; canvas.style.height=H+'px';
-  const ctx=canvas.getContext('2d'); ctx.scale(dpr,dpr);
-  const pL=52,pR=14,pT=14,pB=32, cW=W-pL-pR, cH=H-pT-pB;
+function mwRender(deposits) {
+  const now = new Date();
+  const cur = (deposits[0] && deposits[0].currency) || 'EUR';
+  _cpCurrency = cur;
 
-  const pts=yrs+1;
-  const capPts=[], intPts=[];
-  for(let i=0;i<pts;i++){
-    if(opt==='a'){ const v=amt*Math.pow(1.05,i); capPts.push(v); intPts.push(v-amt); }
-    else { capPts.push(amt); intPts.push(amt*0.05*i); }
-  }
-  const allV=[...capPts,...intPts]; const maxV=Math.max(...allV)*1.06;
-  const toX=i=>pL+(i/(pts-1))*cW;
-  const toY=v=>pT+cH-((v/(maxV||1))*cH);
-  const startYr=(startDate||new Date()).getFullYear();
+  let totalInvested = 0, totalEarned = 0, monthlyTotal = 0, activeCount = 0;
+  let nextPaymentDate = null;
 
-  // Grid
-  ctx.strokeStyle='rgba(255,255,255,0.04)'; ctx.lineWidth=1;
-  for(let i=0;i<=4;i++){ const y=pT+i*(cH/4); ctx.beginPath(); ctx.moveTo(pL,y); ctx.lineTo(pL+cW,y); ctx.stroke(); }
+  const active = [], completed = [];
 
-  // Y labels
-  ctx.fillStyle='rgba(255,255,255,0.22)'; ctx.font='10px -apple-system,sans-serif'; ctx.textAlign='right';
-  for(let i=0;i<=4;i++){
-    const v=maxV*(1-i/4);
-    const lbl=v>=1e6?(v/1e6).toFixed(1)+'M':v>=1e3?(v/1e3).toFixed(0)+'k':v.toFixed(0);
-    ctx.fillText(lbl, pL-5, pT+i*(cH/4)+4);
-  }
-  // X labels
-  ctx.textAlign='center';
-  const xStep=Math.max(1,Math.ceil(pts/6));
-  for(let i=0;i<pts;i+=xStep) ctx.fillText(startYr+i+'', toX(i), pT+cH+20);
+  deposits.forEach(d => {
+    const c = mwCalc(d);
+    const isCompleted = c.monthsElapsed >= c.totalMonths && c.isApproved;
+    const tenYearsAgo = new Date(); tenYearsAgo.setFullYear(tenYearsAgo.getFullYear() - 10);
+    if (isCompleted && new Date(d.submittedAt) < tenYearsAgo) return; // auto-remove after 10y
 
-  // Interest area
-  ctx.beginPath(); intPts.forEach((v,i)=>i===0?ctx.moveTo(toX(i),toY(v)):ctx.lineTo(toX(i),toY(v)));
-  ctx.lineTo(toX(pts-1),toY(0)); ctx.lineTo(toX(0),toY(0)); ctx.closePath();
-  ctx.fillStyle='rgba(52,199,89,0.07)'; ctx.fill();
-  ctx.beginPath(); intPts.forEach((v,i)=>i===0?ctx.moveTo(toX(i),toY(v)):ctx.lineTo(toX(i),toY(v)));
-  ctx.strokeStyle='rgba(52,199,89,0.7)'; ctx.lineWidth=1.8; ctx.stroke();
-
-  // Capital area
-  ctx.beginPath(); capPts.forEach((v,i)=>i===0?ctx.moveTo(toX(i),toY(v)):ctx.lineTo(toX(i),toY(v)));
-  ctx.lineTo(toX(pts-1),toY(0)); ctx.lineTo(toX(0),toY(0)); ctx.closePath();
-  ctx.fillStyle='rgba(0,122,255,0.07)'; ctx.fill();
-  ctx.beginPath(); capPts.forEach((v,i)=>i===0?ctx.moveTo(toX(i),toY(v)):ctx.lineTo(toX(i),toY(v)));
-  ctx.strokeStyle='rgba(0,122,255,0.85)'; ctx.lineWidth=2.2; ctx.stroke();
-}
-
-// ── History ───────────────────────────────────────────────────
-function cpRenderHistory(deposits){
-  const container=document.getElementById('dash-history'); if(!container) return;
-  const txs=[];
-  const now=new Date();
-  (deposits||[]).forEach(d=>{
-    _cpCurrency=d.currency||'EUR';
-    const amt=d.amount||0;
-    const date=new Date(d.submittedAt||now);
-    txs.push({type:'dep',icon:'💰',label:_cpT2.tx_deposit,amt:cpFmt(amt),date,cls:'neu'});
-    if(d.status==='approved'){
-      const startDate=new Date(d.approvedAt||d.submittedAt||now);
-      const opt=d.option||'a';
-      const freq=d.freq||1;
-      const mpi=freq===12?1:freq===4?3:freq===2?6:12;
-      const intPerInterval=amt*0.05/freq;
-      let pd=new Date(startDate); pd.setMonth(pd.getMonth()+mpi);
-      let cnt=0;
-      while(pd<=now&&cnt<12){
-        if(opt==='b'){
-          txs.push({type:'int',icon:'📈',label:_cpT2.tx_interest,amt:'+'+cpFmt(intPerInterval),date:new Date(pd),cls:'pos'});
-        } else {
-          const compInt=amt*(Math.pow(1.05,(pd-startDate)/(365.25*24*3600*1000))-Math.pow(1.05,(pd-startDate-mpi*30*24*3600*1000)/(365.25*24*3600*1000)));
-          txs.push({type:'int',icon:'📈',label:_cpT2.tx_interest,amt:'+'+cpFmt(compInt),date:new Date(pd),cls:'pos'});
+    if (isCompleted) {
+      completed.push({d, c});
+    } else {
+      active.push({d, c});
+      if (c.isApproved) {
+        totalInvested += d.amount || 0;
+        totalEarned += c.earnedInt;
+        monthlyTotal += c.monthlyInterest;
+        activeCount++;
+        if (d.option === 'b') {
+          const next = mwAddMonths(c.start, Math.ceil(c.monthsElapsed));
+          if (!nextPaymentDate || next < nextPaymentDate) nextPaymentDate = next;
         }
-        pd.setMonth(pd.getMonth()+mpi); cnt++;
       }
     }
   });
-  txs.sort((a,b)=>b.date-a.date);
-  if(!txs.length){ container.innerHTML='<p class="cp-hist-empty">–</p>'; return; }
-  container.innerHTML=txs.slice(0,20).map(tx=>
-    `<div class="cp-hist-item">
-      <div class="cp-hist-icon ${tx.type}">${tx.icon}</div>
-      <div class="cp-hist-body"><p class="cp-hist-name">${tx.label}</p><p class="cp-hist-date">${tx.date.toLocaleDateString()}</p></div>
-      <span class="cp-hist-amt ${tx.cls}">${tx.amt}</span>
-    </div>`
-  ).join('');
+
+  // Wallet balance = total earned (simulated as available)
+  const walletBalance = totalEarned;
+
+  // Set KPI values
+  const set = (id, v) => { const e = document.getElementById(id); if(e) e.textContent = v; };
+  set('mw-total-invested', totalInvested > 0 ? mwFmt(totalInvested, cur) : '–');
+  set('mw-total-earned', totalEarned > 0 ? mwFmt(totalEarned, cur) : (deposits.length > 0 ? _mwT.projected : '–'));
+  set('mw-monthly', monthlyTotal > 0 ? mwFmt(monthlyTotal, cur) + '/Mon.' : '–');
+  set('mw-count', activeCount > 0 ? activeCount : deposits.filter(d => d.status !== 'completed').length);
+  set('mw-next-payment', nextPaymentDate ? mwFmtDate(nextPaymentDate.toISOString()) : '–');
+  set('mw-wallet-balance', walletBalance > 0 ? mwFmt(walletBalance, cur) : mwFmt(0, cur));
+
+  // Render active list
+  const activeEl = document.getElementById('mw-active-list');
+  if (activeEl) {
+    if (active.length === 0) {
+      activeEl.innerHTML = '<div class="mw-empty">' + _mwT.no_active + '</div>';
+    } else {
+      activeEl.innerHTML = active.map(({d, c}, i) => mwRenderCard(d, c, i, false)).join('');
+    }
+  }
+
+  // Render completed list
+  const completedEl = document.getElementById('mw-completed-list');
+  if (completedEl) {
+    if (completed.length === 0) {
+      completedEl.innerHTML = '<div class="mw-empty">' + _mwT.no_completed + '</div>';
+    } else {
+      completedEl.innerHTML = completed.map(({d, c}, i) => mwRenderCard(d, c, i, true)).join('');
+    }
+  }
+
+  // Render transaction history
+  mwRenderHistory(deposits);
 }
 
+function mwRenderCard(d, c, idx, isCompleted) {
+  const cur = d.currency || 'EUR';
+  const sym = cur === 'EUR' ? '€' : '$';
+  const statusKey = d.status === 'approved' ? 'active' : (isCompleted ? 'completed' : 'pending');
+  const statusLabel = _mwT['status_' + statusKey];
+  const optLabel = d.option === 'a' ? _mwT.opt_a : _mwT.opt_b;
+  const invId = (d.id || d.submittedAt || '').toString().slice(-8).toUpperCase();
+  const projFinal = d.option === 'a' ? (d.amount || 0) * Math.pow(1.05, d.years || 0) : (d.amount || 0) * (1 + 0.05 * (d.years || 0));
+  const isApproved = d.status === 'approved';
+
+  // Progress bar (only for approved)
+  const progressHtml = isApproved ? `
+    <div class="mw-progress-row" style="margin-top:10px;">
+      <span style="font-size:0.69rem;color:rgba(255,255,255,0.38);min-width:70px;">${_mwT.elapsed}: ${Math.round(c.monthsElapsed)} Mo.</span>
+      <div class="mw-progress-track"><div class="mw-progress-fill" style="width:${c.pct}%"></div></div>
+      <span class="mw-progress-pct">${c.pct}%</span>
+      <span style="font-size:0.69rem;color:rgba(255,255,255,0.38);min-width:75px;text-align:right;">${_mwT.remaining}: ${c.totalMonths - Math.round(c.monthsElapsed)} Mo.</span>
+    </div>` : `<div class="mw-inv-pending-info">⏳ ${_mwT.pending_info}</div>`;
+
+  const earnedHtml = isApproved ? `
+    <div class="mw-inv-field">
+      <div class="mw-inv-field-lbl">${_mwT.inv_earned}</div>
+      <div class="mw-inv-field-val green">+${mwFmt(c.earnedInt, cur)}</div>
+    </div>
+    <div class="mw-inv-field">
+      <div class="mw-inv-field-lbl">${_mwT.final_value}</div>
+      <div class="mw-inv-field-val blue">${mwFmt(projFinal, cur)}</div>
+    </div>` : `
+    <div class="mw-inv-field">
+      <div class="mw-inv-field-lbl">${_mwT.inv_projected}</div>
+      <div class="mw-inv-field-val gold">${mwFmt(c.projectedTotal, cur)}</div>
+    </div>`;
+
+  return `<div class="mw-inv-card ${statusKey === 'active' ? 'mw-approved' : (statusKey === 'pending' ? 'mw-pending' : '')}">
+    <div class="mw-inv-top">
+      <span class="mw-inv-id">ID: ${invId}</span>
+      <span class="mw-inv-status ${statusKey}">${statusLabel}</span>
+    </div>
+    <div class="mw-inv-grid">
+      <div class="mw-inv-field">
+        <div class="mw-inv-field-lbl">${_mwT.inv_amount}</div>
+        <div class="mw-inv-field-val blue">${mwFmt(d.amount || 0, cur)}</div>
+      </div>
+      <div class="mw-inv-field">
+        <div class="mw-inv-field-lbl">${_mwT.inv_currency}</div>
+        <div class="mw-inv-field-val">${cur === 'EUR' ? '€ Euro' : '$ US-Dollar'}</div>
+      </div>
+      <div class="mw-inv-field">
+        <div class="mw-inv-field-lbl">${_mwT.inv_rate}</div>
+        <div class="mw-inv-field-val">5 ${_mwT.per_year}</div>
+      </div>
+      <div class="mw-inv-field">
+        <div class="mw-inv-field-lbl">${_mwT.inv_duration}</div>
+        <div class="mw-inv-field-val">${d.years || 0} ${_mwT.years_lbl}</div>
+      </div>
+      <div class="mw-inv-field">
+        <div class="mw-inv-field-lbl">${_mwT.inv_option}</div>
+        <div class="mw-inv-field-val">${optLabel}</div>
+      </div>
+      <div class="mw-inv-field">
+        <div class="mw-inv-field-lbl">${_mwT.inv_start}</div>
+        <div class="mw-inv-field-val">${mwFmtDate(d.submittedAt)}</div>
+      </div>
+      <div class="mw-inv-field">
+        <div class="mw-inv-field-lbl">${_mwT.inv_maturity}</div>
+        <div class="mw-inv-field-val">${mwFmtDate(c.maturity.toISOString())}</div>
+      </div>
+      ${earnedHtml}
+    </div>
+    ${progressHtml}
+  </div>`;
+}
+
+function mwRenderHistory(deposits) {
+  const el = document.getElementById('mw-history-list');
+  if (!el) return;
+  if (!deposits || deposits.length === 0) {
+    el.innerHTML = '<div class="mw-empty">' + _mwT.no_history + '</div>'; return;
+  }
+
+  const items = [];
+  deposits.forEach(d => {
+    const cur = d.currency || 'EUR';
+    // Deposit entry
+    items.push({
+      type: 'deposit', date: new Date(d.submittedAt || Date.now()),
+      desc: _mwT.tx_deposit + ' – #' + (d.id || d.submittedAt || '').toString().slice(-6).toUpperCase(),
+      amount: d.amount || 0, cur, sign: 'neutral'
+    });
+    // Interest credits (simulate monthly for approved deposits)
+    if (d.status === 'approved') {
+      const c = mwCalc(d);
+      const monthsElapsed = Math.floor(c.monthsElapsed);
+      if (monthsElapsed >= 1 && d.option === 'b') {
+        // Show last 3 interest credits
+        const showMonths = Math.min(monthsElapsed, 3);
+        for (let m = monthsElapsed; m > monthsElapsed - showMonths; m--) {
+          const creditDate = mwAddMonths(c.start, m);
+          items.push({
+            type: 'interest', date: creditDate,
+            desc: _mwT.tx_interest + ' (Monat ' + m + ')',
+            amount: c.monthlyInterest, cur, sign: 'plus'
+          });
+        }
+      }
+    }
+  });
+
+  // Sort descending
+  items.sort((a, b) => b.date - a.date);
+
+  const icons = { deposit: '💵', interest: '✨', withdrawal: '↑', reinvest: '🔄' };
+  el.innerHTML = items.map(item => `
+    <div class="mw-tx-item">
+      <div class="mw-tx-left">
+        <div class="mw-tx-icon ${item.type}">${icons[item.type] || '•'}</div>
+        <div>
+          <div class="mw-tx-desc">${item.desc}</div>
+          <div class="mw-tx-date">${mwFmtDate(item.date.toISOString())}</div>
+        </div>
+      </div>
+      <div class="mw-tx-amount ${item.sign}">${item.sign === 'plus' ? '+' : ''}${mwFmt(item.amount, item.cur)}</div>
+    </div>`).join('');
+}
+
+async function loadCapitalData() {
+  const token = localStorage.getItem('aBest_session'); if (!token) return;
+  try {
+    const r = await fetch('/api/role', {headers: {Authorization: 'Bearer ' + token}});
+    if (!r.ok) return;
+    const data = await r.json();
+    if (!data || data.role !== 'capital') return;
+
+    const deposits = data.deposits || [];
+    if (deposits.length === 0) return;
+
+    // Any deposits → show MyWallet immediately
+    document.getElementById('cp-form-section').style.display = 'none';
+    document.getElementById('cp-mywallet').style.display = 'block';
+    document.getElementById('cp-deposit-success').style.display = 'none';
+
+    // Show pending banner if any are still pending
+    const hasPending = deposits.some(d => d.status === 'pending' || !d.status);
+    const hasApproved = deposits.some(d => d.status === 'approved');
+    if (hasPending) document.getElementById('cp-banner-pending')?.classList.add('show');
+    if (hasApproved) document.getElementById('cp-banner-approved')?.classList.add('show');
+
+    mwRender(deposits);
+  } catch(e) {}
+}
+// ═════════════════════════════════════════════════════════════════════════════
 // ── Payout ────────────────────────────────────────────────────
 async function cpRequestPayout(type){
   const token=localStorage.getItem('aBest_session'); if(!token) return;
