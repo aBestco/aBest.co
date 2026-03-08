@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const observerOptions = {
         root: null,
         rootMargin: '0px',
-        threshold: 0.15
+        threshold: 0
     };
 
     const animateOnScroll = new IntersectionObserver((entries, observer) => {
