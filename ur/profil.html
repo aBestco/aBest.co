@@ -1098,14 +1098,21 @@ function getAvatarBg(email) {
 }
 
 // ── Tab switching ──────────────────────────────────────
-function switchTab(name, btn) {
+function switchTab(name, btn, _noPush) {
   document.querySelectorAll('.db-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.db-tab').forEach(b => b.classList.remove('active'));
-  document.getElementById('panel-' + name).classList.add('active');
-  btn.classList.add('active');
+  document.getElementById('panel-' + name)?.classList.add('active');
+  const _activeBtn = btn || document.querySelector('.db-tab[onclick*="' + name + '"]');
+  if (_activeBtn) _activeBtn.classList.add('active');
   if (name === 'messages') loadMessages();
   if (name === 'team') loadTeamMembers();
   if (name === 'role') loadRoleData();
+  if (!_noPush) {
+    const _slugMap = {profil:'',messages:'messages',team:'team',role:'my-role',settings:'settings'};
+    const _slug = _slugMap[name] || '';
+    const _base = (window.location.pathname.match(/^(\/[a-z]{2}\/profil[e]?|\/profil[e]?)/) || [])[1] || '/profile';
+    history.pushState({tab: name}, '', _slug ? _base + '/' + _slug : _base);
+  }
 }
 
 // ── Profile save ──────────────────────────────────────
@@ -1387,7 +1394,7 @@ function fuRemove(roleKey) {
   }
 }
 
-function selectRole(key) {
+function selectRole(key, _noPush) {
   _selectedRole = key;
   document.querySelectorAll('.role-card').forEach(c => c.classList.remove('selected'));
   const card = document.getElementById('rc-' + key);
@@ -1395,6 +1402,12 @@ function selectRole(key) {
   document.querySelectorAll('.role-form').forEach(f => f.classList.remove('active'));
   const form = document.getElementById('rf-' + key);
   if (form) { form.classList.add('active'); setTimeout(()=>form.scrollIntoView({behavior:'smooth',block:'nearest'}),50); }
+  if (!_noPush) {
+    const _roleSlugMap = {founder:'founder',investor:'investor',capital:'capital-partner',seller:'seller',explorer:'explorer'};
+    const _rSlug = _roleSlugMap[key] || key;
+    const _base = (window.location.pathname.match(/^(\/[a-z]{2}\/profil[e]?|\/profil[e]?)/) || [])[1] || '/profile';
+    history.pushState({tab:'role', role:key}, '', _base + '/my-role/' + _rSlug);
+  }
 }
 
 async function submitRoleForm(key) {
@@ -2038,6 +2051,40 @@ document.addEventListener('DOMContentLoaded',()=>{
   cpCalc();
   loadCapitalData();
 });
+
+// ── URL Routing: Init on load + popstate ─────────────────────────────────────
+document.addEventListener('DOMContentLoaded', function() {
+  var _path = window.location.pathname;
+  var _baseMatch = _path.match(/^(\/[a-z]{2}\/profil[e]?|\/profil[e]?)/);
+  if (!_baseMatch) return;
+  var _base = _baseMatch[1];
+  var _rest = _path.slice(_base.length).replace(/^\/+/, '');
+  var _segs = _rest ? _rest.split('/').filter(Boolean) : [];
+  var _tabSlug = _segs[0] || '';
+  var _roleSlug = _segs[1] || '';
+  var _tabMap = {'':'profil','messages':'messages','team':'team','my-role':'role','settings':'settings'};
+  var _roleMap = {'founder':'founder','investor':'investor','capital-partner':'capital','seller':'seller','explorer':'explorer'};
+  var _tabName = _tabMap[_tabSlug];
+  if (_tabName === undefined) _tabName = 'profil';
+  var _roleName = _roleMap[_roleSlug] || null;
+  if (_tabName !== 'profil') switchTab(_tabName, null, true);
+  if (_roleName && _tabName === 'role') selectRole(_roleName, true);
+  var _slugFwd = {profil:'',messages:'messages',team:'team',role:'my-role',settings:'settings'};
+  var _roleSF = {founder:'founder',investor:'investor',capital:'capital-partner',seller:'seller',explorer:'explorer'};
+  var _canonical = _base;
+  if (_slugFwd[_tabName]) _canonical += '/' + _slugFwd[_tabName];
+  if (_roleName && _roleSF[_roleName]) _canonical += '/' + _roleSF[_roleName];
+  if (_canonical !== _path) history.replaceState({tab:_tabName,role:_roleName}, '', _canonical);
+});
+
+window.addEventListener('popstate', function(e) {
+  var s = e.state;
+  if (s && s.tab) {
+    switchTab(s.tab, null, true);
+    if (s.tab === 'role' && s.role) selectRole(s.role, true);
+  }
+});
+// ─────────────────────────────────────────────────────────────────────────────
 
 </script>
 

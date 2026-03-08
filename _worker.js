@@ -22,7 +22,8 @@ export default {
         // Match both /login and /en/login, /de/login etc.
         const cleanPath = pathname.replace(/^\/(en|de|tr|es|zh|hi|ar|fr|ru|pt|ur|ku|he|hy)\//, '/');
 
-        if (cleanPath === '/login' || cleanPath === '/register' || cleanPath === '/profile') {
+        if (cleanPath === '/login' || cleanPath === '/register' ||
+            cleanPath === '/profile' || cleanPath.startsWith('/profile/') || cleanPath.startsWith('/profil/')) {
             const acceptLanguage = request.headers.get('Accept-Language') || 'en';
             const langCode = acceptLanguage.split(',')[0].split('-')[0].toLowerCase();
             const supportedLangs = ["en", "de", "tr", "es", "zh", "hi", "ar", "fr", "ru", "pt", "ur", "ku", "he", "hy"];
@@ -39,7 +40,7 @@ export default {
 
             let file = 'login';
             if (cleanPath === '/register') file = 'register';
-            if (cleanPath === '/profile') file = 'profil';
+            if (cleanPath === '/profile' || cleanPath.startsWith('/profile/') || cleanPath.startsWith('/profil/')) file = 'profil';
 
             // We rewrite internal URL to serve the localized file
             const assetUrl = new URL(request.url);
