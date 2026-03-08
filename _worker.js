@@ -14,30 +14,49 @@ export default {
         }
 
         // --- 1.2 BROWSER ROUTES (/login, /register, /profile) ---
-        if (pathname === '/login' || pathname === '/register' || pathname === '/profile') {
+        // Match both /login and /en/login, /de/login etc.
+        const cleanPath = pathname.replace(/^\/(?:en|de|tr|es|zh|hi|ar|fr|ru|pt|ur|ku|he|hy)\//, '/');
+
+        if (cleanPath === '/login' || cleanPath === '/register' || cleanPath === '/profile') {
             const acceptLanguage = request.headers.get('Accept-Language') || 'en';
             const langCode = acceptLanguage.split(',')[0].split('-')[0].toLowerCase();
             const supportedLangs = ["en", "de", "tr", "es", "zh", "hi", "ar", "fr", "ru", "pt", "ur", "ku", "he", "hy"];
-            const targetLang = supportedLangs.includes(langCode) ? langCode : 'en';
+
+            // Priority: URL prefix > Cookie > Accept-Language
+            let targetLang = pathname.match(/^\/([a-z]{2})\//)?.[1];
+            if (!targetLang) {
+                const cookies = request.headers.get('Cookie') || '';
+                targetLang = cookies.match(/aBest_lang=([a-z]{2})/)?.[1];
+            }
+            if (!targetLang || !supportedLangs.includes(targetLang)) {
+                targetLang = supportedLangs.includes(langCode) ? langCode : 'en';
+            }
 
             let file = 'index.html';
-            if (pathname === '/login') file = 'login.html';
-            if (pathname === '/register') file = 'register.html';
-            if (pathname === '/profile') file = 'profil.html';
+            if (cleanPath === '/login') file = 'login.html';
+            if (cleanPath === '/register') file = 'register.html';
+            if (cleanPath === '/profile') file = 'profil.html';
 
             // We rewrite internal URL to serve the localized file
-            const newUrl = new URL(request.url);
-            newUrl.pathname = `/${targetLang}/${file}`;
-            let res = await env.ASSETS.fetch(new Request(newUrl.toString(), request));
+            const assetUrl = new URL(request.url);
+            assetUrl.pathname = `/${targetLang}/${file}`;
+            let res = await env.ASSETS.fetch(new Request(assetUrl.toString(), request));
 
-            // Fallback to English if localized file not found
-            if (res.status === 404 && targetLang !== 'en') {
-                newUrl.pathname = `/en/${file}`;
-                res = await env.ASSETS.fetch(new Request(newUrl.toString(), request));
+            // Fallback to English if localized file not found or failed
+            if (!res.ok && targetLang !== 'en') {
+                assetUrl.pathname = `/en/${file}`;
+                res = await env.ASSETS.fetch(new Request(assetUrl.toString(), request));
+            }
+
+            if (!res.ok) {
+                // Last ditch effort: try serving it without the worker logic
+                return env.ASSETS.fetch(request);
             }
 
             // SEO: Inject localized meta tags
             let html = await res.text();
+            if (!html) return res; // Return original if empty for some reason
+
             const translations = {
                 de: { login: 'Login | aBest.co', register: 'Registrierung | aBest.co', profile: 'Mein Profil | aBest.co', desc: 'Premium Land- und Immobilienentwicklung.' },
                 en: { login: 'Login | aBest.co', register: 'Register | aBest.co', profile: 'My Profile | aBest.co', desc: 'Global Premium Land & Real Estate Development.' },
@@ -46,11 +65,11 @@ export default {
                 fr: { login: 'Connexion | aBest.co', register: 'Inscription | aBest.co', profile: 'Mon Profil | aBest.co', desc: 'Développement immobilier premium mondial.' }
             };
             const t = translations[targetLang] || translations['en'];
-            const pageKey = pathname === '/login' ? 'login' : (pathname === '/register' ? 'register' : 'profile');
+            const pageKey = cleanPath === '/login' ? 'login' : (cleanPath === '/register' ? 'register' : 'profile');
 
             html = html.replace(/<title>.*?<\/title>/, `<title>${t[pageKey]}</title>`);
-            html = html.replace(/<meta name="description" content=".*?" \/>/, `<meta name="description" content="${t.desc}" />`);
-            html = html.replace(/<meta content=".*?" name="description" \/>/, `<meta name="description" content="${t.desc}" />`);
+            html = html.replace(/<meta name="description" content=".*?" \/>/g, `<meta name="description" content="${t.desc}" />`);
+            html = html.replace(/<meta content=".*?" name="description" \/>/g, `<meta name="description" content="${t.desc}" />`);
 
             return new Response(html, {
                 headers: { 'Content-Type': 'text/html; charset=utf-8' }
