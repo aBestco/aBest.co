@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>aBest.co | Global Premium Development</title>
+    <meta content="aBest.co develops premium land, energy, and commercial real estate projects globally. Partnerships with investors and brands." property="og:description" />
+    <meta content="aBest.co | Global Premium Development" property="og:title" />
+<!-- Basic SEO tags -->
+<meta content="aBest.co develops premium land, energy, and commercial real estate projects globally. Partnerships with investors and brands." name="description" />
+<link href="/favicon.png" rel="icon" type="image/png"/>
+<style>
+        body {
+            background-color: #0c0f14;
+            color: #ffffff;
+            font-family: 'Outfit', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .loader {
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top: 3px solid #6b9cff;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="loader"></div>
+<script>
+        // Automatic Language & Location Redirect
+        document.addEventListener('DOMContentLoaded', function() {
+            // 1. Check if user already has a saved language preference
+            var savedLang = localStorage.getItem('aBest_lang');
+            if (savedLang) {
+                // If they explicitly saved a lang via the menu, just send them there
+                window.location.replace('/' + savedLang + '/');
+                return;
+            }
+
+            // 2. Detect Browser Language
+            var userLang = navigator.language || navigator.userLanguage; 
+            var langCode = userLang.split('-')[0].toLowerCase();
+            
+            var targetLangFolder = 'en'; // Default
+            
+            if (['de', 'es', 'tr', 'zh', 'hi', 'ar', 'fr', 'ru', 'pt', 'ur', 'ku', 'he', 'hy'].includes(langCode)) {
+                targetLangFolder = langCode;
+            }
+
+            // 3. Detect Visitor Location via GeoJS API
+            fetch('https://get.geojs.io/v1/ip/geo.json')
+                .then(response => response.json())
+                .then(data => {
+                    var country = data.country_code; // e.g., 'US', 'DE', 'TR'
+                    var targetPage = '';
+
+                    // Map country to a regional page
+                    if (country === 'US') {
+                        targetPage = 'usa.html';
+                    } else if (['DE', 'AT', 'CH'].includes(country)) {
+                        targetPage = 'deutschland.html';
+                    } else if (country === 'TR') {
+                        targetPage = 'turkiye.html';
+                    }
+
+                    // 4. Redirect
+                    if (targetPage) {
+                        // Redirect directly to the country region within their language
+                        window.location.replace('/' + targetLangFolder + '/' + targetPage);
+                    } else {
+                        // Redirect just to the language root if country not matched
+                        window.location.replace('/' + targetLangFolder + '/');
+                    }
+                })
+                .catch(err => {
+                    // Fallback on network error: just go to language root
+                    console.error("Geolocation fetch failed:", err);
+                    window.location.replace('/' + targetLangFolder + '/');
+                });
+        });
+    </script>
+</body>
+</html>
