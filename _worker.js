@@ -89,6 +89,9 @@ export default {
         }
 
         // --- 2. API ROUTES ---
+        if (pathname.startsWith('/api/payout')) {
+            return handlePayoutApi(request, env);
+        }
         if (pathname.startsWith('/api/auth/')) {
             return handleAuthApi(request, env);
         }

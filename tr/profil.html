@@ -171,66 +171,139 @@ body { background: #0a0a0f; }
 .fu-progress-bar { height: 100%; background: linear-gradient(90deg, var(--primary-blue), #00c896); border-radius: 2px; width: 0%; transition: width 0.3s; }
 .file-input-hidden { display: none; }
 
-/* ── Capital Partner Investment Form ───────────────── */
-.cp-form { position: relative; }
-.cp-form.locked-form { pointer-events: none; opacity: 0.75; }
-.cp-locked-banner { display: none; background: rgba(52,199,89,0.1); border: 1px solid rgba(52,199,89,0.3); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; }
-.cp-locked-banner.visible { display: flex; align-items: center; gap: 12px; }
-.cp-locked-banner .lb-icon { font-size: 1.4rem; }
-.cp-locked-banner .lb-title { font-size: 0.88rem; font-weight: 700; color: #34c759; margin: 0 0 2px; }
-.cp-locked-banner .lb-sub { font-size: 0.75rem; color: var(--text-muted); margin: 0; }
-/* Amount row */
-.cp-amount-row { display: flex; gap: 10px; align-items: flex-start; }
-.cp-currency-badge { display: flex; align-items: center; justify-content: center; min-width: 52px; height: 46px; background: rgba(0,122,255,0.12); border: 1px solid rgba(0,122,255,0.3); border-radius: 10px; font-size: 1.1rem; font-weight: 700; color: var(--primary-blue); flex-shrink: 0; margin-top: 28px; cursor: default; user-select: none; }
-.cp-amount-row .db-field { flex: 1; }
-/* Year picker wheel */
-.year-picker-wrap { display: flex; align-items: center; justify-content: center; gap: 20px; padding: 16px 0 8px; }
-.year-picker-drum { display: flex; flex-direction: column; align-items: center; gap: 0; }
-.yp-btn { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; color: var(--text-muted); font-size: 1.2rem; cursor: pointer; width: 44px; height: 36px; display: flex; align-items: center; justify-content: center; transition: all 0.15s; user-select: none; }
-.yp-btn:hover { background: rgba(0,122,255,0.18); border-color: rgba(0,122,255,0.4); color: var(--primary-blue); }
-.yp-btn:active { transform: scale(0.95); }
-.yp-display { width: 100px; height: 64px; display: flex; align-items: center; justify-content: center; background: rgba(0,122,255,0.08); border: 2px solid rgba(0,122,255,0.35); border-radius: 14px; overflow: hidden; position: relative; margin: 6px 0; }
-.yp-number { font-size: 2.2rem; font-weight: 700; color: var(--primary-blue); line-height: 1; transition: transform 0.15s, opacity 0.15s; }
-.yp-unit { font-size: 1rem; font-weight: 600; color: var(--text-muted); padding-top: 8px; }
-.yp-range { font-size: 0.72rem; color: rgba(255,255,255,0.25); text-align: center; margin-top: 4px; }
+
+/* ══════════════════════════════════════════════════════════════════
+   CAPITAL PARTNER INVESTMENT SYSTEM
+   ══════════════════════════════════════════════════════════════════ */
+#rf-capital { background: none; border: none; padding: 0; }
+.cp-section { margin-bottom: 22px; }
+.cp-label { display: block; font-size: 0.78rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 10px; }
+/* Currency Buttons */
+.cp-currency-btns { display: flex; gap: 10px; }
+.cp-cur-btn { flex:1; padding:12px 0; background:rgba(255,255,255,0.04); border:1.5px solid rgba(255,255,255,0.1); border-radius:10px; color:var(--text-muted); font-size:0.88rem; font-weight:600; cursor:pointer; transition:all 0.2s; font-family:inherit; }
+.cp-cur-btn:hover { border-color:rgba(0,122,255,0.4); color:var(--text-main); }
+.cp-cur-btn.cp-cur-active { background:rgba(0,122,255,0.12); border-color:rgba(0,122,255,0.5); color:var(--primary-blue); }
+/* Stepper */
+.cp-stepper { display:flex; align-items:center; gap:10px; }
+.cp-step-btn { width:44px; height:44px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:10px; color:var(--text-main); font-size:1.4rem; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:all 0.15s; font-family:inherit; user-select:none; }
+.cp-step-btn:hover { background:rgba(0,122,255,0.15); border-color:rgba(0,122,255,0.4); color:var(--primary-blue); }
+.cp-step-btn:active { transform:scale(0.92); }
+.cp-stepper-input { flex:1; position:relative; display:flex; align-items:center; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); border-radius:10px; transition:border-color 0.2s; }
+.cp-stepper-input:focus-within { border-color:rgba(0,122,255,0.5); }
+.cp-stepper-sym { font-size:1.05rem; font-weight:700; color:var(--primary-blue); padding:0 2px 0 14px; flex-shrink:0; pointer-events:none; }
+.cp-stepper-input input { flex:1; background:none; border:none; outline:none; color:var(--text-main); font-size:1.05rem; font-weight:600; padding:12px 14px; font-family:inherit; width:100%; min-width:0; }
+.cp-stepper-input input::-webkit-inner-spin-button,
+.cp-stepper-input input::-webkit-outer-spin-button { -webkit-appearance:none; }
+.cp-stepper-unit { font-size:0.82rem; color:var(--text-muted); padding:0 14px 0 0; flex-shrink:0; }
+.cp-hint { font-size:0.72rem; color:rgba(255,255,255,0.3); margin:6px 0 0; }
 /* Rate bar */
-.cp-rate-bar { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09); border-radius: 12px; padding: 14px 18px; display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
-.cp-rate-track { flex: 1; height: 8px; background: rgba(255,255,255,0.08); border-radius: 4px; overflow: hidden; }
-.cp-rate-fill { height: 100%; width: 5%; background: linear-gradient(90deg, var(--primary-blue), #00c896); border-radius: 4px; animation: rateGrow 1s ease forwards 0.3s; }
-@keyframes rateGrow { from{width:0%} to{width:47%} }
-.cp-rate-label { font-size: 1.1rem; font-weight: 700; color: #34c759; white-space: nowrap; }
-/* Interest options */
-.cp-option-card { border: 1.5px solid rgba(255,255,255,0.09); border-radius: 14px; padding: 16px 18px; margin-bottom: 10px; cursor: pointer; transition: all 0.22s; display: flex; align-items: flex-start; gap: 14px; }
-.cp-option-card:hover { border-color: rgba(0,122,255,0.35); background: rgba(0,122,255,0.04); }
-.cp-option-card.selected { border-color: rgba(0,122,255,0.6); background: rgba(0,122,255,0.08); }
-.cp-radio { width: 18px; height: 18px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; transition: all 0.2s; }
-.cp-option-card.selected .cp-radio { border-color: var(--primary-blue); background: var(--primary-blue); }
-.cp-option-card.selected .cp-radio::after { content: ''; width: 6px; height: 6px; background: #fff; border-radius: 50%; }
-.cp-option-body h4 { font-size: 0.88rem; font-weight: 700; color: var(--text-main); margin: 0 0 2px; }
-.cp-option-body p { font-size: 0.75rem; color: var(--text-muted); margin: 0 0 8px; }
-.cp-freq-select { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.14); border-radius: 8px; padding: 7px 10px; color: var(--text-main); font-size: 0.82rem; font-family: inherit; outline: none; cursor: pointer; display: none; }
-.cp-option-card.selected .cp-freq-select { display: block; }
-.cp-freq-select option { background: #1a1a2e; }
-/* Summary card */
-.cp-summary { background: linear-gradient(135deg,rgba(0,122,255,0.07),rgba(0,200,150,0.05)); border: 1px solid rgba(0,122,255,0.2); border-radius: 16px; padding: 20px; margin: 20px 0 0; }
-.cp-summary h4 { font-size: 0.88rem; font-weight: 700; color: var(--text-main); margin: 0 0 14px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; gap: 8px; }
-.cp-sum-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
-.cp-sum-row:last-child { border-bottom: none; }
-.cp-sum-label { font-size: 0.78rem; color: var(--text-muted); }
-.cp-sum-value { font-size: 0.85rem; font-weight: 600; color: var(--text-main); }
-.cp-sum-highlight { color: #34c759; font-size: 1rem; font-weight: 700; }
-.cp-sum-payout { color: var(--primary-blue); }
-/* Trust badges */
-.cp-trust-row { display: flex; justify-content: center; gap: 20px; margin-top: 14px; flex-wrap: wrap; }
-.cp-trust-badge { font-size: 0.7rem; color: rgba(255,255,255,0.3); display: flex; align-items: center; gap: 4px; }
+.cp-rate-bar { display:flex; align-items:center; gap:14px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:14px 18px; }
+.cp-rate-track { flex:1; height:8px; background:rgba(255,255,255,0.07); border-radius:4px; overflow:hidden; }
+.cp-rate-fill { height:100%; width:0; background:linear-gradient(90deg,#007aff,#00c896); border-radius:4px; animation:cpRateGrow 1.2s cubic-bezier(.34,1.56,.64,1) forwards .4s; }
+@keyframes cpRateGrow { to { width:47%; } }
+.cp-rate-label { font-size:1.05rem; font-weight:700; color:#34c759; white-space:nowrap; }
+/* Interest option cards */
+.cp-opt-card { display:flex; align-items:flex-start; gap:14px; padding:16px 18px; border:1.5px solid rgba(255,255,255,0.09); border-radius:14px; margin-bottom:10px; cursor:pointer; transition:all 0.2s; }
+.cp-opt-card:hover { border-color:rgba(0,122,255,0.3); background:rgba(0,122,255,0.03); }
+.cp-opt-card.cp-opt-active { border-color:rgba(0,122,255,0.55); background:rgba(0,122,255,0.07); }
+.cp-radio { width:18px; height:18px; border-radius:50%; border:2px solid rgba(255,255,255,0.25); flex-shrink:0; margin-top:2px; display:flex; align-items:center; justify-content:center; transition:all 0.2s; }
+.cp-opt-card.cp-opt-active .cp-radio { border-color:var(--primary-blue); background:var(--primary-blue); }
+.cp-opt-card.cp-opt-active .cp-radio::after { content:''; width:6px; height:6px; border-radius:50%; background:#fff; }
+.cp-opt-body h4 { font-size:0.88rem; font-weight:700; color:var(--text-main); margin:0 0 3px; }
+.cp-opt-body p { font-size:0.75rem; color:var(--text-muted); margin:0 0 10px; line-height:1.5; }
+.cp-freq-sel { display:none; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:8px; padding:8px 12px; color:var(--text-main); font-size:0.82rem; font-family:inherit; outline:none; cursor:pointer; width:100%; }
+.cp-freq-sel option { background:#1a1a2e; }
+.cp-opt-card.cp-opt-active .cp-freq-sel { display:block; }
+/* Live Overview */
+.cp-overview { background:linear-gradient(135deg,rgba(0,122,255,0.06),rgba(0,200,150,0.04)); border:1px solid rgba(0,122,255,0.18); border-radius:16px; padding:20px; margin-bottom:20px; }
+.cp-overview h4 { font-size:0.9rem; font-weight:700; color:var(--text-main); margin:0 0 16px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.07); }
+.cp-ov-row { display:flex; justify-content:space-between; align-items:center; padding:7px 0; border-bottom:1px solid rgba(255,255,255,0.04); }
+.cp-ov-row:last-child { border-bottom:none; }
+.cp-ov-row span { font-size:0.78rem; color:var(--text-muted); }
+.cp-ov-row strong { font-size:0.86rem; font-weight:700; color:var(--text-main); }
+.cp-ov-sep { height:1px; background:rgba(255,255,255,0.08); margin:8px 0; }
+.cp-highlight { color:#34c759 !important; }
+.cp-highlight-blue { color:var(--primary-blue) !important; }
+/* Trust */
+.cp-trust-row { display:flex; justify-content:center; gap:18px; flex-wrap:wrap; margin:18px 0 16px; }
+.cp-trust-badge { font-size:0.7rem; color:rgba(255,255,255,0.28); }
 /* Submit */
-.cp-submit-btn { width: 100%; padding: 15px; background: linear-gradient(135deg,rgba(0,122,255,0.25),rgba(0,200,150,0.15)); border: 1px solid rgba(0,122,255,0.45); color: #fff; border-radius: 14px; font-size: 0.95rem; font-weight: 700; cursor: pointer; font-family: inherit; transition: all 0.22s; margin-top: 16px; letter-spacing: 0.02em; }
-.cp-submit-btn:hover { background: linear-gradient(135deg,rgba(0,122,255,0.35),rgba(0,200,150,0.25)); transform: translateY(-1px); box-shadow: 0 4px 20px rgba(0,122,255,0.2); }
-.cp-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-.cp-success { display: none; background: rgba(52,199,89,0.1); border: 1px solid rgba(52,199,89,0.3); border-radius: 12px; padding: 16px 18px; margin-top: 12px; }
-.cp-success.show { display: block; }
-.cp-success h4 { color: #34c759; font-size: 0.88rem; font-weight: 700; margin: 0 0 4px; }
-.cp-success p { font-size: 0.78rem; color: var(--text-muted); margin: 0; }
+.cp-submit-btn { width:100%; padding:16px; background:linear-gradient(135deg,rgba(0,122,255,0.22),rgba(0,200,150,0.12)); border:1px solid rgba(0,122,255,0.4); color:#fff; border-radius:14px; font-size:0.95rem; font-weight:700; cursor:pointer; font-family:inherit; transition:all 0.22s; letter-spacing:0.02em; }
+.cp-submit-btn:hover { background:linear-gradient(135deg,rgba(0,122,255,0.32),rgba(0,200,150,0.22)); transform:translateY(-1px); box-shadow:0 4px 20px rgba(0,122,255,0.2); }
+.cp-submit-btn:disabled { opacity:0.5; cursor:not-allowed; transform:none !important; }
+/* Confirm overlay */
+.cp-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.75); display:flex; align-items:center; justify-content:center; z-index:9000; padding:20px; backdrop-filter:blur(6px); }
+.cp-confirm-box { background:#1a1f35; border:1px solid rgba(255,255,255,0.13); border-radius:20px; padding:28px; width:100%; max-width:430px; }
+.cp-confirm-box h3 { font-size:1.1rem; font-weight:700; color:var(--text-main); margin:0 0 6px; }
+.cp-confirm-sub { font-size:0.78rem; color:var(--text-muted); margin:0 0 20px; line-height:1.5; }
+.cp-confirm-row { display:flex; justify-content:space-between; align-items:center; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); }
+.cp-confirm-row:last-of-type { border-bottom:none; }
+.cp-confirm-row span { font-size:0.78rem; color:var(--text-muted); }
+.cp-confirm-row strong { font-size:0.86rem; color:var(--text-main); }
+.cp-confirm-total strong { color:#34c759 !important; font-size:1rem !important; }
+.cp-confirm-actions { display:flex; gap:10px; margin-top:22px; }
+.cp-btn-sec { flex:1; padding:12px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:10px; color:var(--text-muted); font-size:0.88rem; cursor:pointer; font-family:inherit; transition:all 0.2s; }
+.cp-btn-sec:hover { background:rgba(255,255,255,0.1); color:var(--text-main); }
+.cp-btn-pri { flex:2; padding:12px; background:rgba(0,122,255,0.2); border:1px solid rgba(0,122,255,0.45); border-radius:10px; color:var(--primary-blue); font-size:0.88rem; font-weight:700; cursor:pointer; font-family:inherit; transition:all 0.2s; }
+.cp-btn-pri:hover { background:rgba(0,122,255,0.3); }
+.cp-btn-pri:disabled { opacity:0.5; cursor:not-allowed; }
+/* Banners */
+.cp-banner { display:none; border-radius:12px; padding:14px 18px; margin-bottom:18px; align-items:center; gap:12px; }
+.cp-banner.show { display:flex; }
+.cp-banner-icon { font-size:1.4rem; }
+.cp-banner-title { font-size:0.88rem; font-weight:700; margin:0 0 2px; }
+.cp-banner-sub { font-size:0.75rem; color:var(--text-muted); margin:0; }
+.cp-banner-approved { background:rgba(52,199,89,0.08); border:1px solid rgba(52,199,89,0.25); }
+.cp-banner-approved .cp-banner-title { color:#34c759; }
+.cp-banner-pending { background:rgba(255,149,0,0.08); border:1px solid rgba(255,149,0,0.25); }
+.cp-banner-pending .cp-banner-title { color:#ff9500; }
+.cp-success-banner { display:none; background:rgba(52,199,89,0.08); border:1px solid rgba(52,199,89,0.25); border-radius:12px; padding:14px 18px; margin-top:14px; }
+.cp-success-banner.show { display:block; }
+.cp-success-banner p { margin:0; }
+.cp-success-banner p:first-child { font-weight:700; color:#34c759; margin-bottom:4px; }
+.cp-success-banner p:last-child { font-size:0.75rem; color:var(--text-muted); }
+/* ── DASHBOARD ── */
+.cp-dash-section { margin-bottom:20px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.07); border-radius:16px; padding:20px; }
+.cp-dash-title { font-size:0.9rem; font-weight:700; color:var(--text-main); margin:0 0 16px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.07); }
+.cp-dash-sub { font-size:0.75rem; color:var(--text-muted); margin:-8px 0 14px; }
+.cp-cards-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+@media(max-width:480px){.cp-cards-grid{grid-template-columns:1fr;}}
+.cp-card { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:12px; padding:14px 16px; }
+.cp-card-label { font-size:0.7rem; color:var(--text-muted); font-weight:500; text-transform:uppercase; letter-spacing:0.04em; display:block; margin-bottom:6px; }
+.cp-card-value { font-size:1.05rem; font-weight:700; color:var(--text-main); display:block; }
+.cp-card-green .cp-card-value { color:#34c759; }
+.cp-card-blue .cp-card-value { color:var(--primary-blue); }
+/* Chart */
+.cp-chart-wrap { width:100%; overflow-x:auto; }
+.cp-chart-wrap canvas { max-width:100%; height:auto; display:block; }
+.cp-chart-legend { display:flex; gap:20px; margin-top:12px; justify-content:center; flex-wrap:wrap; }
+.cp-leg-item { font-size:0.73rem; color:var(--text-muted); display:flex; align-items:center; gap:7px; }
+.cp-leg-item::before { content:''; width:18px; height:3px; border-radius:2px; display:inline-block; flex-shrink:0; }
+.cp-leg-blue::before { background:#007aff; }
+.cp-leg-green::before { background:#34c759; }
+/* Payout */
+.cp-payout-btns { display:flex; gap:12px; flex-wrap:wrap; }
+.cp-payout-btn { flex:1; min-width:130px; padding:12px 16px; background:rgba(0,122,255,0.12); border:1px solid rgba(0,122,255,0.35); border-radius:10px; color:var(--primary-blue); font-size:0.88rem; font-weight:600; cursor:pointer; font-family:inherit; transition:all 0.2s; }
+.cp-payout-btn:hover { background:rgba(0,122,255,0.22); }
+.cp-payout-sec { background:rgba(255,255,255,0.05); border-color:rgba(255,255,255,0.12); color:var(--text-muted); }
+.cp-payout-sec:hover { background:rgba(255,255,255,0.1); color:var(--text-main); }
+.cp-payout-msg { font-size:0.82rem; color:#34c759; margin-top:12px; padding:10px 14px; background:rgba(52,199,89,0.08); border:1px solid rgba(52,199,89,0.2); border-radius:8px; display:none; }
+.cp-payout-msg.show { display:block; }
+/* History */
+.cp-hist-item { display:flex; align-items:center; gap:12px; padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.05); }
+.cp-hist-item:last-child { border-bottom:none; }
+.cp-hist-icon { width:34px; height:34px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:0.9rem; flex-shrink:0; }
+.cp-hist-icon.dep { background:rgba(0,122,255,0.12); }
+.cp-hist-icon.int { background:rgba(52,199,89,0.12); }
+.cp-hist-icon.pay { background:rgba(255,149,0,0.12); }
+.cp-hist-body { flex:1; }
+.cp-hist-name { font-size:0.82rem; font-weight:600; color:var(--text-main); margin:0 0 2px; }
+.cp-hist-date { font-size:0.72rem; color:var(--text-muted); margin:0; }
+.cp-hist-amt { font-size:0.86rem; font-weight:700; }
+.cp-hist-amt.pos { color:#34c759; }
+.cp-hist-amt.neg { color:#ff9500; }
+.cp-hist-amt.neu { color:var(--primary-blue); }
+.cp-hist-empty { font-size:0.82rem; color:var(--text-muted); text-align:center; padding:20px 0; }
 </style>
 </head>
 <body class="dark-mode">
@@ -473,66 +546,80 @@ body { background: #0a0a0f; }
     </div>
     <div id="role-err-investor" style="font-size:0.78rem;color:#dc3545;margin-top:8px;display:none;"></div>
   </div>
-  <div class="role-form" id="rf-capital">
-    <p class="role-form-title">🏦 Sermaye Ortağı</p>
-    <p class="role-form-sub">Sermaye sağlayın ve istikrarlı getirilerden yararlanın</p>
+    <div class="role-form" id="rf-capital">
 
-    <!-- Locked banner -->
-    <div class="cp-locked-banner" id="cp-locked-banner">
-      <span class="lb-icon">🔒</span>
-      <div><p class="lb-title">🔒 Talep Onaylandı</p><p class="lb-sub">Yatırımınız onaylandı. Koşullar artık değiştirilemez.</p></div>
+    <!-- ── Approved Banner ── -->
+    <div class="cp-banner cp-banner-approved" id="cp-banner-approved">
+      <span class="cp-banner-icon">🔒</span>
+      <div><p class="cp-banner-title">🔒 Yatırım Onaylandı</p><p class="cp-banner-sub">Yatırımınız aktif. Koşullar artık değiştirilemez.</p></div>
+    </div>
+    <!-- ── Pending Banner ── -->
+    <div class="cp-banner cp-banner-pending" id="cp-banner-pending">
+      <span class="cp-banner-icon">⏳</span>
+      <div><p class="cp-banner-title">⏳ Talep İnceleniyor</p><p class="cp-banner-sub">Yatırım talebiniz yöneticilerimiz tarafından inceleniyor. Onaylandığında bildirileceksiniz.</p></div>
     </div>
 
-    <div class="cp-form" id="cp-form-inner">
+    <!-- ══════════════════════════════════════════
+         INVESTMENT FORM (shown before approval)
+         ══════════════════════════════════════════ -->
+    <div id="cp-form-section">
+      <p class="role-form-title">🏦 Sermaye Ortağı</p>
 
-      <!-- 1. Amount -->
-      <div class="db-field" style="margin-bottom:18px;">
-        <label style="font-size:0.82rem;color:var(--text-muted);display:block;margin-bottom:8px;">Yatırım Miktarı</label>
-        <div class="cp-amount-row">
-          <div class="cp-currency-badge" id="cp-currency-badge">€</div>
-          <div class="db-field" style="margin-bottom:0;flex:1;">
-            <input type="number" id="cp-amount" min="1000" step="1000" placeholder="10 000"
-              style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:12px 14px;color:var(--text-main);font-size:1rem;font-family:inherit;outline:none;box-sizing:border-box;"
-              oninput="cpCalc()"/>
-            <p style="font-size:0.72rem;color:var(--text-muted);margin:6px 0 0;">Minimum: 1.000</p>
-          </div>
+      <!-- 1. Currency -->
+      <div class="cp-section">
+        <label class="cp-label">Para Birimi</label>
+        <div class="cp-currency-btns">
+          <button class="cp-cur-btn cp-cur-active" id="cp-cur-eur" onclick="cpSetCurrency('EUR')">€ Euro</button>
+          <button class="cp-cur-btn" id="cp-cur-usd" onclick="cpSetCurrency('USD')">$ ABD Doları</button>
         </div>
       </div>
 
-      <!-- 2. Year wheel -->
-      <div class="db-field" style="margin-bottom:18px;">
-        <label style="font-size:0.82rem;color:var(--text-muted);display:block;margin-bottom:4px;">Yatırım Süresi</label>
-        <div class="year-picker-wrap">
-          <div class="year-picker-drum">
-            <button class="yp-btn" onclick="ypChange(1)">▲</button>
-            <div class="yp-display"><span class="yp-number" id="yp-num">10</span></div>
-            <button class="yp-btn" onclick="ypChange(-1)">▼</button>
+      <!-- 2. Amount -->
+      <div class="cp-section">
+        <label class="cp-label">Yatırım Miktarı</label>
+        <div class="cp-stepper">
+          <button class="cp-step-btn" onclick="cpAmountStep(-1000)">−</button>
+          <div class="cp-stepper-input">
+            <span class="cp-stepper-sym" id="cp-sym-display">€</span>
+            <input type="number" id="cp-amount" min="1000" step="1000" value="10000" oninput="cpCalc()"/>
           </div>
-          <div>
-            <div class="yp-unit">Yıl</div>
-            <div class="yp-range">1 – 99 yıl</div>
-          </div>
+          <button class="cp-step-btn" onclick="cpAmountStep(1000)">+</button>
         </div>
+        <p class="cp-hint">Minimum: 1.000</p>
       </div>
 
-      <!-- 3. Rate bar -->
-      <div class="db-field" style="margin-bottom:18px;">
-        <label style="font-size:0.82rem;color:var(--text-muted);display:block;margin-bottom:8px;">Yıllık Getiri</label>
+      <!-- 3. Period -->
+      <div class="cp-section">
+        <label class="cp-label">Yatırım Süresi</label>
+        <div class="cp-stepper">
+          <button class="cp-step-btn" onclick="cpPeriodStep(-1)">−</button>
+          <div class="cp-stepper-input">
+            <input type="number" id="cp-years" min="1" max="99" value="10" oninput="cpYrsInput()"/>
+            <span class="cp-stepper-unit">Yıl</span>
+          </div>
+          <button class="cp-step-btn" onclick="cpPeriodStep(1)">+</button>
+        </div>
+        <p class="cp-hint">1 – 99 yıl</p>
+      </div>
+
+      <!-- 4. Rate (display) -->
+      <div class="cp-section">
+        <label class="cp-label">Yıllık Getiri</label>
         <div class="cp-rate-bar">
           <div class="cp-rate-track"><div class="cp-rate-fill"></div></div>
           <span class="cp-rate-label">Yıllık %5 (sabit)</span>
         </div>
       </div>
 
-      <!-- 4. Interest Options -->
-      <div class="db-field" style="margin-bottom:18px;">
-        <label style="font-size:0.82rem;color:var(--text-muted);display:block;margin-bottom:10px;">Faiz Seçeneği</label>
-        <div class="cp-option-card selected" id="cp-opt-a" onclick="cpSelectOption('a')">
+      <!-- 5. Interest Options -->
+      <div class="cp-section">
+        <label class="cp-label">Faiz Seçeneği</label>
+        <div class="cp-opt-card cp-opt-active" id="cp-opt-a" onclick="cpSetOpt('a')">
           <div class="cp-radio"></div>
-          <div class="cp-option-body">
+          <div class="cp-opt-body">
             <h4>Seçenek A – Faiz Ödemesi</h4>
-            <p>Faiz düzenli olarak ödenir</p>
-            <select class="cp-freq-select" id="cp-freq" onchange="cpCalc()">
+            <p>Faiz düzenli olarak yatırımcıya ödenir</p>
+            <select class="cp-freq-sel" id="cp-freq" onchange="cpCalc()">
               <option value="12">Aylık</option>
               <option value="4">Üç Aylık</option>
               <option value="2">6 Aylık</option>
@@ -540,41 +627,141 @@ body { background: #0a0a0f; }
             </select>
           </div>
         </div>
-        <div class="cp-option-card" id="cp-opt-b" onclick="cpSelectOption('b')">
+        <div class="cp-opt-card" id="cp-opt-b" onclick="cpSetOpt('b')">
           <div class="cp-radio"></div>
-          <div class="cp-option-body">
+          <div class="cp-opt-body">
             <h4>Seçenek B – Bileşik Faiz</h4>
-            <p>Faiz sermayeye eklenir</p>
+            <p>Faiz otomatik olarak sermayeye eklenir</p>
+            <p style="font-size:0.72rem;color:rgba(52,199,89,0.7);margin:0;">Bileşik faiz aylık eklenir</p>
           </div>
         </div>
       </div>
 
-      <!-- 5. Summary -->
-      <div class="cp-summary">
-        <h4>📊 Yatırım Özeti</h4>
-        <div class="cp-sum-row"><span class="cp-sum-label">Yatırım Miktarı</span><span class="cp-sum-value" id="cs-amount">–</span></div>
-        <div class="cp-sum-row"><span class="cp-sum-label">Süre</span><span class="cp-sum-value" id="cs-period">–</span></div>
-        <div class="cp-sum-row"><span class="cp-sum-label">Yıllık Getiri</span><span class="cp-sum-value">5% p.a.</span></div>
-        <div class="cp-sum-row"><span class="cp-sum-label">Faiz Seçeneği</span><span class="cp-sum-value" id="cs-option">–</span></div>
-        <div class="cp-sum-row" id="cs-payout-row"><span class="cp-sum-label">Ödeme Aralığı</span><span class="cp-sum-value cp-sum-payout" id="cs-payout">–</span></div>
-        <div class="cp-sum-row"><span class="cp-sum-label">Faiz Kazancı</span><span class="cp-sum-value cp-sum-highlight" id="cs-return">–</span></div>
-        <div class="cp-sum-row"><span class="cp-sum-label">Tahmini Toplam Değer</span><span class="cp-sum-value cp-sum-highlight" id="cs-total">–</span></div>
-        <div class="cp-sum-row" id="cs-per-row"><span class="cp-sum-label">Aralık Başına Ödeme</span><span class="cp-sum-value cp-sum-payout" id="cs-per">–</span></div>
+      <!-- 6. Live Financial Overview -->
+      <div class="cp-overview">
+        <h4>📊 Canlı Finansal Özet</h4>
+        <div class="cp-ov-row"><span>Yatırım Miktarı</span><strong id="ov-amount">–</strong></div>
+        <div class="cp-ov-row"><span>Para Birimi</span><strong id="ov-currency">–</strong></div>
+        <div class="cp-ov-row"><span>Yatırım Süresi</span><strong id="ov-period">–</strong></div>
+        <div class="cp-ov-row"><span>Yıllık Getiri</span><strong>5% p.a.</strong></div>
+        <div class="cp-ov-sep"></div>
+        <div class="cp-ov-row" id="ov-monthly-row"><span>Aylık Beklenen Faiz</span><strong id="ov-monthly" class="cp-highlight-blue">–</strong></div>
+        <div class="cp-ov-row"><span>Yıllık Beklenen Faiz</span><strong id="ov-yearly" class="cp-highlight-blue">–</strong></div>
+        <div class="cp-ov-row"><span>Toplam Beklenen Getiri</span><strong id="ov-total-return" class="cp-highlight">–</strong></div>
+        <div class="cp-ov-row"><span>Vade Sonundaki Değer</span><strong id="ov-final" class="cp-highlight">–</strong></div>
       </div>
 
-      <!-- 6. Trust + Submit -->
+      <!-- 7. Trust + Submit -->
       <div class="cp-trust-row">
         <span class="cp-trust-badge">🔒 Güvenli SSL</span>
         <span class="cp-trust-badge">📋 Onaylı Sözleşme</span>
         <span class="cp-trust-badge">⚖️ Yasal Güvence</span>
       </div>
-      <button class="cp-submit-btn" id="cp-submit-btn" onclick="cpSubmit()">Yatırım Talebi Gönder</button>
-      <div class="cp-success" id="cp-success">
-        <p style="font-weight:700;color:#34c759;margin:0 0 4px;">✓ Talep Gönderildi</p>
-        <p style="font-size:0.78rem;color:var(--text-muted);margin:0;">Talebiniz inceleniyor.</p>
+      <button class="cp-submit-btn" id="cp-submit-main" onclick="cpShowConfirm()">Yatırım Talebini Gönder</button>
+      <div class="cp-success-banner" id="cp-success-banner">
+        <p>✓ Talep Gönderildi</p>
+        <p>Yatırım talebiniz inceleniyor.</p>
       </div>
     </div>
-  </div>
+
+    <!-- ══════════════════════════════
+         CONFIRMATION MODAL
+         ══════════════════════════════ -->
+    <div class="cp-overlay" id="cp-confirm-overlay" style="display:none;">
+      <div class="cp-confirm-box">
+        <h3>Yatırımı Onayla</h3>
+        <p class="cp-confirm-sub">Göndermeden önce yatırım bilgilerinizi kontrol edin.</p>
+        <div id="cp-confirm-details"></div>
+        <div class="cp-confirm-actions">
+          <button class="cp-btn-sec" onclick="cpCancelConfirm()">← Geri</button>
+          <button class="cp-btn-pri" id="cp-confirm-btn" onclick="cpSubmit()">Onayla & Gönder</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         DASHBOARD (shown after approval)
+         ══════════════════════════════════════════════ -->
+    <div id="cp-dashboard" style="display:none;">
+
+      <!-- Portfolio Overview -->
+      <div class="cp-dash-section">
+        <p class="cp-dash-title">📁 Portföy Özeti</p>
+        <div class="cp-cards-grid">
+          <div class="cp-card">
+            <span class="cp-card-label">Toplam Yatırım</span>
+            <span class="cp-card-value" id="dash-invested">–</span>
+          </div>
+          <div class="cp-card cp-card-green">
+            <span class="cp-card-label">Kazanılan Faiz</span>
+            <span class="cp-card-value" id="dash-earned">–</span>
+          </div>
+          <div class="cp-card cp-card-blue">
+            <span class="cp-card-label">Portföy Değeri</span>
+            <span class="cp-card-value" id="dash-portfolio">–</span>
+          </div>
+          <div class="cp-card">
+            <span class="cp-card-label">Aktif Süre</span>
+            <span class="cp-card-value" id="dash-active">–</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Earnings Overview -->
+      <div class="cp-dash-section">
+        <p class="cp-dash-title">💰 Kazanç Özeti</p>
+        <div class="cp-cards-grid">
+          <div class="cp-card cp-card-green">
+            <span class="cp-card-label">Aylık Faiz</span>
+            <span class="cp-card-value" id="dash-monthly">–</span>
+          </div>
+          <div class="cp-card cp-card-green">
+            <span class="cp-card-label">Yıllık Faiz</span>
+            <span class="cp-card-value" id="dash-yearly">–</span>
+          </div>
+          <div class="cp-card">
+            <span class="cp-card-label">Sonraki Ödeme</span>
+            <span class="cp-card-value" id="dash-next-payout">–</span>
+          </div>
+          <div class="cp-card cp-card-blue">
+            <span class="cp-card-label">Vade Değeri</span>
+            <span class="cp-card-value" id="dash-maturity">–</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Capital Growth Chart -->
+      <div class="cp-dash-section">
+        <p class="cp-dash-title">📈 Sermaye Büyümesi</p>
+        <div class="cp-chart-wrap">
+          <canvas id="cp-chart" width="560" height="260"></canvas>
+        </div>
+        <div class="cp-chart-legend">
+          <span class="cp-leg-item cp-leg-blue">Sermaye Değeri</span>
+          <span class="cp-leg-item cp-leg-green">Faiz</span>
+        </div>
+      </div>
+
+      <!-- Payout Request -->
+      <div class="cp-dash-section" id="dash-payout-section">
+        <p class="cp-dash-title">💸 Ödeme Talep Et</p>
+        <p class="cp-dash-sub">Seçenek A (Faiz Ödemesi) yatırımcıları için geçerlidir</p>
+        <div class="cp-payout-btns">
+          <button class="cp-payout-btn" onclick="cpRequestPayout('interest')">Faizi Çek</button>
+          <button class="cp-payout-btn cp-payout-sec" onclick="cpRequestPayout('balance')">Bakiyeyi Çek</button>
+        </div>
+        <div class="cp-payout-msg" id="dash-payout-msg"></div>
+      </div>
+
+      <!-- Investment History -->
+      <div class="cp-dash-section">
+        <p class="cp-dash-title">📋 Yatırım Geçmişi</p>
+        <div id="dash-history"></div>
+      </div>
+
+    </div><!-- /cp-dashboard -->
+  </div><!-- /rf-capital -->
+
   <div class="role-form" id="rf-seller">
     <p class="role-form-title">🏠 Satıcı</p>
     <p class="role-form-sub">Arazi veya gayrimenkul sahibi olup satmak isteyenler için.</p>
@@ -1062,6 +1249,7 @@ async function loadRoleData() {
       pill.style.display = 'inline-flex';
     }
     selectRole(data.role);
+    if(data.role==='capital') loadCapitalData();
     const d = data.data || {};
     const fill = (id, val) => { const el=document.getElementById(id); if(el&&val) el.value=val; };
     fill('r-'+data.role+'-title', d.title);
@@ -1080,223 +1268,444 @@ document.addEventListener('DOMContentLoaded', () => {
   ['founder','investor','capital','seller','explorer'].forEach(k => fuSetup(k));
 });
 
-// ── Capital Partner Form ──────────────────────────────
-let _cpOption = 'a';
-let _cpYears  = 10;
-const RATE    = 0.05;
+// ── Capital Partner Investment System ─────────────────────────────────────────
+(function(){
+const _cpT = {
+  eur: '€ Euro', usd: '$ ABD Doları',
+  period_unit: 'Yıl',
+  opt_a_short: 'Seçenek A – Ödeme', opt_b_short: 'Seçenek B – Bileşik',
+  freq_m: 'Aylık', freq_q: 'Üç Aylık', freq_b: '6 Aylık', freq_a: 'Yıllık',
+  tx_deposit: 'Yatırım', tx_interest: 'Faiz Kredisi', tx_payout: 'Ödeme',
+  payout_requested: '✓ Ödeme talebi gönderildi',
+  payout_msg_interest: 'Faiz ödemesi talep edildi',
+  payout_msg_balance: 'Bakiye ödemesi talep edildi',
+  ov_amount: 'Yatırım Miktarı', ov_currency: 'Para Birimi',
+  ov_period: 'Yatırım Süresi',
+  years_short: 'yıl',
+  err_amount: "Minimum tutar 1.000'dir.",
+  confirm_title_row: 'Yatırımı Onayla',
+};
 
-// Detect currency based on timezone
-(function() {
-  try {
-    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
-    const lang = navigator.language || '';
-    const euTZ = ['Europe/','Atlantic/Azores','Atlantic/Canary','Atlantic/Madeira'];
-    const isEU = euTZ.some(z => tz.startsWith(z));
-    const el = document.getElementById('cp-currency');
-    if (el) { el.textContent = isEU ? '€' : '$'; el.dataset.sym = isEU ? '€' : '$'; }
-  } catch(e) {}
-})();
+let _cpCurrency = 'EUR';
+let _cpYears = 10;
+let _cpOpt = 'a';
 
-function cpSym() {
-  const el = document.getElementById('cp-currency');
-  return el ? (el.dataset.sym || el.textContent || '€') : '€';
-}
+// ── Helpers ──────────────────────────────────────────────────
+function cpSym(){ return _cpCurrency==='EUR'?'€':'$'; }
+function cpFmt(n){ return cpSym()+' '+Math.round(n).toLocaleString(); }
+function cpFmtDec(n){ return cpSym()+' '+(Math.round(n*100)/100).toLocaleLocaleString??(cpSym()+' '+n.toFixed(2)); }
 
-function cpFmt(n) {
-  return cpSym() + ' ' + Math.round(n).toLocaleString();
-}
-
-function cpFmtDec(n) {
-  return cpSym() + ' ' + n.toLocaleString(undefined, {minimumFractionDigits:2,maximumFractionDigits:2});
-}
-
-// Year picker
-function ypChange(delta) {
-  const el = document.getElementById('yp-num');
-  const inp = document.getElementById('cp-period');
-  let v = _cpYears + delta;
-  if (v < 1) v = 1;
-  if (v > 99) v = 99;
-  _cpYears = v;
-  if (el) {
-    el.style.transform = delta > 0 ? 'translateY(8px)' : 'translateY(-8px)';
-    el.style.opacity = '0';
-    setTimeout(() => {
-      el.textContent = v;
-      el.style.transform = 'translateY(0)';
-      el.style.opacity = '1';
-    }, 120);
-  }
-  if (inp) inp.value = v;
+function cpSetCurrency(cur){
+  _cpCurrency = cur;
+  document.getElementById('cp-sym-display').textContent = cur==='EUR'?'€':'$';
+  document.getElementById('cp-cur-eur').classList.toggle('cp-cur-active', cur==='EUR');
+  document.getElementById('cp-cur-usd').classList.toggle('cp-cur-active', cur==='USD');
   cpCalc();
 }
 
-// Also allow scroll on year display
-document.addEventListener('DOMContentLoaded', () => {
-  const ypDisp = document.querySelector('.yp-display');
-  if (ypDisp) {
-    ypDisp.addEventListener('wheel', e => { e.preventDefault(); ypChange(e.deltaY < 0 ? 1 : -1); }, { passive: false });
-  }
-});
-
-function cpSelectOption(opt) {
-  _cpOption = opt;
-  const a = document.getElementById('cp-opt-a');
-  const b = document.getElementById('cp-opt-b');
-  if (a) a.classList.toggle('selected', opt === 'a');
-  if (b) b.classList.toggle('selected', opt === 'b');
+function cpAmountStep(delta){
+  const el = document.getElementById('cp-amount'); if(!el) return;
+  const v = (parseFloat(el.value)||0) + delta;
+  el.value = Math.max(1000, v);
   cpCalc();
 }
 
-function cpCalc() {
-  const amountEl = document.getElementById('cp-amount');
-  const errEl    = document.getElementById('cp-err-amount');
-  const amount   = parseFloat(amountEl ? amountEl.value : 0) || 0;
-
-  // Validate min
-  if (errEl) errEl.style.display = amount > 0 && amount < 1000 ? 'block' : 'none';
-
-  const years = _cpYears;
-  const sym   = cpSym();
-  const periodEl = document.getElementById('sum-period');
-  const unitText = document.querySelector('.yp-unit') ? document.querySelector('.yp-unit').textContent : 'Years';
-  if (periodEl) periodEl.textContent = years + ' ' + unitText;
-
-  // Amount display
-  const sumAmt = document.getElementById('sum-amount');
-  if (sumAmt) sumAmt.textContent = cpFmt(amount);
-
-  let totalReturn = 0, totalValue = 0;
-
-  if (_cpOption === 'a') {
-    // Simple interest – payout option
-    const freqEl = document.getElementById('cp-freq');
-    const freq   = freqEl ? parseInt(freqEl.value) : 12;
-    const freqName = freqEl ? freqEl.options[freqEl.selectedIndex].text : '';
-    totalReturn = amount * RATE * years;
-    totalValue  = amount + totalReturn;
-    const perPayout = (amount * RATE) / freq;
-    const payRow = document.getElementById('sum-payout-row');
-    const payPer = document.getElementById('sum-payout-per');
-    if (payRow) payRow.style.display = 'flex';
-    if (payPer) payPer.textContent = cpFmtDec(perPayout) + ' (' + freqName + ')';
-    const optEl = document.getElementById('sum-option');
-    if (optEl) optEl.textContent = document.querySelector('#cp-opt-a .cp-option-body h4')?.textContent || 'Option A';
-  } else {
-    // Compound interest
-    totalValue  = amount * Math.pow(1 + RATE, years);
-    totalReturn = totalValue - amount;
-    const payRow = document.getElementById('sum-payout-row');
-    if (payRow) payRow.style.display = 'none';
-    const optEl = document.getElementById('sum-option');
-    if (optEl) optEl.textContent = document.querySelector('#cp-opt-b .cp-option-body h4')?.textContent || 'Option B';
-  }
-
-  const retEl = document.getElementById('sum-return');
-  const totEl = document.getElementById('sum-total');
-  if (retEl) retEl.textContent = '+ ' + cpFmt(totalReturn);
-  if (totEl) totEl.textContent = cpFmt(totalValue);
+function cpPeriodStep(delta){
+  const el = document.getElementById('cp-years'); if(!el) return;
+  const v = (parseInt(el.value)||1) + delta;
+  el.value = Math.min(99, Math.max(1, v));
+  _cpYears = parseInt(el.value);
+  cpCalc();
 }
 
-// Load existing capital data and lock if approved
-async function loadCapitalData() {
-  const token = localStorage.getItem('aBest_session');
-  if (!token) return;
-  try {
-    const res = await fetch('/api/role', { headers: {'Authorization':'Bearer '+token} });
-    if (!res.ok) return;
-    const data = await res.json();
-    if (!data || data.role !== 'capital') { cpCalc(); return; }
-    const d = data.data || {};
-    // Restore values
-    if (d.amount) { const el=document.getElementById('cp-amount'); if(el) el.value=d.amount; }
-    if (d.years)  { _cpYears=parseInt(d.years)||10; const el=document.getElementById('yp-num'); if(el) el.textContent=_cpYears; const inp=document.getElementById('cp-period'); if(inp) inp.value=_cpYears; }
-    if (d.option) cpSelectOption(d.option);
-    if (d.freq)   { const el=document.getElementById('cp-freq'); if(el) el.value=d.freq; }
-    cpCalc();
-    // Lock if approved
-    if (data.status === 'approved') {
-      const inner = document.getElementById('cp-form-inner');
-      if (inner) inner.classList.add('locked-form');
-      const banner = document.getElementById('cp-locked-banner');
-      if (banner) banner.classList.add('visible');
-      const btn = document.getElementById('cp-submit-btn');
-      if (btn) btn.style.display = 'none';
-    }
-  } catch(e) { cpCalc(); }
+function cpYrsInput(){
+  const el = document.getElementById('cp-years'); if(!el) return;
+  _cpYears = Math.min(99, Math.max(1, parseInt(el.value)||1));
+  el.value = _cpYears;
+  cpCalc();
 }
 
-async function cpSubmit() {
-  const amountEl = document.getElementById('cp-amount');
-  const amount   = parseFloat(amountEl ? amountEl.value : 0) || 0;
-  if (amount < 1000) {
-    const errEl = document.getElementById('cp-err-amount');
-    if (errEl) errEl.style.display = 'block';
-    return;
-  }
-  const token = localStorage.getItem('aBest_session');
-  if (!token) return;
-  const btn = document.getElementById('cp-submit-btn');
-  const errEl = document.getElementById('cp-err');
+function cpSetOpt(opt){
+  _cpOpt = opt;
+  document.getElementById('cp-opt-a').classList.toggle('cp-opt-active', opt==='a');
+  document.getElementById('cp-opt-b').classList.toggle('cp-opt-active', opt==='b');
+  const mr = document.getElementById('ov-monthly-row');
+  if(mr) mr.style.display = opt==='a'?'':'none';
+  cpCalc();
+}
+
+function cpCalc(){
+  const amt = parseFloat(document.getElementById('cp-amount')?.value)||0;
+  const yrs = _cpYears;
   const freqEl = document.getElementById('cp-freq');
-  if (errEl) errEl.style.display = 'none';
-  if (btn) { btn.disabled = true; }
+  const freq = freqEl ? parseInt(freqEl.value) : 1;
+  const freqTxt = freqEl ? freqEl.options[freqEl.selectedIndex]?.text : _cpT.freq_a;
 
-  const years = _cpYears;
-  const freq  = freqEl ? freqEl.value : '12';
-  const freqName = freqEl ? freqEl.options[freqEl.selectedIndex]?.text : '';
-  const totalReturn = _cpOption === 'a'
-    ? amount * RATE * years
-    : amount * Math.pow(1 + RATE, years) - amount;
-  const totalValue = amount + totalReturn;
+  const set = (id,v) => { const e=document.getElementById(id); if(e) e.textContent=v; };
+
+  set('ov-amount', amt>=1 ? cpFmt(amt) : '–');
+  set('ov-currency', _cpCurrency==='EUR' ? _cpT.eur : _cpT.usd);
+  set('ov-period', yrs+' '+_cpT.period_unit);
+
+  if(amt < 1){ set('ov-monthly','–'); set('ov-yearly','–'); set('ov-total-return','–'); set('ov-final','–'); return; }
+
+  const yearlyInterest = amt * 0.05;
+  const monthlyInterest = yearlyInterest / 12;
+
+  if(_cpOpt === 'a'){
+    const totalReturn = yearlyInterest * yrs;
+    const finalVal = amt + totalReturn;
+    const perInterval = yearlyInterest / freq;
+    set('ov-monthly', cpFmt(monthlyInterest));
+    set('ov-yearly', cpFmt(yearlyInterest));
+    set('ov-total-return', cpFmt(totalReturn));
+    set('ov-final', cpFmt(finalVal));
+  } else {
+    const finalVal = amt * Math.pow(1.05, yrs);
+    const totalReturn = finalVal - amt;
+    set('ov-monthly', '–');
+    set('ov-yearly', '–');
+    set('ov-total-return', cpFmt(totalReturn));
+    set('ov-final', cpFmt(finalVal));
+  }
+}
+
+// ── Confirmation ────────────────────────────────────────────
+function cpShowConfirm(){
+  const amt = parseFloat(document.getElementById('cp-amount')?.value)||0;
+  if(amt < 1000){ alert(_cpT.err_amount); return; }
+
+  const freqEl = document.getElementById('cp-freq');
+  const freqTxt = freqEl ? freqEl.options[freqEl.selectedIndex]?.text : '';
+
+  const yrs = _cpYears;
+  const opt = _cpOpt;
+  const yearlyInterest = amt * 0.05;
+  const totalReturn = opt==='a' ? yearlyInterest*yrs : (amt*Math.pow(1.05,yrs)-amt);
+  const finalVal = opt==='a' ? amt+totalReturn : amt*Math.pow(1.05,yrs);
+
+  const rows = [
+    [_cpT.ov_amount, cpFmt(amt)],
+    [_cpT.ov_currency, _cpCurrency==='EUR'?_cpT.eur:_cpT.usd],
+    [_cpT.ov_period, yrs+' '+_cpT.period_unit],
+    ['Annual Return', '5% p.a.'],
+    ['Interest Option', opt==='a'?_cpT.opt_a_short+' · '+freqTxt:_cpT.opt_b_short],
+    [_cpT.ov_total_return, cpFmt(totalReturn)],
+    [_cpT.ov_final, cpFmt(finalVal)],
+  ];
+
+  const html = rows.map((r,i) =>
+    `<div class="cp-confirm-row${i===rows.length-1?' cp-confirm-total':''}"><span>${r[0]}</span><strong>${r[1]}</strong></div>`
+  ).join('');
+
+  const det = document.getElementById('cp-confirm-details');
+  if(det) det.innerHTML = html;
+
+  const ov = document.getElementById('cp-confirm-overlay');
+  if(ov) ov.style.display = 'flex';
+}
+
+function cpCancelConfirm(){
+  const ov = document.getElementById('cp-confirm-overlay');
+  if(ov) ov.style.display = 'none';
+}
+
+// ── Submit ──────────────────────────────────────────────────
+async function cpSubmit(){
+  const amt = parseFloat(document.getElementById('cp-amount')?.value)||0;
+  if(amt < 1000) return;
+  const token = localStorage.getItem('aBest_session'); if(!token) return;
+
+  const btn = document.getElementById('cp-confirm-btn');
+  if(btn){ btn.disabled=true; btn.textContent='...'; }
+
+  const freqEl = document.getElementById('cp-freq');
+  const freq = freqEl ? parseInt(freqEl.value) : 1;
 
   const fd = new FormData();
-  fd.append('role', 'capital');
-  fd.append('title', `Capital Partner – ${cpSym()} ${amount.toLocaleString()} / ${years} years`);
-  fd.append('description', `Investment: ${cpSym()}${amount} | Period: ${years} years | Rate: 5% p.a. | Option: ${_cpOption === 'a' ? 'Payout ('+freqName+')' : 'Compound'} | Est. total: ${cpSym()}${Math.round(totalValue).toLocaleString()}`);
+  fd.append('role','capital');
+  fd.append('title', 'Capital Partner – '+cpFmt(amt)+' / '+_cpYears+' '+_cpT.years_short);
+  fd.append('description', JSON.stringify({
+    currency:_cpCurrency, amount:amt, years:_cpYears,
+    option:_cpOpt, freq:freq,
+    submittedAt: new Date().toISOString()
+  }));
 
-  // Also store structured data
-  const structured = JSON.stringify({ amount, years, option: _cpOption, freq, currency: cpSym(), totalReturn: Math.round(totalReturn), totalValue: Math.round(totalValue) });
-  fd.append('structured', structured);
+  try{
+    const r = await fetch('/api/role',{method:'POST',headers:{Authorization:'Bearer '+token},body:fd});
+    if(r.ok){
+      cpCancelConfirm();
+      const sb = document.getElementById('cp-success-banner');
+      if(sb) sb.classList.add('show');
+      const pb = document.getElementById('cp-banner-pending');
+      if(pb) pb.classList.add('show');
+      const sub = document.getElementById('cp-submit-main');
+      if(sub) sub.disabled = true;
+    }
+  } catch(e){}
 
-  try {
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', '/api/role');
-    xhr.setRequestHeader('Authorization', 'Bearer ' + token);
-    xhr.onload = () => {
-      if (xhr.status < 300) {
-        const succ = document.getElementById('cp-success');
-        if (succ) succ.classList.add('show');
-        if (btn)  btn.style.display = 'none';
-        // Update role pill
-        const pill = document.getElementById('role-current-pill');
-        const pillName = document.getElementById('role-current-name');
-        if (pill && pillName) {
-          const rc = document.getElementById('rc-capital');
-          pillName.textContent = rc ? rc.querySelector('.rc-title').textContent : 'Capital Partner';
-          pill.style.display = 'inline-flex';
-        }
-      } else {
-        if (errEl) { errEl.textContent = 'Error. Please try again.'; errEl.style.display='block'; }
-        if (btn) btn.disabled = false;
-      }
-    };
-    xhr.onerror = () => {
-      if (errEl) { errEl.textContent='Network error.'; errEl.style.display='block'; }
-      if (btn) btn.disabled = false;
-    };
-    xhr.send(fd);
-  } catch(e) {
-    if (btn) btn.disabled = false;
-  }
+  if(btn){ btn.disabled=false; btn.textContent=_cpT.confirm_title_row||'Submit'; }
 }
 
-// Override loadRoleData to also call loadCapitalData when capital role is active
-const _origLoadRole = typeof loadRoleData === 'function' ? loadRoleData : null;
-window.loadRoleDataCapital = loadCapitalData;
+// ── Dashboard ────────────────────────────────────────────────
+async function loadCapitalData(){
+  const token = localStorage.getItem('aBest_session'); if(!token) return;
+  try{
+    const r = await fetch('/api/role',{headers:{Authorization:'Bearer '+token}});
+    if(!r.ok) return;
+    const data = await r.json();
+    if(!data || data.role !== 'capital') return;
 
-// Init calculator on page load
-document.addEventListener('DOMContentLoaded', () => cpCalc());
+    // If pending or approved – show banner
+    const status = data.status || 'pending';
+    const inv = (typeof data.data?.description === 'string' && data.data.description.startsWith('{'))
+      ? JSON.parse(data.data.description) : {};
+
+    if(status === 'pending'){
+      document.getElementById('cp-banner-pending')?.classList.add('show');
+      const sub = document.getElementById('cp-submit-main'); if(sub) sub.disabled=true;
+    }
+
+    if(status === 'approved'){
+      document.getElementById('cp-banner-approved')?.classList.add('show');
+      document.getElementById('cp-form-section').style.display='none';
+      document.getElementById('cp-dashboard').style.display='block';
+      cpRenderDashboard(inv, data);
+    }
+
+  }catch(e){}
+}
+
+function cpRenderDashboard(inv, data){
+  const amt = inv.amount || 0;
+  const yrs = inv.years || 0;
+  const opt = inv.option || 'a';
+  const freq = inv.freq || 1;
+  const cur = inv.currency || 'EUR';
+  _cpCurrency = cur;
+
+  const startDate = new Date(inv.submittedAt || data.savedAt || Date.now());
+  const now = new Date();
+  const daysElapsed = Math.max(0, (now - startDate) / (1000*60*60*24));
+  const yearsElapsed = daysElapsed / 365;
+
+  const yearlyInt = amt * 0.05;
+  const monthlyInt = yearlyInt / 12;
+  let currentVal, earnedInt, finalVal;
+
+  if(opt === 'b'){
+    currentVal = amt * Math.pow(1.05, yearsElapsed);
+    earnedInt = currentVal - amt;
+    finalVal = amt * Math.pow(1.05, yrs);
+  } else {
+    currentVal = amt;
+    earnedInt = yearlyInt * yearsElapsed;
+    finalVal = amt + yearlyInt * yrs;
+  }
+
+  const set = (id,v) => { const e=document.getElementById(id); if(e) e.textContent=v; };
+
+  set('dash-invested', cpFmt(amt));
+  set('dash-earned', cpFmt(earnedInt));
+  set('dash-portfolio', cpFmt(currentVal));
+  set('dash-active', Math.floor(yearsElapsed)+' '+_cpT.years_short);
+  set('dash-monthly', cpFmt(monthlyInt));
+  set('dash-yearly', cpFmt(yearlyInt));
+  set('dash-maturity', cpFmt(finalVal));
+
+  // Next payout date
+  if(opt === 'a'){
+    const monthsPerInterval = freq===12?1:freq===4?3:freq===2?6:12;
+    const nextPayout = new Date(startDate);
+    while(nextPayout <= now) nextPayout.setMonth(nextPayout.getMonth()+monthsPerInterval);
+    set('dash-next-payout', nextPayout.toLocaleDateString());
+  } else {
+    set('dash-next-payout', '–');
+    const ps = document.getElementById('dash-payout-section');
+    if(ps) ps.style.display='none';
+  }
+
+  // Chart
+  cpDrawChart(amt, yrs, opt, startDate);
+
+  // History
+  cpRenderHistory(amt, yrs, opt, freq, startDate, yearsElapsed, cur);
+}
+
+// ── Chart ────────────────────────────────────────────────────
+function cpDrawChart(amt, yrs, opt, startDate){
+  const canvas = document.getElementById('cp-chart');
+  if(!canvas || !canvas.getContext) return;
+
+  const dpr = window.devicePixelRatio||1;
+  const W = canvas.offsetWidth||560, H = 260;
+  canvas.width = W*dpr; canvas.height = H*dpr;
+  canvas.style.width=W+'px'; canvas.style.height=H+'px';
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+
+  const padL=56, padR=16, padT=16, padB=36;
+  const cW=W-padL-padR, cH=H-padT-padB;
+
+  const now = new Date();
+  const startYr = startDate.getFullYear();
+  const today = now.getFullYear() + (now.getMonth()/12);
+  const startF = startDate.getFullYear()+(startDate.getMonth()/12);
+  const elapsed = Math.max(0, today-startF);
+
+  // Data points: 0 to yrs
+  const pts = yrs+1;
+  const capitalPts=[], interestPts=[];
+  for(let i=0;i<pts;i++){
+    const yr=i;
+    if(opt==='b'){
+      const v=amt*Math.pow(1.05,yr);
+      capitalPts.push(v);
+      interestPts.push(v-amt);
+    } else {
+      capitalPts.push(amt);
+      interestPts.push(amt*0.05*yr);
+    }
+  }
+
+  const allVals=[...capitalPts,...interestPts];
+  const maxV=Math.max(...allVals)*1.05;
+  const minV=0;
+
+  const toX=(i)=> padL+(i/(pts-1))*cW;
+  const toY=(v)=> padT+cH-((v-minV)/(maxV-minV||1))*cH;
+
+  // Grid
+  ctx.strokeStyle='rgba(255,255,255,0.04)';
+  ctx.lineWidth=1;
+  for(let i=0;i<=4;i++){
+    const y=padT+i*(cH/4);
+    ctx.beginPath(); ctx.moveTo(padL,y); ctx.lineTo(padL+cW,y); ctx.stroke();
+  }
+
+  // Y-axis labels
+  ctx.fillStyle='rgba(255,255,255,0.25)';
+  ctx.font=`${10*dpr/dpr}px -apple-system,sans-serif`;
+  ctx.textAlign='right';
+  for(let i=0;i<=4;i++){
+    const v=maxV*(1-i/4);
+    const y=padT+i*(cH/4);
+    const lbl=v>=1e6?(v/1e6).toFixed(1)+'M':v>=1e3?(v/1e3).toFixed(0)+'k':v.toFixed(0);
+    ctx.fillText(lbl, padL-6, y+4);
+  }
+
+  // X-axis labels
+  ctx.textAlign='center';
+  const xStep=Math.ceil(pts/6);
+  for(let i=0;i<pts;i+=xStep){
+    ctx.fillText(startYr+i+'', toX(i), padT+cH+20);
+  }
+  // today line
+  if(elapsed>0 && elapsed<yrs){
+    const tx=padL+(elapsed/(pts-1))*cW;
+    ctx.strokeStyle='rgba(255,255,255,0.12)';
+    ctx.setLineDash([4,4]);
+    ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(tx,padT); ctx.lineTo(tx,padT+cH); ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  // Draw interest area (green)
+  ctx.beginPath();
+  interestPts.forEach((v,i)=>{ i===0?ctx.moveTo(toX(i),toY(v)):ctx.lineTo(toX(i),toY(v)); });
+  ctx.lineTo(toX(pts-1),toY(0)); ctx.lineTo(toX(0),toY(0)); ctx.closePath();
+  ctx.fillStyle='rgba(52,199,89,0.07)';
+  ctx.fill();
+
+  // Draw interest line
+  ctx.beginPath();
+  interestPts.forEach((v,i)=>{ i===0?ctx.moveTo(toX(i),toY(v)):ctx.lineTo(toX(i),toY(v)); });
+  ctx.strokeStyle='rgba(52,199,89,0.7)'; ctx.lineWidth=2; ctx.stroke();
+
+  // Draw capital area (blue)
+  ctx.beginPath();
+  capitalPts.forEach((v,i)=>{ i===0?ctx.moveTo(toX(i),toY(v)):ctx.lineTo(toX(i),toY(v)); });
+  ctx.lineTo(toX(pts-1),toY(0)); ctx.lineTo(toX(0),toY(0)); ctx.closePath();
+  ctx.fillStyle='rgba(0,122,255,0.07)';
+  ctx.fill();
+
+  // Draw capital line
+  ctx.beginPath();
+  capitalPts.forEach((v,i)=>{ i===0?ctx.moveTo(toX(i),toY(v)):ctx.lineTo(toX(i),toY(v)); });
+  ctx.strokeStyle='rgba(0,122,255,0.9)'; ctx.lineWidth=2.5; ctx.stroke();
+}
+
+// ── History ──────────────────────────────────────────────────
+function cpRenderHistory(amt, yrs, opt, freq, startDate, yearsElapsed, cur){
+  _cpCurrency = cur;
+  const container = document.getElementById('dash-history');
+  if(!container) return;
+
+  const txs=[];
+  // Deposit
+  txs.push({type:'dep', icon:'💰', label:_cpT.tx_deposit, amt:cpFmt(amt), date:startDate, cls:'pos'});
+
+  // Interest payments (past ones)
+  const monthsPerInterval = freq===12?1:freq===4?3:freq===2?6:12;
+  const intPerInterval = (amt*0.05/freq);
+  const now = new Date();
+  let d = new Date(startDate);
+  d.setMonth(d.getMonth()+monthsPerInterval);
+  let count=0;
+  while(d <= now && count<20){
+    if(opt==='a'){
+      txs.push({type:'int', icon:'📈', label:_cpT.tx_interest, amt:'+'+cpFmt(intPerInterval), date:new Date(d), cls:'pos'});
+    } else {
+      const yearsIn=(d-startDate)/(365.25*24*3600*1000);
+      const compInt=amt*(Math.pow(1.05,yearsIn)-Math.pow(1.05,yearsIn-monthsPerInterval/12));
+      txs.push({type:'int', icon:'📈', label:_cpT.tx_interest+' (Compound)', amt:'+'+cpFmt(compInt), date:new Date(d), cls:'pos'});
+    }
+    d.setMonth(d.getMonth()+monthsPerInterval);
+    count++;
+  }
+
+  txs.sort((a,b)=>b.date-a.date);
+
+  if(txs.length===0){
+    container.innerHTML='<p class="cp-hist-empty">No transactions yet.</p>';
+    return;
+  }
+
+  container.innerHTML = txs.map(tx=>{
+    const dateStr = tx.date.toLocaleDateString();
+    return `<div class="cp-hist-item">
+      <div class="cp-hist-icon ${tx.type}">${tx.icon}</div>
+      <div class="cp-hist-body"><p class="cp-hist-name">${tx.label}</p><p class="cp-hist-date">${dateStr}</p></div>
+      <span class="cp-hist-amt ${tx.cls}">${tx.amt}</span>
+    </div>`;
+  }).join('');
+}
+
+// ── Payout Request ────────────────────────────────────────────
+async function cpRequestPayout(type){
+  const token = localStorage.getItem('aBest_session'); if(!token) return;
+  const msg = document.getElementById('dash-payout-msg');
+  try{
+    await fetch('/api/payout',{
+      method:'POST',
+      headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},
+      body: JSON.stringify({type, currency:_cpCurrency})
+    });
+    if(msg){
+      msg.textContent = type==='interest'?_cpT.payout_msg_interest:_cpT.payout_msg_balance;
+      msg.classList.add('show');
+      setTimeout(()=>msg.classList.remove('show'), 5000);
+    }
+  }catch(e){}
+}
+
+// ── Init ──────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded',()=>{
+  cpCalc();
+  loadCapitalData();
+});
+
+})(); // end IIFE
 
 </script>
 
