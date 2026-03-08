@@ -545,6 +545,59 @@ body { background: #0a0a0f; }
 .mw-completed-note { font-size:0.75rem; color:rgba(255,255,255,0.3); text-align:center; padding:12px; border-top:1px solid rgba(255,255,255,0.06); margin-top:12px; }
 /* ══════════════════════════════════════════════════════════════════════════════ */
 
+/* ── Seller Step System ─────────────────────────────────────────────────── */
+.sl-stepper{display:flex;align-items:center;margin-bottom:22px;}
+.sl-step-item{display:flex;flex-direction:column;align-items:center;gap:4px;opacity:0.38;transition:opacity 0.22s;}
+.sl-step-item.sl-active{opacity:1;}
+.sl-step-item.sl-done{opacity:0.7;}
+.sl-dot{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.18);display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;color:var(--text-muted);transition:all 0.22s;}
+.sl-step-item.sl-active .sl-dot{background:rgba(0,122,255,0.18);border-color:var(--primary-blue);color:var(--primary-blue);}
+.sl-step-item.sl-done .sl-dot{background:rgba(48,209,88,0.14);border-color:#30d158;color:#30d158;}
+.sl-step-item span{font-size:0.65rem;color:var(--text-muted);white-space:nowrap;margin-top:2px;}
+.sl-step-sep{flex:1;height:1px;background:rgba(255,255,255,0.09);margin:0 8px 14px;}
+.sl-step-label{font-size:0.92rem;font-weight:600;color:var(--text-main);margin:4px 0 18px;}
+.sl-main-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:4px;}
+.sl-main-card{padding:26px 16px;background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);border-radius:18px;cursor:pointer;text-align:center;transition:all 0.22s;user-select:none;}
+.sl-main-card:hover{background:rgba(0,122,255,0.07);border-color:rgba(0,122,255,0.35);transform:translateY(-2px);}
+.sl-main-icon{font-size:2.2rem;margin-bottom:10px;}
+.sl-main-card h4{font-size:0.95rem;font-weight:700;color:var(--text-main);margin:0 0 6px;}
+.sl-main-card p{font-size:0.75rem;color:var(--text-muted);margin:0;line-height:1.4;}
+.sl-sub-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:4px;}
+.sl-sub-card{padding:14px 8px;background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);border-radius:12px;cursor:pointer;text-align:center;font-size:0.78rem;color:var(--text-muted);transition:all 0.2s;user-select:none;line-height:1.4;}
+.sl-sub-card:hover{background:rgba(0,122,255,0.08);border-color:rgba(0,122,255,0.35);color:var(--text-main);transform:translateY(-1px);}
+.sl-biz-grid{grid-template-columns:1fr 1fr 1fr;}
+.sl-back-btn{background:none;border:none;color:var(--text-muted);font-size:0.82rem;cursor:pointer;padding:0 0 16px;display:flex;align-items:center;gap:4px;font-family:inherit;}
+.sl-back-btn:hover{color:var(--text-main);}
+.sl-sec-title{font-size:0.72rem;font-weight:700;color:var(--primary-blue);letter-spacing:0.06em;text-transform:uppercase;margin:20px 0 10px;padding-bottom:6px;border-bottom:1px solid rgba(0,122,255,0.18);}
+.sl-field{margin-bottom:14px;}
+.sl-field label{display:block;font-size:0.8rem;color:var(--text-muted);margin-bottom:5px;font-weight:500;}
+.sl-input,.sl-select,.sl-textarea{width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:10px 13px;color:var(--text-main);font-size:0.87rem;font-family:inherit;outline:none;box-sizing:border-box;transition:border-color 0.2s;appearance:none;-webkit-appearance:none;}
+.sl-input:focus,.sl-select:focus,.sl-textarea:focus{border-color:rgba(0,122,255,0.5);}
+.sl-select option{background:#111827;color:var(--text-main);}
+.sl-2col{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.sl-3col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+.sl-map-container{width:100%;height:210px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.1);margin-bottom:8px;background:rgba(255,255,255,0.03);}
+.sl-map-search{display:flex;gap:8px;margin-bottom:6px;}
+.sl-map-search input{flex:1;}
+.sl-map-search button{padding:10px 14px;background:rgba(0,122,255,0.15);border:1px solid rgba(0,122,255,0.3);border-radius:10px;color:var(--primary-blue);font-size:0.8rem;cursor:pointer;white-space:nowrap;font-family:inherit;transition:all 0.18s;}
+.sl-map-search button:hover{background:rgba(0,122,255,0.25);}
+.sl-upload-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:4px;}
+.sl-upload-box{background:rgba(255,255,255,0.03);border:1.5px dashed rgba(255,255,255,0.14);border-radius:12px;padding:18px 12px;text-align:center;cursor:pointer;transition:all 0.2s;}
+.sl-upload-box:hover{border-color:rgba(0,122,255,0.4);background:rgba(0,122,255,0.04);}
+.sl-up-icon{font-size:1.5rem;margin-bottom:5px;}
+.sl-up-label{font-size:0.8rem;font-weight:600;color:var(--text-main);margin-bottom:2px;}
+.sl-up-hint{font-size:0.68rem;color:var(--text-muted);}
+.sl-file-name{font-size:0.7rem;color:var(--primary-blue);margin-top:4px;word-break:break-all;}
+.sl-highlights-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.sl-submit-row{margin-top:22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.sl-submit-msg{font-size:0.82rem;color:#30d158;display:none;}
+@media(max-width:600px){
+  .sl-main-grid{grid-template-columns:1fr;}
+  .sl-sub-grid{grid-template-columns:repeat(2,1fr);}
+  .sl-biz-grid{grid-template-columns:1fr 1fr;}
+  .sl-2col,.sl-3col,.sl-highlights-grid{grid-template-columns:1fr;}
+  .sl-upload-row{grid-template-columns:1fr;}
+}
 </style>
 </head>
 <body class="dark-mode">
@@ -977,38 +1030,64 @@ body { background: #0a0a0f; }
   </div><!-- /rf-capital -->
 
   <div class="role-form" id="rf-seller">
-    <p class="role-form-title">🏠 Seller</p>
-    <p class="role-form-sub">For owners of land or real estate who wish to sell.</p>
-    <div class="db-field">
-      <label>Title of Idea / Project</label>
-      <input id="r-seller-title" type="text" placeholder=""/>
+    <p class="role-form-title">🏠 विक्रेता</p>
+    <!-- Step progress -->
+    <div class="sl-stepper">
+      <div class="sl-step-item sl-active" id="sl-dot-1"><div class="sl-dot">1</div><span>श्रेणी</span></div>
+      <div class="sl-step-sep"></div>
+      <div class="sl-step-item" id="sl-dot-2"><div class="sl-dot">2</div><span>प्रकार</span></div>
+      <div class="sl-step-sep"></div>
+      <div class="sl-step-item" id="sl-dot-3"><div class="sl-dot">3</div><span>फ़ॉर्म</span></div>
     </div>
-    <div class="db-field">
-      <label>Description / Concept</label>
-      <textarea id="r-seller-desc" rows="6" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:12px 14px;color:var(--text-main);font-size:0.88rem;font-family:inherit;outline:none;box-sizing:border-box;resize:vertical;line-height:1.6;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(0,122,255,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.12)'"></textarea>
-    </div>
-    <div class="file-upload-wrap">
-      <div class="file-upload-area" id="fua-seller" data-err-size="File too large (max 50 MB)" data-err-type="File type not allowed">
-        <span class="fu-icon">📎</span>
-        <div class="fu-body">
-          <div class="fu-drag-text">Drag file here or click to select <span class="fu-btn-inline">Choose file</span></div>
-          <div class="fu-name"></div>
-          <div class="fu-size"></div>
-          <div class="fu-hint">PDF, DOCX, PPTX, XLSX, JPG, PNG, ZIP, MP4 · up to 50 MB · optional</div>
-          <div class="fu-error-text"></div>
-          <div class="fu-progress-wrap" id="fp-seller"><div class="fu-progress-bar" id="fpb-seller"></div></div>
+    <!-- STEP 1: Main category -->
+    <div id="sl-s1">
+      <p class="sl-step-label">आप क्या बेचना चाहते हैं?</p>
+      <div class="sl-main-grid">
+        <div class="sl-main-card" onclick="slSelectMain('realestate')">
+          <div class="sl-main-icon">🏘️</div>
+          <h4>रियल एस्टेट</h4><p>जमीन, घर, अपार्टमेंट &amp; व्यावसायिक</p>
         </div>
-        <button class="fu-remove" onclick="fuRemove('seller')">✕</button>
+        <div class="sl-main-card" onclick="slSelectMain('business')">
+          <div class="sl-main-icon">🏢</div>
+          <h4>व्यापार</h4><p>कंपनी बेचें, साझेदार या निवेशक खोजें</p>
+        </div>
       </div>
-      <input class="file-input-hidden" type="file" id="fi-seller" accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.jpg,.jpeg,.png,.webp,.zip,.mp4,.mov,.txt"/>
     </div>
-    <div class="role-submit-row">
-      <button class="db-btn db-btn-primary" style="max-width:200px;" onclick="submitRoleForm('seller')">Submit</button>
-      <span class="role-submit-msg" id="rsm-seller">✓ Successfully submitted</span>
+    <!-- STEP 2: Subcategory -->
+    <div id="sl-s2" style="display:none">
+      <button class="sl-back-btn" onclick="slGoBack(1)">← वापस</button>
+      <p class="sl-step-label" id="sl-s2-q"></p>
+      <div class="sl-sub-grid" id="sl-re-grid">
+        <div class="sl-sub-card" onclick="slSelectSub('land')">🌍 भूमि</div>
+        <div class="sl-sub-card" onclick="slSelectSub('buildingland')">🏗️ निर्माण भूमि</div>
+        <div class="sl-sub-card" onclick="slSelectSub('farmland')">🌾 कृषि भूमि</div>
+        <div class="sl-sub-card" onclick="slSelectSub('singlefamily')">🏡 एकल परिवार घर</div>
+        <div class="sl-sub-card" onclick="slSelectSub('multifamily')">🏘️ बहु-परिवार घर</div>
+        <div class="sl-sub-card" onclick="slSelectSub('apartment')">🏠 अपार्टमेंट</div>
+        <div class="sl-sub-card" onclick="slSelectSub('commercial')">🏬 वाणिज्यिक संपत्ति</div>
+        <div class="sl-sub-card" onclick="slSelectSub('warehouse')">🏭 गोदाम</div>
+        <div class="sl-sub-card" onclick="slSelectSub('hotel')">🏨 होटल</div>
+        <div class="sl-sub-card" onclick="slSelectSub('development')">🔨 विकास परियोजना</div>
+        <div class="sl-sub-card" onclick="slSelectSub('otherproperty')">📋 अन्य</div>
+      </div>
+      <div class="sl-sub-grid sl-biz-grid" id="sl-biz-grid" style="display:none">
+        <div class="sl-sub-card" onclick="slSelectSub('sellbusiness')">🤝 पूरा व्यापार बेचें</div>
+        <div class="sl-sub-card" onclick="slSelectSub('partnerinvestor')">💼 साझेदार / निवेशक</div>
+        <div class="sl-sub-card" onclick="slSelectSub('otherbusiness')">📋 अन्य अवसर</div>
+      </div>
     </div>
-    <div id="role-err-seller" style="font-size:0.78rem;color:#dc3545;margin-top:8px;display:none;"></div>
+    <!-- STEP 3: Dynamic form -->
+    <div id="sl-s3" style="display:none">
+      <button class="sl-back-btn" onclick="slGoBack(2)">← वापस</button>
+      <div id="sl-form-inner"></div>
+      <div class="sl-submit-row">
+        <button class="db-btn db-btn-primary" style="max-width:230px;" id="sl-submit-btn" onclick="submitSeller()">लिस्टिंग सबमिट करें</button>
+        <span class="sl-submit-msg" id="rsm-seller">✓ सफलतापूर्वक सबमिट</span>
+      </div>
+      <div id="role-err-seller" style="font-size:0.78rem;color:#dc3545;margin-top:8px;display:none;"></div>
+    </div>
   </div>
-  <div class="role-form" id="rf-explorer">
+    <div class="role-form" id="rf-explorer">
     <p class="role-form-title">🔍 Explorer</p>
     <p class="role-form-sub">For users who want to explore projects and investment opportunities.</p>
     <div class="db-field">
@@ -2065,6 +2144,473 @@ document.addEventListener('DOMContentLoaded',()=>{
   cpCalc();
   loadCapitalData();
 });
+
+const _slT = {
+  title: 'विक्रेता',
+  dot1: 'श्रेणी',
+  dot2: 'प्रकार',
+  dot3: 'फ़ॉर्म',
+  q1: 'आप क्या बेचना चाहते हैं?',
+  re_title: 'रियल एस्टेट',
+  re_desc: 'जमीन, घर, अपार्टमेंट &amp; व्यावसायिक',
+  biz_title: 'व्यापार',
+  biz_desc: 'कंपनी बेचें, साझेदार या निवेशक खोजें',
+  back: '← वापस',
+  re_q: 'किस प्रकार की संपत्ति?',
+  biz_q: 'आप क्या प्रदान करते हैं?',
+  submit: 'लिस्टिंग सबमिट करें',
+  success: '✓ सफलतापूर्वक सबमिट',
+  err_title: 'कृपया शीर्षक दर्ज करें।',
+  err_loc: 'कृपया स्थान दर्ज करें।',
+  err_desc: 'कृपया अपना प्रस्ताव वर्णित करें।',
+  search_map: '📍 मानचित्र पर खोजें',
+  searching: 'खोज रहे हैं…',
+  re_land: '🌍 भूमि',
+  re_build: '🏗️ निर्माण भूमि',
+  re_farm: '🌾 कृषि भूमि',
+  re_single: '🏡 एकल परिवार घर',
+  re_multi: '🏘️ बहु-परिवार घर',
+  re_apt: '🏠 अपार्टमेंट',
+  re_comm: '🏬 वाणिज्यिक संपत्ति',
+  re_ware: '🏭 गोदाम',
+  re_hotel: '🏨 होटल',
+  re_dev: '🔨 विकास परियोजना',
+  re_other: '📋 अन्य',
+  biz_sell: '🤝 पूरा व्यापार बेचें',
+  biz_partner: '💼 साझेदार / निवेशक',
+  biz_other: '📋 अन्य अवसर',
+  sec_details: 'संपत्ति विवरण',
+  sec_invest: 'निवेश हाइलाइट्स (वैकल्पिक)',
+  sec_upload: 'फ़ोटो &amp; दस्तावेज़',
+  f_title: 'Listing Title',
+  f_loc: 'Location / Address',
+  f_map: 'Location on Map',
+  f_price: 'Asking Price (€)',
+  f_desc: 'Description',
+  f_imgs: '📷 Upload Photos',
+  f_docs: '📄 Upload Documents',
+  f_imgs_hint: 'JPG, PNG, WEBP · up to 50 MB · optional',
+  f_docs_hint: 'PDF, DOCX, XLSX · up to 50 MB · optional',
+  f_land_size: 'Land Size (m²)',
+  f_zoning: 'Zoning / Usage',
+  f_zoning_opts: 'Residential|Commercial|Agricultural|Mixed Use|Other',
+  f_build_perm: 'Building Permission?',
+  f_yesno: 'No|Yes',
+  f_infra: 'Infrastructure Connected?',
+  f_total_area: 'Total Area (ha)',
+  f_usage_farm: 'Usage Type',
+  f_usage_farm_opts: 'Farmland|Pasture|Forest|Mixed',
+  f_irrigation: 'Irrigation Available?',
+  f_year_built: 'Year Built',
+  f_living_space: 'Living Space (m²)',
+  f_rooms: 'Number of Rooms',
+  f_cond: 'Condition',
+  f_cond_opts: 'Like New|Very Good|Good|Needs Renovation|For Demolition',
+  f_units: 'Number of Units',
+  f_rental_income: 'Annual Rental Income (€)',
+  f_floor: 'Floor',
+  f_usage_comm: 'Commercial Use',
+  f_height: 'Clear Height (m)',
+  f_loading_dock: 'Loading Dock?',
+  f_rooms_count: 'Number of Rooms / Suites',
+  f_stars: 'Star Rating',
+  f_stars_opts: '1 Star|2 Stars|3 Stars|4 Stars|5 Stars|Unrated',
+  f_units_planned: 'Planned Units',
+  f_stage: 'Project Stage',
+  f_stage_opts: 'Concept|Permit Applied|Permit Granted|Under Construction|Completed',
+  f_biz_name: 'Business Name',
+  f_industry: 'Industry',
+  f_revenue: 'Annual Revenue (€)',
+  f_profit: 'Annual Profit (€)',
+  f_employees: 'Number of Employees',
+  f_capital_needed: 'Capital Required (€)',
+  f_equity: 'Equity Offered (%)',
+  f_use_of_capital: 'Use of Capital',
+  f_category: 'Category / Industry',
+  f_contact: 'Contact Details',
+  f_roi: 'Expected ROI',
+  f_income_hl: 'Current Income',
+  f_growth: 'Growth Potential',
+  f_highlights: 'Key Highlights (one per line)',
+  f_size: 'Size / Area (m²)'
+};
+
+// ═══════════════════════════════════════════════════════════════════════
+// ── Seller Step System ──────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════════════
+var _slMain = null, _slSub = null;
+var _slMap = null, _slMarker = null, _slImgFiles = [], _slDocFiles = [];
+
+function slStepProgress(active) {{
+  [1,2,3].forEach(function(n) {{
+    var el = document.getElementById('sl-dot-' + n);
+    if (!el) return;
+    el.classList.remove('sl-active','sl-done');
+    if (n < active) el.classList.add('sl-done');
+    else if (n === active) el.classList.add('sl-active');
+  }});
+}}
+
+function slSelectMain(type) {{
+  _slMain = type;
+  document.getElementById('sl-s1').style.display = 'none';
+  document.getElementById('sl-s2').style.display = 'block';
+  var q = document.getElementById('sl-s2-q');
+  if (q) q.textContent = type === 'realestate' ? _slT.re_q : _slT.biz_q;
+  document.getElementById('sl-re-grid').style.display  = type === 'realestate' ? '' : 'none';
+  document.getElementById('sl-biz-grid').style.display = type === 'business'    ? '' : 'none';
+  slStepProgress(2);
+  document.getElementById('sl-s2').scrollIntoView({{behavior:'smooth',block:'nearest'}});
+}}
+
+function slGoBack(toStep) {{
+  if (toStep === 1) {{
+    document.getElementById('sl-s2').style.display = 'none';
+    document.getElementById('sl-s3').style.display = 'none';
+    document.getElementById('sl-s1').style.display = 'block';
+    slStepProgress(1);
+  }} else {{
+    document.getElementById('sl-s3').style.display = 'none';
+    document.getElementById('sl-s2').style.display = 'block';
+    slStepProgress(2);
+  }}
+  document.getElementById('rf-seller').scrollIntoView({{behavior:'smooth',block:'start'}});
+}}
+
+function slSelectSub(sub) {{
+  _slSub = sub;
+  document.getElementById('sl-s2').style.display = 'none';
+  document.getElementById('sl-s3').style.display = 'block';
+  slStepProgress(3);
+  document.getElementById('sl-form-inner').innerHTML = slBuildForm(sub);
+  // Reset uploads
+  _slImgFiles = []; _slDocFiles = [];
+  setTimeout(slAttachUploads, 50);
+  setTimeout(function() {{
+    if (typeof slInitMap === 'function') slInitMap();
+  }}, 100);
+  document.getElementById('sl-s3').scrollIntoView({{behavior:'smooth',block:'start'}});
+}}
+
+function slField(id, label, type, opts, req) {{
+  var req_mark = req ? ' <span style="color:#ff453a">*</span>' : '';
+  var inp = '';
+  if (type === 'text' || type === 'number') {{
+    inp = '<input class="sl-input" id="sl-f-' + id + '" type="' + type + '" placeholder="" />';
+  }} else if (type === 'textarea') {{
+    inp = '<textarea class="sl-textarea" id="sl-f-' + id + '" rows="5" style="resize:vertical"></textarea>';
+  }} else if (type === 'select') {{
+    var options = opts ? opts.split('|').map(function(o){{return '<option>'+o+'</option>';}}).join('') : '';
+    inp = '<select class="sl-select" id="sl-f-' + id + '"><option value="">—</option>' + options + '</select>';
+  }}
+  return '<div class="sl-field"><label>' + label + req_mark + '</label>' + inp + '</div>';
+}}
+
+function slBuildForm(sub) {{
+  var t = _slT;
+  var h = '';
+  // ── Common: title + location + map ──────────────────────────────────
+  h += '<p class="sl-sec-title">' + t.sec_details + '</p>';
+  h += '<div class="sl-2col">';
+  h += slField('title', t.f_title, 'text', null, true);
+  h += slField('loc',   t.f_loc,   'text', null, true);
+  h += '</div>';
+  // ── Map ──────────────────────────────────────────────────────────────
+  h += '<div class="sl-field"><label>' + t.f_map + '</label>';
+  h += '<div class="sl-map-search"><input class="sl-input" id="sl-map-query" placeholder="' + t.f_loc + '" />';
+  h += '<button onclick="slSearchMap()">' + t.search_map + '</button></div>';
+  h += '<div class="sl-map-container" id="sl-map"></div></div>';
+
+  // ── Type-specific fields ─────────────────────────────────────────────
+  if (sub === 'land') {{
+    h += slField('land_size', t.f_land_size, 'text');
+    h += '<div class="sl-2col">';
+    h += slField('zoning', t.f_zoning, 'select', t.f_zoning_opts);
+    h += slField('build_perm', t.f_build_perm, 'select', t.f_yesno);
+    h += '</div>';
+    h += slField('infra', t.f_infra, 'select', t.f_yesno);
+  }} else if (sub === 'buildingland') {{
+    h += '<div class="sl-2col">';
+    h += slField('land_size', t.f_land_size, 'text');
+    h += slField('zoning', t.f_zoning, 'select', t.f_zoning_opts);
+    h += '</div><div class="sl-2col">';
+    h += slField('build_perm', t.f_build_perm, 'select', t.f_yesno);
+    h += slField('infra', t.f_infra, 'select', t.f_yesno);
+    h += '</div>';
+  }} else if (sub === 'farmland') {{
+    h += '<div class="sl-2col">';
+    h += slField('total_area', t.f_total_area, 'text');
+    h += slField('usage_farm', t.f_usage_farm, 'select', t.f_usage_farm_opts);
+    h += '</div>';
+    h += slField('irrigation', t.f_irrigation, 'select', t.f_yesno);
+  }} else if (sub === 'singlefamily') {{
+    h += '<div class="sl-3col">';
+    h += slField('year_built', t.f_year_built, 'number');
+    h += slField('living_space', t.f_living_space, 'number');
+    h += slField('rooms', t.f_rooms, 'number');
+    h += '</div>';
+    h += slField('cond', t.f_cond, 'select', t.f_cond_opts);
+  }} else if (sub === 'multifamily') {{
+    h += '<div class="sl-2col">';
+    h += slField('year_built', t.f_year_built, 'number');
+    h += slField('units', t.f_units, 'number');
+    h += '</div><div class="sl-2col">';
+    h += slField('living_space', t.f_living_space, 'number');
+    h += slField('rental_income', t.f_rental_income, 'number');
+    h += '</div>';
+    h += slField('cond', t.f_cond, 'select', t.f_cond_opts);
+  }} else if (sub === 'apartment') {{
+    h += '<div class="sl-3col">';
+    h += slField('year_built', t.f_year_built, 'number');
+    h += slField('living_space', t.f_living_space, 'number');
+    h += slField('floor', t.f_floor, 'number');
+    h += '</div>';
+    h += slField('cond', t.f_cond, 'select', t.f_cond_opts);
+  }} else if (sub === 'commercial') {{
+    h += '<div class="sl-2col">';
+    h += slField('size', t.f_size, 'number');
+    h += slField('year_built', t.f_year_built, 'number');
+    h += '</div><div class="sl-2col">';
+    h += slField('usage_comm', t.f_usage_comm, 'text');
+    h += slField('rental_income', t.f_rental_income, 'number');
+    h += '</div>';
+  }} else if (sub === 'warehouse') {{
+    h += '<div class="sl-2col">';
+    h += slField('size', t.f_size, 'number');
+    h += slField('height', t.f_height, 'number');
+    h += '</div>';
+    h += slField('loading_dock', t.f_loading_dock, 'select', t.f_yesno);
+  }} else if (sub === 'hotel') {{
+    h += '<div class="sl-3col">';
+    h += slField('rooms_count', t.f_rooms_count, 'number');
+    h += slField('stars', t.f_stars, 'select', t.f_stars_opts);
+    h += slField('year_built', t.f_year_built, 'number');
+    h += '</div>';
+    h += slField('rental_income', t.f_rental_income, 'number');
+  }} else if (sub === 'development') {{
+    h += '<div class="sl-2col">';
+    h += slField('size', t.f_size, 'number');
+    h += slField('units_planned', t.f_units_planned, 'number');
+    h += '</div>';
+    h += slField('stage', t.f_stage, 'select', t.f_stage_opts);
+  }} else if (sub === 'sellbusiness') {{
+    h += '<div class="sl-2col">';
+    h += slField('biz_name', t.f_biz_name, 'text', null, true);
+    h += slField('industry', t.f_industry, 'text');
+    h += '</div><div class="sl-3col">';
+    h += slField('revenue', t.f_revenue, 'number');
+    h += slField('profit', t.f_profit, 'number');
+    h += slField('employees', t.f_employees, 'number');
+    h += '</div>';
+  }} else if (sub === 'partnerinvestor') {{
+    h += '<div class="sl-2col">';
+    h += slField('biz_name', t.f_biz_name, 'text', null, true);
+    h += slField('industry', t.f_industry, 'text');
+    h += '</div><div class="sl-2col">';
+    h += slField('capital_needed', t.f_capital_needed, 'number', null, true);
+    h += slField('equity', t.f_equity, 'number');
+    h += '</div>';
+    h += slField('use_of_capital', t.f_use_of_capital, 'textarea');
+  }} else if (sub === 'otherbusiness') {{
+    h += '<div class="sl-2col">';
+    h += slField('category', t.f_category, 'text');
+    h += slField('contact', t.f_contact, 'text');
+    h += '</div>';
+  }}
+  // ── Price (all except partnerinvestor) ──────────────────────────────
+  if (sub !== 'partnerinvestor') {{
+    h += slField('price', t.f_price, 'number', null, sub !== 'otherproperty' && sub !== 'otherbusiness');
+  }}
+  // ── Description (always) ────────────────────────────────────────────
+  h += slField('desc', t.f_desc, 'textarea', null, true);
+
+  // ── Investment Highlights ───────────────────────────────────────────
+  h += '<p class="sl-sec-title">' + t.sec_invest + '</p>';
+  h += '<div class="sl-highlights-grid">';
+  h += slField('roi',        t.f_roi,       'text');
+  h += slField('income_hl',  t.f_income_hl, 'text');
+  h += slField('growth',     t.f_growth,    'text');
+  h += slField('highlights', t.f_highlights,'textarea');
+  h += '</div>';
+
+  // ── Uploads ─────────────────────────────────────────────────────────
+  h += '<p class="sl-sec-title">' + t.sec_upload + '</p>';
+  h += '<div class="sl-upload-row">';
+  h += '<div class="sl-upload-box" id="sl-img-box" onclick="document.getElementById('sl-img-input').click()">';
+  h += '<div class="sl-up-icon">📷</div>';
+  h += '<div class="sl-up-label">' + t.f_imgs + '</div>';
+  h += '<div class="sl-up-hint">' + t.f_imgs_hint + '</div>';
+  h += '<div class="sl-file-name" id="sl-img-name"></div></div>';
+  h += '<div class="sl-upload-box" id="sl-doc-box" onclick="document.getElementById('sl-doc-input').click()">';
+  h += '<div class="sl-up-icon">📄</div>';
+  h += '<div class="sl-up-label">' + t.f_docs + '</div>';
+  h += '<div class="sl-up-hint">' + t.f_docs_hint + '</div>';
+  h += '<div class="sl-file-name" id="sl-doc-name"></div></div>';
+  h += '</div>';
+  h += '<input type="file" id="sl-img-input" multiple accept=".jpg,.jpeg,.png,.webp,.gif" style="display:none" />';
+  h += '<input type="file" id="sl-doc-input" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.zip" style="display:none" />';
+  return h;
+}}
+
+function slAttachUploads() {{
+  var imgInp = document.getElementById('sl-img-input');
+  var docInp = document.getElementById('sl-doc-input');
+  if (imgInp) imgInp.addEventListener('change', function() {{
+    _slImgFiles = Array.from(this.files);
+    var nm = document.getElementById('sl-img-name');
+    if (nm) nm.textContent = _slImgFiles.length ? _slImgFiles.map(function(f){{return f.name;}}).join(', ') : '';
+  }});
+  if (docInp) docInp.addEventListener('change', function() {{
+    _slDocFiles = Array.from(this.files);
+    var nm = document.getElementById('sl-doc-name');
+    if (nm) nm.textContent = _slDocFiles.length ? _slDocFiles.map(function(f){{return f.name;}}).join(', ') : '';
+  }});
+}}
+
+// ── Leaflet Map ──────────────────────────────────────────────────────────────
+function slInitMap() {{
+  var container = document.getElementById('sl-map');
+  if (!container || _slMap) return;
+  function _doInitMap() {{
+    if (_slMap) return;
+    _slMap = L.map('sl-map', {{zoomControl:true}}).setView([48.1351, 11.582], 5);
+    L.tileLayer('https://{{s}}.tile.openstreetmap.org/{{z}}/{{x}}/{{y}}.png', {{
+      attribution: '© OpenStreetMap',
+      maxZoom: 18
+    }}).addTo(_slMap);
+    var btn = document.querySelector('.sl-map-search button');
+    _slMap.on('click', function(e) {{
+      if (_slMarker) _slMap.removeLayer(_slMarker);
+      _slMarker = L.marker(e.latlng).addTo(_slMap);
+      var locInp = document.getElementById('sl-f-loc') || document.getElementById('sl-map-query');
+      if (locInp && !locInp.value) {{
+        fetch('https://nominatim.openstreetmap.org/reverse?format=json&lat=' + e.latlng.lat + '&lon=' + e.latlng.lng)
+          .then(function(r){{return r.json();}})
+          .then(function(d){{if(d.display_name&&locInp)locInp.value=d.display_name;}})
+          .catch(function(){{}});
+      }}
+    }});
+  }}
+  if (window.L) {{ _doInitMap(); return; }}
+  // Lazy-load Leaflet
+  var css = document.createElement('link');
+  css.rel = 'stylesheet';
+  css.href = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css';
+  document.head.appendChild(css);
+  var js = document.createElement('script');
+  js.src = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js';
+  js.onload = _doInitMap;
+  document.head.appendChild(js);
+}}
+
+function slSearchMap() {{
+  var q = (document.getElementById('sl-map-query')||{{}}).value;
+  if (!q) return;
+  var btn = document.querySelector('.sl-map-search button');
+  if (btn) btn.textContent = _slT.searching;
+  fetch('https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(q) + '&limit=1')
+    .then(function(r){{return r.json();}})
+    .then(function(results) {{
+      if (btn) btn.textContent = _slT.search_map;
+      if (!results || !results[0]) return;
+      var r = results[0];
+      var latlng = [parseFloat(r.lat), parseFloat(r.lon)];
+      if (!_slMap) {{ slInitMap(); setTimeout(function(){{slSetMapPin(latlng, q);}}, 600); }}
+      else slSetMapPin(latlng, q);
+    }})
+    .catch(function() {{ if (btn) btn.textContent = _slT.search_map; }});
+}}
+
+function slSetMapPin(latlng, label) {{
+  if (!_slMap) return;
+  _slMap.setView(latlng, 14);
+  if (_slMarker) _slMap.removeLayer(_slMarker);
+  _slMarker = L.marker(latlng).addTo(_slMap);
+  if (label) _slMarker.bindPopup(label).openPopup();
+  // Also fill location input
+  var locInp = document.getElementById('sl-f-loc');
+  if (locInp && !locInp.value) locInp.value = label;
+}}
+
+// ── Submit ───────────────────────────────────────────────────────────────────
+async function submitSeller() {{
+  var errEl   = document.getElementById('role-err-seller');
+  var msgEl   = document.getElementById('rsm-seller');
+  var btn     = document.getElementById('sl-submit-btn');
+  var token   = localStorage.getItem('aBest_session');
+  if (!token) return;
+  if (errEl) errEl.style.display = 'none';
+
+  // Collect fields
+  function gv(id) {{ var el=document.getElementById('sl-f-'+id); return el?el.value.trim():''; }}
+  var titleVal = gv('title') || gv('biz_name');
+  var locVal   = gv('loc');
+  var descVal  = gv('desc');
+
+  if (!titleVal) {{
+    if (errEl) {{ errEl.textContent=_slT.err_title; errEl.style.display='block'; }} return;
+  }}
+  if (!descVal) {{
+    if (errEl) {{ errEl.textContent=_slT.err_desc; errEl.style.display='block'; }} return;
+  }}
+
+  // Collect all form values
+  var formData = {{
+    sub: _slSub, main: _slMain,
+    title: titleVal, location: locVal,
+    price: gv('price') || gv('capital_needed'),
+    desc: descVal,
+    year_built: gv('year_built'), living_space: gv('living_space'),
+    land_size: gv('land_size'), total_area: gv('total_area'),
+    zoning: gv('zoning'), build_perm: gv('build_perm'), infra: gv('infra'),
+    usage_farm: gv('usage_farm'), irrigation: gv('irrigation'),
+    rooms: gv('rooms'), floor: gv('floor'),
+    units: gv('units'), rental_income: gv('rental_income'),
+    usage_comm: gv('usage_comm'), size: gv('size'), height: gv('height'),
+    loading_dock: gv('loading_dock'), rooms_count: gv('rooms_count'), stars: gv('stars'),
+    units_planned: gv('units_planned'), stage: gv('stage'),
+    industry: gv('industry'), revenue: gv('revenue'), profit: gv('profit'),
+    employees: gv('employees'), equity: gv('equity'),
+    use_of_capital: gv('use_of_capital'), category: gv('category'), contact: gv('contact'),
+    cond: gv('cond'), roi: gv('roi'), income_hl: gv('income_hl'),
+    growth: gv('growth'), highlights: gv('highlights'),
+    map_lat: _slMarker ? _slMarker.getLatLng().lat : '',
+    map_lng: _slMarker ? _slMarker.getLatLng().lng : '',
+  }};
+
+  var origText = btn ? btn.textContent : '';
+  if (btn) {{ btn.disabled=true; btn.style.opacity='0.6'; }}
+
+  var fd = new FormData();
+  fd.append('role', 'seller');
+  fd.append('title', titleVal);
+  fd.append('description', JSON.stringify(formData));
+  if (_slImgFiles.length) _slImgFiles.forEach(function(f){{ fd.append('file', f); }});
+  else if (_slDocFiles.length) _slDocFiles.forEach(function(f){{ fd.append('file', f); }});
+
+  try {{
+    var res = await fetch('/api/role', {{
+      method: 'POST',
+      headers: {{ 'Authorization': 'Bearer ' + token }},
+      body: fd
+    }});
+    if (!res.ok) throw new Error(res.statusText);
+    if (msgEl) {{ msgEl.style.display='inline'; setTimeout(function(){{msgEl.style.display='none';}},6000); }}
+    var pill = document.getElementById('role-current-pill');
+    var pillName = document.getElementById('role-current-name');
+    if (pill && pillName) {{
+      var rc = document.getElementById('rc-seller');
+      pillName.textContent = rc ? rc.querySelector('.rc-title').textContent : 'Seller';
+      pill.style.display = 'inline-flex';
+    }}
+  }} catch(e) {{
+    if (errEl) {{ errEl.textContent = e.message; errEl.style.display='block'; }}
+  }} finally {{
+    if (btn) {{ btn.disabled=false; btn.style.opacity='1'; btn.textContent=origText; }}
+  }}
+}}
+// ────────────────────────────────────────────────────────────────────────────
+
 
 // ── URL Routing: Init on load + popstate ─────────────────────────────────────
 document.addEventListener('DOMContentLoaded', function() {

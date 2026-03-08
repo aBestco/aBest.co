@@ -119,6 +119,10 @@ export default {
             return handleRoleApi(request, env);
         }
 
+        if (pathname.startsWith('/api/listings')) {
+            return handleListingsApi(request, env);
+        }
+
         if (pathname.startsWith('/api/team')) {
             return handleTeamApi(request, env);
         }
@@ -885,4 +889,126 @@ async function handleCapitalDeposit(userEmail, formData, env) {
     return new Response(JSON.stringify({ ok: true }), {
         headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
     });
+}
+
+// ── Seller Listings API ──────────────────────────────────────────────────────
+async function handleListingsApi(request, env) {
+    const method = request.method;
+    const url = new URL(request.url);
+    const corsHeaders = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    };
+    if (method === 'OPTIONS') return new Response(null, { headers: corsHeaders });
+
+    try {
+        const userEmail = await checkAuth(request, env);
+        if (!userEmail) return unauthorizedResponse();
+
+        // POST /api/listings — create new listing
+        if (method === 'POST') {
+            const contentType = request.headers.get('Content-Type') || '';
+            let data = {};
+            if (contentType.includes('multipart/form-data')) {
+                const fd = await request.formData();
+                for (const [k, v] of fd.entries()) {
+                    if (k !== 'file') data[k] = v;
+                }
+                // Store file in R2 if available
+                const file = fd.get('file');
+                if (file && file.size > 0 && env.ABEST_R2) {
+                    const fileKey = `listings/${userEmail}/${Date.now()}_${file.name}`;
+                    await env.ABEST_R2.put(fileKey, file.stream(), {
+                        httpMetadata: { contentType: file.type || 'application/octet-stream' }
+                    });
+                    data.fileKey = fileKey;
+                    data.fileName = file.name;
+                }
+            } else {
+                data = await request.json();
+            }
+
+            const id = `${Date.now()}_${Math.random().toString(36).slice(2,8)}`;
+            data.id = id;
+            data.seller = userEmail;
+            data.createdAt = new Date().toISOString();
+            data.status = 'active';
+
+            // Store listing
+            await env.ABEST_AUTH.put(`listing:${id}`, JSON.stringify(data));
+
+            // Append to user's listing index
+            const idxRaw = await env.ABEST_AUTH.get(`listings:${userEmail}`);
+            const idx = idxRaw ? JSON.parse(idxRaw) : [];
+            idx.push(id);
+            await env.ABEST_AUTH.put(`listings:${userEmail}`, JSON.stringify(idx));
+
+            return new Response(JSON.stringify({ ok: true, id }), {
+                headers: { 'Content-Type': 'application/json', ...corsHeaders }
+            });
+        }
+
+        // GET /api/listings — get user's listings (or all if admin)
+        if (method === 'GET') {
+            let isAdmin = userEmail === 'admin';
+            if (!isAdmin && env.ABEST_AUTH) {
+                const profileStr = await env.ABEST_AUTH.get(`profile:${userEmail}`);
+                if (profileStr) {
+                    const p = JSON.parse(profileStr);
+                    isAdmin = (p.role === 'Admin' || p.role === 'Superadmin');
+                }
+            }
+
+            if (isAdmin && url.searchParams.get('all') === '1') {
+                // Return all listings
+                const list = await env.ABEST_AUTH.list({ prefix: 'listing:' });
+                const listings = [];
+                for (const key of list.keys) {
+                    const v = await env.ABEST_AUTH.get(key.name);
+                    if (v) listings.push(JSON.parse(v));
+                }
+                listings.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+                return new Response(JSON.stringify(listings), {
+                    headers: { 'Content-Type': 'application/json', ...corsHeaders }
+                });
+            }
+
+            // Return user's own listings
+            const idxRaw = await env.ABEST_AUTH.get(`listings:${userEmail}`);
+            const ids = idxRaw ? JSON.parse(idxRaw) : [];
+            const listings = [];
+            for (const id of ids) {
+                const v = await env.ABEST_AUTH.get(`listing:${id}`);
+                if (v) listings.push(JSON.parse(v));
+            }
+            return new Response(JSON.stringify(listings), {
+                headers: { 'Content-Type': 'application/json', ...corsHeaders }
+            });
+        }
+
+        // DELETE /api/listings/:id
+        if (method === 'DELETE') {
+            const id = url.pathname.split('/').pop();
+            const v = await env.ABEST_AUTH.get(`listing:${id}`);
+            if (!v) return new Response(JSON.stringify({ error: 'Not found' }), { status: 404, headers: corsHeaders });
+            const listing = JSON.parse(v);
+            if (listing.seller !== userEmail && userEmail !== 'admin') {
+                return new Response(JSON.stringify({ error: 'Forbidden' }), { status: 403, headers: corsHeaders });
+            }
+            await env.ABEST_AUTH.delete(`listing:${id}`);
+            const idxRaw = await env.ABEST_AUTH.get(`listings:${listing.seller}`);
+            if (idxRaw) {
+                const idx = JSON.parse(idxRaw).filter(i => i !== id);
+                await env.ABEST_AUTH.put(`listings:${listing.seller}`, JSON.stringify(idx));
+            }
+            return new Response(JSON.stringify({ ok: true }), { headers: corsHeaders });
+        }
+
+        return new Response('Method Not Allowed', { status: 405, headers: corsHeaders });
+    } catch(err) {
+        return new Response(JSON.stringify({ error: err.message }), {
+            status: 500, headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
+        });
+    }
 }
