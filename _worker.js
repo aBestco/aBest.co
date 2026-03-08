@@ -749,22 +749,62 @@ async function handleRoleApi(request, env) {
         }
 
         if (method === 'POST') {
-            const body = await request.json();
-            const { role, data } = body;
             const VALID_ROLES = ['founder', 'investor', 'capital', 'seller', 'explorer'];
+            let role, title, description, fileInfo = null;
+
+            const contentType = request.headers.get('Content-Type') || '';
+
+            if (contentType.includes('multipart/form-data')) {
+                // Handle file upload via FormData
+                const formData = await request.formData();
+                role        = formData.get('role');
+                title       = formData.get('title') || '';
+                description = formData.get('description') || '';
+                const file  = formData.get('file');
+
+                if (file && file.size > 0) {
+                    const MAX_SIZE = 10 * 1024 * 1024; // 10 MB
+                    if (file.size > MAX_SIZE) {
+                        return new Response(JSON.stringify({ error: 'File too large (max 10 MB)' }), { status: 400, headers: corsHeaders });
+                    }
+                    // Store file in R2 if binding exists
+                    if (env.ABEST_R2) {
+                        const fileKey = `uploads/${userEmail}/${Date.now()}_${file.name}`;
+                        await env.ABEST_R2.put(fileKey, file.stream(), {
+                            httpMetadata: { contentType: file.type || 'application/octet-stream' }
+                        });
+                        fileInfo = { name: file.name, size: file.size, type: file.type, key: fileKey, uploadedAt: new Date().toISOString() };
+                    } else {
+                        // No R2: just save metadata
+                        fileInfo = { name: file.name, size: file.size, type: file.type, uploadedAt: new Date().toISOString() };
+                    }
+                }
+            } else {
+                // JSON fallback
+                const body = await request.json();
+                role        = body.role;
+                title       = body.data?.title || '';
+                description = body.data?.description || '';
+            }
+
             if (!role || !VALID_ROLES.includes(role)) {
                 return new Response(JSON.stringify({ error: 'Invalid role' }), { status: 400, headers: corsHeaders });
             }
-            const entry = { role, data: data || {}, email: userEmail, updatedAt: new Date().toISOString() };
+
+            const entry = {
+                role,
+                data: { title, description, fileName: fileInfo?.name || null },
+                fileInfo,
+                email: userEmail,
+                updatedAt: new Date().toISOString()
+            };
             await env.ABEST_AUTH.put(`role_data:${userEmail}`, JSON.stringify(entry));
 
-            // Also tag the profile with the interest role for admin overview
-            if (env.ABEST_AUTH) {
-                const profileStr = await env.ABEST_AUTH.get(`profile:${userEmail}`);
-                const profile = profileStr ? JSON.parse(profileStr) : { email: userEmail };
-                profile.interestRole = role;
-                await env.ABEST_AUTH.put(`profile:${userEmail}`, JSON.stringify(profile));
-            }
+            // Tag the profile with interest role for admin overview
+            const profileStr = await env.ABEST_AUTH.get(`profile:${userEmail}`);
+            const profile = profileStr ? JSON.parse(profileStr) : { email: userEmail };
+            profile.interestRole = role;
+            await env.ABEST_AUTH.put(`profile:${userEmail}`, JSON.stringify(profile));
 
             return new Response(JSON.stringify({ success: true }), {
                 headers: { 'Content-Type': 'application/json', ...corsHeaders }

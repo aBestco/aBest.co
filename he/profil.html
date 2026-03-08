@@ -130,6 +130,23 @@ body { background: #0a0a0f; }
 .role-form select option { background: #1a1a2e; color: #fff; }
 .role-current { display: inline-flex; align-items: center; gap: 8px; font-size: 0.8rem; color: var(--text-muted); background: rgba(0,122,255,0.08); border: 1px solid rgba(0,122,255,0.2); border-radius: 20px; padding: 4px 12px; margin-bottom: 16px; }
 .role-current strong { color: var(--primary-blue); }
+
+/* File upload area */
+.file-upload-wrap { margin-bottom: 16px; }
+.file-upload-wrap label { display: block; margin-bottom: 6px; font-size: 0.82rem; color: var(--text-muted); font-weight: 500; }
+.file-upload-area { border: 2px dashed rgba(255,255,255,0.14); border-radius: 12px; padding: 18px 16px; display: flex; align-items: center; gap: 14px; cursor: pointer; transition: all 0.22s; background: rgba(255,255,255,0.02); }
+.file-upload-area:hover { border-color: rgba(0,122,255,0.45); background: rgba(0,122,255,0.04); }
+.file-upload-area.has-file { border-color: rgba(0,122,255,0.5); background: rgba(0,122,255,0.07); }
+.file-upload-icon { font-size: 1.6rem; flex-shrink: 0; }
+.file-upload-text { flex: 1; min-width: 0; }
+.file-upload-text .fu-btn { display: inline-block; font-size: 0.8rem; font-weight: 600; color: var(--primary-blue); background: rgba(0,122,255,0.12); border: 1px solid rgba(0,122,255,0.3); border-radius: 8px; padding: 4px 12px; margin-bottom: 4px; }
+.file-upload-text .fu-name { font-size: 0.78rem; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+.file-upload-text .fu-hint { font-size: 0.72rem; color: rgba(255,255,255,0.25); margin-top: 2px; }
+.file-input-hidden { display: none; }
+.role-submit-row { display: flex; align-items: center; gap: 14px; margin-top: 4px; }
+.role-submit-row .role-submit-msg { font-size: 0.82rem; color: #34c759; display: none; }
+.role-form-title { font-size: 1rem; font-weight: 700; color: var(--text-main); margin: 0 0 4px; }
+.role-form-sub { font-size: 0.78rem; color: var(--text-muted); margin: 0 0 18px; line-height: 1.5; }
 </style>
 </head>
 <body class="dark-mode">
@@ -261,6 +278,7 @@ body { background: #0a0a0f; }
   </div>
 
 
+  
   <!-- ── TAB: ROLLE ──────────────────────────── -->
   <div class="db-panel fade-in-up" id="panel-role" style="animation-delay:0.2s;">
     <div class="glass-panel" style="padding:24px;">
@@ -268,12 +286,10 @@ body { background: #0a0a0f; }
         <h3>Select Your Role</h3>
         <p>Your choice determines what information you can submit</p>
       </div>
-
       <!-- Current saved role pill -->
       <div class="role-current" id="role-current-pill" style="display:none;">
         Current role: <strong id="role-current-name">—</strong>
       </div>
-
       <!-- Role cards grid -->
       <div class="role-grid">
         
@@ -281,19 +297,19 @@ body { background: #0a0a0f; }
       <span class="rc-icon">🚀</span>
       <h3 class="rc-title">Founder</h3>
       <p class="rc-tag">Submit your Idea</p>
-      <p class="rc-desc">For individuals with a business idea looking for partners or investors to develop it.</p>
+      <p class="rc-desc">For individuals with a business idea looking for partners or investors.</p>
     </div>
     <div class="role-card" id="rc-investor" onclick="selectRole('investor')">
       <span class="rc-icon">💰</span>
       <h3 class="rc-title">Investor</h3>
       <p class="rc-tag">Invest with Us</p>
-      <p class="rc-desc">For users who want to actively invest in projects, businesses, or opportunities.</p>
+      <p class="rc-desc">For users who want to actively invest in projects and businesses.</p>
     </div>
     <div class="role-card" id="rc-capital" onclick="selectRole('capital')">
       <span class="rc-icon">🏦</span>
       <h3 class="rc-title">Capital Partner</h3>
       <p class="rc-tag">Provide Capital</p>
-      <p class="rc-desc">For individuals or institutions who want to provide capital without being involved in daily operations.</p>
+      <p class="rc-desc">For individuals or institutions who want to provide capital without daily operations.</p>
     </div>
     <div class="role-card" id="rc-seller" onclick="selectRole('seller')">
       <span class="rc-icon">🏠</span>
@@ -305,60 +321,156 @@ body { background: #0a0a0f; }
       <span class="rc-icon">🔍</span>
       <h3 class="rc-title">Explorer</h3>
       <p class="rc-tag">Discover Opportunities</p>
-      <p class="rc-desc">For users who want to explore projects and investment opportunities before taking further steps.</p>
+      <p class="rc-desc">For users who want to explore projects and investment opportunities.</p>
     </div>
       </div>
-
-      <!-- Per-role forms -->
+      <!-- Per-role unified forms -->
       
   <div class="role-form" id="rf-founder">
-    <h4>🚀 Founder</h4>
-    <p>For individuals with a business idea looking for partners or investors to develop it.</p>
-    <div class="db-field"><label>Project Name / Idea</label><input id="r-f-name" type="text" placeholder="Project Name / Idea"/></div>
-    <div class="db-field"><label>Describe your idea</label><textarea id="r-f-desc" placeholder="Please describe..." rows="3" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:11px 14px;color:var(--text-main);font-size:0.9rem;font-family:inherit;outline:none;box-sizing:border-box;resize:vertical;"></textarea></div>
-    <div class="db-field"><label>Industry</label><input id="r-f-industry" type="text" placeholder="e.g. Real Estate, Tech, Energy"/></div>
-    <div class="db-field"><label>Investment Needed (€)</label><input id="r-f-invest" type="text" placeholder="e.g. 50,000"/></div>
-    <div class="db-field"><label>Looking for</label><select id="r-f-looking"><option value="Partner">Partner</option><option value="Investor">Investor</option><option value="Both">Both</option></select></div>
+    <p class="role-form-title">🚀 Founder</p>
+    <p class="role-form-sub">For individuals with a business idea looking for partners or investors.</p>
+    <div class="db-field">
+      <label>כותרת הרעיון / הפרויקט</label>
+      <input id="r-founder-title" type="text" placeholder="לדוגמה: קומפלקס מגורים בר-קיימא בברלין"/>
+    </div>
+    <div class="db-field">
+      <label>תיאור / רעיון</label>
+      <textarea id="r-founder-desc" placeholder="תאר את הרעיון או הפרויקט שלך בפירוט רב ככל האפשר ..." rows="6" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:12px 14px;color:var(--text-main);font-size:0.88rem;font-family:inherit;outline:none;box-sizing:border-box;resize:vertical;line-height:1.6;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(0,122,255,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.12)'"></textarea>
+    </div>
+    <div class="file-upload-wrap">
+      <label>העלאת מסמך</label>
+      <div class="file-upload-area" id="fua-founder" onclick="document.getElementById('fi-founder').click()">
+        <span class="file-upload-icon">📎</span>
+        <div class="file-upload-text">
+          <span class="fu-btn">בחר קובץ</span>
+          <div class="fu-name" id="fn-founder">לא נבחר קובץ</div>
+          <div class="fu-hint">PDF, DOCX, PPTX, JPG · מקסימום 10 MB · אופציונלי</div>
+        </div>
+      </div>
+      <input class="file-input-hidden" type="file" id="fi-founder" accept=".pdf,.doc,.docx,.ppt,.pptx,.jpg,.jpeg,.png,.xls,.xlsx" onchange="onFileChange('founder', this)"/>
+    </div>
+    <div class="role-submit-row">
+      <button class="db-btn db-btn-primary" style="max-width:200px;" onclick="submitRoleForm('founder')">שלח</button>
+      <span class="role-submit-msg" id="rsm-founder">✓ נשלח בהצלחה</span>
+    </div>
+    <div id="role-err-founder" style="font-size:0.78rem;color:#dc3545;margin-top:8px;display:none;"></div>
   </div>
-      
   <div class="role-form" id="rf-investor">
-    <h4>💰 Investor</h4>
-    <p>For users who want to actively invest in projects, businesses, or opportunities.</p>
-    <div class="db-field"><label>Investment Budget (€)</label><input id="r-i-budget" type="text" placeholder="e.g. 50,000"/></div>
-    <div class="db-field"><label>Preferred Industries</label><input id="r-i-industries" type="text" placeholder="e.g. Real Estate, Tech, Energy"/></div>
-    <div class="db-field"><label>Investment Type</label><select id="r-i-type"><option value="Equity">Equity</option><option value="Loan / Debt">Loan / Debt</option><option value="Both">Both</option></select></div>
-    <div class="db-field"><label>Timeline</label><select id="r-i-timeline"><option value="< 1 Year">< 1 Year</option><option value="1–3 Years">1–3 Years</option><option value="3–5 Years">3–5 Years</option><option value="5+ Years">5+ Years</option></select></div>
+    <p class="role-form-title">💰 Investor</p>
+    <p class="role-form-sub">For users who want to actively invest in projects and businesses.</p>
+    <div class="db-field">
+      <label>כותרת הרעיון / הפרויקט</label>
+      <input id="r-investor-title" type="text" placeholder="לדוגמה: קומפלקס מגורים בר-קיימא בברלין"/>
+    </div>
+    <div class="db-field">
+      <label>תיאור / רעיון</label>
+      <textarea id="r-investor-desc" placeholder="תאר את הרעיון או הפרויקט שלך בפירוט רב ככל האפשר ..." rows="6" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:12px 14px;color:var(--text-main);font-size:0.88rem;font-family:inherit;outline:none;box-sizing:border-box;resize:vertical;line-height:1.6;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(0,122,255,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.12)'"></textarea>
+    </div>
+    <div class="file-upload-wrap">
+      <label>העלאת מסמך</label>
+      <div class="file-upload-area" id="fua-investor" onclick="document.getElementById('fi-investor').click()">
+        <span class="file-upload-icon">📎</span>
+        <div class="file-upload-text">
+          <span class="fu-btn">בחר קובץ</span>
+          <div class="fu-name" id="fn-investor">לא נבחר קובץ</div>
+          <div class="fu-hint">PDF, DOCX, PPTX, JPG · מקסימום 10 MB · אופציונלי</div>
+        </div>
+      </div>
+      <input class="file-input-hidden" type="file" id="fi-investor" accept=".pdf,.doc,.docx,.ppt,.pptx,.jpg,.jpeg,.png,.xls,.xlsx" onchange="onFileChange('investor', this)"/>
+    </div>
+    <div class="role-submit-row">
+      <button class="db-btn db-btn-primary" style="max-width:200px;" onclick="submitRoleForm('investor')">שלח</button>
+      <span class="role-submit-msg" id="rsm-investor">✓ נשלח בהצלחה</span>
+    </div>
+    <div id="role-err-investor" style="font-size:0.78rem;color:#dc3545;margin-top:8px;display:none;"></div>
   </div>
-      
   <div class="role-form" id="rf-capital">
-    <h4>🏦 Capital Partner</h4>
-    <p>For individuals or institutions who want to provide capital without being involved in daily operations.</p>
-    <div class="db-field"><label>Available Capital (€)</label><input id="r-c-capital" type="text" placeholder="e.g. 50,000"/></div>
-    <div class="db-field"><label>Preferred Structure</label><select id="r-c-structure"><option value="Silent Partner">Silent Partner</option><option value="Loan">Loan</option><option value="Equity">Equity</option><option value="Flexible">Flexible</option></select></div>
-    <div class="db-field"><label>Geographic Focus</label><input id="r-c-region" type="text" placeholder="e.g. Germany, EU, Global"/></div>
+    <p class="role-form-title">🏦 Capital Partner</p>
+    <p class="role-form-sub">For individuals or institutions who want to provide capital without daily operations.</p>
+    <div class="db-field">
+      <label>כותרת הרעיון / הפרויקט</label>
+      <input id="r-capital-title" type="text" placeholder="לדוגמה: קומפלקס מגורים בר-קיימא בברלין"/>
+    </div>
+    <div class="db-field">
+      <label>תיאור / רעיון</label>
+      <textarea id="r-capital-desc" placeholder="תאר את הרעיון או הפרויקט שלך בפירוט רב ככל האפשר ..." rows="6" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:12px 14px;color:var(--text-main);font-size:0.88rem;font-family:inherit;outline:none;box-sizing:border-box;resize:vertical;line-height:1.6;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(0,122,255,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.12)'"></textarea>
+    </div>
+    <div class="file-upload-wrap">
+      <label>העלאת מסמך</label>
+      <div class="file-upload-area" id="fua-capital" onclick="document.getElementById('fi-capital').click()">
+        <span class="file-upload-icon">📎</span>
+        <div class="file-upload-text">
+          <span class="fu-btn">בחר קובץ</span>
+          <div class="fu-name" id="fn-capital">לא נבחר קובץ</div>
+          <div class="fu-hint">PDF, DOCX, PPTX, JPG · מקסימום 10 MB · אופציונלי</div>
+        </div>
+      </div>
+      <input class="file-input-hidden" type="file" id="fi-capital" accept=".pdf,.doc,.docx,.ppt,.pptx,.jpg,.jpeg,.png,.xls,.xlsx" onchange="onFileChange('capital', this)"/>
+    </div>
+    <div class="role-submit-row">
+      <button class="db-btn db-btn-primary" style="max-width:200px;" onclick="submitRoleForm('capital')">שלח</button>
+      <span class="role-submit-msg" id="rsm-capital">✓ נשלח בהצלחה</span>
+    </div>
+    <div id="role-err-capital" style="font-size:0.78rem;color:#dc3545;margin-top:8px;display:none;"></div>
   </div>
-      
   <div class="role-form" id="rf-seller">
-    <h4>🏠 Seller</h4>
-    <p>For users who want to sell land, real estate, or an existing business.</p>
-    <div class="db-field"><label>Type of Listing</label><select id="r-s-type"><option value="Real Estate">Real Estate</option><option value="Business">Business</option><option value="Land">Land</option><option value="Other">Other</option></select></div>
-    <div class="db-field"><label>Location</label><input id="r-s-location" type="text" placeholder="e.g. Berlin, Istanbul"/></div>
-    <div class="db-field"><label>Asking Price (€)</label><input id="r-s-price" type="text" placeholder="e.g. 50,000"/></div>
-    <div class="db-field"><label>Brief description of the listing</label><textarea id="r-s-desc" placeholder="Please describe..." rows="3" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:11px 14px;color:var(--text-main);font-size:0.9rem;font-family:inherit;outline:none;box-sizing:border-box;resize:vertical;"></textarea></div>
+    <p class="role-form-title">🏠 Seller</p>
+    <p class="role-form-sub">For users who want to sell land, real estate, or an existing business.</p>
+    <div class="db-field">
+      <label>כותרת הרעיון / הפרויקט</label>
+      <input id="r-seller-title" type="text" placeholder="לדוגמה: קומפלקס מגורים בר-קיימא בברלין"/>
+    </div>
+    <div class="db-field">
+      <label>תיאור / רעיון</label>
+      <textarea id="r-seller-desc" placeholder="תאר את הרעיון או הפרויקט שלך בפירוט רב ככל האפשר ..." rows="6" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:12px 14px;color:var(--text-main);font-size:0.88rem;font-family:inherit;outline:none;box-sizing:border-box;resize:vertical;line-height:1.6;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(0,122,255,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.12)'"></textarea>
+    </div>
+    <div class="file-upload-wrap">
+      <label>העלאת מסמך</label>
+      <div class="file-upload-area" id="fua-seller" onclick="document.getElementById('fi-seller').click()">
+        <span class="file-upload-icon">📎</span>
+        <div class="file-upload-text">
+          <span class="fu-btn">בחר קובץ</span>
+          <div class="fu-name" id="fn-seller">לא נבחר קובץ</div>
+          <div class="fu-hint">PDF, DOCX, PPTX, JPG · מקסימום 10 MB · אופציונלי</div>
+        </div>
+      </div>
+      <input class="file-input-hidden" type="file" id="fi-seller" accept=".pdf,.doc,.docx,.ppt,.pptx,.jpg,.jpeg,.png,.xls,.xlsx" onchange="onFileChange('seller', this)"/>
+    </div>
+    <div class="role-submit-row">
+      <button class="db-btn db-btn-primary" style="max-width:200px;" onclick="submitRoleForm('seller')">שלח</button>
+      <span class="role-submit-msg" id="rsm-seller">✓ נשלח בהצלחה</span>
+    </div>
+    <div id="role-err-seller" style="font-size:0.78rem;color:#dc3545;margin-top:8px;display:none;"></div>
   </div>
-      
   <div class="role-form" id="rf-explorer">
-    <h4>🔍 Explorer</h4>
-    <p>For users who want to explore projects and investment opportunities before taking further steps.</p>
-    <div class="db-field"><label>Areas of Interest</label><textarea id="r-e-interests" placeholder="e.g. Real Estate, Tech, Energy" rows="3" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:11px 14px;color:var(--text-main);font-size:0.9rem;font-family:inherit;outline:none;box-sizing:border-box;resize:vertical;"></textarea></div>
-    <div class="db-field"><label>Available Budget (€)</label><input id="r-e-budget" type="text" placeholder="e.g. 50,000"/></div>
-    <div class="db-field"><label>Looking for</label><select id="r-e-looking"><option value="Partnerships">Partnerships</option><option value="Investments">Investments</option><option value="Projects">Projects</option><option value="Everything">Everything</option></select></div>
+    <p class="role-form-title">🔍 Explorer</p>
+    <p class="role-form-sub">For users who want to explore projects and investment opportunities.</p>
+    <div class="db-field">
+      <label>כותרת הרעיון / הפרויקט</label>
+      <input id="r-explorer-title" type="text" placeholder="לדוגמה: קומפלקס מגורים בר-קיימא בברלין"/>
+    </div>
+    <div class="db-field">
+      <label>תיאור / רעיון</label>
+      <textarea id="r-explorer-desc" placeholder="תאר את הרעיון או הפרויקט שלך בפירוט רב ככל האפשר ..." rows="6" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:12px 14px;color:var(--text-main);font-size:0.88rem;font-family:inherit;outline:none;box-sizing:border-box;resize:vertical;line-height:1.6;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(0,122,255,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.12)'"></textarea>
+    </div>
+    <div class="file-upload-wrap">
+      <label>העלאת מסמך</label>
+      <div class="file-upload-area" id="fua-explorer" onclick="document.getElementById('fi-explorer').click()">
+        <span class="file-upload-icon">📎</span>
+        <div class="file-upload-text">
+          <span class="fu-btn">בחר קובץ</span>
+          <div class="fu-name" id="fn-explorer">לא נבחר קובץ</div>
+          <div class="fu-hint">PDF, DOCX, PPTX, JPG · מקסימום 10 MB · אופציונלי</div>
+        </div>
+      </div>
+      <input class="file-input-hidden" type="file" id="fi-explorer" accept=".pdf,.doc,.docx,.ppt,.pptx,.jpg,.jpeg,.png,.xls,.xlsx" onchange="onFileChange('explorer', this)"/>
+    </div>
+    <div class="role-submit-row">
+      <button class="db-btn db-btn-primary" style="max-width:200px;" onclick="submitRoleForm('explorer')">שלח</button>
+      <span class="role-submit-msg" id="rsm-explorer">✓ נשלח בהצלחה</span>
+    </div>
+    <div id="role-err-explorer" style="font-size:0.78rem;color:#dc3545;margin-top:8px;display:none;"></div>
   </div>
-
-      <!-- Save button -->
-      <button class="db-btn db-btn-primary" id="role-save-btn" style="display:none;" onclick="saveRoleData()">
-        Save Information
-      </button>
     </div>
   </div>
 
