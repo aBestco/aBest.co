@@ -1797,21 +1797,29 @@ function mwCalc(d) {
     isApproved: d.status === 'approved' || d.status === 'active'};
 }
 
-function mwTab(name) {
+function mwTab(name, _noPush) {
   ['active','completed','history'].forEach(n => {
     const pane = document.getElementById('mw-pane-' + n);
     const btn = document.getElementById('mw-tab-btn-' + n);
     if (pane) pane.style.display = n === name ? '' : 'none';
     if (btn) btn.classList.toggle('mw-tab-on', n === name);
   });
+  if (!_noPush) {
+    const _base = (window.location.pathname.match(/^(\/[a-z]{2}\/profil[e]?|\/profil[e]?)/) || [])[1] || '/profile';
+    history.pushState({tab:'role', role:'capital', walletTab:name}, '', _base + '/my-role/capital-partner/' + name);
+  }
 }
 
-function mwShowNewDeposit() {
+function mwShowNewDeposit(_noPush) {
   document.getElementById('cp-mywallet').style.display = 'none';
   document.getElementById('cp-form-section').style.display = 'block';
   document.getElementById('cp-deposit-success').style.display = 'none';
   document.getElementById('cp-submit-main').style.display = 'block';
   window.scrollTo({top: document.getElementById('cp-form-section').offsetTop - 80, behavior: 'smooth'});
+  if (!_noPush) {
+    const _base = (window.location.pathname.match(/^(\/[a-z]{2}\/profil[e]?|\/profil[e]?)/) || [])[1] || '/profile';
+    history.pushState({tab:'role', role:'capital', walletTab:'new'}, '', _base + '/my-role/capital-partner/new');
+  }
 }
 
 function mwRender(deposits) {
@@ -2031,6 +2039,12 @@ async function loadCapitalData() {
     if (hasApproved) document.getElementById('cp-banner-approved')?.classList.add('show');
 
     mwRender(deposits);
+    if (window._pendingMwTab) {
+      var _pmwt = window._pendingMwTab;
+      window._pendingMwTab = null;
+      if (_pmwt === 'new') mwShowNewDeposit(true);
+      else mwTab(_pmwt, true);
+    }
   } catch(e) {}
 }
 // ═════════════════════════════════════════════════════════════════════════════
@@ -2062,19 +2076,26 @@ document.addEventListener('DOMContentLoaded', function() {
   var _segs = _rest ? _rest.split('/').filter(Boolean) : [];
   var _tabSlug = _segs[0] || '';
   var _roleSlug = _segs[1] || '';
+  var _walletSlug = _segs[2] || '';
   var _tabMap = {'':'profil','messages':'messages','team':'team','my-role':'role','settings':'settings'};
   var _roleMap = {'founder':'founder','investor':'investor','capital-partner':'capital','seller':'seller','explorer':'explorer'};
+  var _wTabMap = {'active':'active','completed':'completed','history':'history','new':'new'};
   var _tabName = _tabMap[_tabSlug];
   if (_tabName === undefined) _tabName = 'profil';
   var _roleName = _roleMap[_roleSlug] || null;
+  var _wTabName = _wTabMap[_walletSlug] || null;
   if (_tabName !== 'profil') switchTab(_tabName, null, true);
-  if (_roleName && _tabName === 'role') selectRole(_roleName, true);
+  if (_roleName && _tabName === 'role') {
+    selectRole(_roleName, true);
+    if (_roleName === 'capital' && _wTabName) window._pendingMwTab = _wTabName;
+  }
   var _slugFwd = {profil:'',messages:'messages',team:'team',role:'my-role',settings:'settings'};
   var _roleSF = {founder:'founder',investor:'investor',capital:'capital-partner',seller:'seller',explorer:'explorer'};
   var _canonical = _base;
   if (_slugFwd[_tabName]) _canonical += '/' + _slugFwd[_tabName];
   if (_roleName && _roleSF[_roleName]) _canonical += '/' + _roleSF[_roleName];
-  if (_canonical !== _path) history.replaceState({tab:_tabName,role:_roleName}, '', _canonical);
+  if (_wTabName && _roleName === 'capital' && _wTabName !== 'new') _canonical += '/' + _wTabName;
+  if (_canonical !== _path) history.replaceState({tab:_tabName,role:_roleName,walletTab:_wTabName}, '', _canonical);
 });
 
 window.addEventListener('popstate', function(e) {
@@ -2082,6 +2103,10 @@ window.addEventListener('popstate', function(e) {
   if (s && s.tab) {
     switchTab(s.tab, null, true);
     if (s.tab === 'role' && s.role) selectRole(s.role, true);
+    if (s.tab === 'role' && s.role === 'capital' && s.walletTab) {
+      if (s.walletTab === 'new') mwShowNewDeposit(true);
+      else mwTab(s.walletTab, true);
+    }
   }
 });
 // ─────────────────────────────────────────────────────────────────────────────

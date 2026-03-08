@@ -579,7 +579,7 @@
 
     <script src="/app.js"></script>
     <script>
-        function showForm(formId) {
+        function showForm(formId, _noPush) {
             document.getElementById('cards-view').style.display = 'none';
             document.getElementById('forms-container').style.display = 'block';
             document.getElementById('success-message').style.display = 'none';
@@ -595,12 +595,24 @@
                 formToShow.querySelector('form').reset(); // reset form
             }
             window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (!_noPush) {
+                const _sfMap = {'idea-form':'idee','investor-form':'investor','rent-form':'miete','buy-form':'kauf'};
+                const _slug = _sfMap[formId] || formId;
+                const _base = (window.location.pathname.match(/^(\/[a-z]{2}\/partner[a-z]*|\/partner[a-z]*)/) || [])[1] || window.location.pathname.replace(/\/[a-z-]+$/, '') || window.location.pathname;
+                const _cleanBase = _base.replace(/\/(idee|investor|miete|kauf)$/, '');
+                history.pushState({view: formId}, '', _cleanBase + '/' + _slug);
+            }
         }
 
-        function showCards() {
+        function showCards(_noPush) {
             document.getElementById('cards-view').style.display = 'block';
             document.getElementById('forms-container').style.display = 'none';
             window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (!_noPush) {
+                const _base = (window.location.pathname.match(/^(\/[a-z]{2}\/partner[a-z]*|\/partner[a-z]*)/) || [])[1] || window.location.pathname;
+                const _cleanBase = _base.replace(/\/(idee|investor|miete|kauf)$/, '');
+                history.pushState({view: 'cards'}, '', _cleanBase);
+            }
         }
 
         async function submitForm(event, type) {
@@ -641,6 +653,27 @@
                 submitBtn.disabled = false;
             }
         }
+        // ── URL Routing: Init on load + popstate ──────────────────────────────────
+        document.addEventListener('DOMContentLoaded', function() {
+          var _path = window.location.pathname;
+          var _baseMatch = _path.match(/^(\/[a-z]{2}\/partner[a-z]*|\/partner[a-z]*)/);
+          if (!_baseMatch) return;
+          var _base = _baseMatch[1];
+          var _rest = _path.slice(_base.length).replace(/^\/+/, '');
+          var _slug = _rest.split('/')[0] || '';
+          var _formMap = {'idee':'idea-form','investor':'investor-form','miete':'rent-form','kauf':'buy-form'};
+          var _formId = _formMap[_slug] || null;
+          if (_formId) showForm(_formId, true);
+        });
+
+        window.addEventListener('popstate', function(e) {
+          var s = e.state;
+          if (!s) return;
+          if (s.view === 'cards') showCards(true);
+          else if (s.view) showForm(s.view, true);
+        });
+        // ─────────────────────────────────────────────────────────────────────────
+
     </script>
 </body>
 

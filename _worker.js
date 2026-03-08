@@ -89,6 +89,24 @@ export default {
             });
         }
 
+        // --- 1.3 PARTNERSCHAFTEN SUB-PATHS ---
+        // /de/partnerschaften/idee  →  serve /de/partnerschaften.html
+        if (cleanPath.startsWith('/partnerschaften/') || cleanPath.startsWith('/partnerships/')) {
+            const supportedLangs2 = ["en","de","tr","es","zh","hi","ar","fr","ru","pt","ur","ku","he","hy"];
+            let pLang = pathname.match(/^\/([a-z]{2})(?:\/|$)/)?.[1];
+            if (!pLang || !supportedLangs2.includes(pLang)) {
+                const cookies = request.headers.get('Cookie') || '';
+                pLang = cookies.match(/aBest_lang=([a-z]{2})/)?.[1];
+            }
+            if (!pLang || !supportedLangs2.includes(pLang)) pLang = 'de';
+            const pUrl = new URL(request.url);
+            pUrl.pathname = `/${pLang}/partnerschaften`;
+            const pReq = new Request(pUrl.toString(), request);
+            pReq.headers.set('X-Internal-Fetch', 'true');
+            const pRes = await env.ASSETS.fetch(pReq);
+            if (pRes.ok) return new Response(pRes.body, { headers: pRes.headers });
+        }
+
         // --- 2. API ROUTES ---
         if (pathname.startsWith('/api/payout')) {
             return handlePayoutApi(request, env);
@@ -125,7 +143,9 @@ export default {
         }
 
         // --- 2. ADMIN AREA ---
-        if (pathname === '/admin' || pathname === '/admin/') {
+        const isAdminPath = pathname === '/admin' || pathname === '/admin/' ||
+            (pathname.startsWith('/admin/') && !pathname.match(/\.(js|css|html|png|jpg|svg|ico|json|woff|woff2|ttf)$/));
+        if (isAdminPath) {
             const userEmail = await checkAuth(request, env);
             if (!userEmail) return Response.redirect(`https://${host}/login`, 302);
 
@@ -140,8 +160,16 @@ export default {
             }
             if (!isAdmin) return Response.redirect(`https://${host}/profile`, 302);
 
-            // If they are admin, let them through (or handle special admin pathing if needed)
-            // For now, ASSETS.fetch will handle the static admin files.
+            // For sub-paths (/admin/users, /admin/idee etc.) serve admin/index.html
+            if (pathname !== '/admin' && pathname !== '/admin/') {
+                const adminUrl = new URL(request.url);
+                adminUrl.pathname = '/admin/';
+                const adminReq = new Request(adminUrl.toString(), request);
+                adminReq.headers.set('X-Internal-Fetch', 'true');
+                const adminRes = await env.ASSETS.fetch(adminReq);
+                if (adminRes.ok) return new Response(adminRes.body, { headers: adminRes.headers });
+            }
+            // For /admin and /admin/ ASSETS.fetch will handle it below
         }
 
         // --- 3. 301 REDIRECTS ---

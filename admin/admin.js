@@ -11,8 +11,19 @@ document.addEventListener('DOMContentLoaded', () => {
     loadData();
     loadUsers();
     loadDocs();
-    switchView('dashboard');
+    // Read URL to activate correct view on deep-link
+    var _adminPath = window.location.pathname;
+    var _adminMatch = _adminPath.match(/^\/admin\/(.+)$/);
+    var _initView = _adminMatch ? _adminMatch[1] : 'dashboard';
+    var _validAdminViews = ['dashboard','idee','investor','miete','kauf','kontakt','users','docs'];
+    if (!_validAdminViews.includes(_initView)) _initView = 'dashboard';
+    switchView(_initView, true);
     updateRole();
+});
+
+window.addEventListener('popstate', function(e) {
+    var s = e.state;
+    if (s && s.view) switchView(s.view, true);
 });
 
 function checkToken() {
@@ -116,7 +127,7 @@ function updateStats() {
     document.getElementById('stat-pruefung').innerText = counts['In Prüfung'];
 }
 
-function switchView(view) {
+function switchView(view, _noPush) {
     currentView = view;
 
     // Update Sidebar UI
@@ -145,6 +156,10 @@ function switchView(view) {
     }
 
     renderTable();
+    if (!_noPush) {
+        var _vSlug = view === 'dashboard' ? '' : view;
+        history.pushState({view: view}, '', _vSlug ? '/admin/' + _vSlug : '/admin');
+    }
 }
 
 function renderTable() {
