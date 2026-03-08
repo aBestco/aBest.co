@@ -1,5 +1,6 @@
 let inquiries = [];
 let adminUsers = [];
+let adminDocs = [];
 let currentView = 'dashboard';
 let currentRole = 'superadmin';
 let currentInquiryId = null;
@@ -9,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!checkToken()) return;
     loadData();
     loadUsers();
+    loadDocs();
     switchView('dashboard');
     updateRole();
 });
@@ -69,10 +71,30 @@ async function loadUsers() {
 
         if (response.ok) {
             adminUsers = await response.json();
+            updateStats(); // Update stats once users are loaded
             if (currentView === 'users') renderTable();
         }
     } catch (error) {
         console.error('Error loading users:', error);
+    }
+}
+
+// Load documents from API
+async function loadDocs() {
+    try {
+        const token = localStorage.getItem('aBest_session');
+        const response = await fetch('/api/docs', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if (response.ok) {
+            adminDocs = await response.json();
+            if (currentView === 'docs') renderTable();
+        }
+    } catch (error) {
+        console.error('Error loading docs:', error);
     }
 }
 
@@ -81,17 +103,17 @@ function saveData() {
 }
 
 function updateStats() {
-    const statIdeen = inquiries.filter(i => i.type === 'Idee' && i.status === 'Neu').length;
-    const statInvestoren = inquiries.filter(i => i.type === 'Investor' && i.status === 'Neu').length;
-    const statMieten = inquiries.filter(i => i.type === 'Miete' && ['Neu', 'In Prüfung'].includes(i.status)).length;
-    const statKaufen = inquiries.filter(i => i.type === 'Kauf' && ['Neu', 'In Prüfung'].includes(i.status)).length;
-    const statPruefung = inquiries.filter(i => i.status === 'In Prüfung').length;
+    const counts = { 'Idee': 0, 'Investor': 0, 'Miete': 0, 'Kauf': 0, 'In Prüfung': 0 };
+    inquiries.forEach(i => {
+        if (counts[i.type] !== undefined) counts[i.type]++;
+        if (i.status === 'In Prüfung') counts['In Prüfung']++;
+    });
 
-    document.getElementById('stat-ideen').innerText = statIdeen;
-    document.getElementById('stat-investoren').innerText = statInvestoren;
-    document.getElementById('stat-mieten').innerText = statMieten;
-    document.getElementById('stat-kaufen').innerText = statKaufen;
-    document.getElementById('stat-pruefung').innerText = statPruefung;
+    document.getElementById('stat-ideen').innerText = counts['Idee'];
+    document.getElementById('stat-investoren').innerText = adminUsers.length || 0; // Show real user count
+    document.getElementById('stat-mieten').innerText = counts['Miete'];
+    document.getElementById('stat-kaufen').innerText = counts['Kauf'];
+    document.getElementById('stat-pruefung').innerText = counts['In Prüfung'];
 }
 
 function switchView(view) {
@@ -154,18 +176,22 @@ function renderTable() {
         return;
     } else if (currentView === 'docs') {
         theadTr.innerHTML = `<th>Dateiname</th><th>Typ</th><th>Größe</th><th>Datum</th><th>Hochgeladen von</th>`;
-        const mockDocs = [
-            { name: "Pitch Deck 2026.pdf", type: "PDF", size: "4.2 MB", date: "05.03.2026", owner: "Alan Best" },
-            { name: "Investor_Relations_Q1.xlsx", type: "Excel", size: "1.1 MB", date: "01.03.2026", owner: "Michael Schmidt" },
-            { name: "NDAs_Templates.zip", type: "Archiv", size: "8.5 MB", date: "28.02.2026", owner: "System" }
-        ];
-        tbody.innerHTML = mockDocs.map(d => `<tr>
-            <td><strong>📄 ${d.name}</strong></td>
-            <td>${d.type}</td>
-            <td>${d.size}</td>
-            <td>${d.date}</td>
-            <td>${d.owner}</td>
-        </tr>`).join('');
+
+        if (adminDocs.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--text-muted);padding:30px;">Keine Dokumente gefunden.</td></tr>';
+            return;
+        }
+
+        tbody.innerHTML = adminDocs.map(d => {
+            const date = new Date(d.date).toLocaleDateString();
+            return `<tr>
+                <td><strong>📄 ${d.name}</strong></td>
+                <td>${d.type}</td>
+                <td>${d.size}</td>
+                <td>${date}</td>
+                <td>${d.owner}</td>
+            </tr>`;
+        }).join('');
         return;
     } else {
         // Default headers for inquiries

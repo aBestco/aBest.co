@@ -31,6 +31,9 @@ export default {
             if (pathname.startsWith('/api/messages')) {
                 return handleMessagesApi(request, env);
             }
+            if (pathname.startsWith('/api/docs')) {
+                return handleDocsApi(request, env);
+            }
             return handleInquiriesApi(request, env);
         }
 
@@ -285,6 +288,47 @@ async function handleMessagesApi(request, env) {
             });
         }
 
+        return new Response('Not Found', { status: 404, headers: corsHeaders });
+    } catch (err) {
+        return new Response(JSON.stringify({ error: err.message }), {
+            status: 500, headers: { 'Content-Type': 'application/json', ...corsHeaders }
+        });
+    }
+}
+
+// --- DOCUMENTS API HANDLER ---
+async function handleDocsApi(request, env) {
+    const method = request.method;
+    const corsHeaders = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    };
+    if (method === 'OPTIONS') return new Response(null, { headers: corsHeaders });
+
+    try {
+        const userEmail = await checkAuth(request, env);
+        if (!userEmail) return unauthorizedResponse();
+
+        if (method === 'GET') {
+            // In a real app, you'd list files from R2 or KV metadata.
+            // Using KV for metadata here.
+            const list = await env.ABEST_AUTH.list({ prefix: 'doc:' });
+            const docs = [];
+            for (const key of list.keys) {
+                const docStr = await env.ABEST_AUTH.get(key.name);
+                if (docStr) docs.push(JSON.parse(docStr));
+            }
+
+            // Temporary Fallback if empty
+            if (docs.length === 0) {
+                docs.push({ name: "Unternehmensprofil.pdf", type: "PDF", size: "1.2 MB", date: new Date().toISOString(), owner: "System" });
+            }
+
+            return new Response(JSON.stringify(docs), {
+                headers: { 'Content-Type': 'application/json', ...corsHeaders }
+            });
+        }
         return new Response('Not Found', { status: 404, headers: corsHeaders });
     } catch (err) {
         return new Response(JSON.stringify({ error: err.message }), {
