@@ -1,26 +1,20 @@
 <!DOCTYPE html>
-
 <html lang="de">
-
 <head>
     <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
-        name="viewport" />
-    <title>aBest.co | Ideen, Projekte & Investitionsmöglichkeiten</title>
-    <!-- SEO & Open Graph Meta Tags -->
-    <meta content="aBest.co verbindet Investoren, Ideen und Immobilienprojekte weltweit. Projekt einreichen, als Investor anfragen oder Immobilien mieten und kaufen." name="description" />
-    <meta content="aBest.co | Ideen & Investitionsmöglichkeiten" property="og:title" />
-    <meta content="aBest.co verbindet Investoren, Ideen und Immobilienprojekte weltweit. Projekt einreichen, als Investor anfragen oder Immobilien mieten und kaufen." property="og:description" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <title>Geld verdienen mit aBest.co – Finde deine Rolle</title>
+    <meta content="Als Gründer, Investor, Kapitalpartner, Verkäufer, Unternehmen oder Entdecker – aBest.co verbindet dich mit den richtigen Partnern auf internationalen Märkten." name="description" />
+    <meta content="Geld verdienen mit aBest.co – Finde deine Rolle" property="og:title" />
+    <meta content="Als Gründer, Investor, Kapitalpartner, Verkäufer, Unternehmen oder Entdecker – aBest.co verbindet dich mit den richtigen Partnern." property="og:description" />
     <meta content="https://www.abest.co/assets/images/bg_main_blurred_new.webp" property="og:image" />
-    <meta content="https://www.abest.co" property="og:url" />
+    <meta content="https://www.abest.co/de/earn-money" property="og:url" />
     <meta content="summary_large_image" name="twitter:card" />
     <link href="/favicon.png" rel="icon" type="image/png" />
     <link href="/index.css" rel="stylesheet" />
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;display=swap"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link href="https://abest.co/en/" hreflang="en" rel="alternate" />
     <link href="https://abest.co/de/" hreflang="de" rel="alternate" />
     <link href="https://abest.co/es/" hreflang="es" rel="alternate" />
@@ -36,7 +30,221 @@
     <link href="https://abest.co/he/" hreflang="he" rel="alternate" />
     <link href="https://abest.co/hy/" hreflang="hy" rel="alternate" />
     <link href="https://abest.co/" hreflang="x-default" rel="alternate" />
-<link rel="canonical" href="https://www.abest.co/de/earn-money.html" />
+    <link rel="canonical" href="https://www.abest.co/de/earn-money" />
+    <style>
+        :root {
+            --c-founder:  #3b82f6;
+            --c-investor: #f59e0b;
+            --c-capital:  #10b981;
+            --c-seller:   #f97316;
+            --c-business: #8b5cf6;
+            --c-explorer: #06b6d4;
+        }
+
+        /* ── Trust bar ── */
+        .em-trust-bar {
+            display: flex;
+            gap: 18px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 18px 0 0;
+        }
+        .em-trust-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+        .em-trust-item svg {
+            width: 14px; height: 14px;
+            color: var(--primary-blue);
+            flex-shrink: 0;
+        }
+
+        /* ── Role cards grid ── */
+        .em-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+            margin: 0;
+        }
+        @media (min-width: 600px) {
+            .em-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        .em-card {
+            background: var(--glass-bg, rgba(255,255,255,0.06));
+            border: 1px solid var(--glass-border, rgba(255,255,255,0.12));
+            border-radius: 16px;
+            padding: 20px 16px 18px;
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+            cursor: pointer;
+        }
+        .em-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            border-radius: 16px 16px 0 0;
+            background: var(--accent);
+            opacity: 0.85;
+        }
+        .em-card:hover {
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+            border-color: var(--accent);
+        }
+        .em-card .em-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            line-height: 1;
+        }
+        .em-card .em-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--text-main);
+        }
+        .em-card .em-tag {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            padding: 2px 8px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: var(--accent);
+            margin-bottom: 10px;
+            width: fit-content;
+        }
+        .em-card .em-desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            flex: 1;
+            margin-bottom: 14px;
+        }
+        .em-card .em-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-decoration: none;
+        }
+        .em-card .em-cta svg {
+            width: 14px; height: 14px;
+            transition: transform 0.15s;
+        }
+        .em-card:hover .em-cta svg {
+            transform: translateX(3px);
+        }
+
+        /* ── Qualifier strip ── */
+        .em-qualifier {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.10);
+            border-radius: 14px;
+            padding: 16px 18px;
+            margin: 0 0 4px;
+        }
+        .em-qualifier p {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin: 0 0 12px;
+        }
+        .em-qual-btns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .em-qual-btn {
+            font-size: 0.75rem;
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.06);
+            color: var(--text-main);
+            cursor: pointer;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: background 0.15s, border-color 0.15s;
+        }
+        .em-qual-btn:hover {
+            background: rgba(255,255,255,0.12);
+            border-color: rgba(255,255,255,0.3);
+        }
+
+        /* ── Steps ── */
+        .em-step {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .em-step:last-child { border-bottom: none; padding-bottom: 0; }
+        .em-step-num {
+            flex-shrink: 0;
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            background: rgba(0,122,255,0.15);
+            border: 1px solid rgba(0,122,255,0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+
+        /* ── Stats ── */
+        .em-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        .em-stat {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.10);
+            border-radius: 14px;
+            padding: 16px 10px;
+            text-align: center;
+        }
+        .em-stat .sv { font-size: 1.6rem; font-weight: 700; color: var(--primary-blue); display: block; }
+        .em-stat .sl { font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+        /* ── Trust badges ── */
+        .em-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        .em-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            border-radius: 22px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.10);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+        .em-badge svg { width: 14px; height: 14px; color: var(--primary-blue); }
+    </style>
 </head>
 
 <body>
@@ -49,7 +257,7 @@
     <div class="app-container">
         <!-- Mobile Navigation -->
         <nav class="mobile-nav" id="mobile-nav">
-            <a class="nav-link" href="earn-money.html">Ideen</a>
+            <a class="nav-link" href="earn-money.html">Earn Money</a>
             <a class="nav-link" href="index.html">Home</a>
             <a class="nav-link" href="usa.html">USA</a>
             <a class="nav-link" href="deutschland.html">Deutschland</a>
@@ -60,23 +268,20 @@
         <header class="app-header fade-in-up" style="animation-delay: 0.1s;">
             <a class="logo-link" href="index.html">
                 <span style="font-size: 1.5rem; font-weight: 500; letter-spacing: -0.5px; color: var(--text-main);">
-                    <span style="color: var(--primary-blue);">a</span>Best<span
-                        style="color: var(--primary-blue);">.co</span>
+                    <span style="color: var(--primary-blue);">a</span>Best<span style="color: var(--primary-blue);">.co</span>
                 </span>
             </a>
             <div class="header-actions-v2">
-                <a href="earn-money.html" class="header-icon-v2" aria-label="Ideen" title="Ideen"><svg viewBox="0 0 24 24"><path d="M9 21h6v-1a3 3 0 0 0-6 0v1zm3-17a6 6 0 0 0-6 6c0 2.2 1.3 4.1 3 5.3V18h6v-2.7c1.7-1.2 3-3.1 3-5.3a6 6 0 0 0-6-6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
-                <a href="/login" class="header-icon-v2" aria-label="Login">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="12" cy="7" r="4"></circle>
+                <a href="earn-money.html" class="header-icon-v2" aria-label="Earn Money" title="Earn Money">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
                     </svg>
                 </a>
+                <a href="/login" class="header-icon-v2" aria-label="Login">
+                    <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </a>
                 <a href="/de/kontakt.html" class="header-icon-v2" aria-label="Kontakt">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                        <polyline points="22,6 12,13 2,6"></polyline>
-                    </svg>
+                    <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                 </a>
                 <div aria-label="Toggle Navigation Menu" class="nav-icon" id="menu-btn">
                     <span></span>
@@ -84,206 +289,201 @@
                 </div>
             </div>
         </header>
+
         <main class="scroll-content">
-            <!-- Hero Section -->
+
+            <!-- ── HERO ── -->
             <section class="hero fade-in-up" style="animation-delay: 0.2s;">
                 <div class="hero-content glass-chip">
-                    <h1>Strategische Projekte, Immobilien &<br /><span class="highlight">Geschäftsmöglichkeiten</span></h1>
-                    <p class="subtext">aBest.co verbindet Ideen, Investoren, Immobilien und Geschäftsmöglichkeiten auf internationalen Märkten.</p>
-                    <div class="hero-actions mt-2" style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 20px;">
-                        <a href="/de/partnerschaften.html" class="glass-button ripple" style="width: auto; padding: 12px 24px; font-size: 0.9rem;">Projekt einreichen</a>
-                        <a href="/de/partnerschaften.html" class="glass-button ripple" style="width: auto; padding: 12px 24px; font-size: 0.9rem;">Als Investor anfragen</a>
-                        <a href="/de/partnerschaften.html" class="glass-button ripple" style="width: auto; padding: 12px 24px; font-size: 0.9rem;">Mieten</a>
-                        <a href="/de/partnerschaften.html" class="glass-button ripple" style="width: auto; padding: 12px 24px; font-size: 0.9rem;">Kaufen</a>
-                        <a href="/de/kontakt.html" class="glass-button ripple" style="width: auto; padding: 12px 24px; font-size: 0.9rem;">Kontakt</a>
+                    <h1>Wähle deine Rolle &<br><span class="highlight">verdiene mit aBest.co</span></h1>
+                    <p class="subtext">Ob Gründer, Investor oder Verkäufer – finde die passende Rolle und verbinde dich mit internationalen Partnern.</p>
+                    <!-- Trust bar -->
+                    <div class="em-trust-bar">
+                        <span class="em-trust-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5h18M3 12h18M3 19h18"/></svg>
+                            14 Sprachen
+                        </span>
+                        <span class="em-trust-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                            4 Kontinente
+                        </span>
+                        <span class="em-trust-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                            100+ Partner
+                        </span>
+                        <span class="em-trust-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            Geprüfte Plattform
+                        </span>
                     </div>
                 </div>
             </section>
 
-            <!-- About Section -->
-            <section id="about-section" class="section-spacing fade-in-up" style="animation-delay: 0.3s;">
+            <!-- ── QUALIFIER STRIP ── -->
+            <section class="section-spacing fade-in-up" style="animation-delay: 0.25s; padding-top: 0;">
+                <div class="em-qualifier">
+                    <p>Nicht sicher, welche Rolle zu dir passt? Beantworte eine Frage:</p>
+                    <div class="em-qual-btns">
+                        <a href="/de/earn-money/founder" class="em-qual-btn">💡 Ich habe eine Idee oder ein Projekt</a>
+                        <a href="/de/earn-money/investor" class="em-qual-btn">📈 Ich möchte investieren</a>
+                        <a href="/de/earn-money/seller" class="em-qual-btn">🏠 Ich möchte Immobilien verkaufen</a>
+                        <a href="/de/earn-money/explorer" class="em-qual-btn">🔍 Ich schaue mich erst um</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ── ROLE CARDS ── -->
+            <section class="section-spacing fade-in-up" style="animation-delay: 0.3s; padding-top: 0;">
+                <div class="em-grid">
+
+                    <!-- Gründer -->
+                    <a href="/de/earn-money/founder" class="em-card" style="--accent: var(--c-founder);">
+                        <div class="em-icon">💡</div>
+                        <div class="em-title">Gründer</div>
+                        <div class="em-tag">Founder</div>
+                        <div class="em-desc">Idee oder Projekt – finde Investoren, Partner und Ressourcen für deinen Aufbau.</div>
+                        <span class="em-cta">Mehr erfahren <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                    </a>
+
+                    <!-- Investor -->
+                    <a href="/de/earn-money/investor" class="em-card" style="--accent: var(--c-investor);">
+                        <div class="em-icon">📈</div>
+                        <div class="em-title">Investor</div>
+                        <div class="em-tag">Investor</div>
+                        <div class="em-desc">Investiere in geprüfte Projekte, Immobilien und Beteiligungen mit klaren Renditen.</div>
+                        <span class="em-cta">Mehr erfahren <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                    </a>
+
+                    <!-- Kapitalpartner -->
+                    <a href="/de/earn-money/capital-partner" class="em-card" style="--accent: var(--c-capital);">
+                        <div class="em-icon">🏦</div>
+                        <div class="em-title">Kapitalpartner</div>
+                        <div class="em-tag">Capital Partner</div>
+                        <div class="em-desc">Stille Beteiligung oder strukturiertes Kapital – werde strategischer Finanzierungspartner.</div>
+                        <span class="em-cta">Mehr erfahren <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                    </a>
+
+                    <!-- Verkäufer -->
+                    <a href="/de/earn-money/seller" class="em-card" style="--accent: var(--c-seller);">
+                        <div class="em-icon">🏠</div>
+                        <div class="em-title">Verkäufer</div>
+                        <div class="em-tag">Seller</div>
+                        <div class="em-desc">Verkaufe Immobilien, Grundstücke oder Liegenschaften an qualifizierte Käufer weltweit.</div>
+                        <span class="em-cta">Mehr erfahren <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                    </a>
+
+                    <!-- Unternehmen -->
+                    <a href="/de/earn-money/business" class="em-card" style="--accent: var(--c-business);">
+                        <div class="em-icon">🏢</div>
+                        <div class="em-title">Unternehmen</div>
+                        <div class="em-tag">Business</div>
+                        <div class="em-desc">Verkaufe dein Unternehmen, suche Mitgesellschafter oder präsentiere Beteiligungen.</div>
+                        <span class="em-cta">Mehr erfahren <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                    </a>
+
+                    <!-- Entdecker -->
+                    <a href="/de/earn-money/explorer" class="em-card" style="--accent: var(--c-explorer);">
+                        <div class="em-icon">🔍</div>
+                        <div class="em-title">Entdecker</div>
+                        <div class="em-tag">Explorer</div>
+                        <div class="em-desc">Erkunde Märkte, Trends und Möglichkeiten ohne sofortige Verpflichtung.</div>
+                        <span class="em-cta">Mehr erfahren <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                    </a>
+
+                </div>
+            </section>
+
+            <!-- ── STATS ── -->
+            <section class="section-spacing fade-in-up" style="animation-delay: 0.35s; padding-top: 0;">
+                <div class="em-stats">
+                    <div class="em-stat"><span class="sv">14</span><span class="sl">Sprachen</span></div>
+                    <div class="em-stat"><span class="sv">4</span><span class="sl">Kontinente</span></div>
+                    <div class="em-stat"><span class="sv">100+</span><span class="sl">Geprüfte Partner</span></div>
+                    <div class="em-stat"><span class="sv">6</span><span class="sl">Rollen verfügbar</span></div>
+                </div>
+            </section>
+
+            <!-- ── HOW IT WORKS ── -->
+            <section class="section-spacing fade-in-up" style="animation-delay: 0.4s;">
                 <div class="glass-panel">
-                    <h2>Über uns</h2>
+                    <h2 style="margin-bottom: 0.5rem;">So einfach funktioniert es</h2>
                     <div class="divider mt-2"></div>
-                    <p>aBest.co ist eine Plattform für strategische Projekte, Geschäftsentwicklung, Immobilienchancen
-                        und internationale Partnerschaften. Wir prüfen Ideen, verbinden passende Kontakte und begleiten
-                        ausgewählte Möglichkeiten.</p>
-                </div>
-            </section>
-            
-<!-- Stats Bar -->
-<section class="section-spacing fade-in-up" style="animation-delay: 0.35s; padding-top: 0;">
-<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 0 0 0.5rem;">
-<style>.ideen-stat{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:14px;padding:16px 10px;text-align:center;}.ideen-stat .sv{font-size:1.6rem;font-weight:700;color:var(--primary-blue);display:block;}.ideen-stat .sl{font-size:0.72rem;color:var(--text-muted);margin-top:4px;text-transform:uppercase;letter-spacing:0.05em;}</style>
-<div class="ideen-stat"><span class="sv">4</span><span class="sl">Länder & Märkte</span></div><div class="ideen-stat"><span class="sv">14</span><span class="sl">Sprachen</span></div><div class="ideen-stat"><span class="sv">100+</span><span class="sl">Aktive Partner</span></div><div class="ideen-stat"><span class="sv">3</span><span class="sl">Kontinente</span></div>
-</div>
-</section>
 
-            <!-- Business Areas -->
-            <section class="countries fade-in-up" style="animation-delay: 0.4s; grid-template-columns: repeat(2, 1fr);">
-                <div class="glass-card country-card" onclick="location.href='/de/partnerschaften.html'"
-                    style="cursor: pointer; height: auto; padding: 30px 20px; text-align: center;">
-<div style="font-size: 2.5rem; margin-bottom: 15px;">💡</div>
-                    <h3 style="margin-bottom: 10px;">Idee einreichen</h3>
-                    <p style="font-size: 0.85rem;">Für Projektideen & strategische Partnerschaften (Investor gesucht)
-                    </p>
-<div style="margin-top:14px;"><a href="/de/partnerschaften.html" class="glass-button ripple" style="font-size:0.78rem;padding:8px 14px;display:inline-block;text-decoration:none;">Jetzt einreichen →</a></div>
-</div>
-                <div class="glass-card country-card" onclick="location.href='/de/partnerschaften.html'"
-                    style="cursor: pointer; height: auto; padding: 30px 20px; text-align: center;">
-<div style="font-size: 2.5rem; margin-bottom: 15px;">🤝</div>
-                    <h3 style="margin-bottom: 10px;">Als Investor</h3>
-                    <p style="font-size: 0.85rem;">Für Investoren an unseren Projekten oder Grundstücken</p>
-<div style="margin-top:14px;"><a href="/de/partnerschaften.html" class="glass-button ripple" style="font-size:0.78rem;padding:8px 14px;display:inline-block;text-decoration:none;">Investor werden →</a></div>
-</div>
-                <div class="glass-card country-card" onclick="location.href='/de/partnerschaften.html'"
-                    style="cursor: pointer; height: auto; padding: 30px 20px; text-align: center;">
-<div style="font-size: 2.5rem; margin-bottom: 15px;">🔑</div>
-                    <h3 style="margin-bottom: 10px;">Mieten</h3>
-                    <p style="font-size: 0.85rem;">Immobilien oder Gewerbeflächen für Ihre Firma mieten</p>
-<div style="margin-top:14px;"><a href="/de/kontakt.html" class="glass-button ripple" style="font-size:0.78rem;padding:8px 14px;display:inline-block;text-decoration:none;">Verfügbare Flächen →</a></div>
-</div>
-                <div class="glass-card country-card" onclick="location.href='/de/partnerschaften.html'"
-                    style="cursor: pointer; height: auto; padding: 30px 20px; text-align: center;">
-<div style="font-size: 2.5rem; margin-bottom: 15px;">🏢</div>
-                    <h3 style="margin-bottom: 10px;">Kaufen</h3>
-                    <p style="font-size: 0.85rem;">Immobilien, Grundstücke oder Beteiligungen erwerben</p>
-<div style="margin-top:14px;"><a href="/de/kontakt.html" class="glass-button ripple" style="font-size:0.78rem;padding:8px 14px;display:inline-block;text-decoration:none;">Objekte anfragen →</a></div>
-</div>
-            </section>
-
-            
-<!-- How it works -->
-<section class="section-spacing fade-in-up" style="animation-delay: 0.45s;">
-<div class="glass-panel">
-<h2 style="margin-bottom:0.5rem;">Wie funktioniert es?</h2>
-<div class="divider mt-2"></div>
-
-<div style="display:flex;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
-  <div style="flex-shrink:0;width:36px;height:36px;border-radius:50%;background:rgba(0,122,255,0.2);border:1px solid rgba(0,122,255,0.4);display:flex;align-items:center;justify-content:center;font-size:0.9rem;font-weight:700;color:var(--primary-blue);">1</div>
-  <div><strong style="color:var(--text-main);display:block;margin-bottom:4px;font-size:0.9rem;">Anfrage senden</strong><p style="color:var(--text-muted);font-size:0.82rem;margin:0;">Beschreiben Sie Ihr Projekt, Ihre Investitionsabsicht oder Ihr Mietinteresse — kurz und direkt.</p></div>
-</div>
-<div style="display:flex;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
-  <div style="flex-shrink:0;width:36px;height:36px;border-radius:50%;background:rgba(0,122,255,0.2);border:1px solid rgba(0,122,255,0.4);display:flex;align-items:center;justify-content:center;font-size:0.9rem;font-weight:700;color:var(--primary-blue);">2</div>
-  <div><strong style="color:var(--text-main);display:block;margin-bottom:4px;font-size:0.9rem;">Prüfung & Matching</strong><p style="color:var(--text-muted);font-size:0.82rem;margin:0;">Unser Team prüft Ihre Anfrage und verbindet Sie mit den passenden Partnern, Immobilien oder Investoren.</p></div>
-</div>
-<div style="display:flex;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
-  <div style="flex-shrink:0;width:36px;height:36px;border-radius:50%;background:rgba(0,122,255,0.2);border:1px solid rgba(0,122,255,0.4);display:flex;align-items:center;justify-content:center;font-size:0.9rem;font-weight:700;color:var(--primary-blue);">3</div>
-  <div><strong style="color:var(--text-main);display:block;margin-bottom:4px;font-size:0.9rem;">Gemeinsam handeln</strong><p style="color:var(--text-muted);font-size:0.82rem;margin:0;">Wir begleiten ausgewählte Projekte aktiv — von der ersten Anfrage bis zum Abschluss.</p></div>
-</div>
-</div>
-</section>
-
-            <!-- Projects Section -->
-            <section id="projects-section" class="section-spacing fade-in-up" style="animation-delay: 0.5s;">
-                <div class="glass-panel">
-                    <h2>Ausgewählte Projekte & Chancen</h2>
-                    <div class="divider mt-2"></div>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
-                        <div class="glass-card" style="overflow: hidden; border-radius: 16px;">
-                            <img src="/assets/images/project_land.webp" alt="Grundstücksentwicklung" style="width: 100%; height: 160px; object-fit: cover; opacity: 0.8; transition: transform 0.5s;">
-                            <div style="padding: 15px;">
-                                <h4 style="margin-bottom: 5px; color: var(--text-main);">Grundstücksentwicklung</h4>
-                                <p style="font-size: 0.8rem; color: var(--text-muted);">Strategische Erschließungsprojekte im städtischen und suburbanen Raum.</p>
-                            </div>
-                        </div>
-                        <div class="glass-card" style="overflow: hidden; border-radius: 16px;">
-                            <img src="/assets/images/project_hospitality.webp" alt="Hotellerie & Hospitality" style="width: 100%; height: 160px; object-fit: cover; opacity: 0.8; transition: transform 0.5s;">
-                            <div style="padding: 15px;">
-                                <h4 style="margin-bottom: 5px; color: var(--text-main);">Hotellerie & Hospitality</h4>
-                                <p style="font-size: 0.8rem; color: var(--text-muted);">Luxusresorts und Boutique-Hotel-Entwicklungen.</p>
-                            </div>
-                        </div>
-                        <div class="glass-card" style="overflow: hidden; border-radius: 16px;">
-                            <img src="/assets/images/project_commercial.webp" alt="Gewerbeimmobilien" style="width: 100%; height: 160px; object-fit: cover; opacity: 0.8; transition: transform 0.5s;">
-                            <div style="padding: 15px;">
-                                <h4 style="margin-bottom: 5px; color: var(--text-main);">Gewerbeimmobilien</h4>
-                                <p style="font-size: 0.8rem; color: var(--text-muted);">Moderne Büroflächen und Einzelhandelszentren.</p>
-                            </div>
-                        </div>
-                        <div class="glass-card" style="overflow: hidden; border-radius: 16px;">
-                            <img src="/assets/images/project_tech.png" alt="Zukunftstechnologie & KI" style="width: 100%; height: 160px; object-fit: cover; opacity: 0.8; transition: transform 0.5s;">
-                            <div style="padding: 15px;">
-                                <h4 style="margin-bottom: 5px; color: var(--text-main);">Zukunftstechnologie & KI</h4>
-                                <p style="font-size: 0.8rem; color: var(--text-muted);">Investitionen in Innovation, künstliche Intelligenz und digitale Ökosysteme.</p>
-                            </div>
+                    <div class="em-step">
+                        <div class="em-step-num">1</div>
+                        <div>
+                            <strong style="color: var(--text-main); display: block; margin-bottom: 4px; font-size: 0.9rem;">Rolle wählen</strong>
+                            <p style="color: var(--text-muted); font-size: 0.82rem; margin: 0;">Wähle die Rolle, die zu dir passt – Gründer, Investor, Kapitalpartner, Verkäufer, Unternehmen oder Entdecker.</p>
                         </div>
                     </div>
-                    <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px;">
-                        <div class="glass-chip" style="padding: 10px 15px; border-radius: 10px; font-size: 0.8rem; font-weight: 500;">Strategische Partnerschaften</div>
-                        <div class="glass-chip" style="padding: 10px 15px; border-radius: 10px; font-size: 0.8rem; font-weight: 500;">Internationale Chancen</div>
-                        <div class="glass-chip" style="padding: 10px 15px; border-radius: 10px; font-size: 0.8rem; font-weight: 500;">Energieinfrastruktur</div>
+                    <div class="em-step">
+                        <div class="em-step-num">2</div>
+                        <div>
+                            <strong style="color: var(--text-main); display: block; margin-bottom: 4px; font-size: 0.9rem;">Profil erstellen</strong>
+                            <p style="color: var(--text-muted); font-size: 0.82rem; margin: 0;">Registriere dich kostenlos, fülle dein Profil aus und gib an, was du anbietest oder suchst.</p>
+                        </div>
+                    </div>
+                    <div class="em-step">
+                        <div class="em-step-num">3</div>
+                        <div>
+                            <strong style="color: var(--text-main); display: block; margin-bottom: 4px; font-size: 0.9rem;">Verbinden & loslegen</strong>
+                            <p style="color: var(--text-muted); font-size: 0.82rem; margin: 0;">Unser Team prüft deine Angaben und verbindet dich mit passenden Partnern, Projekten und Möglichkeiten.</p>
+                        </div>
                     </div>
                 </div>
             </section>
-            <!-- Contact / Partnership Section -->
-            <section id="final-contact" class="section-spacing fade-in-up" style="animation-delay: 0.6s;">
-                <div class="glass-panel text-center">
-                    <h2>Direkter Kontakt</h2>
-                    <div class="divider mt-2"></div>
-                    <p style="margin-bottom: 1.5rem;">Wir freuen uns über Ihre Anfrage – direkt und ohne Hürden.</p>
-                    <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
-                        <a class="glass-button ripple" href="/de/kontakt.html"
-                            style="text-decoration: none; width: auto; padding: 14px 28px;">
-                            Anfrage senden
-                        </a>
-                        <a class="glass-button ripple" href="mailto:i@aBest.co"
-                            style="text-decoration: none; width: auto; padding: 14px 28px;">
-                            i@aBest.co
-                        </a>
+
+            <!-- ── TRUST BADGES ── -->
+            <section class="section-spacing fade-in-up" style="animation-delay: 0.45s; padding-top: 0;">
+                <div class="em-badges">
+                    <div class="em-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        SSL gesichert
+                    </div>
+                    <div class="em-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        Geprüfte Partner
+                    </div>
+                    <div class="em-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                        DSGVO-konform
+                    </div>
+                    <div class="em-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                        Internationale Märkte
+                    </div>
+                    <div class="em-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                        Kostenlose Registrierung
                     </div>
                 </div>
             </section>
-            <!-- Spacing for bottom scrolling on sticky mode -->
+
+            <!-- ── FINAL CTA ── -->
+            <section class="section-spacing fade-in-up" style="animation-delay: 0.5s;">
+                <div class="glass-panel" style="text-align: center; padding: 32px 24px;">
+                    <h2 style="margin-bottom: 10px;">Bereit loszulegen?</h2>
+                    <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 22px; max-width: 340px; margin-left: auto; margin-right: auto;">Erstelle ein kostenloses Profil und wähle deine Rolle. In wenigen Minuten bist du dabei.</p>
+                    <a href="/de/profil" class="glass-button ripple" style="display: inline-block; padding: 14px 32px; font-size: 0.95rem; font-weight: 600; text-decoration: none; border-radius: 30px;">
+                        Jetzt Profil erstellen →
+                    </a>
+                    <p style="font-size: 0.72rem; color: var(--text-muted); margin-top: 12px;">Keine Kreditkarte erforderlich · Kostenlos starten</p>
+                </div>
+            </section>
+
         </main>
-        <footer class="app-footer section-spacing fade-in-up" style="animation-delay: 0.8s;">
-            <div class="slim-footer-content">
-                <a href="/de/terms.html" class="footer-link">Nutzungsbedingungen</a>
-                <span class="footer-separator">|</span>
-                <a href="/de/cookie-policy.html" class="footer-link">Cookie-Richtlinie</a>
-                <span class="footer-separator">|</span>
-                <a href="/de/disclaimer.html" class="footer-link">Disclaimer</a>
-                <span class="footer-separator">|</span>
-                <a href="/de/impressum.html" class="footer-link">Impressum</a>
-                <span class="footer-separator">|</span>
-                <a href="/de/datenschutz.html" class="footer-link">Datenschutz</a>
-                <span class="footer-separator">|</span>
-                <a href="/de/kontakt.html" class="footer-link">Kontakt</a>
-                <div class="language-switcher">
-                    <button class="lang-btn" aria-label="Language options">🇩🇪</button>
-                    <div class="lang-dropdown">
-                        <a href="/en/" class="lang-dropdown-link" aria-label="Switch to EN">🇺🇸</a>
-                        <a href="/zh/" class="lang-dropdown-link" aria-label="Switch to ZH">🇨🇳</a>
-                        <a href="/hi/" class="lang-dropdown-link" aria-label="Switch to HI">🇮🇳</a>
-                        <a href="/es/" class="lang-dropdown-link" aria-label="Switch to ES">🇪🇸</a>
-                        <a href="/fr/" class="lang-dropdown-link" aria-label="Switch to FR">🇫🇷</a>
-                        <a href="/ar/" class="lang-dropdown-link" aria-label="Switch to AR">🇸🇦</a>
-                        <a href="/pt/" class="lang-dropdown-link" aria-label="Switch to PT">🇵🇹</a>
-                        <a href="/ru/" class="lang-dropdown-link" aria-label="Switch to RU">🇷🇺</a>
-                        <a href="/ur/" class="lang-dropdown-link" aria-label="Switch to UR">🇵🇰</a>
-                        <a href="/tr/" class="lang-dropdown-link" aria-label="Switch to TR">🇹🇷</a>
-                        <a href="/ku/" class="lang-dropdown-link" aria-label="Switch to KU"><img src="/ku-flag.svg"
-                                alt="KU" class="ku-flag-icon"></a>
-                        <a href="/he/" class="lang-dropdown-link" aria-label="Switch to HE">🇮🇱</a>
-                        <a href="/hy/" class="lang-dropdown-link" aria-label="Switch to HY">🇦🇲</a>
-                    </div>
-                </div>
-                <span class="footer-separator">|</span>
-                <p class="copyright">© 2026 <span class="brand-style"><span class="brand-a">a</span>Best<span
-                            class="brand-dot-co">.co</span></span></p>
-            </div>
-        </footer>
-        <!-- Modal Overlay -->
-        <div class="modal-overlay" id="project-modal">
-            <div class="modal-content">
-                <button class="modal-close" id="modal-close">×</button>
-                <div id="modal-body">
-                    <!-- Content injected via JS -->
-                </div>
-            </div>
-        </div>
-        <script src="/app.js"></script>
     </div>
-</body>
 
+    <script>
+        // Mobile nav toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileNav = document.getElementById('mobile-nav');
+        if (menuBtn && mobileNav) {
+            menuBtn.addEventListener('click', () => {
+                mobileNav.classList.toggle('open');
+                menuBtn.classList.toggle('open');
+            });
+        }
+    </script>
+</body>
 </html>

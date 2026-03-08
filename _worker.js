@@ -176,6 +176,22 @@ export default {
             // For /admin and /admin/ ASSETS.fetch will handle it below
         }
 
+        // --- 1.4 EARN-MONEY SUB-PATHS ---
+        // /de/earn-money/founder  →  serve /de/earn-money/founder.html
+        if (cleanPath.startsWith('/earn-money/')) {
+            const emLang = pathname.match(/^\/([a-z]{2})(?:\/|$)/)?.[1] || 'de';
+            const emSlug = cleanPath.replace('/earn-money/', '').split('/')[0];
+            const validSlugs = ['founder','investor','capital-partner','seller','business','explorer'];
+            if (validSlugs.includes(emSlug)) {
+                const emUrl = new URL(request.url);
+                emUrl.pathname = `/${emLang}/earn-money/${emSlug}.html`;
+                const emReq = new Request(emUrl.toString(), request);
+                emReq.headers.set('X-Internal-Fetch', 'true');
+                const emRes = await env.ASSETS.fetch(emReq);
+                if (emRes.ok) return new Response(emRes.body, { headers: emRes.headers });
+            }
+        }
+
         // --- 3. 301 REDIRECTS ---
         // /de/ideen → /de/earn-money (URL rename)
         if (pathname === '/de/ideen' || pathname === '/de/ideen.html') {

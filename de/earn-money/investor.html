@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <title>Investor werden | aBest.co</title>
+    <meta content="Als Investor bei aBest.co – entdecke geprüfte Projekte, Immobilien und Beteiligungen mit klaren Renditen." name="description" />
+    <meta content="Investor werden | aBest.co" property="og:title" />
+    <meta content="Als Investor bei aBest.co – entdecke geprüfte Projekte, Immobilien und Beteiligungen mit klaren Renditen." property="og:description" />
+    <meta content="https://www.abest.co/assets/images/bg_main_blurred_new.webp" property="og:image" />
+    <meta content="https://www.abest.co/de/earn-money/investor" property="og:url" />
+    <meta content="summary_large_image" name="twitter:card" />
+    <link href="/favicon.png" rel="icon" type="image/png" />
+    <link href="/index.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="canonical" href="https://www.abest.co/de/earn-money/investor" />
+    <style>
+        :root { --accent: #f59e0b; }
+
+        .sp-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 14px;
+            border-radius: 22px;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.15);
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: #f59e0b;
+            margin-bottom: 14px;
+        }
+        .sp-accent-line {
+            display: block;
+            width: 40px;
+            height: 3px;
+            border-radius: 2px;
+            background: #f59e0b;
+            margin: 10px auto 0;
+        }
+        .sp-step {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .sp-step:last-child { border-bottom: none; padding-bottom: 0; }
+        .sp-step-num {
+            flex-shrink: 0;
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #f59e0b;
+        }
+        .sp-benefits {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        .sp-benefit {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.09);
+            border-radius: 14px;
+            padding: 16px 14px;
+        }
+        .sp-benefit .sp-bi { font-size: 1.5rem; margin-bottom: 8px; }
+        .sp-benefit strong { font-size: 0.85rem; display: block; margin-bottom: 4px; color: var(--text-main); }
+        .sp-benefit p { font-size: 0.77rem; color: var(--text-muted); margin: 0; line-height: 1.45; }
+        .sp-faq-item {
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+        .sp-faq-item:last-child { border-bottom: none; }
+        .sp-faq-q {
+            width: 100%;
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 0.88rem;
+            font-weight: 500;
+            text-align: left;
+            padding: 14px 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+        .sp-faq-q svg {
+            flex-shrink: 0;
+            width: 16px; height: 16px;
+            transition: transform 0.2s;
+            color: var(--text-muted);
+        }
+        .sp-faq-item.open .sp-faq-q svg { transform: rotate(180deg); }
+        .sp-faq-a {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.55;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.28s ease, padding 0.28s ease;
+            padding: 0;
+        }
+        .sp-faq-item.open .sp-faq-a {
+            max-height: 200px;
+            padding-bottom: 14px;
+        }
+        .sp-sticky-cta {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            background: rgba(10,10,20,0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding: 14px 20px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+        .sp-sticky-cta p {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin: 0;
+            flex: 1;
+        }
+        .sp-sticky-cta a {
+            flex-shrink: 0;
+            display: inline-block;
+            padding: 11px 22px;
+            background: #f59e0b;
+            color: #fff;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 24px;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-wrapper">
+        <img alt="Blurred Abstract City Background" class="main-bg" id="hero-bg" src="/assets/images/bg_main_blurred_new.webp" />
+        <div class="bg-gradient-overlay"></div>
+    </div>
+    <div class="app-container">
+        <nav class="mobile-nav" id="mobile-nav">
+            <a class="nav-link" href="/de/earn-money">Earn Money</a>
+            <a class="nav-link" href="/de/">Home</a>
+            <a class="nav-link" href="/de/usa.html">USA</a>
+            <a class="nav-link" href="/de/deutschland.html">Deutschland</a>
+            <a class="nav-link" href="/de/kontakt.html">Kontakt</a>
+        </nav>
+        <header class="app-header fade-in-up" style="animation-delay: 0.1s;">
+            <a class="logo-link" href="/de/">
+                <span style="font-size: 1.5rem; font-weight: 500; letter-spacing: -0.5px; color: var(--text-main);">
+                    <span style="color: var(--primary-blue);">a</span>Best<span style="color: var(--primary-blue);">.co</span>
+                </span>
+            </a>
+            <div class="header-actions-v2">
+                <a href="/de/earn-money" class="header-icon-v2" aria-label="Earn Money" title="Earn Money">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                </a>
+                <a href="/login" class="header-icon-v2" aria-label="Login">
+                    <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </a>
+                <a href="/de/kontakt.html" class="header-icon-v2" aria-label="Kontakt">
+                    <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                </a>
+                <div aria-label="Toggle Navigation Menu" class="nav-icon" id="menu-btn"><span></span><span></span></div>
+            </div>
+        </header>
+
+        <div style="padding: 12px 20px 0; font-size: 0.75rem; color: var(--text-muted);">
+            <a href="/de/earn-money" style="color: var(--text-muted); text-decoration: none;">Earn Money</a>
+            <span style="margin: 0 6px; opacity: 0.4;">/</span>
+            <span style="color: #f59e0b;">Investor</span>
+        </div>
+
+        <main class="scroll-content" style="padding-bottom: 80px;">
+
+            <section class="hero fade-in-up" style="animation-delay: 0.2s;">
+                <div class="hero-content glass-chip">
+                    <div class="sp-hero-badge">📈 Für Investoren & Kapitalgeber</div>
+                    <h1>Als <span class="highlight">Investor</span> bei aBest.co</h1>
+                    <p class="subtext">Entdecke geprüfte Investitionsmöglichkeiten in Immobilien, Startups und internationale Projekte.</p>
+                    <span class="sp-accent-line"></span>
+                </div>
+            </section>
+
+            <section class="section-spacing fade-in-up" style="animation-delay: 0.3s;">
+                <div class="glass-panel">
+                    <h2 style="margin-bottom: 0.5rem;">So funktioniert es</h2>
+                    <div class="divider mt-2"></div>
+                    <div class="sp-step">
+                        <div class="sp-step-num">1</div>
+                        <div>
+                            <strong style="color:var(--text-main);display:block;margin-bottom:4px;font-size:0.9rem;">Investitionskriterien angeben</strong>
+                            <p style="color:var(--text-muted);font-size:0.82rem;margin:0;">Definiere Branche, Ticketgröße, Regionen und Risikoprofil für deine Investments.</p>
+                        </div>
+                    </div>
+                    <div class="sp-step">
+                        <div class="sp-step-num">2</div>
+                        <div>
+                            <strong style="color:var(--text-main);display:block;margin-bottom:4px;font-size:0.9rem;">Passende Projekte erhalten</strong>
+                            <p style="color:var(--text-muted);font-size:0.82rem;margin:0;">Wir zeigen dir kuratierte Möglichkeiten, die zu deinen Kriterien passen.</p>
+                        </div>
+                    </div>
+                    <div class="sp-step">
+                        <div class="sp-step-num">3</div>
+                        <div>
+                            <strong style="color:var(--text-main);display:block;margin-bottom:4px;font-size:0.9rem;">Due Diligence & Abschluss</strong>
+                            <p style="color:var(--text-muted);font-size:0.82rem;margin:0;">Führe deine Prüfung durch und schließe direkt mit dem Projektinhaber ab.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-spacing fade-in-up" style="animation-delay: 0.35s; padding-top: 0;">
+                <h3 style="font-size: 1rem; font-weight: 600; margin-bottom: 12px; color: var(--text-main);">Deine Vorteile</h3>
+                <div class="sp-benefits">
+                    <div class="sp-benefit">
+                        <div class="sp-bi">✅</div>
+                        <strong>Vorgeprüfte Projekte</strong>
+                        <p>Jedes Projekt wird vor dem Matching auf Seriosität geprüft.</p>
+                    </div>
+                    <div class="sp-benefit">
+                        <div class="sp-bi">📊</div>
+                        <strong>Klare Renditeübersichten</strong>
+                        <p>Projekte mit transparenten Kennzahlen und Risikoangaben.</p>
+                    </div>
+                    <div class="sp-benefit">
+                        <div class="sp-bi">🌐</div>
+                        <strong>Internationale Diversifikation</strong>
+                        <p>Investiere in Märkte in Deutschland, USA, Türkei und mehr.</p>
+                    </div>
+                    <div class="sp-benefit">
+                        <div class="sp-bi">🔒</div>
+                        <strong>Diskrete Prozesse</strong>
+                        <p>Vertrauliche Behandlung aller Anfragen und Verhandlungen.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-spacing fade-in-up" style="animation-delay: 0.4s;">
+                <div class="glass-panel">
+                    <h2 style="margin-bottom: 0.5rem;">Häufige Fragen</h2>
+                    <div class="divider mt-2"></div>
+                    <div>
+                        <div class="sp-faq-item">
+                            <button class="sp-faq-q">Was ist die Mindestinvestition?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="sp-faq-a">Es gibt keine Mindestinvestition auf unserer Plattform. Das hängt vom jeweiligen Projekt ab.</div>
+                        </div>
+                        <div class="sp-faq-item">
+                            <button class="sp-faq-q">Welche Asset-Klassen sind verfügbar?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="sp-faq-a">Immobilien, Grundstücke, Startups, Beteiligungen und strategische Projekte.</div>
+                        </div>
+                        <div class="sp-faq-item">
+                            <button class="sp-faq-q">Wie werden Projekte geprüft?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="sp-faq-a">Unser Team führt eine Erstprüfung der Unterlagen, des Teams und der Marktaussichten durch.</div>
+                        </div>
+                        <div class="sp-faq-item">
+                            <button class="sp-faq-q">Bekomme ich exklusive Angebote?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="sp-faq-a">Ja. Verifizierte Investoren erhalten Zugang zu exklusiven Deal-Flow-Angeboten.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-spacing fade-in-up" style="animation-delay: 0.45s;">
+                <div class="glass-panel" style="text-align: center; padding: 28px 24px;">
+                    <div style="font-size: 2rem; margin-bottom: 10px;">📈</div>
+                    <h2 style="margin-bottom: 8px; font-size: 1.2rem;">Bereit als Investor zu starten?</h2>
+                    <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 20px;">Erstelle jetzt dein kostenloses Profil und lege sofort los.</p>
+                    <a href="/de/profil/my-role/investor" style="display:inline-block;padding:13px 28px;background:#f59e0b;color:#fff;font-size:0.9rem;font-weight:600;border-radius:28px;text-decoration:none;">
+                        Jetzt Investor-Profil erstellen &rarr;
+                    </a>
+                    <p style="font-size: 0.7rem; color: var(--text-muted); margin-top: 10px;">Kostenlos &middot; Keine Kreditkarte</p>
+                </div>
+            </section>
+
+            <section class="section-spacing fade-in-up" style="animation-delay: 0.5s; padding-top: 0;">
+                <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 10px; text-align: center;">Andere Rollen ansehen:</p>
+                <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;">
+                    <a href="/de/earn-money/founder" style="display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);font-size:0.75rem;color:var(--text-main);text-decoration:none;">💡 Gründer</a>
+                    <a href="/de/earn-money/capital-partner" style="display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);font-size:0.75rem;color:var(--text-main);text-decoration:none;">🏦 Kapitalpartner</a>
+                    <a href="/de/earn-money/seller" style="display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);font-size:0.75rem;color:var(--text-main);text-decoration:none;">🏠 Verkäufer</a>
+                    <a href="/de/earn-money/business" style="display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);font-size:0.75rem;color:var(--text-main);text-decoration:none;">🏢 Unternehmen</a>
+                    <a href="/de/earn-money/explorer" style="display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);font-size:0.75rem;color:var(--text-main);text-decoration:none;">🔍 Entdecker</a>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <div class="sp-sticky-cta">
+        <p>Als <strong style="color:var(--text-main);">Investor</strong> starten &ndash; kostenlos</p>
+        <a href="/de/profil/my-role/investor">Profil erstellen</a>
+    </div>
+
+    <script>
+        var menuBtn = document.getElementById('menu-btn');
+        var mobileNav = document.getElementById('mobile-nav');
+        if (menuBtn && mobileNav) {
+            menuBtn.addEventListener('click', function() {
+                mobileNav.classList.toggle('open');
+                menuBtn.classList.toggle('open');
+            });
+        }
+        document.querySelectorAll('.sp-faq-q').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var item = btn.closest('.sp-faq-item');
+                var isOpen = item.classList.contains('open');
+                document.querySelectorAll('.sp-faq-item').forEach(function(i) { i.classList.remove('open'); });
+                if (!isOpen) item.classList.add('open');
+            });
+        });
+    </script>
+</body>
+</html>
