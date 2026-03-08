@@ -1,168 +1,299 @@
 <!DOCTYPE html>
-<html lang="de">
-
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>aBest.co | Mein Profil</title>
-    <!-- CSS Dependencies -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <!-- Main Stylistic Integration -->
-    <link rel="stylesheet" href="/index.css">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Mon Compte | aBest.co</title>
+<link href="/favicon.png" rel="icon" type="image/png"/>
+<link href="/index.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ── Dashboard Layout ──────────────────────────────────── */
+body { background: #0a0a0f; }
+.db-wrapper { min-height: 100vh; padding: 80px 16px 40px; max-width: 680px; margin: 0 auto; }
 
-    <style>
-        .profile-wrapper {
-            padding-top: 120px;
-            min-height: 80vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+/* Hero card */
+.db-hero { display: flex; align-items: center; gap: 20px; padding: 24px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10); border-radius: 20px; margin-bottom: 20px; }
+.db-avatar { width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg,rgba(0,122,255,0.4),rgba(0,200,150,0.25)); border: 2px solid rgba(0,122,255,0.5); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; font-weight: 700; color: #fff; flex-shrink: 0; }
+.db-hero-info h2 { font-size: 1.1rem; font-weight: 600; color: var(--text-main); margin: 0 0 4px; }
+.db-hero-info p { font-size: 0.82rem; color: var(--text-muted); margin: 0 0 8px; }
+.db-badge { display: inline-block; font-size: 0.7rem; font-weight: 600; padding: 3px 10px; border-radius: 20px; background: rgba(0,122,255,0.15); border: 1px solid rgba(0,122,255,0.35); color: var(--primary-blue); text-transform: uppercase; letter-spacing: 0.06em; }
+.db-badge.admin { background: rgba(255,165,0,0.15); border-color: rgba(255,165,0,0.4); color: #ffaa00; }
 
-        .profile-container {
-            max-width: 600px;
-            width: 100%;
-            padding: 40px;
-        }
+/* Tab Nav */
+.db-tabs { display: flex; gap: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09); border-radius: 14px; padding: 5px; margin-bottom: 16px; }
+.db-tab { flex: 1; padding: 10px 8px; background: transparent; border: none; border-radius: 10px; color: var(--text-muted); font-size: 0.82rem; font-weight: 500; cursor: pointer; transition: all 0.2s; white-space: nowrap; font-family: inherit; }
+.db-tab.active { background: rgba(0,122,255,0.15); border: 1px solid rgba(0,122,255,0.3); color: var(--primary-blue); }
+.db-tab:hover:not(.active) { background: rgba(255,255,255,0.06); color: var(--text-main); }
 
-        .profile-avatar-container {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 30px;
-        }
+/* Tab content */
+.db-panel { display: none; }
+.db-panel.active { display: block; }
 
-        .profile-avatar {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--text-main);
-            backdrop-filter: blur(10px);
-        }
+/* Section header */
+.db-section-header { margin-bottom: 20px; }
+.db-section-header h3 { font-size: 1rem; font-weight: 600; color: var(--text-main); margin: 0 0 4px; }
+.db-section-header p { font-size: 0.8rem; color: var(--text-muted); margin: 0; }
 
-        .profile-actions {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 30px;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-    </style>
+/* Form field */
+.db-field { margin-bottom: 16px; }
+.db-field label { display: block; margin-bottom: 6px; font-size: 0.82rem; color: var(--text-muted); font-weight: 500; }
+.db-field input { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; padding: 11px 14px; color: var(--text-main); font-size: 0.9rem; font-family: inherit; outline: none; transition: border-color 0.2s; box-sizing: border-box; }
+.db-field input:focus { border-color: rgba(0,122,255,0.5); }
+.db-field input[readonly] { opacity: 0.5; cursor: not-allowed; }
+
+/* Buttons */
+.db-btn { width: 100%; padding: 13px; border: none; border-radius: 12px; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: inherit; }
+.db-btn-primary { background: rgba(0,122,255,0.2); border: 1px solid rgba(0,122,255,0.4); color: var(--primary-blue); }
+.db-btn-primary:hover { background: rgba(0,122,255,0.3); }
+.db-btn-admin { background: rgba(255,165,0,0.15); border: 1px solid rgba(255,165,0,0.4); color: #ffaa00; margin-top: 10px; }
+.db-btn-danger { background: rgba(220,53,69,0.12); border: 1px solid rgba(220,53,69,0.35); color: #dc3545; margin-top: 8px; font-size: 0.85rem; }
+
+/* Messages */
+.msg-thread { max-height: 340px; overflow-y: auto; padding: 14px; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.07); border-radius: 14px; margin-bottom: 12px; }
+.msg-bubble { margin-bottom: 12px; }
+.msg-bubble.user { text-align: right; }
+.msg-bubble .bubble-inner { display: inline-block; padding: 10px 14px; border-radius: 12px; max-width: 80%; text-align: left; font-size: 0.85rem; }
+.msg-bubble.user .bubble-inner { background: rgba(0,122,255,0.25); border: 1px solid rgba(0,122,255,0.3); }
+.msg-bubble.support .bubble-inner { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); }
+.msg-bubble .bubble-meta { font-size: 0.7rem; color: var(--text-muted); margin-bottom: 4px; }
+.msg-input-row { display: flex; gap: 10px; }
+.msg-input-row input { flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; padding: 11px 14px; color: var(--text-main); font-size: 0.88rem; font-family: inherit; outline: none; }
+.msg-input-row input:focus { border-color: rgba(0,122,255,0.4); }
+.msg-input-row button { padding: 11px 20px; background: rgba(0,122,255,0.2); border: 1px solid rgba(0,122,255,0.4); color: var(--primary-blue); border-radius: 10px; font-size: 0.88rem; font-weight: 600; cursor: pointer; font-family: inherit; white-space: nowrap; }
+
+/* Settings */
+.settings-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.09); border-radius: 14px; padding: 20px; margin-bottom: 14px; }
+.settings-card h4 { font-size: 0.88rem; font-weight: 600; color: var(--text-main); margin: 0 0 14px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.07); }
+.danger-card { border-color: rgba(220,53,69,0.25); background: rgba(220,53,69,0.05); }
+.danger-card h4 { color: #dc3545; }
+
+/* Logout */
+.db-logout { text-align: center; margin-top: 28px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.07); }
+.db-logout a { color: var(--text-muted); font-size: 0.85rem; text-decoration: none; padding: 6px 16px; border-radius: 8px; transition: all 0.2s; }
+.db-logout a:hover { color: #dc3545; background: rgba(220,53,69,0.08); }
+
+@media (max-width: 480px) {
+  .db-hero { flex-direction: column; text-align: center; }
+  .db-tab { font-size: 0.75rem; padding: 9px 6px; }
+}
+</style>
 </head>
-
 <body class="dark-mode">
-    <div class="dynamic-bg"></div>
+<div class="background-wrapper">
+  <img alt="Background" class="main-bg" src="/assets/images/bg_main_blurred_new.webp"/>
+  <div class="bg-gradient-overlay"></div>
+</div>
 
-    <!-- Navigation (Loaded via app.js context or static fallback if needed, keeping minimal for profile) -->
-    <header class="app-header glass-nav">
-        <div class="header-container d-flex justify-content-between align-items-center">
-            <a href="/de/" class="logo-text fade-in"
-                style="font-size:1.5rem; letter-spacing:1px; color:var(--text-main); text-decoration:none;">aBest<span
-                    style="color:var(--primary-blue)">.co</span></a>
+<header class="app-header">
+  <a class="logo-link" href="/fr/">
+    <span style="font-size:1.4rem;font-weight:500;color:var(--text-main);">
+      <span style="color:var(--primary-blue);">a</span>Best<span style="color:var(--primary-blue);">.co</span>
+    </span>
+  </a>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <a href="/fr/" style="font-size:0.82rem;color:var(--text-muted);text-decoration:none;">Accueil</a>
+    <a href="/profile" class="header-icon-v2 active" aria-label="Profile">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </a>
+  </div>
+</header>
 
-            <!-- Desktop Nav -->
-            <nav class="desktop-nav d-none d-lg-flex fade-in" style="animation-delay: 0.1s;">
-                <a href="/de/" class="nav-link">Startseite</a>
-                <a href="/de/partnerschaften.html" class="nav-link">Partnerschaften</a>
-            </nav>
+<div class="db-wrapper">
 
-            <div class="header-actions fade-in"
-                style="animation-delay: 0.2s; display: flex; align-items: center; gap: 1rem;">
-                <a href="/profile" class="nav-icon active" id="profile-btn" aria-label="Mein Profil"
-                    style="color:var(--text-main);">
-                    <!-- Filled User Icon -->
-                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2"
-                        fill="currentColor">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="12" cy="7" r="4"></circle>
-                    </svg>
-                </a>
-            </div>
-        </div>
-    </header>
-
-    <div class="container profile-wrapper">
-        <div class="glass-panel profile-container fade-in-up">
-            <h2 class="text-center" style="font-weight:500; letter-spacing:1px;">Persönliches Profil</h2>
-            <div class="divider mt-2 mb-4"></div>
-
-            <div class="profile-avatar-container">
-                <div class="profile-avatar" id="profile-avatar-letters">US</div>
-            </div>
-
-            <form id="profile-form" onsubmit="saveUserProfile(event)">
-                <div class="form-group" style="margin-bottom: 1.5rem;">
-                    <label
-                        style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--text-muted);">E-Mail
-                        Adresse (Login)</label>
-                    <input class="form-input" id="profile-email" type="email"
-                        style="width: 100%; opacity: 0.7; cursor: not-allowed;" readonly />
-                </div>
-
-                <div class="form-group" style="margin-bottom: 1.5rem;">
-                    <label
-                        style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--text-muted);">Vollständiger
-                        Name</label>
-                    <input class="form-input" id="profile-name" type="text" style="width: 100%;"
-                        placeholder="Ihr Name" />
-                </div>
-
-                <div class="form-group" style="margin-bottom: 1.5rem;">
-                    <label
-                        style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--text-muted);">Telefonnummer</label>
-                    <input class="form-input" id="profile-phone" type="tel" style="width: 100%;"
-                        placeholder="+49 123 456789" />
-                </div>
-
-                <div class="form-group" style="margin-bottom: 1.5rem;">
-                    <label
-                        style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--text-muted);">Firma
-                        / Organisation</label>
-                    <input class="form-input" id="profile-company" type="text" style="width: 100%;"
-                        placeholder="Ihre Firma (optional)" />
-                </div>
-
-                <div class="profile-actions">
-                    <button type="submit" class="glass-button ripple" id="profile-save-btn" style="flex: 1;">Änderungen
-                        speichern</button>
-                    <!-- Shown only via JS if admin -->
-                    <a href="/login" class="glass-button ripple" id="profile-admin-btn"
-                        style="flex: 1; display: none; text-align: center; text-decoration: none;">Zum Dashboard</a>
-                </div>
-            </form>
-
-            <!-- Messaging Section -->
-            <div id="messaging-section" style="margin-top: 40px; display: none;">
-                <h3 style="font-size: 1.2rem; margin-bottom: 20px;">Meine Nachrichten</h3>
-                <div id="message-thread"
-                    style="max-height: 300px; overflow-y: auto; padding: 15px; background: rgba(0,0,0,0.2); border-radius: 12px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.05);">
-                    <!-- Messages will be injected here via JS -->
-                    <div style="text-align: center; color: var(--text-muted); font-size: 0.9rem;">Lade Nachrichten...
-                    </div>
-                </div>
-                <div style="display: flex; gap: 10px;">
-                    <input type="text" id="new-message-input" class="form-input"
-                        placeholder="Nachricht an aBest.co schreiben..." style="flex: 1; padding: 12px;" />
-                    <button class="glass-button ripple" id="send-message-btn" onclick="sendMessage()"
-                        style="padding: 12px 20px;">Senden</button>
-                </div>
-            </div>
-
-            <div style="margin-top: 40px; text-align: center;">
-                <a href="#" onclick="logout(); return false;"
-                    style="color: var(--primary-red); font-size: 0.9rem; text-decoration: none; border-bottom: 1px dotted var(--primary-red);">Abmelden</a>
-            </div>
-        </div>
+  <!-- Hero Card -->
+  <div class="db-hero fade-in-up">
+    <div class="db-avatar" id="profile-avatar-letters">?</div>
+    <div class="db-hero-info">
+      <h2 id="hero-name">—</h2>
+      <p id="hero-email">—</p>
+      <span class="db-badge" id="hero-badge">Membre</span>
     </div>
+  </div>
 
-    <script src="/app.js"></script>
+  <!-- Tab Navigation -->
+  <div class="db-tabs fade-in-up" style="animation-delay:0.1s;">
+    <button class="db-tab active" onclick="switchTab('profil',this)">👤 Profil</button>
+    <button class="db-tab" onclick="switchTab('messages',this)">💬 Messages</button>
+    <button class="db-tab" onclick="switchTab('settings',this)">⚙️ Paramètres</button>
+  </div>
+
+  <!-- ── TAB: PROFIL ──────────────────────── -->
+  <div class="db-panel active fade-in-up" id="panel-profil" style="animation-delay:0.2s;">
+    <div class="glass-panel" style="padding:24px;">
+      <div class="db-section-header">
+        <h3>Informations Personnelles</h3>
+        <p>Gérez les détails de votre compte</p>
+      </div>
+      <form id="profile-form" onsubmit="saveUserProfile(event)">
+        <div class="db-field">
+          <label>Adresse E-mail</label>
+          <input id="profile-email" type="email" readonly/>
+        </div>
+        <div class="db-field">
+          <label>Nom Complet</label>
+          <input id="profile-name" type="text" placeholder="Votre nom"/>
+        </div>
+        <div class="db-field">
+          <label>Téléphone</label>
+          <input id="profile-phone" type="tel" placeholder="+33 123 456789"/>
+        </div>
+        <div class="db-field">
+          <label>Entreprise / Organisation</label>
+          <input id="profile-company" type="text" placeholder="Votre entreprise (optionnel)"/>
+        </div>
+        <button type="submit" class="db-btn db-btn-primary" id="profile-save-btn">Enregistrer</button>
+        <button type="button" class="db-btn db-btn-admin" id="profile-admin-btn" style="display:none;" onclick="window.location.href='/admin/'">Tableau de Bord →</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ── TAB: NACHRICHTEN ────────────────── -->
+  <div class="db-panel fade-in-up" id="panel-messages" style="animation-delay:0.2s;">
+    <div class="glass-panel" style="padding:24px;">
+      <div class="db-section-header">
+        <h3>Messages</h3>
+        <p>Communication directe avec aBest.co</p>
+      </div>
+      <div class="msg-thread" id="message-thread">
+        <div style="text-align:center;color:var(--text-muted);font-size:0.85rem;padding:20px 0;">Chargement...</div>
+      </div>
+      <div class="msg-input-row">
+        <input type="text" id="new-message-input" placeholder="Écrire un message..."/>
+        <button id="send-message-btn" onclick="sendMessage()">Envoyer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TAB: SETTINGS ──────────────────── -->
+  <div class="db-panel fade-in-up" id="panel-settings" style="animation-delay:0.2s;">
+    <div class="settings-card">
+      <h4>Changer le Mot de Passe</h4>
+      <div class="db-field"><label>Mot de Passe Actuel</label><input type="password" id="pw-current" autocomplete="current-password"/></div>
+      <div class="db-field"><label>Nouveau Mot de Passe</label><input type="password" id="pw-new" autocomplete="new-password"/></div>
+      <div class="db-field" style="margin-bottom:0;"><label>Confirmer le Nouveau Mot de Passe</label><input type="password" id="pw-confirm" autocomplete="new-password"/></div>
+      <button class="db-btn db-btn-primary" style="margin-top:16px;" onclick="changePassword()">Mettre à Jour</button>
+    </div>
+    <div class="settings-card danger-card">
+      <h4>⚠ Zone Dangereuse</h4>
+      <button class="db-btn db-btn-danger" onclick="if(confirm('Êtes-vous sûr ? Cette action est irréversible.'))alert('Contact support to delete your account.')">Supprimer le Compte</button>
+    </div>
+  </div>
+
+  <!-- Logout -->
+  <div class="db-logout">
+    <a href="#" onclick="logout();return false;">⎋ Se Déconnecter</a>
+  </div>
+
+</div><!-- /db-wrapper -->
+
+<script>
+// ── Tab switching ──────────────────────────────────────
+function switchTab(name, btn) {
+  document.querySelectorAll('.db-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.db-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + name).classList.add('active');
+  btn.classList.add('active');
+  if (name === 'messages') { loadMessages(); }
+}
+
+// ── Profile save (overrides app.js version to use new UI) ──
+window.saveUserProfile = async function(event) {
+  event.preventDefault();
+  const token = localStorage.getItem('aBest_session');
+  if (!token) return;
+  const btn = document.getElementById('profile-save-btn');
+  const orig = btn.innerText;
+  btn.innerText = 'Enregistrement...';
+  btn.disabled = true;
+  try {
+    const res = await fetch('/api/auth/me', {
+      method: 'PUT',
+      headers: {'Content-Type':'application/json','Authorization':'Bearer '+token},
+      body: JSON.stringify({
+        name: document.getElementById('profile-name').value,
+        phone: document.getElementById('profile-phone').value,
+        company: document.getElementById('profile-company').value
+      })
+    });
+    if (res.ok) { btn.innerText = '✓ Gespeichert'; setTimeout(()=>{btn.innerText=orig;btn.disabled=false;},2000); }
+    else { alert('Fehler beim Speichern.'); btn.innerText=orig; btn.disabled=false; }
+  } catch(e) { alert('Netzwerkfehler.'); btn.innerText=orig; btn.disabled=false; }
+};
+
+// ── Change Password ──────────────────────────────────
+async function changePassword() {
+  const token = localStorage.getItem('aBest_session');
+  if (!token) return;
+  const cur = document.getElementById('pw-current').value;
+  const nw = document.getElementById('pw-new').value;
+  const conf = document.getElementById('pw-confirm').value;
+  if (!cur || !nw) return;
+  if (nw !== conf) { alert('Confirmer le Nouveau Mot de Passe'); return; }
+  try {
+    const res = await fetch('/api/auth/password', {
+      method: 'PUT',
+      headers: {'Content-Type':'application/json','Authorization':'Bearer '+token},
+      body: JSON.stringify({currentPassword:cur, newPassword:nw})
+    });
+    if (res.ok) { alert('✓'); ['pw-current','pw-new','pw-confirm'].forEach(id=>document.getElementById(id).value=''); }
+    else { const d=await res.json(); alert(d.error||'Fehler'); }
+  } catch(e) { alert('Netzwerkfehler'); }
+}
+
+// ── Load messages (override with new bubble UI) ───────
+window.loadMessages = async function() {
+  const token = localStorage.getItem('aBest_session');
+  if (!token) return;
+  const thread = document.getElementById('message-thread');
+  try {
+    const res = await fetch('/api/messages', {headers:{'Authorization':'Bearer '+token}});
+    if (!res.ok) throw new Error();
+    const msgs = await res.json();
+    if (!msgs.length) {
+      thread.innerHTML = '<div style="text-align:center;color:var(--text-muted);padding:30px 0;font-size:0.85rem;">Aucun message. Écrivez-nous !</div>';
+      return;
+    }
+    thread.innerHTML = msgs.map(m => {
+      const isUser = m.sender === 'user';
+      const cls = isUser ? 'user' : 'support';
+      const who = isUser ? 'Vous' : 'aBest.co';
+      const date = new Date(m.timestamp).toLocaleString();
+      return `<div class="msg-bubble ${cls}"><div class="bubble-inner"><div class="bubble-meta">${who} · ${date}</div>${m.text}</div></div>`;
+    }).join('');
+    thread.scrollTop = thread.scrollHeight;
+  } catch(e) {
+    thread.innerHTML = '<div style="text-align:center;color:var(--text-muted);padding:20px;">Aucun message. Écrivez-nous !</div>';
+  }
+};
+
+// ── Send message ──────────────────────────────────────
+window.sendMessage = async function() {
+  const token = localStorage.getItem('aBest_session');
+  const input = document.getElementById('new-message-input');
+  const btn = document.getElementById('send-message-btn');
+  if (!token || !input.value.trim()) return;
+  const text = input.value.trim();
+  btn.disabled = true;
+  try {
+    const res = await fetch('/api/messages', {
+      method:'POST',
+      headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},
+      body: JSON.stringify({text})
+    });
+    if (res.ok) { input.value=''; loadMessages(); }
+  } catch(e) {} finally { btn.disabled=false; }
+};
+
+// ── Enter key for message input ───────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  const inp = document.getElementById('new-message-input');
+  if (inp) inp.addEventListener('keydown', e => { if(e.key==='Enter') sendMessage(); });
+});
+</script>
+
+<script src="/app.js"></script>
 </body>
-
 </html>
