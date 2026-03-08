@@ -37,9 +37,9 @@ export default {
                 targetLang = supportedLangs.includes(langCode) ? langCode : 'en';
             }
 
-            let file = 'login.html';
-            if (cleanPath === '/register') file = 'register.html';
-            if (cleanPath === '/profile') file = 'profil.html';
+            let file = 'login';
+            if (cleanPath === '/register') file = 'register';
+            if (cleanPath === '/profile') file = 'profil';
 
             // We rewrite internal URL to serve the localized file
             const assetUrl = new URL(request.url);
