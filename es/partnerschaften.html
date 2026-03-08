@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
         name="viewport" />
-    <title>aBest.co | Desarrollo Premium Global</title>
-    <meta content="aBest.co desarrolla proyectos premium de terrenos, energía y bienes raíces comerciales a nivel mundial. Asociaciones con inversores y marcas." property="og:description" />
-    <meta content="aBest.co | Desarrollo Premium Global" property="og:title" />
-    <meta content="aBest.co desarrolla proyectos premium de terrenos, energía y bienes raíces comerciales a nivel mundial. Asociaciones con inversores y marcas." name="description" />
+    <title>aBest.co | Asociaciones &amp; Consultas</title>
+    <meta content="aBest.co desarrolla proyectos premium globales para terrenos, energía e inmuebles comerciales. Asociaciones con inversores y marcas." property="og:description" />
+    <meta content="aBest.co | Asociaciones &amp; Consultas" property="og:title" />
+    <meta content="aBest.co desarrolla proyectos premium globales para terrenos, energía e inmuebles comerciales. Asociaciones con inversores y marcas." name="description" />
     <link href="/favicon.png" rel="icon" type="image/png" />
     <link href="/index.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com" rel="preconnect" />
@@ -216,7 +216,7 @@
         <nav class="mobile-nav" id="mobile-nav">
             <a class="nav-link" href="ideen.html">Ideas</a>
             <a class="nav-link" href="/es/">Inicio</a>
-            <a class="nav-link" href="/es/usa.html">USA</a>
+            <a class="nav-link" href="/es/usa.html">EE. UU.</a>
             <a class="nav-link" href="/es/deutschland.html">Alemania</a>
             <a class="nav-link" href="/es/turkiye.html">Turquía</a>
             <a class="nav-link" href="/es/partnerschaften.html">Consultas</a>
@@ -241,9 +241,8 @@
         <main class="scroll-content">
             <section class="hero fade-in-up" style="animation-delay: 0.2s;">
                 <div class="hero-content glass-chip" style="padding: 2rem;">
-                    <h1>Partnerschaften &amp; <span class="highlight">Consultas</span></h1>
-                    <p class="subtext">Wählen Sie Ihren Bereich, um schnell und unkompliziert mit uns in Kontakt zu
-                        treten.</p>
+                    <h1>Asociaciones &amp; <span class="highlight">Consultas</span></h1>
+                    <p class="subtext">Elija su área para ponerse en contacto con nosotros de forma rápida y sencilla.</p>
                 </div>
             </section>
 
@@ -254,26 +253,26 @@
                         <!-- Card 1 -->
                         <div class="glass-card partner-card" onclick="showForm('idea-form')">
                             <div class="icon-circle">💡</div>
-                            <h3>Enviar idea</h3>
-                            <p>Para ideas de proyectos y asociaciones estratégicas (Se busca inversor)</p>
+                            <h3>Enviar Idea</h3>
+                            <p>Für Projektideen & strategische Partnerschaften (Investor gesucht)</p>
                         </div>
                         <!-- Card 2 -->
                         <div class="glass-card partner-card" onclick="showForm('investor-form')">
                             <div class="icon-circle">🤝</div>
-                            <h3>Registrarse como inversor</h3>
-                            <p>Para inversores en nuestros proyectos o terrenos</p>
+                            <h3>Registrarse como Inversor</h3>
+                            <p>Para inversores en nuestros proyectos o propiedades</p>
                         </div>
                         <!-- Card 3 -->
                         <div class="glass-card partner-card" onclick="showForm('rent-form')">
                             <div class="icon-circle">🔑</div>
                             <h3>Alquilar</h3>
-                            <p>Alquile inmuebles o espacios comerciales para su empresa</p>
+                            <p>Alquile propiedades o espacios comerciales para su empresa</p>
                         </div>
                         <!-- Card 4 -->
                         <div class="glass-card partner-card" onclick="showForm('buy-form')">
                             <div class="icon-circle">🏢</div>
                             <h3>Comprar</h3>
-                            <p>Adquirir inmuebles, terrenos o inversiones</p>
+                            <p>Compre propiedades, terrenos o adquiera participaciones en proyectos</p>
                         </div>
                     </div>
                 </div>
@@ -287,129 +286,125 @@
 
                         <div id="success-message" class="success-message glass-chip">
                             <h3>✅ ¡Gracias por su consulta!</h3>
-                            <p>Hemos recibido sus datos y nos pondremos en contacto en breve.</p>
+                            <p>Hemos recibido sus datos y nos pondremos en contacto con usted en breve.</p>
                             <br>
                             <button class="glass-button" style="width: auto; padding: 10px 20px;"
                                 onclick="showCards()">Enviar otra consulta</button>
                         </div>
 
-                        <!-- Form 1: Enviar idea -->
+                        <!-- Form 1: Idee einreichen -->
                         <div id="idea-form" class="form-section">
-                            <h2 style="margin-bottom: 20px;">💡 Enviar idea (Investor gesucht)</h2>
+                            <h2 style="margin-bottom: 20px;">💡 Enviar Idea (se busca inversor)</h2>
                             <div class="form-info-box">
-                                Wenn Sie eine interessante Geschäftsidee haben und einen Investor oder strategischen
-                                Partner suchen, können Sie Ihre Idee bei uns einreichen. Wir prüfen jede Anfrage
-                                individuell. Wenn das Projekt zu uns passt, können wir selbst als Investor oder Partner
-                                einsteigen.
+                                Si tiene una idea de negocio interesante y busca un inversor o socio estratégico, puede enviarnos su idea. Evaluamos cada consulta individualmente. Si el proyecto nos conviene, podemos unirnos como inversores o socios.
                             </div>
                             <form onsubmit="submitForm(event, 'Idee')">
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label>Nombre *</label>
-                                        <input type="text" name="name" required placeholder="Su Nombre Completo">
+                                        <input type="text" name="name" required placeholder="Su nombre completo">
                                     </div>
                                     <div class="form-group">
                                         <label>Empresa (opcional)</label>
-                                        <input type="text" name="company" placeholder="Empresa">
+                                        <input type="text" name="company" placeholder="Nombre de la empresa">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label>Correo electrónico *</label>
+                                        <label>Email *</label>
                                         <input type="email" name="email" required placeholder="su@email.com">
                                     </div>
                                     <div class="form-group">
                                         <label>Teléfono (opcional)</label>
-                                        <input type="tel" name="phone" placeholder="+49 ...">
+                                        <input type="tel" name="phone" placeholder="+34 ...">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label>País *</label>
-                                        <input type="text" name="location" required placeholder="País de ejecución">
+                                        <input type="text" name="location" required placeholder="País de implementación">
                                     </div>
                                     <div class="form-group">
                                         <label>Ciudad *</label>
-                                        <input type="text" name="city" required placeholder="Stadt">
+                                        <input type="text" name="city" required placeholder="Ciudad">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label>Categoría de la idea *</label>
+                                        <label>Categoría de la Idea *</label>
                                         <select name="category" required>
-                                            <option value="" disabled selected>Seleccionar</option>
+                                            <option value="" disabled selected>Por favor seleccione</option>
                                             <option value="Immobilien">Desarrollo Inmobiliario</option>
                                             <option value="Technologie">Tecnología / Startup</option>
                                             <option value="Energie">Energías Renovables</option>
-                                            <option value="Handel">Comercio</option>
-                                            <option value="Sonstiges">Otros</option>
+                                            <option value="Handel">Handel & Gewerbe</option>
+                                            <option value="Sonstiges">Otro</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label>¿Qué está buscando? *</label>
+                                        <label>¿Qué busca? *</label>
                                         <select name="looking_for" required>
-                                            <option value="" disabled selected>Seleccionar</option>
+                                            <option value="" disabled selected>Por favor seleccione</option>
                                             <option value="Investor">Inversor (Capital)</option>
-                                            <option value="Partner">Socio estratégico</option>
+                                            <option value="Partner">Socio Estratégico</option>
                                             <option value="Fläche">Espacio / Terreno</option>
                                             <option value="Zusammenarbeit">Colaboración / Joint Venture</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Suma de inversión (opcional)</label>
-                                    <input type="text" name="budget" placeholder="z.B. 500.000 EUR">
+                                    <label>Inversión requerida (opcional)</label>
+                                    <input type="text" name="budget" placeholder="p.ej. 500.000 EUR">
                                 </div>
                                 <div class="form-group">
-                                    <label>Descripción de la idea *</label>
+                                    <label>Descripción de la Idea *</label>
                                     <textarea name="message" rows="5" required
-                                        placeholder="Describa su proyecto..."></textarea>
+                                        placeholder="Describa brevemente su proyecto..."></textarea>
                                 </div>
                                 <div class="form-group">
-                                    <label>Subir archivo (PDF o Presentación)</label>
+                                    <label>Subir archivo (PDF o Presentación) - opcional</label>
                                     <input type="file" name="attachment" accept=".pdf,.ppt,.pptx,.doc,.docx" />
                                 </div>
-                                <button type="submit" class="glass-button ripple">Enviar consulta</button>
+                                <button type="submit" class="glass-button ripple">Enviar Consulta</button>
                             </form>
                         </div>
 
                         <!-- Form 2: Investor -->
                         <div id="investor-form" class="form-section">
-                            <h2 style="margin-bottom: 20px;">🤝 Registrarse como inversor</h2>
+                            <h2 style="margin-bottom: 20px;">🤝 Registrarse como Inversor</h2>
                             <div class="form-info-box">
-                                Investoren können sich registrieren, um passende Projekte, Grundstücke oder
-                                Geschäftsmöglichkeiten mit uns zu besprechen.
+                                Los inversores pueden registrarse para discutir proyectos, propiedades u oportunidades de negocio adecuados con nosotros.
                             </div>
                             <form onsubmit="submitForm(event, 'Investor')">
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label>Nombre *</label>
-                                        <input type="text" name="name" required placeholder="Su Nombre Completo">
+                                        <input type="text" name="name" required placeholder="Su nombre completo">
                                     </div>
                                     <div class="form-group">
-                                        <label>Firma *</label>
+                                        <label>Empresa *</label>
                                         <input type="text" name="company" required
-                                            placeholder="Firmen- / Investmentname">
+                                            placeholder="Nombre empresa / inversión">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label>Correo electrónico *</label>
+                                        <label>Email *</label>
                                         <input type="email" name="email" required placeholder="su@email.com">
                                     </div>
                                     <div class="form-group">
-                                        <label>Telefon *</label>
-                                        <input type="tel" name="phone" required placeholder="+49 ...">
+                                        <label>Teléfono *</label>
+                                        <input type="tel" name="phone" required placeholder="+34 ...">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label>Sector preferido</label>
-                                        <input type="text" name="category" placeholder="z.B. Gewerbeimmobilien, Tech">
+                                        <input type="text" name="category" placeholder="p.ej. Inmobiliario, Tecnología">
                                     </div>
                                     <div class="form-group">
                                         <label>Región preferida</label>
-                                        <input type="text" name="location" placeholder="ej. EE.UU., Global">
+                                        <input type="text" name="location" placeholder="p.ej. Europa, USA, Global">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -419,137 +414,135 @@
                                 <div class="form-group">
                                     <label>Descripción / Mensaje *</label>
                                     <textarea name="message" rows="4" required
-                                        placeholder="Breve descripción de su enfoque de inversión..."></textarea>
+                                        placeholder="Breve descripción de su enfoque inversor..."></textarea>
                                 </div>
-                                <button type="submit" class="glass-button ripple">Registrarse como inversor</button>
+                                <button type="submit" class="glass-button ripple">Registrarse como Inversor</button>
                             </form>
                         </div>
 
-                        <!-- Form 3: Alquilar -->
+                        <!-- Form 3: Mieten -->
                         <div id="rent-form" class="form-section">
                             <h2 style="margin-bottom: 20px;">🔑 Alquilar</h2>
-                            <p style="color: var(--text-muted); margin-bottom: 20px;">Für Personen oder Firmen, die
-                                Immobilien oder Flächen mieten möchten.</p>
+                            <p style="color: var(--text-muted); margin-bottom: 20px;">Para personas o empresas que deseen alquilar propiedades o espacios.</p>
                             <form onsubmit="submitForm(event, 'Miete')">
                                 <div class="form-group">
                                     <label>¿Qué desea alquilar? *</label>
                                     <select name="category" required>
-                                        <option value="" disabled selected>Seleccionar</option>
+                                        <option value="" disabled selected>Por favor seleccione</option>
                                         <option value="Grundstück">Terreno</option>
-                                        <option value="Gewerbeobjekt">Local comercial</option>
-                                        <option value="Ladenfläche">Espacio comercial</option>
-                                        <option value="Wohnung">Piso</option>
+                                        <option value="Gewerbeobjekt">Propiedad Comercial</option>
+                                        <option value="Ladenfläche">Local Comercial</option>
+                                        <option value="Wohnung">Apartamento</option>
                                         <option value="Büro">Oficina</option>
-                                        <option value="Sonstiges">Otros</option>
+                                        <option value="Sonstiges">Otro</option>
                                     </select>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label>Nombre *</label>
-                                        <input type="text" name="name" required placeholder="Su Nombre">
+                                        <input type="text" name="name" required placeholder="Su nombre completo">
                                     </div>
                                     <div class="form-group">
                                         <label>Empresa (opcional)</label>
-                                        <input type="text" name="company" placeholder="Empresa">
+                                        <input type="text" name="company" placeholder="Nombre de la empresa">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label>Correo electrónico *</label>
+                                        <label>Email *</label>
                                         <input type="email" name="email" required placeholder="su@email.com">
                                     </div>
                                     <div class="form-group">
-                                        <label>Telefon *</label>
-                                        <input type="tel" name="phone" required placeholder="+49 ...">
+                                        <label>Teléfono *</label>
+                                        <input type="tel" name="phone" required placeholder="+34 ...">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label>Ort / Region *</label>
+                                        <label>Lugar / Región *</label>
                                         <input type="text" name="location" required placeholder="¿Dónde busca?">
                                     </div>
                                     <div class="form-group">
                                         <label>Tamaño deseado</label>
-                                        <input type="text" name="size" placeholder="z.B. 200 m²">
+                                        <input type="text" name="size" placeholder="p.ej. 200 m²">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label>Presupuesto</label>
-                                        <input type="text" name="budget" placeholder="Mietbudget pro Monat">
+                                        <label>Budget</label>
+                                        <input type="text" name="budget" placeholder="Presupuesto mensual">
                                     </div>
                                     <div class="form-group">
                                         <label>Uso previsto</label>
-                                        <input type="text" name="looking_for" placeholder="Zweck der Miete">
+                                        <input type="text" name="looking_for" placeholder="Propósito del alquiler">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Mensaje *</label>
+                                    <label>Nachricht *</label>
                                     <textarea name="message" rows="4" required
-                                        placeholder="Más detalles..."></textarea>
+                                        placeholder="Más detalles sobre su consulta..."></textarea>
                                 </div>
-                                <button type="submit" class="glass-button ripple">Enviar solicitud de alquiler</button>
+                                <button type="submit" class="glass-button ripple">Enviar Solicitud de Alquiler</button>
                             </form>
                         </div>
 
-                        <!-- Form 4: Comprar -->
+                        <!-- Form 4: Kaufen -->
                         <div id="buy-form" class="form-section">
                             <h2 style="margin-bottom: 20px;">🏢 Comprar</h2>
-                            <p style="color: var(--text-muted); margin-bottom: 20px;">Für Personen oder Firmen, die
-                                Immobilien oder Grundstücke kaufen möchten.</p>
+                            <p style="color: var(--text-muted); margin-bottom: 20px;">Para personas o empresas que deseen adquirir propiedades o terrenos.</p>
                             <form onsubmit="submitForm(event, 'Kauf')">
                                 <div class="form-group">
                                     <label>¿Qué desea comprar? *</label>
                                     <select name="category" required>
-                                        <option value="" disabled selected>Seleccionar</option>
+                                        <option value="" disabled selected>Por favor seleccione</option>
                                         <option value="Grundstück">Terreno</option>
-                                        <option value="Immobilie">Propiedad</option>
-                                        <option value="Gewerbeobjekt">Local comercial</option>
-                                        <option value="Wohnung">Piso</option>
-                                        <option value="Beteiligung">Participación en proyecto</option>
-                                        <option value="Sonstiges">Otros</option>
+                                        <option value="Immobilie">Inmueble</option>
+                                        <option value="Gewerbeobjekt">Propiedad Comercial</option>
+                                        <option value="Wohnung">Apartamento</option>
+                                        <option value="Beteiligung">Participación en Proyecto</option>
+                                        <option value="Sonstiges">Otro</option>
                                     </select>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label>Nombre *</label>
-                                        <input type="text" name="name" required placeholder="Su Nombre">
+                                        <input type="text" name="name" required placeholder="Su nombre completo">
                                     </div>
                                     <div class="form-group">
                                         <label>Empresa (opcional)</label>
-                                        <input type="text" name="company" placeholder="Empresa">
+                                        <input type="text" name="company" placeholder="Nombre de la empresa">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label>Correo electrónico *</label>
+                                        <label>Email *</label>
                                         <input type="email" name="email" required placeholder="su@email.com">
                                     </div>
                                     <div class="form-group">
-                                        <label>Telefon *</label>
-                                        <input type="tel" name="phone" required placeholder="+49 ...">
+                                        <label>Teléfono *</label>
+                                        <input type="tel" name="phone" required placeholder="+34 ...">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label>Ort / Region *</label>
+                                        <label>Lugar / Región *</label>
                                         <input type="text" name="location" required placeholder="¿Dónde busca?">
                                     </div>
                                     <div class="form-group">
-                                        <label>Presupuesto</label>
-                                        <input type="text" name="budget" placeholder="Kaufbudget">
+                                        <label>Budget</label>
+                                        <input type="text" name="budget" placeholder="Presupuesto de compra">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Requisitos</label>
-                                    <input type="text" name="looking_for" placeholder="Spezifische Anforderungen">
+                                    <input type="text" name="looking_for" placeholder="Requisitos específicos">
                                 </div>
                                 <div class="form-group">
-                                    <label>Mensaje *</label>
+                                    <label>Nachricht *</label>
                                     <textarea name="message" rows="4" required
-                                        placeholder="Más detalles..."></textarea>
+                                        placeholder="Más detalles sobre su consulta..."></textarea>
                                 </div>
-                                <button type="submit" class="glass-button ripple">Enviar solicitud de compra</button>
+                                <button type="submit" class="glass-button ripple">Enviar Solicitud de Compra</button>
                             </form>
                         </div>
                     </div>
@@ -559,15 +552,15 @@
 
         <footer class="app-footer section-spacing fade-in-up" style="animation-delay: 0.8s;">
             <div class="slim-footer-content">
-                <a href="/es/terms.html" class="footer-link">Términos de Uso</a>
+                <a href="/es/terms.html" class="footer-link">Términos</a>
                 <span class="footer-separator">|</span>
                 <a href="/es/cookie-policy.html" class="footer-link">Política de Cookies</a>
                 <span class="footer-separator">|</span>
-                <a href="/es/disclaimer.html" class="footer-link">Disclaimer</a>
+                <a href="/es/disclaimer.html" class="footer-link">Descargo</a>
                 <span class="footer-separator">|</span>
-                <a href="/es/impressum.html" class="footer-link">Impressum</a>
+                <a href="/es/impressum.html" class="footer-link">Aviso Legal</a>
                 <span class="footer-separator">|</span>
-                <a href="/es/datenschutz.html" class="footer-link">Política de Privacidad</a>
+                <a href="/es/datenschutz.html" class="footer-link">Privacidad</a>
                 <span class="footer-separator">|</span>
                 <a href="/es/kontakt.html" class="footer-link">Contacto</a>
                 <span class="footer-separator">|</span>
@@ -610,7 +603,7 @@
             const formData = new FormData(formObj);
             const submitBtn = formObj.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerText;
-            submitBtn.innerText = 'Wird gesendet...';
+            submitBtn.innerText = 'Enviando...';
             submitBtn.disabled = true;
 
             // Add missing fields
@@ -635,7 +628,7 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             } catch (error) {
                 console.error('Error submitting form:', error);
-                alert('Es gab ein Problem beim Senden Ihrer Anfrage. Bitte versuchen Sie es später erneut.');
+                alert('Hubo un problema al enviar su consulta. Por favor, inténtelo de nuevo más tarde.');
             } finally {
                 submitBtn.innerText = originalText;
                 submitBtn.disabled = false;
