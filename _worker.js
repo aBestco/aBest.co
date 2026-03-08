@@ -18,15 +18,18 @@ export default {
             return handleAuthApi(request, env);
         }
 
-        if (pathname.startsWith('/api/inquiries') || pathname.startsWith('/api/users')) {
+        if (pathname.startsWith('/api/inquiries') || pathname.startsWith('/api/users') || pathname.startsWith('/api/messages')) {
             // Check auth for sensitive methods
-            if (['GET', 'PUT', 'DELETE'].includes(request.method)) {
+            if (['GET', 'PUT', 'DELETE', 'POST'].includes(request.method)) {
                 const userEmail = await checkAuth(request, env);
                 if (!userEmail) return unauthorizedResponse();
                 // Optionally pass userEmail to handleInquiriesApi if needed
             }
             if (pathname.startsWith('/api/users')) {
                 return handleUsersApi(request, env);
+            }
+            if (pathname.startsWith('/api/messages')) {
+                return handleMessagesApi(request, env);
             }
             return handleInquiriesApi(request, env);
         }
@@ -205,6 +208,83 @@ async function handleUsersApi(request, env) {
                 headers: { 'Content-Type': 'application/json', ...corsHeaders }
             });
         }
+        return new Response('Not Found', { status: 404, headers: corsHeaders });
+    } catch (err) {
+        return new Response(JSON.stringify({ error: err.message }), {
+            status: 500, headers: { 'Content-Type': 'application/json', ...corsHeaders }
+        });
+    }
+}
+
+// --- MESSAGES API HANDLER ---
+async function handleMessagesApi(request, env) {
+    const method = request.method;
+    const url = new URL(request.url);
+    const corsHeaders = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    };
+    if (method === 'OPTIONS') return new Response(null, { headers: corsHeaders });
+
+    try {
+        const currentUser = await checkAuth(request, env);
+        if (!currentUser) return unauthorizedResponse();
+
+        // Admin check (simple logic based on role in profile or 'admin' fallback)
+        let isAdmin = currentUser === 'admin';
+        if (!isAdmin && env.ABEST_AUTH) {
+            const profileStr = await env.ABEST_AUTH.get(`profile:${currentUser}`);
+            if (profileStr) {
+                const p = JSON.parse(profileStr);
+                isAdmin = (p.role === 'Admin' || p.role === 'Superadmin');
+            }
+        }
+
+        if (method === 'GET') {
+            // Admin can request specifically /api/messages/:email
+            const targetEmail = url.pathname.split('/api/messages/')[1];
+
+            if (targetEmail && isAdmin) {
+                const messagesStr = await env.ABEST_AUTH.get(`messages:${targetEmail}`);
+                return new Response(messagesStr || '[]', { headers: { 'Content-Type': 'application/json', ...corsHeaders } });
+            } else {
+                // Return current user's messages
+                const messagesStr = await env.ABEST_AUTH.get(`messages:${currentUser}`);
+                return new Response(messagesStr || '[]', { headers: { 'Content-Type': 'application/json', ...corsHeaders } });
+            }
+        }
+
+        if (method === 'POST') {
+            const body = await request.json();
+            const text = body.text;
+            let targetUser = currentUser;
+
+            if (isAdmin && body.targetUser) {
+                targetUser = body.targetUser;
+            }
+
+            if (!text) return new Response(JSON.stringify({ error: 'Message text required' }), { status: 400, headers: corsHeaders });
+
+            const newMessage = {
+                id: crypto.randomUUID(),
+                sender: isAdmin && currentUser !== targetUser ? 'admin' : 'user',
+                text: text,
+                timestamp: new Date().toISOString(),
+                unread: true
+            };
+
+            const existingStr = await env.ABEST_AUTH.get(`messages:${targetUser}`);
+            let messages = existingStr ? JSON.parse(existingStr) : [];
+            messages.push(newMessage);
+
+            await env.ABEST_AUTH.put(`messages:${targetUser}`, JSON.stringify(messages));
+
+            return new Response(JSON.stringify({ success: true, message: newMessage }), {
+                headers: { 'Content-Type': 'application/json', ...corsHeaders }
+            });
+        }
+
         return new Response('Not Found', { status: 404, headers: corsHeaders });
     } catch (err) {
         return new Response(JSON.stringify({ error: err.message }), {

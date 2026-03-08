@@ -136,10 +136,10 @@ function renderTable() {
     const theadTr = document.querySelector('.admin-table thead tr');
 
     if (currentView === 'users') {
-        theadTr.innerHTML = `<th>Name</th><th>E-Mail</th><th>Rolle</th><th>Letzter Login</th><th>Status</th>`;
+        theadTr.innerHTML = `<th>Name</th><th>E-Mail</th><th>Rolle</th><th>Letzter Login</th><th>Status</th><th>Aktion</th>`;
 
         if (adminUsers.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--text-muted);padding:30px;">Keine Benutzer gefunden.</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--text-muted);padding:30px;">Keine Benutzer gefunden.</td></tr>';
             return;
         }
 
@@ -149,6 +149,7 @@ function renderTable() {
             <td>${u.role}</td>
             <td>${u.lastLogin || '-'}</td>
             <td><span class="status-badge ${u.status === 'Aktiv' ? 'bg-erledigt' : 'bg-abgelehnt'}">${u.status}</span></td>
+            <td><button class="glass-button ripple" style="padding: 4px 10px; font-size: 0.8rem;" onclick="openUserMessages('${u.email}', '${u.name}')">Nachrichten</button></td>
         </tr>`).join('');
         return;
     } else if (currentView === 'docs') {
@@ -335,4 +336,101 @@ function updateRole() {
 
 function toggleSidebar() {
     document.getElementById('sidebar').classList.toggle('open');
+}
+
+// --- MESSAGING LOGIC FOR ADMIN ---
+async function openUserMessages(email, name) {
+    document.getElementById('modal-title').innerText = `Nachrichten: ${name}`;
+    document.getElementById('save-btn').style.display = 'none'; // hide general save button
+    document.getElementById('modal-status').disabled = true; // disable status
+
+    let detailsHtml = `
+        <div id="admin-message-thread" style="max-height: 350px; overflow-y: auto; padding: 15px; background: rgba(0,0,0,0.2); border-radius: 8px; margin-bottom: 15px;">
+            <div style="text-align: center; color: var(--text-muted); font-size: 0.9rem;">Lade Nachrichten...</div>
+        </div>
+        <div style="display: flex; gap: 10px;">
+            <input type="text" id="admin-new-message-input" class="search-input" placeholder="Antwort schreiben..." style="flex: 1; padding: 10px;" />
+            <button class="glass-button ripple" id="admin-send-message-btn" onclick="sendAdminMessage('${email}', '${name}')" style="padding: 10px 15px;">Senden</button>
+        </div>
+    `;
+    document.getElementById('modal-body').innerHTML = detailsHtml;
+    document.getElementById('detail-modal').classList.add('active');
+
+    loadAdminMessages(email, name);
+}
+
+async function loadAdminMessages(email, name) {
+    const token = localStorage.getItem('aBest_session');
+    if (!token) return;
+
+    try {
+        const res = await fetch(`/api/messages/${email}`, {
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+
+        if (!res.ok) throw new Error('Nachrichten konnten nicht geladen werden.');
+
+        const messages = await res.json();
+        const thread = document.getElementById('admin-message-thread');
+
+        if (thread) {
+            if (messages.length === 0) {
+                thread.innerHTML = '<div style="text-align: center; color: var(--text-muted); font-size: 0.9rem;">Keine Nachrichten im Verlauf.</div>';
+            } else {
+                thread.innerHTML = messages.map(msg => {
+                    const isAdmin = msg.sender === 'admin';
+                    const align = isAdmin ? 'right' : 'left';
+                    const bg = isAdmin ? 'var(--primary-blue)' : 'rgba(255,255,255,0.1)';
+                    const date = new Date(msg.timestamp).toLocaleString();
+                    const senderName = isAdmin ? 'Du (Admin)' : name;
+                    return `
+                        <div style="text-align: ${align}; margin-bottom: 10px;">
+                            <div style="display: inline-block; padding: 10px 15px; border-radius: 8px; background: ${bg}; max-width: 80%; text-align: left;">
+                                <div style="font-size: 0.8rem; color: rgba(255,255,255,0.7); margin-bottom: 4px;">${senderName} - ${date}</div>
+                                <div>${msg.text}</div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+                thread.scrollTop = thread.scrollHeight;
+            }
+        }
+    } catch (err) {
+        console.error('Error loading admin messages:', err);
+    }
+}
+
+async function sendAdminMessage(targetEmail, targetName) {
+    const token = localStorage.getItem('aBest_session');
+    const input = document.getElementById('admin-new-message-input');
+    const btn = document.getElementById('admin-send-message-btn');
+    if (!token || !input || !input.value.trim()) return;
+
+    const text = input.value.trim();
+    const originalText = btn.innerText;
+    btn.innerText = '...';
+    btn.disabled = true;
+
+    try {
+        const res = await fetch('/api/messages', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ text, targetUser: targetEmail })
+        });
+
+        if (res.ok) {
+            input.value = '';
+            loadAdminMessages(targetEmail, targetName);
+        } else {
+            alert('Nachricht konnte nicht gesendet werden.');
+        }
+    } catch (err) {
+        console.error('Error sending message as admin:', err);
+    } finally {
+        btn.innerText = originalText;
+        btn.disabled = false;
+    }
 }
