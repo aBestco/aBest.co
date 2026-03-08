@@ -1592,8 +1592,8 @@ function cpShowConfirm(){
     [_cpT2.ov_amount, cpFmt(amt)],
     [_cpT2.ov_currency, _cpCurrency==='EUR'?_cpT2.eur:_cpT2.usd],
     [_cpT2.ov_period, yrs+' '+_cpT2.period_unit],
-    ['Annual Return', '5% p.a.'],
-    ['Interest Option', opt==='a'?_cpT2.opt_a_short+(opt==='b'?' · '+freqTxt:''):_cpT2.opt_b_short+' · '+freqTxt],
+    ['Rendimento anual', '5% p.a.'],
+    ['Opção de juros', opt==='a'?_cpT2.opt_a_short+(opt==='b'?' · '+freqTxt:''):_cpT2.opt_b_short+' · '+freqTxt],
     [_cpT2.ov_total_return, cpFmt(totalReturn)],
     [_cpT2.ov_final, cpFmt(finalVal)],
   ];
@@ -1701,7 +1701,7 @@ const _mwT = {
     inv_maturity: 'Maturity Date',
     inv_earned: 'Interest Earned',
     inv_projected: 'Projected Earnings',
-    inv_option: 'Interest Option',
+    inv_option: 'Opção de juros',
     opt_a: 'Compound Interest',
     opt_b: 'Interest Payout',
     per_year: '% p.a. (fixed)',
@@ -1749,7 +1749,7 @@ function mwCalc(d) {
   const now = new Date();
   const amt = d.amount || 0;
   const yrs = d.years || 0;
-  const opt = d.option || 'a';
+  const opt = (d.option || 'a').toLowerCase();
   const start = new Date(d.approvedAt || d.submittedAt || now);
   const totalMonths = yrs * 12;
   const msElapsed = Math.max(0, now - start);
@@ -1775,7 +1775,7 @@ function mwCalc(d) {
 
   return {amt, opt, start, maturity, totalMonths, monthsElapsed, pct,
     currentVal, earnedInt, projectedTotal, monthlyInterest, yrs,
-    isApproved: d.status === 'approved'};
+    isApproved: d.status === 'approved' || d.status === 'active'};
 }
 
 function mwTab(name) {
@@ -1820,7 +1820,7 @@ function mwRender(deposits) {
         totalEarned += c.earnedInt;
         monthlyTotal += c.monthlyInterest;
         activeCount++;
-        if (d.option === 'b') {
+        if ((d.option||'').toLowerCase() === 'b') {
           const next = mwAddMonths(c.start, Math.ceil(c.monthsElapsed));
           if (!nextPaymentDate || next < nextPaymentDate) nextPaymentDate = next;
         }
@@ -1869,9 +1869,9 @@ function mwRenderCard(d, c, idx, isCompleted) {
   const sym = cur === 'EUR' ? '€' : '$';
   const statusKey = d.status === 'approved' ? 'active' : (isCompleted ? 'completed' : 'pending');
   const statusLabel = _mwT['status_' + statusKey];
-  const optLabel = d.option === 'a' ? _mwT.opt_a : _mwT.opt_b;
+  const optLabel = (d.option||'').toLowerCase() === 'a' ? _mwT.opt_a : _mwT.opt_b;
   const invId = (d.id || d.submittedAt || '').toString().slice(-8).toUpperCase();
-  const projFinal = d.option === 'a' ? (d.amount || 0) * Math.pow(1.05, d.years || 0) : (d.amount || 0) * (1 + 0.05 * (d.years || 0));
+  const projFinal = (d.option||'').toLowerCase() === 'a' ? (d.amount || 0) * Math.pow(1.05, d.years || 0) : (d.amount || 0) * (1 + 0.05 * (d.years || 0));
   const isApproved = d.status === 'approved';
 
   // Progress bar (only for approved)
@@ -1957,7 +1957,7 @@ function mwRenderHistory(deposits) {
     if (d.status === 'approved') {
       const c = mwCalc(d);
       const monthsElapsed = Math.floor(c.monthsElapsed);
-      if (monthsElapsed >= 1 && d.option === 'b') {
+      if (monthsElapsed >= 1 && (d.option||'').toLowerCase() === 'b') {
         // Show last 3 interest credits
         const showMonths = Math.min(monthsElapsed, 3);
         for (let m = monthsElapsed; m > monthsElapsed - showMonths; m--) {
