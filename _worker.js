@@ -177,6 +177,10 @@ export default {
         }
 
         // --- 3. 301 REDIRECTS ---
+        // /de/ideen → /de/earn-money (URL rename)
+        if (pathname === '/de/ideen' || pathname === '/de/ideen.html') {
+            return Response.redirect(`https://${host}/de/earn-money`, 301);
+        }
         if (url.hostname === 'abest.com' || url.hostname === 'www.abest.com') {
             const newUrl = new URL(request.url);
             newUrl.hostname = 'abest.co';
