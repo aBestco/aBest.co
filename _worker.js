@@ -13,6 +13,50 @@ export default {
             return Response.redirect(`https://${host}/${targetLang}/`, 302);
         }
 
+        // --- 1.2 BROWSER ROUTES (/login, /register, /profile) ---
+        if (pathname === '/login' || pathname === '/register' || pathname === '/profile') {
+            const acceptLanguage = request.headers.get('Accept-Language') || 'en';
+            const langCode = acceptLanguage.split(',')[0].split('-')[0].toLowerCase();
+            const supportedLangs = ["en", "de", "tr", "es", "zh", "hi", "ar", "fr", "ru", "pt", "ur", "ku", "he", "hy"];
+            const targetLang = supportedLangs.includes(langCode) ? langCode : 'en';
+
+            let file = 'index.html';
+            if (pathname === '/login') file = 'login.html';
+            if (pathname === '/register') file = 'register.html';
+            if (pathname === '/profile') file = 'profil.html';
+
+            // We rewrite internal URL to serve the localized file
+            const newUrl = new URL(request.url);
+            newUrl.pathname = `/${targetLang}/${file}`;
+            let res = await env.ASSETS.fetch(new Request(newUrl.toString(), request));
+
+            // Fallback to English if localized file not found
+            if (res.status === 404 && targetLang !== 'en') {
+                newUrl.pathname = `/en/${file}`;
+                res = await env.ASSETS.fetch(new Request(newUrl.toString(), request));
+            }
+
+            // SEO: Inject localized meta tags
+            let html = await res.text();
+            const translations = {
+                de: { login: 'Login | aBest.co', register: 'Registrierung | aBest.co', profile: 'Mein Profil | aBest.co', desc: 'Premium Land- und Immobilienentwicklung.' },
+                en: { login: 'Login | aBest.co', register: 'Register | aBest.co', profile: 'My Profile | aBest.co', desc: 'Global Premium Land & Real Estate Development.' },
+                tr: { login: 'Giriş | aBest.co', register: 'Kayıt Ol | aBest.co', profile: 'Profilim | aBest.co', desc: 'Global Premium Arazi ve Gayrimenkul Geliştirme.' },
+                es: { login: 'Acceso | aBest.co', register: 'Registro | aBest.co', profile: 'Mi Perfil | aBest.co', desc: 'Desarrollo inmobiliario premium global.' },
+                fr: { login: 'Connexion | aBest.co', register: 'Inscription | aBest.co', profile: 'Mon Profil | aBest.co', desc: 'Développement immobilier premium mondial.' }
+            };
+            const t = translations[targetLang] || translations['en'];
+            const pageKey = pathname === '/login' ? 'login' : (pathname === '/register' ? 'register' : 'profile');
+
+            html = html.replace(/<title>.*?<\/title>/, `<title>${t[pageKey]}</title>`);
+            html = html.replace(/<meta name="description" content=".*?" \/>/, `<meta name="description" content="${t.desc}" />`);
+            html = html.replace(/<meta content=".*?" name="description" \/>/, `<meta name="description" content="${t.desc}" />`);
+
+            return new Response(html, {
+                headers: { 'Content-Type': 'text/html; charset=utf-8' }
+            });
+        }
+
         // --- 2. API ROUTES ---
         if (pathname.startsWith('/api/auth/')) {
             return handleAuthApi(request, env);
@@ -38,10 +82,23 @@ export default {
         }
 
         // --- 2. ADMIN AREA ---
-        if (pathname.startsWith('/admin')) {
-            // For static assets in /admin, we can't easily secure them without a complex worker flow 
-            // since we depend on ASSETS.fetch. For true security, the static /admin page should verify token on load.
-            // Leaving ASSETS.fetch for now.
+        if (pathname === '/admin' || pathname === '/admin/') {
+            const userEmail = await checkAuth(request, env);
+            if (!userEmail) return Response.redirect(`https://${host}/login`, 302);
+
+            // Check if user is admin
+            let isAdmin = userEmail === 'admin';
+            if (!isAdmin && env.ABEST_AUTH) {
+                const profileStr = await env.ABEST_AUTH.get(`profile:${userEmail}`);
+                if (profileStr) {
+                    const p = JSON.parse(profileStr);
+                    isAdmin = (p.role === 'Admin' || p.role === 'Superadmin');
+                }
+            }
+            if (!isAdmin) return Response.redirect(`https://${host}/profile`, 302);
+
+            // If they are admin, let them through (or handle special admin pathing if needed)
+            // For now, ASSETS.fetch will handle the static admin files.
         }
 
         // --- 3. 301 REDIRECTS ---

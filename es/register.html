@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        name="viewport" />
+    <title>aBest.co | Register</title>
+    <link href="/favicon.png" rel="icon" type="image/png" />
+    <link href="/index.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <style>
+        .auth-wrapper {
+            padding-top: 120px;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .auth-container {
+            max-width: 450px;
+            width: 90%;
+            padding: 40px;
+        }
+    </style>
+</head>
+
+<body class="dark-mode">
+    <div class="background-wrapper">
+        <img alt="Background" class="main-bg" src="/assets/images/bg_main_blurred_new.webp" />
+        <div class="bg-gradient-overlay"></div>
+    </div>
+
+    <header class="app-header">
+        <a class="logo-link" href="/">
+            <span style="font-size: 1.5rem; font-weight: 500; letter-spacing: -0.5px; color: var(--text-main);">
+                <span style="color: var(--primary-blue);">a</span>Best<span
+                    style="color: var(--primary-blue);">.co</span>
+            </span>
+        </a>
+    </header>
+
+    <div class="auth-wrapper">
+        <div class="glass-panel auth-container fade-in-up">
+            <div id="auth-content-target">
+                <!-- Content injected by app.js -->
+                <div class="text-center" style="padding: 2rem;">
+                    <div class="loader" style="margin: 0 auto;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/app.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async></script>
+</body>
+
+</html>

@@ -147,8 +147,9 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             openContactModal();
         } else if (href.includes('/admin/') || href.includes('/admin')) {
+            // Use the new browser route instead of modal
             e.preventDefault();
-            openAuthModal();
+            window.location.href = '/login';
         }
     });
 
@@ -171,15 +172,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const lang = document.documentElement.lang || 'en';
         const sessionToken = localStorage.getItem('aBest_session');
 
-        // If the user is already logged in, redirect them to admin or give them a menu.
-        // For simplicity, directly route to the dashboard.
         if (sessionToken) {
-            window.location.href = `/${lang}/profil.html`;
+            window.location.href = '/profile';
             return;
         }
 
-        const content = getAuthFormHTML(lang);
-        openModal(content);
+        // Instead of opening modal, redirect to login page
+        window.location.href = '/login';
+        return;
 
         // Add listeners for tab switching inside auth modal
         const loginTab = document.getElementById('tab-login');
@@ -205,6 +205,54 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Check initial auth state to update icon
     checkAuthState();
+
+    // 7. Page-level Auth Injection (for /login and /register routes)
+    const authTarget = document.getElementById('auth-content-target');
+    const loginLink = document.querySelector('a[href="/login"], a[href="/admin/"]');
+    const profileLink = document.getElementById('profile-btn');
+
+    if (authTarget) {
+        // Highlight login icon if on login/register page
+        if (loginLink) loginLink.classList.add('active');
+
+        const lang = document.documentElement.lang || 'en';
+        const pathname = window.location.pathname;
+
+        authTarget.innerHTML = getAuthFormHTML(lang);
+
+        const loginTab = document.getElementById('tab-login');
+        const regTab = document.getElementById('tab-register');
+        const loginForm = document.getElementById('login-form-content');
+        const regForm = document.getElementById('register-form-content');
+
+        if (pathname === '/register') {
+            if (regTab) regTab.click();
+            document.title = "aBest.co | Register";
+        } else {
+            if (loginTab) loginTab.click();
+            document.title = "aBest.co | Login";
+        }
+
+        // Re-attach listeners for tab switching (since we replaced innerHTML)
+        if (loginTab && regTab && loginForm && regForm) {
+            loginTab.addEventListener('click', () => {
+                loginTab.classList.add('active');
+                regTab.classList.remove('active');
+                loginForm.style.display = 'block';
+                regForm.style.display = 'none';
+                history.pushState(null, '', '/login');
+            });
+            regTab.addEventListener('click', () => {
+                regTab.classList.add('active');
+                loginTab.classList.remove('active');
+                regForm.style.display = 'block';
+                loginForm.style.display = 'none';
+                history.pushState(null, '', '/register');
+            });
+        }
+    } else if (window.location.pathname === '/profile') {
+        if (profileLink) profileLink.classList.add('active');
+    }
 });
 
 function checkAuthState() {
@@ -213,8 +261,7 @@ function checkAuthState() {
     const adminLink = document.querySelector('a[href*="/admin/"]');
 
     if (sessionToken && adminLink) {
-        const lang = document.documentElement.lang || 'en';
-        adminLink.href = `/${lang}/profil.html`;
+        adminLink.href = `/profile`;
 
         // Change the icon to indicate logged in state. 
         // We use a simple filled user icon for 'logged in'.
@@ -637,8 +684,7 @@ window.handleGoogleSignIn = async function (response) {
             const data = await res.json();
             if (res.ok && data.token) {
                 localStorage.setItem('aBest_session', data.token);
-                const lang = document.documentElement.lang || 'en';
-                window.location.href = `/${lang}/profil.html`;
+                window.location.href = `/profile`;
             } else {
                 alert('Google Sign-In fehlgeschlagen: ' + (data.error || 'Unbekannter Fehler'));
             }
@@ -651,8 +697,7 @@ window.handleGoogleSignIn = async function (response) {
 
 window.logout = function () {
     localStorage.removeItem('aBest_session');
-    const lang = document.documentElement.lang || 'en';
-    window.location.href = `/${lang}/`;
+    window.location.href = `/login`;
 };
 
 // --- PROFILE PAGE LOGIC ---
@@ -665,8 +710,7 @@ if (window.location.pathname.includes('/profil.html')) {
 window.loadUserProfile = async function () {
     const token = localStorage.getItem('aBest_session');
     if (!token) {
-        const lang = document.documentElement.lang || 'en';
-        window.location.href = `/${lang}/`;
+        window.location.href = `/login`;
         return;
     }
 
