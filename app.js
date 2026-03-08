@@ -335,9 +335,9 @@ document.addEventListener('click', function (event) {
     }
 
     if (langBtn) {
-        const isShow = dropdown.classList.contains('show');
+        const isShow = dropdown && dropdown.classList.contains('show');
         toggleLangMenu(!isShow);
-    } else if (!isClickInsideDropdown && dropdown.classList.contains('show')) {
+    } else if (!isClickInsideDropdown && dropdown && dropdown.classList.contains('show')) {
         toggleLangMenu(false);
     }
 });

@@ -1051,6 +1051,8 @@ body { background: #0a0a0f; }
       <div class="db-field"><label>वर्तमान पासवर्ड</label><input type="password" id="pw-current" autocomplete="current-password"/></div>
       <div class="db-field"><label>नया पासवर्ड</label><input type="password" id="pw-new" autocomplete="new-password"/></div>
       <div class="db-field" style="margin-bottom:0;"><label>नए पासवर्ड की पुष्टि</label><input type="password" id="pw-confirm" autocomplete="new-password"/></div>
+      <div id="pw-error" style="display:none;color:#ff453a;font-size:0.82rem;margin-top:8px;padding:6px 10px;background:rgba(255,69,58,0.1);border-radius:8px;"></div>
+      <div id="pw-success" style="display:none;color:#30d158;font-size:0.82rem;margin-top:8px;padding:6px 10px;background:rgba(48,209,88,0.1);border-radius:8px;"></div>
       <button class="db-btn db-btn-primary" style="margin-top:16px;" onclick="changePassword()">पासवर्ड अपडेट करें</button>
     </div>
     
@@ -1126,7 +1128,7 @@ window.saveUserProfile = async function(event) {
       })
     });
     if (res.ok) { btn.innerText = '✓'; setTimeout(()=>{btn.innerText=orig;btn.disabled=false;},2000); }
-    else { btn.innerText=orig; btn.disabled=false; }
+    else { btn.innerText='✗'; btn.style.color='#ff453a'; setTimeout(()=>{btn.innerText=orig;btn.disabled=false;btn.style.color='';},2000); }
   } catch(e) { btn.innerText=orig; btn.disabled=false; }
 };
 
@@ -1137,15 +1139,20 @@ async function changePassword() {
   const cur = document.getElementById('pw-current').value;
   const nw = document.getElementById('pw-new').value;
   const conf = document.getElementById('pw-confirm').value;
-  if (!cur || !nw || nw !== conf) return;
+  const _pwErr = document.getElementById('pw-error');
+  const _pwSuc = document.getElementById('pw-success');
+  if (_pwErr) _pwErr.style.display = 'none';
+  if (_pwSuc) _pwSuc.style.display = 'none';
+  if (!cur || !nw) { if (_pwErr) { _pwErr.textContent = 'कृपया सभी फ़ील्ड भरें।'; _pwErr.style.display = 'block'; } return; }
+  if (nw !== conf) { if (_pwErr) { _pwErr.textContent = 'पासवर्ड मेल नहीं खाते।'; _pwErr.style.display = 'block'; } return; }
   try {
     const res = await fetch('/api/auth/password', {
       method: 'PUT',
       headers: {'Content-Type':'application/json','Authorization':'Bearer '+token},
       body: JSON.stringify({currentPassword:cur, newPassword:nw})
     });
-    if (res.ok) { ['pw-current','pw-new','pw-confirm'].forEach(id=>document.getElementById(id).value=''); }
-    else { const d=await res.json(); alert(d.error||'Error'); }
+    if (res.ok) { ['pw-current','pw-new','pw-confirm'].forEach(id=>document.getElementById(id).value=''); const _s=document.getElementById('pw-success'); if(_s){_s.textContent='पासवर्ड सफलतापूर्वक अपडेट किया गया।';_s.style.display='block';setTimeout(()=>{_s.style.display='none';},3000);} }
+    else { const _d=await res.json(); const _e=document.getElementById('pw-error'); if(_e){_e.textContent=_d.error||'अपडेट में त्रुटि। पुनः प्रयास करें।';_e.style.display='block';} }
   } catch(e) {}
 }
 
@@ -1578,7 +1585,7 @@ function cpCalc(){
 // ── Confirmation ──────────────────────────────────────────────
 function cpShowConfirm(){
   const amt=parseFloat(document.getElementById('cp-amount')?.value)||0;
-  if(amt<1000){ alert(_cpT2.err_amount); return; }
+  if(amt<1000){ const _e=document.getElementById('cp-submit-err'); if(_e){_e.textContent=_cpT2.err_amount;_e.style.display='block';setTimeout(()=>{_e.style.display='none';},3000);} return; }
 
   const freqEl=document.getElementById('cp-freq');
   const freqTxt=freqEl?freqEl.options[freqEl.selectedIndex]?.text:'';
@@ -2006,7 +2013,7 @@ async function loadCapitalData() {
 
     // Show pending banner if any are still pending
     const hasPending = deposits.some(d => d.status === 'pending' || !d.status);
-    const hasApproved = deposits.some(d => d.status === 'approved');
+    const hasApproved = deposits.some(d => d.status === 'approved' || d.status === 'active');
     if (hasPending) document.getElementById('cp-banner-pending')?.classList.add('show');
     if (hasApproved) document.getElementById('cp-banner-approved')?.classList.add('show');
 
