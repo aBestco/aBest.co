@@ -18,10 +18,15 @@ export default {
             return handleAuthApi(request, env);
         }
 
-        if (pathname.startsWith('/api/inquiries')) {
+        if (pathname.startsWith('/api/inquiries') || pathname.startsWith('/api/users')) {
             // Check auth for sensitive methods
             if (['GET', 'PUT', 'DELETE'].includes(request.method)) {
-                if (!(await checkAuth(request, env))) return unauthorizedResponse();
+                const userEmail = await checkAuth(request, env);
+                if (!userEmail) return unauthorizedResponse();
+                // Optionally pass userEmail to handleInquiriesApi if needed
+            }
+            if (pathname.startsWith('/api/users')) {
+                return handleUsersApi(request, env);
             }
             return handleInquiriesApi(request, env);
         }
@@ -57,11 +62,12 @@ async function checkAuth(request, env) {
     const expectedUser = env.ADMIN_USER;
     const expectedPass = env.ADMIN_PASS;
     const expectedBasic = 'Basic ' + btoa(`${expectedUser}:${expectedPass}`);
-    if (authHeader === expectedBasic) return true;
+    // If using the old fallback, we just return 'admin' as the identifier
+    if (authHeader === expectedBasic) return 'admin';
 
     if (env.ABEST_AUTH && token) {
-        const session = await env.ABEST_AUTH.get(`session:${token}`);
-        if (session) return true;
+        const sessionEmail = await env.ABEST_AUTH.get(`session:${token}`);
+        if (sessionEmail) return sessionEmail; // Return the email associated with the session
     }
 
     return false;
@@ -160,6 +166,46 @@ async function handleInquiriesApi(request, env) {
 
         return new Response('Not Found', { status: 404, headers: corsHeaders });
 
+    } catch (err) {
+        return new Response(JSON.stringify({ error: err.message }), {
+            status: 500, headers: { 'Content-Type': 'application/json', ...corsHeaders }
+        });
+    }
+}
+
+// --- USERS API HANDLER ---
+async function handleUsersApi(request, env) {
+    const method = request.method;
+    const corsHeaders = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    };
+    if (method === 'OPTIONS') return new Response(null, { headers: corsHeaders });
+
+    try {
+        if (method === 'GET') {
+            const list = await env.ABEST_AUTH.list({ prefix: 'profile:' });
+            const users = [];
+            for (const key of list.keys) {
+                const profileStr = await env.ABEST_AUTH.get(key.name);
+                if (profileStr) {
+                    const profile = JSON.parse(profileStr);
+                    users.push({
+                        email: profile.email,
+                        name: profile.name || '-',
+                        company: profile.company || '-',
+                        role: profile.role || 'User',
+                        status: 'Aktiv',
+                        lastLogin: profile.lastLogin || '-'
+                    });
+                }
+            }
+            return new Response(JSON.stringify(users), {
+                headers: { 'Content-Type': 'application/json', ...corsHeaders }
+            });
+        }
+        return new Response('Not Found', { status: 404, headers: corsHeaders });
     } catch (err) {
         return new Response(JSON.stringify({ error: err.message }), {
             status: 500, headers: { 'Content-Type': 'application/json', ...corsHeaders }
@@ -266,7 +312,14 @@ async function handleAuthApi(request, env) {
                 if (storedPass && storedPass === hashedInput) {
                     const sessionId = crypto.randomUUID();
                     await env.ABEST_AUTH.put(`session:${sessionId}`, email, { expirationTtl: 86400 }); // 24h
-                    return new Response(JSON.stringify({ success: true, token: sessionId }), {
+
+                    // Ensure an empty profile exists
+                    const existingProfile = await env.ABEST_AUTH.get(`profile:${email}`);
+                    if (!existingProfile) {
+                        await env.ABEST_AUTH.put(`profile:${email}`, JSON.stringify({ email: email, role: 'User' }));
+                    }
+
+                    return new Response(JSON.stringify({ success: true, token: sessionId, email: email }), {
                         headers: { 'Content-Type': 'application/json', ...corsHeaders }
                     });
                 }
@@ -285,12 +338,50 @@ async function handleAuthApi(request, env) {
 
                 const hashedPassword = await hashPassword(password);
                 await env.ABEST_AUTH.put(`user:${email}`, hashedPassword);
+                await env.ABEST_AUTH.put(`profile:${email}`, JSON.stringify({ email: email, name: '', phone: '', company: '', role: 'User' }));
 
                 return new Response(JSON.stringify({ success: true }), {
                     headers: { 'Content-Type': 'application/json', ...corsHeaders }
                 });
             }
             return new Response(JSON.stringify({ error: 'Storage not configured' }), { status: 500, headers: corsHeaders });
+        }
+
+        if (method === 'GET' && url.pathname === '/api/auth/me') {
+            const userEmail = await checkAuth(request, env);
+            if (!userEmail) return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401, headers: corsHeaders });
+
+            if (env.ABEST_AUTH) {
+                const profileStr = await env.ABEST_AUTH.get(`profile:${userEmail}`);
+                const profile = profileStr ? JSON.parse(profileStr) : { email: userEmail, role: 'User' };
+                return new Response(JSON.stringify(profile), {
+                    headers: { 'Content-Type': 'application/json', ...corsHeaders }
+                });
+            }
+            return new Response(JSON.stringify({ error: 'Storage missing' }), { status: 500, headers: corsHeaders });
+        }
+
+        if (method === 'PUT' && url.pathname === '/api/auth/me') {
+            const userEmail = await checkAuth(request, env);
+            if (!userEmail) return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401, headers: corsHeaders });
+
+            const updates = await request.json();
+
+            if (env.ABEST_AUTH) {
+                const profileStr = await env.ABEST_AUTH.get(`profile:${userEmail}`);
+                const profile = profileStr ? JSON.parse(profileStr) : { email: userEmail, role: 'User' };
+
+                // Allow specific fields to be updated
+                if (updates.name !== undefined) profile.name = updates.name;
+                if (updates.phone !== undefined) profile.phone = updates.phone;
+                if (updates.company !== undefined) profile.company = updates.company;
+
+                await env.ABEST_AUTH.put(`profile:${userEmail}`, JSON.stringify(profile));
+                return new Response(JSON.stringify({ success: true, profile }), {
+                    headers: { 'Content-Type': 'application/json', ...corsHeaders }
+                });
+            }
+            return new Response(JSON.stringify({ error: 'Storage missing' }), { status: 500, headers: corsHeaders });
         }
 
         return new Response('Not Found', { status: 404, headers: corsHeaders });

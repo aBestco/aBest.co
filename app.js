@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // If the user is already logged in, redirect them to admin or give them a menu.
         // For simplicity, directly route to the dashboard.
         if (sessionToken) {
-            window.location.href = '/admin/';
+            window.location.href = `/${lang}/profil.html`;
             return;
         }
 
@@ -209,8 +209,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function checkAuthState() {
     const sessionToken = localStorage.getItem('aBest_session');
+    // We now redirect to the profile page instead of admin upon click
     const adminLink = document.querySelector('a[href*="/admin/"]');
+
     if (sessionToken && adminLink) {
+        const lang = document.documentElement.lang || 'en';
+        adminLink.href = `/${lang}/profil.html`;
+
         // Change the icon to indicate logged in state. 
         // We use a simple filled user icon for 'logged in'.
         adminLink.innerHTML = `
@@ -537,7 +542,7 @@ function getAuthFormHTML(lang) {
             </form>
             
             <!-- Register Form -->
-            <form class="glass-form auth-form-content" id="register-form-content" style="display: none;" onsubmit="handleAuthSubmit(event, 'register')">
+            <form class="glass-form auth-form-content" id="register-form-content" style="display: none;" onsubmit="return handleAuthSubmit(event, '/api/auth/register', '/${lang}/profil.html')">
                 <div class="form-group" style="text-align: left; margin-bottom: 1rem;">
                     <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">${t.email}</label>
                     <input class="form-input" id="reg_email" required type="email" style="width: 100%;" />
@@ -575,7 +580,7 @@ function getAuthFormHTML(lang) {
 }
 
 // Auth Submit Logic
-async function handleAuthSubmit(event, type) {
+async function handleAuthSubmit(event, endpoint, redirectUrl) {
     event.preventDefault();
     const form = event.target;
     const btn = form.querySelector('button[type="submit"]');
@@ -584,12 +589,11 @@ async function handleAuthSubmit(event, type) {
     btn.innerText = '...';
     btn.disabled = true;
 
-    const emailPrefix = type === 'login' ? 'login' : 'reg';
-    const email = document.getElementById(`${emailPrefix}_email`).value;
-    const password = document.getElementById(`${emailPrefix}_password`).value;
+    const email = form.querySelector('input[type="email"]').value;
+    const password = form.querySelector('input[type="password"]').value;
 
     try {
-        const response = await fetch(`/api/auth/${type}`, {
+        const response = await fetch(endpoint, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password })
@@ -601,29 +605,28 @@ async function handleAuthSubmit(event, type) {
             btn.innerText = '✓';
             if (data.token) {
                 localStorage.setItem('aBest_session', data.token);
-                window.location.href = '/admin/';
+                window.location.href = redirectUrl;
             } else {
-                // E.g. successful registration but needs login
-                alert('Success! Please click Login.');
-                document.getElementById('tab-login').click();
+                // This branch should ideally not be hit if token is always returned on success
+                alert('Erfolgreich, aber kein Token erhalten. Bitte versuchen Sie sich anzumelden.');
                 btn.innerText = originalText;
                 btn.disabled = false;
             }
         } else {
-            alert(data.error || 'Authenication failed');
+            alert(data.error || 'Authentifizierung fehlgeschlagen');
             btn.innerText = originalText;
             btn.disabled = false;
         }
     } catch (err) {
         console.error('Auth error', err);
-        alert('An error occurred.');
+        alert('Ein Netzwerkfehler ist aufgetreten.');
         btn.innerText = originalText;
         btn.disabled = false;
     }
 }
 
 // Google Sign In Callback
-async function handleGoogleSignIn(response) {
+window.handleGoogleSignIn = async function (response) {
     if (response.credential) {
         try {
             const res = await fetch('/api/auth/google', {
@@ -634,15 +637,117 @@ async function handleGoogleSignIn(response) {
             const data = await res.json();
             if (res.ok && data.token) {
                 localStorage.setItem('aBest_session', data.token);
-                window.location.href = '/admin/';
+                const lang = document.documentElement.lang || 'en';
+                window.location.href = `/${lang}/profil.html`;
             } else {
-                alert('Google Sign-In failed on server.');
+                alert('Google Sign-In fehlgeschlagen: ' + (data.error || 'Unbekannter Fehler'));
             }
         } catch (err) {
             console.error('Google Sign-In Error:', err);
+            alert('Netzwerkfehler beim Google Login.');
         }
     }
 }
+
+window.logout = function () {
+    localStorage.removeItem('aBest_session');
+    const lang = document.documentElement.lang || 'en';
+    window.location.href = `/${lang}/`;
+};
+
+// --- PROFILE PAGE LOGIC ---
+if (window.location.pathname.includes('/profil.html')) {
+    loadUserProfile();
+}
+
+// Global functions for profile page
+window.loadUserProfile = async function () {
+    const token = localStorage.getItem('aBest_session');
+    if (!token) {
+        const lang = document.documentElement.lang || 'en';
+        window.location.href = `/${lang}/`;
+        return;
+    }
+
+    try {
+        const res = await fetch('/api/auth/me', {
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+
+        if (res.status === 401) {
+            window.logout();
+            return;
+        }
+
+        if (!res.ok) throw new Error('Profil konnte nicht geladen werden.');
+
+        const profile = await res.json();
+
+        // Populate fields
+        const emailField = document.getElementById('profile-email');
+        const nameField = document.getElementById('profile-name');
+        const phoneField = document.getElementById('profile-phone');
+        const companyField = document.getElementById('profile-company');
+        const adminBtn = document.getElementById('profile-admin-btn');
+        const userAvatarLetters = document.getElementById('profile-avatar-letters');
+
+        if (emailField) emailField.value = profile.email || '';
+        if (nameField) nameField.value = profile.name || '';
+        if (phoneField) phoneField.value = profile.phone || '';
+        if (companyField) companyField.value = profile.company || '';
+
+        // Show superadmin button if user is admin
+        if (profile.role === 'Admin' || profile.role === 'Superadmin') {
+            if (adminBtn) adminBtn.style.display = 'inline-block';
+        }
+
+        // Set avatar letters
+        if (userAvatarLetters) {
+            const nameStr = profile.name || profile.email;
+            userAvatarLetters.innerText = nameStr.substring(0, 2).toUpperCase();
+        }
+
+    } catch (err) {
+        console.error(err);
+        alert(err.message);
+    }
+};
+
+window.saveUserProfile = async function (event) {
+    event.preventDefault();
+    const token = localStorage.getItem('aBest_session');
+    if (!token) return;
+
+    const name = document.getElementById('profile-name').value;
+    const phone = document.getElementById('profile-phone').value;
+    const company = document.getElementById('profile-company').value;
+    const saveBtn = document.getElementById('profile-save-btn');
+
+    if (saveBtn) saveBtn.innerText = 'Speichert...';
+
+    try {
+        const res = await fetch('/api/auth/me', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ name, phone, company })
+        });
+
+        if (res.ok) {
+            alert('Profil erfolgreich aktualisiert.');
+            loadUserProfile(); // refresh avatar
+        } else {
+            alert('Fehler beim Speichern.');
+        }
+    } catch (err) {
+        console.error(err);
+        alert('Netzwerkfehler beim Speichern.');
+    } finally {
+        if (saveBtn) saveBtn.innerText = 'Änderungen speichern';
+    }
+};
 
 // 7. OpenStreetMap Initialization (Leaflet + Nominatim Geocoding)
 const osmMaps = document.querySelectorAll('.osm-map');

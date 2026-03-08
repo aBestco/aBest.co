@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aBest.co | Mein Profil</title>
+    <!-- CSS Dependencies -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Main Stylistic Integration -->
+    <link rel="stylesheet" href="/index.css">
+
+    <style>
+        .profile-wrapper {
+            padding-top: 120px;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-container {
+            max-width: 600px;
+            width: 100%;
+            padding: 40px;
+        }
+
+        .profile-avatar-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+            backdrop-filter: blur(10px);
+        }
+
+        .profile-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+
+<body class="dark-mode">
+    <div class="dynamic-bg"></div>
+
+    <!-- Navigation (Loaded via app.js context or static fallback if needed, keeping minimal for profile) -->
+    <header class="app-header glass-nav">
+        <div class="header-container d-flex justify-content-between align-items-center">
+            <a href="/de/" class="logo-text fade-in"
+                style="font-size:1.5rem; letter-spacing:1px; color:var(--text-main); text-decoration:none;">aBest<span
+                    style="color:var(--primary-blue)">.co</span></a>
+
+            <!-- Desktop Nav -->
+            <nav class="desktop-nav d-none d-lg-flex fade-in" style="animation-delay: 0.1s;">
+                <a href="/de/" class="nav-link">Startseite</a>
+                <a href="/de/partnerschaften.html" class="nav-link">Partnerschaften</a>
+            </nav>
+
+            <div class="header-actions fade-in"
+                style="animation-delay: 0.2s; display: flex; align-items: center; gap: 1rem;">
+                <a href="/de/profil.html" class="nav-icon active" id="profile-btn" aria-label="Mein Profil"
+                    style="color:var(--text-main);">
+                    <!-- Filled User Icon -->
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2"
+                        fill="currentColor">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container profile-wrapper">
+        <div class="glass-panel profile-container fade-in-up">
+            <h2 class="text-center" style="font-weight:500; letter-spacing:1px;">Persönliches Profil</h2>
+            <div class="divider mt-2 mb-4"></div>
+
+            <div class="profile-avatar-container">
+                <div class="profile-avatar" id="profile-avatar-letters">US</div>
+            </div>
+
+            <form id="profile-form" onsubmit="saveUserProfile(event)">
+                <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <label
+                        style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--text-muted);">E-Mail
+                        Adresse (Login)</label>
+                    <input class="form-input" id="profile-email" type="email"
+                        style="width: 100%; opacity: 0.7; cursor: not-allowed;" readonly />
+                </div>
+
+                <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <label
+                        style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--text-muted);">Vollständiger
+                        Name</label>
+                    <input class="form-input" id="profile-name" type="text" style="width: 100%;"
+                        placeholder="Ihr Name" />
+                </div>
+
+                <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <label
+                        style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--text-muted);">Telefonnummer</label>
+                    <input class="form-input" id="profile-phone" type="tel" style="width: 100%;"
+                        placeholder="+49 123 456789" />
+                </div>
+
+                <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <label
+                        style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--text-muted);">Firma
+                        / Organisation</label>
+                    <input class="form-input" id="profile-company" type="text" style="width: 100%;"
+                        placeholder="Ihre Firma (optional)" />
+                </div>
+
+                <div class="profile-actions">
+                    <button type="submit" class="glass-button ripple" id="profile-save-btn" style="flex: 1;">Änderungen
+                        speichern</button>
+                    <!-- Shown only via JS if admin -->
+                    <a href="/admin/" class="glass-button ripple" id="profile-admin-btn"
+                        style="flex: 1; display: none; text-align: center; text-decoration: none;">Zum Dashboard</a>
+                </div>
+            </form>
+
+            <div style="margin-top: 30px; text-align: center;">
+                <a href="#" onclick="logout(); return false;"
+                    style="color: var(--primary-red); font-size: 0.9rem; text-decoration: none; border-bottom: 1px dotted var(--primary-red);">Abmelden</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="/app.js"></script>
+</body>
+
+</html>

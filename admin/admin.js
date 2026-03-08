@@ -1,4 +1,5 @@
 let inquiries = [];
+let adminUsers = [];
 let currentView = 'dashboard';
 let currentRole = 'superadmin';
 let currentInquiryId = null;
@@ -7,6 +8,7 @@ let currentInquiryId = null;
 document.addEventListener('DOMContentLoaded', () => {
     if (!checkToken()) return;
     loadData();
+    loadUsers();
     switchView('dashboard');
     updateRole();
 });
@@ -53,6 +55,25 @@ async function loadData() {
     }
     updateStats();
     if (currentView) switchView(currentView); // Refresh table
+}
+
+// Load users from API
+async function loadUsers() {
+    try {
+        const token = localStorage.getItem('aBest_session');
+        const response = await fetch('/api/users', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if (response.ok) {
+            adminUsers = await response.json();
+            if (currentView === 'users') renderTable();
+        }
+    } catch (error) {
+        console.error('Error loading users:', error);
+    }
 }
 
 function saveData() {
@@ -116,16 +137,17 @@ function renderTable() {
 
     if (currentView === 'users') {
         theadTr.innerHTML = `<th>Name</th><th>E-Mail</th><th>Rolle</th><th>Letzter Login</th><th>Status</th>`;
-        const mockUsers = [
-            { name: "Alan Best", email: "alan@abest.co", role: "Superadmin", status: "Aktiv", lastLogin: "Heute, 10:45" },
-            { name: "Michael Schmidt", email: "m.schmidt@abest.co", role: "Manager", status: "Aktiv", lastLogin: "Gestern, 15:30" },
-            { name: "Sarah Wagner", email: "s.wagner@abest.co", role: "Viewer", status: "Inaktiv", lastLogin: "Vor 5 Tagen" }
-        ];
-        tbody.innerHTML = mockUsers.map(u => `<tr>
+
+        if (adminUsers.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--text-muted);padding:30px;">Keine Benutzer gefunden.</td></tr>';
+            return;
+        }
+
+        tbody.innerHTML = adminUsers.map(u => `<tr>
             <td><strong>${u.name}</strong></td>
             <td><a href="mailto:${u.email}" style="color:var(--primary-blue)">${u.email}</a></td>
             <td>${u.role}</td>
-            <td>${u.lastLogin}</td>
+            <td>${u.lastLogin || '-'}</td>
             <td><span class="status-badge ${u.status === 'Aktiv' ? 'bg-erledigt' : 'bg-abgelehnt'}">${u.status}</span></td>
         </tr>`).join('');
         return;
