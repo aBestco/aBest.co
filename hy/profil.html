@@ -1867,12 +1867,12 @@ function mwRender(deposits) {
 function mwRenderCard(d, c, idx, isCompleted) {
   const cur = d.currency || 'EUR';
   const sym = cur === 'EUR' ? '€' : '$';
-  const statusKey = d.status === 'approved' ? 'active' : (isCompleted ? 'completed' : 'pending');
+  const statusKey = (d.status === 'approved' || d.status === 'active') ? 'active' : (isCompleted ? 'completed' : 'pending');
   const statusLabel = _mwT['status_' + statusKey];
   const optLabel = (d.option||'').toLowerCase() === 'a' ? _mwT.opt_a : _mwT.opt_b;
   const invId = (d.id || d.submittedAt || '').toString().slice(-8).toUpperCase();
   const projFinal = (d.option||'').toLowerCase() === 'a' ? (d.amount || 0) * Math.pow(1.05, d.years || 0) : (d.amount || 0) * (1 + 0.05 * (d.years || 0));
-  const isApproved = d.status === 'approved';
+  const isApproved = d.status === 'approved' || d.status === 'active';
 
   // Progress bar (only for approved)
   const progressHtml = isApproved ? `
@@ -1954,7 +1954,7 @@ function mwRenderHistory(deposits) {
       amount: d.amount || 0, cur, sign: 'neutral'
     });
     // Interest credits (simulate monthly for approved deposits)
-    if (d.status === 'approved') {
+    if (d.status === 'approved' || d.status === 'active') {
       const c = mwCalc(d);
       const monthsElapsed = Math.floor(c.monthsElapsed);
       if (monthsElapsed >= 1 && (d.option||'').toLowerCase() === 'b') {
