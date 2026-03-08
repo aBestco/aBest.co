@@ -554,7 +554,7 @@ function getAuthFormHTML(lang) {
             </div>
             
             <div id="g_id_onload"
-                 data-client_id="YOUR_GOOGLE_CLIENT_ID"
+                 data-client_id="660480949703-vmvtk8kqp6ueb1o8k0tui860mjmdm0n6.apps.googleusercontent.com"
                  data-context="signin"
                  data-ux_mode="popup"
                  data-callback="handleGoogleSignIn"

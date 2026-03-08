@@ -215,19 +215,43 @@ async function handleAuthApi(request, env) {
         if (method === 'POST' && url.pathname === '/api/auth/google') {
             const { credential } = await request.json();
 
-            // In a real scenario, we verify this JWT with Google's public keys.
-            // For now, if we get a credential, we assume valid and create a session.
             if (!credential) {
                 return new Response(JSON.stringify({ error: 'No credential provided' }), { status: 400, headers: corsHeaders });
+            }
+
+            // Verify JWT with Google's tokeninfo endpoint
+            const verifyResponse = await fetch(`https://oauth2.googleapis.com/tokeninfo?id_token=${credential}`);
+            if (!verifyResponse.ok) {
+                return new Response(JSON.stringify({ error: 'Invalid Google token' }), { status: 401, headers: corsHeaders });
+            }
+
+            const tokenInfo = await verifyResponse.json();
+
+            // Optional: verify the audience (client ID) matches yours to prevent cross-client token use
+            // const CLIENT_ID = '660480949703-vmvtk8kqp6ueb1o8k0tui860mjmdm0n6.apps.googleusercontent.com';
+            // if (tokenInfo.aud !== CLIENT_ID) {
+            //     return new Response(JSON.stringify({ error: 'Token audience mismatch' }), { status: 401, headers: corsHeaders });
+            // }
+
+            const userEmail = tokenInfo.email;
+            if (!userEmail) {
+                return new Response(JSON.stringify({ error: 'Email not found in token' }), { status: 400, headers: corsHeaders });
             }
 
             const sessionId = crypto.randomUUID();
             // Assuming KV bound as ABEST_AUTH
             if (env.ABEST_AUTH) {
-                await env.ABEST_AUTH.put(`session:${sessionId}`, "google_user", { expirationTtl: 86400 }); // 24h
+                await env.ABEST_AUTH.put(`session:${sessionId}`, userEmail, { expirationTtl: 86400 }); // 24h
+
+                // Also store user profile if needed
+                await env.ABEST_AUTH.put(`user_profile:${userEmail}`, JSON.stringify({
+                    name: tokenInfo.name,
+                    picture: tokenInfo.picture,
+                    email: tokenInfo.email
+                }));
             }
 
-            return new Response(JSON.stringify({ success: true, token: sessionId }), {
+            return new Response(JSON.stringify({ success: true, token: sessionId, user: { email: userEmail, name: tokenInfo.name } }), {
                 headers: { 'Content-Type': 'application/json', ...corsHeaders }
             });
         }
