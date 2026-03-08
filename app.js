@@ -871,44 +871,43 @@ window.sendMessage = async function () {
     }
 };
 
-// 7. OpenStreetMap Initialization (Leaflet + Nominatim Geocoding)
+// 7. OpenStreetMap Initialization (Leaflet + hardcoded coords or Nominatim Geocoding)
 const osmMaps = document.querySelectorAll('.osm-map');
+
+function initLeafletMap(mapDiv, lat, lon, zoom) {
+    zoom = zoom || 15;
+    const map = L.map(mapDiv, { zoomControl: false }).setView([lat, lon], zoom);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    L.marker([lat, lon]).addTo(map);
+    mapDiv.classList.add('loaded');
+    const skeleton = mapDiv.parentElement.querySelector('.map-skeleton');
+    if (skeleton) skeleton.style.display = 'none';
+    L.control.zoom({ position: 'bottomright' }).addTo(map);
+}
 
 if (osmMaps.length > 0 && typeof L !== 'undefined') {
     osmMaps.forEach(mapDiv => {
+        const lat = parseFloat(mapDiv.getAttribute('data-lat'));
+        const lon = parseFloat(mapDiv.getAttribute('data-lon'));
+        const zoom = parseInt(mapDiv.getAttribute('data-zoom')) || 15;
+
+        // If exact coordinates are provided, use them directly (no geocoding needed)
+        if (!isNaN(lat) && !isNaN(lon)) {
+            initLeafletMap(mapDiv, lat, lon, zoom);
+            return;
+        }
+
+        // Fallback: Nominatim geocoding from data-query
         const query = mapDiv.getAttribute('data-query');
         if (!query) return;
 
-        // Free OSM Nominatim API to get coordinates from the query string
         fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=1`)
             .then(response => response.json())
             .then(data => {
                 if (data && data.length > 0) {
-                    const lat = data[0].lat;
-                    const lon = data[0].lon;
-
-                    // Initialize Leaflet map
-                    const map = L.map(mapDiv, {
-                        zoomControl: false // optional, gives a cleaner look like the google map embed
-                    }).setView([lat, lon], 12);
-
-                    // Use standard OSM tiles
-                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    }).addTo(map);
-
-                    // Add a pin/marker
-                    L.marker([lat, lon]).addTo(map);
-
-                    // EXPERT: Remove skeleton and show map
-                    mapDiv.classList.add('loaded');
-                    const skeleton = mapDiv.parentElement.querySelector('.map-skeleton');
-                    if (skeleton) skeleton.style.display = 'none';
-
-                    // Optionally add zoom controls manually if you want them styled differently
-                    L.control.zoom({
-                        position: 'bottomright'
-                    }).addTo(map);
+                    initLeafletMap(mapDiv, data[0].lat, data[0].lon, zoom);
                 } else {
                     console.error('Nominatim found no results for:', query);
                     const skeleton = mapDiv.parentElement.querySelector('.map-skeleton');
