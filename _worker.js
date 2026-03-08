@@ -4,6 +4,11 @@ export default {
         const pathname = url.pathname;
         const host = url.hostname;
 
+        // --- 0. LOOP PROTECTION ---
+        if (request.headers.get('X-Internal-Fetch')) {
+            return env.ASSETS.fetch(request);
+        }
+
         // --- 1. LANGUAGE REDIRECTION FOR ROOT (/) ---
         if (pathname === '/') {
             const acceptLanguage = request.headers.get('Accept-Language') || 'en';
@@ -40,15 +45,20 @@ export default {
             const assetUrl = new URL(request.url);
             assetUrl.pathname = `/${targetLang}/${file}`;
 
-            let res = await env.ASSETS.fetch(new Request(assetUrl.toString(), request));
+            // Internal fetch with loop protection
+            const internalReq = new Request(assetUrl.toString(), request);
+            internalReq.headers.set('X-Internal-Fetch', 'true');
+            let res = await env.ASSETS.fetch(internalReq);
 
             // Fallback to English if localized file not found
             if (res.status === 404 && targetLang !== 'en') {
                 assetUrl.pathname = `/en/${file}`;
-                res = await env.ASSETS.fetch(new Request(assetUrl.toString(), request));
+                const innerReq = new Request(assetUrl.toString(), request);
+                innerReq.headers.set('X-Internal-Fetch', 'true');
+                res = await env.ASSETS.fetch(innerReq);
             }
 
-            // If still not ok, don't try to manipulate text
+            // If still not ok or a redirect (Clean URLs), just return as is
             if (!res.ok) return res;
 
             // SEO: Inject localized meta tags
@@ -73,7 +83,7 @@ export default {
                 headers: {
                     'Content-Type': 'text/html; charset=utf-8',
                     'X-Debug-Path': assetUrl.pathname,
-                    'X-Debug-Lang': targetLang
+                    'X-Debug-Source': 'Worker-SEO'
                 }
             });
         }
