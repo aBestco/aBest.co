@@ -763,9 +763,9 @@ async function handleRoleApi(request, env) {
                 const file  = formData.get('file');
 
                 if (file && file.size > 0) {
-                    const MAX_SIZE = 10 * 1024 * 1024; // 10 MB
+                    const MAX_SIZE = 50 * 1024 * 1024; // 50 MB
                     if (file.size > MAX_SIZE) {
-                        return new Response(JSON.stringify({ error: 'File too large (max 10 MB)' }), { status: 400, headers: corsHeaders });
+                        return new Response(JSON.stringify({ error: 'File too large (max 50 MB)' }), { status: 400, headers: corsHeaders });
                     }
                     // Store file in R2 if binding exists
                     if (env.ABEST_R2) {

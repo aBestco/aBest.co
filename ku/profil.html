@@ -131,22 +131,45 @@ body { background: #0a0a0f; }
 .role-current { display: inline-flex; align-items: center; gap: 8px; font-size: 0.8rem; color: var(--text-muted); background: rgba(0,122,255,0.08); border: 1px solid rgba(0,122,255,0.2); border-radius: 20px; padding: 4px 12px; margin-bottom: 16px; }
 .role-current strong { color: var(--primary-blue); }
 
-/* File upload area */
-.file-upload-wrap { margin-bottom: 16px; }
-.file-upload-wrap label { display: block; margin-bottom: 6px; font-size: 0.82rem; color: var(--text-muted); font-weight: 500; }
-.file-upload-area { border: 2px dashed rgba(255,255,255,0.14); border-radius: 12px; padding: 18px 16px; display: flex; align-items: center; gap: 14px; cursor: pointer; transition: all 0.22s; background: rgba(255,255,255,0.02); }
-.file-upload-area:hover { border-color: rgba(0,122,255,0.45); background: rgba(0,122,255,0.04); }
-.file-upload-area.has-file { border-color: rgba(0,122,255,0.5); background: rgba(0,122,255,0.07); }
-.file-upload-icon { font-size: 1.6rem; flex-shrink: 0; }
-.file-upload-text { flex: 1; min-width: 0; }
-.file-upload-text .fu-btn { display: inline-block; font-size: 0.8rem; font-weight: 600; color: var(--primary-blue); background: rgba(0,122,255,0.12); border: 1px solid rgba(0,122,255,0.3); border-radius: 8px; padding: 4px 12px; margin-bottom: 4px; }
-.file-upload-text .fu-name { font-size: 0.78rem; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
-.file-upload-text .fu-hint { font-size: 0.72rem; color: rgba(255,255,255,0.25); margin-top: 2px; }
-.file-input-hidden { display: none; }
 .role-submit-row { display: flex; align-items: center; gap: 14px; margin-top: 4px; }
 .role-submit-row .role-submit-msg { font-size: 0.82rem; color: #34c759; display: none; }
 .role-form-title { font-size: 1rem; font-weight: 700; color: var(--text-main); margin: 0 0 4px; }
 .role-form-sub { font-size: 0.78rem; color: var(--text-muted); margin: 0 0 18px; line-height: 1.5; }
+
+/* ── File upload area (idiot-proof, drag & drop) ─────── */
+.file-upload-wrap { margin-bottom: 16px; }
+.file-upload-wrap > label { display: block; margin-bottom: 6px; font-size: 0.82rem; color: var(--text-muted); font-weight: 500; }
+.file-upload-area {
+  border: 2px dashed rgba(255,255,255,0.14);
+  border-radius: 14px;
+  padding: 22px 18px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  transition: all 0.22s;
+  background: rgba(255,255,255,0.02);
+  position: relative;
+}
+.file-upload-area:hover,
+.file-upload-area.drag-over { border-color: rgba(0,122,255,0.55); background: rgba(0,122,255,0.06); }
+.file-upload-area.has-file { border-color: rgba(52,199,89,0.55); background: rgba(52,199,89,0.06); }
+.file-upload-area.upload-error { border-color: rgba(220,53,69,0.55); background: rgba(220,53,69,0.05); }
+.fu-icon { font-size: 2rem; flex-shrink: 0; transition: transform 0.2s; }
+.file-upload-area:hover .fu-icon { transform: translateY(-2px); }
+.fu-body { flex: 1; min-width: 0; }
+.fu-drag-text { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 4px; }
+.fu-btn-inline { display: inline-block; font-size: 0.78rem; font-weight: 600; color: var(--primary-blue); background: rgba(0,122,255,0.12); border: 1px solid rgba(0,122,255,0.3); border-radius: 8px; padding: 3px 11px; cursor: pointer; }
+.fu-name { font-size: 0.82rem; color: var(--text-main); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; display: none; }
+.fu-size { font-size: 0.72rem; color: var(--text-muted); margin-top: 2px; display: none; }
+.fu-hint { font-size: 0.7rem; color: rgba(255,255,255,0.22); margin-top: 5px; line-height: 1.4; }
+.fu-error-text { font-size: 0.78rem; color: #dc3545; margin-top: 4px; display: none; }
+.fu-remove { flex-shrink: 0; background: rgba(220,53,69,0.12); border: 1px solid rgba(220,53,69,0.25); color: #dc3545; border-radius: 8px; padding: 4px 10px; font-size: 0.75rem; cursor: pointer; display: none; font-family: inherit; }
+.fu-remove:hover { background: rgba(220,53,69,0.22); }
+/* Progress bar */
+.fu-progress-wrap { height: 4px; background: rgba(255,255,255,0.07); border-radius: 2px; margin-top: 8px; overflow: hidden; display: none; }
+.fu-progress-bar { height: 100%; background: linear-gradient(90deg, var(--primary-blue), #00c896); border-radius: 2px; width: 0%; transition: width 0.3s; }
+.file-input-hidden { display: none; }
 </style>
 </head>
 <body class="dark-mode">
@@ -337,133 +360,23 @@ body { background: #0a0a0f; }
       <label>Danasîn / Konsept</label>
       <textarea id="r-founder-desc" placeholder="Ramana an projeya xwe bi hûrgulî rave bike ..." rows="6" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:12px 14px;color:var(--text-main);font-size:0.88rem;font-family:inherit;outline:none;box-sizing:border-box;resize:vertical;line-height:1.6;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(0,122,255,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.12)'"></textarea>
     </div>
-    <div class="file-upload-wrap">
-      <label>Belge barkirin</label>
-      <div class="file-upload-area" id="fua-founder" onclick="document.getElementById('fi-founder').click()">
-        <span class="file-upload-icon">📎</span>
-        <div class="file-upload-text">
-          <span class="fu-btn">Pelê hilbijêre</span>
-          <div class="fu-name" id="fn-founder">Pel nehat hilbijartin</div>
-          <div class="fu-hint">PDF, DOCX, PPTX, JPG · maks. 10 MB · bijarte</div>
+                        <div class="file-upload-wrap">
+      <div class="file-upload-area" id="fua-explorer"
+           data-err-size="Pel pir mezin e (maks. 50 MB)"
+           data-err-type="Celebê pelê destûr nîne">
+        <span class="fu-icon">📎</span>
+        <div class="fu-body">
+          <div class="fu-drag-text">Pelê vir bixe an bikirtîne ji bo hilbijartinê <span class="fu-btn-inline">Pelê hilbijêre</span></div>
+          <div class="fu-name"></div>
+          <div class="fu-size"></div>
+          <div class="fu-hint">PDF, DOCX, PPTX, XLSX, JPG, PNG, ZIP, MP4 · heta 50 MB · bijarte</div>
+          <div class="fu-error-text"></div>
+          <div class="fu-progress-wrap" id="fp-explorer"><div class="fu-progress-bar" id="fpb-explorer"></div></div>
         </div>
+        <button class="fu-remove" onclick="fuRemove('explorer')">✕</button>
       </div>
-      <input class="file-input-hidden" type="file" id="fi-founder" accept=".pdf,.doc,.docx,.ppt,.pptx,.jpg,.jpeg,.png,.xls,.xlsx" onchange="onFileChange('founder', this)"/>
-    </div>
-    <div class="role-submit-row">
-      <button class="db-btn db-btn-primary" style="max-width:200px;" onclick="submitRoleForm('founder')">Bişîne</button>
-      <span class="role-submit-msg" id="rsm-founder">✓ Bi serfirazî şand</span>
-    </div>
-    <div id="role-err-founder" style="font-size:0.78rem;color:#dc3545;margin-top:8px;display:none;"></div>
-  </div>
-  <div class="role-form" id="rf-investor">
-    <p class="role-form-title">💰 Investor</p>
-    <p class="role-form-sub">For users who want to actively invest in projects and businesses.</p>
-    <div class="db-field">
-      <label>Sernavê Ramana / Projeya</label>
-      <input id="r-investor-title" type="text" placeholder="mînak: Kompleksa niştecîhê ya domdar li Berlînê"/>
-    </div>
-    <div class="db-field">
-      <label>Danasîn / Konsept</label>
-      <textarea id="r-investor-desc" placeholder="Ramana an projeya xwe bi hûrgulî rave bike ..." rows="6" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:12px 14px;color:var(--text-main);font-size:0.88rem;font-family:inherit;outline:none;box-sizing:border-box;resize:vertical;line-height:1.6;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(0,122,255,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.12)'"></textarea>
-    </div>
-    <div class="file-upload-wrap">
-      <label>Belge barkirin</label>
-      <div class="file-upload-area" id="fua-investor" onclick="document.getElementById('fi-investor').click()">
-        <span class="file-upload-icon">📎</span>
-        <div class="file-upload-text">
-          <span class="fu-btn">Pelê hilbijêre</span>
-          <div class="fu-name" id="fn-investor">Pel nehat hilbijartin</div>
-          <div class="fu-hint">PDF, DOCX, PPTX, JPG · maks. 10 MB · bijarte</div>
-        </div>
-      </div>
-      <input class="file-input-hidden" type="file" id="fi-investor" accept=".pdf,.doc,.docx,.ppt,.pptx,.jpg,.jpeg,.png,.xls,.xlsx" onchange="onFileChange('investor', this)"/>
-    </div>
-    <div class="role-submit-row">
-      <button class="db-btn db-btn-primary" style="max-width:200px;" onclick="submitRoleForm('investor')">Bişîne</button>
-      <span class="role-submit-msg" id="rsm-investor">✓ Bi serfirazî şand</span>
-    </div>
-    <div id="role-err-investor" style="font-size:0.78rem;color:#dc3545;margin-top:8px;display:none;"></div>
-  </div>
-  <div class="role-form" id="rf-capital">
-    <p class="role-form-title">🏦 Capital Partner</p>
-    <p class="role-form-sub">For individuals or institutions who want to provide capital without daily operations.</p>
-    <div class="db-field">
-      <label>Sernavê Ramana / Projeya</label>
-      <input id="r-capital-title" type="text" placeholder="mînak: Kompleksa niştecîhê ya domdar li Berlînê"/>
-    </div>
-    <div class="db-field">
-      <label>Danasîn / Konsept</label>
-      <textarea id="r-capital-desc" placeholder="Ramana an projeya xwe bi hûrgulî rave bike ..." rows="6" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:12px 14px;color:var(--text-main);font-size:0.88rem;font-family:inherit;outline:none;box-sizing:border-box;resize:vertical;line-height:1.6;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(0,122,255,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.12)'"></textarea>
-    </div>
-    <div class="file-upload-wrap">
-      <label>Belge barkirin</label>
-      <div class="file-upload-area" id="fua-capital" onclick="document.getElementById('fi-capital').click()">
-        <span class="file-upload-icon">📎</span>
-        <div class="file-upload-text">
-          <span class="fu-btn">Pelê hilbijêre</span>
-          <div class="fu-name" id="fn-capital">Pel nehat hilbijartin</div>
-          <div class="fu-hint">PDF, DOCX, PPTX, JPG · maks. 10 MB · bijarte</div>
-        </div>
-      </div>
-      <input class="file-input-hidden" type="file" id="fi-capital" accept=".pdf,.doc,.docx,.ppt,.pptx,.jpg,.jpeg,.png,.xls,.xlsx" onchange="onFileChange('capital', this)"/>
-    </div>
-    <div class="role-submit-row">
-      <button class="db-btn db-btn-primary" style="max-width:200px;" onclick="submitRoleForm('capital')">Bişîne</button>
-      <span class="role-submit-msg" id="rsm-capital">✓ Bi serfirazî şand</span>
-    </div>
-    <div id="role-err-capital" style="font-size:0.78rem;color:#dc3545;margin-top:8px;display:none;"></div>
-  </div>
-  <div class="role-form" id="rf-seller">
-    <p class="role-form-title">🏠 Seller</p>
-    <p class="role-form-sub">For users who want to sell land, real estate, or an existing business.</p>
-    <div class="db-field">
-      <label>Sernavê Ramana / Projeya</label>
-      <input id="r-seller-title" type="text" placeholder="mînak: Kompleksa niştecîhê ya domdar li Berlînê"/>
-    </div>
-    <div class="db-field">
-      <label>Danasîn / Konsept</label>
-      <textarea id="r-seller-desc" placeholder="Ramana an projeya xwe bi hûrgulî rave bike ..." rows="6" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:12px 14px;color:var(--text-main);font-size:0.88rem;font-family:inherit;outline:none;box-sizing:border-box;resize:vertical;line-height:1.6;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(0,122,255,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.12)'"></textarea>
-    </div>
-    <div class="file-upload-wrap">
-      <label>Belge barkirin</label>
-      <div class="file-upload-area" id="fua-seller" onclick="document.getElementById('fi-seller').click()">
-        <span class="file-upload-icon">📎</span>
-        <div class="file-upload-text">
-          <span class="fu-btn">Pelê hilbijêre</span>
-          <div class="fu-name" id="fn-seller">Pel nehat hilbijartin</div>
-          <div class="fu-hint">PDF, DOCX, PPTX, JPG · maks. 10 MB · bijarte</div>
-        </div>
-      </div>
-      <input class="file-input-hidden" type="file" id="fi-seller" accept=".pdf,.doc,.docx,.ppt,.pptx,.jpg,.jpeg,.png,.xls,.xlsx" onchange="onFileChange('seller', this)"/>
-    </div>
-    <div class="role-submit-row">
-      <button class="db-btn db-btn-primary" style="max-width:200px;" onclick="submitRoleForm('seller')">Bişîne</button>
-      <span class="role-submit-msg" id="rsm-seller">✓ Bi serfirazî şand</span>
-    </div>
-    <div id="role-err-seller" style="font-size:0.78rem;color:#dc3545;margin-top:8px;display:none;"></div>
-  </div>
-  <div class="role-form" id="rf-explorer">
-    <p class="role-form-title">🔍 Explorer</p>
-    <p class="role-form-sub">For users who want to explore projects and investment opportunities.</p>
-    <div class="db-field">
-      <label>Sernavê Ramana / Projeya</label>
-      <input id="r-explorer-title" type="text" placeholder="mînak: Kompleksa niştecîhê ya domdar li Berlînê"/>
-    </div>
-    <div class="db-field">
-      <label>Danasîn / Konsept</label>
-      <textarea id="r-explorer-desc" placeholder="Ramana an projeya xwe bi hûrgulî rave bike ..." rows="6" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:12px 14px;color:var(--text-main);font-size:0.88rem;font-family:inherit;outline:none;box-sizing:border-box;resize:vertical;line-height:1.6;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(0,122,255,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.12)'"></textarea>
-    </div>
-    <div class="file-upload-wrap">
-      <label>Belge barkirin</label>
-      <div class="file-upload-area" id="fua-explorer" onclick="document.getElementById('fi-explorer').click()">
-        <span class="file-upload-icon">📎</span>
-        <div class="file-upload-text">
-          <span class="fu-btn">Pelê hilbijêre</span>
-          <div class="fu-name" id="fn-explorer">Pel nehat hilbijartin</div>
-          <div class="fu-hint">PDF, DOCX, PPTX, JPG · maks. 10 MB · bijarte</div>
-        </div>
-      </div>
-      <input class="file-input-hidden" type="file" id="fi-explorer" accept=".pdf,.doc,.docx,.ppt,.pptx,.jpg,.jpeg,.png,.xls,.xlsx" onchange="onFileChange('explorer', this)"/>
+      <input class="file-input-hidden" type="file" id="fi-explorer"
+             accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.jpg,.jpeg,.png,.webp,.zip,.mp4,.mov,.txt"/>
     </div>
     <div class="role-submit-row">
       <button class="db-btn db-btn-primary" style="max-width:200px;" onclick="submitRoleForm('explorer')">Bişîne</button>
