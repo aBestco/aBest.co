@@ -765,8 +765,14 @@ body { background: #0a0a0f; }
     <div class="role-card" id="rc-seller" onclick="selectRole('seller')">
       <span class="rc-icon">🏠</span>
       <h3 class="rc-title">Seller</h3>
-      <p class="rc-tag">Sell Property or Business</p>
-      <p class="rc-desc">For users who want to sell land, real estate, or an existing business.</p>
+      <p class="rc-tag">संपत्ति बेचें</p>
+      <p class="rc-desc">उन उपयोगकर्ताओं के लिए जो भूमि या अचल संपत्ति बेचना चाहते हैं।</p>
+    </div>
+    <div class="role-card" id="rc-unternehmen" onclick="selectRole('unternehmen')">
+      <span class="rc-icon">🏢</span>
+      <h3 class="rc-title">व्यापार</h3>
+      <p class="rc-tag">अपना व्यापार बेचें</p>
+      <p class="rc-desc">उन उपयोगकर्ताओं के लिए जो अपना व्यापार बेचना या साझेदार/निवेशक खोजना चाहते हैं।</p>
     </div>
     <div class="role-card" id="rc-explorer" onclick="selectRole('explorer')">
       <span class="rc-icon">🔍</span>
@@ -1047,8 +1053,6 @@ body { background: #0a0a0f; }
           <div class="sl-main-icon">🏘️</div>
           <h4>रियल एस्टेट</h4><p>जमीन, घर, अपार्टमेंट &amp; व्यावसायिक</p>
         </div>
-        <div class="sl-main-card" onclick="slSelectMain('business')">
-          <div class="sl-main-icon">🏢</div>
           <h4>व्यापार</h4><p>कंपनी बेचें, साझेदार या निवेशक खोजें</p>
         </div>
       </div>
@@ -1085,6 +1089,34 @@ body { background: #0a0a0f; }
         <span class="sl-submit-msg" id="rsm-seller">✓ सफलतापूर्वक सबमिट</span>
       </div>
       <div id="role-err-seller" style="font-size:0.78rem;color:#dc3545;margin-top:8px;display:none;"></div>
+    </div>
+  </div>
+  <div class="role-form" id="rf-unternehmen">
+    <p class="role-form-title">🏢 व्यापार</p>
+    <!-- Step progress: 2 steps -->
+    <div class="sl-stepper">
+      <div class="sl-step-item sl-active" id="ub-dot-1"><div class="sl-dot">1</div><span>प्रकार</span></div>
+      <div class="sl-step-sep"></div>
+      <div class="sl-step-item" id="ub-dot-2"><div class="sl-dot">2</div><span>फ़ॉर्म</span></div>
+    </div>
+    <!-- STEP 1: Business subcategory -->
+    <div id="ub-s1">
+      <p class="sl-step-label">आप क्या प्रस्तावित करना चाहते हैं?</p>
+      <div class="sl-sub-grid" style="grid-template-columns:1fr 1fr 1fr;">
+        <div class="sl-sub-card" onclick="ubSelectSub('sellbusiness')">🤝 पूरा व्यापार बेचें</div>
+        <div class="sl-sub-card" onclick="ubSelectSub('partnerinvestor')">💼 साझेदार / निवेशक</div>
+        <div class="sl-sub-card" onclick="ubSelectSub('otherbusiness')">📋 अन्य अवसर</div>
+      </div>
+    </div>
+    <!-- STEP 2: Dynamic form -->
+    <div id="ub-s2" style="display:none">
+      <button class="sl-back-btn" onclick="ubGoBack()">← वापस</button>
+      <div id="ub-form-inner"></div>
+      <div class="sl-submit-row">
+        <button class="db-btn db-btn-primary" style="max-width:230px;" id="ub-submit-btn" onclick="submitUnternehmen()">लिस्टिंग सबमिट करें</button>
+        <span class="sl-submit-msg" id="rsm-unternehmen">✓ सफलतापूर्वक सबमिट किया</span>
+      </div>
+      <div id="role-err-unternehmen" style="font-size:0.78rem;color:#dc3545;margin-top:8px;display:none;"></div>
     </div>
   </div>
     <div class="role-form" id="rf-explorer">
@@ -1482,7 +1514,7 @@ function selectRole(key, _noPush) {
   const form = document.getElementById('rf-' + key);
   if (form) { form.classList.add('active'); setTimeout(()=>form.scrollIntoView({behavior:'smooth',block:'nearest'}),50); }
   if (!_noPush) {
-    const _roleSlugMap = {founder:'founder',investor:'investor',capital:'capital-partner',seller:'seller',explorer:'explorer'};
+    const _roleSlugMap = {founder:'founder',investor:'investor',capital:'capital-partner',seller:'seller',unternehmen:'unternehmen',explorer:'explorer'};
     const _rSlug = _roleSlugMap[key] || key;
     const _base = (window.location.pathname.match(/^(\/[a-z]{2}\/profil[e]?|\/profil[e]?)/) || [])[1] || '/profile';
     history.pushState({tab:'role', role:key}, '', _base + '/my-role/' + _rSlug);
@@ -2236,6 +2268,12 @@ const _slT = {
 };
 
 // ═══════════════════════════════════════════════════════════════════════
+const _ubT = {
+  err_title: 'कृपया एक शीर्षक दर्ज करें।',
+  err_loc: 'कृपया एक स्थान दर्ज करें।',
+  err_desc: 'कृपया अपना प्रस्ताव वर्णन करें।',
+  submit: 'लिस्टिंग सबमिट करें'
+};
 // ── Seller Step System ──────────────────────────────────────────────────
 // ═══════════════════════════════════════════════════════════════════════
 var _slMain = null, _slSub = null;
@@ -2614,6 +2652,99 @@ async function submitSeller() {
 // ────────────────────────────────────────────────────────────────────────────
 
 
+
+// ── Unternehmen Step System ──────────────────────────────────────────────────
+var _ubSub = null;
+
+function ubStepProgress(active) {
+  [1,2].forEach(function(n) {
+    var el = document.getElementById('ub-dot-' + n);
+    if (!el) return;
+    el.classList.remove('sl-active','sl-done');
+    if (n < active) el.classList.add('sl-done');
+    else if (n === active) el.classList.add('sl-active');
+  });
+}
+
+function ubSelectSub(sub) {
+  _ubSub = sub;
+  // Destroy any existing map so it re-initialises cleanly
+  if (_slMap) { try { _slMap.remove(); } catch(e) {} _slMap = null; _slMarker = null; }
+  _slImgFiles = []; _slDocFiles = [];
+  document.getElementById('ub-s1').style.display = 'none';
+  document.getElementById('ub-s2').style.display = 'block';
+  document.getElementById('ub-form-inner').innerHTML = slBuildForm(sub);
+  slAttachUploads();
+  slInitMap();
+  ubStepProgress(2);
+  setTimeout(function() {
+    document.getElementById('ub-s2').scrollIntoView({behavior:'smooth',block:'start'});
+  }, 100);
+}
+
+function ubGoBack() {
+  if (_slMap) { try { _slMap.remove(); } catch(e) {} _slMap = null; _slMarker = null; }
+  document.getElementById('ub-s2').style.display = 'none';
+  document.getElementById('ub-s1').style.display = 'block';
+  ubStepProgress(1);
+  document.getElementById('rf-unternehmen').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+async function submitUnternehmen() {
+  var t = _ubT;
+  var errEl = document.getElementById('role-err-unternehmen');
+  var msgEl = document.getElementById('rsm-unternehmen');
+  var btn   = document.getElementById('ub-submit-btn');
+  var token = localStorage.getItem('aBest_session');
+  if (!token) return;
+  if (errEl) errEl.style.display = 'none';
+  var titleEl = document.getElementById('sl-title');
+  var locEl   = document.getElementById('sl-location');
+  var descEl  = document.getElementById('sl-desc');
+  if (!titleEl || !titleEl.value.trim()) {
+    if (errEl) { errEl.textContent = t.err_title; errEl.style.display='block'; } return;
+  }
+  if (!locEl || !locEl.value.trim()) {
+    if (errEl) { errEl.textContent = t.err_loc; errEl.style.display='block'; } return;
+  }
+  if (!descEl || !descEl.value.trim()) {
+    if (errEl) { errEl.textContent = t.err_desc; errEl.style.display='block'; } return;
+  }
+  if (btn) { btn.disabled=true; btn.style.opacity='0.6'; }
+  var formFields = {};
+  document.querySelectorAll('#ub-form-inner input, #ub-form-inner select, #ub-form-inner textarea').forEach(function(el) {
+    if (el.id) formFields[el.id.replace('sl-','')] = el.value;
+  });
+  var payload = {
+    subcategory: _ubSub, category: 'business',
+    lat: _slMarker ? _slMarker.getLatLng().lat : null,
+    lng: _slMarker ? _slMarker.getLatLng().lng : null,
+    fields: formFields,
+    images: _slImgFiles.map(function(f){return f.name;}),
+    docs:   _slDocFiles.map(function(f){return f.name;})
+  };
+  try {
+    var r = await fetch('/api/listings', {
+      method:'POST',
+      headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},
+      body:JSON.stringify(payload)
+    });
+    if (r.ok) {
+      if (msgEl) { msgEl.style.display='inline-block'; setTimeout(function(){msgEl.style.display='none';},3000); }
+      document.getElementById('ub-s2').style.display='none';
+      document.getElementById('ub-s1').style.display='block';
+      ubStepProgress(1); _ubSub=null;
+    } else {
+      var d = await r.json().catch(function(){return {};});
+      if (errEl) { errEl.textContent = d.error || 'Error'; errEl.style.display='block'; }
+    }
+  } catch(ex) {
+    if (errEl) { errEl.textContent = 'Network error'; errEl.style.display='block'; }
+  }
+  if (btn) { btn.disabled=false; btn.style.opacity=''; }
+}
+// ── End Unternehmen ──────────────────────────────────────────────────────────
+
 // ── URL Routing: Init on load + popstate ─────────────────────────────────────
 document.addEventListener('DOMContentLoaded', function() {
   var _path = window.location.pathname;
@@ -2626,7 +2757,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var _roleSlug = _segs[1] || '';
   var _walletSlug = _segs[2] || '';
   var _tabMap = {'':'profil','messages':'messages','team':'team','my-role':'role','settings':'settings'};
-  var _roleMap = {'founder':'founder','investor':'investor','capital-partner':'capital','seller':'seller','explorer':'explorer'};
+  var _roleMap = {'founder':'founder','investor':'investor','capital-partner':'capital','seller':'seller','unternehmen':'unternehmen','explorer':'explorer'};
   var _wTabMap = {'active':'active','completed':'completed','history':'history','new':'new'};
   var _tabName = _tabMap[_tabSlug];
   if (_tabName === undefined) _tabName = 'profil';
@@ -2638,7 +2769,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (_roleName === 'capital' && _wTabName) window._pendingMwTab = _wTabName;
   }
   var _slugFwd = {profil:'',messages:'messages',team:'team',role:'my-role',settings:'settings'};
-  var _roleSF = {founder:'founder',investor:'investor',capital:'capital-partner',seller:'seller',explorer:'explorer'};
+  var _roleSF = {founder:'founder',investor:'investor',capital:'capital-partner',seller:'seller',unternehmen:'unternehmen',explorer:'explorer'};
   var _canonical = _base;
   if (_slugFwd[_tabName]) _canonical += '/' + _slugFwd[_tabName];
   if (_roleName && _roleSF[_roleName]) _canonical += '/' + _roleSF[_roleName];
