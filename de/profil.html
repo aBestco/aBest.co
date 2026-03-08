@@ -824,18 +824,6 @@ body { background: #0a0a0f; }
     </div>
 
     <!-- ══════════════════ CONFIRMATION MODAL ══════════════════ -->
-    <div id="cp-confirm-overlay" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.82); z-index:99999; padding:20px; align-items:center; justify-content:center;">
-      <div class="cp-confirm-box">
-        <h3>Einzahlung bestätigen</h3>
-        <p class="cp-confirm-sub">Bitte überprüfen Sie Ihre Einzahlungsdaten vor dem Einreichen.</p>
-        <div class="cp-confirm-table" id="cp-confirm-details"></div>
-        <div class="cp-confirm-actions">
-          <button class="cp-btn-sec" onclick="cpCancelConfirm()">← Zurück</button>
-          <button class="cp-btn-pri" id="cp-confirm-btn" onclick="cpSubmit()">Bestätigen & Einreichen</button>
-        </div>
-      </div>
-    </div>
-
     <!-- ══════════════════════ DASHBOARD (post-approval) ══════════════════════ -->
     <div id="cp-dashboard" style="display:none;">
 
@@ -1813,5 +1801,17 @@ document.addEventListener('DOMContentLoaded',()=>{
 </script>
 
 <script src="/app.js"></script>
+
+<div id="cp-confirm-overlay" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.82); z-index:99999; padding:20px; align-items:center; justify-content:center;">
+      <div class="cp-confirm-box">
+        <h3>Einzahlung bestätigen</h3>
+        <p class="cp-confirm-sub">Bitte überprüfen Sie Ihre Einzahlungsdaten vor dem Einreichen.</p>
+        <div class="cp-confirm-table" id="cp-confirm-details"></div>
+        <div class="cp-confirm-actions">
+          <button class="cp-btn-sec" onclick="cpCancelConfirm()">← Zurück</button>
+          <button class="cp-btn-pri" id="cp-confirm-btn" onclick="cpSubmit()">Bestätigen & Einreichen</button>
+        </div>
+      </div>
+    </div>
 </body>
 </html>
