@@ -821,3 +821,39 @@ async function handleRoleApi(request, env) {
         });
     }
 }
+
+
+// ── Capital deposit append logic ──────────────────────────────────────────────
+async function handleCapitalDeposit(userEmail, formData, env) {
+    const appendMode = formData.get('append_deposit') === 'true';
+    const descStr = formData.get('description') || '{}';
+    let newDeposit;
+    try { newDeposit = JSON.parse(descStr); } catch(e) { newDeposit = {}; }
+    newDeposit.id = Date.now().toString();
+    newDeposit.status = 'pending';
+
+    const key = `role_data:${userEmail}`;
+    const existing = await env.ABEST_AUTH.get(key);
+    let roleData = existing ? JSON.parse(existing) : { role: 'capital', deposits: [] };
+
+    if (!roleData.deposits) roleData.deposits = [];
+    if (appendMode) {
+        roleData.deposits.push(newDeposit);
+    } else {
+        // First time submit
+        roleData = { role: 'capital', deposits: [newDeposit] };
+    }
+    roleData.role = 'capital';
+    await env.ABEST_AUTH.put(key, JSON.stringify(roleData));
+
+    // Also update profile interestRole
+    const profileStr = await env.ABEST_AUTH.get(`profile:${userEmail}`);
+    if (profileStr) {
+        const profile = JSON.parse(profileStr);
+        profile.interestRole = 'capital';
+        await env.ABEST_AUTH.put(`profile:${userEmail}`, JSON.stringify(profile));
+    }
+    return new Response(JSON.stringify({ ok: true }), {
+        headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
+    });
+}

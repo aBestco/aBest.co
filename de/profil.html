@@ -304,6 +304,160 @@ body { background: #0a0a0f; }
 .cp-hist-amt.neg { color:#ff9500; }
 .cp-hist-amt.neu { color:var(--primary-blue); }
 .cp-hist-empty { font-size:0.82rem; color:var(--text-muted); text-align:center; padding:20px 0; }
+
+/* ══════════════════════════════════════════════════════════════
+   CAPITAL PARTNER v2 – INVESTMENT SYSTEM
+   ══════════════════════════════════════════════════════════════ */
+#rf-capital { background:none; border:none; padding:0; }
+.cp-section { margin-bottom:20px; }
+.cp-label { display:block; font-size:0.76rem; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:9px; }
+/* Currency */
+.cp-currency-btns { display:flex; gap:10px; }
+.cp-cur-btn { flex:1; padding:12px 0; background:rgba(255,255,255,0.04); border:1.5px solid rgba(255,255,255,0.1); border-radius:10px; color:var(--text-muted); font-size:0.88rem; font-weight:600; cursor:pointer; transition:all 0.2s; font-family:inherit; }
+.cp-cur-btn:hover { border-color:rgba(0,122,255,0.4); color:var(--text-main); }
+.cp-cur-btn.cp-cur-active { background:rgba(0,122,255,0.13); border-color:rgba(0,122,255,0.55); color:var(--primary-blue); }
+/* Stepper */
+.cp-stepper { display:flex; align-items:stretch; gap:10px; }
+.cp-step-btn { width:44px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:10px; color:var(--text-main); font-size:1.4rem; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:all 0.15s; font-family:inherit; user-select:none; min-height:46px; }
+.cp-step-btn:hover { background:rgba(0,122,255,0.15); border-color:rgba(0,122,255,0.4); color:var(--primary-blue); }
+.cp-step-btn:active { transform:scale(0.92); }
+.cp-stepper-input { flex:1; display:flex; align-items:center; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); border-radius:10px; transition:border-color 0.2s; overflow:hidden; }
+.cp-stepper-input:focus-within { border-color:rgba(0,122,255,0.5); }
+.cp-stepper-sym { font-size:1rem; font-weight:700; color:var(--primary-blue); padding:0 2px 0 14px; flex-shrink:0; }
+.cp-stepper-input input { flex:1; background:none; border:none; outline:none; color:var(--text-main); font-size:1.05rem; font-weight:600; padding:12px 14px; font-family:inherit; width:100%; min-width:0; }
+.cp-stepper-input input::-webkit-inner-spin-button,
+.cp-stepper-input input::-webkit-outer-spin-button { -webkit-appearance:none; }
+.cp-stepper-unit { font-size:0.82rem; color:var(--text-muted); padding:0 14px 0 0; white-space:nowrap; }
+.cp-hint { font-size:0.72rem; color:rgba(255,255,255,0.3); margin:6px 0 0; }
+/* Rate bar */
+.cp-rate-bar { display:flex; align-items:center; gap:14px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:13px 17px; }
+.cp-rate-track { flex:1; height:8px; background:rgba(255,255,255,0.07); border-radius:4px; overflow:hidden; }
+.cp-rate-fill { height:100%; width:0; background:linear-gradient(90deg,#007aff,#00c896); border-radius:4px; animation:cpRateGrow 1.2s cubic-bezier(.34,1.56,.64,1) forwards .4s; }
+@keyframes cpRateGrow { to { width:47%; } }
+.cp-rate-label { font-size:1rem; font-weight:700; color:#34c759; white-space:nowrap; }
+/* Option cards */
+.cp-opt-card { display:flex; align-items:flex-start; gap:13px; padding:15px 17px; border:1.5px solid rgba(255,255,255,0.09); border-radius:13px; margin-bottom:10px; cursor:pointer; transition:all 0.2s; }
+.cp-opt-card:hover { border-color:rgba(0,122,255,0.3); background:rgba(0,122,255,0.03); }
+.cp-opt-card.cp-opt-active { border-color:rgba(0,122,255,0.55); background:rgba(0,122,255,0.07); }
+.cp-radio { width:18px; height:18px; border-radius:50%; border:2px solid rgba(255,255,255,0.25); flex-shrink:0; margin-top:2px; display:flex; align-items:center; justify-content:center; transition:all 0.2s; }
+.cp-opt-card.cp-opt-active .cp-radio { border-color:var(--primary-blue); background:var(--primary-blue); }
+.cp-opt-card.cp-opt-active .cp-radio::after { content:''; width:6px; height:6px; border-radius:50%; background:#fff; }
+.cp-opt-body h4 { font-size:0.88rem; font-weight:700; color:var(--text-main); margin:0 0 3px; }
+.cp-opt-body p { font-size:0.75rem; color:var(--text-muted); margin:0 0 6px; line-height:1.5; }
+.cp-opt-note { font-size:0.7rem !important; color:rgba(52,199,89,0.7) !important; margin:0 !important; }
+.cp-freq-sel { display:none; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:8px; padding:8px 12px; color:var(--text-main); font-size:0.82rem; font-family:inherit; outline:none; cursor:pointer; width:100%; margin-top:4px; }
+.cp-freq-sel option { background:#1a1a2e; }
+.cp-opt-card.cp-opt-active .cp-freq-sel { display:block; }
+/* Live Overview */
+.cp-overview { background:linear-gradient(135deg,rgba(0,122,255,0.06),rgba(0,200,150,0.04)); border:1px solid rgba(0,122,255,0.18); border-radius:15px; padding:18px; margin-bottom:18px; }
+.cp-overview h4 { font-size:0.88rem; font-weight:700; color:var(--text-main); margin:0 0 14px; padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.07); }
+.cp-ov-row { display:flex; justify-content:space-between; align-items:center; padding:6px 0; border-bottom:1px solid rgba(255,255,255,0.04); }
+.cp-ov-row:last-child { border-bottom:none; }
+.cp-ov-row span { font-size:0.77rem; color:var(--text-muted); }
+.cp-ov-row strong { font-size:0.85rem; font-weight:700; color:var(--text-main); }
+.cp-ov-sep { height:1px; background:rgba(255,255,255,0.08); margin:7px 0; }
+.cp-highlight { color:#34c759 !important; }
+.cp-highlight-blue { color:var(--primary-blue) !important; }
+/* Trust */
+.cp-trust-row { display:flex; justify-content:center; gap:16px; flex-wrap:wrap; margin:16px 0 14px; }
+.cp-trust-badge { font-size:0.69rem; color:rgba(255,255,255,0.28); }
+/* Submit button */
+.cp-submit-btn { width:100%; padding:15px; background:linear-gradient(135deg,rgba(0,122,255,0.22),rgba(0,200,150,0.12)); border:1px solid rgba(0,122,255,0.4); color:#fff; border-radius:13px; font-size:0.95rem; font-weight:700; cursor:pointer; font-family:inherit; transition:all 0.22s; }
+.cp-submit-btn:hover:not(:disabled) { background:linear-gradient(135deg,rgba(0,122,255,0.32),rgba(0,200,150,0.22)); transform:translateY(-1px); box-shadow:0 4px 20px rgba(0,122,255,0.2); }
+.cp-submit-btn:disabled { opacity:0.5; cursor:not-allowed; }
+/* Success after submit */
+.cp-deposit-success { display:none; background:rgba(52,199,89,0.08); border:1px solid rgba(52,199,89,0.25); border-radius:12px; padding:16px 18px; margin-top:14px; }
+.cp-deposit-success.show { display:flex; gap:14px; align-items:flex-start; }
+.cp-deposit-success .ds-icon { font-size:1.4rem; flex-shrink:0; }
+.cp-deposit-success .ds-title { font-size:0.88rem; font-weight:700; color:#34c759; margin:0 0 3px; }
+.cp-deposit-success .ds-sub { font-size:0.75rem; color:var(--text-muted); margin:0 0 10px; }
+.cp-add-another-btn { padding:9px 16px; background:rgba(0,122,255,0.12); border:1px solid rgba(0,122,255,0.35); border-radius:9px; color:var(--primary-blue); font-size:0.83rem; font-weight:600; cursor:pointer; font-family:inherit; transition:all 0.2s; }
+.cp-add-another-btn:hover { background:rgba(0,122,255,0.22); }
+/* Confirmation modal – FIXED z-index and positioning */
+.cp-overlay { position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.8); display:flex; align-items:center; justify-content:center; z-index:99999; padding:20px; }
+.cp-confirm-box { background:#1c2238; border:1px solid rgba(255,255,255,0.13); border-radius:18px; padding:26px; width:100%; max-width:420px; max-height:90vh; overflow-y:auto; box-shadow:0 20px 60px rgba(0,0,0,0.5); }
+.cp-confirm-box h3 { font-size:1.05rem; font-weight:700; color:var(--text-main); margin:0 0 5px; }
+.cp-confirm-sub { font-size:0.77rem; color:var(--text-muted); margin:0 0 18px; line-height:1.5; }
+.cp-confirm-table { border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; margin-bottom:4px; }
+.cp-confirm-row { display:flex; justify-content:space-between; align-items:center; padding:10px 14px; border-bottom:1px solid rgba(255,255,255,0.06); }
+.cp-confirm-row:last-child { border-bottom:none; }
+.cp-confirm-row span { font-size:0.77rem; color:var(--text-muted); }
+.cp-confirm-row strong { font-size:0.84rem; color:var(--text-main); font-weight:700; }
+.cp-confirm-total { background:rgba(52,199,89,0.06); }
+.cp-confirm-total strong { color:#34c759 !important; font-size:0.95rem !important; }
+.cp-confirm-actions { display:flex; gap:10px; margin-top:20px; }
+.cp-btn-sec { flex:1; padding:12px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:10px; color:var(--text-muted); font-size:0.87rem; cursor:pointer; font-family:inherit; transition:all 0.2s; }
+.cp-btn-sec:hover { background:rgba(255,255,255,0.1); color:var(--text-main); }
+.cp-btn-pri { flex:2; padding:12px; background:rgba(0,122,255,0.2); border:1px solid rgba(0,122,255,0.45); border-radius:10px; color:var(--primary-blue); font-size:0.87rem; font-weight:700; cursor:pointer; font-family:inherit; transition:all 0.2s; }
+.cp-btn-pri:hover:not(:disabled) { background:rgba(0,122,255,0.3); }
+.cp-btn-pri:disabled { opacity:0.5; cursor:not-allowed; }
+/* Banners */
+.cp-banner { display:none; border-radius:12px; padding:13px 17px; margin-bottom:16px; align-items:center; gap:12px; }
+.cp-banner.show { display:flex; }
+.cp-banner-icon { font-size:1.3rem; }
+.cp-banner-title { font-size:0.87rem; font-weight:700; margin:0 0 2px; }
+.cp-banner-sub { font-size:0.73rem; color:var(--text-muted); margin:0; }
+.cp-banner-approved { background:rgba(52,199,89,0.08); border:1px solid rgba(52,199,89,0.25); }
+.cp-banner-approved .cp-banner-title { color:#34c759; }
+.cp-banner-pending { background:rgba(255,149,0,0.08); border:1px solid rgba(255,149,0,0.25); }
+.cp-banner-pending .cp-banner-title { color:#ff9500; }
+/* ── DASHBOARD ── */
+.cp-dash-section { margin-bottom:18px; background:rgba(255,255,255,0.025); border:1px solid rgba(255,255,255,0.07); border-radius:15px; padding:18px; }
+.cp-dash-title { font-size:0.88rem; font-weight:700; color:var(--text-main); margin:0 0 14px; padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.07); display:block; }
+.cp-dash-sub { font-size:0.74rem; color:var(--text-muted); margin:-8px 0 13px; display:block; }
+.cp-cards-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+@media(max-width:480px){.cp-cards-grid{grid-template-columns:1fr;}}
+.cp-card { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:11px; padding:13px 15px; }
+.cp-card-label { font-size:0.68rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.04em; display:block; margin-bottom:5px; }
+.cp-card-value { font-size:1rem; font-weight:700; color:var(--text-main); display:block; }
+.cp-card-green .cp-card-value { color:#34c759; }
+.cp-card-blue .cp-card-value { color:var(--primary-blue); }
+/* Deposit list */
+.cp-deposit-item { background:rgba(255,255,255,0.025); border:1px solid rgba(255,255,255,0.07); border-radius:12px; padding:14px 16px; margin-bottom:10px; }
+.cp-deposit-item:last-child { margin-bottom:0; }
+.cp-dep-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
+.cp-dep-num { font-size:0.75rem; color:var(--text-muted); font-weight:600; }
+.cp-dep-badge { font-size:0.7rem; font-weight:700; padding:3px 9px; border-radius:6px; }
+.cp-dep-badge.pending { background:rgba(255,149,0,0.15); color:#ff9500; }
+.cp-dep-badge.approved { background:rgba(52,199,89,0.15); color:#34c759; }
+.cp-dep-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+@media(max-width:400px){.cp-dep-grid{grid-template-columns:1fr;}}
+.cp-dep-field { }
+.cp-dep-field-label { font-size:0.68rem; color:var(--text-muted); display:block; margin-bottom:2px; }
+.cp-dep-field-value { font-size:0.83rem; font-weight:600; color:var(--text-main); display:block; }
+.cp-dep-field-value.green { color:#34c759; }
+.cp-dep-field-value.blue { color:var(--primary-blue); }
+/* Chart */
+.cp-chart-wrap { width:100%; overflow-x:auto; }
+.cp-chart-wrap canvas { max-width:100%; height:auto; display:block; }
+.cp-chart-legend { display:flex; gap:18px; margin-top:10px; justify-content:center; flex-wrap:wrap; }
+.cp-leg-item { font-size:0.72rem; color:var(--text-muted); display:flex; align-items:center; gap:6px; }
+.cp-leg-item::before { content:''; width:16px; height:3px; border-radius:2px; display:inline-block; }
+.cp-leg-blue::before { background:#007aff; }
+.cp-leg-green::before { background:#34c759; }
+/* Payout */
+.cp-payout-btns { display:flex; gap:11px; flex-wrap:wrap; }
+.cp-payout-btn { flex:1; min-width:120px; padding:11px 14px; background:rgba(0,122,255,0.12); border:1px solid rgba(0,122,255,0.35); border-radius:10px; color:var(--primary-blue); font-size:0.87rem; font-weight:600; cursor:pointer; font-family:inherit; transition:all 0.2s; }
+.cp-payout-btn:hover { background:rgba(0,122,255,0.22); }
+.cp-payout-sec { background:rgba(255,255,255,0.05); border-color:rgba(255,255,255,0.12); color:var(--text-muted); }
+.cp-payout-sec:hover { background:rgba(255,255,255,0.1); color:var(--text-main); }
+.cp-payout-msg { font-size:0.81rem; color:#34c759; margin-top:11px; padding:9px 13px; background:rgba(52,199,89,0.08); border:1px solid rgba(52,199,89,0.2); border-radius:8px; display:none; }
+.cp-payout-msg.show { display:block; }
+/* History */
+.cp-hist-item { display:flex; align-items:center; gap:11px; padding:11px 0; border-bottom:1px solid rgba(255,255,255,0.05); }
+.cp-hist-item:last-child { border-bottom:none; }
+.cp-hist-icon { width:32px; height:32px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:0.85rem; flex-shrink:0; }
+.cp-hist-icon.dep { background:rgba(0,122,255,0.12); }
+.cp-hist-icon.int { background:rgba(52,199,89,0.12); }
+.cp-hist-icon.pay { background:rgba(255,149,0,0.12); }
+.cp-hist-body { flex:1; }
+.cp-hist-name { font-size:0.81rem; font-weight:600; color:var(--text-main); margin:0 0 2px; }
+.cp-hist-date { font-size:0.71rem; color:var(--text-muted); margin:0; }
+.cp-hist-amt { font-size:0.84rem; font-weight:700; }
+.cp-hist-amt.pos { color:#34c759; }
+.cp-hist-amt.neg { color:#ff9500; }
+.cp-hist-amt.neu { color:var(--primary-blue); }
+.cp-hist-empty { font-size:0.8rem; color:var(--text-muted); text-align:center; padding:18px 0; }
 </style>
 </head>
 <body class="dark-mode">
@@ -546,22 +700,19 @@ body { background: #0a0a0f; }
     </div>
     <div id="role-err-investor" style="font-size:0.78rem;color:#dc3545;margin-top:8px;display:none;"></div>
   </div>
-    <div class="role-form" id="rf-capital">
+      <div class="role-form" id="rf-capital">
 
-    <!-- ── Approved Banner ── -->
-    <div class="cp-banner cp-banner-approved" id="cp-banner-approved">
-      <span class="cp-banner-icon">🔒</span>
-      <div><p class="cp-banner-title">🔒 Investition bestätigt</p><p class="cp-banner-sub">Ihre Investition ist aktiv. Die Konditionen können nicht mehr geändert werden.</p></div>
-    </div>
-    <!-- ── Pending Banner ── -->
+    <!-- Banners -->
     <div class="cp-banner cp-banner-pending" id="cp-banner-pending">
       <span class="cp-banner-icon">⏳</span>
-      <div><p class="cp-banner-title">⏳ Antrag in Prüfung</p><p class="cp-banner-sub">Ihr Antrag wird von unseren Administratoren geprüft. Sie werden bei Genehmigung benachrichtigt.</p></div>
+      <div><p class="cp-banner-title">⏳ Antrag in Prüfung</p><p class="cp-banner-sub">Ihr Antrag wird derzeit geprüft.</p></div>
+    </div>
+    <div class="cp-banner cp-banner-approved" id="cp-banner-approved">
+      <span class="cp-banner-icon">🔒</span>
+      <div><p class="cp-banner-title">🔒 Investition bestätigt</p><p class="cp-banner-sub">Ihre Investition ist aktiv.</p></div>
     </div>
 
-    <!-- ══════════════════════════════════════════
-         INVESTMENT FORM (shown before approval)
-         ══════════════════════════════════════════ -->
+    <!-- ══════════════════════════ INVESTMENT FORM ══════════════════════════ -->
     <div id="cp-form-section">
       <p class="role-form-title">🏦 Kapitalpartner</p>
 
@@ -602,7 +753,7 @@ body { background: #0a0a0f; }
         <p class="cp-hint">1 – 99 Jahre</p>
       </div>
 
-      <!-- 4. Rate (display) -->
+      <!-- 4. Rate -->
       <div class="cp-section">
         <label class="cp-label">Jährliche Rendite</label>
         <div class="cp-rate-bar">
@@ -611,13 +762,23 @@ body { background: #0a0a0f; }
         </div>
       </div>
 
-      <!-- 5. Interest Options -->
+      <!-- 5. Interest Options (A=Compound, B=Payout) -->
       <div class="cp-section">
         <label class="cp-label">Zinsoption</label>
+
         <div class="cp-opt-card cp-opt-active" id="cp-opt-a" onclick="cpSetOpt('a')">
           <div class="cp-radio"></div>
           <div class="cp-opt-body">
-            <h4>Option A – Zinsausschüttung</h4>
+            <h4>Option A – Zinseszins</h4>
+            <p>Zinsen werden automatisch dem Kapital zugeschlagen</p>
+            <p class="cp-opt-note">Zinseszins wird monatlich reinvestiert</p>
+          </div>
+        </div>
+
+        <div class="cp-opt-card" id="cp-opt-b" onclick="cpSetOpt('b')">
+          <div class="cp-radio"></div>
+          <div class="cp-opt-body">
+            <h4>Option B – Zinsausschüttung</h4>
             <p>Zinsen werden regelmäßig an den Investor ausgezahlt</p>
             <select class="cp-freq-sel" id="cp-freq" onchange="cpCalc()">
               <option value="12">Monatlich</option>
@@ -625,14 +786,6 @@ body { background: #0a0a0f; }
               <option value="2">Halbjährlich</option>
               <option value="1" selected>Jährlich</option>
             </select>
-          </div>
-        </div>
-        <div class="cp-opt-card" id="cp-opt-b" onclick="cpSetOpt('b')">
-          <div class="cp-radio"></div>
-          <div class="cp-opt-body">
-            <h4>Option B – Zinseszins</h4>
-            <p>Zinsen werden automatisch dem Kapital zugeschlagen</p>
-            <p style="font-size:0.72rem;color:rgba(52,199,89,0.7);margin:0;">Zinseszins wird monatlich zugeschlagen</p>
           </div>
         </div>
       </div>
@@ -657,21 +810,25 @@ body { background: #0a0a0f; }
         <span class="cp-trust-badge">📋 Geprüfter Vertrag</span>
         <span class="cp-trust-badge">⚖️ Rechtlich abgesichert</span>
       </div>
-      <button class="cp-submit-btn" id="cp-submit-main" onclick="cpShowConfirm()">Investitionsantrag einreichen</button>
-      <div class="cp-success-banner" id="cp-success-banner">
-        <p>✓ Antrag eingereicht</p>
-        <p>Ihr Investitionsantrag wird derzeit geprüft.</p>
+      <button class="cp-submit-btn" id="cp-submit-main" onclick="cpShowConfirm()">Einzahlung einreichen</button>
+
+      <!-- Deposit success feedback -->
+      <div class="cp-deposit-success" id="cp-deposit-success">
+        <span class="ds-icon">✅</span>
+        <div>
+          <p class="ds-title">✓ Einzahlung eingereicht</p>
+          <p class="ds-sub">Ihre Einzahlung wird von unserem Team geprüft.</p>
+          <button class="cp-add-another-btn" onclick="cpResetForAnotherDeposit()">Weitere Einzahlung hinzufügen</button>
+        </div>
       </div>
     </div>
 
-    <!-- ══════════════════════════════
-         CONFIRMATION MODAL
-         ══════════════════════════════ -->
-    <div class="cp-overlay" id="cp-confirm-overlay" style="display:none;">
+    <!-- ══════════════════ CONFIRMATION MODAL ══════════════════ -->
+    <div id="cp-confirm-overlay" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.82); z-index:99999; padding:20px; align-items:center; justify-content:center;">
       <div class="cp-confirm-box">
-        <h3>Investition bestätigen</h3>
-        <p class="cp-confirm-sub">Bitte überprüfen Sie Ihre Daten vor dem Einreichen.</p>
-        <div id="cp-confirm-details"></div>
+        <h3>Einzahlung bestätigen</h3>
+        <p class="cp-confirm-sub">Bitte überprüfen Sie Ihre Einzahlungsdaten vor dem Einreichen.</p>
+        <div class="cp-confirm-table" id="cp-confirm-details"></div>
         <div class="cp-confirm-actions">
           <button class="cp-btn-sec" onclick="cpCancelConfirm()">← Zurück</button>
           <button class="cp-btn-pri" id="cp-confirm-btn" onclick="cpSubmit()">Bestätigen & Einreichen</button>
@@ -679,73 +836,40 @@ body { background: #0a0a0f; }
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════════════
-         DASHBOARD (shown after approval)
-         ══════════════════════════════════════════════ -->
+    <!-- ══════════════════════ DASHBOARD (post-approval) ══════════════════════ -->
     <div id="cp-dashboard" style="display:none;">
 
-      <!-- Portfolio Overview -->
+      <!-- Portfolio totals -->
       <div class="cp-dash-section">
-        <p class="cp-dash-title">📁 Portfolio-Übersicht</p>
+        <span class="cp-dash-title">📁 Portfolio-Übersicht</span>
         <div class="cp-cards-grid">
-          <div class="cp-card">
-            <span class="cp-card-label">Gesamt investiert</span>
-            <span class="cp-card-value" id="dash-invested">–</span>
-          </div>
-          <div class="cp-card cp-card-green">
-            <span class="cp-card-label">Verdiente Zinsen</span>
-            <span class="cp-card-value" id="dash-earned">–</span>
-          </div>
-          <div class="cp-card cp-card-blue">
-            <span class="cp-card-label">Portfolio-Wert</span>
-            <span class="cp-card-value" id="dash-portfolio">–</span>
-          </div>
-          <div class="cp-card">
-            <span class="cp-card-label">Aktive Laufzeit</span>
-            <span class="cp-card-value" id="dash-active">–</span>
-          </div>
+          <div class="cp-card"><span class="cp-card-label">Gesamt investiert</span><span class="cp-card-value" id="dash-invested">–</span></div>
+          <div class="cp-card cp-card-green"><span class="cp-card-label">Verdiente Zinsen</span><span class="cp-card-value" id="dash-earned">–</span></div>
+          <div class="cp-card cp-card-blue"><span class="cp-card-label">Portfolio-Wert</span><span class="cp-card-value" id="dash-portfolio">–</span></div>
+          <div class="cp-card"><span class="cp-card-label">Aktive Einzahlungen</span><span class="cp-card-value" id="dash-active-count">–</span></div>
         </div>
       </div>
 
-      <!-- Earnings Overview -->
+      <!-- Individual deposits list -->
       <div class="cp-dash-section">
-        <p class="cp-dash-title">💰 Ertragsübersicht</p>
-        <div class="cp-cards-grid">
-          <div class="cp-card cp-card-green">
-            <span class="cp-card-label">Monatliche Zinsen</span>
-            <span class="cp-card-value" id="dash-monthly">–</span>
-          </div>
-          <div class="cp-card cp-card-green">
-            <span class="cp-card-label">Jährliche Zinsen</span>
-            <span class="cp-card-value" id="dash-yearly">–</span>
-          </div>
-          <div class="cp-card">
-            <span class="cp-card-label">Nächste Auszahlung</span>
-            <span class="cp-card-value" id="dash-next-payout">–</span>
-          </div>
-          <div class="cp-card cp-card-blue">
-            <span class="cp-card-label">Wert bei Fälligkeit</span>
-            <span class="cp-card-value" id="dash-maturity">–</span>
-          </div>
-        </div>
+        <span class="cp-dash-title">💰 Meine Einzahlungen</span>
+        <div id="cp-deposits-list"></div>
       </div>
 
-      <!-- Capital Growth Chart -->
+      <!-- Chart -->
       <div class="cp-dash-section">
-        <p class="cp-dash-title">📈 Kapitalentwicklung</p>
-        <div class="cp-chart-wrap">
-          <canvas id="cp-chart" width="560" height="260"></canvas>
-        </div>
+        <span class="cp-dash-title">📈 Kapitalentwicklung</span>
+        <div class="cp-chart-wrap"><canvas id="cp-chart" width="560" height="240"></canvas></div>
         <div class="cp-chart-legend">
           <span class="cp-leg-item cp-leg-blue">Kapitalwert</span>
           <span class="cp-leg-item cp-leg-green">Zinsen</span>
         </div>
       </div>
 
-      <!-- Payout Request -->
+      <!-- Payout -->
       <div class="cp-dash-section" id="dash-payout-section">
-        <p class="cp-dash-title">💸 Auszahlung beantragen</p>
-        <p class="cp-dash-sub">Nur für Option A (Zinsausschüttung) verfügbar</p>
+        <span class="cp-dash-title">💸 Auszahlung beantragen</span>
+        <span class="cp-dash-sub">Für genehmigte Option B Einzahlungen</span>
         <div class="cp-payout-btns">
           <button class="cp-payout-btn" onclick="cpRequestPayout('interest')">Zinsen auszahlen</button>
           <button class="cp-payout-btn cp-payout-sec" onclick="cpRequestPayout('balance')">Guthaben auszahlen</button>
@@ -753,13 +877,13 @@ body { background: #0a0a0f; }
         <div class="cp-payout-msg" id="dash-payout-msg"></div>
       </div>
 
-      <!-- Investment History -->
+      <!-- History -->
       <div class="cp-dash-section">
-        <p class="cp-dash-title">📋 Investitionshistorie</p>
+        <span class="cp-dash-title">📋 Transaktionshistorie</span>
         <div id="dash-history"></div>
       </div>
+    </div>
 
-    </div><!-- /cp-dashboard -->
   </div><!-- /rf-capital -->
 
   <div class="role-form" id="rf-seller">
@@ -1268,32 +1392,28 @@ document.addEventListener('DOMContentLoaded', () => {
   ['founder','investor','capital','seller','explorer'].forEach(k => fuSetup(k));
 });
 
-// ── Capital Partner Investment System ─────────────────────────────────────────
-
-const _cpT = {
+// ── Capital Partner Investment System v2 ─────────────────────────────────────
+const _cpT2 = {
   eur: '€ Euro', usd: '$ US-Dollar',
   period_unit: 'Jahre',
-  opt_a_short: 'Option A – Ausschüttung', opt_b_short: 'Option B – Zinseszins',
+  opt_a_short: 'Option A – Zinseszins', opt_b_short: 'Option B – Ausschüttung',
   freq_m: 'Monatlich', freq_q: 'Vierteljährlich', freq_b: 'Halbjährlich', freq_a: 'Jährlich',
   tx_deposit: 'Einzahlung', tx_interest: 'Zinsgutschrift', tx_payout: 'Auszahlung',
-  payout_requested: '✓ Auszahlungsanfrage eingereicht',
-  payout_msg_interest: 'Zinsauszahlung beantragt',
-  payout_msg_balance: 'Guthabenauszahlung beantragt',
-  ov_amount: 'Investitionsbetrag', ov_currency: 'Währung',
-  ov_period: 'Laufzeit',
-  years_short: 'J.',
-  err_amount: 'Mindestbetrag ist 1.000.',
-  confirm_title_row: 'Investition bestätigen',
+  payout_msg_interest: 'Zinsauszahlung beantragt', payout_msg_balance: 'Guthabenauszahlung beantragt',
+  ov_amount: 'Investitionsbetrag', ov_currency: 'Währung', ov_period: 'Laufzeit',
+  ov_total_return: 'Gesamter Zinsertrag', ov_final: 'Kapital am Laufzeitende',
+  years_short: 'J.', err_amount: 'Mindestbetrag ist 1.000.',
+  dep_amount: 'Betrag', dep_date: 'Datum',
+  dep_option: 'Option', dep_period: 'Laufzeit',
+  dep_status: 'Status', dep_interest: 'Zinsen',
+  dep_value: 'Aktueller Wert',
+  dep_pending: 'Ausstehend', dep_approved: 'Genehmigt',
 };
 
-let _cpCurrency = 'EUR';
-let _cpYears = 10;
-let _cpOpt = 'a';
+let _cpCurrency = 'EUR', _cpYears = 10, _cpOpt = 'a';
 
-// ── Helpers ──────────────────────────────────────────────────
 function cpSym(){ return _cpCurrency==='EUR'?'€':'$'; }
 function cpFmt(n){ return cpSym()+' '+Math.round(n).toLocaleString(); }
-function cpFmtDec(n){ return cpSym()+' '+(Math.round(n*100)/100).toLocaleLocaleString??(cpSym()+' '+n.toFixed(2)); }
 
 function cpSetCurrency(cur){
   _cpCurrency = cur;
@@ -1304,407 +1424,391 @@ function cpSetCurrency(cur){
 }
 
 function cpAmountStep(delta){
-  const el = document.getElementById('cp-amount'); if(!el) return;
-  const v = (parseFloat(el.value)||0) + delta;
-  el.value = Math.max(1000, v);
+  const el=document.getElementById('cp-amount'); if(!el) return;
+  el.value = Math.max(1000, (parseFloat(el.value)||0)+delta);
   cpCalc();
 }
 
 function cpPeriodStep(delta){
-  const el = document.getElementById('cp-years'); if(!el) return;
-  const v = (parseInt(el.value)||1) + delta;
-  el.value = Math.min(99, Math.max(1, v));
-  _cpYears = parseInt(el.value);
-  cpCalc();
+  const el=document.getElementById('cp-years'); if(!el) return;
+  const v=Math.min(99,Math.max(1,(parseInt(el.value)||1)+delta));
+  el.value=v; _cpYears=v; cpCalc();
 }
 
 function cpYrsInput(){
-  const el = document.getElementById('cp-years'); if(!el) return;
-  _cpYears = Math.min(99, Math.max(1, parseInt(el.value)||1));
-  el.value = _cpYears;
-  cpCalc();
+  const el=document.getElementById('cp-years'); if(!el) return;
+  _cpYears=Math.min(99,Math.max(1,parseInt(el.value)||1)); el.value=_cpYears; cpCalc();
 }
 
+// Option A = Compound (Zinseszins), Option B = Payout (Ausschüttung)
 function cpSetOpt(opt){
-  _cpOpt = opt;
+  _cpOpt=opt;
   document.getElementById('cp-opt-a').classList.toggle('cp-opt-active', opt==='a');
   document.getElementById('cp-opt-b').classList.toggle('cp-opt-active', opt==='b');
-  const mr = document.getElementById('ov-monthly-row');
-  if(mr) mr.style.display = opt==='a'?'':'none';
+  // Monthly interest row: only show for Option B (payout)
+  const mr=document.getElementById('ov-monthly-row');
+  if(mr) mr.style.display = opt==='b'?'':'none';
   cpCalc();
 }
 
 function cpCalc(){
-  const amt = parseFloat(document.getElementById('cp-amount')?.value)||0;
-  const yrs = _cpYears;
-  const freqEl = document.getElementById('cp-freq');
-  const freq = freqEl ? parseInt(freqEl.value) : 1;
-  const freqTxt = freqEl ? freqEl.options[freqEl.selectedIndex]?.text : _cpT.freq_a;
+  const amt=parseFloat(document.getElementById('cp-amount')?.value)||0;
+  const yrs=_cpYears;
+  const freqEl=document.getElementById('cp-freq');
+  const freq=freqEl?parseInt(freqEl.value):1;
+  const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
 
-  const set = (id,v) => { const e=document.getElementById(id); if(e) e.textContent=v; };
+  set('ov-amount', amt>=1?cpFmt(amt):'–');
+  set('ov-currency', _cpCurrency==='EUR'?_cpT2.eur:_cpT2.usd);
+  set('ov-period', yrs+' '+_cpT2.period_unit);
 
-  set('ov-amount', amt>=1 ? cpFmt(amt) : '–');
-  set('ov-currency', _cpCurrency==='EUR' ? _cpT.eur : _cpT.usd);
-  set('ov-period', yrs+' '+_cpT.period_unit);
+  if(amt<1){ set('ov-monthly','–'); set('ov-yearly','–'); set('ov-total-return','–'); set('ov-final','–'); return; }
 
-  if(amt < 1){ set('ov-monthly','–'); set('ov-yearly','–'); set('ov-total-return','–'); set('ov-final','–'); return; }
+  const yearlyInt = amt*0.05;
+  const monthlyInt = yearlyInt/12;
 
-  const yearlyInterest = amt * 0.05;
-  const monthlyInterest = yearlyInterest / 12;
-
-  if(_cpOpt === 'a'){
-    const totalReturn = yearlyInterest * yrs;
-    const finalVal = amt + totalReturn;
-    const perInterval = yearlyInterest / freq;
-    set('ov-monthly', cpFmt(monthlyInterest));
-    set('ov-yearly', cpFmt(yearlyInterest));
+  if(_cpOpt==='a'){
+    // Compound: capital grows exponentially
+    const finalVal = amt*Math.pow(1.05,yrs);
+    const totalReturn = finalVal-amt;
+    set('ov-monthly','–');
+    set('ov-yearly','–');
     set('ov-total-return', cpFmt(totalReturn));
     set('ov-final', cpFmt(finalVal));
   } else {
-    const finalVal = amt * Math.pow(1.05, yrs);
-    const totalReturn = finalVal - amt;
-    set('ov-monthly', '–');
-    set('ov-yearly', '–');
+    // Payout: capital stays, interest paid out
+    const totalReturn = yearlyInt*yrs;
+    const perInterval = yearlyInt/freq;
+    set('ov-monthly', cpFmt(monthlyInt));
+    set('ov-yearly', cpFmt(yearlyInt));
     set('ov-total-return', cpFmt(totalReturn));
-    set('ov-final', cpFmt(finalVal));
+    set('ov-final', cpFmt(amt+totalReturn));
   }
 }
 
-// ── Confirmation ────────────────────────────────────────────
+// ── Confirmation ──────────────────────────────────────────────
 function cpShowConfirm(){
-  const amt = parseFloat(document.getElementById('cp-amount')?.value)||0;
-  if(amt < 1000){ alert(_cpT.err_amount); return; }
+  const amt=parseFloat(document.getElementById('cp-amount')?.value)||0;
+  if(amt<1000){ alert(_cpT2.err_amount); return; }
 
-  const freqEl = document.getElementById('cp-freq');
-  const freqTxt = freqEl ? freqEl.options[freqEl.selectedIndex]?.text : '';
+  const freqEl=document.getElementById('cp-freq');
+  const freqTxt=freqEl?freqEl.options[freqEl.selectedIndex]?.text:'';
+  const yrs=_cpYears; const opt=_cpOpt;
+  const yearlyInt=amt*0.05;
+  const totalReturn = opt==='a'?(amt*Math.pow(1.05,yrs)-amt):(yearlyInt*yrs);
+  const finalVal = opt==='a'?amt*Math.pow(1.05,yrs):amt+totalReturn;
 
-  const yrs = _cpYears;
-  const opt = _cpOpt;
-  const yearlyInterest = amt * 0.05;
-  const totalReturn = opt==='a' ? yearlyInterest*yrs : (amt*Math.pow(1.05,yrs)-amt);
-  const finalVal = opt==='a' ? amt+totalReturn : amt*Math.pow(1.05,yrs);
-
-  const rows = [
-    [_cpT.ov_amount, cpFmt(amt)],
-    [_cpT.ov_currency, _cpCurrency==='EUR'?_cpT.eur:_cpT.usd],
-    [_cpT.ov_period, yrs+' '+_cpT.period_unit],
+  const rows=[
+    [_cpT2.ov_amount, cpFmt(amt)],
+    [_cpT2.ov_currency, _cpCurrency==='EUR'?_cpT2.eur:_cpT2.usd],
+    [_cpT2.ov_period, yrs+' '+_cpT2.period_unit],
     ['Annual Return', '5% p.a.'],
-    ['Interest Option', opt==='a'?_cpT.opt_a_short+' · '+freqTxt:_cpT.opt_b_short],
-    [_cpT.ov_total_return, cpFmt(totalReturn)],
-    [_cpT.ov_final, cpFmt(finalVal)],
+    ['Interest Option', opt==='a'?_cpT2.opt_a_short+(opt==='b'?' · '+freqTxt:''):_cpT2.opt_b_short+' · '+freqTxt],
+    [_cpT2.ov_total_return, cpFmt(totalReturn)],
+    [_cpT2.ov_final, cpFmt(finalVal)],
   ];
 
-  const html = rows.map((r,i) =>
+  const html=rows.map((r,i)=>
     `<div class="cp-confirm-row${i===rows.length-1?' cp-confirm-total':''}"><span>${r[0]}</span><strong>${r[1]}</strong></div>`
   ).join('');
 
-  const det = document.getElementById('cp-confirm-details');
-  if(det) det.innerHTML = html;
+  const det=document.getElementById('cp-confirm-details');
+  if(det) det.innerHTML=html;
 
-  const ov = document.getElementById('cp-confirm-overlay');
-  if(ov) ov.style.display = 'flex';
+  const ov=document.getElementById('cp-confirm-overlay');
+  if(ov){ ov.style.display='flex'; }
 }
 
 function cpCancelConfirm(){
-  const ov = document.getElementById('cp-confirm-overlay');
-  if(ov) ov.style.display = 'none';
+  const ov=document.getElementById('cp-confirm-overlay');
+  if(ov) ov.style.display='none';
 }
 
-// ── Submit ──────────────────────────────────────────────────
+// ── Submit (adds deposit to array) ────────────────────────────
 async function cpSubmit(){
-  const amt = parseFloat(document.getElementById('cp-amount')?.value)||0;
-  if(amt < 1000) return;
-  const token = localStorage.getItem('aBest_session'); if(!token) return;
-
-  const btn = document.getElementById('cp-confirm-btn');
+  const amt=parseFloat(document.getElementById('cp-amount')?.value)||0;
+  if(amt<1000) return;
+  const token=localStorage.getItem('aBest_session'); if(!token) return;
+  const btn=document.getElementById('cp-confirm-btn');
   if(btn){ btn.disabled=true; btn.textContent='...'; }
 
-  const freqEl = document.getElementById('cp-freq');
-  const freq = freqEl ? parseInt(freqEl.value) : 1;
+  const freqEl=document.getElementById('cp-freq');
+  const freq=freqEl?parseInt(freqEl.value):1;
 
-  const fd = new FormData();
+  const fd=new FormData();
   fd.append('role','capital');
-  fd.append('title', 'Capital Partner – '+cpFmt(amt)+' / '+_cpYears+' '+_cpT.years_short);
+  fd.append('title','Capital Partner – '+cpFmt(amt)+' / '+_cpYears+' '+_cpT2.years_short);
+  // Send as JSON describing this single deposit
   fd.append('description', JSON.stringify({
     currency:_cpCurrency, amount:amt, years:_cpYears,
     option:_cpOpt, freq:freq,
-    submittedAt: new Date().toISOString()
+    submittedAt:new Date().toISOString()
   }));
+  fd.append('append_deposit','true'); // tells API to append, not replace
 
   try{
-    const r = await fetch('/api/role',{method:'POST',headers:{Authorization:'Bearer '+token},body:fd});
+    const r=await fetch('/api/role',{method:'POST',headers:{Authorization:'Bearer '+token},body:fd});
     if(r.ok){
       cpCancelConfirm();
-      const sb = document.getElementById('cp-success-banner');
-      if(sb) sb.classList.add('show');
-      const pb = document.getElementById('cp-banner-pending');
-      if(pb) pb.classList.add('show');
-      const sub = document.getElementById('cp-submit-main');
-      if(sub) sub.disabled = true;
+      // Show success feedback
+      const suc=document.getElementById('cp-deposit-success');
+      if(suc) suc.classList.add('show');
+      const sub=document.getElementById('cp-submit-main');
+      if(sub) sub.style.display='none';
     }
-  } catch(e){}
+  }catch(e){}
 
-  if(btn){ btn.disabled=false; btn.textContent=_cpT.confirm_title_row||'Submit'; }
+  if(btn){ btn.disabled=false; btn.textContent='Bestätigen & Einreichen'; }
 }
 
-// ── Dashboard ────────────────────────────────────────────────
+function cpResetForAnotherDeposit(){
+  // Reset form for next deposit
+  const amtEl=document.getElementById('cp-amount');
+  const yrsEl=document.getElementById('cp-years');
+  if(amtEl) amtEl.value=10000;
+  if(yrsEl){ yrsEl.value=10; _cpYears=10; }
+  cpSetOpt('a');
+  cpSetCurrency(_cpCurrency);
+  cpCalc();
+  const suc=document.getElementById('cp-deposit-success');
+  if(suc) suc.classList.remove('show');
+  const sub=document.getElementById('cp-submit-main');
+  if(sub) sub.style.display='';
+}
+
+// ── Load & render dashboard ───────────────────────────────────
 async function loadCapitalData(){
-  const token = localStorage.getItem('aBest_session'); if(!token) return;
+  const token=localStorage.getItem('aBest_session'); if(!token) return;
   try{
-    const r = await fetch('/api/role',{headers:{Authorization:'Bearer '+token}});
+    const r=await fetch('/api/role',{headers:{Authorization:'Bearer '+token}});
     if(!r.ok) return;
-    const data = await r.json();
-    if(!data || data.role !== 'capital') return;
+    const data=await r.json();
+    if(!data||data.role!=='capital') return;
 
-    // If pending or approved – show banner
-    const status = data.status || 'pending';
-    const inv = (typeof data.data?.description === 'string' && data.data.description.startsWith('{'))
-      ? JSON.parse(data.data.description) : {};
+    const deposits=data.deposits||[];
+    const status=data.status||'';
 
-    if(status === 'pending'){
-      document.getElementById('cp-banner-pending')?.classList.add('show');
-      const sub = document.getElementById('cp-submit-main'); if(sub) sub.disabled=true;
-    }
+    // Show pending banner if any deposit is pending
+    const hasPending=deposits.some(d=>d.status==='pending'||(d.status!=='approved'));
+    const hasApproved=deposits.some(d=>d.status==='approved');
 
-    if(status === 'approved'){
+    if(hasPending) document.getElementById('cp-banner-pending')?.classList.add('show');
+
+    if(hasApproved){
       document.getElementById('cp-banner-approved')?.classList.add('show');
       document.getElementById('cp-form-section').style.display='none';
       document.getElementById('cp-dashboard').style.display='block';
-      cpRenderDashboard(inv, data);
+      cpRenderDashboard(deposits);
+    } else if(hasPending){
+      // Pending: hide form, show pending only
+      const sub=document.getElementById('cp-submit-main');
+      if(sub) sub.style.display='none';
     }
-
   }catch(e){}
 }
 
-function cpRenderDashboard(inv, data){
-  const amt = inv.amount || 0;
-  const yrs = inv.years || 0;
-  const opt = inv.option || 'a';
-  const freq = inv.freq || 1;
-  const cur = inv.currency || 'EUR';
-  _cpCurrency = cur;
+function cpRenderDashboard(deposits){
+  let totalInvested=0, totalEarned=0, totalPortfolio=0;
+  const now=new Date();
+  const approvedDeps=deposits.filter(d=>d.status==='approved');
 
-  const startDate = new Date(inv.submittedAt || data.savedAt || Date.now());
-  const now = new Date();
-  const daysElapsed = Math.max(0, (now - startDate) / (1000*60*60*24));
-  const yearsElapsed = daysElapsed / 365;
+  approvedDeps.forEach(d=>{
+    _cpCurrency=d.currency||'EUR';
+    const amt=d.amount||0;
+    const yrs=d.years||0;
+    const opt=d.option||'a';
+    const startDate=new Date(d.approvedAt||d.submittedAt||now);
+    const daysElapsed=Math.max(0,(now-startDate)/(1000*60*60*24));
+    const yearsElapsed=daysElapsed/365;
 
-  const yearlyInt = amt * 0.05;
-  const monthlyInt = yearlyInt / 12;
-  let currentVal, earnedInt, finalVal;
+    let currentVal, earnedInt;
+    if(opt==='a'){
+      currentVal=amt*Math.pow(1.05,yearsElapsed);
+      earnedInt=currentVal-amt;
+    } else {
+      currentVal=amt;
+      earnedInt=amt*0.05*yearsElapsed;
+    }
+    totalInvested+=amt;
+    totalEarned+=earnedInt;
+    totalPortfolio+=currentVal;
+  });
 
-  if(opt === 'b'){
-    currentVal = amt * Math.pow(1.05, yearsElapsed);
-    earnedInt = currentVal - amt;
-    finalVal = amt * Math.pow(1.05, yrs);
-  } else {
-    currentVal = amt;
-    earnedInt = yearlyInt * yearsElapsed;
-    finalVal = amt + yearlyInt * yrs;
+  const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
+  set('dash-invested', cpFmt(totalInvested));
+  set('dash-earned', cpFmt(totalEarned));
+  set('dash-portfolio', cpFmt(totalPortfolio));
+  set('dash-active-count', approvedDeps.length);
+
+  // Render deposit list
+  cpRenderDepositList(deposits);
+
+  // Chart (use largest approved deposit)
+  if(approvedDeps.length>0){
+    const biggest=approvedDeps.reduce((a,b)=>(a.amount||0)>(b.amount||0)?a:b);
+    cpDrawChart(biggest.amount||0, biggest.years||10, biggest.option||'a', new Date(biggest.approvedAt||biggest.submittedAt||now));
   }
-
-  const set = (id,v) => { const e=document.getElementById(id); if(e) e.textContent=v; };
-
-  set('dash-invested', cpFmt(amt));
-  set('dash-earned', cpFmt(earnedInt));
-  set('dash-portfolio', cpFmt(currentVal));
-  set('dash-active', Math.floor(yearsElapsed)+' '+_cpT.years_short);
-  set('dash-monthly', cpFmt(monthlyInt));
-  set('dash-yearly', cpFmt(yearlyInt));
-  set('dash-maturity', cpFmt(finalVal));
-
-  // Next payout date
-  if(opt === 'a'){
-    const monthsPerInterval = freq===12?1:freq===4?3:freq===2?6:12;
-    const nextPayout = new Date(startDate);
-    while(nextPayout <= now) nextPayout.setMonth(nextPayout.getMonth()+monthsPerInterval);
-    set('dash-next-payout', nextPayout.toLocaleDateString());
-  } else {
-    set('dash-next-payout', '–');
-    const ps = document.getElementById('dash-payout-section');
-    if(ps) ps.style.display='none';
-  }
-
-  // Chart
-  cpDrawChart(amt, yrs, opt, startDate);
 
   // History
-  cpRenderHistory(amt, yrs, opt, freq, startDate, yearsElapsed, cur);
+  cpRenderHistory(deposits);
 }
 
-// ── Chart ────────────────────────────────────────────────────
-function cpDrawChart(amt, yrs, opt, startDate){
-  const canvas = document.getElementById('cp-chart');
-  if(!canvas || !canvas.getContext) return;
-
-  const dpr = window.devicePixelRatio||1;
-  const W = canvas.offsetWidth||560, H = 260;
-  canvas.width = W*dpr; canvas.height = H*dpr;
-  canvas.style.width=W+'px'; canvas.style.height=H+'px';
-  const ctx = canvas.getContext('2d');
-  ctx.scale(dpr, dpr);
-
-  const padL=56, padR=16, padT=16, padB=36;
-  const cW=W-padL-padR, cH=H-padT-padB;
-
-  const now = new Date();
-  const startYr = startDate.getFullYear();
-  const today = now.getFullYear() + (now.getMonth()/12);
-  const startF = startDate.getFullYear()+(startDate.getMonth()/12);
-  const elapsed = Math.max(0, today-startF);
-
-  // Data points: 0 to yrs
-  const pts = yrs+1;
-  const capitalPts=[], interestPts=[];
-  for(let i=0;i<pts;i++){
-    const yr=i;
-    if(opt==='b'){
-      const v=amt*Math.pow(1.05,yr);
-      capitalPts.push(v);
-      interestPts.push(v-amt);
-    } else {
-      capitalPts.push(amt);
-      interestPts.push(amt*0.05*yr);
-    }
-  }
-
-  const allVals=[...capitalPts,...interestPts];
-  const maxV=Math.max(...allVals)*1.05;
-  const minV=0;
-
-  const toX=(i)=> padL+(i/(pts-1))*cW;
-  const toY=(v)=> padT+cH-((v-minV)/(maxV-minV||1))*cH;
-
-  // Grid
-  ctx.strokeStyle='rgba(255,255,255,0.04)';
-  ctx.lineWidth=1;
-  for(let i=0;i<=4;i++){
-    const y=padT+i*(cH/4);
-    ctx.beginPath(); ctx.moveTo(padL,y); ctx.lineTo(padL+cW,y); ctx.stroke();
-  }
-
-  // Y-axis labels
-  ctx.fillStyle='rgba(255,255,255,0.25)';
-  ctx.font=`${10*dpr/dpr}px -apple-system,sans-serif`;
-  ctx.textAlign='right';
-  for(let i=0;i<=4;i++){
-    const v=maxV*(1-i/4);
-    const y=padT+i*(cH/4);
-    const lbl=v>=1e6?(v/1e6).toFixed(1)+'M':v>=1e3?(v/1e3).toFixed(0)+'k':v.toFixed(0);
-    ctx.fillText(lbl, padL-6, y+4);
-  }
-
-  // X-axis labels
-  ctx.textAlign='center';
-  const xStep=Math.ceil(pts/6);
-  for(let i=0;i<pts;i+=xStep){
-    ctx.fillText(startYr+i+'', toX(i), padT+cH+20);
-  }
-  // today line
-  if(elapsed>0 && elapsed<yrs){
-    const tx=padL+(elapsed/(pts-1))*cW;
-    ctx.strokeStyle='rgba(255,255,255,0.12)';
-    ctx.setLineDash([4,4]);
-    ctx.lineWidth=1;
-    ctx.beginPath(); ctx.moveTo(tx,padT); ctx.lineTo(tx,padT+cH); ctx.stroke();
-    ctx.setLineDash([]);
-  }
-
-  // Draw interest area (green)
-  ctx.beginPath();
-  interestPts.forEach((v,i)=>{ i===0?ctx.moveTo(toX(i),toY(v)):ctx.lineTo(toX(i),toY(v)); });
-  ctx.lineTo(toX(pts-1),toY(0)); ctx.lineTo(toX(0),toY(0)); ctx.closePath();
-  ctx.fillStyle='rgba(52,199,89,0.07)';
-  ctx.fill();
-
-  // Draw interest line
-  ctx.beginPath();
-  interestPts.forEach((v,i)=>{ i===0?ctx.moveTo(toX(i),toY(v)):ctx.lineTo(toX(i),toY(v)); });
-  ctx.strokeStyle='rgba(52,199,89,0.7)'; ctx.lineWidth=2; ctx.stroke();
-
-  // Draw capital area (blue)
-  ctx.beginPath();
-  capitalPts.forEach((v,i)=>{ i===0?ctx.moveTo(toX(i),toY(v)):ctx.lineTo(toX(i),toY(v)); });
-  ctx.lineTo(toX(pts-1),toY(0)); ctx.lineTo(toX(0),toY(0)); ctx.closePath();
-  ctx.fillStyle='rgba(0,122,255,0.07)';
-  ctx.fill();
-
-  // Draw capital line
-  ctx.beginPath();
-  capitalPts.forEach((v,i)=>{ i===0?ctx.moveTo(toX(i),toY(v)):ctx.lineTo(toX(i),toY(v)); });
-  ctx.strokeStyle='rgba(0,122,255,0.9)'; ctx.lineWidth=2.5; ctx.stroke();
-}
-
-// ── History ──────────────────────────────────────────────────
-function cpRenderHistory(amt, yrs, opt, freq, startDate, yearsElapsed, cur){
-  _cpCurrency = cur;
-  const container = document.getElementById('dash-history');
+function cpRenderDepositList(deposits){
+  const container=document.getElementById('cp-deposits-list');
   if(!container) return;
+  if(!deposits||deposits.length===0){
+    container.innerHTML='<p class="cp-hist-empty">–</p>'; return;
+  }
 
-  const txs=[];
-  // Deposit
-  txs.push({type:'dep', icon:'💰', label:_cpT.tx_deposit, amt:cpFmt(amt), date:startDate, cls:'pos'});
+  const now=new Date();
+  container.innerHTML=deposits.map((d,i)=>{
+    const amt=d.amount||0;
+    const yrs=d.years||0;
+    const opt=d.option||'a';
+    const cur=d.currency||'EUR';
+    _cpCurrency=cur;
+    const date=new Date(d.submittedAt||now).toLocaleDateString();
+    const isApproved=d.status==='approved';
+    const badgeClass=isApproved?'approved':'pending';
+    const badgeLabel=isApproved?_cpT2.dep_approved:_cpT2.dep_pending;
 
-  // Interest payments (past ones)
-  const monthsPerInterval = freq===12?1:freq===4?3:freq===2?6:12;
-  const intPerInterval = (amt*0.05/freq);
-  const now = new Date();
-  let d = new Date(startDate);
-  d.setMonth(d.getMonth()+monthsPerInterval);
-  let count=0;
-  while(d <= now && count<20){
-    if(opt==='a'){
-      txs.push({type:'int', icon:'📈', label:_cpT.tx_interest, amt:'+'+cpFmt(intPerInterval), date:new Date(d), cls:'pos'});
-    } else {
-      const yearsIn=(d-startDate)/(365.25*24*3600*1000);
-      const compInt=amt*(Math.pow(1.05,yearsIn)-Math.pow(1.05,yearsIn-monthsPerInterval/12));
-      txs.push({type:'int', icon:'📈', label:_cpT.tx_interest+' (Compound)', amt:'+'+cpFmt(compInt), date:new Date(d), cls:'pos'});
+    let earnedInt=0, currentVal=amt;
+    if(isApproved){
+      const startDate=new Date(d.approvedAt||d.submittedAt||now);
+      const yearsElapsed=Math.max(0,(now-startDate)/(365*24*3600*1000));
+      if(opt==='a'){ currentVal=amt*Math.pow(1.05,yearsElapsed); earnedInt=currentVal-amt; }
+      else{ currentVal=amt; earnedInt=amt*0.05*yearsElapsed; }
     }
-    d.setMonth(d.getMonth()+monthsPerInterval);
-    count++;
-  }
 
-  txs.sort((a,b)=>b.date-a.date);
+    const finalVal=opt==='a'?amt*Math.pow(1.05,yrs):amt+amt*0.05*yrs;
+    const optLabel=opt==='a'?_cpT2.opt_a_short:_cpT2.opt_b_short;
 
-  if(txs.length===0){
-    container.innerHTML='<p class="cp-hist-empty">No transactions yet.</p>';
-    return;
-  }
-
-  container.innerHTML = txs.map(tx=>{
-    const dateStr = tx.date.toLocaleDateString();
-    return `<div class="cp-hist-item">
-      <div class="cp-hist-icon ${tx.type}">${tx.icon}</div>
-      <div class="cp-hist-body"><p class="cp-hist-name">${tx.label}</p><p class="cp-hist-date">${dateStr}</p></div>
-      <span class="cp-hist-amt ${tx.cls}">${tx.amt}</span>
+    return `<div class="cp-deposit-item">
+      <div class="cp-dep-header">
+        <span class="cp-dep-num">#${i+1}</span>
+        <span class="cp-dep-badge ${badgeClass}">${badgeLabel}</span>
+      </div>
+      <div class="cp-dep-grid">
+        <div class="cp-dep-field"><span class="cp-dep-field-label">${_cpT2.dep_amount}</span><span class="cp-dep-field-value blue">${cpFmt(amt)}</span></div>
+        <div class="cp-dep-field"><span class="cp-dep-field-label">${_cpT2.dep_date}</span><span class="cp-dep-field-value">${date}</span></div>
+        <div class="cp-dep-field"><span class="cp-dep-field-label">${_cpT2.dep_option}</span><span class="cp-dep-field-value">${optLabel}</span></div>
+        <div class="cp-dep-field"><span class="cp-dep-field-label">${_cpT2.dep_period}</span><span class="cp-dep-field-value">${yrs} ${_cpT2.years_short}</span></div>
+        ${isApproved?`<div class="cp-dep-field"><span class="cp-dep-field-label">${_cpT2.dep_interest}</span><span class="cp-dep-field-value green">+${cpFmt(earnedInt)}</span></div>
+        <div class="cp-dep-field"><span class="cp-dep-field-label">${_cpT2.dep_value}</span><span class="cp-dep-field-value blue">${cpFmt(currentVal)}</span></div>`:''}
+      </div>
     </div>`;
   }).join('');
 }
 
-// ── Payout Request ────────────────────────────────────────────
-async function cpRequestPayout(type){
-  const token = localStorage.getItem('aBest_session'); if(!token) return;
-  const msg = document.getElementById('dash-payout-msg');
-  try{
-    await fetch('/api/payout',{
-      method:'POST',
-      headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},
-      body: JSON.stringify({type, currency:_cpCurrency})
-    });
-    if(msg){
-      msg.textContent = type==='interest'?_cpT.payout_msg_interest:_cpT.payout_msg_balance;
-      msg.classList.add('show');
-      setTimeout(()=>msg.classList.remove('show'), 5000);
+// ── Chart ─────────────────────────────────────────────────────
+function cpDrawChart(amt, yrs, opt, startDate){
+  const canvas=document.getElementById('cp-chart'); if(!canvas||!canvas.getContext) return;
+  const dpr=window.devicePixelRatio||1;
+  const W=canvas.offsetWidth||560, H=240;
+  canvas.width=W*dpr; canvas.height=H*dpr;
+  canvas.style.width=W+'px'; canvas.style.height=H+'px';
+  const ctx=canvas.getContext('2d'); ctx.scale(dpr,dpr);
+  const pL=52,pR=14,pT=14,pB=32, cW=W-pL-pR, cH=H-pT-pB;
+
+  const pts=yrs+1;
+  const capPts=[], intPts=[];
+  for(let i=0;i<pts;i++){
+    if(opt==='a'){ const v=amt*Math.pow(1.05,i); capPts.push(v); intPts.push(v-amt); }
+    else { capPts.push(amt); intPts.push(amt*0.05*i); }
+  }
+  const allV=[...capPts,...intPts]; const maxV=Math.max(...allV)*1.06;
+  const toX=i=>pL+(i/(pts-1))*cW;
+  const toY=v=>pT+cH-((v/(maxV||1))*cH);
+  const startYr=(startDate||new Date()).getFullYear();
+
+  // Grid
+  ctx.strokeStyle='rgba(255,255,255,0.04)'; ctx.lineWidth=1;
+  for(let i=0;i<=4;i++){ const y=pT+i*(cH/4); ctx.beginPath(); ctx.moveTo(pL,y); ctx.lineTo(pL+cW,y); ctx.stroke(); }
+
+  // Y labels
+  ctx.fillStyle='rgba(255,255,255,0.22)'; ctx.font='10px -apple-system,sans-serif'; ctx.textAlign='right';
+  for(let i=0;i<=4;i++){
+    const v=maxV*(1-i/4);
+    const lbl=v>=1e6?(v/1e6).toFixed(1)+'M':v>=1e3?(v/1e3).toFixed(0)+'k':v.toFixed(0);
+    ctx.fillText(lbl, pL-5, pT+i*(cH/4)+4);
+  }
+  // X labels
+  ctx.textAlign='center';
+  const xStep=Math.max(1,Math.ceil(pts/6));
+  for(let i=0;i<pts;i+=xStep) ctx.fillText(startYr+i+'', toX(i), pT+cH+20);
+
+  // Interest area
+  ctx.beginPath(); intPts.forEach((v,i)=>i===0?ctx.moveTo(toX(i),toY(v)):ctx.lineTo(toX(i),toY(v)));
+  ctx.lineTo(toX(pts-1),toY(0)); ctx.lineTo(toX(0),toY(0)); ctx.closePath();
+  ctx.fillStyle='rgba(52,199,89,0.07)'; ctx.fill();
+  ctx.beginPath(); intPts.forEach((v,i)=>i===0?ctx.moveTo(toX(i),toY(v)):ctx.lineTo(toX(i),toY(v)));
+  ctx.strokeStyle='rgba(52,199,89,0.7)'; ctx.lineWidth=1.8; ctx.stroke();
+
+  // Capital area
+  ctx.beginPath(); capPts.forEach((v,i)=>i===0?ctx.moveTo(toX(i),toY(v)):ctx.lineTo(toX(i),toY(v)));
+  ctx.lineTo(toX(pts-1),toY(0)); ctx.lineTo(toX(0),toY(0)); ctx.closePath();
+  ctx.fillStyle='rgba(0,122,255,0.07)'; ctx.fill();
+  ctx.beginPath(); capPts.forEach((v,i)=>i===0?ctx.moveTo(toX(i),toY(v)):ctx.lineTo(toX(i),toY(v)));
+  ctx.strokeStyle='rgba(0,122,255,0.85)'; ctx.lineWidth=2.2; ctx.stroke();
+}
+
+// ── History ───────────────────────────────────────────────────
+function cpRenderHistory(deposits){
+  const container=document.getElementById('dash-history'); if(!container) return;
+  const txs=[];
+  const now=new Date();
+  (deposits||[]).forEach(d=>{
+    _cpCurrency=d.currency||'EUR';
+    const amt=d.amount||0;
+    const date=new Date(d.submittedAt||now);
+    txs.push({type:'dep',icon:'💰',label:_cpT2.tx_deposit,amt:cpFmt(amt),date,cls:'neu'});
+    if(d.status==='approved'){
+      const startDate=new Date(d.approvedAt||d.submittedAt||now);
+      const opt=d.option||'a';
+      const freq=d.freq||1;
+      const mpi=freq===12?1:freq===4?3:freq===2?6:12;
+      const intPerInterval=amt*0.05/freq;
+      let pd=new Date(startDate); pd.setMonth(pd.getMonth()+mpi);
+      let cnt=0;
+      while(pd<=now&&cnt<12){
+        if(opt==='b'){
+          txs.push({type:'int',icon:'📈',label:_cpT2.tx_interest,amt:'+'+cpFmt(intPerInterval),date:new Date(pd),cls:'pos'});
+        } else {
+          const compInt=amt*(Math.pow(1.05,(pd-startDate)/(365.25*24*3600*1000))-Math.pow(1.05,(pd-startDate-mpi*30*24*3600*1000)/(365.25*24*3600*1000)));
+          txs.push({type:'int',icon:'📈',label:_cpT2.tx_interest,amt:'+'+cpFmt(compInt),date:new Date(pd),cls:'pos'});
+        }
+        pd.setMonth(pd.getMonth()+mpi); cnt++;
+      }
     }
+  });
+  txs.sort((a,b)=>b.date-a.date);
+  if(!txs.length){ container.innerHTML='<p class="cp-hist-empty">–</p>'; return; }
+  container.innerHTML=txs.slice(0,20).map(tx=>
+    `<div class="cp-hist-item">
+      <div class="cp-hist-icon ${tx.type}">${tx.icon}</div>
+      <div class="cp-hist-body"><p class="cp-hist-name">${tx.label}</p><p class="cp-hist-date">${tx.date.toLocaleDateString()}</p></div>
+      <span class="cp-hist-amt ${tx.cls}">${tx.amt}</span>
+    </div>`
+  ).join('');
+}
+
+// ── Payout ────────────────────────────────────────────────────
+async function cpRequestPayout(type){
+  const token=localStorage.getItem('aBest_session'); if(!token) return;
+  const msg=document.getElementById('dash-payout-msg');
+  try{
+    await fetch('/api/payout',{method:'POST',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},body:JSON.stringify({type,currency:_cpCurrency})});
+    if(msg){ msg.textContent=type==='interest'?_cpT2.payout_msg_interest:_cpT2.payout_msg_balance; msg.classList.add('show'); setTimeout(()=>msg.classList.remove('show'),5000); }
   }catch(e){}
 }
 
 // ── Init ──────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded',()=>{
+  // Monthly row hidden by default (Option A = compound, no monthly payout)
+  const mr=document.getElementById('ov-monthly-row'); if(mr) mr.style.display='none';
   cpCalc();
   loadCapitalData();
 });
-
 
 </script>
 
