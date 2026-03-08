@@ -576,7 +576,7 @@ function getAuthFormHTML(lang) {
             <div class="divider mt-2 mb-2"></div>
             
             <!-- Login Form -->
-            <form class="glass-form auth-form-content" id="login-form-content" style="display: block;" onsubmit="handleAuthSubmit(event, 'login')">
+            <form class="glass-form auth-form-content" id="login-form-content" style="display: block;" onsubmit="handleAuthSubmit(event, '/api/auth/login', '/profile')">
                 <div class="form-group" style="text-align: left; margin-bottom: 1rem;">
                     <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">${t.email}</label>
                     <input class="form-input" id="login_email" required type="email" style="width: 100%;" />
@@ -589,7 +589,7 @@ function getAuthFormHTML(lang) {
             </form>
             
             <!-- Register Form -->
-            <form class="glass-form auth-form-content" id="register-form-content" style="display: none;" onsubmit="return handleAuthSubmit(event, '/api/auth/register', '/${lang}/profil.html')">
+            <form class="glass-form auth-form-content" id="register-form-content" style="display: none;" onsubmit="return handleAuthSubmit(event, '/api/auth/register', '/profile')">
                 <div class="form-group" style="text-align: left; margin-bottom: 1rem;">
                     <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">${t.email}</label>
                     <input class="form-input" id="reg_email" required type="email" style="width: 100%;" />
@@ -701,7 +701,7 @@ window.logout = function () {
 };
 
 // --- PROFILE PAGE LOGIC ---
-if (window.location.pathname.includes('/profil.html')) {
+if (window.location.pathname.includes('/profil.html') || window.location.pathname.endsWith('/profile')) {
     loadUserProfile();
     loadMessages();
 }
