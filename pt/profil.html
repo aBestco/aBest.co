@@ -2241,17 +2241,17 @@ const _slT = {
 var _slMain = null, _slSub = null;
 var _slMap = null, _slMarker = null, _slImgFiles = [], _slDocFiles = [];
 
-function slStepProgress(active) {{
-  [1,2,3].forEach(function(n) {{
+function slStepProgress(active) {
+  [1,2,3].forEach(function(n) {
     var el = document.getElementById('sl-dot-' + n);
     if (!el) return;
     el.classList.remove('sl-active','sl-done');
     if (n < active) el.classList.add('sl-done');
     else if (n === active) el.classList.add('sl-active');
-  }});
-}}
+  });
+}
 
-function slSelectMain(type) {{
+function slSelectMain(type) {
   _slMain = type;
   document.getElementById('sl-s1').style.display = 'none';
   document.getElementById('sl-s2').style.display = 'block';
@@ -2260,24 +2260,24 @@ function slSelectMain(type) {{
   document.getElementById('sl-re-grid').style.display  = type === 'realestate' ? '' : 'none';
   document.getElementById('sl-biz-grid').style.display = type === 'business'    ? '' : 'none';
   slStepProgress(2);
-  document.getElementById('sl-s2').scrollIntoView({{behavior:'smooth',block:'nearest'}});
-}}
+  document.getElementById('sl-s2').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
 
-function slGoBack(toStep) {{
-  if (toStep === 1) {{
+function slGoBack(toStep) {
+  if (toStep === 1) {
     document.getElementById('sl-s2').style.display = 'none';
     document.getElementById('sl-s3').style.display = 'none';
     document.getElementById('sl-s1').style.display = 'block';
     slStepProgress(1);
-  }} else {{
+  } else {
     document.getElementById('sl-s3').style.display = 'none';
     document.getElementById('sl-s2').style.display = 'block';
     slStepProgress(2);
-  }}
-  document.getElementById('rf-seller').scrollIntoView({{behavior:'smooth',block:'start'}});
-}}
+  }
+  document.getElementById('rf-seller').scrollIntoView({behavior:'smooth',block:'start'});
+}
 
-function slSelectSub(sub) {{
+function slSelectSub(sub) {
   _slSub = sub;
   document.getElementById('sl-s2').style.display = 'none';
   document.getElementById('sl-s3').style.display = 'block';
@@ -2286,27 +2286,27 @@ function slSelectSub(sub) {{
   // Reset uploads
   _slImgFiles = []; _slDocFiles = [];
   setTimeout(slAttachUploads, 50);
-  setTimeout(function() {{
+  setTimeout(function() {
     if (typeof slInitMap === 'function') slInitMap();
-  }}, 100);
-  document.getElementById('sl-s3').scrollIntoView({{behavior:'smooth',block:'start'}});
-}}
+  }, 100);
+  document.getElementById('sl-s3').scrollIntoView({behavior:'smooth',block:'start'});
+}
 
-function slField(id, label, type, opts, req) {{
+function slField(id, label, type, opts, req) {
   var req_mark = req ? ' <span style="color:#ff453a">*</span>' : '';
   var inp = '';
-  if (type === 'text' || type === 'number') {{
+  if (type === 'text' || type === 'number') {
     inp = '<input class="sl-input" id="sl-f-' + id + '" type="' + type + '" placeholder="" />';
-  }} else if (type === 'textarea') {{
+  } else if (type === 'textarea') {
     inp = '<textarea class="sl-textarea" id="sl-f-' + id + '" rows="5" style="resize:vertical"></textarea>';
-  }} else if (type === 'select') {{
-    var options = opts ? opts.split('|').map(function(o){{return '<option>'+o+'</option>';}}).join('') : '';
+  } else if (type === 'select') {
+    var options = opts ? opts.split('|').map(function(o){return '<option>'+o+'</option>';}).join('') : '';
     inp = '<select class="sl-select" id="sl-f-' + id + '"><option value="">—</option>' + options + '</select>';
-  }}
+  }
   return '<div class="sl-field"><label>' + label + req_mark + '</label>' + inp + '</div>';
-}}
+}
 
-function slBuildForm(sub) {{
+function slBuildForm(sub) {
   var t = _slT;
   var h = '';
   // ── Common: title + location + map ──────────────────────────────────
@@ -2322,14 +2322,14 @@ function slBuildForm(sub) {{
   h += '<div class="sl-map-container" id="sl-map"></div></div>';
 
   // ── Type-specific fields ─────────────────────────────────────────────
-  if (sub === 'land') {{
+  if (sub === 'land') {
     h += slField('land_size', t.f_land_size, 'text');
     h += '<div class="sl-2col">';
     h += slField('zoning', t.f_zoning, 'select', t.f_zoning_opts);
     h += slField('build_perm', t.f_build_perm, 'select', t.f_yesno);
     h += '</div>';
     h += slField('infra', t.f_infra, 'select', t.f_yesno);
-  }} else if (sub === 'buildingland') {{
+  } else if (sub === 'buildingland') {
     h += '<div class="sl-2col">';
     h += slField('land_size', t.f_land_size, 'text');
     h += slField('zoning', t.f_zoning, 'select', t.f_zoning_opts);
@@ -2337,20 +2337,20 @@ function slBuildForm(sub) {{
     h += slField('build_perm', t.f_build_perm, 'select', t.f_yesno);
     h += slField('infra', t.f_infra, 'select', t.f_yesno);
     h += '</div>';
-  }} else if (sub === 'farmland') {{
+  } else if (sub === 'farmland') {
     h += '<div class="sl-2col">';
     h += slField('total_area', t.f_total_area, 'text');
     h += slField('usage_farm', t.f_usage_farm, 'select', t.f_usage_farm_opts);
     h += '</div>';
     h += slField('irrigation', t.f_irrigation, 'select', t.f_yesno);
-  }} else if (sub === 'singlefamily') {{
+  } else if (sub === 'singlefamily') {
     h += '<div class="sl-3col">';
     h += slField('year_built', t.f_year_built, 'number');
     h += slField('living_space', t.f_living_space, 'number');
     h += slField('rooms', t.f_rooms, 'number');
     h += '</div>';
     h += slField('cond', t.f_cond, 'select', t.f_cond_opts);
-  }} else if (sub === 'multifamily') {{
+  } else if (sub === 'multifamily') {
     h += '<div class="sl-2col">';
     h += slField('year_built', t.f_year_built, 'number');
     h += slField('units', t.f_units, 'number');
@@ -2359,14 +2359,14 @@ function slBuildForm(sub) {{
     h += slField('rental_income', t.f_rental_income, 'number');
     h += '</div>';
     h += slField('cond', t.f_cond, 'select', t.f_cond_opts);
-  }} else if (sub === 'apartment') {{
+  } else if (sub === 'apartment') {
     h += '<div class="sl-3col">';
     h += slField('year_built', t.f_year_built, 'number');
     h += slField('living_space', t.f_living_space, 'number');
     h += slField('floor', t.f_floor, 'number');
     h += '</div>';
     h += slField('cond', t.f_cond, 'select', t.f_cond_opts);
-  }} else if (sub === 'commercial') {{
+  } else if (sub === 'commercial') {
     h += '<div class="sl-2col">';
     h += slField('size', t.f_size, 'number');
     h += slField('year_built', t.f_year_built, 'number');
@@ -2374,26 +2374,26 @@ function slBuildForm(sub) {{
     h += slField('usage_comm', t.f_usage_comm, 'text');
     h += slField('rental_income', t.f_rental_income, 'number');
     h += '</div>';
-  }} else if (sub === 'warehouse') {{
+  } else if (sub === 'warehouse') {
     h += '<div class="sl-2col">';
     h += slField('size', t.f_size, 'number');
     h += slField('height', t.f_height, 'number');
     h += '</div>';
     h += slField('loading_dock', t.f_loading_dock, 'select', t.f_yesno);
-  }} else if (sub === 'hotel') {{
+  } else if (sub === 'hotel') {
     h += '<div class="sl-3col">';
     h += slField('rooms_count', t.f_rooms_count, 'number');
     h += slField('stars', t.f_stars, 'select', t.f_stars_opts);
     h += slField('year_built', t.f_year_built, 'number');
     h += '</div>';
     h += slField('rental_income', t.f_rental_income, 'number');
-  }} else if (sub === 'development') {{
+  } else if (sub === 'development') {
     h += '<div class="sl-2col">';
     h += slField('size', t.f_size, 'number');
     h += slField('units_planned', t.f_units_planned, 'number');
     h += '</div>';
     h += slField('stage', t.f_stage, 'select', t.f_stage_opts);
-  }} else if (sub === 'sellbusiness') {{
+  } else if (sub === 'sellbusiness') {
     h += '<div class="sl-2col">';
     h += slField('biz_name', t.f_biz_name, 'text', null, true);
     h += slField('industry', t.f_industry, 'text');
@@ -2402,7 +2402,7 @@ function slBuildForm(sub) {{
     h += slField('profit', t.f_profit, 'number');
     h += slField('employees', t.f_employees, 'number');
     h += '</div>';
-  }} else if (sub === 'partnerinvestor') {{
+  } else if (sub === 'partnerinvestor') {
     h += '<div class="sl-2col">';
     h += slField('biz_name', t.f_biz_name, 'text', null, true);
     h += slField('industry', t.f_industry, 'text');
@@ -2411,16 +2411,16 @@ function slBuildForm(sub) {{
     h += slField('equity', t.f_equity, 'number');
     h += '</div>';
     h += slField('use_of_capital', t.f_use_of_capital, 'textarea');
-  }} else if (sub === 'otherbusiness') {{
+  } else if (sub === 'otherbusiness') {
     h += '<div class="sl-2col">';
     h += slField('category', t.f_category, 'text');
     h += slField('contact', t.f_contact, 'text');
     h += '</div>';
-  }}
+  }
   // ── Price (all except partnerinvestor) ──────────────────────────────
-  if (sub !== 'partnerinvestor') {{
+  if (sub !== 'partnerinvestor') {
     h += slField('price', t.f_price, 'number', null, sub !== 'otherproperty' && sub !== 'otherbusiness');
-  }}
+  }
   // ── Description (always) ────────────────────────────────────────────
   h += slField('desc', t.f_desc, 'textarea', null, true);
 
@@ -2450,48 +2450,48 @@ function slBuildForm(sub) {{
   h += '<input type="file" id="sl-img-input" multiple accept=".jpg,.jpeg,.png,.webp,.gif" style="display:none" />';
   h += '<input type="file" id="sl-doc-input" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.zip" style="display:none" />';
   return h;
-}}
+}
 
-function slAttachUploads() {{
+function slAttachUploads() {
   var imgInp = document.getElementById('sl-img-input');
   var docInp = document.getElementById('sl-doc-input');
-  if (imgInp) imgInp.addEventListener('change', function() {{
+  if (imgInp) imgInp.addEventListener('change', function() {
     _slImgFiles = Array.from(this.files);
     var nm = document.getElementById('sl-img-name');
-    if (nm) nm.textContent = _slImgFiles.length ? _slImgFiles.map(function(f){{return f.name;}}).join(', ') : '';
-  }});
-  if (docInp) docInp.addEventListener('change', function() {{
+    if (nm) nm.textContent = _slImgFiles.length ? _slImgFiles.map(function(f){return f.name;}).join(', ') : '';
+  });
+  if (docInp) docInp.addEventListener('change', function() {
     _slDocFiles = Array.from(this.files);
     var nm = document.getElementById('sl-doc-name');
-    if (nm) nm.textContent = _slDocFiles.length ? _slDocFiles.map(function(f){{return f.name;}}).join(', ') : '';
-  }});
-}}
+    if (nm) nm.textContent = _slDocFiles.length ? _slDocFiles.map(function(f){return f.name;}).join(', ') : '';
+  });
+}
 
 // ── Leaflet Map ──────────────────────────────────────────────────────────────
-function slInitMap() {{
+function slInitMap() {
   var container = document.getElementById('sl-map');
   if (!container || _slMap) return;
-  function _doInitMap() {{
+  function _doInitMap() {
     if (_slMap) return;
-    _slMap = L.map('sl-map', {{zoomControl:true}}).setView([48.1351, 11.582], 5);
-    L.tileLayer('https://{{s}}.tile.openstreetmap.org/{{z}}/{{x}}/{{y}}.png', {{
+    _slMap = L.map('sl-map', {zoomControl:true}).setView([48.1351, 11.582], 5);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© OpenStreetMap',
       maxZoom: 18
-    }}).addTo(_slMap);
+    }).addTo(_slMap);
     var btn = document.querySelector('.sl-map-search button');
-    _slMap.on('click', function(e) {{
+    _slMap.on('click', function(e) {
       if (_slMarker) _slMap.removeLayer(_slMarker);
       _slMarker = L.marker(e.latlng).addTo(_slMap);
       var locInp = document.getElementById('sl-f-loc') || document.getElementById('sl-map-query');
-      if (locInp && !locInp.value) {{
+      if (locInp && !locInp.value) {
         fetch('https://nominatim.openstreetmap.org/reverse?format=json&lat=' + e.latlng.lat + '&lon=' + e.latlng.lng)
-          .then(function(r){{return r.json();}})
-          .then(function(d){{if(d.display_name&&locInp)locInp.value=d.display_name;}})
-          .catch(function(){{}});
-      }}
-    }});
-  }}
-  if (window.L) {{ _doInitMap(); return; }}
+          .then(function(r){return r.json();})
+          .then(function(d){if(d.display_name&&locInp)locInp.value=d.display_name;})
+          .catch(function(){});
+      }
+    });
+  }
+  if (window.L) { _doInitMap(); return; }
   // Lazy-load Leaflet
   var css = document.createElement('link');
   css.rel = 'stylesheet';
@@ -2501,27 +2501,27 @@ function slInitMap() {{
   js.src = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js';
   js.onload = _doInitMap;
   document.head.appendChild(js);
-}}
+}
 
-function slSearchMap() {{
-  var q = (document.getElementById('sl-map-query')||{{}}).value;
+function slSearchMap() {
+  var q = (document.getElementById('sl-map-query')||{}).value;
   if (!q) return;
   var btn = document.querySelector('.sl-map-search button');
   if (btn) btn.textContent = _slT.searching;
   fetch('https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(q) + '&limit=1')
-    .then(function(r){{return r.json();}})
-    .then(function(results) {{
+    .then(function(r){return r.json();})
+    .then(function(results) {
       if (btn) btn.textContent = _slT.search_map;
       if (!results || !results[0]) return;
       var r = results[0];
       var latlng = [parseFloat(r.lat), parseFloat(r.lon)];
-      if (!_slMap) {{ slInitMap(); setTimeout(function(){{slSetMapPin(latlng, q);}}, 600); }}
+      if (!_slMap) { slInitMap(); setTimeout(function(){slSetMapPin(latlng, q);}, 600); }
       else slSetMapPin(latlng, q);
-    }})
-    .catch(function() {{ if (btn) btn.textContent = _slT.search_map; }});
-}}
+    })
+    .catch(function() { if (btn) btn.textContent = _slT.search_map; });
+}
 
-function slSetMapPin(latlng, label) {{
+function slSetMapPin(latlng, label) {
   if (!_slMap) return;
   _slMap.setView(latlng, 14);
   if (_slMarker) _slMap.removeLayer(_slMarker);
@@ -2530,10 +2530,10 @@ function slSetMapPin(latlng, label) {{
   // Also fill location input
   var locInp = document.getElementById('sl-f-loc');
   if (locInp && !locInp.value) locInp.value = label;
-}}
+}
 
 // ── Submit ───────────────────────────────────────────────────────────────────
-async function submitSeller() {{
+async function submitSeller() {
   var errEl   = document.getElementById('role-err-seller');
   var msgEl   = document.getElementById('rsm-seller');
   var btn     = document.getElementById('sl-submit-btn');
@@ -2542,20 +2542,20 @@ async function submitSeller() {{
   if (errEl) errEl.style.display = 'none';
 
   // Collect fields
-  function gv(id) {{ var el=document.getElementById('sl-f-'+id); return el?el.value.trim():''; }}
+  function gv(id) { var el=document.getElementById('sl-f-'+id); return el?el.value.trim():''; }
   var titleVal = gv('title') || gv('biz_name');
   var locVal   = gv('loc');
   var descVal  = gv('desc');
 
-  if (!titleVal) {{
-    if (errEl) {{ errEl.textContent=_slT.err_title; errEl.style.display='block'; }} return;
-  }}
-  if (!descVal) {{
-    if (errEl) {{ errEl.textContent=_slT.err_desc; errEl.style.display='block'; }} return;
-  }}
+  if (!titleVal) {
+    if (errEl) { errEl.textContent=_slT.err_title; errEl.style.display='block'; } return;
+  }
+  if (!descVal) {
+    if (errEl) { errEl.textContent=_slT.err_desc; errEl.style.display='block'; } return;
+  }
 
   // Collect all form values
-  var formData = {{
+  var formData = {
     sub: _slSub, main: _slMain,
     title: titleVal, location: locVal,
     price: gv('price') || gv('capital_needed'),
@@ -2576,39 +2576,39 @@ async function submitSeller() {{
     growth: gv('growth'), highlights: gv('highlights'),
     map_lat: _slMarker ? _slMarker.getLatLng().lat : '',
     map_lng: _slMarker ? _slMarker.getLatLng().lng : '',
-  }};
+  };
 
   var origText = btn ? btn.textContent : '';
-  if (btn) {{ btn.disabled=true; btn.style.opacity='0.6'; }}
+  if (btn) { btn.disabled=true; btn.style.opacity='0.6'; }
 
   var fd = new FormData();
   fd.append('role', 'seller');
   fd.append('title', titleVal);
   fd.append('description', JSON.stringify(formData));
-  if (_slImgFiles.length) _slImgFiles.forEach(function(f){{ fd.append('file', f); }});
-  else if (_slDocFiles.length) _slDocFiles.forEach(function(f){{ fd.append('file', f); }});
+  if (_slImgFiles.length) _slImgFiles.forEach(function(f){ fd.append('file', f); });
+  else if (_slDocFiles.length) _slDocFiles.forEach(function(f){ fd.append('file', f); });
 
-  try {{
-    var res = await fetch('/api/role', {{
+  try {
+    var res = await fetch('/api/role', {
       method: 'POST',
-      headers: {{ 'Authorization': 'Bearer ' + token }},
+      headers: { 'Authorization': 'Bearer ' + token },
       body: fd
-    }});
+    });
     if (!res.ok) throw new Error(res.statusText);
-    if (msgEl) {{ msgEl.style.display='inline'; setTimeout(function(){{msgEl.style.display='none';}},6000); }}
+    if (msgEl) { msgEl.style.display='inline'; setTimeout(function(){msgEl.style.display='none';},6000); }
     var pill = document.getElementById('role-current-pill');
     var pillName = document.getElementById('role-current-name');
-    if (pill && pillName) {{
+    if (pill && pillName) {
       var rc = document.getElementById('rc-seller');
       pillName.textContent = rc ? rc.querySelector('.rc-title').textContent : 'Seller';
       pill.style.display = 'inline-flex';
-    }}
-  }} catch(e) {{
-    if (errEl) {{ errEl.textContent = e.message; errEl.style.display='block'; }}
-  }} finally {{
-    if (btn) {{ btn.disabled=false; btn.style.opacity='1'; btn.textContent=origText; }}
-  }}
-}}
+    }
+  } catch(e) {
+    if (errEl) { errEl.textContent = e.message; errEl.style.display='block'; }
+  } finally {
+    if (btn) { btn.disabled=false; btn.style.opacity='1'; btn.textContent=origText; }
+  }
+}
 // ────────────────────────────────────────────────────────────────────────────
 
 
