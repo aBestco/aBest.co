@@ -24,7 +24,7 @@ body { background: #0a0a0f; }
 
 /* Tab Nav */
 .db-tabs { display: flex; gap: 4px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09); border-radius: 12px; padding: 4px; margin-bottom: 12px; }
-.db-tab { flex: 1; padding: 8px 5px; background: transparent; border: none; border-radius: 10px; color: var(--text-muted); font-size: 0.78rem; font-weight: 500; cursor: pointer; transition: all 0.2s; white-space: nowrap; font-family: inherit; }
+.db-tab { flex: 1; padding: 8px 5px; background: transparent; border: none; border-radius: 10px; color: var(--text-muted); font-size: 1.25rem; cursor: pointer; transition: all 0.2s; font-family: inherit; }
 .db-tab.active { background: rgba(0,122,255,0.15); border: 1px solid rgba(0,122,255,0.3); color: var(--primary-blue); }
 .db-tab:hover:not(.active) { background: rgba(255,255,255,0.06); color: var(--text-main); }
 
@@ -101,7 +101,7 @@ body { background: #0a0a0f; }
 
 @media (max-width: 480px) {
   .db-hero { flex-direction: column; text-align: center; }
-  .db-tab { font-size: 0.7rem; padding: 8px 4px; }
+  .db-tab { font-size: 1.1rem; padding: 8px 4px; }
   .team-member-card { flex-wrap: wrap; }
   .tm-actions { width: 100%; justify-content: flex-end; }
 }
@@ -560,7 +560,7 @@ body { background: #0a0a0f; }
     </span>
   </a>
   <div style="display:flex;align-items:center;gap:12px;">
-    <a href="/tr/" style="font-size:0.82rem;color:var(--text-muted);text-decoration:none;">Ana Sayfa</a>
+    <a href="/tr/" class="header-icon-v2" aria-label="Home" title="Ana Sayfa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></a>
     <a href="/profile" class="header-icon-v2 active" aria-label="Profile">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
     </a>
@@ -581,11 +581,11 @@ body { background: #0a0a0f; }
 
   <!-- Tab Navigation -->
   <div class="db-tabs fade-in-up" style="animation-delay:0.1s;">
-    <button class="db-tab active" onclick="switchTab('profil',this)">👤 Profil</button>
-    <button class="db-tab" onclick="switchTab('messages',this)">💬 Mesajlar</button>
-    <button class="db-tab" onclick="switchTab('team',this)">👥 Ekip</button>
-    <button class="db-tab" onclick="switchTab('role',this)">🎯 Rolüm</button>
-    <button class="db-tab" onclick="switchTab('settings',this)">⚙️ Ayarlar</button>
+    <button class="db-tab active" onclick="switchTab('profil',this)" title="Profil">👤</button>
+    <button class="db-tab" onclick="switchTab('messages',this)" title="Mesajlar">💬</button>
+    <button class="db-tab" onclick="switchTab('team',this)" title="Ekip">👥</button>
+    <button class="db-tab" onclick="switchTab('role',this)" title="Rolüm">🎯</button>
+    <button class="db-tab" onclick="switchTab('settings',this)" title="Ayarlar">⚙️</button>
   </div>
 
   <!-- ── TAB: PROFIL ──────────────────────── -->
