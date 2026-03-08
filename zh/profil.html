@@ -105,6 +105,10 @@ body { background: #0a0a0f; }
   .team-member-card { flex-wrap: wrap; }
   .tm-actions { width: 100%; justify-content: flex-end; }
 }
+/* Delete account link */
+.db-delete-link { text-align: center; margin-top: 10px; }
+.db-delete-link a { color: rgba(255,255,255,0.2); font-size: 0.75rem; text-decoration: none; transition: color 0.3s; }
+.db-delete-link a:hover { color: #dc3545; }
 </style>
 </head>
 <body class="dark-mode">
@@ -243,15 +247,17 @@ body { background: #0a0a0f; }
       <div class="db-field" style="margin-bottom:0;"><label>确认新密码</label><input type="password" id="pw-confirm" autocomplete="new-password"/></div>
       <button class="db-btn db-btn-primary" style="margin-top:16px;" onclick="changePassword()">更新密码</button>
     </div>
-    <div class="settings-card danger-card">
-      <h4>⚠ 危险区域</h4>
-      <button class="db-btn db-btn-danger" onclick="if(confirm('您确定吗？此操作无法撤销。'))alert('Contact support to delete your account.')">删除账户</button>
     </div>
-  </div>
 
   <!-- Logout -->
   <div class="db-logout">
     <a href="#" onclick="logout();return false;">⎋ 退出</a>
+  </div>
+
+
+  <!-- Delete account (hidden small link) -->
+  <div class="db-delete-link">
+    <a href="#" onclick="confirmDeleteAccount();return false;">删除账户</a>
   </div>
 
 </div><!-- /db-wrapper -->
@@ -479,6 +485,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const inp = document.getElementById('new-message-input');
   if (inp) inp.addEventListener('keydown', e => { if(e.key==='Enter') sendMessage(); });
 });
+// ── Delete account (two-step confirm) ─────────────────
+async function confirmDeleteAccount() {
+  const token = localStorage.getItem('aBest_session');
+  if (!token) return;
+  const userEmail = document.getElementById('profile-email').value || '';
+  const input = prompt('输入您的电子邮件确认：');
+  if (!input) return;
+  if (input.trim().toLowerCase() !== userEmail.trim().toLowerCase()) {
+    alert('邮箱不匹配，已取消。');
+    return;
+  }
+  alert('Please contact support@abest.co to complete account deletion.');
+}
+
 </script>
 
 <script src="/app.js"></script>

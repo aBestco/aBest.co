@@ -105,6 +105,10 @@ body { background: #0a0a0f; }
   .team-member-card { flex-wrap: wrap; }
   .tm-actions { width: 100%; justify-content: flex-end; }
 }
+/* Delete account link */
+.db-delete-link { text-align: center; margin-top: 10px; }
+.db-delete-link a { color: rgba(255,255,255,0.2); font-size: 0.75rem; text-decoration: none; transition: color 0.3s; }
+.db-delete-link a:hover { color: #dc3545; }
 </style>
 </head>
 <body class="dark-mode">
@@ -243,15 +247,17 @@ body { background: #0a0a0f; }
       <div class="db-field" style="margin-bottom:0;"><label>नए पासवर्ड की पुष्टि</label><input type="password" id="pw-confirm" autocomplete="new-password"/></div>
       <button class="db-btn db-btn-primary" style="margin-top:16px;" onclick="changePassword()">पासवर्ड अपडेट करें</button>
     </div>
-    <div class="settings-card danger-card">
-      <h4>⚠ खतरनाक क्षेत्र</h4>
-      <button class="db-btn db-btn-danger" onclick="if(confirm('क्या आप सुनिश्चित हैं? यह क्रिया पूर्ववत नहीं की जा सकती।'))alert('Contact support to delete your account.')">खाता हटाएं</button>
     </div>
-  </div>
 
   <!-- Logout -->
   <div class="db-logout">
     <a href="#" onclick="logout();return false;">⎋ साइन आउट</a>
+  </div>
+
+
+  <!-- Delete account (hidden small link) -->
+  <div class="db-delete-link">
+    <a href="#" onclick="confirmDeleteAccount();return false;">खाता हटाएं</a>
   </div>
 
 </div><!-- /db-wrapper -->
@@ -479,6 +485,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const inp = document.getElementById('new-message-input');
   if (inp) inp.addEventListener('keydown', e => { if(e.key==='Enter') sendMessage(); });
 });
+// ── Delete account (two-step confirm) ─────────────────
+async function confirmDeleteAccount() {
+  const token = localStorage.getItem('aBest_session');
+  if (!token) return;
+  const userEmail = document.getElementById('profile-email').value || '';
+  const input = prompt('पुष्टि के लिए अपना ईमेल टाइप करें:');
+  if (!input) return;
+  if (input.trim().toLowerCase() !== userEmail.trim().toLowerCase()) {
+    alert('ईमेल मेल नहीं खाता। रद्द।');
+    return;
+  }
+  alert('Please contact support@abest.co to complete account deletion.');
+}
+
 </script>
 
 <script src="/app.js"></script>
