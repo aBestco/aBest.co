@@ -1,56 +1,82 @@
-name: "Deploy to Cloudflare + Sync to IDrive E2"
+name: "Deploy to Cloudflare + Backup to IDrive E2"
 
 on:
   push:
     branches:
       - main
+    paths-ignore:
+      - 'deploy_log.txt'   # Prevent infinite loop from log commits
   workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  deploy-and-sync:
+  deploy-and-backup:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Deploy to Cloudflare Pages and Capture Log
+      # ─── 1. CLOUDFLARE PAGES DEPLOY ───────────────────────────────────────
+      - name: Deploy to Cloudflare Pages
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # Account ID hardcoded – correct value: 23a6b5565d032e6bf1ffee7931c279cc
+          CLOUDFLARE_ACCOUNT_ID: 23a6b5565d032e6bf1ffee7931c279cc
         run: |
-          npx wrangler pages deploy . --project-name=abest-co > deploy_log.txt 2>&1 || echo "DEPLOY_FAILED" >> deploy_log.txt
+          npx wrangler pages deploy . \
+            --project-name=abest-co \
+            --account-id=23a6b5565d032e6bf1ffee7931c279cc \
+            > deploy_log.txt 2>&1
+          STATUS=$?
           cat deploy_log.txt
-          
-      - name: Commit Log
+          if [ $STATUS -ne 0 ]; then
+            echo "DEPLOY_FAILED" >> deploy_log.txt
+            echo "::warning::Cloudflare deploy failed – check deploy_log.txt"
+          else
+            echo "DEPLOY_SUCCESS" >> deploy_log.txt
+          fi
+
+      # ─── 2. SAVE DEPLOY LOG (no infinite loop) ────────────────────────────
+      - name: Commit deploy log
         run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add deploy_log.txt
-          git commit -m "chore: save deploy log with write permissions" || true
-          git push || true
+          git diff --cached --quiet || \
+            git commit -m "chore: update deploy log [skip ci]" && \
+            git push || true
 
-
+      # ─── 3. IDRIVE E2 BACKUP ──────────────────────────────────────────────
       - name: Configure AWS CLI for IDrive E2
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.IDRIVE_E2_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.IDRIVE_E2_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: us-east-1
         run: |
-          aws --version
-          aws configure set aws_access_key_id "$AWS_ACCESS_KEY_ID"
+          aws configure set aws_access_key_id     "$AWS_ACCESS_KEY_ID"
           aws configure set aws_secret_access_key "$AWS_SECRET_ACCESS_KEY"
-          aws configure set default.region "$AWS_DEFAULT_REGION"
+          aws configure set default.region         us-east-1
 
-      - name: Sync site to IDrive E2 bucket
+      - name: Sync site to IDrive E2 (backup)
         env:
           IDRIVE_E2_ENDPOINT: ${{ secrets.IDRIVE_E2_ENDPOINT }}
           IDRIVE_E2_BUCKET: ${{ secrets.IDRIVE_E2_BUCKET }}
         run: |
+          if [ -z "$IDRIVE_E2_ENDPOINT" ] || [ -z "$IDRIVE_E2_BUCKET" ]; then
+            echo "::warning::IDrive E2 secrets not configured – skipping backup"
+            exit 0
+          fi
           aws s3 sync . "s3://$IDRIVE_E2_BUCKET/site" \
             --endpoint-url "$IDRIVE_E2_ENDPOINT" \
+            --delete \
             --exclude ".git/*" \
             --exclude ".github/*" \
-            --exclude ".wrangler/*"
+            --exclude ".wrangler/*" \
+            --exclude "*.bak" \
+            --exclude "node_modules/*" \
+            --exclude "test_*.py" \
+            --exclude "test_*.js" \
+            --exclude "translate_*.py" \
+            --exclude "update_*.py"
+          echo "IDrive E2 backup complete"
