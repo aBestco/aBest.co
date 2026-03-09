@@ -25,11 +25,13 @@ jobs:
           # Account ID hardcoded – correct value: 23a6b5565d032e6bf1ffee7931c279cc
           CLOUDFLARE_ACCOUNT_ID: 23a6b5565d032e6bf1ffee7931c279cc
         run: |
+          set +e
           npx wrangler pages deploy . \
             --project-name=abest-co \
             --account-id=23a6b5565d032e6bf1ffee7931c279cc \
             > deploy_log.txt 2>&1
           STATUS=$?
+          set -e
           cat deploy_log.txt
           if [ $STATUS -ne 0 ]; then
             echo "DEPLOY_FAILED" >> deploy_log.txt
