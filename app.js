@@ -677,7 +677,8 @@ async function handleRegisterSubmit(event, pwMismatchMsg) {
             btn.innerText = '✓';
             if (data.token) {
                 localStorage.setItem('aBest_session', data.token);
-                window.location.href = '/profile';
+                var _nextParamReg = new URLSearchParams(window.location.search).get('next');
+                window.location.href = (_nextParamReg && _nextParamReg.startsWith('/')) ? decodeURIComponent(_nextParamReg) : '/profile';
             } else {
                 alert('Registrierung erfolgreich. Bitte anmelden.');
                 btn.innerText = originalText;
@@ -723,7 +724,9 @@ async function handleAuthSubmit(event, endpoint, redirectUrl) {
             btn.innerText = '✓';
             if (data.token) {
                 localStorage.setItem('aBest_session', data.token);
-                window.location.href = redirectUrl;
+                // Redirect to ?next= param if present and safe, otherwise default
+                var _nextParam = new URLSearchParams(window.location.search).get('next');
+                window.location.href = (_nextParam && _nextParam.startsWith('/')) ? decodeURIComponent(_nextParam) : redirectUrl;
             } else {
                 // This branch should ideally not be hit if token is always returned on success
                 alert('Erfolgreich, aber kein Token erhalten. Bitte versuchen Sie sich anzumelden.');
@@ -755,7 +758,8 @@ window.handleGoogleSignIn = async function (response) {
             const data = await res.json();
             if (res.ok && data.token) {
                 localStorage.setItem('aBest_session', data.token);
-                window.location.href = `/profile`;
+                var _nextParamG = new URLSearchParams(window.location.search).get('next');
+                window.location.href = (_nextParamG && _nextParamG.startsWith('/')) ? decodeURIComponent(_nextParamG) : '/profile';
             } else {
                 alert('Google Sign-In fehlgeschlagen: ' + (data.error || 'Unbekannter Fehler'));
             }
