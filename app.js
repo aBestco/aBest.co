@@ -912,11 +912,31 @@ window.loadUserProfile = async function () {
             if (adminBtn) adminBtn.style.display = 'inline-block';
         }
 
-        // Set avatar letters
+        // Set avatar: image if available, else initials
         if (userAvatarLetters) {
-            const nameStr = profile.name || profile.email;
-            userAvatarLetters.innerText = nameStr.substring(0, 2).toUpperCase();
+            const nameStr = profile.name || profile.email || '?';
+            const initials = nameStr.split(/\s+/).map(w=>w[0]).slice(0,2).join('').toUpperCase() || '?';
+            const initialsEl = document.getElementById('avatar-initials');
+            if (profile.avatar) {
+                // Show uploaded photo
+                if (initialsEl) initialsEl.style.display = 'none';
+                let img = userAvatarLetters.querySelector('img');
+                if (!img) { img = document.createElement('img'); userAvatarLetters.appendChild(img); }
+                img.src = profile.avatar;
+                img.style.cssText = 'width:100%;height:100%;object-fit:cover;border-radius:50%;position:absolute;inset:0;';
+            } else {
+                // Show initials
+                if (initialsEl) { initialsEl.textContent = initials; initialsEl.style.display = ''; }
+                else { userAvatarLetters.innerText = initials; }
+            }
         }
+        // Populate hero card
+        const heroName = document.getElementById('hero-name');
+        const heroEmail = document.getElementById('hero-email');
+        const heroBadge = document.getElementById('hero-badge');
+        if (heroName) heroName.textContent = profile.name || profile.email || '—';
+        if (heroEmail) heroEmail.textContent = profile.email || '—';
+        if (heroBadge) heroBadge.textContent = profile.role || 'Mitglied';
 
     } catch (err) {
         console.error(err);

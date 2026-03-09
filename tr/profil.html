@@ -16,7 +16,13 @@ body { background: #0a0a0f; }
 
 /* Hero card */
 .db-hero { display: flex; align-items: center; gap: 14px; padding: 16px 18px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10); border-radius: 16px; margin-bottom: 12px; }
-.db-avatar { width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg,rgba(0,122,255,0.4),rgba(0,200,150,0.25)); border: 2px solid rgba(0,122,255,0.5); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 700; color: #fff; flex-shrink: 0; }
+.db-avatar { width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg,rgba(0,122,255,0.4),rgba(0,200,150,0.25)); border: 2px solid rgba(0,122,255,0.5); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 700; color: #fff; flex-shrink: 0; cursor: pointer; position: relative; overflow: hidden; transition: opacity 0.2s; }
+.db-avatar:hover { opacity: 0.8; }
+.db-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+.db-avatar-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.55); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s; font-size: 0.55rem; color: #fff; font-weight: 600; letter-spacing: 0.02em; border-radius: 50%; }
+.db-avatar:hover .db-avatar-overlay { opacity: 1; }
+.db-share-btn { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 6px 10px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 5px; font-size: 0.78rem; transition: all 0.2s; margin-top: 4px; }
+.db-share-btn:hover { background: rgba(0,122,255,0.15); border-color: rgba(0,122,255,0.4); color: #fff; }
 .db-hero-info h2 { font-size: 1rem; font-weight: 600; color: var(--text-main); margin: 0 0 2px; }
 .db-hero-info p { font-size: 0.82rem; color: var(--text-muted); margin: 0 0 8px; }
 .db-badge { display: inline-block; font-size: 0.7rem; font-weight: 600; padding: 3px 10px; border-radius: 20px; background: rgba(0,122,255,0.15); border: 1px solid rgba(0,122,255,0.35); color: var(--primary-blue); text-transform: uppercase; letter-spacing: 0.06em; }
@@ -691,7 +697,7 @@ body { background: #0a0a0f; }
         <div style="text-align:center;color:var(--text-muted);font-size:0.85rem;padding:20px 0;">Yükleniyor...</div>
       </div>
       <div class="msg-input-row">
-        <input type="text" id="new-message-input" placeholder="Mesaj yazın..."/>
+        <input type="text" id="new-message-input" placeholder="Mesaj yazın..."onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMessage();}" />
         <button id="send-message-btn" onclick="sendMessage()">Gönder</button>
       </div>
     </div>
@@ -1203,6 +1209,45 @@ function getRoleBg(role) {
   return `background:${c}22;border:1px solid ${c}66;color:${c};`;
 }
 
+
+// ── Avatar Upload ─────────────────────────────────────
+window.uploadAvatar = async function(input) {
+  const file = input.files[0];
+  if (!file) return;
+  if (file.size > 2 * 1024 * 1024) { alert('Max 2 MB'); return; }
+  const token = localStorage.getItem('aBest_session');
+  if (!token) return;
+  const reader = new FileReader();
+  reader.onload = async function(e) {
+    const base64 = e.target.result;
+    const avatarEl = document.getElementById('profile-avatar-letters');
+    const initialsEl = document.getElementById('avatar-initials');
+    if (initialsEl) initialsEl.style.display = 'none';
+    let img = avatarEl ? avatarEl.querySelector('img') : null;
+    if (!img && avatarEl) { img = document.createElement('img'); avatarEl.appendChild(img); }
+    if (img) img.src = base64;
+    try {
+      await fetch('/api/auth/me', {
+        method: 'PUT',
+        headers: {'Content-Type':'application/json','Authorization':'Bearer '+token},
+        body: JSON.stringify({avatar: base64})
+      });
+    } catch(e) {}
+  };
+  reader.readAsDataURL(file);
+  input.value = '';
+};
+
+// ── Share Profile ─────────────────────────────────────
+window.shareProfile = async function() {
+  const url = window.location.origin + '/profile';
+  if (navigator.share) { try { await navigator.share({title:'aBest.co',url}); return; } catch(e){} }
+  try {
+    await navigator.clipboard.writeText(url);
+    const btn = document.querySelector('.db-share-btn');
+    if (btn) { const o=btn.innerHTML; btn.innerHTML='✓ Copied!'; setTimeout(()=>btn.innerHTML=o,2000); }
+  } catch(e) { alert(url); }
+};
 function getInitials(str) {
   if (!str) return '?';
   return str.split(/\s+/).map(w=>w[0]).slice(0,2).join('').toUpperCase();

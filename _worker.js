@@ -675,6 +675,12 @@ async function handleAuthApi(request, env) {
                 if (updates.name !== undefined) profile.name = updates.name;
                 if (updates.phone !== undefined) profile.phone = updates.phone;
                 if (updates.company !== undefined) profile.company = updates.company;
+                // Avatar: accept base64 data URL (max ~2MB image)
+                if (updates.avatar !== undefined) {
+                    if (typeof updates.avatar === 'string' && updates.avatar.startsWith('data:image/')) {
+                        profile.avatar = updates.avatar;
+                    }
+                }
 
                 await env.ABEST_AUTH.put(`profile:${userEmail}`, JSON.stringify(profile));
                 return new Response(JSON.stringify({ success: true, profile }), {
@@ -682,6 +688,29 @@ async function handleAuthApi(request, env) {
                 });
             }
             return new Response(JSON.stringify({ error: 'Storage missing' }), { status: 500, headers: corsHeaders });
+        }
+
+        // ── Change Password ──────────────────────────────────────────────────
+        if (method === 'PUT' && url.pathname === '/api/auth/password') {
+            const userEmail = await checkAuth(request, env);
+            if (!userEmail) return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401, headers: corsHeaders });
+            if (!env.ABEST_AUTH) return new Response(JSON.stringify({ error: 'Storage missing' }), { status: 500, headers: corsHeaders });
+            const { currentPassword, newPassword } = await request.json();
+            if (!currentPassword || !newPassword) {
+                return new Response(JSON.stringify({ error: 'Fehlende Felder' }), { status: 400, headers: corsHeaders });
+            }
+            if (newPassword.length < 8) {
+                return new Response(JSON.stringify({ error: 'Neues Passwort muss mindestens 8 Zeichen haben' }), { status: 400, headers: corsHeaders });
+            }
+            const storedHash = await env.ABEST_AUTH.get(`user:${userEmail}`);
+            if (!storedHash) return new Response(JSON.stringify({ error: 'Benutzer nicht gefunden' }), { status: 404, headers: corsHeaders });
+            const currentHash = await hashPassword(currentPassword);
+            if (storedHash !== currentHash) {
+                return new Response(JSON.stringify({ error: 'Aktuelles Passwort ist falsch' }), { status: 400, headers: corsHeaders });
+            }
+            const newHash = await hashPassword(newPassword);
+            await env.ABEST_AUTH.put(`user:${userEmail}`, newHash);
+            return new Response(JSON.stringify({ success: true }), { headers: { 'Content-Type': 'application/json', ...corsHeaders } });
         }
 
         return new Response('Not Found', { status: 404, headers: corsHeaders });
