@@ -520,33 +520,66 @@ async function handleDocsApi(request, env) {
     }
 }
 
-// --- PASSWORD HASHING HELPER (Simplified PBKDF2 via Web Crypto) ---
-async function hashPassword(password, salt = 'abest_global_salt_2026') {
+// --- PASSWORD HASHING (PBKDF2 + per-user random salt) ---
+// Legacy global salt kept ONLY for migrating old accounts on first login
+const LEGACY_SALT = 'abest_global_salt_2026';
+
+async function hashPassword(password, salt) {
     const enc = new TextEncoder();
     const keyMaterial = await crypto.subtle.importKey(
-        "raw",
-        enc.encode(password),
-        { name: "PBKDF2" },
-        false,
-        ["deriveBits", "deriveKey"]
+        "raw", enc.encode(password), { name: "PBKDF2" }, false, ["deriveBits", "deriveKey"]
     );
     const key = await crypto.subtle.deriveKey(
-        {
-            name: "PBKDF2",
-            salt: enc.encode(salt),
-            iterations: 100000,
-            hash: "SHA-256"
-        },
+        { name: "PBKDF2", salt: enc.encode(salt), iterations: 100000, hash: "SHA-256" },
         keyMaterial,
         { name: "AES-GCM", length: 256 },
-        true,
-        ["encrypt", "decrypt"]
+        true, ["encrypt", "decrypt"]
     );
     const exported = await crypto.subtle.exportKey("raw", key);
-    const hashBuffer = new Uint8Array(exported);
-    const hashArray = Array.from(hashBuffer);
-    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-    return hashHex;
+    return Array.from(new Uint8Array(exported)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+function generateSalt(length = 32) {
+    const bytes = new Uint8Array(length);
+    crypto.getRandomValues(bytes);
+    return Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+// --- LOGIN RATE LIMITER (brute force protection) ---
+async function checkLoginRateLimit(env, email) {
+    if (!env.ABEST_AUTH) return { allowed: true };
+    const key = `ratelimit:${email}`;
+    const raw = await env.ABEST_AUTH.get(key);
+    const now = Date.now();
+    const window = 15 * 60 * 1000; // 15 minutes
+    const maxAttempts = 10;
+
+    let data = raw ? JSON.parse(raw) : { attempts: 0, windowStart: now };
+    if (now - data.windowStart > window) {
+        data = { attempts: 0, windowStart: now }; // reset window
+    }
+    if (data.attempts >= maxAttempts) {
+        const retryAfter = Math.ceil((data.windowStart + window - now) / 1000);
+        return { allowed: false, retryAfter };
+    }
+    return { allowed: true, data, key, window };
+}
+
+async function recordLoginFailure(env, email) {
+    if (!env.ABEST_AUTH) return;
+    const key = `ratelimit:${email}`;
+    const raw = await env.ABEST_AUTH.get(key);
+    const now = Date.now();
+    const window = 15 * 60 * 1000;
+    let data = raw ? JSON.parse(raw) : { attempts: 0, windowStart: now };
+    if (now - data.windowStart > window) data = { attempts: 0, windowStart: now };
+    data.attempts++;
+    await env.ABEST_AUTH.put(key, JSON.stringify(data), { expirationTtl: 900 }); // auto-expire 15min
+}
+
+async function clearLoginRateLimit(env, email) {
+    if (!env.ABEST_AUTH) return;
+    await env.ABEST_AUTH.delete(`ratelimit:${email}`);
 }
 
 // --- AUTHENTICATION HANDLERS ---
@@ -611,31 +644,60 @@ async function handleAuthApi(request, env) {
 
         if (method === 'POST' && url.pathname === '/api/auth/login') {
             const { email, password } = await request.json();
+            if (!email || !password) {
+                return new Response(JSON.stringify({ error: 'Email and password required' }), { status: 400, headers: corsHeaders });
+            }
+
+            // Brute force protection
+            const rateLimit = await checkLoginRateLimit(env, email);
+            if (!rateLimit.allowed) {
+                return new Response(JSON.stringify({ error: `Too many login attempts. Try again in ${rateLimit.retryAfter}s.` }), {
+                    status: 429, headers: { ...corsHeaders, 'Retry-After': String(rateLimit.retryAfter) }
+                });
+            }
 
             if (env.ABEST_AUTH) {
                 const storedPass = await env.ABEST_AUTH.get(`user:${email}`);
-                const hashedInput = await hashPassword(password);
+                if (storedPass) {
+                    // Try per-user salt first, fall back to legacy global salt (migration)
+                    const userSalt = await env.ABEST_AUTH.get(`salt:${email}`);
+                    const saltToUse = userSalt || LEGACY_SALT;
+                    const hashedInput = await hashPassword(password, saltToUse);
 
-                if (storedPass && storedPass === hashedInput) {
-                    const sessionId = crypto.randomUUID();
-                    await env.ABEST_AUTH.put(`session:${sessionId}`, email, { expirationTtl: 86400 }); // 24h
+                    if (storedPass === hashedInput) {
+                        // Migrate legacy accounts to per-user salt on successful login
+                        if (!userSalt) {
+                            const newSalt = generateSalt();
+                            const newHash = await hashPassword(password, newSalt);
+                            await env.ABEST_AUTH.put(`salt:${email}`, newSalt);
+                            await env.ABEST_AUTH.put(`user:${email}`, newHash);
+                        }
 
-                    // Ensure an empty profile exists
-                    const existingProfile = await env.ABEST_AUTH.get(`profile:${email}`);
-                    if (!existingProfile) {
-                        await env.ABEST_AUTH.put(`profile:${email}`, JSON.stringify({ email: email, role: 'User' }));
+                        await clearLoginRateLimit(env, email);
+                        const sessionId = crypto.randomUUID();
+                        await env.ABEST_AUTH.put(`session:${sessionId}`, email, { expirationTtl: 86400 });
+
+                        const existingProfile = await env.ABEST_AUTH.get(`profile:${email}`);
+                        if (!existingProfile) {
+                            await env.ABEST_AUTH.put(`profile:${email}`, JSON.stringify({ email, role: 'User' }));
+                        }
+
+                        return new Response(JSON.stringify({ success: true, token: sessionId, email }), {
+                            headers: { 'Content-Type': 'application/json', ...corsHeaders }
+                        });
                     }
-
-                    return new Response(JSON.stringify({ success: true, token: sessionId, email: email }), {
-                        headers: { 'Content-Type': 'application/json', ...corsHeaders }
-                    });
                 }
             }
+
+            await recordLoginFailure(env, email);
             return new Response(JSON.stringify({ error: 'Invalid credentials' }), { status: 401, headers: corsHeaders });
         }
 
         if (method === 'POST' && url.pathname === '/api/auth/register') {
             const { email, password } = await request.json();
+            if (!email || !password || password.length < 8) {
+                return new Response(JSON.stringify({ error: 'Valid email and password (min 8 chars) required' }), { status: 400, headers: corsHeaders });
+            }
 
             if (env.ABEST_AUTH) {
                 const exists = await env.ABEST_AUTH.get(`user:${email}`);
@@ -643,9 +705,12 @@ async function handleAuthApi(request, env) {
                     return new Response(JSON.stringify({ error: 'User already exists' }), { status: 400, headers: corsHeaders });
                 }
 
-                const hashedPassword = await hashPassword(password);
+                // New accounts always get a unique random salt
+                const salt = generateSalt();
+                const hashedPassword = await hashPassword(password, salt);
+                await env.ABEST_AUTH.put(`salt:${email}`, salt);
                 await env.ABEST_AUTH.put(`user:${email}`, hashedPassword);
-                await env.ABEST_AUTH.put(`profile:${email}`, JSON.stringify({ email: email, name: '', phone: '', company: '', role: 'User' }));
+                await env.ABEST_AUTH.put(`profile:${email}`, JSON.stringify({ email, name: '', phone: '', company: '', role: 'User' }));
 
                 return new Response(JSON.stringify({ success: true }), {
                     headers: { 'Content-Type': 'application/json', ...corsHeaders }
@@ -711,11 +776,15 @@ async function handleAuthApi(request, env) {
             }
             const storedHash = await env.ABEST_AUTH.get(`user:${userEmail}`);
             if (!storedHash) return new Response(JSON.stringify({ error: 'Benutzer nicht gefunden' }), { status: 404, headers: corsHeaders });
-            const currentHash = await hashPassword(currentPassword);
+            // Use per-user salt if available, else legacy salt
+            const existingSalt = await env.ABEST_AUTH.get(`salt:${userEmail}`) || LEGACY_SALT;
+            const currentHash = await hashPassword(currentPassword, existingSalt);
             if (storedHash !== currentHash) {
                 return new Response(JSON.stringify({ error: 'Aktuelles Passwort ist falsch' }), { status: 400, headers: corsHeaders });
             }
-            const newHash = await hashPassword(newPassword);
+            const newSalt = generateSalt();
+            const newHash = await hashPassword(newPassword, newSalt);
+            await env.ABEST_AUTH.put(`salt:${userEmail}`, newSalt);
             await env.ABEST_AUTH.put(`user:${userEmail}`, newHash);
             return new Response(JSON.stringify({ success: true }), { headers: { 'Content-Type': 'application/json', ...corsHeaders } });
         }

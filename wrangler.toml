@@ -1,0 +1,46 @@
+# aBest.co – Cloudflare Pages + Workers Configuration
+# ─────────────────────────────────────────────────────
+# Account: 23a6b5565d032e6bf1ffee7931c279cc
+# Project: abest-co
+# ─────────────────────────────────────────────────────
+
+name = "abest-co"
+compatibility_date = "2026-03-05"
+pages_build_output_dir = "."
+
+# ─── KV NAMESPACES ───────────────────────────────────
+# Configure these in Cloudflare Dashboard:
+# Pages → abest-co → Settings → Functions → KV namespace bindings
+#
+# IMPORTANT: After adding a new KV namespace in the dashboard,
+# copy the namespace ID here for documentation.
+
+[[kv_namespaces]]
+binding = "ABEST_AUTH"
+id = ""   # Set in Cloudflare Dashboard → KV → create "ABEST_AUTH"
+# Stores: user passwords, sessions, profiles, messages, team members, role data
+
+[[kv_namespaces]]
+binding = "ABEST_INQUIRIES"
+id = "2530b4a2fd22426d90be9ed8343e3a14"
+# Stores: contact form submissions, business inquiries
+
+# ─── R2 BUCKETS ──────────────────────────────────────
+# Configure in Cloudflare Dashboard:
+# Pages → abest-co → Settings → Functions → R2 bucket bindings
+
+[[r2_buckets]]
+binding = "ABEST_R2"
+bucket_name = "abest-uploads"
+# Stores: user file uploads (documents, PDFs, images > 25MB)
+# NOTE: Without this binding, file uploads save metadata only (no actual file stored)
+
+# ─── ENVIRONMENT VARIABLES ───────────────────────────
+# Set as encrypted secrets in Cloudflare Dashboard:
+# Pages → abest-co → Settings → Environment variables
+#
+# Required variables:
+#   ADMIN_USER   = admin email address
+#   ADMIN_PASS   = admin password (hashed)
+#
+# The worker checks these for the legacy admin basic-auth endpoint.
