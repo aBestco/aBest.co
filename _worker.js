@@ -288,6 +288,12 @@ async function handleInquiriesApi(request, env) {
         return new Response(null, { headers: corsHeaders });
     }
 
+    if (!env.ABEST_INQUIRIES) {
+        return new Response(JSON.stringify({ error: 'Service temporarily unavailable' }), {
+            status: 503, headers: { 'Content-Type': 'application/json', ...corsHeaders }
+        });
+    }
+
     try {
         // GET /api/inquiries : Fetch all inquiries
         if (method === 'GET' && url.pathname === '/api/inquiries') {
@@ -1204,6 +1210,65 @@ async function handleListingsApi(request, env) {
     } catch(err) {
         return new Response(JSON.stringify({ error: err.message }), {
             status: 500, headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
+        });
+    }
+}
+
+// ── Payout Request API ───────────────────────────────────────────────────────
+async function handlePayoutApi(request, env) {
+    const corsHeaders = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    };
+
+    if (request.method === 'OPTIONS') {
+        return new Response(null, { headers: corsHeaders });
+    }
+
+    if (request.method !== 'POST') {
+        return new Response(JSON.stringify({ error: 'Method Not Allowed' }), {
+            status: 405, headers: { 'Content-Type': 'application/json', ...corsHeaders }
+        });
+    }
+
+    // Require authentication
+    const userEmail = await checkAuth(request, env);
+    if (!userEmail) return unauthorizedResponse();
+
+    if (!env.ABEST_AUTH) {
+        return new Response(JSON.stringify({ error: 'Service temporarily unavailable' }), {
+            status: 503, headers: { 'Content-Type': 'application/json', ...corsHeaders }
+        });
+    }
+
+    try {
+        const body = await request.json();
+        const type = body.type || 'balance';   // 'interest' or 'balance'
+        const currency = body.currency || 'EUR';
+
+        // Record payout request under the user's role data
+        const key = `role_data:${userEmail}`;
+        const existing = await env.ABEST_AUTH.get(key);
+        const roleData = existing ? JSON.parse(existing) : {};
+
+        if (!roleData.payoutRequests) roleData.payoutRequests = [];
+        roleData.payoutRequests.push({
+            id: crypto.randomUUID(),
+            type,
+            currency,
+            status: 'pending',
+            requestedAt: new Date().toISOString(),
+        });
+
+        await env.ABEST_AUTH.put(key, JSON.stringify(roleData));
+
+        return new Response(JSON.stringify({ ok: true }), {
+            headers: { 'Content-Type': 'application/json', ...corsHeaders }
+        });
+    } catch(err) {
+        return new Response(JSON.stringify({ error: err.message }), {
+            status: 500, headers: { 'Content-Type': 'application/json', ...corsHeaders }
         });
     }
 }
