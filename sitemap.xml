@@ -174,6 +174,20 @@
     <priority>0.3</priority>
   </url>
   <url>
+    <loc>https://www.abest.co/de/usa/california/san-mateo-county/half-moon-bay/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.abest.co/de/usa/california/san-mateo-county/half-moon-bay/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.abest.co/en/usa/california/san-mateo-county/half-moon-bay/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.abest.co/fr/usa/california/san-mateo-county/half-moon-bay/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.abest.co/es/usa/california/san-mateo-county/half-moon-bay/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.abest.co/ja/usa/california/san-mateo-county/half-moon-bay/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.abest.co/ko/usa/california/san-mateo-county/half-moon-bay/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.abest.co/zh/usa/california/san-mateo-county/half-moon-bay/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.abest.co/de/usa/california/san-mateo-county/half-moon-bay/"/>
+    <changefreq>monthly</changefreq>
+    <lastmod>2026-03-08</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://www.abest.co/de/usa/california/kern-county/rosamond/</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://www.abest.co/de/usa/california/kern-county/rosamond/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.abest.co/en/usa/california/kern-county/rosamond/"/>

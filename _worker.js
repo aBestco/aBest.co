@@ -204,6 +204,18 @@ export default {
             if (rmdRes.ok) return new Response(rmdRes.body, { headers: rmdRes.headers });
         }
 
+        // --- 1.6 HALF MOON BAY LAND PROJECT ---
+        // /xx/usa/california/san-mateo-county/half-moon-bay → serve de page for all languages
+        if (cleanPath === '/usa/california/san-mateo-county/half-moon-bay' ||
+            cleanPath === '/usa/california/san-mateo-county/half-moon-bay/') {
+            const hmbUrl = new URL(request.url);
+            hmbUrl.pathname = '/de/usa/california/san-mateo-county/half-moon-bay/index.html';
+            const hmbReq = new Request(hmbUrl.toString(), request);
+            hmbReq.headers.set('X-Internal-Fetch', 'true');
+            const hmbRes = await env.ASSETS.fetch(hmbReq);
+            if (hmbRes.ok) return new Response(hmbRes.body, { headers: hmbRes.headers });
+        }
+
         // --- 3. 301 REDIRECTS ---
         // /de/ideen → /de/earn-money (URL rename)
         if (pathname === '/de/ideen' || pathname === '/de/ideen.html') {
