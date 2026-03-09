@@ -1245,3 +1245,82 @@ p, li { font-size: clamp(0.875rem, 1vw + 0.7rem, 1rem); line-height: 1.6; }
     a::after { content: ' (' attr(href) ')'; font-size: 0.8em; color: #666; }
 }
 
+
+/* ══════════════════════════════════════════════════════════════════
+   aBest.co GLOW FRAME EFFECT
+   Subtiler blauer Leuchtrahmen – alle vier Seiten – CSS only
+   Performance: fixed pseudo-element, no JS, no repaints
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── Haupt-Glow: fixed overlay über gesamtem Viewport ──────────── */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9990;
+
+    /* Vier-seitiger Glow via box-shadow (inset) + radial gradient */
+    box-shadow:
+        inset 0   0  80px  0 rgba(0, 122, 255, 0.13),   /* oben  */
+        inset 0 -80px 80px 0 rgba(0, 122, 255, 0.10),   /* unten */
+        inset  80px 0 80px 0 rgba(0, 122, 255, 0.08),   /* links */
+        inset -80px 0 80px 0 rgba(0, 122, 255, 0.08);   /* rechts */
+
+    /* Sanfte Puls-Animation – sehr langsam, kaum wahrnehmbar */
+    animation: glowPulse 8s ease-in-out infinite;
+
+    /* Kein Einfluss auf Layout */
+    border-radius: 0;
+}
+
+/* ── Zweite Schicht: dünner leuchtender Rahmen-Linie ───────────── */
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9989;
+    border: 1px solid rgba(0, 122, 255, 0.12);
+    box-shadow:
+        0 0 20px rgba(0, 122, 255, 0.08),
+        0 0  8px rgba(0, 122, 255, 0.12);
+    border-radius: 0;
+}
+
+/* ── Puls-Animation – kaum wahrnehmbar, sehr subtil ───────────── */
+@keyframes glowPulse {
+    0%, 100% {
+        box-shadow:
+            inset 0   0  80px  0 rgba(0, 122, 255, 0.13),
+            inset 0 -80px 80px 0 rgba(0, 122, 255, 0.10),
+            inset  80px 0 80px 0 rgba(0, 122, 255, 0.08),
+            inset -80px 0 80px 0 rgba(0, 122, 255, 0.08);
+    }
+    50% {
+        box-shadow:
+            inset 0   0  100px 0 rgba(0, 122, 255, 0.18),
+            inset 0 -100px 100px 0 rgba(0, 122, 255, 0.14),
+            inset  100px 0 100px 0 rgba(0, 122, 255, 0.11),
+            inset -100px 0 100px 0 rgba(0, 122, 255, 0.11);
+    }
+}
+
+/* ── Reduced Motion: Puls deaktivieren ────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+    body::before {
+        animation: none;
+    }
+}
+
+/* ── Mobile: etwas stärker (kleineres Viewport, mehr Wirkung) ─── */
+@media (max-width: 480px) {
+    body::before {
+        box-shadow:
+            inset 0   0  50px 0 rgba(0, 122, 255, 0.15),
+            inset 0 -50px 50px 0 rgba(0, 122, 255, 0.12),
+            inset  50px 0 50px 0 rgba(0, 122, 255, 0.10),
+            inset -50px 0 50px 0 rgba(0, 122, 255, 0.10);
+    }
+}
+

@@ -1,7 +1,12 @@
+# ════════════════════════════════════════════════════════════════
+# aBest.co – robots.txt
+# Global AI/Search Engine Crawler Policy
+# Updated: 2026-03-09
+# ════════════════════════════════════════════════════════════════
+
+# ── DEFAULT: Alle Crawler willkommen ─────────────────────────────
 User-agent: *
 Allow: /
-
-# Kein Zugriff auf Admin- und API-Bereiche
 Disallow: /admin/
 Disallow: /api/
 Disallow: /de/profil
@@ -19,5 +24,182 @@ Disallow: /ku/profil
 Disallow: /he/profil
 Disallow: /hy/profil
 
-# Sitemap
+# ── OPENAI (ChatGPT, GPT-4, DALL-E, Sora) ────────────────────────
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+# ── ANTHROPIC (Claude, Claude.ai) ────────────────────────────────
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# ── GOOGLE (Search, Gemini, Bard, Google-Extended) ───────────────
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot-Video
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+User-agent: Googlebot-News
+Allow: /
+
+# ── MICROSOFT (Bing, Copilot, Azure OpenAI) ──────────────────────
+User-agent: Bingbot
+Allow: /
+
+User-agent: BingPreview
+Allow: /
+
+User-agent: msnbot
+Allow: /
+
+User-agent: MSNBot-Media
+Allow: /
+
+# ── META AI (Llama, Meta AI Assistant) ───────────────────────────
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Meta-ExternalFetcher
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+# ── PERPLEXITY AI ─────────────────────────────────────────────────
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# ── APPLE (Spotlight, Siri, Safari Suggestions) ──────────────────
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# ── AMAZON (Alexa, Kendra, Bedrock) ──────────────────────────────
+User-agent: Amazonbot
+Allow: /
+
+# ── BAIDU (China) ─────────────────────────────────────────────────
+User-agent: Baiduspider
+Allow: /
+
+User-agent: baiduspider-image
+Allow: /
+
+User-agent: baiduspider-video
+Allow: /
+
+User-agent: Baiduspider-render
+Allow: /
+
+# ── YANDEX (Russia) ──────────────────────────────────────────────
+User-agent: YandexBot
+Allow: /
+
+User-agent: YandexImages
+Allow: /
+
+User-agent: YandexVideo
+Allow: /
+
+User-agent: YandexAccessibilityBot
+Allow: /
+
+User-agent: YandexMobileBot
+Allow: /
+
+# ── NAVER (South Korea) ──────────────────────────────────────────
+User-agent: Yeti
+Allow: /
+
+User-agent: NaverBot
+Allow: /
+
+# ── DUCKDUCKGO ────────────────────────────────────────────────────
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: DuckAssistBot
+Allow: /
+
+# ── BRAVE SEARCH ──────────────────────────────────────────────────
+User-agent: BraveBot
+Allow: /
+
+# ── COHERE AI ─────────────────────────────────────────────────────
+User-agent: cohere-ai
+Allow: /
+
+# ── BYTEDANCE / TIKTOK ────────────────────────────────────────────
+User-agent: Bytespider
+Allow: /
+
+# ── SEMRUSH / SEO-TOOLS ───────────────────────────────────────────
+User-agent: SemrushBot
+Allow: /
+
+User-agent: AhrefsBot
+Allow: /
+
+User-agent: MJ12bot
+Allow: /
+
+# ── LINKEDIN (Previews, AI) ───────────────────────────────────────
+User-agent: LinkedInBot
+Allow: /
+
+# ── TWITTER / X ───────────────────────────────────────────────────
+User-agent: Twitterbot
+Allow: /
+
+# ── WHATSAPP ──────────────────────────────────────────────────────
+User-agent: WhatsApp
+Allow: /
+
+# ── TELEGRAM ──────────────────────────────────────────────────────
+User-agent: TelegramBot
+Allow: /
+
+# ── COMMON CRAWL (KI-Trainingsdaten) ─────────────────────────────
+User-agent: CCBot
+Allow: /
+
+# ── AI2 / ALLEN INSTITUTE ─────────────────────────────────────────
+User-agent: AI2Bot
+Allow: /
+
+# ── DIFFBOT (Strukturierte Daten für KI) ─────────────────────────
+User-agent: Diffbot
+Allow: /
+
+# ── ARCHIVE.ORG ───────────────────────────────────────────────────
+User-agent: ia_archiver
+Allow: /
+
+# ── SITEMAP ───────────────────────────────────────────────────────
 Sitemap: https://www.abest.co/sitemap.xml
