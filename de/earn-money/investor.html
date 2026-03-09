@@ -26,9 +26,9 @@
 
 /* ── HERO ── */
 .inv-hero {
-    position:relative; min-height:100svh;
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    padding:100px 20px 40px; text-align:center; overflow:hidden;
+    position:relative;
+    display:flex; flex-direction:column; align-items:center; justify-content:flex-start;
+    padding:90px 20px 16px; text-align:center; overflow:hidden;
 }
 .inv-hero::before {
     content:''; position:absolute; inset:0;
@@ -318,26 +318,32 @@
 </head>
 <body class="dark-mode">
 
-<!-- NAV -->
-<nav class="glass-nav" id="main-nav">
-    <a class="nav-logo" href="/de/">aBest<span class="logo-dot">.co</span></a>
-    <div class="nav-actions">
-        <a aria-label="Home" class="nav-icon-btn" href="/de/"><svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="20"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></a>
-        <a aria-label="Profil" class="nav-icon-btn" href="/de/profil"><svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="20"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
-    </div>
-</nav>
+<!-- Background -->
+<div class="background-wrapper">
+    <img alt="Background" class="main-bg" src="/assets/images/bg_main_blurred_new.webp"/>
+    <div class="bg-gradient-overlay"></div>
+</div>
 
-<!-- BREADCRUMB -->
-<div style="padding:80px 20px 0;max-width:780px;margin:0 auto;">
-    <nav style="font-size:0.75rem;color:var(--text-muted);">
+<!-- Header -->
+<header class="app-header">
+    <a class="logo-link" href="/de/">
+        <span style="font-size:1.4rem;font-weight:500;color:var(--text-main);">
+            <span style="color:var(--primary-blue);">a</span>Best<span style="color:var(--primary-blue);">.co</span>
+        </span>
+    </a>
+    <div style="display:flex;align-items:center;gap:12px;">
+        <a href="/de/" class="header-icon-v2" aria-label="Home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></a>
+        <a href="/de/profil" class="header-icon-v2" aria-label="Profil"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+    </div>
+</header>
+
+<!-- BREADCRUMB + HERO -->
+<section class="inv-hero">
+    <nav style="font-size:0.75rem;color:var(--text-muted);margin-bottom:20px;align-self:flex-start;padding-left:0;max-width:780px;width:100%;">
         <a href="/de/earn-money" style="color:var(--text-muted);text-decoration:none;">Earn Money</a>
         <span style="margin:0 6px;opacity:0.5;">/</span>
         <span style="color:var(--inv-gold);font-weight:600;">Investor</span>
     </nav>
-</div>
-
-<!-- HERO -->
-<section class="inv-hero">
     <div class="inv-badge"><span class="inv-dot"></span>Für aktive Investoren</div>
     <h1>Sie wollen <span>investieren?</span></h1>
     <p class="inv-hero-sub">Bei uns — oder mit uns.</p>
