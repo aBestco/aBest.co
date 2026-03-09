@@ -1214,7 +1214,7 @@ function getRoleBg(role) {
 window.uploadAvatar = async function(input) {
   const file = input.files[0];
   if (!file) return;
-  if (file.size > 2 * 1024 * 1024) { alert('Max 2 MB'); return; }
+  if (file.size > 50 * 1024 * 1024) { alert('Max 50 MB'); return; }
   const token = localStorage.getItem('aBest_session');
   if (!token) return;
   const reader = new FileReader();

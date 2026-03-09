@@ -1226,7 +1226,7 @@ function getInitials(str) {
 window.uploadAvatar = async function(input) {
   const file = input.files[0];
   if (!file) return;
-  if (file.size > 2 * 1024 * 1024) { alert('Bild zu groß (max. 2 MB)'); return; }
+  if (file.size > 50 * 1024 * 1024) { alert('Bild zu groß (max. 50 MB)'); return; }
   const token = localStorage.getItem('aBest_session');
   if (!token) return;
   const reader = new FileReader();
