@@ -255,22 +255,6 @@
 .hmb-legal h4 { color: var(--sunset); font-size: 0.85rem; margin-bottom: 0.5rem; }
 .hmb-legal p { font-size: 0.81rem; color: var(--text-muted); margin: 0; line-height: 1.65; }
 
-/* ── MULTILANG TABS ── */
-.hmb-lang-tabs {
-  display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem;
-}
-.hmb-lang-tab {
-  background: rgba(255,255,255,0.06); border: 1px solid var(--glass-border);
-  border-radius: 8px; padding: 5px 10px; font-size: 0.75rem; cursor: pointer;
-  color: var(--text-muted); transition: all 0.2s;
-}
-.hmb-lang-tab.active, .hmb-lang-tab:hover {
-  background: rgba(14,165,233,0.15); border-color: rgba(14,165,233,0.4);
-  color: var(--ocean);
-}
-.hmb-lang-block { display: none; }
-.hmb-lang-block.active { display: block; }
-
 /* ── CONTACT FORM ── */
 .hmb-form { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.2rem; }
 .hmb-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
@@ -899,41 +883,6 @@
     Alle Projektdetails, Lagepläne und Due Diligence auf Anfrage.
   </p>
 
-  <!-- Multilingual Summary Tabs -->
-  <div style="margin-bottom:1.5rem;">
-    <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:0.6rem;">📌 Projektinfo in Ihrer Sprache:</p>
-    <div class="hmb-lang-tabs" id="lang-tabs">
-      <div class="hmb-lang-tab active" onclick="showLang('de')">🇩🇪 DE</div>
-      <div class="hmb-lang-tab" onclick="showLang('en')">🇺🇸 EN</div>
-      <div class="hmb-lang-tab" onclick="showLang('es')">🇪🇸 ES</div>
-      <div class="hmb-lang-tab" onclick="showLang('fr')">🇫🇷 FR</div>
-      <div class="hmb-lang-tab" onclick="showLang('it')">🇮🇹 IT</div>
-      <div class="hmb-lang-tab" onclick="showLang('pt')">🇵🇹 PT</div>
-      <div class="hmb-lang-tab" onclick="showLang('tr')">🇹🇷 TR</div>
-      <div class="hmb-lang-tab" onclick="showLang('ar')">🇸🇦 AR</div>
-      <div class="hmb-lang-tab" onclick="showLang('ru')">🇷🇺 RU</div>
-      <div class="hmb-lang-tab" onclick="showLang('zh')">🇨🇳 ZH</div>
-      <div class="hmb-lang-tab" onclick="showLang('hi')">🇮🇳 HI</div>
-      <div class="hmb-lang-tab" onclick="showLang('ja')">🇯🇵 JA</div>
-      <div class="hmb-lang-tab" onclick="showLang('ko')">🇰🇷 KO</div>
-    </div>
-    <div id="lang-blocks" style="background:rgba(255,255,255,0.04);border:1px solid var(--glass-border);border-radius:12px;padding:1rem;font-size:0.85rem;color:var(--text-muted);line-height:1.7;">
-      <div class="hmb-lang-block active" id="lb-de">🇩🇪 <strong>Küsteninvestition Half Moon Bay, CA.</strong> 9 Parzellen, 51.400 sq ft, direkt am Pacific Highway 1. Panoramablick Pazifik, 45 Min. von San Francisco. Ideal für Glamping, Gastronomie, Wellness-Retreat, Wedding Venue, EV-Station und mehr. Flexible Partnerschaftsmodelle: Joint Venture, Pacht, Revenue Share, Direktkauf.</div>
-      <div class="hmb-lang-block" id="lb-en">🇺🇸 <strong>Coastal investment opportunity in Half Moon Bay, CA.</strong> 9 parcels totaling 51,400 sq ft on Pacific Highway 1. Panoramic Pacific Ocean views, 45 min from San Francisco and Silicon Valley. Perfect for glamping, beach café, wellness retreat, wedding venue, EV charging, and more. Flexible models: joint venture, lease, revenue share, or direct purchase.</div>
-      <div class="hmb-lang-block" id="lb-es">🇪🇸 <strong>Oportunidad de inversión costera en Half Moon Bay, CA.</strong> 9 parcelas con 51.400 pies cuadrados en la Pacific Highway 1. Vistas panorámicas al Pacífico, a 45 minutos de San Francisco y Silicon Valley. Ideal para glamping, café de playa, retiro de bienestar, sede de bodas, carga eléctrica y más. Modelos flexibles: empresa conjunta, arrendamiento, reparto de ingresos o compra directa.</div>
-      <div class="hmb-lang-block" id="lb-fr">🇫🇷 <strong>Opportunité d'investissement côtier à Half Moon Bay, CA.</strong> 9 parcelles totalisant 51 400 pieds carrés sur la Pacific Highway 1. Vue panoramique sur le Pacifique, à 45 min de San Francisco et de la Silicon Valley. Idéal pour le glamping, café de plage, retraite bien-être, lieu de mariage, borne EV et plus encore. Modèles flexibles : coentreprise, bail, partage des revenus ou achat direct.</div>
-      <div class="hmb-lang-block" id="lb-it">🇮🇹 <strong>Opportunità di investimento costiero a Half Moon Bay, CA.</strong> 9 lotti per 51.400 piedi quadrati sulla Pacific Highway 1. Vista panoramica sull'Oceano Pacifico, a 45 minuti da San Francisco e dalla Silicon Valley. Perfetto per glamping, café sulla spiaggia, ritiro benessere, location per matrimoni, stazione EV e molto altro. Modelli flessibili: joint venture, affitto, revenue sharing o acquisto diretto.</div>
-      <div class="hmb-lang-block" id="lb-pt">🇵🇹 <strong>Oportunidade de investimento costeiro em Half Moon Bay, CA.</strong> 9 parcelas totalizando 51.400 pés quadrados na Pacific Highway 1. Vista panorâmica para o Pacífico, a 45 min de São Francisco e Silicon Valley. Ideal para glamping, café de praia, retiro de bem-estar, local para casamentos, estação EV e muito mais. Modelos flexíveis: joint venture, arrendamento, partilha de receitas ou compra direta.</div>
-      <div class="hmb-lang-block" id="lb-tr">🇹🇷 <strong>Half Moon Bay, CA'da kıyı yatırım fırsatı.</strong> Pacific Highway 1'de 51.400 sq ft alanlı 9 parsel. Pasifik Okyanusu'na panoramik manzara, San Francisco ve Silikon Vadisi'ne 45 dakika. Glamping, sahil kafe, wellness retreati, düğün mekanı, EV şarj istasyonu ve daha fazlası için ideal. Esnek modeller: ortak girişim, kiralama, gelir paylaşımı veya doğrudan satın alma.</div>
-      <div class="hmb-lang-block" id="lb-ar" style="direction:rtl;text-align:right;">🇸🇦 <strong>فرصة استثمارية ساحلية في هاف مون باي، كاليفورنيا.</strong> 9 قطع أرض بإجمالي 51,400 قدم مربع على الطريق السريع الساحلي 1. إطلالات بانورامية على المحيط الهادئ، على بُعد 45 دقيقة من سان فرانسيسكو ووادي السيليكون. مثالي للتخييم الفاخر، مقهى الشاطئ، منتجع العافية، قاعة الأفراح، محطة شحن السيارات الكهربائية والمزيد. نماذج مرنة: مشاريع مشتركة، إيجار، مشاركة في الإيرادات أو شراء مباشر.</div>
-      <div class="hmb-lang-block" id="lb-ru">🇷🇺 <strong>Инвестиционная возможность на побережье Халф Мун Бэй, Калифорния.</strong> 9 участков общей площадью 51 400 кв. футов на трассе Pacific Highway 1. Панорамный вид на Тихий океан, 45 минут от Сан-Франциско и Кремниевой долины. Идеально для глэмпинга, пляжного кафе, велнес-ретрита, свадебной площадки, зарядной станции EV и многого другого. Гибкие модели: совместное предприятие, аренда, разделение доходов или прямая покупка.</div>
-      <div class="hmb-lang-block" id="lb-zh">🇨🇳 <strong>加利福尼亚州半月湾海岸投资机会。</strong>太平洋1号公路上9块地块，总面积51,400平方英尺。俯瞰太平洋全景，距旧金山和硅谷45分钟车程。适合豪华露营、海滩咖啡馆、健康度假村、婚礼场地、电动车充电站等多种用途。灵活合作模式：合资、租赁、收益分成或直接购买。</div>
-      <div class="hmb-lang-block" id="lb-hi">🇮🇳 <strong>हाफ मून बे, CA में तटीय निवेश अवसर।</strong> पैसिफिक हाईवे 1 पर 9 भूखंड, कुल 51,400 वर्ग फुट। प्रशांत महासागर का पैनोरमिक दृश्य, सैन फ्रांसिस्को और सिलिकॉन वैली से 45 मिनट। ग्लैम्पिंग, बीच कैफे, वेलनेस रिट्रीट, शादी स्थल, EV चार्जिंग स्टेशन आदि के लिए उपयुक्त। लचीले मॉडल: संयुक्त उद्यम, पट्टा, राजस्व साझाकरण या सीधी खरीद।</div>
-      <div class="hmb-lang-block" id="lb-ja">🇯🇵 <strong>カリフォルニア州ハーフムーンベイの海岸投資案件。</strong>パシフィックハイウェイ1号線沿いに9区画・合計51,400平方フィート。太平洋の絶景パノラマ、サンフランシスコとシリコンバレーから45分。グランピング、ビーチカフェ、ウェルネスリトリート、ウェディング会場、EV充電ステーションなどに最適。柔軟なモデル：ジョイントベンチャー、リース、収益分配、または直接購入。</div>
-      <div class="hmb-lang-block" id="lb-ko">🇰🇷 <strong>캘리포니아 하프 문 베이의 해안 투자 기회.</strong> 퍼시픽 하이웨이 1에 위치한 9개 필지, 총 51,400 평방피트. 태평양 파노라마 뷰, 샌프란시스코와 실리콘밸리에서 45분. 글램핑, 비치 카페, 웰니스 리트리트, 웨딩 장소, EV 충전소 등에 최적. 유연한 모델: 합작 투자, 임대, 수익 분배 또는 직접 구매.</div>
-    </div>
-  </div>
-
   <div id="hmb-form-wrap">
     <form class="hmb-form" id="hmb-form" onsubmit="hmbSubmit(event)">
       <div class="hmb-form-row">
@@ -1065,18 +1014,6 @@
     .addTo(map)
     .bindPopup('<strong style="color:#f59e0b;">🌊 Mavericks</strong><br/>World-Famous Big Wave Surf');
 })();
-
-// ── Language Tabs ──
-function showLang(code) {
-  document.querySelectorAll('.hmb-lang-block').forEach(function(b) { b.classList.remove('active'); });
-  document.querySelectorAll('.hmb-lang-tab').forEach(function(t) { t.classList.remove('active'); });
-  var block = document.getElementById('lb-' + code);
-  if (block) block.classList.add('active');
-  var tabs = document.querySelectorAll('.hmb-lang-tab');
-  tabs.forEach(function(t) {
-    if (t.getAttribute('onclick') === "showLang('" + code + "')") t.classList.add('active');
-  });
-}
 
 // ── Contact Form ──
 function hmbSubmit(e) {
