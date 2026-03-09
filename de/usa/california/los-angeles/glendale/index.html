@@ -64,6 +64,32 @@
 .lease-row:last-child { border-bottom: none; }
 .lease-row span:first-child { color: var(--text-muted); }
 .lease-row span:last-child { color: var(--text-main); font-weight: 600; }
+
+/* ── CONTACT FORM ── */
+.gln-form { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.2rem; }
+.gln-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+@media (max-width: 540px) { .gln-form-row { grid-template-columns: 1fr; } }
+.gln-input, .gln-select, .gln-textarea {
+  width: 100%; background: rgba(255,255,255,0.06); border: 1px solid var(--glass-border);
+  border-radius: 10px; padding: 12px 14px; font-size: 0.9rem;
+  color: var(--text-main); font-family: 'Outfit', sans-serif;
+  outline: none; transition: border-color 0.2s; box-sizing: border-box;
+}
+.gln-input:focus, .gln-select:focus, .gln-textarea:focus { border-color: var(--primary-blue); }
+.gln-select option { background: #1a1a2e; color: var(--text-main); }
+.gln-textarea { resize: vertical; min-height: 110px; }
+.gln-submit {
+  background: linear-gradient(135deg, var(--primary-blue), #0056d6);
+  color: #fff; font-weight: 700; border: none; border-radius: 12px;
+  padding: 14px 28px; font-size: 0.95rem; cursor: pointer;
+  font-family: 'Outfit', sans-serif; transition: transform 0.15s, box-shadow 0.15s;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.gln-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,122,255,0.35); }
+.gln-success {
+  display: none; text-align: center; padding: 2rem;
+  color: #00c864; font-size: 1.05rem; font-weight: 600;
+}
 </style>
 
 <main class="scroll-content">
@@ -367,6 +393,70 @@
 
 </div>
 </section>
+<!-- ═══ CONTACT FORM ═══ -->
+<section class="section-spacing fade-in-up" style="animation-delay:0.5s;">
+<div class="glass-panel">
+
+  <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--primary-blue);margin-bottom:0.4rem;">📩 Kontakt</div>
+  <h2 style="margin:0.3rem 0 0.4rem;font-size:1.35rem;">Investitionsanfrage senden</h2>
+  <p style="color:var(--text-muted);font-size:0.88rem;margin-bottom:0.5rem;">
+    Direktkontakt — kein Makler, keine Gebühren. Wir antworten innerhalb von 24 Stunden.
+  </p>
+
+  <div id="gln-form-wrap">
+    <form class="gln-form" id="gln-form" onsubmit="glnSubmit(event)">
+
+      <div class="gln-form-row">
+        <input class="gln-input" id="gln-name" type="text" placeholder="Ihr Name *" required autocomplete="name"/>
+        <input class="gln-input" id="gln-email" type="email" placeholder="E-Mail *" required autocomplete="email"/>
+      </div>
+
+      <div class="gln-form-row">
+        <input class="gln-input" id="gln-phone" type="tel" placeholder="Telefon" autocomplete="tel"/>
+        <input class="gln-input" id="gln-country" type="text" placeholder="Land / Herkunft" autocomplete="country-name"/>
+      </div>
+
+      <select class="gln-select" id="gln-interest">
+        <option value="" disabled selected>Ich interessiere mich für... *</option>
+        <option value="ev_station">🔌 EV-Ladestation / Charging Hub</option>
+        <option value="supermarket">🛒 Supermarkt / Einzelhandel</option>
+        <option value="restaurant">🍔 Restaurant / Fast Food</option>
+        <option value="cafe">☕ Café / Coffee Shop</option>
+        <option value="franchise">🏪 Franchise-Konzept</option>
+        <option value="office">🏢 Büro / Gewerbe</option>
+        <option value="purchase">🏷️ Direktkauf</option>
+        <option value="equity">📈 Equity-Investition / Beteiligung</option>
+        <option value="other">💡 Andere Idee</option>
+      </select>
+
+      <select class="gln-select" id="gln-budget">
+        <option value="" disabled selected>Investitionsrahmen (optional)</option>
+        <option value="under_50k">&lt; $50.000</option>
+        <option value="50_250k">$50.000 – $250.000</option>
+        <option value="250_1m">$250.000 – $1 Mio.</option>
+        <option value="1m_5m">$1 Mio. – $5 Mio.</option>
+        <option value="over_5m">&gt; $5 Mio.</option>
+        <option value="tbd">Noch offen / TBD</option>
+      </select>
+
+      <textarea class="gln-textarea" id="gln-message" placeholder="Ihre Nachricht / Idee / Fragen..."></textarea>
+
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:center;">
+        <button type="submit" class="gln-submit">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          Anfrage absenden
+        </button>
+      </div>
+
+    </form>
+    <div class="gln-success" id="gln-success">
+      ✅ Ihre Anfrage wurde gesendet! Wir melden uns innerhalb von 24 Stunden.
+    </div>
+  </div>
+
+</div>
+</section>
+
 <div style="text-align: center; margin-bottom: 1rem;">
 <a href="/de/usa.html" style="color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--glass-border); padding-bottom: 2px;">← Zurück zur USA Übersicht</a>
 </div>
@@ -408,5 +498,35 @@
 </footer>
 </div>
 <script src="/app.js"></script>
+<script>
+function glnSubmit(e) {
+  e.preventDefault();
+  var name     = document.getElementById('gln-name').value;
+  var email    = document.getElementById('gln-email').value;
+  var phone    = document.getElementById('gln-phone').value;
+  var country  = document.getElementById('gln-country').value;
+  var interest = document.getElementById('gln-interest').value;
+  var budget   = document.getElementById('gln-budget').value;
+  var message  = document.getElementById('gln-message').value;
+
+  var subject = encodeURIComponent('Glendale Investment Anfrage – ' + name);
+  var body = encodeURIComponent(
+    'Glendale, CA – Investitionsanfrage (APN: 5663-003-002)\n' +
+    '======================================================\n\n' +
+    'Name: ' + name + '\n' +
+    'E-Mail: ' + email + '\n' +
+    'Telefon: ' + (phone || '–') + '\n' +
+    'Land: ' + (country || '–') + '\n' +
+    'Interesse: ' + interest + '\n' +
+    'Budget: ' + (budget || '–') + '\n\n' +
+    'Nachricht:\n' + (message || '–') + '\n\n' +
+    '---\nGesendet via abest.co/de/usa/california/los-angeles/glendale/'
+  );
+
+  document.getElementById('gln-form').style.display = 'none';
+  document.getElementById('gln-success').style.display = 'block';
+  window.location.href = 'mailto:info@abest.co?subject=' + subject + '&body=' + body;
+}
+</script>
 </body>
 </html>
