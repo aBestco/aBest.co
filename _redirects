@@ -83,3 +83,30 @@
 /he/usa-half-moon-bay.html /he/usa/california/san-mateo-county/half-moon-bay 301
 /hy/usa-half-moon-bay /hy/usa/california/san-mateo-county/half-moon-bay 301
 /hy/usa-half-moon-bay.html /hy/usa/california/san-mateo-county/half-moon-bay 301
+# Türkei / Turkey alternative URL spellings → canonical /turkiye
+/de/tuerkei /de/turkiye 301
+/de/tuerkei.html /de/turkiye 301
+/de/turkei /de/turkiye 301
+/de/turkei.html /de/turkiye 301
+/de/turkey /de/turkiye 301
+/en/turkey /en/turkiye 301
+/en/turkey.html /en/turkiye 301
+/es/turquia /es/turkiye 301
+/fr/turquie /fr/turkiye 301
+/ar/turkey /ar/turkiye 301
+/ru/turkey /ru/turkiye 301
+/tr/turkey /tr/turkiye 301
+/zh/turkey /zh/turkiye 301
+/hi/turkey /hi/turkiye 301
+/pt/turkey /pt/turkiye 301
+/ur/turkey /ur/turkiye 301
+/ku/turkey /ku/turkiye 301
+/he/turkey /he/turkiye 301
+/hy/turkey /hy/turkiye 301
+
+# earn-money → deutsche/englische Alternative-URLs
+/de/rollen /de/earn-money 301
+/de/mitmachen /de/earn-money 301
+/de/ideen /de/earn-money 301
+/en/roles /en/earn-money 301
+/en/ideas /en/earn-money 301

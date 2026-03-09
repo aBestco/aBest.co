@@ -48,11 +48,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
-    // Initial load animations (remove inline animation-delay logic and use class toggle instead)
+    // Initial load animations
+    // Elements already in viewport on load get 'visible' immediately (no blank flash)
+    const viewportHeight = window.innerHeight;
     document.querySelectorAll('.fade-in-up').forEach((el, index) => {
-        // We set transition delay dynamically instead of inline HTML styling to make it scalable
-        el.style.transitionDelay = `${index * 0.15}s`;
-        animateOnScroll.observe(el);
+        const rect = el.getBoundingClientRect();
+        if (rect.top < viewportHeight && rect.bottom >= 0) {
+            // Above-the-fold: animate in immediately with short stagger
+            el.style.transitionDelay = `${index * 0.1}s`;
+            requestAnimationFrame(() => el.classList.add('visible'));
+        } else {
+            // Below-the-fold: use scroll observer
+            el.style.transitionDelay = `${index * 0.15}s`;
+            animateOnScroll.observe(el);
+        }
     });
 
     // 4. Cursor Spotlight Effect for Glass Cards
