@@ -272,6 +272,28 @@ function unauthorizedResponse() {
     });
 }
 
+// --- EMAIL NOTIFICATION HELPER (Brevo REST API) ---
+async function sendBrevoNotification(env, subject, htmlContent) {
+    if (!env.BREVO_API_KEY) return; // Skip if not configured
+    try {
+        await fetch('https://api.brevo.com/v3/smtp/email', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'api-key': env.BREVO_API_KEY
+            },
+            body: JSON.stringify({
+                sender: { name: 'aBest.co', email: 'i@abest.co' },
+                to: [{ email: 'i@abest.co', name: 'Alan Best' }],
+                subject: subject,
+                htmlContent: htmlContent
+            })
+        });
+    } catch (e) {
+        // Fire-and-forget – never block the user response
+    }
+}
+
 // --- API HANDLERS ---
 async function handleInquiriesApi(request, env) {
     const url = new URL(request.url);
@@ -332,6 +354,21 @@ async function handleInquiriesApi(request, env) {
             data.status = data.status || 'Neu';
 
             await env.ABEST_INQUIRIES.put(id, JSON.stringify(data));
+
+            // Email notification (fire-and-forget)
+            const inqType = data.type || 'Anfrage';
+            const inqName = data.name || data.Name || '(unbekannt)';
+            const inqEmail = data.email || data.Email || '';
+            const rows = Object.entries(data)
+                .filter(([k]) => !['id','date','status'].includes(k))
+                .map(([k,v]) => `<tr><td style="padding:4px 8px;font-weight:bold;color:#555">${k}</td><td style="padding:4px 8px">${v}</td></tr>`)
+                .join('');
+            sendBrevoNotification(env,
+                `🤝 Neue Partnerschaftsanfrage: ${inqType} von ${inqName}`,
+                `<h2>Neue Anfrage: ${inqType}</h2>
+                 <table style="border-collapse:collapse">${rows}</table>
+                 <p style="color:#888;font-size:12px">Eingegangen: ${data.date}</p>`
+            );
 
             return new Response(JSON.stringify({ success: true, id }), {
                 headers: { 'Content-Type': 'application/json', ...corsHeaders }
@@ -844,6 +881,18 @@ async function handleContactApi(request, env) {
         if (env.ABEST_INQUIRIES) {
             await env.ABEST_INQUIRIES.put(`contact:${id}`, JSON.stringify(entry));
         }
+
+        // Email notification (fire-and-forget)
+        sendBrevoNotification(env,
+            `📩 Neue Kontaktanfrage von ${name}`,
+            `<h2>Neue Kontaktanfrage</h2>
+             <p><strong>Name:</strong> ${name}</p>
+             <p><strong>E-Mail:</strong> <a href="mailto:${email}">${email}</a></p>
+             ${phone ? `<p><strong>Telefon:</strong> ${phone}</p>` : ''}
+             <p><strong>Nachricht:</strong></p>
+             <blockquote style="border-left:3px solid #007bff;padding-left:12px;color:#555">${message.replace(/\n/g,'<br>')}</blockquote>
+             <p style="color:#888;font-size:12px">Eingegangen: ${entry.date}</p>`
+        );
 
         return new Response(JSON.stringify({ success: true }), {
             headers: { 'Content-Type': 'application/json', ...corsHeaders }

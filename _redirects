@@ -110,3 +110,18 @@
 /de/ideen /de/earn-money 301
 /en/roles /en/earn-money 301
 /en/ideas /en/earn-money 301
+
+# earn-money → /LANG/ideen (alle Nicht-DE Sprachen)
+/en/earn-money /en/ideen 301
+/es/earn-money /es/ideen 301
+/fr/earn-money /fr/ideen 301
+/ar/earn-money /ar/ideen 301
+/pt/earn-money /pt/ideen 301
+/ru/earn-money /ru/ideen 301
+/tr/earn-money /tr/ideen 301
+/zh/earn-money /zh/ideen 301
+/hi/earn-money /hi/ideen 301
+/ur/earn-money /ur/ideen 301
+/ku/earn-money /ku/ideen 301
+/he/earn-money /he/ideen 301
+/hy/earn-money /hy/ideen 301
