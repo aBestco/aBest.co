@@ -1390,8 +1390,7 @@ if (contactTextarea) {
 
 // ══════════════════════════════════════════════════════════════════
 // aBest.co PWA ENGINE
-// Service Worker · Install Banner (oben rechts) · Install Button (unten rechts)
-// Multilingual · Mobile-First · Idiotensicher
+// Service Worker · Browser-native Install (kein Custom-Banner)
 // ══════════════════════════════════════════════════════════════════
 (function() {
     'use strict';
@@ -1404,255 +1403,176 @@ if (contactTextarea) {
         });
     }
 
-    // ── 2. Translations für Install-UI ──────────────────────────────────────
-    var LANG_MAP = {
-        de: { banner: '📲 App installieren', btn: 'Jetzt installieren', dismiss: '✕' },
-        en: { banner: '📲 Install App',       btn: 'Install Now',         dismiss: '✕' },
-        tr: { banner: '📲 Uygulamayı kur',   btn: 'Şimdi kur',           dismiss: '✕' },
-        es: { banner: '📲 Instalar app',      btn: 'Instalar ahora',      dismiss: '✕' },
-        fr: { banner: '📲 Installer l\'app',  btn: 'Installer',           dismiss: '✕' },
-        ar: { banner: '📲 تثبيت التطبيق',    btn: 'تثبيت الآن',          dismiss: '✕' },
-        pt: { banner: '📲 Instalar app',      btn: 'Instalar agora',      dismiss: '✕' },
-        ru: { banner: '📲 Установить',        btn: 'Установить',          dismiss: '✕' },
-        zh: { banner: '📲 安装应用',            btn: '立即安装',              dismiss: '✕' },
-        hi: { banner: '📲 ऐप इंस्टॉल करें', btn: 'अभी इंस्टॉल करें',   dismiss: '✕' },
-        ur: { banner: '📲 ایپ انسٹال کریں',  btn: 'ابھی انسٹال کریں',   dismiss: '✕' },
-        ku: { banner: '📲 App saz bike',      btn: 'Niha saz bike',       dismiss: '✕' },
-        he: { banner: '📲 התקן את האפליקציה', btn: 'התקן עכשיו',          dismiss: '✕' },
-        hy: { banner: '📲 Տեղադրել',          btn: 'Տեղադրել հիմա',       dismiss: '✕' }
-    };
-
-    function getLang() {
-        var m = window.location.pathname.match(/^\/([a-z]{2})\//);
-        return (m && LANG_MAP[m[1]]) ? m[1] : 'en';
-    }
-
-    // ── 3. Install-Prompt abfangen ──────────────────────────────────────────
-    var _deferredPrompt = null;
-    var _bannerEl = null;
-    var _fabEl = null;
-    var DISMISSED_KEY = 'abest_pwa_dismissed';
-
-    window.addEventListener('beforeinstallprompt', function(e) {
-        e.preventDefault();
-        _deferredPrompt = e;
-
-        // Nicht zeigen wenn bereits dismissed oder installiert
-        if (localStorage.getItem(DISMISSED_KEY)) return;
-        if (window.matchMedia('(display-mode: standalone)').matches) return;
-
-        showPWAUI();
+    // ── 2. beforeinstallprompt: NICHT verhindern → Browser zeigt nativen Prompt ──
+    // Kein e.preventDefault() → Browser-eigener Install-Hinweis erscheint (unten im Browser)
+    window.addEventListener('beforeinstallprompt', function(/* e */) {
+        // Intentionally do nothing – let the browser handle install natively
     });
-
-    // Wenn bereits als PWA installiert → alles ausblenden
-    window.addEventListener('appinstalled', function() {
-        hidePWAUI();
-        localStorage.setItem(DISMISSED_KEY, '1');
-    });
-
-    // ── 4. UI erstellen und zeigen ──────────────────────────────────────────
-    function showPWAUI() {
-        var lang = getLang();
-        var t = LANG_MAP[lang] || LANG_MAP['en'];
-
-        // Nur einmal erstellen
-        if (!_bannerEl) _bannerEl = createBanner(t);
-        if (!_fabEl) _fabEl = createFAB(t);
-
-        // Mit kleiner Verzögerung einblenden (nach Seiten-Load)
-        setTimeout(function() {
-            if (_bannerEl) {
-                document.body.appendChild(_bannerEl);
-                requestAnimationFrame(function() {
-                    _bannerEl.style.opacity = '1';
-                    _bannerEl.style.transform = 'translateY(0)';
-                });
-            }
-            if (_fabEl) {
-                document.body.appendChild(_fabEl);
-                requestAnimationFrame(function() {
-                    _fabEl.style.opacity = '1';
-                    _fabEl.style.transform = 'translateY(0) scale(1)';
-                });
-            }
-        }, 2500);
-    }
-
-    function hidePWAUI() {
-        if (_bannerEl) {
-            _bannerEl.style.opacity = '0';
-            _bannerEl.style.transform = 'translateY(-60px)';
-            setTimeout(function() { if (_bannerEl) _bannerEl.remove(); _bannerEl = null; }, 400);
-        }
-        if (_fabEl) {
-            _fabEl.style.opacity = '0';
-            _fabEl.style.transform = 'translateY(60px) scale(0.8)';
-            setTimeout(function() { if (_fabEl) _fabEl.remove(); _fabEl = null; }, 400);
-        }
-    }
-
-    // ── 5. Banner (oben rechts) ─────────────────────────────────────────────
-    function createBanner(t) {
-        var el = document.createElement('div');
-        el.id = 'pwa-install-banner';
-        el.setAttribute('role', 'banner');
-        el.setAttribute('aria-label', t.banner);
-        el.style.cssText = [
-            'position:fixed',
-            'top:70px',
-            'right:12px',
-            'z-index:9999',
-            'background:linear-gradient(135deg,rgba(0,40,80,0.95),rgba(0,20,50,0.98))',
-            'border:1px solid rgba(0,122,255,0.45)',
-            'border-radius:14px',
-            'padding:10px 14px',
-            'display:flex',
-            'align-items:center',
-            'gap:10px',
-            'box-shadow:0 8px 32px rgba(0,0,0,0.5),0 0 0 1px rgba(0,122,255,0.15)',
-            'backdrop-filter:blur(20px)',
-            '-webkit-backdrop-filter:blur(20px)',
-            'max-width:260px',
-            'opacity:0',
-            'transform:translateY(-60px)',
-            'transition:opacity 0.35s ease,transform 0.35s cubic-bezier(0.34,1.56,0.64,1)',
-            'cursor:pointer'
-        ].join(';');
-
-        el.innerHTML =
-            '<span style="font-size:0.82rem;font-weight:600;color:#e8f0ff;line-height:1.3;flex:1;">' + t.banner + '</span>' +
-            '<button id="pwa-banner-install" style="background:linear-gradient(135deg,#007aff,#0055cc);border:none;border-radius:8px;padding:7px 12px;color:#fff;font-size:0.75rem;font-weight:700;cursor:pointer;white-space:nowrap;font-family:inherit;">' + t.btn + '</button>' +
-            '<button id="pwa-banner-dismiss" aria-label="Schließen" style="background:transparent;border:none;color:rgba(255,255,255,0.45);font-size:1rem;cursor:pointer;padding:2px 4px;flex-shrink:0;font-family:inherit;">' + t.dismiss + '</button>';
-
-        el.querySelector('#pwa-banner-install').addEventListener('click', function(e) {
-            e.stopPropagation();
-            triggerInstall();
-        });
-        el.querySelector('#pwa-banner-dismiss').addEventListener('click', function(e) {
-            e.stopPropagation();
-            dismissPWA();
-        });
-        el.addEventListener('click', function() { triggerInstall(); });
-
-        return el;
-    }
-
-    // ── 6. FAB Button (unten rechts) ──────────────────────────────────────────
-    function createFAB(t) {
-        var el = document.createElement('button');
-        el.id = 'pwa-install-fab';
-        el.setAttribute('aria-label', t.btn);
-        el.style.cssText = [
-            'position:fixed',
-            'bottom:24px',
-            'right:16px',
-            'z-index:9998',
-            'background:linear-gradient(135deg,#007aff,#0055cc)',
-            'color:#fff',
-            'border:none',
-            'border-radius:30px',
-            'padding:13px 20px',
-            'font-size:0.9rem',
-            'font-weight:700',
-            'font-family:inherit',
-            'cursor:pointer',
-            'box-shadow:0 6px 24px rgba(0,122,255,0.55),0 2px 8px rgba(0,0,0,0.4)',
-            'opacity:0',
-            'transform:translateY(60px) scale(0.8)',
-            'transition:opacity 0.35s ease,transform 0.35s cubic-bezier(0.34,1.56,0.64,1)',
-            'display:flex',
-            'align-items:center',
-            'gap:8px',
-            'letter-spacing:0.01em',
-            'white-space:nowrap'
-        ].join(';');
-
-        el.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>' + t.btn;
-
-        el.addEventListener('click', function() { triggerInstall(); });
-
-        // Hover-Effekt
-        el.addEventListener('mouseenter', function() {
-            el.style.transform = 'translateY(0) scale(1.05)';
-            el.style.boxShadow = '0 10px 32px rgba(0,122,255,0.7),0 4px 12px rgba(0,0,0,0.4)';
-        });
-        el.addEventListener('mouseleave', function() {
-            el.style.transform = 'translateY(0) scale(1)';
-            el.style.boxShadow = '0 6px 24px rgba(0,122,255,0.55),0 2px 8px rgba(0,0,0,0.4)';
-        });
-
-        return el;
-    }
-
-    // ── 7. Install auslösen ────────────────────────────────────────────────────
-    function triggerInstall() {
-        if (!_deferredPrompt) {
-            // iOS Safari Fallback: Anleitung zeigen
-            showiOSGuide();
-            return;
-        }
-        _deferredPrompt.prompt();
-        _deferredPrompt.userChoice.then(function(choice) {
-            _deferredPrompt = null;
-            if (choice.outcome === 'accepted') {
-                hidePWAUI();
-                localStorage.setItem(DISMISSED_KEY, '1');
-            }
-        });
-    }
-
-    function dismissPWA() {
-        localStorage.setItem(DISMISSED_KEY, '1');
-        hidePWAUI();
-    }
-
-    // ── 8. iOS Safari Fallback (kein beforeinstallprompt) ─────────────────────
-    var _isIOS = /ipad|iphone|ipod/i.test(navigator.userAgent) && !window.MSStream;
-    var _isInStandalone = window.navigator.standalone === true;
-    var _isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-
-    if (_isIOS && _isSafari && !_isInStandalone && !localStorage.getItem(DISMISSED_KEY)) {
-        // Zeige iOS-spezifische Anleitung nach Delay
-        setTimeout(function() {
-            var lang = getLang();
-            var t = LANG_MAP[lang] || LANG_MAP['en'];
-            if (!_fabEl) {
-                _fabEl = createFAB(t);
-                document.body.appendChild(_fabEl);
-                requestAnimationFrame(function() {
-                    _fabEl.style.opacity = '1';
-                    _fabEl.style.transform = 'translateY(0) scale(1)';
-                });
-            }
-        }, 3000);
-    }
-
-    function showiOSGuide() {
-        var guide = document.getElementById('pwa-ios-guide');
-        if (guide) { guide.remove(); return; }
-
-        var el = document.createElement('div');
-        el.id = 'pwa-ios-guide';
-        el.style.cssText = [
-            'position:fixed','bottom:90px','right:16px','z-index:10000',
-            'background:rgba(0,20,50,0.97)',
-            'border:1px solid rgba(0,122,255,0.4)',
-            'border-radius:16px','padding:16px 18px',
-            'max-width:240px',
-            'box-shadow:0 8px 32px rgba(0,0,0,0.6)',
-            'backdrop-filter:blur(20px)',
-            'color:#e8f0ff','font-size:0.82rem','line-height:1.5',
-            'text-align:center',
-            'animation:fadeIn 0.3s ease'
-        ].join(';');
-        el.innerHTML = '<div style="font-size:1.2rem;margin-bottom:8px;">📱</div>' +
-            '<strong>iOS: App installieren</strong><br>' +
-            'Tippe auf <strong>Teilen</strong> <span style="font-size:1rem;">⬆️</span> dann<br>' +
-            '<strong>„Zum Home-Bildschirm"</strong>' +
-            '<br><br><button onclick="document.getElementById(\'pwa-ios-guide\').remove()" style="background:rgba(0,122,255,0.3);border:1px solid rgba(0,122,255,0.5);color:#fff;border-radius:8px;padding:5px 14px;cursor:pointer;font-family:inherit;font-size:0.8rem;">OK</button>';
-        document.body.appendChild(el);
-
-        setTimeout(function() { if (document.getElementById('pwa-ios-guide')) document.getElementById('pwa-ios-guide').remove(); }, 8000);
-    }
 
 })(); // END PWA ENGINE
+
+
+// ══════════════════════════════════════════════════════════════════
+// aBest.co GEO ENGINE
+// Automatische Sprach- und Standorterkennung
+// Sprachvorschlag-Banner + manuelle Auswahl über bestehendes Dropdown
+// ══════════════════════════════════════════════════════════════════
+(function() {
+    'use strict';
+
+    var SUPPORTED = ["en","de","tr","es","zh","hi","ar","fr","ru","pt","ur","ku","he","hy"];
+
+    var LANG_NAMES = {
+        en:'English', de:'Deutsch', tr:'Türkçe', es:'Español',
+        zh:'中文', hi:'हिन्दी', ar:'العربية', fr:'Français',
+        ru:'Русский', pt:'Português', ur:'اردو', ku:'Kurdî',
+        he:'עברית', hy:'Հայերեն'
+    };
+
+    // Land → Sprache (primäre Landessprache)
+    var COUNTRY_LANG = {
+        DE:'de', AT:'de', CH:'de', LI:'de',
+        US:'en', GB:'en', AU:'en', CA:'en', NZ:'en', IE:'en', ZA:'en',
+        TR:'tr',
+        ES:'es', MX:'es', AR:'es', CO:'es', CL:'es', PE:'es', VE:'es', EC:'es', BO:'es', PY:'es', UY:'es',
+        FR:'fr', BE:'fr', MC:'fr', SN:'fr', CI:'fr', CM:'fr', MG:'fr',
+        SA:'ar', EG:'ar', AE:'ar', IQ:'ar', SY:'ar', JO:'ar', KW:'ar', QA:'ar', BH:'ar', OM:'ar', YE:'ar', LY:'ar', TN:'ar', MA:'ar', DZ:'ar', SD:'ar', LB:'ar',
+        BR:'pt', PT:'pt', AO:'pt', MZ:'pt', CV:'pt',
+        RU:'ru', BY:'ru', KZ:'ru',
+        CN:'zh', TW:'zh', HK:'zh', MO:'zh',
+        IN:'hi',
+        PK:'ur',
+        IL:'he',
+        AM:'hy'
+    };
+
+    function getCurrentLang() {
+        var m = window.location.pathname.match(/^\/([a-z]{2})\//);
+        if (m && SUPPORTED.indexOf(m[1]) !== -1) return m[1];
+        var hl = document.documentElement.lang;
+        if (hl && SUPPORTED.indexOf(hl) !== -1) return hl;
+        return 'en';
+    }
+
+    function wasDismissed() {
+        try {
+            var v = localStorage.getItem('aBest_geo_dismissed');
+            if (!v) return false;
+            return (Date.now() - parseInt(v, 10)) < 30 * 24 * 60 * 60 * 1000;
+        } catch(e) { return false; }
+    }
+
+    function dismiss() {
+        try { localStorage.setItem('aBest_geo_dismissed', String(Date.now())); } catch(e) {}
+    }
+
+    function buildLangUrl(lang) {
+        var cur = getCurrentLang();
+        return window.location.pathname.replace(new RegExp('^/' + cur + '/'), '/' + lang + '/');
+    }
+
+    function showBanner(sugLang, curLang) {
+        var path = window.location.pathname;
+        if (/\/(profil|profile|login|register)/.test(path)) return;
+        if (document.getElementById('geo-lang-banner')) return;
+
+        var name = LANG_NAMES[sugLang] || sugLang;
+        var url  = buildLangUrl(sugLang);
+        var isRTL = ['ar','he','ur'].includes ? ['ar','he','ur'].includes(sugLang) : (sugLang==='ar'||sugLang==='he'||sugLang==='ur');
+
+        var msgs = {
+            de:'Diese Seite ist auch auf Deutsch verfügbar.',
+            en:'This page is also available in English.',
+            tr:'Bu sayfa Türkçe olarak da mevcuttur.',
+            es:'Esta página también está disponible en Español.',
+            fr:'Cette page est aussi disponible en Français.',
+            ar:'هذه الصفحة متاحة أيضاً باللغة العربية.',
+            pt:'Esta página também está disponível em Português.',
+            ru:'Эта страница также доступна на Русском.',
+            zh:'此页面也提供中文版本。',
+            hi:'यह पेज हिन्दी में भी उपलब्ध है।',
+            ur:'یہ صفحہ اردو میں بھی دستیاب ہے۔',
+            ku:'Ev rûpel bi Kurdî jî heye.',
+            he:'דף זה זמין גם בעברית.',
+            hy:'Այս էջը հասանելի է նաև Հայերենով:'
+        };
+        var switchLabels = {
+            en:'View in English', de:'Auf Deutsch anzeigen', tr:'Türkçe görüntüle',
+            es:'Ver en Español', fr:'Voir en Français', ar:'عرض بالعربية',
+            pt:'Ver em Português', ru:'Смотреть на Русском', zh:'查看中文版',
+            hi:'हिन्दी में देखें', ur:'اردو میں دیکھیں', ku:'Bi Kurdî bibîne',
+            he:'צפה בעברית', hy:'Դիտել հայերեն'
+        };
+        var stayLabels = {
+            en:'Stay here', de:'Hier bleiben', tr:'Burada kal',
+            es:'Quedarme aquí', fr:'Rester ici', ar:'البقاء هنا',
+            pt:'Ficar aqui', ru:'Остаться', zh:'留在此处',
+            hi:'यहाँ रहें', ur:'یہاں رہیں', ku:'Li vir bimîne',
+            he:'להישאר כאן', hy:'Մնալ այստեղ'
+        };
+
+        var style = document.createElement('style');
+        style.textContent = '@keyframes geoUp{from{opacity:0;transform:translateX(-50%) translateY(16px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}';
+        document.head.appendChild(style);
+
+        var b = document.createElement('div');
+        b.id = 'geo-lang-banner';
+        b.setAttribute('role', 'alert');
+        b.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);' +
+            'background:rgba(16,18,28,0.97);color:#f0f4ff;border-radius:14px;' +
+            'padding:14px 18px;max-width:440px;width:calc(100% - 32px);' +
+            'box-shadow:0 8px 36px rgba(0,0,0,0.45);z-index:88888;' +
+            'font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:13.5px;line-height:1.5;' +
+            'display:flex;flex-direction:column;gap:10px;' +
+            'border:1px solid rgba(255,255,255,0.1);' +
+            'animation:geoUp 0.32s ease;direction:' + (isRTL ? 'rtl' : 'ltr') + ';';
+
+        b.innerHTML =
+            '<div style="display:flex;align-items:flex-start;gap:10px">' +
+              '<span style="font-size:18px">🌐</span>' +
+              '<span style="flex:1">' + (msgs[sugLang] || msgs.en) + '</span>' +
+              '<button id="geo-close" style="background:none;border:none;color:rgba(255,255,255,0.4);cursor:pointer;font-size:17px;margin-left:auto;padding:0;line-height:1;flex-shrink:0" aria-label="Schließen">×</button>' +
+            '</div>' +
+            '<div style="display:flex;gap:8px;flex-wrap:wrap">' +
+              '<a id="geo-switch" href="' + url + '" style="background:#007aff;color:#fff;border-radius:9px;padding:8px 16px;font-size:13px;font-weight:600;text-decoration:none;white-space:nowrap">' + (switchLabels[sugLang] || name) + '</a>' +
+              '<button id="geo-stay" style="background:rgba(255,255,255,0.1);color:#c8d4f0;border:none;border-radius:9px;padding:8px 14px;font-size:13px;cursor:pointer;white-space:nowrap">' + (stayLabels[curLang] || 'Stay') + '</button>' +
+            '</div>';
+
+        document.body.appendChild(b);
+
+        function close() { if (b.parentNode) b.remove(); dismiss(); }
+        document.getElementById('geo-close').onclick = close;
+        document.getElementById('geo-stay').onclick = close;
+        document.getElementById('geo-switch').onclick = function() {
+            if (typeof setLang === 'function') setLang(sugLang);
+            dismiss();
+        };
+        setTimeout(function() { if (b.parentNode) b.remove(); }, 18000);
+    }
+
+    function init() {
+        if (wasDismissed()) return;
+        var curLang = getCurrentLang();
+
+        // Daten aus _worker.js-Injektion lesen (window._geo), Fallback auf navigator
+        var geo = window._geo || {};
+        var country = geo.c || '';
+        var bl = geo.l || ((navigator.language || 'en').split('-')[0].toLowerCase());
+        var browserLang = SUPPORTED.indexOf(bl) !== -1 ? bl : 'en';
+
+        // Land-basierte Sprachermittlung hat Vorrang vor Browser-Sprache
+        var countryLang = country && COUNTRY_LANG[country] ? COUNTRY_LANG[country] : browserLang;
+
+        if (countryLang !== curLang) {
+            showBanner(countryLang, curLang);
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        // Kleine Verzögerung damit die Seite zuerst lädt
+        setTimeout(init, 800);
+    }
+
+})(); // END GEO ENGINE

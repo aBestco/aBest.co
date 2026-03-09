@@ -236,7 +236,28 @@ export default {
         }
 
         // --- 4. STATIC ASSETS & PAGES ---
-        // Cloudflare Pages handles /de/, /en/index.html, /assets/ etc. automatically
+        // For HTML pages: inject window._geo (country + browser language) for client-side geo detection
+        if (request.method === 'GET' &&
+            !pathname.match(/\.(js|css|png|jpg|jpeg|webp|gif|svg|ico|json|woff|woff2|ttf|eot|pdf|xml|txt|map|gz)$/)) {
+            const geoRes = await env.ASSETS.fetch(request);
+            if (geoRes && geoRes.ok) {
+                const ct = geoRes.headers.get('Content-Type') || '';
+                if (ct.includes('text/html')) {
+                    const cfCountry = (request.cf && request.cf.country) ? String(request.cf.country).replace(/[^A-Z]/g, '').slice(0, 2) : '';
+                    const acceptLang = request.headers.get('Accept-Language') || 'en';
+                    const bl = acceptLang.split(',')[0].split('-')[0].toLowerCase();
+                    const supportedL = ["en","de","tr","es","zh","hi","ar","fr","ru","pt","ur","ku","he","hy"];
+                    const detectedL = supportedL.includes(bl) ? bl : 'en';
+                    const geoTag = `<script>window._geo={c:"${cfCountry}",l:"${detectedL}"};</script>`;
+                    let html = await geoRes.text();
+                    html = html.replace('</head>', geoTag + '\n</head>');
+                    const newHeaders = new Headers(geoRes.headers);
+                    newHeaders.set('Content-Type', 'text/html; charset=utf-8');
+                    return new Response(html, { status: geoRes.status, headers: newHeaders });
+                }
+            }
+            return geoRes || env.ASSETS.fetch(request);
+        }
         return env.ASSETS.fetch(request);
     },
 };
