@@ -349,7 +349,7 @@ function handleContactSubmit(event) {
         return;
     }
 
-    fetch("https://formsubmit.co/ajax/i@aBest.co", {
+    fetch("/api/contact", {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',
@@ -983,39 +983,29 @@ window.saveUserProfile = async function (event) {
 window.loadMessages = async function () {
     const token = localStorage.getItem('aBest_session');
     if (!token) return;
+    const thread = document.getElementById('message-thread');
+    if (!thread) return;
 
     try {
         const res = await fetch('/api/messages', {
             headers: { 'Authorization': `Bearer ${token}` }
         });
 
-        if (!res.ok) throw new Error('Nachrichten konnten nicht geladen werden.');
+        if (!res.ok) throw new Error();
 
         const messages = await res.json();
-        const thread = document.getElementById('message-thread');
-        const section = document.getElementById('messaging-section');
 
-        if (thread && section) {
-            section.style.display = 'block';
-            if (messages.length === 0) {
-                thread.innerHTML = '<div style="text-align: center; color: var(--text-muted); font-size: 0.9rem;">Noch keine Nachrichten. Schreiben Sie uns!</div>';
-            } else {
-                thread.innerHTML = messages.map(msg => {
-                    const isUser = msg.sender === 'user';
-                    const align = isUser ? 'right' : 'left';
-                    const bg = isUser ? 'var(--primary-blue)' : 'rgba(255,255,255,0.1)';
-                    const date = new Date(msg.timestamp).toLocaleString();
-                    return `
-                        <div style="text-align: ${align}; margin-bottom: 10px;">
-                            <div style="display: inline-block; padding: 10px 15px; border-radius: 8px; background: ${bg}; max-width: 80%; text-align: left;">
-                                <div style="font-size: 0.8rem; color: rgba(255,255,255,0.7); margin-bottom: 4px;">${isUser ? 'Sie' : 'aBest.co Support'} - ${date}</div>
-                                <div>${msg.text}</div>
-                            </div>
-                        </div>
-                    `;
-                }).join('');
-                thread.scrollTop = thread.scrollHeight;
-            }
+        if (messages.length === 0) {
+            thread.innerHTML = '<div style="text-align:center;color:var(--text-muted);padding:30px 0;font-size:0.85rem;">Noch keine Nachrichten. Schreiben Sie uns!</div>';
+        } else {
+            thread.innerHTML = messages.map(msg => {
+                const isUser = msg.sender === 'user';
+                const align = isUser ? 'right' : 'left';
+                const bg = isUser ? 'var(--primary-blue)' : 'rgba(255,255,255,0.1)';
+                const date = new Date(msg.timestamp).toLocaleString();
+                return `<div style="text-align:${align};margin-bottom:10px;"><div style="display:inline-block;padding:10px 15px;border-radius:8px;background:${bg};max-width:80%;text-align:left;"><div style="font-size:0.8rem;color:rgba(255,255,255,0.7);margin-bottom:4px;">${isUser ? 'Sie' : 'aBest.co Support'} - ${date}</div><div>${msg.text}</div></div></div>`;
+            }).join('');
+            thread.scrollTop = thread.scrollHeight;
         }
     } catch (err) {
         console.error('Error loading messages:', err);
@@ -1046,8 +1036,6 @@ window.sendMessage = async function () {
         if (res.ok) {
             input.value = '';
             loadMessages();
-        } else {
-            alert('Nachricht konnte nicht gesendet werden.');
         }
     } catch (err) {
         console.error('Error sending message:', err);

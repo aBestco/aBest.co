@@ -1625,8 +1625,8 @@ async function submitRoleForm(key) {
       xhr.upload.onprogress = e => {
         if (e.lengthComputable && progBar) progBar.style.width = Math.min(90, e.loaded/e.total*90) + '%';
       };
-      xhr.onload = () => { if(progBar) progBar.style.width='100%'; xhr.status<300 ? resolve() : reject(new Error(xhr.statusText)); };
-      xhr.onerror = () => reject(new Error('Network error'));
+      xhr.onload = () => { if(progBar) progBar.style.width='100%'; xhr.status<300 ? resolve() : reject(new Error(xhr.status===401?'Sitzung abgelaufen. Bitte erneut einloggen.':('Fehler '+xhr.status))); };
+      xhr.onerror = () => reject(new Error('Netzwerkfehler. Bitte erneut versuchen.'));
       xhr.send(fd);
     });
     setTimeout(() => { if(progWrap) progWrap.style.display='none'; if(progBar) progBar.style.width='0%'; }, 1200);

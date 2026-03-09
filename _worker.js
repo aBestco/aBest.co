@@ -115,6 +115,10 @@ export default {
             return handleAuthApi(request, env);
         }
 
+        if (pathname.startsWith('/api/contact')) {
+            return handleContactApi(request, env);
+        }
+
         if (pathname.startsWith('/api/role')) {
             return handleRoleApi(request, env);
         }
@@ -259,7 +263,10 @@ function unauthorizedResponse() {
     return new Response(JSON.stringify({ error: 'Unauthorized' }), {
         status: 401,
         headers: {
-            'WWW-Authenticate': 'Bearer realm="aBest.co Admin"',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+            'WWW-Authenticate': 'Bearer realm="aBest.co"',
             'Content-Type': 'application/json'
         }
     });
@@ -716,6 +723,52 @@ async function handleAuthApi(request, env) {
         return new Response('Not Found', { status: 404, headers: corsHeaders });
     } catch (err) {
         return new Response(JSON.stringify({ error: err.message }), {
+            status: 500, headers: { 'Content-Type': 'application/json', ...corsHeaders }
+        });
+    }
+}
+
+// --- CONTACT FORM API HANDLER ---
+async function handleContactApi(request, env) {
+    const corsHeaders = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type',
+    };
+    if (request.method === 'OPTIONS') return new Response(null, { headers: corsHeaders });
+    if (request.method !== 'POST') return new Response('Method Not Allowed', { status: 405, headers: corsHeaders });
+
+    try {
+        const body = await request.json();
+        const { name, email, phone, message } = body;
+
+        if (!name || !email || !message) {
+            return new Response(JSON.stringify({ error: 'Required fields missing' }), {
+                status: 400, headers: { 'Content-Type': 'application/json', ...corsHeaders }
+            });
+        }
+
+        const id = crypto.randomUUID();
+        const entry = {
+            id,
+            name,
+            email,
+            phone: phone || '',
+            message,
+            date: new Date().toISOString(),
+            status: 'Neu',
+            type: 'contact'
+        };
+
+        if (env.ABEST_INQUIRIES) {
+            await env.ABEST_INQUIRIES.put(`contact:${id}`, JSON.stringify(entry));
+        }
+
+        return new Response(JSON.stringify({ success: true }), {
+            headers: { 'Content-Type': 'application/json', ...corsHeaders }
+        });
+    } catch (err) {
+        return new Response(JSON.stringify({ error: 'Server error' }), {
             status: 500, headers: { 'Content-Type': 'application/json', ...corsHeaders }
         });
     }
