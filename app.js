@@ -171,36 +171,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function openAuthModal() {
         const lang = document.documentElement.lang || 'en';
         const sessionToken = localStorage.getItem('aBest_session');
-
         if (sessionToken) {
             window.location.href = '/profile';
             return;
         }
-
-        // Instead of opening modal, redirect to login page
-        window.location.href = '/login';
-        return;
-
-        // Add listeners for tab switching inside auth modal
-        const loginTab = document.getElementById('tab-login');
-        const regTab = document.getElementById('tab-register');
-        const loginForm = document.getElementById('login-form-content');
-        const regForm = document.getElementById('register-form-content');
-
-        if (loginTab && regTab && loginForm && regForm) {
-            loginTab.addEventListener('click', () => {
-                loginTab.classList.add('active');
-                regTab.classList.remove('active');
-                loginForm.style.display = 'block';
-                regForm.style.display = 'none';
-            });
-            regTab.addEventListener('click', () => {
-                regTab.classList.add('active');
-                loginTab.classList.remove('active');
-                regForm.style.display = 'block';
-                loginForm.style.display = 'none';
-            });
-        }
+        window.location.href = `/${lang}/login`;
     }
 
     // Check initial auth state to update icon
@@ -257,17 +232,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function checkAuthState() {
     const sessionToken = localStorage.getItem('aBest_session');
-    // We now redirect to the profile page instead of admin upon click
-    const adminLink = document.querySelector('a[href*="/admin/"]');
-
-    if (sessionToken && adminLink) {
-        adminLink.href = `/profile`;
-
-        // Change the icon to indicate logged in state. 
-        // We use a simple filled user icon for 'logged in'.
-        adminLink.innerHTML = `
+    // Target the login icon in the header
+    const loginLink = document.querySelector('a[href="/login"], a[href*="/login"]');
+    if (sessionToken && loginLink) {
+        loginLink.href = '/profile';
+        loginLink.setAttribute('aria-label', 'Mein Profil');
+        // Filled user icon = logged in
+        loginLink.innerHTML = `
             <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="currentColor">
-               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 0 0 0-4 4v2"></path>
+               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                <circle cx="12" cy="7" r="4"></circle>
             </svg>
         `;
@@ -772,7 +745,8 @@ window.handleGoogleSignIn = async function (response) {
 
 window.logout = function () {
     localStorage.removeItem('aBest_session');
-    window.location.href = `/login`;
+    const lang = document.documentElement.lang || 'en';
+    window.location.href = `/${lang}/login`;
 };
 
 // --- PROFILE PAGE LOGIC ---
