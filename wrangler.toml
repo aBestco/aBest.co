@@ -9,31 +9,18 @@ compatibility_date = "2026-03-05"
 pages_build_output_dir = "."
 
 # ─── KV NAMESPACES ───────────────────────────────────
-# Configure these in Cloudflare Dashboard:
-# Pages → abest-co → Settings → Functions → KV namespace bindings
-#
-# IMPORTANT: After adding a new KV namespace in the dashboard,
-# copy the namespace ID here for documentation.
+# Bound in Cloudflare Dashboard:
+# Pages → abest-co → Settings → Bindings
 
 [[kv_namespaces]]
 binding = "ABEST_AUTH"
-id = ""   # Set in Cloudflare Dashboard → KV → create "ABEST_AUTH"
+id = "29270c717ba74ef8a7f71be7a20add4e"
 # Stores: user passwords, sessions, profiles, messages, team members, role data
 
 [[kv_namespaces]]
 binding = "ABEST_INQUIRIES"
-id = "2530b4a2fd22426d90be9ed8343e3a14"
+id = "9d4a94e280134e1abfcceb16568db8bd"
 # Stores: contact form submissions, business inquiries
-
-# ─── R2 BUCKETS ──────────────────────────────────────
-# Configure in Cloudflare Dashboard:
-# Pages → abest-co → Settings → Functions → R2 bucket bindings
-
-[[r2_buckets]]
-binding = "ABEST_R2"
-bucket_name = "abest-uploads"
-# Stores: user file uploads (documents, PDFs, images > 25MB)
-# NOTE: Without this binding, file uploads save metadata only (no actual file stored)
 
 # ─── ENVIRONMENT VARIABLES ───────────────────────────
 # Set as encrypted secrets in Cloudflare Dashboard:
