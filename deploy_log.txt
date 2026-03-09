@@ -2,18 +2,14 @@ npm warn exec The following package was not found and will be installed: wrangle
 
  ⛅️ wrangler 4.71.0
 ───────────────────
-[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mWarning: Your working directory is a git repo and has uncommitted changes[0m
 
-  To silence this warning, pass in --commit-dirty=true
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mReceived a malformed response from the API[0m
+
+  upstream connect error or disconnect/reset before headers. reset reason: connection termination
+  GET /accounts/23a6b5565d032e6bf1ffee7931c279cc/pages/projects/abest-co -> 503 Service Unavailable
+  
+  If you think this is a bug, please open an issue at: [4mhttps://github.com/cloudflare/workers-sdk/issues/new/choose[0m
 
 
-Uploading... (457/458)
-Uploading... (458/458)
-✨ Success! Uploaded 1 files (457 already uploaded) (1.15 sec)
-
-✨ Uploading _redirects
-✨ Compiled Worker successfully
-✨ Uploading Worker bundle
-🌎 Deploying...
-✨ Deployment complete! Take a peek over at https://83d780da.abest-co-4nj.pages.dev
-DEPLOY_SUCCESS
+🪵  Logs were written to "/home/runner/.config/.wrangler/logs/wrangler-2026-03-09_21-12-01_826.log"
+DEPLOY_FAILED
