@@ -1169,3 +1169,492 @@ if (contactTextarea) {
         banner.remove();
     });
 })();
+
+// ══════════════════════════════════════════════════════════════════
+// aBest.co INTELLIGENCE ENGINE
+// Watch-Time-Tracking → Score-Berechnung → Personalisierter Feed
+// SEO · AIO · GEO · AEO · KI-Optimierung
+// ══════════════════════════════════════════════════════════════════
+(function() {
+    'use strict';
+
+    // ── Config ────────────────────────────────────────────────────
+    const STORAGE_KEY   = 'abest_behavior';
+    const HALF_LIFE     = 7;   // days — score halbiert sich nach 7 Tagen
+    const LAMBDA        = Math.LN2 / HALF_LIFE;
+    const MAX_EVENTS    = 100;
+    const SYNC_DEBOUNCE = 3000; // ms
+
+    // Page → Category Mapping
+    const PAGE_MAP = [
+        { pattern: '/earn-money/capital-partner', role: 'capital-partner', weight: 1.2 },
+        { pattern: '/earn-money/founder',         role: 'founder',         weight: 1.2 },
+        { pattern: '/earn-money/investor',        role: 'investor',        weight: 1.2 },
+        { pattern: '/earn-money/business',        role: 'business',        weight: 1.2 },
+        { pattern: '/earn-money/seller',          role: 'seller',          weight: 1.2 },
+        { pattern: '/earn-money/explorer',        role: 'explorer',        weight: 1.2 },
+        { pattern: '/earn-money',                 role: 'general',         weight: 0.6 },
+        { pattern: '/ideen',                      role: 'general',         weight: 0.6 },
+        { pattern: '/usa/california',             country: 'usa',          weight: 1.5 },
+        { pattern: '/usa',                        country: 'usa',          weight: 1.0 },
+        { pattern: '/deutschland/berlin',         country: 'de',           weight: 1.5 },
+        { pattern: '/deutschland',                country: 'de',           weight: 1.0 },
+        { pattern: '/turkiye/antalya',            country: 'tr',           weight: 1.5 },
+        { pattern: '/turkiye/gaziantep',          country: 'tr',           weight: 1.5 },
+        { pattern: '/turkiye/istanbul',           country: 'tr',           weight: 1.5 },
+        { pattern: '/turkiye',                    country: 'tr',           weight: 1.0 },
+        { pattern: '/partnerschaften',            action:  'partner',      weight: 0.8 },
+        { pattern: '/kontakt',                    action:  'contact',      weight: 0.8 },
+    ];
+
+    // ── Helpers ───────────────────────────────────────────────────
+    function detectCategory(path) {
+        const clean = path.replace(/^\/[a-z]{2}(\/|$)/, '/').replace(/\/$/, '') || '/';
+        for (const m of PAGE_MAP) {
+            if (clean === m.pattern || clean.startsWith(m.pattern + '/')) return m;
+        }
+        return null;
+    }
+
+    function timeScore(secs) {
+        if (secs <  5) return 0;
+        if (secs < 15) return 1;
+        if (secs < 30) return 3;
+        if (secs < 60) return 5;
+        if (secs < 120) return 8;
+        return 10;
+    }
+
+    function scrollMult(pct) {
+        if (pct < 25) return 0.5;
+        if (pct < 50) return 0.75;
+        if (pct < 75) return 1.0;
+        return 1.25;
+    }
+
+    function decayFactor(isoDate) {
+        const ageDays = (Date.now() - new Date(isoDate).getTime()) / 86400000;
+        return Math.exp(-LAMBDA * ageDays);
+    }
+
+    // ── Storage ───────────────────────────────────────────────────
+    function load() {
+        try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || { scores: {}, events: [] }; }
+        catch { return { scores: {}, events: [] }; }
+    }
+    function save(d) {
+        try { d.lastUpdated = new Date().toISOString(); localStorage.setItem(STORAGE_KEY, JSON.stringify(d)); }
+        catch {}
+    }
+
+    // ── Score Writer ──────────────────────────────────────────────
+    function bump(key, pts) {
+        const d = load();
+        if (!d.scores[key]) d.scores[key] = { score: 0, lastSeen: new Date().toISOString(), count: 0 };
+        d.scores[key].score   += pts;
+        d.scores[key].lastSeen = new Date().toISOString();
+        d.scores[key].count++;
+        save(d);
+    }
+
+    function recordSession(cat, secs, scrollPct) {
+        const pts = timeScore(secs) * scrollMult(scrollPct) * (cat.weight || 1);
+        if (pts === 0) return;
+        const now = new Date().toISOString();
+        const d   = load();
+        if (cat.country) { if (!d.scores['c_' + cat.country]) d.scores['c_' + cat.country] = { score: 0, lastSeen: now, count: 0 }; d.scores['c_' + cat.country].score += pts; d.scores['c_' + cat.country].lastSeen = now; d.scores['c_' + cat.country].count++; }
+        if (cat.role)    { if (!d.scores['r_' + cat.role])    d.scores['r_' + cat.role]    = { score: 0, lastSeen: now, count: 0 }; d.scores['r_' + cat.role].score    += pts; d.scores['r_' + cat.role].lastSeen    = now; d.scores['r_' + cat.role].count++;    }
+        if (cat.action)  { if (!d.scores['a_' + cat.action])  d.scores['a_' + cat.action]  = { score: 0, lastSeen: now, count: 0 }; d.scores['a_' + cat.action].score  += pts; d.scores['a_' + cat.action].lastSeen  = now; d.scores['a_' + cat.action].count++;  }
+        d.events = (d.events || []).slice(-(MAX_EVENTS - 1));
+        d.events.push({ p: window.location.pathname, t: Math.round(secs), s: Math.round(scrollPct), ts: now });
+        save(d);
+        _syncToServer(d);
+    }
+
+    // ── Server Sync (logged-in users) ─────────────────────────────
+    let _syncTimer = null;
+    function _syncToServer(d) {
+        clearTimeout(_syncTimer);
+        _syncTimer = setTimeout(async function() {
+            try {
+                const ck = document.cookie.match(/abest_token=([^;]+)/);
+                if (!ck) return;
+                await fetch('/api/behavior', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + ck[1] },
+                    body: JSON.stringify({ scores: d.scores })
+                });
+            } catch {}
+        }, SYNC_DEBOUNCE);
+    }
+
+    // ── Public API ────────────────────────────────────────────────
+    // Returns decayed scores sorted by relevance
+    window.abestScores = function() {
+        const d = load();
+        return Object.entries(d.scores || {}).map(function([k, v]) {
+            return { key: k, score: v.score * decayFactor(v.lastSeen), raw: v.score, count: v.count, lastSeen: v.lastSeen };
+        }).sort(function(a, b) { return b.score - a.score; });
+    };
+
+    // Returns ordered country keys: ['usa', 'de', 'tr'] by interest
+    window.abestCountryOrder = function() {
+        const defaults = ['usa', 'de', 'tr'];
+        const sc = load().scores || {};
+        return defaults.slice().sort(function(a, b) {
+            const sA = (sc['c_' + a] || { score: 0, lastSeen: new Date().toISOString() });
+            const sB = (sc['c_' + b] || { score: 0, lastSeen: new Date().toISOString() });
+            return (sB.score * decayFactor(sB.lastSeen)) - (sA.score * decayFactor(sA.lastSeen));
+        });
+    };
+
+    // Returns top role interest (or null)
+    window.abestTopRole = function() {
+        const scores = window.abestScores().filter(function(s) { return s.key.startsWith('r_'); });
+        return scores.length > 0 ? scores[0].key.replace('r_', '') : null;
+    };
+
+    // Track explicit action (form open, button click)
+    window.abestTrackAction = function(actionType, pts) {
+        bump('a_' + actionType, pts || 2);
+    };
+
+    // Track role card click on earn-money page
+    window.abestTrackRole = function(role) {
+        bump('r_' + role, 2);
+    };
+
+    // ── Page Tracker ──────────────────────────────────────────────
+    const _cat   = detectCategory(window.location.pathname);
+    let _start   = Date.now();
+    let _scroll  = 0;
+    let _active  = true;
+
+    if (_cat) {
+        window.addEventListener('scroll', function() {
+            const total = document.documentElement.scrollHeight - window.innerHeight;
+            if (total > 0) _scroll = Math.max(_scroll, Math.round((window.scrollY / total) * 100));
+        }, { passive: true });
+
+        function _onLeave() {
+            if (!_active) return;
+            _active = false;
+            recordSession(_cat, Math.round((Date.now() - _start) / 1000), _scroll);
+        }
+
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) { _onLeave(); }
+            else { _active = true; _start = Date.now(); _scroll = 0; }
+        });
+        window.addEventListener('pagehide', _onLeave);
+    }
+
+    // ── Homepage Personalization ──────────────────────────────────
+    document.addEventListener('DOMContentLoaded', function() {
+        var section = document.querySelector('.countries');
+        if (!section) return;
+        var cards = Array.from(section.querySelectorAll('a[href]'));
+        if (cards.length < 2) return;
+
+        var order  = window.abestCountryOrder();
+        var scored = load().scores || {};
+        var hasData = Object.keys(scored).some(function(k) { return k.startsWith('c_'); });
+        if (!hasData) return; // No personalization for new visitors
+
+        var mapped = { 'usa': null, 'de': null, 'tr': null };
+        cards.forEach(function(card) {
+            var href = card.getAttribute('href') || '';
+            if (href.includes('/usa')) mapped['usa'] = card;
+            else if (href.includes('/deutschland')) mapped['de'] = card;
+            else if (href.includes('/turkiye')) mapped['tr'] = card;
+        });
+
+        // Show personalization badge on top card
+        var topCountry = order[0];
+        var topCard = mapped[topCountry];
+        if (topCard && topCard !== cards[0]) {
+            var badge = document.createElement('div');
+            badge.style.cssText = 'position:absolute;top:10px;right:10px;background:rgba(77,159,255,0.85);color:#fff;font-size:10px;font-weight:600;padding:3px 8px;border-radius:20px;z-index:10;letter-spacing:0.04em;';
+            badge.textContent = '★ Für Sie';
+            topCard.style.position = 'relative';
+            topCard.appendChild(badge);
+
+            // Reorder DOM
+            order.forEach(function(country) {
+                var el = mapped[country];
+                if (el) section.appendChild(el);
+            });
+        }
+    });
+
+})(); // END aBest Intelligence Engine
+
+
+// ══════════════════════════════════════════════════════════════════
+// aBest.co PWA ENGINE
+// Service Worker · Install Banner (oben rechts) · Install Button (unten rechts)
+// Multilingual · Mobile-First · Idiotensicher
+// ══════════════════════════════════════════════════════════════════
+(function() {
+    'use strict';
+
+    // ── 1. Service Worker registrieren ─────────────────────────────────────
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('/service-worker.js', { scope: '/' })
+                .catch(function() { /* silent fail */ });
+        });
+    }
+
+    // ── 2. Translations für Install-UI ──────────────────────────────────────
+    var LANG_MAP = {
+        de: { banner: '📲 App installieren', btn: 'Jetzt installieren', dismiss: '✕' },
+        en: { banner: '📲 Install App',       btn: 'Install Now',         dismiss: '✕' },
+        tr: { banner: '📲 Uygulamayı kur',   btn: 'Şimdi kur',           dismiss: '✕' },
+        es: { banner: '📲 Instalar app',      btn: 'Instalar ahora',      dismiss: '✕' },
+        fr: { banner: '📲 Installer l\'app',  btn: 'Installer',           dismiss: '✕' },
+        ar: { banner: '📲 تثبيت التطبيق',    btn: 'تثبيت الآن',          dismiss: '✕' },
+        pt: { banner: '📲 Instalar app',      btn: 'Instalar agora',      dismiss: '✕' },
+        ru: { banner: '📲 Установить',        btn: 'Установить',          dismiss: '✕' },
+        zh: { banner: '📲 安装应用',            btn: '立即安装',              dismiss: '✕' },
+        hi: { banner: '📲 ऐप इंस्टॉल करें', btn: 'अभी इंस्टॉल करें',   dismiss: '✕' },
+        ur: { banner: '📲 ایپ انسٹال کریں',  btn: 'ابھی انسٹال کریں',   dismiss: '✕' },
+        ku: { banner: '📲 App saz bike',      btn: 'Niha saz bike',       dismiss: '✕' },
+        he: { banner: '📲 התקן את האפליקציה', btn: 'התקן עכשיו',          dismiss: '✕' },
+        hy: { banner: '📲 Տեղադրել',          btn: 'Տեղադրել հիմա',       dismiss: '✕' }
+    };
+
+    function getLang() {
+        var m = window.location.pathname.match(/^\/([a-z]{2})\//);
+        return (m && LANG_MAP[m[1]]) ? m[1] : 'en';
+    }
+
+    // ── 3. Install-Prompt abfangen ──────────────────────────────────────────
+    var _deferredPrompt = null;
+    var _bannerEl = null;
+    var _fabEl = null;
+    var DISMISSED_KEY = 'abest_pwa_dismissed';
+
+    window.addEventListener('beforeinstallprompt', function(e) {
+        e.preventDefault();
+        _deferredPrompt = e;
+
+        // Nicht zeigen wenn bereits dismissed oder installiert
+        if (localStorage.getItem(DISMISSED_KEY)) return;
+        if (window.matchMedia('(display-mode: standalone)').matches) return;
+
+        showPWAUI();
+    });
+
+    // Wenn bereits als PWA installiert → alles ausblenden
+    window.addEventListener('appinstalled', function() {
+        hidePWAUI();
+        localStorage.setItem(DISMISSED_KEY, '1');
+    });
+
+    // ── 4. UI erstellen und zeigen ──────────────────────────────────────────
+    function showPWAUI() {
+        var lang = getLang();
+        var t = LANG_MAP[lang] || LANG_MAP['en'];
+
+        // Nur einmal erstellen
+        if (!_bannerEl) _bannerEl = createBanner(t);
+        if (!_fabEl) _fabEl = createFAB(t);
+
+        // Mit kleiner Verzögerung einblenden (nach Seiten-Load)
+        setTimeout(function() {
+            if (_bannerEl) {
+                document.body.appendChild(_bannerEl);
+                requestAnimationFrame(function() {
+                    _bannerEl.style.opacity = '1';
+                    _bannerEl.style.transform = 'translateY(0)';
+                });
+            }
+            if (_fabEl) {
+                document.body.appendChild(_fabEl);
+                requestAnimationFrame(function() {
+                    _fabEl.style.opacity = '1';
+                    _fabEl.style.transform = 'translateY(0) scale(1)';
+                });
+            }
+        }, 2500);
+    }
+
+    function hidePWAUI() {
+        if (_bannerEl) {
+            _bannerEl.style.opacity = '0';
+            _bannerEl.style.transform = 'translateY(-60px)';
+            setTimeout(function() { if (_bannerEl) _bannerEl.remove(); _bannerEl = null; }, 400);
+        }
+        if (_fabEl) {
+            _fabEl.style.opacity = '0';
+            _fabEl.style.transform = 'translateY(60px) scale(0.8)';
+            setTimeout(function() { if (_fabEl) _fabEl.remove(); _fabEl = null; }, 400);
+        }
+    }
+
+    // ── 5. Banner (oben rechts) ─────────────────────────────────────────────
+    function createBanner(t) {
+        var el = document.createElement('div');
+        el.id = 'pwa-install-banner';
+        el.setAttribute('role', 'banner');
+        el.setAttribute('aria-label', t.banner);
+        el.style.cssText = [
+            'position:fixed',
+            'top:70px',
+            'right:12px',
+            'z-index:9999',
+            'background:linear-gradient(135deg,rgba(0,40,80,0.95),rgba(0,20,50,0.98))',
+            'border:1px solid rgba(0,122,255,0.45)',
+            'border-radius:14px',
+            'padding:10px 14px',
+            'display:flex',
+            'align-items:center',
+            'gap:10px',
+            'box-shadow:0 8px 32px rgba(0,0,0,0.5),0 0 0 1px rgba(0,122,255,0.15)',
+            'backdrop-filter:blur(20px)',
+            '-webkit-backdrop-filter:blur(20px)',
+            'max-width:260px',
+            'opacity:0',
+            'transform:translateY(-60px)',
+            'transition:opacity 0.35s ease,transform 0.35s cubic-bezier(0.34,1.56,0.64,1)',
+            'cursor:pointer'
+        ].join(';');
+
+        el.innerHTML =
+            '<span style="font-size:0.82rem;font-weight:600;color:#e8f0ff;line-height:1.3;flex:1;">' + t.banner + '</span>' +
+            '<button id="pwa-banner-install" style="background:linear-gradient(135deg,#007aff,#0055cc);border:none;border-radius:8px;padding:7px 12px;color:#fff;font-size:0.75rem;font-weight:700;cursor:pointer;white-space:nowrap;font-family:inherit;">' + t.btn + '</button>' +
+            '<button id="pwa-banner-dismiss" aria-label="Schließen" style="background:transparent;border:none;color:rgba(255,255,255,0.45);font-size:1rem;cursor:pointer;padding:2px 4px;flex-shrink:0;font-family:inherit;">' + t.dismiss + '</button>';
+
+        el.querySelector('#pwa-banner-install').addEventListener('click', function(e) {
+            e.stopPropagation();
+            triggerInstall();
+        });
+        el.querySelector('#pwa-banner-dismiss').addEventListener('click', function(e) {
+            e.stopPropagation();
+            dismissPWA();
+        });
+        el.addEventListener('click', function() { triggerInstall(); });
+
+        return el;
+    }
+
+    // ── 6. FAB Button (unten rechts) ──────────────────────────────────────────
+    function createFAB(t) {
+        var el = document.createElement('button');
+        el.id = 'pwa-install-fab';
+        el.setAttribute('aria-label', t.btn);
+        el.style.cssText = [
+            'position:fixed',
+            'bottom:24px',
+            'right:16px',
+            'z-index:9998',
+            'background:linear-gradient(135deg,#007aff,#0055cc)',
+            'color:#fff',
+            'border:none',
+            'border-radius:30px',
+            'padding:13px 20px',
+            'font-size:0.9rem',
+            'font-weight:700',
+            'font-family:inherit',
+            'cursor:pointer',
+            'box-shadow:0 6px 24px rgba(0,122,255,0.55),0 2px 8px rgba(0,0,0,0.4)',
+            'opacity:0',
+            'transform:translateY(60px) scale(0.8)',
+            'transition:opacity 0.35s ease,transform 0.35s cubic-bezier(0.34,1.56,0.64,1)',
+            'display:flex',
+            'align-items:center',
+            'gap:8px',
+            'letter-spacing:0.01em',
+            'white-space:nowrap'
+        ].join(';');
+
+        el.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>' + t.btn;
+
+        el.addEventListener('click', function() { triggerInstall(); });
+
+        // Hover-Effekt
+        el.addEventListener('mouseenter', function() {
+            el.style.transform = 'translateY(0) scale(1.05)';
+            el.style.boxShadow = '0 10px 32px rgba(0,122,255,0.7),0 4px 12px rgba(0,0,0,0.4)';
+        });
+        el.addEventListener('mouseleave', function() {
+            el.style.transform = 'translateY(0) scale(1)';
+            el.style.boxShadow = '0 6px 24px rgba(0,122,255,0.55),0 2px 8px rgba(0,0,0,0.4)';
+        });
+
+        return el;
+    }
+
+    // ── 7. Install auslösen ────────────────────────────────────────────────────
+    function triggerInstall() {
+        if (!_deferredPrompt) {
+            // iOS Safari Fallback: Anleitung zeigen
+            showiOSGuide();
+            return;
+        }
+        _deferredPrompt.prompt();
+        _deferredPrompt.userChoice.then(function(choice) {
+            _deferredPrompt = null;
+            if (choice.outcome === 'accepted') {
+                hidePWAUI();
+                localStorage.setItem(DISMISSED_KEY, '1');
+            }
+        });
+    }
+
+    function dismissPWA() {
+        localStorage.setItem(DISMISSED_KEY, '1');
+        hidePWAUI();
+    }
+
+    // ── 8. iOS Safari Fallback (kein beforeinstallprompt) ─────────────────────
+    var _isIOS = /ipad|iphone|ipod/i.test(navigator.userAgent) && !window.MSStream;
+    var _isInStandalone = window.navigator.standalone === true;
+    var _isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+    if (_isIOS && _isSafari && !_isInStandalone && !localStorage.getItem(DISMISSED_KEY)) {
+        // Zeige iOS-spezifische Anleitung nach Delay
+        setTimeout(function() {
+            var lang = getLang();
+            var t = LANG_MAP[lang] || LANG_MAP['en'];
+            if (!_fabEl) {
+                _fabEl = createFAB(t);
+                document.body.appendChild(_fabEl);
+                requestAnimationFrame(function() {
+                    _fabEl.style.opacity = '1';
+                    _fabEl.style.transform = 'translateY(0) scale(1)';
+                });
+            }
+        }, 3000);
+    }
+
+    function showiOSGuide() {
+        var guide = document.getElementById('pwa-ios-guide');
+        if (guide) { guide.remove(); return; }
+
+        var el = document.createElement('div');
+        el.id = 'pwa-ios-guide';
+        el.style.cssText = [
+            'position:fixed','bottom:90px','right:16px','z-index:10000',
+            'background:rgba(0,20,50,0.97)',
+            'border:1px solid rgba(0,122,255,0.4)',
+            'border-radius:16px','padding:16px 18px',
+            'max-width:240px',
+            'box-shadow:0 8px 32px rgba(0,0,0,0.6)',
+            'backdrop-filter:blur(20px)',
+            'color:#e8f0ff','font-size:0.82rem','line-height:1.5',
+            'text-align:center',
+            'animation:fadeIn 0.3s ease'
+        ].join(';');
+        el.innerHTML = '<div style="font-size:1.2rem;margin-bottom:8px;">📱</div>' +
+            '<strong>iOS: App installieren</strong><br>' +
+            'Tippe auf <strong>Teilen</strong> <span style="font-size:1rem;">⬆️</span> dann<br>' +
+            '<strong>„Zum Home-Bildschirm"</strong>' +
+            '<br><br><button onclick="document.getElementById(\'pwa-ios-guide\').remove()" style="background:rgba(0,122,255,0.3);border:1px solid rgba(0,122,255,0.5);color:#fff;border-radius:8px;padding:5px 14px;cursor:pointer;font-family:inherit;font-size:0.8rem;">OK</button>';
+        document.body.appendChild(el);
+
+        setTimeout(function() { if (document.getElementById('pwa-ios-guide')) document.getElementById('pwa-ios-guide').remove(); }, 8000);
+    }
+
+})(); // END PWA ENGINE

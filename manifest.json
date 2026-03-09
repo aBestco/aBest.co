@@ -1,0 +1,73 @@
+{
+  "name": "aBest.co – Investieren. Gründen. Verkaufen.",
+  "short_name": "aBest.co",
+  "description": "Global Premium Land & Real Estate – in 14 Sprachen. Investoren, Gründer, Kapitalpartner & Verkäufer.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0a0a0f",
+  "theme_color": "#007aff",
+  "lang": "de",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/assets/images/bg_main_blurred_new.webp",
+      "sizes": "1200x630",
+      "type": "image/webp",
+      "form_factor": "wide",
+      "label": "aBest.co Homepage"
+    }
+  ],
+  "categories": ["business", "finance", "productivity"],
+  "prefer_related_applications": false,
+  "shortcuts": [
+    {
+      "name": "USA Projekte",
+      "short_name": "USA",
+      "description": "Premium-Immobilien USA",
+      "url": "/de/usa",
+      "icons": [{ "src": "/favicon.png", "sizes": "any" }]
+    },
+    {
+      "name": "Deutschland Projekte",
+      "short_name": "DE",
+      "description": "Premium-Immobilien Deutschland",
+      "url": "/de/deutschland",
+      "icons": [{ "src": "/favicon.png", "sizes": "any" }]
+    },
+    {
+      "name": "Türkiye Projekte",
+      "short_name": "TR",
+      "description": "Premium-Immobilien Türkiye",
+      "url": "/de/turkiye",
+      "icons": [{ "src": "/favicon.png", "sizes": "any" }]
+    },
+    {
+      "name": "Kontakt",
+      "short_name": "Kontakt",
+      "description": "Jetzt Kontakt aufnehmen",
+      "url": "/de/kontakt",
+      "icons": [{ "src": "/favicon.png", "sizes": "any" }]
+    }
+  ]
+}

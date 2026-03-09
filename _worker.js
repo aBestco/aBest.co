@@ -119,6 +119,10 @@ export default {
             return handleContactApi(request, env);
         }
 
+        if (pathname.startsWith('/api/behavior')) {
+            return handleBehaviorApi(request, env);
+        }
+
         if (pathname.startsWith('/api/role')) {
             return handleRoleApi(request, env);
         }
@@ -847,6 +851,71 @@ async function handleAuthApi(request, env) {
 }
 
 // --- CONTACT FORM API HANDLER ---
+// --- BEHAVIOR / PERSONALIZATION API ---
+async function handleBehaviorApi(request, env) {
+    const cors = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    };
+    if (request.method === 'OPTIONS') return new Response(null, { headers: cors });
+
+    const userEmail = await checkAuth(request, env);
+    if (!userEmail) return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401, headers: { ...cors, 'Content-Type': 'application/json' } });
+
+    const HALF_LIFE = 7;
+    const LAMBDA    = Math.LN2 / HALF_LIFE;
+
+    function decay(isoDate) {
+        const ageDays = (Date.now() - new Date(isoDate).getTime()) / 86400000;
+        return Math.exp(-LAMBDA * ageDays);
+    }
+
+    if (request.method === 'POST') {
+        try {
+            const body = await request.json();
+            const incoming = body.scores || {};
+            const key = 'behavior:' + userEmail;
+            const existing = JSON.parse(await env.ABEST_AUTH.get(key) || '{"scores":{}}');
+
+            // Merge: keep highest decayed score per category
+            for (const [k, v] of Object.entries(incoming)) {
+                if (!existing.scores[k]) {
+                    existing.scores[k] = v;
+                } else {
+                    // If incoming is newer and has higher score, prefer it
+                    const existDecayed = existing.scores[k].score * decay(existing.scores[k].lastSeen);
+                    const inDecayed    = (v.score || 0) * decay(v.lastSeen || new Date().toISOString());
+                    if (inDecayed > existDecayed) existing.scores[k] = v;
+                }
+            }
+            existing.lastUpdated = new Date().toISOString();
+            await env.ABEST_AUTH.put(key, JSON.stringify(existing));
+            return new Response(JSON.stringify({ ok: true }), { headers: { ...cors, 'Content-Type': 'application/json' } });
+        } catch (e) {
+            return new Response(JSON.stringify({ error: e.message }), { status: 500, headers: { ...cors, 'Content-Type': 'application/json' } });
+        }
+    }
+
+    if (request.method === 'GET') {
+        try {
+            const key  = 'behavior:' + userEmail;
+            const data = JSON.parse(await env.ABEST_AUTH.get(key) || '{"scores":{}}');
+            // Return decayed scores for client-side personalization
+            const result = Object.entries(data.scores || {}).map(([k, v]) => ({
+                key: k,
+                score: Math.round((v.score || 0) * decay(v.lastSeen || new Date().toISOString()) * 100) / 100,
+                count: v.count || 0,
+            })).sort((a, b) => b.score - a.score);
+            return new Response(JSON.stringify({ scores: result }), { headers: { ...cors, 'Content-Type': 'application/json' } });
+        } catch (e) {
+            return new Response(JSON.stringify({ error: e.message }), { status: 500, headers: { ...cors, 'Content-Type': 'application/json' } });
+        }
+    }
+
+    return new Response('Method Not Allowed', { status: 405, headers: cors });
+}
+
 async function handleContactApi(request, env) {
     const corsHeaders = {
         'Access-Control-Allow-Origin': '*',

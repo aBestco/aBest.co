@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
+<title>Իմ Հոսքը | aBest.co</title>
+<meta name="description" content="Ձեր հետաքրքրությունների հիման վրա"/>
+<meta name="robots" content="noindex, nofollow"/>
+<link rel="icon" href="/favicon.png" type="image/png"/>
+<link rel="stylesheet" href="/index.css"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://accounts.google.com/gsi/client" async></script>
+<style>
+.feed-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;padding:20px 0;}
+.feed-card{position:relative;border-radius:16px;overflow:hidden;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);transition:transform 0.3s,box-shadow 0.3s;cursor:pointer;text-decoration:none;display:block;}
+.feed-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.4);}
+.feed-card img{width:100%;height:160px;object-fit:cover;}
+.feed-card-body{padding:16px;}
+.feed-card-title{font-size:1.1rem;font-weight:600;color:#fff;margin-bottom:6px;}
+.feed-card-sub{font-size:0.85rem;color:rgba(255,255,255,0.6);}
+.feed-badge{position:absolute;top:10px;right:10px;background:rgba(77,159,255,0.85);color:#fff;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:0.05em;}
+.feed-badge.top{background:rgba(255,193,7,0.9);color:#000;}
+.role-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;padding:12px 0;}
+.role-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:16px;text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:8px;transition:transform 0.2s;}
+.role-card:hover{transform:translateY(-3px);background:rgba(77,159,255,0.12);}
+.role-icon{font-size:1.8rem;}
+.role-name{font-size:0.85rem;font-weight:600;color:#fff;text-align:center;}
+.feed-hint{font-size:0.75rem;color:rgba(255,255,255,0.35);text-align:center;margin-top:24px;padding:12px;border-top:1px solid rgba(255,255,255,0.08);}
+.feed-section-title{font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(77,159,255,0.8);margin:24px 0 8px;}
+.no-data-msg{text-align:center;padding:40px 20px;color:rgba(255,255,255,0.5);font-size:0.95rem;line-height:1.6;}
+#feed-loading{text-align:center;padding:40px;color:rgba(255,255,255,0.4);}
+</style>
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#007aff" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="aBest.co" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+</head>
+<body>
+<div class="background-wrapper"></div>
+<nav class="nav-container glass-nav" id="main-nav">
+  <a class="nav-logo" href="/hy/"><span class="logo-a">a</span><span class="logo-best">Best</span><span class="logo-dot">.</span><span class="logo-co">co</span></a>
+  <div class="nav-links">
+    <a class="nav-link" href="/hy/ideen">💡</a>
+    <a class="nav-link" href="/hy/">⌂</a>
+    <a class="nav-link active" href="#">Feed</a>
+    <a class="nav-link" href="/hy/kontakt">✉</a>
+  </div>
+  <div class="header-actions-v2">
+    <a href="/hy/ideen" class="header-icon-v2" aria-label="Ideen"><svg viewBox="0 0 24 24"><path d="M9 21h6v-1a3 3 0 0 0-6 0v1zm3-17a6 6 0 0 0-6 6c0 2.2 1.3 4.1 3 5.3V18h6v-2.7c1.7-1.2 3-3.1 3-5.3a6 6 0 0 0-6-6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <button class="header-icon-v2" id="profile-btn" onclick="openModal('login')" aria-label="Login"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <a href="/hy/kontakt" class="header-icon-v2" aria-label="Kontakt"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" fill="none" stroke="currentColor" stroke-width="2"/><polyline points="22,6 12,13 2,6" fill="none" stroke="currentColor" stroke-width="2"/></svg></a>
+  </div>
+</nav>
+<main class="page-container" style="padding-top:80px;max-width:900px;margin:0 auto;padding-left:20px;padding-right:20px;">
+  <section class="hero fade-in-up" style="padding:40px 0 20px;text-align:center;">
+    <h1 style="font-size:2rem;font-weight:700;color:#fff;margin-bottom:10px;">Ձեր անհատական հոսքը</h1>
+    <p style="color:rgba(255,255,255,0.6);font-size:1rem;">Ձեր հետաքրքրությունների հիման վրա</p>
+  </section>
+  <div id="feed-loading">⏳</div>
+  <div id="feed-content" style="display:none;">
+    <div class="feed-section-title">🌍</div>
+    <div class="feed-grid" id="country-grid"></div>
+    <div class="feed-section-title" style="margin-top:32px;">👤</div>
+    <div class="role-grid" id="role-grid"></div>
+    <p class="feed-hint"></p>
+  </div>
+  <div id="feed-empty" style="display:none;">
+    <div class="no-data-msg">Ձեր հետաքրքրությունների հիման վրա<br/><br/>
+      <a href="/hy/" class="glass-button ripple" style="display:inline-block;padding:12px 28px;text-decoration:none;margin-top:10px;">→</a>
+    </div>
+  </div>
+</main>
+
+<script src="/app.js"></script>
+<script>
+(function(){
+  var COUNTRIES = {"usa": {"flag": "\ud83c\uddfa\ud83c\uddf8", "img": "/assets/images/bg_usa_new.webp"}, "de": {"flag": "\ud83c\udde9\ud83c\uddea", "img": "/assets/images/bg_germany_new.webp"}, "tr": {"flag": "\ud83c\uddf9\ud83c\uddf7", "img": "/assets/images/bg_turkey_new.webp"}};
+  var COUNTRY_NAMES = {"usa": "USA", "de": "DE", "tr": "TR"};
+  var ROLES = {"founder": "Founder", "investor": "Investor", "capital-partner": "Capital", "seller": "Seller", "business": "Business", "explorer": "Explorer"};
+  var ROLE_ICONS = {"founder": "\ud83d\udca1", "investor": "\ud83d\udcc8", "capital-partner": "\ud83d\udcb0", "seller": "\ud83c\udfe0", "business": "\ud83c\udfe2", "explorer": "\ud83d\udd2d"};
+  var PATHS = {"home": "/hy/", "earn": "/hy/ideen", "usa": "/hy/usa", "de": "/hy/deutschland", "tr": "/hy/turkiye", "contact": "/hy/kontakt"};
+  var ROLE_PATHS = {"founder": "/de/earn-money/founder", "investor": "/de/earn-money/investor", "capital-partner": "/de/earn-money/capital-partner", "seller": "/de/earn-money/seller", "business": "/de/earn-money/business", "explorer": "/de/earn-money/explorer"};
+  var BADGE_TOP = "\u2605";
+  var BADGE_NEW = "\u2726";
+  var CTA_COUNTRY = "\u2192";
+  var CTA_ROLE = "\u2192";
+
+  function init() {
+    var scores = window.abestScores ? window.abestScores() : [];
+    var countryScores = {};
+    var roleScores = {};
+    scores.forEach(function(s) {
+      if (s.key.startsWith('c_')) countryScores[s.key.slice(2)] = s.score;
+      if (s.key.startsWith('r_')) roleScores[s.key.slice(2)] = s.score;
+    });
+
+    var hasData = Object.keys(countryScores).length > 0 || Object.keys(roleScores).length > 0;
+    document.getElementById('feed-loading').style.display = 'none';
+    if (!hasData) {
+      document.getElementById('feed-empty').style.display = 'block';
+      return;
+    }
+    document.getElementById('feed-content').style.display = 'block';
+
+    // Country cards
+    var countryOrder = window.abestCountryOrder ? window.abestCountryOrder() : ['usa','de','tr'];
+    var cGrid = document.getElementById('country-grid');
+    countryOrder.forEach(function(c, i) {
+      var data = COUNTRIES[c]; if (!data) return;
+      var name = COUNTRY_NAMES[c] || c.toUpperCase();
+      var path = PATHS[c] || '#';
+      var sc   = countryScores[c] || 0;
+      var card = document.createElement('a');
+      card.href = path; card.className = 'feed-card fade-in-up';
+      var badge = i === 0 && sc > 0 ? '<span class="feed-badge top">' + BADGE_TOP + '</span>' : (i > 0 ? '' : '<span class="feed-badge">' + BADGE_NEW + '</span>');
+      card.innerHTML = badge + '<img src="' + data.img + '" alt="' + name + '" loading="lazy"/>' +
+        '<div class="feed-card-body"><div class="feed-card-title">' + data.flag + ' ' + name + '</div>' +
+        '<div class="feed-card-sub">' + (sc > 0 ? Math.round(sc) + ' pts' : '') + '</div>' +
+        '<div style="margin-top:12px;font-size:0.82rem;color:rgba(77,159,255,0.9);font-weight:600;">' + CTA_COUNTRY + '</div></div>';
+      cGrid.appendChild(card);
+    });
+
+    // Role cards
+    var roleOrder = Object.keys(ROLES).sort(function(a,b){ return (roleScores[b]||0)-(roleScores[a]||0); });
+    var rGrid = document.getElementById('role-grid');
+    roleOrder.forEach(function(r) {
+      var name = ROLES[r]; if (!name) return;
+      var path = ROLE_PATHS[r] || PATHS['earn'] || '#';
+      var sc   = roleScores[r] || 0;
+      var card = document.createElement('a');
+      card.href = path; card.className = 'role-card fade-in-up';
+      card.innerHTML = '<span class="role-icon">' + (ROLE_ICONS[r]||'●') + '</span>' +
+        '<span class="role-name">' + name + '</span>' +
+        (sc > 0 ? '<span style="font-size:0.7rem;color:rgba(255,255,255,0.4);">' + Math.round(sc) + ' pts</span>' : '') +
+        '<span style="font-size:0.75rem;color:rgba(77,159,255,0.8);">' + CTA_ROLE + '</span>';
+      rGrid.appendChild(card);
+    });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else setTimeout(init, 100);
+})();
+</script>
+</body>
+</html>
