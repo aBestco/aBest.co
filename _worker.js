@@ -1180,7 +1180,6 @@ async function handleRoleApi(request, env) {
     }
 }
 
-
 // ── Capital deposit append logic ──────────────────────────────────────────────
 async function handleCapitalDeposit(userEmail, formData, env) {
     const appendMode = formData.get('append_deposit') === 'true';

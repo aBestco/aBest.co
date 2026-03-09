@@ -1,0 +1,21 @@
+
+# Build & Cache
+.wrangler/
+node_modules/
+*.log
+*.bak
+*.backup
+*.tmp
+*.temp
+
+# Dev tools
+*.py
+Design/
+.DS_Store
+Thumbs.db
+
+# Test files
+test_*.py
+test_*.js
+*_test.*
+*verification*.png

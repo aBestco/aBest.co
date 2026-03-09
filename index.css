@@ -1,13 +1,13 @@
 :root {
-    /* Header Icons Addition - Verified 2026-03-07 */
-    /* Apple-like colors */
+    
+    
     --primary-blue: #0A84FF;
     --primary-green: #30D158;
     --primary-glow: rgba(10, 132, 255, 0.4);
     --dark-bg: #1c1c1e;
     --darker-bg: #121212;
 
-    /* Premium Glassmorphism Variables */
+    
     --glass-bg: rgba(44, 44, 46, 0.55);
     --glass-border: rgba(255, 255, 255, 0.1);
     --glass-border-hover: rgba(255, 255, 255, 0.2);
@@ -19,16 +19,16 @@
     --text-accent: #0A84FF;
     --font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 
-    /* Animation timings */
+    
     --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 
-    /* Responsive Spacing & Typography (Mobile-First) */
+    
     --font-size-hero: clamp(1.5rem, 5vw + 1rem, 2.5rem);
     --font-size-h1: clamp(1.25rem, 4vw + 0.5rem, 2rem);
     --font-size-h2: clamp(1.1rem, 3vw + 0.5rem, 1.5rem);
     --font-size-body: clamp(0.9rem, 1vw + 0.75rem, 1rem);
-    /* Responsive Spacing & Typography (Mobile-First) */
+    
     --font-size-hero: clamp(1.5rem, 5vw + 1rem, 2.5rem);
     --font-size-h1: clamp(1.25rem, 4vw + 0.5rem, 2rem);
     --font-size-h2: clamp(1.1rem, 3vw + 0.5rem, 1.5rem);
@@ -52,10 +52,9 @@ body {
     padding: 0;
     overflow-x: hidden;
     line-height: 1.4;
-    /* Slightly tighter line height */
+    
 }
 
-/* Background Layer */
 .background-wrapper {
     position: fixed;
     top: 0;
@@ -93,7 +92,6 @@ body {
     }
 }
 
-/* App Container - Mobile First */
 .app-container {
     width: 100%;
     max-width: 1200px;
@@ -103,19 +101,16 @@ body {
     z-index: 1;
 }
 
-/* Desktop Enhancement */
 @media (min-width: 1024px) {
     .app-container {
         padding: 16px 24px;
     }
 }
 
-/* Spacing Utility */
 .section-spacing {
     margin-bottom: var(--spacing-section);
 }
 
-/* Glassmorphism Classes */
 .glass-panel,
 .glass-card,
 .glass-chip {
@@ -136,13 +131,12 @@ body {
     background: rgba(58, 58, 60, 0.65);
 }
 
-/* Header */
 .app-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 0;
-    /* Sticky */
+    
     position: sticky;
     top: 12px;
     z-index: 1000;
@@ -253,7 +247,6 @@ body {
     width: 20px;
 }
 
-/* Mobile Nav Overlay */
 .mobile-nav {
     position: fixed;
     top: 0;
@@ -286,7 +279,6 @@ body {
     font-weight: 600;
 }
 
-/* Hero Section */
 .hero {
     margin-bottom: var(--spacing-section);
 }
@@ -319,7 +311,6 @@ body {
     color: var(--text-muted);
 }
 
-/* Countries Cards */
 .countries {
     display: grid;
     grid-template-columns: 1fr;
@@ -368,7 +359,6 @@ body {
     font-size: 14px;
 }
 
-/* About Section */
 .about {
     margin-bottom: var(--spacing-section);
 }
@@ -432,7 +422,6 @@ p {
     color: var(--text-muted);
 }
 
-/* Featured Card Detail */
 .featured-card {
     position: relative;
 }
@@ -524,7 +513,6 @@ p {
     transform: translate(-50%, -50%) scale(1.1);
 }
 
-/* Modern Button */
 .glass-button {
     width: 100%;
     padding: 18px;
@@ -570,7 +558,6 @@ p {
     }
 }
 
-/* Responsive Table */
 .table-container {
     width: 100%;
     overflow-x: auto;
@@ -646,7 +633,6 @@ th {
     letter-spacing: 1px;
 }
 
-/* Responsive Form */
 .contact-form {
     display: grid;
     gap: 20px;
@@ -682,7 +668,6 @@ textarea:focus {
     background: rgba(255, 255, 255, 0.1);
 }
 
-/* Modal */
 .modal-overlay {
     position: fixed;
     inset: 0;
@@ -722,7 +707,6 @@ textarea:focus {
     font-size: 1.5rem;
 }
 
-/* Footer Styles */
 .footer-info h3 {
     font-size: 1.25rem;
     margin-bottom: 0.5rem;
@@ -758,7 +742,6 @@ address {
     }
 }
 
-/* Entry Animations (JS Controlled) */
 .fade-in-up {
     opacity: 0;
     transform: translateY(24px);
@@ -771,7 +754,6 @@ address {
     transform: translateY(0);
 }
 
-/* Cursor Spotlight Effect */
 .interactive {
     position: relative;
     overflow: hidden;
@@ -797,7 +779,6 @@ address {
     opacity: 1;
 }
 
-/* Horizontal Minimalist Footer Styling */
 .app-footer {
     padding-bottom: 2rem;
     margin-top: calc(var(--spacing-section) * 2);
@@ -844,7 +825,6 @@ address {
     opacity: 0.8;
 }
 
-/* Minimalist Language Switcher Modal */
 .lang-backdrop {
     position: fixed;
     top: 0;
@@ -902,7 +882,7 @@ address {
     left: 50%;
     transform: translate(-50%, -45%) scale(0.95);
     width: 280px;
-    /* Compact width for grid */
+    
     background: rgba(28, 28, 30, 0.95);
     backdrop-filter: blur(24px) saturate(180%);
     -webkit-backdrop-filter: blur(24px) saturate(180%);
@@ -939,7 +919,6 @@ address {
     }
 }
 
-/* Global Brand Text Styles */
 .brand-style {
     font-weight: 500;
     letter-spacing: -0.5px;
@@ -964,7 +943,6 @@ address {
     transform: scale(1.1);
 }
 
-/* Authentication Modal Styles */
 .auth-modal-wrapper {
     padding: 10px 0;
 }
@@ -1037,25 +1015,18 @@ address {
     background: #f8f9fa !important;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
 }
-/* ══════════════════════════════════════════════════════════════════
-   aBest.co RESPONSIVE DESIGN SYSTEM – Mobile-First Complete
-   All Breakpoints · Touch · Fluid Media · Accessibility
-   ══════════════════════════════════════════════════════════════════ */
 
-/* ── Fluid Media (max-width: 100 %) ────────────────────────────────── */
 img, video, canvas, svg, iframe {
     max-width: 100%;
     height: auto;
 }
 
-/* ── Smooth Scroll & Scroll Behavior ────────────────────────────────── */
 html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
 }
 
-/* ── Touch Optimization (min 44×44px tap targets) ────────────────────── */
 button, a, input[type="submit"], input[type="button"], .btn, .db-tab,
 .header-icon-v2, .nav-icon, .role-card, .glass-card {
     touch-action: manipulation;
@@ -1067,13 +1038,11 @@ button, .btn, .db-tab {
     min-width: 44px;
 }
 
-/* ── Adaptive Schriftgrößen (bereits via clamp, aber Ergänzungen) ─────── */
 h1 { font-size: clamp(1.4rem, 4vw + 0.8rem, 2.2rem); line-height: 1.2; }
 h2 { font-size: clamp(1.15rem, 3vw + 0.5rem, 1.6rem); line-height: 1.3; }
 h3 { font-size: clamp(1rem, 2vw + 0.5rem, 1.25rem); line-height: 1.4; }
 p, li { font-size: clamp(0.875rem, 1vw + 0.7rem, 1rem); line-height: 1.6; }
 
-/* ── Breakpoint: Extra Small (< 380px – sehr kleine Smartphones) ─────── */
 @media (max-width: 380px) {
     .app-container {
         padding-left: 10px;
@@ -1099,7 +1068,6 @@ p, li { font-size: clamp(0.875rem, 1vw + 0.7rem, 1rem); line-height: 1.6; }
     }
 }
 
-/* ── Breakpoint: Small Mobile (380px – 480px) ──────────────────────── */
 @media (min-width: 380px) and (max-width: 480px) {
     .countries {
         grid-template-columns: 1fr;
@@ -1110,7 +1078,6 @@ p, li { font-size: clamp(0.875rem, 1vw + 0.7rem, 1rem); line-height: 1.6; }
     }
 }
 
-/* ── Breakpoint: Tablet Portrait (481px – 767px) ───────────────────── */
 @media (min-width: 481px) and (max-width: 767px) {
     .countries {
         grid-template-columns: repeat(2, 1fr);
@@ -1121,7 +1088,6 @@ p, li { font-size: clamp(0.875rem, 1vw + 0.7rem, 1rem); line-height: 1.6; }
     }
 }
 
-/* ── Breakpoint: Tablet Landscape + Small Desktop (768px – 1023px) ─── */
 @media (min-width: 768px) and (max-width: 1023px) {
     .countries {
         grid-template-columns: repeat(3, 1fr);
@@ -1132,7 +1098,6 @@ p, li { font-size: clamp(0.875rem, 1vw + 0.7rem, 1rem); line-height: 1.6; }
     }
 }
 
-/* ── Breakpoint: Desktop (≥ 1024px) ────────────────────────────────── */
 @media (min-width: 1024px) {
     .countries {
         grid-template-columns: repeat(3, 1fr);
@@ -1143,7 +1108,6 @@ p, li { font-size: clamp(0.875rem, 1vw + 0.7rem, 1rem); line-height: 1.6; }
     }
 }
 
-/* ── Landscape Mode (Querformat) ────────────────────────────────────── */
 @media (orientation: landscape) and (max-height: 500px) {
     .mobile-nav {
         gap: 1.25rem;
@@ -1161,7 +1125,6 @@ p, li { font-size: clamp(0.875rem, 1vw + 0.7rem, 1rem); line-height: 1.6; }
     }
 }
 
-/* ── Responsive Modals (vollständig responsiv) ──────────────────────── */
 @media (max-width: 480px) {
     .modal-content {
         border-radius: 20px 20px 0 0;
@@ -1182,7 +1145,6 @@ p, li { font-size: clamp(0.875rem, 1vw + 0.7rem, 1rem); line-height: 1.6; }
     }
 }
 
-/* ── Responsive Formulare ────────────────────────────────────────────── */
 @media (max-width: 480px) {
     .contact-form {
         grid-template-columns: 1fr;
@@ -1193,12 +1155,11 @@ p, li { font-size: clamp(0.875rem, 1vw + 0.7rem, 1rem); line-height: 1.6; }
     }
 
     input, textarea, select {
-        font-size: 16px; /* Verhindert Auto-Zoom auf iOS */
+        font-size: 16px; 
         padding: 12px;
     }
 }
 
-/* ── Responsive Tabellen (Scroll-Ansicht auf Mobile) ─────────────────── */
 .table-wrapper {
     width: 100%;
     overflow-x: auto;
@@ -1212,20 +1173,18 @@ p, li { font-size: clamp(0.875rem, 1vw + 0.7rem, 1rem); line-height: 1.6; }
     }
 }
 
-/* ── Mobile Performance ──────────────────────────────────────────────── */
 @media (max-width: 768px) {
-    /* Reduziertere Animationen auf schwachen Geräten */
+    
     .main-bg {
-        animation-duration: 120s; /* Langsamer für weniger CPU */
+        animation-duration: 120s; 
     }
 
-    /* Disable hover transforms on touch devices */
+    
     .glass-panel:hover, .glass-card:hover {
         transform: none;
     }
 }
 
-/* ── Reduced Motion Accessibility ───────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -1240,7 +1199,6 @@ p, li { font-size: clamp(0.875rem, 1vw + 0.7rem, 1rem); line-height: 1.6; }
     }
 }
 
-/* ── PWA Install UI Responsive ───────────────────────────────────────── */
 @media (max-width: 380px) {
     #pwa-install-banner {
         right: 8px !important;
@@ -1255,7 +1213,6 @@ p, li { font-size: clamp(0.875rem, 1vw + 0.7rem, 1rem); line-height: 1.6; }
     }
 }
 
-/* ── Safe Area Insets (iPhone X+ Notch / Home Indicator) ──────────────── */
 @supports (padding-bottom: env(safe-area-inset-bottom)) {
     #pwa-install-fab {
         bottom: calc(24px + env(safe-area-inset-bottom)) !important;
@@ -1266,14 +1223,12 @@ p, li { font-size: clamp(0.875rem, 1vw + 0.7rem, 1rem); line-height: 1.6; }
     }
 }
 
-/* ── High DPI / Retina Displays ──────────────────────────────────────── */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .glass-panel, .glass-card {
         border-width: 0.5px;
     }
 }
 
-/* ── Print Styles ─────────────────────────────────────────────────────── */
 @media print {
     .background-wrapper, .mobile-nav, .app-header,
     .cookie-banner, #pwa-install-banner, #pwa-install-fab,

@@ -345,7 +345,6 @@ function handleContactSubmit(event) {
 
     // Honeypot check for bots
     if (honeypot) {
-        console.log("Honeypot detected. Submission ignored.");
         return;
     }
 
@@ -1388,7 +1387,6 @@ if (contactTextarea) {
     });
 
 })(); // END aBest Intelligence Engine
-
 
 // ══════════════════════════════════════════════════════════════════
 // aBest.co PWA ENGINE
