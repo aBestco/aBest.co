@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+
+# Kein Zugriff auf Admin- und API-Bereiche
+Disallow: /admin/
+Disallow: /api/
+Disallow: /de/profil
+Disallow: /en/profil
+Disallow: /es/profil
+Disallow: /fr/profil
+Disallow: /ar/profil
+Disallow: /pt/profil
+Disallow: /ru/profil
+Disallow: /tr/profil
+Disallow: /zh/profil
+Disallow: /hi/profil
+Disallow: /ur/profil
+Disallow: /ku/profil
+Disallow: /he/profil
+Disallow: /hy/profil
+
+# Sitemap
+Sitemap: https://www.abest.co/sitemap.xml
