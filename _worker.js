@@ -716,7 +716,13 @@ async function handleAuthApi(request, env) {
                 const hashedPassword = await hashPassword(password, salt);
                 await env.ABEST_AUTH.put(`salt:${email}`, salt);
                 await env.ABEST_AUTH.put(`user:${email}`, hashedPassword);
-                await env.ABEST_AUTH.put(`profile:${email}`, JSON.stringify({ email, name: '', phone: '', company: '', role: 'User' }));
+
+                // Preserve existing admin/superadmin role if pre-assigned (bootstrapping)
+                const existingRegProfile = await env.ABEST_AUTH.get(`profile:${email}`);
+                const existingRegData = existingRegProfile ? JSON.parse(existingRegProfile) : {};
+                const adminRoles = ['Admin', 'Superadmin'];
+                const assignedRole = adminRoles.includes(existingRegData.role) ? existingRegData.role : 'User';
+                await env.ABEST_AUTH.put(`profile:${email}`, JSON.stringify({ email, name: existingRegData.name || '', phone: existingRegData.phone || '', company: existingRegData.company || '', role: assignedRole }));
 
                 return new Response(JSON.stringify({ success: true }), {
                     headers: { 'Content-Type': 'application/json', ...corsHeaders }
