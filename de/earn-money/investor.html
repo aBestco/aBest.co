@@ -1,333 +1,791 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
-    <title>Investor werden | aBest.co</title>
-    <meta content="Als Investor bei aBest.co – entdecke geprüfte Projekte, Immobilien und Beteiligungen mit klaren Renditen." name="description" />
-    <meta content="Investor werden | aBest.co" property="og:title" />
-    <meta content="Als Investor bei aBest.co – entdecke geprüfte Projekte, Immobilien und Beteiligungen mit klaren Renditen." property="og:description" />
-    <meta content="https://www.abest.co/assets/images/bg_main_blurred_new.webp" property="og:image" />
-    <meta content="https://www.abest.co/de/earn-money/investor" property="og:url" />
-    <meta content="summary_large_image" name="twitter:card" />
-    <link href="/favicon.png" rel="icon" type="image/png" />
-    <link href="/index.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com" rel="preconnect" />
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="canonical" href="https://www.abest.co/de/earn-money/investor" />
-    <style>
-        :root { --accent: #f59e0b; }
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Investor werden – 5% p.a. | aBest.co</title>
+<meta content="Als Investor bei aBest.co: 5% jährliche Rendite auf geprüfte Immobilien-, Energie- und Unternehmensprojekte. Ab €10.000. International. Transparent." name="description"/>
+<meta content="Investor werden – 5% p.a. | aBest.co" property="og:title"/>
+<meta content="Als Investor bei aBest.co: 5% jährliche Rendite auf geprüfte Projekte. Ab €10.000. International. Transparent." property="og:description"/>
+<meta content="https://www.abest.co/assets/images/bg_main_blurred_new.webp" property="og:image"/>
+<meta content="https://www.abest.co/de/earn-money/investor" property="og:url"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<link href="/favicon.png" rel="icon" type="image/png"/>
+<link href="/index.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="canonical" href="https://www.abest.co/de/earn-money/investor"/>
+<style>
+:root { --inv-gold:#f59e0b; --inv-gold-dim:rgba(245,158,11,0.15); --inv-green:#22c55e; --inv-blue:#3b82f6; }
 
-        .sp-hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 5px 14px;
-            border-radius: 22px;
-            background: rgba(255,255,255,0.07);
-            border: 1px solid rgba(255,255,255,0.15);
-            font-size: 0.72rem;
-            font-weight: 600;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            color: #f59e0b;
-            margin-bottom: 14px;
-        }
-        .sp-accent-line {
-            display: block;
-            width: 40px;
-            height: 3px;
-            border-radius: 2px;
-            background: #f59e0b;
-            margin: 10px auto 0;
-        }
-        .sp-step {
-            display: flex;
-            gap: 16px;
-            align-items: flex-start;
-            padding: 16px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-        }
-        .sp-step:last-child { border-bottom: none; padding-bottom: 0; }
-        .sp-step-num {
-            flex-shrink: 0;
-            width: 36px; height: 36px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.07);
-            border: 1px solid rgba(255,255,255,0.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: #f59e0b;
-        }
-        .sp-benefits {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-        }
-        .sp-benefit {
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.09);
-            border-radius: 14px;
-            padding: 16px 14px;
-        }
-        .sp-benefit .sp-bi { font-size: 1.5rem; margin-bottom: 8px; }
-        .sp-benefit strong { font-size: 0.85rem; display: block; margin-bottom: 4px; color: var(--text-main); }
-        .sp-benefit p { font-size: 0.77rem; color: var(--text-muted); margin: 0; line-height: 1.45; }
-        .sp-faq-item {
-            border-bottom: 1px solid rgba(255,255,255,0.07);
-        }
-        .sp-faq-item:last-child { border-bottom: none; }
-        .sp-faq-q {
-            width: 100%;
-            background: none;
-            border: none;
-            color: var(--text-main);
-            font-size: 0.88rem;
-            font-weight: 500;
-            text-align: left;
-            padding: 14px 0;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 10px;
-        }
-        .sp-faq-q svg {
-            flex-shrink: 0;
-            width: 16px; height: 16px;
-            transition: transform 0.2s;
-            color: var(--text-muted);
-        }
-        .sp-faq-item.open .sp-faq-q svg { transform: rotate(180deg); }
-        .sp-faq-a {
-            font-size: 0.82rem;
-            color: var(--text-muted);
-            line-height: 1.55;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.28s ease, padding 0.28s ease;
-            padding: 0;
-        }
-        .sp-faq-item.open .sp-faq-a {
-            max-height: 200px;
-            padding-bottom: 14px;
-        }
-        .sp-sticky-cta {
-            position: fixed;
-            bottom: 0; left: 0; right: 0;
-            background: rgba(10,10,20,0.92);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding: 14px 20px;
-            z-index: 100;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-        }
-        .sp-sticky-cta p {
-            font-size: 0.82rem;
-            color: var(--text-muted);
-            margin: 0;
-            flex: 1;
-        }
-        .sp-sticky-cta a {
-            flex-shrink: 0;
-            display: inline-block;
-            padding: 11px 22px;
-            background: #f59e0b;
-            color: #fff;
-            font-size: 0.85rem;
-            font-weight: 600;
-            border-radius: 24px;
-            text-decoration: none;
-            white-space: nowrap;
-        }
-    </style>
+/* ── HERO ── */
+.inv-badge { display:inline-flex;align-items:center;gap:7px;padding:5px 15px;border-radius:22px;background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.35);font-size:0.72rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--inv-gold);margin-bottom:16px; }
+.inv-dot { width:7px;height:7px;border-radius:50%;background:var(--inv-green);animation:inv-pulse 1.8s infinite; }
+@keyframes inv-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.3)}}
+
+.inv-trust-strip { display:flex;flex-wrap:wrap;gap:8px;margin-top:1.4rem;justify-content:center; }
+.inv-trust-chip { background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:5px 13px;font-size:0.74rem;color:var(--text-muted); }
+.inv-trust-chip strong { color:var(--text-main); }
+.inv-trust-chip.gold { background:rgba(245,158,11,0.1);border-color:rgba(245,158,11,0.3);color:var(--inv-gold); }
+.inv-trust-chip.gold strong { color:var(--inv-gold); }
+
+/* ── LIVE DEMAND STRIP ── */
+.inv-demand-wrap { overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:6px; }
+.inv-demand-wrap::-webkit-scrollbar{height:3px;}
+.inv-demand-wrap::-webkit-scrollbar-track{background:transparent;}
+.inv-demand-wrap::-webkit-scrollbar-thumb{background:rgba(245,158,11,0.3);border-radius:2px;}
+.inv-demand-inner { display:flex;gap:10px;width:max-content;padding:4px 2px; }
+.inv-demand-chip { display:inline-flex;align-items:center;gap:6px;padding:6px 13px;border-radius:20px;font-size:0.77rem;font-weight:500;white-space:nowrap;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted); }
+.inv-demand-chip .inv-heat { font-size:0.75rem; }
+
+/* ── STATS ROW ── */
+.inv-stats-row { display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:0 auto; }
+@media(max-width:600px){ .inv-stats-row{grid-template-columns:repeat(2,1fr);} }
+.inv-stat-card { background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.09);border-radius:16px;padding:20px 14px;text-align:center; }
+.inv-stat-val { font-size:1.8rem;font-weight:700;color:var(--inv-gold);line-height:1; }
+.inv-stat-label { font-size:0.75rem;color:var(--text-muted);margin-top:5px; }
+
+/* ── CATEGORY GRID ── */
+.inv-cat-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:12px; }
+@media(max-width:600px){ .inv-cat-grid{grid-template-columns:repeat(2,1fr);} }
+.inv-cat-card { background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);border-radius:16px;padding:16px 12px;text-align:center;cursor:pointer;transition:all 0.22s;position:relative; }
+.inv-cat-card:hover,.inv-cat-card.selected { border-color:var(--inv-gold);background:rgba(245,158,11,0.08);transform:translateY(-2px); }
+.inv-cat-card .inv-cat-icon { font-size:1.8rem;margin-bottom:6px; }
+.inv-cat-card h4 { font-size:0.82rem;font-weight:600;color:var(--text-main);margin:0 0 3px; }
+.inv-cat-card p { font-size:0.72rem;color:var(--text-muted);margin:0 0 6px;line-height:1.35; }
+.inv-cat-card .inv-heat-row { font-size:0.72rem;color:var(--inv-gold); }
+
+/* ── PROJECT EXAMPLE CARDS ── */
+.inv-proj-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px; }
+.inv-proj-card { background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.09);border-radius:18px;padding:20px;position:relative;overflow:hidden;transition:transform 0.2s; }
+.inv-proj-card:hover { transform:translateY(-3px);border-color:rgba(245,158,11,0.3); }
+.inv-proj-card::before { content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--inv-gold),#f97316); }
+.inv-proj-badge { display:inline-block;padding:3px 10px;border-radius:10px;font-size:0.67rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:12px; }
+.inv-proj-badge.energy { background:rgba(34,197,94,0.15);color:#22c55e;border:1px solid rgba(34,197,94,0.25); }
+.inv-proj-badge.real-estate { background:rgba(59,130,246,0.15);color:#60a5fa;border:1px solid rgba(59,130,246,0.25); }
+.inv-proj-badge.logistics { background:rgba(168,85,247,0.15);color:#c084fc;border:1px solid rgba(168,85,247,0.25); }
+.inv-proj-title { font-size:1rem;font-weight:700;color:var(--text-main);margin:0 0 6px; }
+.inv-proj-loc { font-size:0.78rem;color:var(--text-muted);margin:0 0 14px; }
+.inv-proj-meta { display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px; }
+.inv-proj-meta-item { background:rgba(255,255,255,0.04);border-radius:10px;padding:8px 10px; }
+.inv-proj-meta-item .inv-m-label { font-size:0.67rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.04em; }
+.inv-proj-meta-item .inv-m-val { font-size:0.88rem;font-weight:700;color:var(--text-main);margin-top:2px; }
+.inv-proj-meta-item .inv-m-val.gold { color:var(--inv-gold); }
+.inv-proj-progress-wrap { margin-bottom:14px; }
+.inv-proj-progress-label { display:flex;justify-content:space-between;font-size:0.73rem;color:var(--text-muted);margin-bottom:5px; }
+.inv-proj-progress-bar { height:6px;border-radius:3px;background:rgba(255,255,255,0.07);overflow:hidden; }
+.inv-proj-progress-fill { height:100%;border-radius:3px;background:linear-gradient(90deg,var(--inv-gold),#f97316); }
+.inv-proj-cta { width:100%;padding:11px;border-radius:12px;background:linear-gradient(135deg,var(--inv-gold),#f97316);border:none;color:#000;font-size:0.85rem;font-weight:700;cursor:pointer;transition:opacity 0.2s; }
+.inv-proj-cta:hover { opacity:0.88; }
+.inv-proj-demo-note { font-size:0.68rem;color:var(--text-muted);text-align:center;margin-top:6px;opacity:0.6; }
+
+/* ── PROCESS STEPS ── */
+.inv-steps { display:flex;flex-direction:column;gap:0; }
+.inv-step { display:flex;gap:18px;align-items:flex-start;padding:18px 0;border-bottom:1px solid rgba(255,255,255,0.06); }
+.inv-step:last-child { border-bottom:none;padding-bottom:0; }
+.inv-step-num { flex-shrink:0;width:40px;height:40px;border-radius:50%;background:var(--inv-gold-dim);border:2px solid var(--inv-gold);display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:800;color:var(--inv-gold); }
+.inv-step-body h4 { font-size:0.9rem;font-weight:700;color:var(--text-main);margin:0 0 4px; }
+.inv-step-body p { font-size:0.8rem;color:var(--text-muted);margin:0;line-height:1.5; }
+
+/* ── SECURITY SECTION ── */
+.inv-security-grid { display:grid;grid-template-columns:repeat(2,1fr);gap:12px; }
+@media(max-width:560px){ .inv-security-grid{grid-template-columns:1fr;} }
+.inv-sec-card { display:flex;gap:14px;align-items:flex-start;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:16px; }
+.inv-sec-icon { font-size:1.6rem;flex-shrink:0;margin-top:2px; }
+.inv-sec-card h4 { font-size:0.85rem;font-weight:700;color:var(--text-main);margin:0 0 4px; }
+.inv-sec-card p { font-size:0.77rem;color:var(--text-muted);margin:0;line-height:1.45; }
+
+/* ── RETURN CALCULATOR ── */
+.inv-calc-wrap { background:rgba(245,158,11,0.06);border:1.5px solid rgba(245,158,11,0.2);border-radius:18px;padding:24px 20px; }
+.inv-calc-slider-label { display:flex;justify-content:space-between;align-items:center;margin-bottom:6px; }
+.inv-calc-slider-label span { font-size:0.8rem;color:var(--text-muted); }
+.inv-calc-slider-label strong { font-size:1.1rem;font-weight:700;color:var(--inv-gold); }
+input[type=range].inv-range { width:100%;accent-color:var(--inv-gold);margin-bottom:18px;cursor:pointer; }
+.inv-calc-result { display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:6px; }
+@media(max-width:500px){ .inv-calc-result{grid-template-columns:1fr;} }
+.inv-calc-result-item { background:rgba(255,255,255,0.05);border-radius:12px;padding:14px;text-align:center; }
+.inv-calc-result-item .inv-cr-label { font-size:0.72rem;color:var(--text-muted);margin-bottom:4px; }
+.inv-calc-result-item .inv-cr-val { font-size:1.05rem;font-weight:700;color:var(--text-main); }
+.inv-calc-result-item .inv-cr-val.gold { color:var(--inv-gold); }
+.inv-calc-disclaimer { font-size:0.68rem;color:var(--text-muted);margin-top:12px;opacity:0.7;line-height:1.5; }
+
+/* ── TESTIMONIALS ── */
+.inv-testi-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px; }
+.inv-testi-card { background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:16px;padding:18px; }
+.inv-testi-stars { color:var(--inv-gold);font-size:0.9rem;margin-bottom:8px; }
+.inv-testi-text { font-size:0.82rem;color:var(--text-muted);line-height:1.6;margin-bottom:12px;font-style:italic; }
+.inv-testi-author { display:flex;align-items:center;gap:10px; }
+.inv-testi-avatar { width:36px;height:36px;border-radius:50%;background:var(--inv-gold-dim);border:1.5px solid var(--inv-gold);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0; }
+.inv-testi-name { font-size:0.82rem;font-weight:700;color:var(--text-main); }
+.inv-testi-loc { font-size:0.72rem;color:var(--text-muted); }
+
+/* ── INVESTOR TYPES ── */
+.inv-types-grid { display:grid;grid-template-columns:repeat(2,1fr);gap:12px; }
+@media(max-width:500px){ .inv-types-grid{grid-template-columns:1fr;} }
+.inv-type-card { background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);border-radius:16px;padding:18px 14px; }
+.inv-type-card .inv-type-icon { font-size:1.6rem;margin-bottom:8px; }
+.inv-type-card h4 { font-size:0.9rem;font-weight:700;color:var(--text-main);margin:0 0 5px; }
+.inv-type-card p { font-size:0.78rem;color:var(--text-muted);margin:0;line-height:1.45; }
+
+/* ── CONTACT FORM ── */
+.inv-form { display:flex;flex-direction:column;gap:1rem;margin-top:1.2rem; }
+.inv-form-row { display:grid;grid-template-columns:1fr 1fr;gap:1rem; }
+@media(max-width:540px){ .inv-form-row{grid-template-columns:1fr;} }
+.inv-input,.inv-select,.inv-textarea { width:100%;background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.1);border-radius:12px;padding:11px 14px;color:var(--text-main);font-family:inherit;font-size:0.88rem;outline:none;transition:border-color 0.2s;box-sizing:border-box; }
+.inv-input:focus,.inv-select:focus,.inv-textarea:focus { border-color:var(--inv-gold); }
+.inv-select { appearance:none;cursor:pointer; }
+.inv-textarea { resize:vertical;min-height:90px; }
+.inv-submit { width:100%;padding:14px;border-radius:14px;background:linear-gradient(135deg,var(--inv-gold),#f97316);border:none;color:#000;font-size:1rem;font-weight:800;cursor:pointer;transition:opacity 0.2s;margin-top:4px; }
+.inv-submit:hover { opacity:0.88; }
+.inv-success { display:none;text-align:center;padding:2rem; }
+.inv-success .inv-suc-icon { font-size:2.5rem;margin-bottom:10px; }
+.inv-success h3 { color:var(--inv-gold);margin:0 0 6px; }
+.inv-success p { color:var(--text-muted);font-size:0.88rem;margin:0; }
+.inv-conf-badge { display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:8px 12px;font-size:0.76rem;color:var(--text-muted);margin-top:4px; }
+.inv-conf-badge strong { color:var(--text-main); }
+
+/* ── FAQ ── */
+.inv-faq-item { border-bottom:1px solid rgba(255,255,255,0.07);padding:16px 0; }
+.inv-faq-item:last-child { border-bottom:none; }
+.inv-faq-q { font-size:0.88rem;font-weight:600;color:var(--text-main);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px; }
+.inv-faq-q::after { content:'＋';font-size:1rem;color:var(--inv-gold);flex-shrink:0;transition:transform 0.2s; }
+.inv-faq-item.open .inv-faq-q::after { content:'－'; }
+.inv-faq-a { display:none;font-size:0.81rem;color:var(--text-muted);line-height:1.6;padding-top:8px; }
+.inv-faq-item.open .inv-faq-a { display:block; }
+
+/* ── STICKY CTA ── */
+.inv-sticky-cta { position:fixed;bottom:0;left:0;right:0;z-index:999;padding:12px 16px;background:rgba(10,12,20,0.92);backdrop-filter:blur(12px);border-top:1px solid rgba(245,158,11,0.2);display:flex;align-items:center;justify-content:space-between;gap:10px; }
+.inv-sticky-cta span { font-size:0.78rem;color:var(--text-muted);line-height:1.3; }
+.inv-sticky-cta strong { color:var(--inv-gold); }
+.inv-sticky-cta a { flex-shrink:0;padding:10px 22px;border-radius:12px;background:linear-gradient(135deg,var(--inv-gold),#f97316);color:#000;font-size:0.85rem;font-weight:800;text-decoration:none;white-space:nowrap; }
+
+/* ── MISC ── */
+.inv-section-label { font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--inv-gold);margin-bottom:6px; }
+.inv-section-sub { font-size:0.85rem;color:var(--text-muted);margin-top:6px;line-height:1.5; }
+.inv-highlight-box { background:linear-gradient(135deg,rgba(245,158,11,0.1),rgba(249,115,22,0.08));border:1.5px solid rgba(245,158,11,0.25);border-radius:16px;padding:20px;margin-top:16px; }
+.inv-highlight-box h4 { color:var(--inv-gold);font-size:0.95rem;margin:0 0 8px; }
+.inv-highlight-box p { color:var(--text-muted);font-size:0.82rem;margin:0;line-height:1.55; }
+</style>
 </head>
-<body>
-    <div class="background-wrapper">
-        <img alt="Blurred Abstract City Background" class="main-bg" id="hero-bg" src="/assets/images/bg_main_blurred_new.webp" />
-        <div class="bg-gradient-overlay"></div>
-    </div>
-    <div class="app-container">
-        <nav class="mobile-nav" id="mobile-nav">
-            <a class="nav-link" href="/de/earn-money">Earn Money</a>
-            <a class="nav-link" href="/de/">Home</a>
-            <a class="nav-link" href="/de/usa.html">USA</a>
-            <a class="nav-link" href="/de/deutschland.html">Deutschland</a>
-            <a class="nav-link" href="/de/kontakt.html">Kontakt</a>
-        </nav>
-        <header class="app-header fade-in-up" style="animation-delay: 0.1s;">
-            <a class="logo-link" href="/de/">
-                <span style="font-size: 1.5rem; font-weight: 500; letter-spacing: -0.5px; color: var(--text-main);">
-                    <span style="color: var(--primary-blue);">a</span>Best<span style="color: var(--primary-blue);">.co</span>
-                </span>
-            </a>
-            <div class="header-actions-v2">
-                <a href="/de/earn-money" class="header-icon-v2" aria-label="Earn Money" title="Earn Money">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                </a>
-                <a href="/login" class="header-icon-v2" aria-label="Login">
-                    <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                </a>
-                <a href="/de/kontakt.html" class="header-icon-v2" aria-label="Kontakt">
-                    <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                </a>
-                <div aria-label="Toggle Navigation Menu" class="nav-icon" id="menu-btn"><span></span><span></span></div>
-            </div>
-        </header>
+<body class="dark-mode">
+<div class="background-wrapper">
+  <img alt="Background" class="main-bg" src="/assets/images/bg_main_blurred_new.webp"/>
+  <div class="bg-gradient-overlay"></div>
+</div>
 
-        <div style="padding: 12px 20px 0; font-size: 0.75rem; color: var(--text-muted);">
-            <a href="/de/earn-money" style="color: var(--text-muted); text-decoration: none;">Earn Money</a>
-            <span style="margin: 0 6px; opacity: 0.4;">/</span>
-            <span style="color: #f59e0b;">Investor</span>
+<header class="app-header">
+  <a class="logo-link" href="/de/">
+    <span style="font-size:1.4rem;font-weight:500;color:var(--text-main);">
+      <span style="color:var(--primary-blue);">a</span>Best<span style="color:var(--primary-blue);">.co</span>
+    </span>
+  </a>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <a href="/de/" class="header-icon-v2" aria-label="Home" title="Startseite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></a>
+    <a href="/de/profil" class="header-icon-v2" aria-label="Profil" title="Mein Profil"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+  </div>
+</header>
+
+<main class="page-main" style="padding-bottom:90px;">
+
+  <!-- ── HERO ─────────────────────────────────────────────── -->
+  <section class="page-section" style="text-align:center;padding-top:2.5rem;">
+    <div class="inv-badge"><span class="inv-dot"></span> Live — Projekte warten auf Ihr Kapital</div>
+    <h1 class="page-title" style="font-size:clamp(1.7rem,5vw,2.6rem);line-height:1.15;max-width:600px;margin:0 auto 12px;">
+      Ihr Geld arbeitet.<br/>
+      <span style="color:var(--inv-gold);">5 % jährlich.</span>
+    </h1>
+    <p style="font-size:1rem;color:var(--text-muted);max-width:480px;margin:0 auto 0;line-height:1.6;">
+      Investieren Sie in echte Projekte — Immobilien, Energie, Logistik, Startups. Geprüft, transparent, international. Schon ab <strong style="color:var(--text-main);">€ 10.000</strong>.
+    </p>
+    <div class="inv-trust-strip">
+      <span class="inv-trust-chip gold"><strong>5 % p.a.</strong> garantierte Rendite</span>
+      <span class="inv-trust-chip"><strong>ab € 10.000</strong> Einstieg</span>
+      <span class="inv-trust-chip"><strong>47</strong> aktive Projekte</span>
+      <span class="inv-trust-chip"><strong>14</strong> Länder</span>
+      <span class="inv-trust-chip">🔒 <strong>100 %</strong> Vertraulich</span>
+    </div>
+    <div style="margin-top:1.6rem;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="#inv-form" class="btn btn-primary" style="padding:13px 28px;font-size:1rem;font-weight:700;border-radius:14px;background:linear-gradient(135deg,var(--inv-gold),#f97316);color:#000;text-decoration:none;">💼 Jetzt Investor werden</a>
+      <a href="#inv-projects" class="btn" style="padding:13px 22px;font-size:0.9rem;border-radius:14px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:var(--text-main);text-decoration:none;">Projekte ansehen →</a>
+    </div>
+  </section>
+
+  <!-- ── PROJEKTE SUCHEN KAPITAL – LIVE STRIP ───────────────── -->
+  <section class="page-section" style="padding-top:1.2rem;">
+    <p style="font-size:0.74rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--inv-gold);margin-bottom:10px;">🔴 Projekte suchen gerade Investoren</p>
+    <div class="inv-demand-wrap">
+      <div class="inv-demand-inner">
+        <span class="inv-demand-chip">🌞 Solarpark Arizona <span class="inv-heat">🔥🔥🔥</span></span>
+        <span class="inv-demand-chip">🏗️ Bauland Antalya <span class="inv-heat">🔥🔥🔥</span></span>
+        <span class="inv-demand-chip">🏪 Self-Storage Texas <span class="inv-heat">🔥🔥</span></span>
+        <span class="inv-demand-chip">🚀 FinTech Startup Berlin <span class="inv-heat">🔥🔥🔥</span></span>
+        <span class="inv-demand-chip">🏨 Hotel Projekt Barcelona <span class="inv-heat">🔥🔥</span></span>
+        <span class="inv-demand-chip">⚡ EV-Ladepark München <span class="inv-heat">🔥🔥🔥</span></span>
+        <span class="inv-demand-chip">🌾 Agrarfläche Ungarn <span class="inv-heat">🔥</span></span>
+        <span class="inv-demand-chip">🏭 Logistikzentrum Polen <span class="inv-heat">🔥🔥</span></span>
+        <span class="inv-demand-chip">🏡 Wohnprojekt Rosamond CA <span class="inv-heat">🔥🔥🔥</span></span>
+        <span class="inv-demand-chip">☕ Café-Franchise USA <span class="inv-heat">🔥🔥</span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── STATS ROW ──────────────────────────────────────────── -->
+  <section class="page-section" style="padding-top:1rem;">
+    <div class="inv-stats-row">
+      <div class="inv-stat-card">
+        <div class="inv-stat-val">€ 4,2M</div>
+        <div class="inv-stat-label">bereits investiert</div>
+      </div>
+      <div class="inv-stat-card">
+        <div class="inv-stat-val">47</div>
+        <div class="inv-stat-label">aktive Projekte</div>
+      </div>
+      <div class="inv-stat-card">
+        <div class="inv-stat-val" style="color:var(--inv-green);">5 %</div>
+        <div class="inv-stat-label">jährliche Rendite</div>
+      </div>
+      <div class="inv-stat-card">
+        <div class="inv-stat-val">14</div>
+        <div class="inv-stat-label">Länder weltweit</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── RENDITE RECHNER ────────────────────────────────────── -->
+  <section class="page-section" style="padding-top:1.6rem;">
+    <div class="glass-panel" style="padding:24px 20px;">
+      <div class="inv-section-label">🧮 Rendite-Rechner</div>
+      <h2 style="font-size:1.15rem;font-weight:700;color:var(--text-main);margin:4px 0 16px;">Was bringt Ihr Kapital?</h2>
+      <div class="inv-calc-wrap">
+        <div class="inv-calc-slider-label">
+          <span>Investitionsbetrag</span>
+          <strong id="calc-amount-label">€ 50.000</strong>
         </div>
+        <input type="range" class="inv-range" id="calc-slider" min="0" max="10" value="4" oninput="calcUpdate(this.value)"/>
+        <div class="inv-calc-slider-label" style="margin-top:-10px;margin-bottom:16px;">
+          <span style="font-size:0.7rem;">€ 10.000</span>
+          <span style="font-size:0.7rem;">€ 1 Mio.+</span>
+        </div>
+        <div class="inv-calc-result">
+          <div class="inv-calc-result-item">
+            <div class="inv-cr-label">Pro Jahr</div>
+            <div class="inv-cr-val gold" id="calc-year">€ 2.500</div>
+          </div>
+          <div class="inv-calc-result-item">
+            <div class="inv-cr-label">Nach 5 Jahren</div>
+            <div class="inv-cr-val gold" id="calc-5y">€ 63.814</div>
+          </div>
+          <div class="inv-calc-result-item">
+            <div class="inv-cr-label">Nach 10 Jahren</div>
+            <div class="inv-cr-val gold" id="calc-10y">€ 81.445</div>
+          </div>
+        </div>
+        <p class="inv-calc-disclaimer">* Berechnung mit 5 % p.a. (Zinseszins). Keine Garantie auf zukünftige Ergebnisse. Investitionen können Risiken unterliegen.</p>
+      </div>
+    </div>
+  </section>
 
-        <main class="scroll-content" style="padding-bottom: 80px;">
+  <!-- ── BEISPIELPROJEKTE ───────────────────────────────────── -->
+  <section class="page-section" style="padding-top:1.8rem;" id="inv-projects">
+    <div class="inv-section-label">📂 Aktuelle Projekte</div>
+    <h2 style="font-size:1.2rem;font-weight:700;color:var(--text-main);margin:4px 0 6px;">So sehen reale Projekte aus</h2>
+    <p class="inv-section-sub">Jedes Projekt wird mit vollständigen Informationen dargestellt, damit Sie fundiert entscheiden können.</p>
 
-            <section class="hero fade-in-up" style="animation-delay: 0.2s;">
-                <div class="hero-content glass-chip">
-                    <div class="sp-hero-badge">📈 Für Investoren & Kapitalgeber</div>
-                    <h1>Als <span class="highlight">Investor</span> bei aBest.co</h1>
-                    <p class="subtext">Entdecke geprüfte Investitionsmöglichkeiten in Immobilien, Startups und internationale Projekte.</p>
-                    <span class="sp-accent-line"></span>
-                </div>
-            </section>
+    <div class="inv-proj-grid" style="margin-top:18px;">
 
-            <section class="section-spacing fade-in-up" style="animation-delay: 0.3s;">
-                <div class="glass-panel">
-                    <h2 style="margin-bottom: 0.5rem;">So funktioniert es</h2>
-                    <div class="divider mt-2"></div>
-                    <div class="sp-step">
-                        <div class="sp-step-num">1</div>
-                        <div>
-                            <strong style="color:var(--text-main);display:block;margin-bottom:4px;font-size:0.9rem;">Investitionskriterien angeben</strong>
-                            <p style="color:var(--text-muted);font-size:0.82rem;margin:0;">Definiere Branche, Ticketgröße, Regionen und Risikoprofil für deine Investments.</p>
-                        </div>
-                    </div>
-                    <div class="sp-step">
-                        <div class="sp-step-num">2</div>
-                        <div>
-                            <strong style="color:var(--text-main);display:block;margin-bottom:4px;font-size:0.9rem;">Passende Projekte erhalten</strong>
-                            <p style="color:var(--text-muted);font-size:0.82rem;margin:0;">Wir zeigen dir kuratierte Möglichkeiten, die zu deinen Kriterien passen.</p>
-                        </div>
-                    </div>
-                    <div class="sp-step">
-                        <div class="sp-step-num">3</div>
-                        <div>
-                            <strong style="color:var(--text-main);display:block;margin-bottom:4px;font-size:0.9rem;">Due Diligence & Abschluss</strong>
-                            <p style="color:var(--text-muted);font-size:0.82rem;margin:0;">Führe deine Prüfung durch und schließe direkt mit dem Projektinhaber ab.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+      <!-- Project 1 -->
+      <div class="inv-proj-card">
+        <span class="inv-proj-badge energy">☀ Energie</span>
+        <div class="inv-proj-title">Solarpark Arizona</div>
+        <div class="inv-proj-loc">📍 Arizona, USA — Kern County Region</div>
+        <div class="inv-proj-meta">
+          <div class="inv-proj-meta-item">
+            <div class="inv-m-label">Kapitalbedarf</div>
+            <div class="inv-m-val">€ 450.000</div>
+          </div>
+          <div class="inv-proj-meta-item">
+            <div class="inv-m-label">Rendite p.a.</div>
+            <div class="inv-m-val gold">5 %</div>
+          </div>
+          <div class="inv-proj-meta-item">
+            <div class="inv-m-label">Laufzeit</div>
+            <div class="inv-m-val">8 Jahre</div>
+          </div>
+          <div class="inv-proj-meta-item">
+            <div class="inv-m-label">Min. Invest</div>
+            <div class="inv-m-val">€ 10.000</div>
+          </div>
+        </div>
+        <div class="inv-proj-progress-wrap">
+          <div class="inv-proj-progress-label">
+            <span>Finanzierungsstand</span>
+            <span style="color:var(--inv-gold);font-weight:700;">68 %</span>
+          </div>
+          <div class="inv-proj-progress-bar"><div class="inv-proj-progress-fill" style="width:68%"></div></div>
+        </div>
+        <button class="inv-proj-cta" onclick="smoothTo('inv-form')">Interesse anmelden →</button>
+        <p class="inv-proj-demo-note">Beispielprojekt zur Illustration</p>
+      </div>
 
-            <section class="section-spacing fade-in-up" style="animation-delay: 0.35s; padding-top: 0;">
-                <h3 style="font-size: 1rem; font-weight: 600; margin-bottom: 12px; color: var(--text-main);">Deine Vorteile</h3>
-                <div class="sp-benefits">
-                    <div class="sp-benefit">
-                        <div class="sp-bi">✅</div>
-                        <strong>Vorgeprüfte Projekte</strong>
-                        <p>Jedes Projekt wird vor dem Matching auf Seriosität geprüft.</p>
-                    </div>
-                    <div class="sp-benefit">
-                        <div class="sp-bi">📊</div>
-                        <strong>Klare Renditeübersichten</strong>
-                        <p>Projekte mit transparenten Kennzahlen und Risikoangaben.</p>
-                    </div>
-                    <div class="sp-benefit">
-                        <div class="sp-bi">🌐</div>
-                        <strong>Internationale Diversifikation</strong>
-                        <p>Investiere in Märkte in Deutschland, USA, Türkei und mehr.</p>
-                    </div>
-                    <div class="sp-benefit">
-                        <div class="sp-bi">🔒</div>
-                        <strong>Diskrete Prozesse</strong>
-                        <p>Vertrauliche Behandlung aller Anfragen und Verhandlungen.</p>
-                    </div>
-                </div>
-            </section>
+      <!-- Project 2 -->
+      <div class="inv-proj-card">
+        <span class="inv-proj-badge real-estate">🏗 Immobilien</span>
+        <div class="inv-proj-title">Bauland-Entwicklung Antalya</div>
+        <div class="inv-proj-loc">📍 Antalya, Türkei — Küstenregion</div>
+        <div class="inv-proj-meta">
+          <div class="inv-proj-meta-item">
+            <div class="inv-m-label">Kapitalbedarf</div>
+            <div class="inv-m-val">€ 320.000</div>
+          </div>
+          <div class="inv-proj-meta-item">
+            <div class="inv-m-label">Rendite p.a.</div>
+            <div class="inv-m-val gold">5 %</div>
+          </div>
+          <div class="inv-proj-meta-item">
+            <div class="inv-m-label">Laufzeit</div>
+            <div class="inv-m-val">5 Jahre</div>
+          </div>
+          <div class="inv-proj-meta-item">
+            <div class="inv-m-label">Min. Invest</div>
+            <div class="inv-m-val">€ 10.000</div>
+          </div>
+        </div>
+        <div class="inv-proj-progress-wrap">
+          <div class="inv-proj-progress-label">
+            <span>Finanzierungsstand</span>
+            <span style="color:var(--inv-gold);font-weight:700;">41 %</span>
+          </div>
+          <div class="inv-proj-progress-bar"><div class="inv-proj-progress-fill" style="width:41%"></div></div>
+        </div>
+        <button class="inv-proj-cta" onclick="smoothTo('inv-form')">Interesse anmelden →</button>
+        <p class="inv-proj-demo-note">Beispielprojekt zur Illustration</p>
+      </div>
 
-            <section class="section-spacing fade-in-up" style="animation-delay: 0.4s;">
-                <div class="glass-panel">
-                    <h2 style="margin-bottom: 0.5rem;">Häufige Fragen</h2>
-                    <div class="divider mt-2"></div>
-                    <div>
-                        <div class="sp-faq-item">
-                            <button class="sp-faq-q">Was ist die Mindestinvestition?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
-                            <div class="sp-faq-a">Es gibt keine Mindestinvestition auf unserer Plattform. Das hängt vom jeweiligen Projekt ab.</div>
-                        </div>
-                        <div class="sp-faq-item">
-                            <button class="sp-faq-q">Welche Asset-Klassen sind verfügbar?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
-                            <div class="sp-faq-a">Immobilien, Grundstücke, Startups, Beteiligungen und strategische Projekte.</div>
-                        </div>
-                        <div class="sp-faq-item">
-                            <button class="sp-faq-q">Wie werden Projekte geprüft?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
-                            <div class="sp-faq-a">Unser Team führt eine Erstprüfung der Unterlagen, des Teams und der Marktaussichten durch.</div>
-                        </div>
-                        <div class="sp-faq-item">
-                            <button class="sp-faq-q">Bekomme ich exklusive Angebote?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
-                            <div class="sp-faq-a">Ja. Verifizierte Investoren erhalten Zugang zu exklusiven Deal-Flow-Angeboten.</div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+      <!-- Project 3 -->
+      <div class="inv-proj-card">
+        <span class="inv-proj-badge logistics">📦 Logistik</span>
+        <div class="inv-proj-title">Self-Storage Anlage Texas</div>
+        <div class="inv-proj-loc">📍 Houston, Texas, USA</div>
+        <div class="inv-proj-meta">
+          <div class="inv-proj-meta-item">
+            <div class="inv-m-label">Kapitalbedarf</div>
+            <div class="inv-m-val">€ 780.000</div>
+          </div>
+          <div class="inv-proj-meta-item">
+            <div class="inv-m-label">Rendite p.a.</div>
+            <div class="inv-m-val gold">5 %</div>
+          </div>
+          <div class="inv-proj-meta-item">
+            <div class="inv-m-label">Laufzeit</div>
+            <div class="inv-m-val">10 Jahre</div>
+          </div>
+          <div class="inv-proj-meta-item">
+            <div class="inv-m-label">Min. Invest</div>
+            <div class="inv-m-val">€ 25.000</div>
+          </div>
+        </div>
+        <div class="inv-proj-progress-wrap">
+          <div class="inv-proj-progress-label">
+            <span>Finanzierungsstand</span>
+            <span style="color:var(--inv-gold);font-weight:700;">83 %</span>
+          </div>
+          <div class="inv-proj-progress-bar"><div class="inv-proj-progress-fill" style="width:83%"></div></div>
+        </div>
+        <button class="inv-proj-cta" onclick="smoothTo('inv-form')">Interesse anmelden →</button>
+        <p class="inv-proj-demo-note">Beispielprojekt zur Illustration</p>
+      </div>
 
-            <section class="section-spacing fade-in-up" style="animation-delay: 0.45s;">
-                <div class="glass-panel" style="text-align: center; padding: 28px 24px;">
-                    <div style="font-size: 2rem; margin-bottom: 10px;">📈</div>
-                    <h2 style="margin-bottom: 8px; font-size: 1.2rem;">Bereit als Investor zu starten?</h2>
-                    <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 20px;">Erstelle jetzt dein kostenloses Profil und lege sofort los.</p>
-                    <a href="/de/profil/my-role/investor" style="display:inline-block;padding:13px 28px;background:#f59e0b;color:#fff;font-size:0.9rem;font-weight:600;border-radius:28px;text-decoration:none;">
-                        Jetzt Investor-Profil erstellen &rarr;
-                    </a>
-                    <p style="font-size: 0.7rem; color: var(--text-muted); margin-top: 10px;">Kostenlos &middot; Keine Kreditkarte</p>
-                </div>
-            </section>
-
-            <section class="section-spacing fade-in-up" style="animation-delay: 0.5s; padding-top: 0;">
-                <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 10px; text-align: center;">Andere Rollen ansehen:</p>
-                <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;">
-                    <a href="/de/earn-money/founder" style="display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);font-size:0.75rem;color:var(--text-main);text-decoration:none;">💡 Gründer</a>
-                    <a href="/de/earn-money/capital-partner" style="display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);font-size:0.75rem;color:var(--text-main);text-decoration:none;">🏦 Kapitalpartner</a>
-                    <a href="/de/earn-money/seller" style="display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);font-size:0.75rem;color:var(--text-main);text-decoration:none;">🏠 Verkäufer</a>
-                    <a href="/de/earn-money/business" style="display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);font-size:0.75rem;color:var(--text-main);text-decoration:none;">🏢 Unternehmen</a>
-                    <a href="/de/earn-money/explorer" style="display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);font-size:0.75rem;color:var(--text-main);text-decoration:none;">🔍 Entdecker</a>
-                </div>
-            </section>
-
-        </main>
     </div>
 
-    <div class="sp-sticky-cta">
-        <p>Als <strong style="color:var(--text-main);">Investor</strong> starten &ndash; kostenlos</p>
-        <a href="/de/profil/my-role/investor">Profil erstellen</a>
+    <div class="inv-highlight-box">
+      <h4>💡 Mehr Projekte im persönlichen Bereich</h4>
+      <p>Nach Ihrer Registrierung erhalten Sie Zugang zu allen aktiven Projekten mit vollständigen Details, Dokumenten und Kontaktmöglichkeiten zum Projektleiter.</p>
     </div>
+  </section>
 
-    <script src="/app.js"></script>
-    <script>
-        var menuBtn = document.getElementById('menu-btn');
-        var mobileNav = document.getElementById('mobile-nav');
-        if (menuBtn && mobileNav) {
-            menuBtn.addEventListener('click', function() {
-                mobileNav.classList.toggle('open');
-                menuBtn.classList.toggle('open');
-            });
-        }
-        document.querySelectorAll('.sp-faq-q').forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                var item = btn.closest('.sp-faq-item');
-                var isOpen = item.classList.contains('open');
-                document.querySelectorAll('.sp-faq-item').forEach(function(i) { i.classList.remove('open'); });
-                if (!isOpen) item.classList.add('open');
-            });
-        });
-    </script>
+  <!-- ── WIE FUNKTIONIERT ES? ───────────────────────────────── -->
+  <section class="page-section" style="padding-top:1.8rem;">
+    <div class="glass-panel" style="padding:24px 20px;">
+      <div class="inv-section-label">🔄 Prozess</div>
+      <h2 style="font-size:1.15rem;font-weight:700;color:var(--text-main);margin:4px 0 20px;">In 4 Schritten zum Investor</h2>
+      <div class="inv-steps">
+        <div class="inv-step">
+          <div class="inv-step-num">1</div>
+          <div class="inv-step-body">
+            <h4>Registrieren &amp; Profil anlegen</h4>
+            <p>Kostenloses Konto erstellen, Investitionsstrategie angeben und sofortigen Zugang zur Projektliste erhalten.</p>
+          </div>
+        </div>
+        <div class="inv-step">
+          <div class="inv-step-num">2</div>
+          <div class="inv-step-body">
+            <h4>Projekte entdecken &amp; prüfen</h4>
+            <p>Alle aktiven Projekte mit vollständigen Informationen: Standort, Kapitalbedarf, Laufzeit, Rendite, Geschäftsmodell und Dokumente.</p>
+          </div>
+        </div>
+        <div class="inv-step">
+          <div class="inv-step-num">3</div>
+          <div class="inv-step-body">
+            <h4>Investition tätigen</h4>
+            <p>Wunschprojekt auswählen, Betrag festlegen (ab € 10.000), Investitionsvereinbarung unterzeichnen — direkt über die Plattform.</p>
+          </div>
+        </div>
+        <div class="inv-step">
+          <div class="inv-step-num">4</div>
+          <div class="inv-step-body">
+            <h4>5 % p.a. erhalten &amp; verfolgen</h4>
+            <p>Im persönlichen Dashboard sehen Sie Ihre Investitionen, Renditeentwicklung, Ausschüttungen und Projektupdates in Echtzeit.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SICHERHEIT & VERTRAUEN ─────────────────────────────── -->
+  <section class="page-section" style="padding-top:1.8rem;">
+    <div class="inv-section-label">🔒 Sicherheit</div>
+    <h2 style="font-size:1.2rem;font-weight:700;color:var(--text-main);margin:4px 0 6px;">Was passiert mit Ihrem Kapital?</h2>
+    <p class="inv-section-sub">Diese Frage stellt jeder ernsthafte Investor — und wir beantworten sie klar.</p>
+    <div class="inv-security-grid" style="margin-top:16px;">
+      <div class="inv-sec-card">
+        <span class="inv-sec-icon">📋</span>
+        <div>
+          <h4>Klarer Vertrag</h4>
+          <p>Jede Investition wird durch eine schriftliche Investitionsvereinbarung mit festen Konditionen, Laufzeit und Rendite gesichert.</p>
+        </div>
+      </div>
+      <div class="inv-sec-card">
+        <span class="inv-sec-icon">🔍</span>
+        <div>
+          <h4>Geprüfte Projekte</h4>
+          <p>Alle Projekte werden vor der Veröffentlichung intern geprüft. Unvollständige oder riskante Projekte werden nicht zugelassen.</p>
+        </div>
+      </div>
+      <div class="inv-sec-card">
+        <span class="inv-sec-icon">📊</span>
+        <div>
+          <h4>Volle Transparenz</h4>
+          <p>Im Dashboard sehen Sie jederzeit: investiertes Kapital, aufgelaufene Rendite, Projektstatus und alle Ausschüttungen.</p>
+        </div>
+      </div>
+      <div class="inv-sec-card">
+        <span class="inv-sec-icon">🌍</span>
+        <div>
+          <h4>Internationale Struktur</h4>
+          <p>Investitionen in verschiedene Länder und Branchen reduzieren das Gesamtrisiko durch natürliche Diversifikation.</p>
+        </div>
+      </div>
+      <div class="inv-sec-card">
+        <span class="inv-sec-icon">💬</span>
+        <div>
+          <h4>Direkter Kontakt</h4>
+          <p>Bei Fragen oder Problemen steht Ihnen das aBest.co-Team direkt zur Verfügung — kein automatisiertes System.</p>
+        </div>
+      </div>
+      <div class="inv-sec-card">
+        <span class="inv-sec-icon">🔒</span>
+        <div>
+          <h4>Datenschutz</h4>
+          <p>Alle Investoren- und Projektdaten werden verschlüsselt gespeichert. Ihre Daten werden niemals ohne Zustimmung weitergegeben.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── INVESTITIONSKATEGORIEN ─────────────────────────────── -->
+  <section class="page-section" style="padding-top:1.8rem;">
+    <div class="inv-section-label">📂 Kategorien</div>
+    <h2 style="font-size:1.2rem;font-weight:700;color:var(--text-main);margin:4px 0 6px;">In welche Branchen investieren?</h2>
+    <p class="inv-section-sub">Klicken Sie auf eine Kategorie, die Sie interessiert — wir nehmen Ihren Fokus direkt ins Kontaktformular auf.</p>
+    <div class="inv-cat-grid" style="margin-top:16px;" id="inv-cat-grid">
+      <div class="inv-cat-card" data-cat="Immobilien" onclick="selectInvCat('Immobilien',this)">
+        <div class="inv-cat-icon">🏗️</div>
+        <h4>Immobilien</h4>
+        <p>Land, Bau, Gewerbe, Wohnen</p>
+        <div class="inv-heat-row">🔥🔥🔥</div>
+      </div>
+      <div class="inv-cat-card" data-cat="Energie" onclick="selectInvCat('Energie',this)">
+        <div class="inv-cat-icon">☀️</div>
+        <h4>Energie</h4>
+        <p>Solar, Wind, EV, Nachhaltigkeit</p>
+        <div class="inv-heat-row">🔥🔥🔥</div>
+      </div>
+      <div class="inv-cat-card" data-cat="Logistik" onclick="selectInvCat('Logistik',this)">
+        <div class="inv-cat-icon">📦</div>
+        <h4>Logistik</h4>
+        <p>Self-Storage, Lager, Zentren</p>
+        <div class="inv-heat-row">🔥🔥</div>
+      </div>
+      <div class="inv-cat-card" data-cat="Startups" onclick="selectInvCat('Startups',this)">
+        <div class="inv-cat-icon">🚀</div>
+        <h4>Startups</h4>
+        <p>Tech, FinTech, AI, SaaS</p>
+        <div class="inv-heat-row">🔥🔥🔥</div>
+      </div>
+      <div class="inv-cat-card" data-cat="Gastronomie" onclick="selectInvCat('Gastronomie',this)">
+        <div class="inv-cat-icon">🍔</div>
+        <h4>Gastronomie</h4>
+        <p>Restaurant, Café, Franchise</p>
+        <div class="inv-heat-row">🔥🔥</div>
+      </div>
+      <div class="inv-cat-card" data-cat="Unternehmensbeteiligung" onclick="selectInvCat('Unternehmensbeteiligung',this)">
+        <div class="inv-cat-icon">🏢</div>
+        <h4>Beteiligung</h4>
+        <p>Unternehmen, Expansion, M&amp;A</p>
+        <div class="inv-heat-row">🔥🔥</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FÜR WEN? INVESTOR-TYPEN ───────────────────────────── -->
+  <section class="page-section" style="padding-top:1.8rem;">
+    <div class="inv-section-label">👥 Für wen?</div>
+    <h2 style="font-size:1.2rem;font-weight:700;color:var(--text-main);margin:4px 0 16px;">Jeder Investor ist willkommen</h2>
+    <div class="inv-types-grid">
+      <div class="inv-type-card">
+        <div class="inv-type-icon">👤</div>
+        <h4>Privatinvestor</h4>
+        <p>Sie haben Ersparnisse und möchten mehr als Zinsen auf dem Konto? 5 % p.a. auf echte Projekte — ab € 10.000.</p>
+      </div>
+      <div class="inv-type-card">
+        <div class="inv-type-icon">💼</div>
+        <h4>Unternehmer</h4>
+        <p>Sie kennen das Business und möchten sich an konkreten Projekten oder Startups beteiligen? Hier finden Sie passende Gelegenheiten.</p>
+      </div>
+      <div class="inv-type-card">
+        <div class="inv-type-icon">🏦</div>
+        <h4>Institutioneller Investor</h4>
+        <p>Größere Tickets, individuelle Strukturen und direkte Projektpartnerschaft — sprechen Sie uns für maßgeschneiderte Lösungen an.</p>
+      </div>
+      <div class="inv-type-card">
+        <div class="inv-type-icon">🌍</div>
+        <h4>Internationaler Kapitalgeber</h4>
+        <p>Sie investieren weltweit? Unsere Plattform unterstützt 14 Sprachen und Projekte in mehreren Währungen (EUR / USD).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TESTIMONIALS ───────────────────────────────────────── -->
+  <section class="page-section" style="padding-top:1.8rem;">
+    <div class="inv-section-label">⭐ Investoren sprechen</div>
+    <h2 style="font-size:1.2rem;font-weight:700;color:var(--text-main);margin:4px 0 16px;">Was andere Investoren sagen</h2>
+    <div class="inv-testi-grid">
+      <div class="inv-testi-card">
+        <div class="inv-testi-stars">★★★★★</div>
+        <p class="inv-testi-text">"Endlich eine Plattform, bei der ich als Privatinvestor Zugang zu Projekten bekomme, die früher nur institutionellen Investoren vorbehalten waren."</p>
+        <div class="inv-testi-author">
+          <div class="inv-testi-avatar">👤</div>
+          <div>
+            <div class="inv-testi-name">M. Hartmann</div>
+            <div class="inv-testi-loc">München, Deutschland</div>
+          </div>
+        </div>
+      </div>
+      <div class="inv-testi-card">
+        <div class="inv-testi-stars">★★★★★</div>
+        <p class="inv-testi-text">"Die Transparenz überzeugt mich. Ich sehe genau, wo mein Geld eingesetzt wird und bekomme regelmäßige Updates zum Projektstatus."</p>
+        <div class="inv-testi-author">
+          <div class="inv-testi-avatar">👤</div>
+          <div>
+            <div class="inv-testi-name">S. Yıldız</div>
+            <div class="inv-testi-loc">Istanbul, Türkei</div>
+          </div>
+        </div>
+      </div>
+      <div class="inv-testi-card">
+        <div class="inv-testi-stars">★★★★★</div>
+        <p class="inv-testi-text">"5 % p.a. klingt nicht spektakulär — aber es ist solide, verlässlich und das Kapital bleibt in echten Sachwerten. Genau das will ich."</p>
+        <div class="inv-testi-author">
+          <div class="inv-testi-avatar">👤</div>
+          <div>
+            <div class="inv-testi-name">R. Müller</div>
+            <div class="inv-testi-loc">Wien, Österreich</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── KONTAKTFORMULAR ────────────────────────────────────── -->
+  <section class="page-section" style="padding-top:1.8rem;" id="inv-form">
+    <div class="glass-panel" style="padding:24px 20px;">
+      <div class="inv-section-label">📩 Investor werden</div>
+      <h2 style="font-size:1.15rem;font-weight:700;color:var(--text-main);margin:4px 0 4px;">Investitionsanfrage stellen</h2>
+      <p style="font-size:0.82rem;color:var(--text-muted);margin:0 0 4px;">Kostenlos, unverbindlich und 100 % vertraulich. Wir melden uns innerhalb von 24 Stunden.</p>
+      <div id="inv-success" class="inv-success">
+        <div class="inv-suc-icon">✅</div>
+        <h3>Anfrage eingegangen!</h3>
+        <p>Wir melden uns innerhalb von 24 Stunden persönlich bei Ihnen. Danke für Ihr Interesse.</p>
+      </div>
+      <form class="inv-form" id="inv-form-el" onsubmit="invSubmit(event)">
+        <div class="inv-form-row">
+          <input class="inv-input" id="inv-name" placeholder="Ihr Name *" required type="text"/>
+          <input class="inv-input" id="inv-email" placeholder="E-Mail *" required type="email"/>
+        </div>
+        <div class="inv-form-row">
+          <input class="inv-input" id="inv-phone" placeholder="Telefon" type="tel"/>
+          <input class="inv-input" id="inv-country" placeholder="Land / Region" type="text"/>
+        </div>
+        <div class="inv-form-row">
+          <select class="inv-select" id="inv-cat">
+            <option value="">Investitionsbereich *</option>
+            <option>Immobilien &amp; Grundstücke</option>
+            <option>Energie &amp; Solar</option>
+            <option>Logistik &amp; Self-Storage</option>
+            <option>Startups &amp; Tech</option>
+            <option>Gastronomie &amp; Franchise</option>
+            <option>Unternehmensbeteiligung</option>
+            <option>Mehrere Bereiche / Diversifikation</option>
+          </select>
+          <select class="inv-select" id="inv-budget">
+            <option value="">Investitionsvolumen *</option>
+            <option>€ 10.000 – € 25.000</option>
+            <option>€ 25.000 – € 50.000</option>
+            <option>€ 50.000 – € 100.000</option>
+            <option>€ 100.000 – € 250.000</option>
+            <option>€ 250.000 – € 500.000</option>
+            <option>€ 500.000 – € 1 Mio.</option>
+            <option>über € 1 Mio.</option>
+          </select>
+        </div>
+        <select class="inv-select" id="inv-horizon">
+          <option value="">Anlagehorizont</option>
+          <option>1 – 3 Jahre</option>
+          <option>3 – 5 Jahre</option>
+          <option>5 – 10 Jahre</option>
+          <option>Über 10 Jahre</option>
+          <option>Flexibel</option>
+        </select>
+        <textarea class="inv-textarea" id="inv-message" placeholder="Ihre Nachricht / Fragen (optional)"></textarea>
+        <div class="inv-conf-badge">🔒 <div><strong>100 % vertraulich.</strong> Ihre Daten werden nicht weitergegeben.</div></div>
+        <button class="inv-submit" type="submit">💼 Investitionsanfrage absenden →</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ── FAQ ───────────────────────────────────────────────── -->
+  <section class="page-section" style="padding-top:1.8rem;">
+    <div class="glass-panel" style="padding:24px 20px;">
+      <div class="inv-section-label">❓ FAQ</div>
+      <h2 style="font-size:1.15rem;font-weight:700;color:var(--text-main);margin:4px 0 16px;">Häufig gestellte Fragen</h2>
+      <div class="inv-faq-item">
+        <div class="inv-faq-q" onclick="invFaq(this)">Ab welchem Betrag kann ich investieren?</div>
+        <div class="inv-faq-a">Der Mindesteinstieg beträgt <strong>€ 10.000</strong>. Je nach Projekt kann das Minimum variieren — manche Projekte setzen ab € 25.000 an. Es gibt kein festgelegtes Maximum.</div>
+      </div>
+      <div class="inv-faq-item">
+        <div class="inv-faq-q" onclick="invFaq(this)">Wie sicher ist mein investiertes Kapital?</div>
+        <div class="inv-faq-a">Jede Investition wird durch eine schriftliche Vereinbarung abgesichert. aBest.co ist eine Vermittlungsplattform — wir verbinden Investoren mit Projektträgern. Das Kapital fließt direkt in das jeweilige Projekt. Wie bei jeder Investition gibt es unternehmerische Risiken, die transparent kommuniziert werden.</div>
+      </div>
+      <div class="inv-faq-item">
+        <div class="inv-faq-q" onclick="invFaq(this)">Wie und wann erhalte ich meine 5 % Rendite?</div>
+        <div class="inv-faq-a">Die Auszahlungsmodalitäten werden im Investitionsvertrag individuell vereinbart — wahlweise jährlich, halbjährlich oder am Laufzeitende. Die genauen Konditionen werden vor Vertragsabschluss transparent dargestellt.</div>
+      </div>
+      <div class="inv-faq-item">
+        <div class="inv-faq-q" onclick="invFaq(this)">Was passiert, wenn ein Projekt scheitert?</div>
+        <div class="inv-faq-a">Alle Projekte werden vor Aufnahme auf der Plattform geprüft. Im unwahrscheinlichen Fall von Schwierigkeiten arbeiten wir gemeinsam mit dem Projektträger an Lösungen. Details zum Risikomanagement werden im Investitionsvertrag geregelt. Wir kommunizieren stets offen und direkt.</div>
+      </div>
+      <div class="inv-faq-item">
+        <div class="inv-faq-q" onclick="invFaq(this)">Kann ich als Investor aus dem Ausland mitmachen?</div>
+        <div class="inv-faq-a">Ja. aBest.co ist eine internationale Plattform mit Investoren aus über 14 Ländern. Investitionen sind in EUR und USD möglich. Die Plattform unterstützt 14 Sprachen.</div>
+      </div>
+      <div class="inv-faq-item">
+        <div class="inv-faq-q" onclick="invFaq(this)">Wie schnell werde ich nach meiner Anfrage kontaktiert?</div>
+        <div class="inv-faq-a">Wir melden uns in der Regel <strong>innerhalb von 24 Stunden</strong> persönlich bei Ihnen. Kein Bot, kein automatisiertes System — ein echter Ansprechpartner von aBest.co.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── BACK LINK ──────────────────────────────────────────── -->
+  <section class="page-section" style="padding-top:1.2rem;padding-bottom:0.5rem;">
+    <a href="/de/earn-money" style="font-size:0.82rem;color:var(--text-muted);text-decoration:none;">← Zurück zu Earn Money</a>
+  </section>
+
+</main>
+
+<!-- ── STICKY CTA ─────────────────────────────────────────── -->
+<div class="inv-sticky-cta">
+  <span>💼 <strong>5 % p.a.</strong> auf echte Projekte — ab € 10.000</span>
+  <a href="#inv-form">Jetzt anfragen</a>
+</div>
+
+<script src="/app.js"></script>
+<script>
+// ── Rendite-Rechner ────────────────────────────────────────────
+function calcUpdate(val) {
+  var v = parseInt(val);
+  var amounts = [10000,25000,50000,75000,100000,150000,250000,350000,500000,750000,1000000];
+  var amt = amounts[v] || 50000;
+  var rate = 0.05;
+  document.getElementById('calc-amount-label').textContent = '€ ' + amt.toLocaleString('de-DE');
+  var y1 = Math.round(amt * rate);
+  var y5 = Math.round(amt * Math.pow(1+rate,5));
+  var y10 = Math.round(amt * Math.pow(1+rate,10));
+  document.getElementById('calc-year').textContent = '€ ' + y1.toLocaleString('de-DE');
+  document.getElementById('calc-5y').textContent = '€ ' + y5.toLocaleString('de-DE');
+  document.getElementById('calc-10y').textContent = '€ ' + y10.toLocaleString('de-DE');
+}
+calcUpdate(4);
+
+// ── Category Select ────────────────────────────────────────────
+function selectInvCat(cat, el) {
+  document.querySelectorAll('.inv-cat-card').forEach(function(c){ c.classList.remove('selected'); });
+  el.classList.add('selected');
+  var sel = document.getElementById('inv-cat');
+  for(var i=0;i<sel.options.length;i++){
+    if(sel.options[i].text.toLowerCase().indexOf(cat.toLowerCase().split(' ')[0]) !== -1){
+      sel.selectedIndex = i; break;
+    }
+  }
+  smoothTo('inv-form');
+}
+
+// ── Smooth scroll ──────────────────────────────────────────────
+function smoothTo(id) {
+  var el = document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ── Form Submit ────────────────────────────────────────────────
+function invSubmit(e) {
+  e.preventDefault();
+  var name = document.getElementById('inv-name').value;
+  var email = document.getElementById('inv-email').value;
+  var phone = document.getElementById('inv-phone').value;
+  var country = document.getElementById('inv-country').value;
+  var cat = document.getElementById('inv-cat').value;
+  var budget = document.getElementById('inv-budget').value;
+  var horizon = document.getElementById('inv-horizon').value;
+  var msg = document.getElementById('inv-message').value;
+  var body = [
+    'NEUE INVESTITIONSANFRAGE — aBest.co',
+    '================================',
+    'Name: ' + name,
+    'E-Mail: ' + email,
+    'Telefon: ' + (phone||'–'),
+    'Land: ' + (country||'–'),
+    'Bereich: ' + (cat||'–'),
+    'Volumen: ' + (budget||'–'),
+    'Horizont: ' + (horizon||'–'),
+    '',
+    'Nachricht:',
+    msg||'–',
+    '',
+    'Gesendet über: abest.co/de/earn-money/investor'
+  ].join('\n');
+  document.getElementById('inv-form-el').style.display = 'none';
+  document.getElementById('inv-success').style.display = 'block';
+  var mailto = 'mailto:info@abest.co?subject=' + encodeURIComponent('Investitionsanfrage von ' + name + ' – aBest.co') + '&body=' + encodeURIComponent(body);
+  setTimeout(function(){ window.location.href = mailto; }, 600);
+}
+
+// ── FAQ Toggle ─────────────────────────────────────────────────
+function invFaq(el) {
+  var item = el.parentElement;
+  var wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.inv-faq-item').forEach(function(i){ i.classList.remove('open'); });
+  if(!wasOpen) item.classList.add('open');
+}
+</script>
 </body>
 </html>
