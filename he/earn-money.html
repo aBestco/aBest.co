@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <title>התחל עם aBest.co – בחר את תפקידך</title>
+    <meta content="כמייסד, משקיע, שותף הון, מוכר, עסק או חוקר – aBest.co מחבר אותך עם השותפים הנכונים בשווקים הבינלאומיים." name="description" />
+    <link href="/favicon.png" rel="icon" type="image/png" />
+    <link href="/index.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://abest.co/en/earn-money" hreflang="en" rel="alternate" />
+    <link href="https://abest.co/de/earn-money" hreflang="de" rel="alternate" />
+    <link href="https://abest.co/es/earn-money" hreflang="es" rel="alternate" />
+    <link href="https://abest.co/tr/earn-money" hreflang="tr" rel="alternate" />
+    <link href="https://abest.co/zh/earn-money" hreflang="zh" rel="alternate" />
+    <link href="https://abest.co/hi/earn-money" hreflang="hi" rel="alternate" />
+    <link href="https://abest.co/ar/earn-money" hreflang="ar" rel="alternate" />
+    <link href="https://abest.co/fr/earn-money" hreflang="fr" rel="alternate" />
+    <link href="https://abest.co/ru/earn-money" hreflang="ru" rel="alternate" />
+    <link href="https://abest.co/pt/earn-money" hreflang="pt" rel="alternate" />
+    <link href="https://abest.co/ur/earn-money" hreflang="ur" rel="alternate" />
+    <link href="https://abest.co/ku/earn-money" hreflang="ku" rel="alternate" />
+    <link href="https://abest.co/he/earn-money" hreflang="he" rel="alternate" />
+    <link href="https://abest.co/hy/earn-money" hreflang="hy" rel="alternate" />
+    <link href="https://abest.co/" hreflang="x-default" rel="alternate" />
+    <link rel="canonical" href="https://www.abest.co/he/earn-money" />
+    <style>
+        :root {
+            --c-founder:#3b82f6;--c-investor:#f59e0b;--c-capital:#10b981;
+            --c-seller:#f97316;--c-business:#8b5cf6;--c-explorer:#06b6d4;
+        }
+        .em-trust-bar{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin:18px 0 0;}
+        .em-trust-item{display:flex;align-items:center;gap:6px;font-size:0.75rem;color:var(--text-muted);white-space:nowrap;}
+        .em-trust-item svg{width:14px;height:14px;color:var(--primary-blue);flex-shrink:0;}
+        .em-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:0;}
+        @media(min-width:600px){.em-grid{grid-template-columns:repeat(3,1fr);}}
+        .em-card{background:var(--glass-bg,rgba(255,255,255,0.06));border:1px solid var(--glass-border,rgba(255,255,255,0.12));border-radius:16px;padding:20px 16px 18px;text-decoration:none;color:var(--text-main);display:flex;flex-direction:column;position:relative;overflow:hidden;transition:transform 0.22s ease,box-shadow 0.22s ease,border-color 0.22s ease;cursor:pointer;}
+        .em-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:16px 16px 0 0;background:var(--accent);opacity:0.85;}
+        .em-card:hover{transform:translateY(-5px) scale(1.01);box-shadow:0 12px 32px rgba(0,0,0,0.25);border-color:var(--accent);}
+        .em-card .em-icon{font-size:2rem;margin-bottom:10px;line-height:1;}
+        .em-card .em-title{font-size:1rem;font-weight:600;margin-bottom:5px;color:var(--text-main);}
+        .em-card .em-tag{display:inline-block;font-size:0.65rem;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;padding:2px 8px;border-radius:20px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);color:var(--accent);margin-bottom:10px;width:fit-content;}
+        .em-card .em-desc{font-size:0.8rem;color:var(--text-muted);line-height:1.5;flex:1;margin-bottom:14px;}
+        .em-card .em-cta{display:inline-flex;align-items:center;gap:5px;font-size:0.78rem;font-weight:600;color:var(--accent);text-decoration:none;}
+        .em-card .em-cta svg{width:14px;height:14px;transition:transform 0.15s;}
+        .em-card:hover .em-cta svg{transform:translateX(3px);}
+        .em-qualifier{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.10);border-radius:14px;padding:16px 18px;margin:0 0 4px;}
+        .em-qualifier p{font-size:0.82rem;color:var(--text-muted);margin:0 0 12px;}
+        .em-qual-btns{display:flex;flex-wrap:wrap;gap:8px;}
+        .em-qual-btn{font-size:0.75rem;padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.06);color:var(--text-main);cursor:pointer;text-decoration:none;white-space:nowrap;transition:background 0.15s,border-color 0.15s;}
+        .em-qual-btn:hover{background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.3);}
+        .em-step{display:flex;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.06);}
+        .em-step:last-child{border-bottom:none;padding-bottom:0;}
+        .em-step-num{flex-shrink:0;width:36px;height:36px;border-radius:50%;background:rgba(0,122,255,0.15);border:1px solid rgba(0,122,255,0.35);display:flex;align-items:center;justify-content:center;font-size:0.9rem;font-weight:700;color:var(--primary-blue);}
+        .em-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+        .em-stat{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.10);border-radius:14px;padding:16px 10px;text-align:center;}
+        .em-stat .sv{font-size:1.6rem;font-weight:700;color:var(--primary-blue);display:block;}
+        .em-stat .sl{font-size:0.72rem;color:var(--text-muted);margin-top:4px;text-transform:uppercase;letter-spacing:0.05em;}
+        .em-badges{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;}
+        .em-badge{display:flex;align-items:center;gap:6px;padding:8px 14px;border-radius:22px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.10);font-size:0.75rem;color:var(--text-muted);}
+        .em-badge svg{width:14px;height:14px;color:var(--primary-blue);}
+    </style>
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#007aff" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="aBest.co" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","@id":"https://www.abest.co/he/earn-money#webpage","url":"https://www.abest.co/he/earn-money","name":"התחל עם aBest.co – בחר את תפקידך","isPartOf":{"@id":"https://www.abest.co/#website"},"inLanguage":"he"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"כיצד להרוויח כסף עם aBest.co?","acceptedAnswer":{"@type":"Answer","text":"כמשקיע, מייסד, שותף הון, מוכר או חוקר תוכל להפיק תועלת מפרויקטי נדל"ן פרימיום בארה"ב, גרמניה וטורקיה."}}{"@type":"Question","name":"מה זה שותף הון ב-aBest.co?","acceptedAnswer":{"@type":"Answer","text":"שותף הון מספק הון לפרויקטי נדל"ן ומקבל תשואות אטרקטיביות בתמורה."}}{"@type":"Question","name":"מה עושה מייסד ב-aBest.co?","acceptedAnswer":{"@type":"Answer","text":"מייסד יוצר ומפתח פרויקטים בפלטפורמת aBest.co ומקבל גישה למשקיעים ושותפי הון."}}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"דף הבית","item":"https://www.abest.co/he/"},{"@type":"ListItem","position":2,"name":"רעיונות","item":"https://www.abest.co/he/earn-money"}]}
+</script>
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="aBest.co" />
+    <meta property="og:locale" content="he_IL" />
+    <meta property="og:url" content="https://www.abest.co/he/earn-money" />
+    <meta property="og:title" content="התחל עם aBest.co – בחר את תפקידך" />
+    <meta property="og:description" content="כמייסד, משקיע, שותף הון, מוכר, עסק או חוקר – aBest.co מחבר אותך עם השותפים הנכונים בשווקים הבינלאומיים." />
+    <meta property="og:image" content="https://www.abest.co/assets/images/bg_main_blurred_new.webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@aBestco" />
+    <meta name="twitter:title" content="התחל עם aBest.co – בחר את תפקידך" />
+    <meta name="twitter:description" content="כמייסד, משקיע, שותף הון, מוכר, עסק או חוקר – aBest.co מחבר אותך עם השותפים הנכונים בשווקים הבינלאומיים." />
+    <meta name="twitter:image" content="https://www.abest.co/assets/images/bg_main_blurred_new.webp" />
+</head>
+<body style="direction:rtl; text-align:right;">
+    <div class="background-wrapper">
+        <img alt="Background" class="main-bg" id="hero-bg" src="/assets/images/bg_main_blurred_new.webp" />
+        <div class="bg-gradient-overlay"></div>
+    </div>
+    <div class="app-container">
+        <nav class="mobile-nav" id="mobile-nav">
+            <a class="nav-link" href="/he/earn-money">הרוויח כסף</a>
+            <a class="nav-link" href="/he/">דף הבית</a>
+            <a class="nav-link" href="/he/usa">ארה"ב</a>
+            <a class="nav-link" href="/he/deutschland">גרמניה</a>
+            <a class="nav-link" href="/he/turkiye">טורקיה</a>
+            <a class="nav-link" href="/he/kontakt">צור קשר</a>
+        </nav>
+        <header class="app-header fade-in-up" style="animation-delay: 0.1s;">
+            <a class="logo-link" href="/he/">
+                <span style="font-size: 1.5rem; font-weight: 500; letter-spacing: -0.5px; color: var(--text-main);">
+                    <span style="color: var(--primary-blue);">a</span>Best<span style="color: var(--primary-blue);">.co</span>
+                </span>
+            </a>
+            <div class="header-actions-v2">
+                <a href="/he/earn-money" class="header-icon-v2" aria-label="Earn Money">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                </a>
+                <a href="/login" class="header-icon-v2" aria-label="Login">
+                    <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </a>
+                <a href="/he/kontakt" class="header-icon-v2" aria-label="צור קשר">
+                    <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                </a>
+                <div aria-label="Toggle Navigation Menu" class="nav-icon" id="menu-btn"><span></span><span></span></div>
+            </div>
+        </header>
+
+        <main class="scroll-content">
+            <section class="hero fade-in-up" style="animation-delay: 0.2s;">
+                <div class="hero-content glass-chip">
+                    <h1>בחר את תפקידך &<br><span class="highlight">התחל עם aBest.co</span></h1>
+                    <p class="subtext">בין אם אתה מייסד, משקיע או מוכר – מצא את התפקיד הנכון וצור קשר עם שותפים בינלאומיים.</p>
+                </div>
+            </section>
+
+            <section class="section-spacing fade-in-up" style="animation-delay: 0.25s; padding-top: 0;">
+                <div class="em-qualifier">
+                    <p>לא בטוח איזה תפקיד מתאים לך? ענה על שאלה אחת:</p>
+                    <div class="em-qual-btns"><a href="/he/earn-money/founder" class="em-qual-btn">💡 יש לי רעיון או פרויקט</a><a href="/he/earn-money/investor" class="em-qual-btn">📈 אני רוצה להשקיע באופן פעיל</a><a href="/he/earn-money/capital-partner" class="em-qual-btn">🏦 אני רוצה להשקיע הון (5% לשנה)</a><a href="/he/earn-money/seller" class="em-qual-btn">🏠 אני רוצה למכור נדל"ן</a><a href="/he/earn-money/business" class="em-qual-btn">🏢 אני רוצה למכור את העסק שלי</a><a href="/he/earn-money/explorer" class="em-qual-btn">🔍 אני רק מסתכל</a></div>
+                </div>
+            </section>
+
+            <section class="section-spacing fade-in-up" style="animation-delay: 0.3s; padding-top: 0;">
+                <div class="em-grid">
+                    <a href="/he/earn-money/founder" class="em-card" style="--accent: #3b82f6;">
+                        <div class="em-icon">💡</div>
+                        <div class="em-title">מייסד</div>
+                        <div class="em-tag">Founder</div>
+                        <div class="em-desc">יש לך רעיון או פרויקט – מצא משקיעים, שותפים ומשאבים להשקה שלך.</div>
+                        <span class="em-cta">Mehr erfahren <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                    </a>
+                    <a href="/he/earn-money/investor" class="em-card" style="--accent: #f59e0b;">
+                        <div class="em-icon">📈</div>
+                        <div class="em-title">משקיע</div>
+                        <div class="em-tag">Investor</div>
+                        <div class="em-desc">השקע באופן פעיל – בפרויקטים שלנו או כמשקיע משותף.</div>
+                        <span class="em-cta">Mehr erfahren <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                    </a>
+                    <a href="/he/earn-money/capital-partner" class="em-card" style="--accent: #10b981;">
+                        <div class="em-icon">🏦</div>
+                        <div class="em-title">שותף הון</div>
+                        <div class="em-tag">Capital Partner</div>
+                        <div class="em-desc">5% לשנה ריבית קבועה – השתתפות שקטה מ-€1,000 · מ-1 שנה · אפשרות A או B.</div>
+                        <span class="em-cta">Mehr erfahren <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                    </a>
+                    <a href="/he/earn-money/seller" class="em-card" style="--accent: #f97316;">
+                        <div class="em-icon">🏠</div>
+                        <div class="em-title">מוכר</div>
+                        <div class="em-tag">Seller</div>
+                        <div class="em-desc">מכור נכסים, קרקעות לקונים מוסמכים ברחבי העולם.</div>
+                        <span class="em-cta">Mehr erfahren <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                    </a>
+                    <a href="/he/earn-money/business" class="em-card" style="--accent: #8b5cf6;">
+                        <div class="em-icon">🏢</div>
+                        <div class="em-title">עסק</div>
+                        <div class="em-tag">Business</div>
+                        <div class="em-desc">מכור את העסק שלך, מצא שותפים משותפים או הצג חלקים להשקעה.</div>
+                        <span class="em-cta">Mehr erfahren <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                    </a>
+                    <a href="/he/earn-money/explorer" class="em-card" style="--accent: #06b6d4;">
+                        <div class="em-icon">🔍</div>
+                        <div class="em-title">חוקר</div>
+                        <div class="em-tag">Explorer</div>
+                        <div class="em-desc">חקור שווקים, מגמות והזדמנויות ללא מחויבות מיידית.</div>
+                        <span class="em-cta">Mehr erfahren <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                    </a></div>
+            </section>
+
+            <section class="section-spacing fade-in-up" style="animation-delay: 0.35s; padding-top: 0;">
+                <div class="em-stats"><div class="em-stat"><span class="sv">14</span><span class="sl">שפות</span></div><div class="em-stat"><span class="sv">4</span><span class="sl">יבשות</span></div><div class="em-stat"><span class="sv">100+</span><span class="sl">שותפים מאומתים</span></div><div class="em-stat"><span class="sv">6</span><span class="sl">תפקידים זמינים</span></div></div>
+            </section>
+
+            <section class="section-spacing fade-in-up" style="animation-delay: 0.4s;">
+                <div class="glass-panel">
+                    <h2 style="margin-bottom: 0.5rem;">איך זה עובד</h2>
+                    <div class="divider mt-2"></div>
+                    
+                    <div class="em-step">
+                        <div class="em-step-num">1</div>
+                        <div>
+                            <strong style="color: var(--text-main); display: block; margin-bottom: 4px; font-size: 0.9rem;">בחר תפקיד</strong>
+                            <p style="color: var(--text-muted); font-size: 0.82rem; margin: 0;">בחר את התפקיד שמתאים לך – מייסד, משקיע, שותף הון, מוכר, עסק או חוקר.</p>
+                        </div>
+                    </div>
+                    <div class="em-step">
+                        <div class="em-step-num">2</div>
+                        <div>
+                            <strong style="color: var(--text-main); display: block; margin-bottom: 4px; font-size: 0.9rem;">צור פרופיל</strong>
+                            <p style="color: var(--text-muted); font-size: 0.82rem; margin: 0;">הירשם בחינם, מלא את הפרופיל שלך וציין מה אתה מציע או מחפש.</p>
+                        </div>
+                    </div>
+                    <div class="em-step">
+                        <div class="em-step-num">3</div>
+                        <div>
+                            <strong style="color: var(--text-main); display: block; margin-bottom: 4px; font-size: 0.9rem;">התחבר והתחל</strong>
+                            <p style="color: var(--text-muted); font-size: 0.82rem; margin: 0;">הצוות שלנו בודק את הפרטים שלך ומחבר אותך עם שותפים, פרויקטים והזדמנויות מתאימים.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-spacing fade-in-up" style="animation-delay: 0.45s; padding-top: 0;">
+                <div class="em-badges"><div class="em-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 11V7a5 5 0 0 1 10 0v4"/><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/></svg>מאובטח SSL</div><div class="em-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>שותפים מאומתים</div><div class="em-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>תואם GDPR</div><div class="em-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>שווקים בינלאומיים</div><div class="em-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>הרשמה חינמית</div></div>
+            </section>
+
+            <section class="section-spacing fade-in-up" style="animation-delay: 0.5s;">
+                <div class="glass-panel" style="text-align: center; padding: 32px 24px;">
+                    <h2 style="margin-bottom: 10px;">מוכן להתחיל?</h2>
+                    <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 22px; max-width: 340px; margin-left: auto; margin-right: auto;">צור פרופיל חינמי ובחר את תפקידך. תוכל להתחיל בכמה דקות.</p>
+                    <a href="/he/profil" class="glass-button ripple" style="display: inline-block; padding: 14px 32px; font-size: 0.95rem; font-weight: 600; text-decoration: none; border-radius: 30px;">
+                        צור פרופיל עכשיו →
+                    </a>
+                    <p style="font-size: 0.72rem; color: var(--text-muted); margin-top: 12px;">לא נדרשת כרטיס אשראי · התחל בחינם</p>
+                </div>
+            </section>
+        </main>
+
+        <footer class="app-footer section-spacing fade-in-up" style="animation-delay: 0.8s;">
+            <div class="slim-footer-content">
+                
+                <a href="/he/terms" class="footer-link">תנאים</a>
+                <span class="footer-separator">|</span>
+                <a href="/he/cookie-policy" class="footer-link">מדיניות עוגיות</a>
+                <span class="footer-separator">|</span>
+                <a href="/he/disclaimer" class="footer-link">כתב ויתור</a>
+                <span class="footer-separator">|</span>
+                <a href="/de/impressum" class="footer-link">מידע משפטי</a>
+                <span class="footer-separator">|</span>
+                <a href="/he/kontakt" class="footer-link">פרטיות</a>
+                <span class="footer-separator">|</span>
+                <a href="/he/kontakt" class="footer-link">צור קשר</a>
+                <div class="language-switcher"><button class="lang-btn" aria-label="Language options">🇮🇱</button><div class="lang-dropdown"><a href="/en/" class="lang-dropdown-link" aria-label="Switch to EN">🇺🇸</a><a href="/de/" class="lang-dropdown-link" aria-label="Switch to DE">🇩🇪</a><a href="/tr/" class="lang-dropdown-link" aria-label="Switch to TR">🇹🇷</a><a href="/es/" class="lang-dropdown-link" aria-label="Switch to ES">🇪🇸</a><a href="/fr/" class="lang-dropdown-link" aria-label="Switch to FR">🇫🇷</a><a href="/ar/" class="lang-dropdown-link" aria-label="Switch to AR">🇸🇦</a><a href="/ru/" class="lang-dropdown-link" aria-label="Switch to RU">🇷🇺</a><a href="/zh/" class="lang-dropdown-link" aria-label="Switch to ZH">🇨🇳</a><a href="/hi/" class="lang-dropdown-link" aria-label="Switch to HI">🇮🇳</a><a href="/pt/" class="lang-dropdown-link" aria-label="Switch to PT">🇵🇹</a><a href="/ur/" class="lang-dropdown-link" aria-label="Switch to UR">🇵🇰</a><a href="/ku/" class="lang-dropdown-link" aria-label="Switch to KU"><img src="/ku-flag.svg" alt="KU" class="ku-flag-icon"></a><a href="/hy/" class="lang-dropdown-link" aria-label="Switch to HY">🇦🇲</a></div></div>
+                <span class="footer-separator">|</span>
+                <p class="copyright">© 2026 <span class="brand-style"><span class="brand-a">a</span>Best<span class="brand-dot-co">.co</span></span></p>
+            </div>
+        </footer>
+    </div>
+    <script src="/app.js"></script>
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileNav = document.getElementById('mobile-nav');
+        if (menuBtn && mobileNav) {
+            menuBtn.addEventListener('click', () => {
+                mobileNav.classList.toggle('open');
+                menuBtn.classList.toggle('open');
+            });
+        }
+    </script>
+</body>
+</html>

@@ -186,6 +186,7 @@ export default {
 
         // --- 1.4 EARN-MONEY SUB-PATHS ---
         // /de/earn-money/founder  →  serve /de/earn-money/founder.html
+        // Falls back to /de/ version if localized sub-page doesn't exist
         if (cleanPath.startsWith('/earn-money/')) {
             const emLang = pathname.match(/^\/([a-z]{2})(?:\/|$)/)?.[1] || 'de';
             const emSlug = cleanPath.replace('/earn-money/', '').split('/')[0];
@@ -197,6 +198,15 @@ export default {
                 emReq.headers.set('X-Internal-Fetch', 'true');
                 const emRes = await env.ASSETS.fetch(emReq);
                 if (emRes.ok) return new Response(emRes.body, { headers: emRes.headers });
+                // Fallback: serve German version for languages without own sub-page
+                if (emLang !== 'de') {
+                    const emFbUrl = new URL(request.url);
+                    emFbUrl.pathname = `/de/earn-money/${emSlug}.html`;
+                    const emFbReq = new Request(emFbUrl.toString(), request);
+                    emFbReq.headers.set('X-Internal-Fetch', 'true');
+                    const emFbRes = await env.ASSETS.fetch(emFbReq);
+                    if (emFbRes.ok) return new Response(emFbRes.body, { headers: emFbRes.headers });
+                }
             }
         }
 
@@ -225,9 +235,14 @@ export default {
         }
 
         // --- 3. 301 REDIRECTS ---
-        // /de/ideen → /de/earn-money (URL rename)
-        if (pathname === '/de/ideen' || pathname === '/de/ideen.html') {
-            return Response.redirect(`https://${host}/de/earn-money`, 301);
+        // /{lang}/ideen → /{lang}/earn-money (URL rename, all languages)
+        {
+            const _idLang = pathname.match(/^\/([a-z]{2})\//)?.[1];
+            const _idClean = _idLang ? pathname.slice(3) : pathname;
+            if (_idClean === '/ideen' || _idClean === '/ideen.html') {
+                const _redirLang = _idLang || 'de';
+                return Response.redirect(`https://${host}/${_redirLang}/earn-money`, 301);
+            }
         }
         if (url.hostname === 'abest.com' || url.hostname === 'www.abest.com') {
             const newUrl = new URL(request.url);

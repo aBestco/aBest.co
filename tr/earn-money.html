@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="tr" dir="ltr">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <title>aBest.co ile Başlayın – Rolünüzü Seçin</title>
+    <meta content="Kurucu, Yatırımcı, Sermaye Ortağı, Satıcı, İşletme veya Kaşif olarak – aBest.co sizi uluslararası pazarlardaki doğru ortaklarla buluşturur." name="description" />
+    <link href="/favicon.png" rel="icon" type="image/png" />
+    <link href="/index.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://abest.co/en/earn-money" hreflang="en" rel="alternate" />
+    <link href="https://abest.co/de/earn-money" hreflang="de" rel="alternate" />
+    <link href="https://abest.co/es/earn-money" hreflang="es" rel="alternate" />
+    <link href="https://abest.co/tr/earn-money" hreflang="tr" rel="alternate" />
+    <link href="https://abest.co/zh/earn-money" hreflang="zh" rel="alternate" />
+    <link href="https://abest.co/hi/earn-money" hreflang="hi" rel="alternate" />
+    <link href="https://abest.co/ar/earn-money" hreflang="ar" rel="alternate" />
+    <link href="https://abest.co/fr/earn-money" hreflang="fr" rel="alternate" />
+    <link href="https://abest.co/ru/earn-money" hreflang="ru" rel="alternate" />
+    <link href="https://abest.co/pt/earn-money" hreflang="pt" rel="alternate" />
+    <link href="https://abest.co/ur/earn-money" hreflang="ur" rel="alternate" />
+    <link href="https://abest.co/ku/earn-money" hreflang="ku" rel="alternate" />
+    <link href="https://abest.co/he/earn-money" hreflang="he" rel="alternate" />
+    <link href="https://abest.co/hy/earn-money" hreflang="hy" rel="alternate" />
+    <link href="https://abest.co/" hreflang="x-default" rel="alternate" />
+    <link rel="canonical" href="https://www.abest.co/tr/earn-money" />
+    <style>
+        :root {
+            --c-founder:#3b82f6;--c-investor:#f59e0b;--c-capital:#10b981;
+            --c-seller:#f97316;--c-business:#8b5cf6;--c-explorer:#06b6d4;
+        }
+        .em-trust-bar{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin:18px 0 0;}
+        .em-trust-item{display:flex;align-items:center;gap:6px;font-size:0.75rem;color:var(--text-muted);white-space:nowrap;}
+        .em-trust-item svg{width:14px;height:14px;color:var(--primary-blue);flex-shrink:0;}
+        .em-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:0;}
+        @media(min-width:600px){.em-grid{grid-template-columns:repeat(3,1fr);}}
+        .em-card{background:var(--glass-bg,rgba(255,255,255,0.06));border:1px solid var(--glass-border,rgba(255,255,255,0.12));border-radius:16px;padding:20px 16px 18px;text-decoration:none;color:var(--text-main);display:flex;flex-direction:column;position:relative;overflow:hidden;transition:transform 0.22s ease,box-shadow 0.22s ease,border-color 0.22s ease;cursor:pointer;}
+        .em-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:16px 16px 0 0;background:var(--accent);opacity:0.85;}
+        .em-card:hover{transform:translateY(-5px) scale(1.01);box-shadow:0 12px 32px rgba(0,0,0,0.25);border-color:var(--accent);}
+        .em-card .em-icon{font-size:2rem;margin-bottom:10px;line-height:1;}
+        .em-card .em-title{font-size:1rem;font-weight:600;margin-bottom:5px;color:var(--text-main);}
+        .em-card .em-tag{display:inline-block;font-size:0.65rem;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;padding:2px 8px;border-radius:20px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);color:var(--accent);margin-bottom:10px;width:fit-content;}
+        .em-card .em-desc{font-size:0.8rem;color:var(--text-muted);line-height:1.5;flex:1;margin-bottom:14px;}
+        .em-card .em-cta{display:inline-flex;align-items:center;gap:5px;font-size:0.78rem;font-weight:600;color:var(--accent);text-decoration:none;}
+        .em-card .em-cta svg{width:14px;height:14px;transition:transform 0.15s;}
+        .em-card:hover .em-cta svg{transform:translateX(3px);}
+        .em-qualifier{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.10);border-radius:14px;padding:16px 18px;margin:0 0 4px;}
+        .em-qualifier p{font-size:0.82rem;color:var(--text-muted);margin:0 0 12px;}
+        .em-qual-btns{display:flex;flex-wrap:wrap;gap:8px;}
+        .em-qual-btn{font-size:0.75rem;padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.06);color:var(--text-main);cursor:pointer;text-decoration:none;white-space:nowrap;transition:background 0.15s,border-color 0.15s;}
+        .em-qual-btn:hover{background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.3);}
+        .em-step{display:flex;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.06);}
+        .em-step:last-child{border-bottom:none;padding-bottom:0;}
+        .em-step-num{flex-shrink:0;width:36px;height:36px;border-radius:50%;background:rgba(0,122,255,0.15);border:1px solid rgba(0,122,255,0.35);display:flex;align-items:center;justify-content:center;font-size:0.9rem;font-weight:700;color:var(--primary-blue);}
+        .em-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+        .em-stat{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.10);border-radius:14px;padding:16px 10px;text-align:center;}
+        .em-stat .sv{font-size:1.6rem;font-weight:700;color:var(--primary-blue);display:block;}
+        .em-stat .sl{font-size:0.72rem;color:var(--text-muted);margin-top:4px;text-transform:uppercase;letter-spacing:0.05em;}
+        .em-badges{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;}
+        .em-badge{display:flex;align-items:center;gap:6px;padding:8px 14px;border-radius:22px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.10);font-size:0.75rem;color:var(--text-muted);}
+        .em-badge svg{width:14px;height:14px;color:var(--primary-blue);}
+    </style>
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#007aff" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="aBest.co" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","@id":"https://www.abest.co/tr/earn-money#webpage","url":"https://www.abest.co/tr/earn-money","name":"aBest.co ile Başlayın – Rolünüzü Seçin","isPartOf":{"@id":"https://www.abest.co/#website"},"inLanguage":"tr"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"aBest.co ile nasıl para kazanırım?","acceptedAnswer":{"@type":"Answer","text":"Yatırımcı, kurucu, sermaye ortağı, satıcı veya kaşif olarak ABD, Almanya ve Türkiye'deki premium gayrimenkul projelerinden faydalanabilirsiniz."}}{"@type":"Question","name":"aBest.co'da Sermaye Ortağı nedir?","acceptedAnswer":{"@type":"Answer","text":"Sermaye Ortağı, gayrimenkul projelerine sermaye sağlar ve karşılığında cazip getiriler alır."}}{"@type":"Question","name":"aBest.co'da Kurucu ne yapar?","acceptedAnswer":{"@type":"Answer","text":"Kurucu, aBest.co platformunda projeler oluşturup geliştirir ve yatırımcılara erişim sağlar."}}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ana Sayfa","item":"https://www.abest.co/tr/"},{"@type":"ListItem","position":2,"name":"Fikirler","item":"https://www.abest.co/tr/earn-money"}]}
+</script>
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="aBest.co" />
+    <meta property="og:locale" content="tr_TR" />
+    <meta property="og:url" content="https://www.abest.co/tr/earn-money" />
+    <meta property="og:title" content="aBest.co ile Başlayın – Rolünüzü Seçin" />
+    <meta property="og:description" content="Kurucu, Yatırımcı, Sermaye Ortağı, Satıcı, İşletme veya Kaşif olarak – aBest.co sizi uluslararası pazarlardaki doğru ortaklarla buluşturur." />
+    <meta property="og:image" content="https://www.abest.co/assets/images/bg_main_blurred_new.webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@aBestco" />
+    <meta name="twitter:title" content="aBest.co ile Başlayın – Rolünüzü Seçin" />
+    <meta name="twitter:description" content="Kurucu, Yatırımcı, Sermaye Ortağı, Satıcı, İşletme veya Kaşif olarak – aBest.co sizi uluslararası pazarlardaki doğru ortaklarla buluşturur." />
+    <meta name="twitter:image" content="https://www.abest.co/assets/images/bg_main_blurred_new.webp" />
+</head>
+<body>
+    <div class="background-wrapper">
+        <img alt="Background" class="main-bg" id="hero-bg" src="/assets/images/bg_main_blurred_new.webp" />
+        <div class="bg-gradient-overlay"></div>
+    </div>
+    <div class="app-container">
+        <nav class="mobile-nav" id="mobile-nav">
+            <a class="nav-link" href="/tr/earn-money">Para Kazan</a>
+            <a class="nav-link" href="/tr/">Ana Sayfa</a>
+            <a class="nav-link" href="/tr/usa">ABD</a>
+            <a class="nav-link" href="/tr/deutschland">Almanya</a>
+            <a class="nav-link" href="/tr/turkiye">Türkiye</a>
+            <a class="nav-link" href="/tr/kontakt">İletişim</a>
+        </nav>
+        <header class="app-header fade-in-up" style="animation-delay: 0.1s;">
+            <a class="logo-link" href="/tr/">
+                <span style="font-size: 1.5rem; font-weight: 500; letter-spacing: -0.5px; color: var(--text-main);">
+                    <span style="color: var(--primary-blue);">a</span>Best<span style="color: var(--primary-blue);">.co</span>
+                </span>
+            </a>
+            <div class="header-actions-v2">
+                <a href="/tr/earn-money" class="header-icon-v2" aria-label="Earn Money">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                </a>
+                <a href="/login" class="header-icon-v2" aria-label="Login">
+                    <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </a>
+                <a href="/tr/kontakt" class="header-icon-v2" aria-label="İletişim">
+                    <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                </a>
+                <div aria-label="Toggle Navigation Menu" class="nav-icon" id="menu-btn"><span></span><span></span></div>
+            </div>
+        </header>
+
+        <main class="scroll-content">
+            <section class="hero fade-in-up" style="animation-delay: 0.2s;">
+                <div class="hero-content glass-chip">
+                    <h1>Rolünüzü Seçin &<br><span class="highlight">aBest.co ile Başlayın</span></h1>
+                    <p class="subtext">Kurucu, yatırımcı veya satıcı olun – doğru rolü bulun ve uluslararası ortaklarla bağlantı kurun.</p>
+                </div>
+            </section>
+
+            <section class="section-spacing fade-in-up" style="animation-delay: 0.25s; padding-top: 0;">
+                <div class="em-qualifier">
+                    <p>Hangi rolün size uyduğundan emin değil misiniz? Bir soruyu yanıtlayın:</p>
+                    <div class="em-qual-btns"><a href="/tr/earn-money/founder" class="em-qual-btn">💡 Bir fikrim veya projem var</a><a href="/tr/earn-money/investor" class="em-qual-btn">📈 Aktif yatırım yapmak istiyorum</a><a href="/tr/earn-money/capital-partner" class="em-qual-btn">🏦 Sermaye yatırmak istiyorum (%5 p.a.)</a><a href="/tr/earn-money/seller" class="em-qual-btn">🏠 Gayrimenkul satmak istiyorum</a><a href="/tr/earn-money/business" class="em-qual-btn">🏢 Şirketimi satmak istiyorum</a><a href="/tr/earn-money/explorer" class="em-qual-btn">🔍 Sadece bakıyorum</a></div>
+                </div>
+            </section>
+
+            <section class="section-spacing fade-in-up" style="animation-delay: 0.3s; padding-top: 0;">
+                <div class="em-grid">
+                    <a href="/tr/earn-money/founder" class="em-card" style="--accent: #3b82f6;">
+                        <div class="em-icon">💡</div>
+                        <div class="em-title">Kurucu</div>
+                        <div class="em-tag">Founder</div>
+                        <div class="em-desc">Fikriniz veya projeniz var – yatırımcıları, ortakları ve kaynakları bulun.</div>
+                        <span class="em-cta">Mehr erfahren <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                    </a>
+                    <a href="/tr/earn-money/investor" class="em-card" style="--accent: #f59e0b;">
+                        <div class="em-icon">📈</div>
+                        <div class="em-title">Yatırımcı</div>
+                        <div class="em-tag">Investor</div>
+                        <div class="em-desc">Aktif yatırım yapın – projelerimizde veya ortak yatırımcı olarak. Startuplar, gayrimenkul ve daha fazlası.</div>
+                        <span class="em-cta">Mehr erfahren <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                    </a>
+                    <a href="/tr/earn-money/capital-partner" class="em-card" style="--accent: #10b981;">
+                        <div class="em-icon">🏦</div>
+                        <div class="em-title">Sermaye Ortağı</div>
+                        <div class="em-tag">Capital Partner</div>
+                        <div class="em-desc">%5 p.a. sabit getiri – 1.000€'dan başlayan sessiz katılım · 1 yıldan itibaren · A veya B seçeneği.</div>
+                        <span class="em-cta">Mehr erfahren <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                    </a>
+                    <a href="/tr/earn-money/seller" class="em-card" style="--accent: #f97316;">
+                        <div class="em-icon">🏠</div>
+                        <div class="em-title">Satıcı</div>
+                        <div class="em-tag">Seller</div>
+                        <div class="em-desc">Gayrimenkul, arazi veya mülklerinizi dünya genelinde nitelikli alıcılara satın.</div>
+                        <span class="em-cta">Mehr erfahren <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                    </a>
+                    <a href="/tr/earn-money/business" class="em-card" style="--accent: #8b5cf6;">
+                        <div class="em-icon">🏢</div>
+                        <div class="em-title">İşletme</div>
+                        <div class="em-tag">Business</div>
+                        <div class="em-desc">Şirketinizi satın, ortak hissedar bulun veya yatırım tekliflerinizi sunun.</div>
+                        <span class="em-cta">Mehr erfahren <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                    </a>
+                    <a href="/tr/earn-money/explorer" class="em-card" style="--accent: #06b6d4;">
+                        <div class="em-icon">🔍</div>
+                        <div class="em-title">Kaşif</div>
+                        <div class="em-tag">Explorer</div>
+                        <div class="em-desc">Anlık taahhüt olmadan pazarları, trendleri ve fırsatları keşfedin.</div>
+                        <span class="em-cta">Mehr erfahren <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                    </a></div>
+            </section>
+
+            <section class="section-spacing fade-in-up" style="animation-delay: 0.35s; padding-top: 0;">
+                <div class="em-stats"><div class="em-stat"><span class="sv">14</span><span class="sl">Dil</span></div><div class="em-stat"><span class="sv">4</span><span class="sl">Kıta</span></div><div class="em-stat"><span class="sv">100+</span><span class="sl">Onaylı Ortaklar</span></div><div class="em-stat"><span class="sv">6</span><span class="sl">Mevcut Roller</span></div></div>
+            </section>
+
+            <section class="section-spacing fade-in-up" style="animation-delay: 0.4s;">
+                <div class="glass-panel">
+                    <h2 style="margin-bottom: 0.5rem;">Nasıl çalışır</h2>
+                    <div class="divider mt-2"></div>
+                    
+                    <div class="em-step">
+                        <div class="em-step-num">1</div>
+                        <div>
+                            <strong style="color: var(--text-main); display: block; margin-bottom: 4px; font-size: 0.9rem;">Rol seçin</strong>
+                            <p style="color: var(--text-muted); font-size: 0.82rem; margin: 0;">Size uyan rolü seçin – Kurucu, Yatırımcı, Sermaye Ortağı, Satıcı, İşletme veya Kaşif.</p>
+                        </div>
+                    </div>
+                    <div class="em-step">
+                        <div class="em-step-num">2</div>
+                        <div>
+                            <strong style="color: var(--text-main); display: block; margin-bottom: 4px; font-size: 0.9rem;">Profil oluşturun</strong>
+                            <p style="color: var(--text-muted); font-size: 0.82rem; margin: 0;">Ücretsiz kaydolun, profilinizi doldurun ve ne sunduğunuzu veya aradığınızı belirtin.</p>
+                        </div>
+                    </div>
+                    <div class="em-step">
+                        <div class="em-step-num">3</div>
+                        <div>
+                            <strong style="color: var(--text-main); display: block; margin-bottom: 4px; font-size: 0.9rem;">Bağlanın ve başlayın</strong>
+                            <p style="color: var(--text-muted); font-size: 0.82rem; margin: 0;">Ekibimiz bilgilerinizi inceler ve sizi uygun ortaklar, projeler ve fırsatlarla buluşturur.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-spacing fade-in-up" style="animation-delay: 0.45s; padding-top: 0;">
+                <div class="em-badges"><div class="em-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 11V7a5 5 0 0 1 10 0v4"/><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/></svg>SSL korumalı</div><div class="em-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Onaylı Ortaklar</div><div class="em-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>GDPR uyumlu</div><div class="em-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Uluslararası Pazarlar</div><div class="em-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Ücretsiz Kayıt</div></div>
+            </section>
+
+            <section class="section-spacing fade-in-up" style="animation-delay: 0.5s;">
+                <div class="glass-panel" style="text-align: center; padding: 32px 24px;">
+                    <h2 style="margin-bottom: 10px;">Başlamaya hazır mısınız?</h2>
+                    <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 22px; max-width: 340px; margin-left: auto; margin-right: auto;">Ücretsiz profil oluşturun ve rolünüzü seçin. Birkaç dakika içinde başlayabilirsiniz.</p>
+                    <a href="/tr/profil" class="glass-button ripple" style="display: inline-block; padding: 14px 32px; font-size: 0.95rem; font-weight: 600; text-decoration: none; border-radius: 30px;">
+                        Şimdi Profil Oluştur →
+                    </a>
+                    <p style="font-size: 0.72rem; color: var(--text-muted); margin-top: 12px;">Kredi kartı gerekmez · Ücretsiz başlayın</p>
+                </div>
+            </section>
+        </main>
+
+        <footer class="app-footer section-spacing fade-in-up" style="animation-delay: 0.8s;">
+            <div class="slim-footer-content">
+                
+                <a href="/tr/terms" class="footer-link">Kullanım Koşulları</a>
+                <span class="footer-separator">|</span>
+                <a href="/tr/cookie-policy" class="footer-link">Çerez Politikası</a>
+                <span class="footer-separator">|</span>
+                <a href="/tr/disclaimer" class="footer-link">Sorumluluk Reddi</a>
+                <span class="footer-separator">|</span>
+                <a href="/de/impressum" class="footer-link">Künye</a>
+                <span class="footer-separator">|</span>
+                <a href="/tr/kontakt" class="footer-link">Gizlilik</a>
+                <span class="footer-separator">|</span>
+                <a href="/tr/kontakt" class="footer-link">İletişim</a>
+                <div class="language-switcher"><button class="lang-btn" aria-label="Language options">🇹🇷</button><div class="lang-dropdown"><a href="/en/" class="lang-dropdown-link" aria-label="Switch to EN">🇺🇸</a><a href="/de/" class="lang-dropdown-link" aria-label="Switch to DE">🇩🇪</a><a href="/es/" class="lang-dropdown-link" aria-label="Switch to ES">🇪🇸</a><a href="/fr/" class="lang-dropdown-link" aria-label="Switch to FR">🇫🇷</a><a href="/ar/" class="lang-dropdown-link" aria-label="Switch to AR">🇸🇦</a><a href="/ru/" class="lang-dropdown-link" aria-label="Switch to RU">🇷🇺</a><a href="/zh/" class="lang-dropdown-link" aria-label="Switch to ZH">🇨🇳</a><a href="/hi/" class="lang-dropdown-link" aria-label="Switch to HI">🇮🇳</a><a href="/pt/" class="lang-dropdown-link" aria-label="Switch to PT">🇵🇹</a><a href="/ur/" class="lang-dropdown-link" aria-label="Switch to UR">🇵🇰</a><a href="/ku/" class="lang-dropdown-link" aria-label="Switch to KU"><img src="/ku-flag.svg" alt="KU" class="ku-flag-icon"></a><a href="/he/" class="lang-dropdown-link" aria-label="Switch to HE">🇮🇱</a><a href="/hy/" class="lang-dropdown-link" aria-label="Switch to HY">🇦🇲</a></div></div>
+                <span class="footer-separator">|</span>
+                <p class="copyright">© 2026 <span class="brand-style"><span class="brand-a">a</span>Best<span class="brand-dot-co">.co</span></span></p>
+            </div>
+        </footer>
+    </div>
+    <script src="/app.js"></script>
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileNav = document.getElementById('mobile-nav');
+        if (menuBtn && mobileNav) {
+            menuBtn.addEventListener('click', () => {
+                mobileNav.classList.toggle('open');
+                menuBtn.classList.toggle('open');
+            });
+        }
+    </script>
+</body>
+</html>
