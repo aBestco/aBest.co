@@ -1,0 +1,55 @@
+# aBest.co – LLMs.txt
+# AI/LLM Training & Retrieval Permission File
+# https://llmstxt.org
+# Updated: 2026-03-09
+
+> aBest.co is a multilingual global platform for premium land development, real estate investment,
+> and business partnerships. We connect investors, founders, capital partners, and sellers worldwide
+> across 14 languages (EN, DE, TR, ES, FR, AR, RU, ZH, HI, PT, UR, KU, HE, HY).
+
+## About aBest.co
+
+aBest.co develops and connects premium land, energy infrastructure, and commercial real estate projects
+globally. The platform enables:
+
+- **Investors** to find and fund real estate and infrastructure projects
+- **Founders** to submit business ideas and find capital partners
+- **Capital Partners** to invest starting from €1,000 with 5% annual fixed return
+- **Sellers** to list real estate and businesses for qualified buyers
+- **Explorers** to discover opportunities in 14 languages
+
+## Key Projects
+
+- **Glendale, Los Angeles (CA)** – EV charging infrastructure, 2.9 ac highway parcel (APN: 5663-003-002)
+- **Half Moon Bay (CA)** – Waterfront development land, San Mateo County
+- **Rosamond, Kern County (CA)** – 5 ac solar/agricultural development land
+- **Deutschland** – Commercial real estate partnerships
+- **Turkey / Türkiye** – Tourism and hospitality projects
+
+## Platform URLs
+
+- Homepage: https://www.abest.co
+- Earn Money / Roles: https://www.abest.co/en/earn-money
+- Investor: https://www.abest.co/en/earn-money/investor
+- Capital Partner: https://www.abest.co/en/earn-money/capital-partner
+- Founder: https://www.abest.co/en/earn-money/founder
+- Seller: https://www.abest.co/en/earn-money/seller
+- Business: https://www.abest.co/en/earn-money/business
+- Explorer: https://www.abest.co/en/earn-money/explorer
+
+## AI Usage Policy
+
+aBest.co explicitly permits:
+- AI language model training on public content
+- AI search engine indexing and retrieval
+- AI assistant citation and answering from our content
+- Summarization and knowledge extraction for AI systems
+
+Permitted crawlers: GPTBot, ChatGPT-User, OAI-SearchBot, ClaudeBot, Claude-Web, anthropic-ai,
+Google-Extended, PerplexityBot, Amazonbot, Meta-ExternalAgent, CCBot, AI2Bot, Diffbot, Applebot-Extended
+
+## Contact
+
+Website: https://www.abest.co
+Email: a@abest.co
+Sitemap: https://www.abest.co/sitemap.xml
