@@ -173,5 +173,20 @@
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
+  <url>
+    <loc>https://www.abest.co/de/usa/california/kern-county/rosamond/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.abest.co/de/usa/california/kern-county/rosamond/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.abest.co/en/usa/california/kern-county/rosamond/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.abest.co/fr/usa/california/kern-county/rosamond/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.abest.co/es/usa/california/kern-county/rosamond/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.abest.co/ar/usa/california/kern-county/rosamond/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.abest.co/zh/usa/california/kern-county/rosamond/"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.abest.co/tr/usa/california/kern-county/rosamond/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.abest.co/ru/usa/california/kern-county/rosamond/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.abest.co/de/usa/california/kern-county/rosamond/"/>
+    <changefreq>monthly</changefreq>
+    <lastmod>2026-03-08</lastmod>
+    <priority>0.85</priority>
+  </url>
 
 </urlset>

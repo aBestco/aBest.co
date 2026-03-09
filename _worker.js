@@ -192,6 +192,18 @@ export default {
             }
         }
 
+        // --- 1.5 ROSAMOND LAND PROJECT ---
+        // /xx/usa/california/kern-county/rosamond  →  serve /de/usa/california/kern-county/rosamond/index.html
+        if (cleanPath === '/usa/california/kern-county/rosamond' ||
+            cleanPath === '/usa/california/kern-county/rosamond/') {
+            const rmdUrl = new URL(request.url);
+            rmdUrl.pathname = '/de/usa/california/kern-county/rosamond/index.html';
+            const rmdReq = new Request(rmdUrl.toString(), request);
+            rmdReq.headers.set('X-Internal-Fetch', 'true');
+            const rmdRes = await env.ASSETS.fetch(rmdReq);
+            if (rmdRes.ok) return new Response(rmdRes.body, { headers: rmdRes.headers });
+        }
+
         // --- 3. 301 REDIRECTS ---
         // /de/ideen → /de/earn-money (URL rename)
         if (pathname === '/de/ideen' || pathname === '/de/ideen.html') {
