@@ -28,7 +28,6 @@ jobs:
           set +e
           npx wrangler pages deploy . \
             --project-name=abest-co \
-            --account-id=23a6b5565d032e6bf1ffee7931c279cc \
             > deploy_log.txt 2>&1
           STATUS=$?
           set -e
