@@ -184,7 +184,17 @@ export default {
             // For /admin and /admin/ ASSETS.fetch will handle it below
         }
 
-        // --- 1.4 EARN-MONEY SUB-PATHS ---
+        // --- 1.4 EARN-MONEY MAIN PAGE + SUB-PATHS ---
+        // /xx/earn-money  →  serve /xx/earn-money.html directly (bypasses _redirects cache)
+        if (cleanPath === '/earn-money' || cleanPath === '/earn-money/') {
+            const emMainLang = pathname.match(/^\/([a-z]{2})(?:\/|$)/)?.[1] || 'de';
+            const emMainUrl = new URL(request.url);
+            emMainUrl.pathname = `/${emMainLang}/earn-money.html`;
+            const emMainReq = new Request(emMainUrl.toString(), request);
+            emMainReq.headers.set('X-Internal-Fetch', 'true');
+            const emMainRes = await env.ASSETS.fetch(emMainReq);
+            if (emMainRes.ok) return new Response(emMainRes.body, { headers: emMainRes.headers });
+        }
         // /de/earn-money/founder  →  serve /de/earn-money/founder.html
         // Falls back to /de/ version if localized sub-page doesn't exist
         if (cleanPath.startsWith('/earn-money/')) {
