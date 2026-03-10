@@ -119,14 +119,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (exploreBtn) {
         exploreBtn.addEventListener('click', () => {
-            const projectTitle = document.querySelector('.featured-header h3').innerText;
-            const projectTags = document.querySelector('.project-tags').innerText;
-            const projectImg = document.querySelector('.image-preview img').src;
+            const escText = (str) => { const d = document.createElement('div'); d.textContent = str; return d.innerHTML; };
+            const escAttr = (str) => str.replace(/[&"'<>]/g, c => ({'&':'&amp;','"':'&quot;',"'":'&#39;','<':'&lt;','>':'&gt;'}[c]));
+            const projectTitle = document.querySelector('.featured-header h3')?.innerText || '';
+            const projectTags = document.querySelector('.project-tags')?.innerText || '';
+            const projectImg = document.querySelector('.image-preview img')?.src || '';
 
             const content = `
-                <img src="${projectImg}" alt="${projectTitle}" style="width:100%; border-radius:16px; margin-bottom:1.5rem;">
-                <h2 style="margin-bottom:0.5rem;">${projectTitle}</h2>
-                <p style="color:var(--text-accent); margin-bottom:1rem;">${projectTags}</p>
+                <img src="${escAttr(projectImg)}" alt="${escAttr(projectTitle)}" style="width:100%; border-radius:16px; margin-bottom:1.5rem;">
+                <h2 style="margin-bottom:0.5rem;">${escText(projectTitle)}</h2>
+                <p style="color:var(--text-accent); margin-bottom:1rem;">${escText(projectTags)}</p>
                 <p>Detailed project insights: This flagship development incorporates state-of-the-art infrastructure. The project emphasizes sustainable architecture and modern urban lifestyle.</p>
                 <div class="divider" style="margin: 1.5rem 0;"></div>
                 <button class="glass-button ripple" onclick="location.reload()">Back to Dashboard</button>
@@ -273,9 +275,11 @@ function toggleLangMenu(show) {
         backdrop.addEventListener('click', () => toggleLangMenu(false));
     }
 
+    if (!dropdown) return;
+
     if (show) {
         // Ensure dropdown is moved to body so it's not trapped in footer stacking context
-        if (dropdown && dropdown.parentElement !== document.body) {
+        if (dropdown.parentElement !== document.body) {
             document.body.appendChild(dropdown);
         }
         dropdown.style.display = 'grid';
@@ -330,6 +334,7 @@ function handleContactSubmit(event) {
 
     var form = event.target;
     var btn = form.querySelector('button[type="submit"]');
+    if (!btn) return;
     var originalText = btn.innerText;
 
     btn.innerText = "...";
@@ -776,7 +781,8 @@ async function handleRegisterSubmit(event, pwMismatchMsg) {
             if (data.token) {
                 localStorage.setItem('aBest_session', data.token);
                 var _nextParamReg = new URLSearchParams(window.location.search).get('next');
-                window.location.href = (_nextParamReg && _nextParamReg.startsWith('/')) ? decodeURIComponent(_nextParamReg) : '/profile';
+                var _safeNextReg = (_nextParamReg && _nextParamReg.startsWith('/') && !_nextParamReg.startsWith('//')) ? _nextParamReg : '/profile';
+                window.location.href = _safeNextReg;
             } else {
                 alert('Registrierung erfolgreich. Bitte anmelden.');
                 btn.innerText = originalText;
@@ -824,7 +830,8 @@ async function handleAuthSubmit(event, endpoint, redirectUrl) {
                 localStorage.setItem('aBest_session', data.token);
                 // Redirect to ?next= param if present and safe, otherwise default
                 var _nextParam = new URLSearchParams(window.location.search).get('next');
-                window.location.href = (_nextParam && _nextParam.startsWith('/')) ? decodeURIComponent(_nextParam) : redirectUrl;
+                var _safeNext = (_nextParam && _nextParam.startsWith('/') && !_nextParam.startsWith('//')) ? _nextParam : redirectUrl;
+                window.location.href = _safeNext;
             } else {
                 // This branch should ideally not be hit if token is always returned on success
                 alert('Erfolgreich, aber kein Token erhalten. Bitte versuchen Sie sich anzumelden.');
@@ -857,7 +864,8 @@ window.handleGoogleSignIn = async function (response) {
             if (res.ok && data.token) {
                 localStorage.setItem('aBest_session', data.token);
                 var _nextParamG = new URLSearchParams(window.location.search).get('next');
-                window.location.href = (_nextParamG && _nextParamG.startsWith('/')) ? decodeURIComponent(_nextParamG) : '/profile';
+                var _safeNextG = (_nextParamG && _nextParamG.startsWith('/') && !_nextParamG.startsWith('//')) ? _nextParamG : '/profile';
+                window.location.href = _safeNextG;
             } else {
                 alert('Google Sign-In fehlgeschlagen: ' + (data.error || 'Unbekannter Fehler'));
             }
@@ -994,12 +1002,19 @@ window.loadMessages = async function () {
     const thread = document.getElementById('message-thread');
     if (!thread) return;
 
+    // HTML-escape helper to prevent XSS
+    const escapeHtml = (str) => {
+        const div = document.createElement('div');
+        div.textContent = str;
+        return div.innerHTML;
+    };
+
     try {
         const res = await fetch('/api/messages', {
             headers: { 'Authorization': `Bearer ${token}` }
         });
 
-        if (!res.ok) throw new Error();
+        if (!res.ok) throw new Error('Failed to load messages');
 
         const messages = await res.json();
 
@@ -1011,12 +1026,13 @@ window.loadMessages = async function () {
                 const align = isUser ? 'right' : 'left';
                 const bg = isUser ? 'var(--primary-blue)' : 'rgba(255,255,255,0.1)';
                 const date = new Date(msg.timestamp).toLocaleString();
-                return `<div style="text-align:${align};margin-bottom:10px;"><div style="display:inline-block;padding:10px 15px;border-radius:8px;background:${bg};max-width:80%;text-align:left;"><div style="font-size:0.8rem;color:rgba(255,255,255,0.7);margin-bottom:4px;">${isUser ? 'Sie' : 'aBest.co Support'} - ${date}</div><div>${msg.text}</div></div></div>`;
+                const safeText = escapeHtml(msg.text);
+                return `<div style="text-align:${align};margin-bottom:10px;"><div style="display:inline-block;padding:10px 15px;border-radius:8px;background:${bg};max-width:80%;text-align:left;"><div style="font-size:0.8rem;color:rgba(255,255,255,0.7);margin-bottom:4px;">${isUser ? 'Sie' : 'aBest.co Support'} - ${date}</div><div>${safeText}</div></div></div>`;
             }).join('');
             thread.scrollTop = thread.scrollHeight;
         }
     } catch (err) {
-        console.error('Error loading messages:', err);
+        console.error('Error loading messages:', err.message);
     }
 };
 

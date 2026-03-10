@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ur">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <title>کمپنی فروخت کریں – ہم خریدتے ہیں یا سرمایہ کار تلاش کرتے ہیں | aBest.co</title>
+    <meta content="aBest.co کے ساتھ کمپنی فروخت کریں - براہ راست خریداری، سرمایہ کار کا موازنہ یا مشترکہ ترقی۔ بین الاقوامی، محفوظ، پروفیشنل۔" name="description" />
+    <link href="/favicon.png" rel="icon" type="image/png" />
+    <link href="/index.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="canonical" href="https://www.abest.co/ur/earn-money/business" />
+    <style>
+        /* ── Business Page — Teal/Cyan Theme ── */
+        :root {
+            --biz-teal: #14b8a6;
+            --biz-cyan: #06b6d4;
+            --biz-teal-dim: rgba(20,184,166,0.15);
+            --biz-cyan-dim: rgba(6,182,212,0.12);
+        }
+
+        /* ── HERO ── */
+        .biz-hero {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 90px 20px 16px;
+            text-align: center;
+            overflow: hidden;
+        }
+        .biz-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 60% 40% at 30% 30%, rgba(20,184,166,0.18) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 50% at 75% 70%, rgba(6,182,212,0.12) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .biz-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 5px 16px;
+            border-radius: 22px;
+            background: rgba(20,184,166,0.12);
+            border: 1px solid rgba(20,184,166,0.35);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            color: var(--biz-teal);
+            margin-bottom: 20px;
+        }
+        .biz-badge-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--biz-teal); animation: biz-pulse 1.8s ease-in-out infinite; }
+        @keyframes biz-pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.7)} }
+        .biz-hero h1 { font-size: clamp(1.9rem,5vw,3.2rem); font-weight: 800; line-height: 1.12; margin: 0 0 6px; color: var(--text-main); }
+        .biz-hero h1 span { color: var(--biz-teal); }
+        .biz-hero-sub { font-size: clamp(1.1rem,3vw,1.6rem); font-weight: 600; color: var(--biz-cyan); margin: 0 0 16px; }
+        .biz-hero-desc { font-size: 0.97rem; color: var(--text-muted); max-width: 560px; margin: 0 auto 28px; line-height: 1.65; }
+
+        /* Trust Chips */
+        .biz-chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 32px; }
+        .biz-chip {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 6px 14px; border-radius: 20px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.12);
+            font-size: 0.78rem; font-weight: 600; color: var(--text-main);
+        }
+        .biz-chip .c-icon { color: var(--biz-teal); font-style: normal; }
+
+        /* Hero CTAs */
+        .biz-hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+        .biz-btn-primary {
+            padding: 14px 28px; border-radius: 12px; font-size: 0.95rem; font-weight: 700;
+            background: linear-gradient(135deg, var(--biz-teal), var(--biz-cyan));
+            color: #fff; border: none; cursor: pointer; transition: opacity .2s, transform .2s;
+        }
+        .biz-btn-primary:hover { opacity: .88; transform: translateY(-1px); }
+        .biz-btn-ghost {
+            padding: 14px 28px; border-radius: 12px; font-size: 0.95rem; font-weight: 600;
+            background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15);
+            color: var(--text-main); cursor: pointer; transition: background .2s;
+        }
+        .biz-btn-ghost:hover { background: rgba(255,255,255,0.1); }
+
+        /* ── SECTIONS ── */
+        .biz-section { padding: 56px 20px; max-width: 780px; margin: 0 auto; }
+        .biz-section-label {
+            font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+            text-transform: uppercase; color: var(--biz-teal); margin-bottom: 8px;
+        }
+        .biz-section h2 { font-size: clamp(1.4rem,3.5vw,1.9rem); font-weight: 800; margin: 0 0 8px; color: var(--text-main); }
+        .biz-section-intro { font-size: 0.93rem; color: var(--text-muted); margin: 0 0 28px; line-height: 1.6; }
+        .biz-accent-line { display: block; width: 36px; height: 3px; border-radius: 2px; background: var(--biz-teal); margin: 10px 0 0; }
+
+        /* ── STATS ── */
+        .biz-stats {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px;
+            background: rgba(255,255,255,0.05); border-radius: 16px; overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.08); margin: 0 20px;
+        }
+        .biz-stat { padding: 20px 10px; text-align: center; background: var(--glass-bg); }
+        .biz-stat-val { font-size: 1.8rem; font-weight: 800; color: var(--biz-teal); display: block; }
+        .biz-stat-lbl { font-size: 0.72rem; color: var(--text-muted); margin-top: 2px; }
+        @media(max-width:480px){
+            .biz-stats { grid-template-columns: repeat(2,1fr); }
+        }
+
+        /* ── THREE WAYS ── */
+        .biz-ways-grid { display: grid; gap: 14px; }
+        .biz-way-card {
+            border-radius: 18px; padding: 24px 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: var(--glass-bg);
+            cursor: pointer; transition: border-color .2s, transform .2s;
+            position: relative; overflow: hidden;
+        }
+        .biz-way-card::before { content: ''; position: absolute; inset: 0; opacity: 0; transition: opacity .2s; }
+        .biz-way-card.direct { border-color: rgba(20,184,166,0.3); }
+        .biz-way-card.direct::before { background: radial-gradient(ellipse 80% 80% at 10% 0%, rgba(20,184,166,0.08), transparent); }
+        .biz-way-card.invest { border-color: rgba(6,182,212,0.3); }
+        .biz-way-card.invest::before { background: radial-gradient(ellipse 80% 80% at 10% 0%, rgba(6,182,212,0.08), transparent); }
+        .biz-way-card.develop { border-color: rgba(251,191,36,0.25); }
+        .biz-way-card.develop::before { background: radial-gradient(ellipse 80% 80% at 10% 0%, rgba(251,191,36,0.06), transparent); }
+        .biz-way-card:hover { transform: translateY(-2px); }
+        .biz-way-card:hover::before { opacity: 1; }
+        .biz-way-top { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 12px; }
+        .biz-way-icon { font-size: 2rem; flex-shrink: 0; }
+        .biz-way-title { font-size: 1.05rem; font-weight: 700; color: var(--text-main); margin-bottom: 4px; }
+        .biz-way-tag {
+            display: inline-block; padding: 2px 10px; border-radius: 10px; font-size: 0.7rem; font-weight: 700;
+        }
+        .biz-way-card.direct .biz-way-tag { background: var(--biz-teal-dim); color: var(--biz-teal); }
+        .biz-way-card.invest .biz-way-tag { background: var(--biz-cyan-dim); color: var(--biz-cyan); }
+        .biz-way-card.develop .biz-way-tag { background: rgba(251,191,36,0.12); color: #fbbf24; }
+        .biz-way-body { font-size: 0.84rem; color: var(--text-muted); line-height: 1.55; margin-bottom: 14px; }
+        .biz-way-checks { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+        .biz-way-checks li { font-size: 0.82rem; color: var(--text-muted); display: flex; align-items: flex-start; gap: 8px; }
+        .biz-way-checks li::before { content: '✓'; color: var(--biz-teal); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+        .biz-way-card.invest .biz-way-checks li::before { color: var(--biz-cyan); }
+        .biz-way-card.develop .biz-way-checks li::before { color: #fbbf24; }
+        .biz-choose-hint {
+            border-radius: 14px; padding: 16px 18px;
+            background: rgba(20,184,166,0.05); border: 1px solid rgba(20,184,166,0.2);
+            font-size: 0.84rem; color: var(--text-muted); line-height: 1.5; margin-top: 4px;
+        }
+        .biz-choose-hint strong { color: var(--biz-teal); }
+
+        /* ── COMPARISON TABLE ── */
+        .biz-compare { border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); margin-top: 4px; }
+        .biz-compare-head { display: grid; grid-template-columns: 1fr 1fr 1fr; background: rgba(255,255,255,0.06); }
+        .biz-compare-head div { padding: 12px 14px; font-size: 0.78rem; font-weight: 700; text-align: center; }
+        .biz-compare-head div:first-child { text-align: left; color: var(--text-muted); }
+        .biz-compare-head .ch-direct { color: var(--biz-teal); }
+        .biz-compare-head .ch-invest { color: var(--biz-cyan); }
+        .biz-compare-row { display: grid; grid-template-columns: 1fr 1fr 1fr; border-top: 1px solid rgba(255,255,255,0.06); }
+        .biz-compare-row div { padding: 11px 14px; font-size: 0.8rem; }
+        .biz-compare-row div:first-child { color: var(--text-muted); }
+        .biz-compare-row div:not(:first-child) { text-align: center; font-weight: 600; }
+        .biz-compare-row:nth-child(odd) { background: rgba(255,255,255,0.02); }
+        .txt-teal { color: var(--biz-teal); }
+        .txt-cyan { color: var(--biz-cyan); }
+
+        /* ── BRANCHEN GRID ── */
+        .biz-sectors {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+        }
+        .biz-sector-card {
+            border-radius: 14px; padding: 16px 12px; text-align: center;
+            background: var(--glass-bg); border: 1px solid rgba(255,255,255,0.09);
+            cursor: pointer; transition: border-color .2s, background .2s, transform .2s;
+        }
+        .biz-sector-card:hover { border-color: rgba(20,184,166,0.4); background: var(--biz-teal-dim); transform: translateY(-2px); }
+        .biz-sector-icon { font-size: 1.8rem; margin-bottom: 6px; display: block; }
+        .biz-sector-name { font-size: 0.78rem; font-weight: 600; color: var(--text-main); display: block; }
+        .biz-sector-sub { font-size: 0.68rem; color: var(--text-muted); margin-top: 2px; display: block; }
+        @media(max-width:420px){ .biz-sectors { grid-template-columns: repeat(2,1fr); } }
+
+        /* ── EXAMPLE DEALS ── */
+        .biz-deals { display: flex; flex-direction: column; gap: 14px; }
+        .biz-deal-card {
+            border-radius: 16px; padding: 20px 18px;
+            background: var(--glass-bg); border: 1px solid rgba(255,255,255,0.09);
+            position: relative; overflow: hidden;
+        }
+        .biz-deal-tag {
+            display: inline-block; padding: 3px 10px; border-radius: 8px;
+            font-size: 0.7rem; font-weight: 700; margin-bottom: 10px;
+        }
+        .tag-direct { background: var(--biz-teal-dim); color: var(--biz-teal); }
+        .tag-invest { background: var(--biz-cyan-dim); color: var(--biz-cyan); }
+        .tag-develop { background: rgba(251,191,36,0.12); color: #fbbf24; }
+        .biz-deal-name { font-size: 1rem; font-weight: 700; color: var(--text-main); margin-bottom: 4px; }
+        .biz-deal-loc { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 12px; }
+        .biz-deal-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .biz-deal-row { display: flex; flex-direction: column; }
+        .biz-deal-row span:first-child { font-size: 0.7rem; color: var(--text-muted); margin-bottom: 2px; }
+        .biz-deal-row span:last-child { font-size: 0.84rem; font-weight: 600; color: var(--text-main); }
+        .biz-deal-row .highlight { color: var(--biz-teal); }
+
+        /* ── PROCESS ── */
+        .biz-steps { display: flex; flex-direction: column; gap: 0; }
+        .biz-step {
+            display: flex; gap: 16px; align-items: flex-start;
+            padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .biz-step:last-child { border-bottom: none; padding-bottom: 0; }
+        .biz-step-num {
+            flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%;
+            background: var(--biz-teal-dim); border: 2px solid rgba(20,184,166,0.4);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.95rem; font-weight: 800; color: var(--biz-teal);
+        }
+        .biz-step-title { font-size: 0.92rem; font-weight: 700; color: var(--text-main); margin-bottom: 5px; }
+        .biz-step-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.55; margin: 0; }
+
+        /* ── BENEFITS ── */
+        .biz-benefits { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        .biz-benefit {
+            border-radius: 14px; padding: 18px 14px;
+            background: var(--glass-bg); border: 1px solid rgba(255,255,255,0.09);
+        }
+        .biz-benefit-icon { font-size: 1.6rem; margin-bottom: 8px; display: block; }
+        .biz-benefit-title { font-size: 0.85rem; font-weight: 700; color: var(--text-main); margin-bottom: 5px; display: block; }
+        .biz-benefit-desc { font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; margin: 0; }
+
+        /* ── SECURITY ── */
+        .biz-security-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; }
+        .biz-sec-card {
+            border-radius: 12px; padding: 16px 14px;
+            background: rgba(20,184,166,0.05); border: 1px solid rgba(20,184,166,0.18);
+        }
+        .biz-sec-card .sec-icon { font-size: 1.4rem; margin-bottom: 8px; display: block; }
+        .biz-sec-card strong { font-size: 0.83rem; font-weight: 700; color: var(--text-main); display: block; margin-bottom: 4px; }
+        .biz-sec-card p { font-size: 0.76rem; color: var(--text-muted); line-height: 1.45; margin: 0; }
+
+        /* ── TESTIMONIALS ── */
+        .biz-testimonials { display: flex; flex-direction: column; gap: 14px; }
+        .biz-testi {
+            border-radius: 16px; padding: 20px 18px;
+            background: var(--glass-bg); border: 1px solid rgba(255,255,255,0.09);
+        }
+        .biz-stars { color: #f59e0b; font-size: 0.9rem; margin-bottom: 10px; letter-spacing: 2px; }
+        .biz-testi-text { font-size: 0.87rem; color: var(--text-muted); font-style: italic; line-height: 1.6; margin-bottom: 14px; }
+        .biz-testi-author { display: flex; align-items: center; gap: 10px; }
+        .biz-testi-avatar {
+            width: 38px; height: 38px; border-radius: 50%;
+            background: var(--biz-teal-dim); border: 2px solid rgba(20,184,166,0.3);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.85rem; font-weight: 700; color: var(--biz-teal);
+        }
+        .biz-testi-name { font-size: 0.83rem; font-weight: 700; color: var(--text-main); }
+        .biz-testi-loc { font-size: 0.74rem; color: var(--text-muted); }
+
+        /* ── FORM ── */
+        .biz-form-wrap {
+            border-radius: 20px; padding: 28px 20px;
+            background: var(--glass-bg); border: 1px solid rgba(20,184,166,0.25);
+        }
+        .biz-form-title { font-size: 1.1rem; font-weight: 800; color: var(--text-main); margin-bottom: 6px; }
+        .biz-form-sub { font-size: 0.83rem; color: var(--text-muted); margin-bottom: 20px; }
+
+        /* Way buttons */
+        .biz-way-btns { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 18px; }
+        .biz-way-btn {
+            padding: 10px 8px; border-radius: 10px; font-size: 0.76rem; font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.04);
+            color: var(--text-muted); cursor: pointer; text-align: center; transition: all .2s;
+        }
+        .biz-way-btn .btn-icon { font-size: 1.1rem; display: block; margin-bottom: 3px; }
+        .biz-way-btn.active-direct { background: var(--biz-teal-dim); border-color: var(--biz-teal); color: var(--biz-teal); }
+        .biz-way-btn.active-invest { background: var(--biz-cyan-dim); border-color: var(--biz-cyan); color: var(--biz-cyan); }
+        .biz-way-btn.active-develop { background: rgba(251,191,36,0.12); border-color: #fbbf24; color: #fbbf24; }
+
+        /* Form fields */
+        .biz-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+        .biz-form-grid.full { grid-template-columns: 1fr; }
+        .biz-input {
+            width: 100%; padding: 11px 14px; border-radius: 10px; font-size: 0.85rem;
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12);
+            color: var(--text-main); outline: none; transition: border-color .2s; box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+        .biz-input:focus { border-color: var(--biz-teal); }
+        .biz-input::placeholder { color: var(--text-muted); }
+        .biz-select {
+            width: 100%; padding: 11px 14px; border-radius: 10px; font-size: 0.85rem;
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12);
+            color: var(--text-main); outline: none; transition: border-color .2s; box-sizing: border-box;
+            font-family: 'Outfit', sans-serif; appearance: none; cursor: pointer;
+        }
+        .biz-select:focus { border-color: var(--biz-teal); }
+        .biz-select option { background: #1a1a2e; color: var(--text-main); }
+        .biz-textarea {
+            width: 100%; padding: 11px 14px; border-radius: 10px; font-size: 0.85rem;
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12);
+            color: var(--text-main); outline: none; transition: border-color .2s; box-sizing: border-box;
+            font-family: 'Outfit', sans-serif; resize: vertical; min-height: 90px;
+        }
+        .biz-textarea:focus { border-color: var(--biz-teal); }
+        .biz-textarea::placeholder { color: var(--text-muted); }
+        .biz-form-note { font-size: 0.74rem; color: var(--text-muted); margin: 12px 0 16px; }
+        .biz-submit-btn {
+            width: 100%; padding: 15px; border-radius: 12px; font-size: 1rem; font-weight: 700;
+            background: linear-gradient(135deg, var(--biz-teal), var(--biz-cyan));
+            color: #fff; border: none; cursor: pointer; transition: opacity .2s, transform .2s;
+        }
+        .biz-submit-btn:hover { opacity: .88; transform: translateY(-1px); }
+        .biz-form-success {
+            display: none; text-align: center; padding: 24px 0;
+        }
+        .biz-form-success .success-icon { font-size: 2.5rem; margin-bottom: 10px; }
+        .biz-form-success p { font-size: 0.88rem; color: var(--text-muted); }
+        .biz-form-success strong { color: var(--biz-teal); font-size: 1.05rem; display: block; margin-bottom: 6px; }
+
+        /* ── اکثر پوچھے جانے والے سوالات ── */
+        .biz-faq { display: flex; flex-direction: column; gap: 8px; }
+        .biz-faq-item {
+            border-radius: 12px; overflow: hidden;
+            background: var(--glass-bg); border: 1px solid rgba(255,255,255,0.09);
+        }
+        .biz-faq-q {
+            width: 100%; padding: 16px 18px; text-align: left; background: none;
+            border: none; color: var(--text-main); font-size: 0.88rem; font-weight: 600;
+            cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px;
+            font-family: 'Outfit', sans-serif;
+        }
+        .biz-faq-arrow { font-size: 0.75rem; color: var(--text-muted); transition: transform .25s; flex-shrink: 0; }
+        .biz-faq-item.open .biz-faq-arrow { transform: rotate(180deg); }
+        .biz-faq-a {
+            max-height: 0; overflow: hidden; transition: max-height .3s ease;
+            font-size: 0.83rem; color: var(--text-muted); line-height: 1.6;
+        }
+        .biz-faq-item.open .biz-faq-a { max-height: 300px; }
+        .biz-faq-a-inner { padding: 0 18px 16px; }
+
+        /* ── STICKY CTA ── */
+        .biz-sticky {
+            position: fixed; bottom: 0; left: 0; right: 0; z-index: 99;
+            background: rgba(20,184,166,0.92); backdrop-filter: blur(12px);
+            padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+        }
+        .biz-sticky-text { font-size: 0.78rem; font-weight: 600; color: #fff; line-height: 1.3; }
+        .biz-sticky-btn {
+            flex-shrink: 0; padding: 10px 20px; border-radius: 10px; font-size: 0.85rem; font-weight: 700;
+            background: #fff; color: var(--biz-teal); border: none; cursor: pointer; white-space: nowrap;
+            transition: opacity .2s;
+        }
+        .biz-sticky-btn:hover { opacity: .88; }
+    </style>
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#007aff" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="aBest.co" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="aBest.co" />
+    <meta property="og:locale" content="ur_PK" />
+    <meta property="og:url" content="https://www.abest.co/ur/earn-money" />
+    <meta property="og:title" content="کمپنی فروخت کریں – ہم خریدتے ہیں یا سرمایہ کار تلاش کرتے ہیں | aBest.co" />
+    <meta property="og:description" content="Global Premium Land & Real Estate Development." />
+    <meta property="og:image" content="https://www.abest.co/assets/images/bg_main_blurred_new.webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@aBestco" />
+    <meta name="twitter:title" content="کمپنی فروخت کریں – ہم خریدتے ہیں یا سرمایہ کار تلاش کرتے ہیں | aBest.co" />
+    <meta name="twitter:description" content="Global Premium Land & Real Estate Development." />
+    <meta name="twitter:image" content="https://www.abest.co/assets/images/bg_main_blurred_new.webp" />
+</head>
+<body class="dark-mode">
+
+    <!-- Background -->
+    <div class="background-wrapper">
+        <img alt="Background" class="main-bg" src="/assets/images/bg_main_blurred_new.webp"/>
+        <div class="bg-gradient-overlay"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="app-header">
+        <a class="logo-link" href="/ur/">
+            <span style="font-size:1.4rem;font-weight:500;color:var(--text-main);">
+                <span style="color:var(--primary-blue);">a</span>Best<span style="color:var(--primary-blue);">.co</span>
+            </span>
+        </a>
+        <div style="display:flex;align-items:center;gap:12px;">
+            <a href="/ur/" class="header-icon-v2" aria-label="گھر"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></a>
+            <a href="/ur/profil" class="header-icon-v2" aria-label="پروفائل"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+        </div>
+    </header>
+
+    <!-- BREADCRUMB + HERO -->
+    <section class="biz-hero">
+        <nav style="font-size:0.75rem;color:var(--text-muted);margin-bottom:20px;align-self:flex-start;width:100%;max-width:780px;">
+            <a href="/ur/earn-money" style="color:var(--text-muted);text-decoration:none;">پیسہ کمائیں</a>
+            <span style="margin:0 6px;opacity:0.5;">/</span>
+            <span style="color:var(--biz-teal);font-weight:600;">Unternehmen</span>
+        </nav>
+        <div class="biz-badge"><span class="biz-badge-dot"></span>Für Unternehmer &amp; Geschäftsinhaber</div>
+        <h1>Sie wollen Ihr Unternehmen <span>verkaufen?</span></h1>
+        <p class="biz-hero-sub">ہم خریدتے ہیں — oder wir finden den richtigen Investor.</p>
+        <p class="biz-hero-desc">براہ راست خریداری, Investor-Matching oder gemeinsame Weiterentwicklung — Sie entscheiden den Weg. International, diskret und professionell.</p>
+        <div class="biz-chips">
+            <span class="biz-chip"><i class="c-icon">🤝</i> براہ راست خریداری durch aBest.co</span>
+            <span class="biz-chip"><i class="c-icon">🌍</i> 47+ فعال سرمایہ کار</span>
+            <span class="biz-chip"><i class="c-icon">⚡</i> 48h پہلا جواب</span>
+            <span class="biz-chip"><i class="c-icon">🔒</i> 100 % Diskret</span>
+            <span class="biz-chip"><i class="c-icon">📍</i> 14 Länder</span>
+        </div>
+        <div class="biz-hero-ctas">
+            <button class="biz-btn-primary" onclick="document.getElementById('biz-form').scrollIntoView({behavior:'smooth'})">🏢 کمپنی جمع کریں</button>
+            <button class="biz-btn-ghost" onclick="document.getElementById('biz-ways').scrollIntoView({behavior:'smooth'})">یہ کیسے کام کرتا ہے →</button>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <div class="biz-stats">
+        <div class="biz-stat"><span class="biz-stat-val">47+</span><span class="biz-stat-lbl">فعال سرمایہ کار</span></div>
+        <div class="biz-stat"><span class="biz-stat-val">14</span><span class="biz-stat-lbl">دنیا بھر کے ممالک</span></div>
+        <div class="biz-stat"><span class="biz-stat-val">48h</span><span class="biz-stat-lbl">پہلا جواب</span></div>
+        <div class="biz-stat"><span class="biz-stat-val">€4,2M</span><span class="biz-stat-lbl">درمیانی سرمایہ</span></div>
+    </div>
+
+    <!-- THREE WAYS -->
+    <section class="biz-section" id="biz-ways">
+        <p class="biz-section-label">🛤️ Ihre drei Optionen</p>
+        <h2>Wählen Sie Ihren Weg</h2>
+        <p class="biz-section-intro">Kein Unternehmen ist gleich — deshalb bieten wir drei klar definierte Wege an. Sie entscheiden, wir liefern.</p>
+        <span class="biz-accent-line" style="margin-bottom:24px;"></span>
+        <div class="biz-ways-grid">
+
+            <div class="biz-way-card direct" onclick="bizSelectWay('direct')">
+                <div class="biz-way-top">
+                    <span class="biz-way-icon">🤝</span>
+                    <div>
+                        <div class="biz-way-title">Weg 1: براہ راست خریداری durch aBest.co</div>
+                        <span class="biz-way-tag">⚡ Schnellste Option</span>
+                    </div>
+                </div>
+                <p class="biz-way-body">aBest.co kauft Ihr Unternehmen direkt. Kein langer عمل, keine Verhandlungen mit vielen Parteien — Sie sprechen direkt mit Entscheidern.</p>
+                <ul class="biz-way-checks">
+                    <li>Direktes Kaufangebot von aBest.co</li>
+                    <li>Mehrheits- oder Minderheitsbeteiligung möglich</li>
+                    <li>Gemeinsame Weiterentwicklung optional</li>
+                    <li>Konkretes Angebot innerhalb von 48 Stunden</li>
+                    <li>Kein Makler, keine Zwischenhändler</li>
+                </ul>
+            </div>
+
+            <div class="biz-way-card invest" onclick="bizSelectWay('invest')">
+                <div class="biz-way-top">
+                    <span class="biz-way-icon">🌍</span>
+                    <div>
+                        <div class="biz-way-title">Weg 2: Investor oder Partner finden</div>
+                        <span class="biz-way-tag">💰 Maximaler Preis</span>
+                    </div>
+                </div>
+                <p class="biz-way-body">Sie wollen nicht vollständig verkaufen? Wir finden den passenden Investor, سرمایے کے ساتھی oder Teilhaber aus unserem internationalen Netzwerk.</p>
+                <ul class="biz-way-checks">
+                    <li>Zugang zu 47+ internationalen Investoren</li>
+                    <li>Kapital für Wachstum oder Expansion</li>
+                    <li>Strategische Partner und Nachfolger</li>
+                    <li>Diskretes Matching — kein öffentliches Inserat</li>
+                    <li>Wir übernehmen die gesamte Kommunikation</li>
+                </ul>
+            </div>
+
+            <div class="biz-way-card develop" onclick="bizSelectWay('develop')">
+                <div class="biz-way-top">
+                    <span class="biz-way-icon">🏗️</span>
+                    <div>
+                        <div class="biz-way-title">Weg 3: Standort entwickeln &amp; vermieten</div>
+                        <span class="biz-way-tag">📈 Langfristiger Wert</span>
+                    </div>
+                </div>
+                <p class="biz-way-body">Ihr Standort oder Gewerbeobjekt hat Potenzial? aBest.co übernimmt, entwickelt und vermietet an Betreiber oder Unternehmen.</p>
+                <ul class="biz-way-checks">
+                    <li>Gewerbeflächen, Lager, Self-Storage, Logistik</li>
+                    <li>Modernisierung und Weiterentwicklung</li>
+                    <li>Vermietung an qualifizierte Betreiber</li>
+                    <li>Win-Win für Verkäufer, Investor und Betreiber</li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="biz-choose-hint" style="margin-top:16px;">
+            <strong>💡 Nicht sicher, welcher Weg passt?</strong> Kein Problem — reichen Sie Ihr Unternehmen ein. Wir analysieren es und empfehlen gemeinsam die beste Strategie. Kostenlos und unverbindlich.
+        </div>
+    </section>
+
+    <!-- COMPARISON -->
+    <section class="biz-section" style="padding-top:0">
+        <p class="biz-section-label">📊 Vergleich</p>
+        <h2>براہ راست خریداری vs. Investor finden</h2>
+        <p class="biz-section-intro">Beide Wege haben klare فوائل — je nach Ihrer Situation:</p>
+        <div class="biz-compare">
+            <div class="biz-compare-head">
+                <div></div>
+                <div class="ch-direct">🤝 براہ راست خریداری</div>
+                <div class="ch-invest">🌍 Investor finden</div>
+            </div>
+            <div class="biz-compare-row">
+                <div>Geschwindigkeit</div>
+                <div class="txt-teal">48–72 Std.</div>
+                <div class="txt-cyan">2–6 Wochen</div>
+            </div>
+            <div class="biz-compare-row">
+                <div>Preis</div>
+                <div class="txt-teal">Marktnah</div>
+                <div class="txt-cyan">Marktmaximum</div>
+            </div>
+            <div class="biz-compare-row">
+                <div>Kontrolle behalten</div>
+                <div class="txt-teal">Optional</div>
+                <div class="txt-cyan">Ja</div>
+            </div>
+            <div class="biz-compare-row">
+                <div>Komplexität</div>
+                <div class="txt-teal">Gering</div>
+                <div class="txt-cyan">Mittel</div>
+            </div>
+            <div class="biz-compare-row">
+                <div>Ideal für</div>
+                <div class="txt-teal">Schnelle Übergabe</div>
+                <div class="txt-cyan">Wachstum + Kapital</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BRANCHEN GRID -->
+    <section class="biz-section" style="padding-top:0">
+        <p class="biz-section-label">🏭 Branchen</p>
+        <h2>Welche Unternehmen wir kaufen</h2>
+        <p class="biz-section-intro">Wir prüfen Unternehmen aus vielen Branchen — auch bei Umstrukturierung oder Nachfolge-Situationen.</p>
+        <div class="biz-sectors">
+            <div class="biz-sector-card" onclick="bizSelectSector('Self-Storage')">
+                <span class="biz-sector-icon">🏬</span>
+                <span class="biz-sector-name">Self-Storage</span>
+                <span class="biz-sector-sub">Lager &amp; Storage-Anlagen</span>
+            </div>
+            <div class="biz-sector-card" onclick="bizSelectSector('Logistik & Lager')">
+                <span class="biz-sector-icon">🚛</span>
+                <span class="biz-sector-name">Logistik &amp; Lager</span>
+                <span class="biz-sector-sub">Hallen, Verteilung</span>
+            </div>
+            <div class="biz-sector-card" onclick="bizSelectSector('Werkstatt / Produktion')">
+                <span class="biz-sector-icon">🔧</span>
+                <span class="biz-sector-name">Werkstatt</span>
+                <span class="biz-sector-sub">KFZ, Produktion</span>
+            </div>
+            <div class="biz-sector-card" onclick="bizSelectSector('Gastronomie / Hotel')">
+                <span class="biz-sector-icon">🍽️</span>
+                <span class="biz-sector-name">Gastronomie</span>
+                <span class="biz-sector-sub">Restaurant, Hotel, Café</span>
+            </div>
+            <div class="biz-sector-card" onclick="bizSelectSector('Handel / Retail')">
+                <span class="biz-sector-icon">🛒</span>
+                <span class="biz-sector-name">Handel</span>
+                <span class="biz-sector-sub">Retail, Großhandel</span>
+            </div>
+            <div class="biz-sector-card" onclick="bizSelectSector('Franchise-Konzept')">
+                <span class="biz-sector-icon">🏪</span>
+                <span class="biz-sector-name">Franchise</span>
+                <span class="biz-sector-sub">Konzepte &amp; Systeme</span>
+            </div>
+            <div class="biz-sector-card" onclick="bizSelectSector('Dienstleistung')">
+                <span class="biz-sector-icon">💼</span>
+                <span class="biz-sector-name">Dienstleistung</span>
+                <span class="biz-sector-sub">B2B &amp; B2C</span>
+            </div>
+            <div class="biz-sector-card" onclick="bizSelectSector('Gewerbeimmobilie mit Betrieb')">
+                <span class="biz-sector-icon">🏢</span>
+                <span class="biz-sector-name">Gewerbeimmobilie</span>
+                <span class="biz-sector-sub">Mit aktivem Betrieb</span>
+            </div>
+            <div class="biz-sector-card" onclick="bizSelectSector('Startup / Wachstumsunternehmen')">
+                <span class="biz-sector-icon">🚀</span>
+                <span class="biz-sector-name">Startup</span>
+                <span class="biz-sector-sub">Wachstum &amp; Umsatz</span>
+            </div>
+            <div class="biz-sector-card" onclick="bizSelectSector('Produktionsbetrieb')">
+                <span class="biz-sector-icon">🏭</span>
+                <span class="biz-sector-name">Produktion</span>
+                <span class="biz-sector-sub">Fertigung &amp; Industrie</span>
+            </div>
+            <div class="biz-sector-card" onclick="bizSelectSector('Nachfolge / Umstrukturierung')">
+                <span class="biz-sector-icon">🔄</span>
+                <span class="biz-sector-name">Nachfolge</span>
+                <span class="biz-sector-sub">Umstrukturierung</span>
+            </div>
+            <div class="biz-sector-card" onclick="bizSelectSector('Andere Branche')">
+                <span class="biz-sector-icon">➕</span>
+                <span class="biz-sector-name">Andere</span>
+                <span class="biz-sector-sub">Weitere Branchen</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXAMPLE DEALS -->
+    <section class="biz-section" style="padding-top:0">
+        <p class="biz-section-label">📋 مثالیں</p>
+        <h2>aBest.co پر ڈیل یوں چلتے ہیں</h2>
+        <p class="biz-section-intro">Echte Transaktionstypen — so funktioniert es in der Praxis.</p>
+        <div class="biz-deals">
+
+            <div class="biz-deal-card">
+                <span class="biz-deal-tag tag-direct">✅ براہ راست خریداری</span>
+                <div class="biz-deal-name">Self-Storage Anlage — Texas, USA</div>
+                <div class="biz-deal-loc">📍 Glendale, Texas · USA</div>
+                <div class="biz-deal-meta">
+                    <div class="biz-deal-row"><span>Branche</span><span>Self-Storage / Lager</span></div>
+                    <div class="biz-deal-row"><span>Weg</span><span class="highlight">براہ راست خریداری durch aBest.co</span></div>
+                    <div class="biz-deal-row"><span>Angebotsdauer</span><span>72 Stunden</span></div>
+                    <div class="biz-deal-row"><span>Status</span><span class="highlight">✅ Abgeschlossen</span></div>
+                </div>
+            </div>
+
+            <div class="biz-deal-card">
+                <span class="biz-deal-tag tag-invest">🌍 Investor vermittelt</span>
+                <div class="biz-deal-name">Gastronomie-Franchise DACH</div>
+                <div class="biz-deal-loc">📍 Wien, Österreich / DACH-Region</div>
+                <div class="biz-deal-meta">
+                    <div class="biz-deal-row"><span>Branche</span><span>Gastronomie / Franchise</span></div>
+                    <div class="biz-deal-row"><span>Weg</span><span class="highlight txt-cyan">Investor-Matching</span></div>
+                    <div class="biz-deal-row"><span>Kapital</span><span>€ 280.000 Wachstumskapital</span></div>
+                    <div class="biz-deal-row"><span>Dauer</span><span class="highlight">3 Wochen bis Abschluss</span></div>
+                </div>
+            </div>
+
+            <div class="biz-deal-card">
+                <span class="biz-deal-tag tag-develop">🏗️ Entwickelt &amp; vermietet</span>
+                <div class="biz-deal-name">Gewerbeanlage Antalya — Logistik</div>
+                <div class="biz-deal-loc">📍 Antalya, Türkei</div>
+                <div class="biz-deal-meta">
+                    <div class="biz-deal-row"><span>Branche</span><span>Logistik / Lager</span></div>
+                    <div class="biz-deal-row"><span>Weg</span><span style="color:#fbbf24;">Entwicklung + Vermietung</span></div>
+                    <div class="biz-deal-row"><span>Fläche</span><span>1.200 m²</span></div>
+                    <div class="biz-deal-row"><span>Status</span><span style="color:#fbbf24;">📦 In Betrieb</span></div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="biz-section" style="padding-top:0">
+        <p class="biz-section-label">⚙️ Ablauf</p>
+        <h2>In 4 Schritten zum Abschluss</h2>
+        <span class="biz-accent-line" style="margin-bottom:24px;"></span>
+        <div class="biz-steps">
+            <div class="biz-step">
+                <div class="biz-step-num">1</div>
+                <div>
+                    <p class="biz-step-title">کمپنی جمع کریں — kostenlos &amp; diskret</p>
+                    <p class="biz-step-desc">Sie füllen unser Formular aus: Branche, Umsatz, Weg, Region, Preisvorstellung. Kein langer عمل — wenige Angaben genügen für den Start.</p>
+                </div>
+            </div>
+            <div class="biz-step">
+                <div class="biz-step-num">2</div>
+                <div>
+                    <p class="biz-step-title">Analyse &amp; Rückmeldung innerhalb von 48 Stunden</p>
+                    <p class="biz-step-desc">Unser Team prüft Ihr Unternehmen und kontaktiert Sie persönlich. Wir besprechen gemeinsam: براہ راست خریداری, Investor-Matching oder Weiterentwicklung — was macht für Sie Sinn?</p>
+                </div>
+            </div>
+            <div class="biz-step">
+                <div class="biz-step-num">3</div>
+                <div>
+                    <p class="biz-step-title">Angebot oder gezieltes Investor-Matching</p>
+                    <p class="biz-step-desc">Beim براہ راست خریداری erhalten Sie ein konkretes Kaufangebot. Bei der Investorensuche präsentieren wir Ihr Unternehmen aktiv unserem Netzwerk — diskret, nicht öffentlich.</p>
+                </div>
+            </div>
+            <div class="biz-step">
+                <div class="biz-step-num">4</div>
+                <div>
+                    <p class="biz-step-title">Abschluss — zu Ihren Bedingungen</p>
+                    <p class="biz-step-desc">Sie entscheiden, ob und wann Sie verkaufen oder einen Partner aufnehmen. Kein Druck, kein Zeitlimit. Wir begleiten Sie bis zum erfolgreichen Abschluss.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BENEFITS -->
+    <section class="biz-section" style="padding-top:0">
+        <p class="biz-section-label">✅ فوائل</p>
+        <h2>Warum Unternehmer aBest.co wählen</h2>
+        <div class="biz-benefits">
+            <div class="biz-benefit">
+                <span class="biz-benefit-icon">🌍</span>
+                <span class="biz-benefit-title">Internationales Netzwerk</span>
+                <p class="biz-benefit-desc">Ihr Unternehmen erreicht Investoren aus 14 Ländern — nicht nur lokale Käufer, sondern internationale Kapitalgeber die gezielt suchen.</p>
+            </div>
+            <div class="biz-benefit">
+                <span class="biz-benefit-icon">🤝</span>
+                <span class="biz-benefit-title">براہ راست خریداری möglich</span>
+                <p class="biz-benefit-desc">In vielen Fällen kaufen wir selbst. Kein langes Warten. Sie erhalten ein konkretes Angebot — innerhalb von 48–72 Stunden.</p>
+            </div>
+            <div class="biz-benefit">
+                <span class="biz-benefit-icon">🔒</span>
+                <span class="biz-benefit-title">100 % Diskret</span>
+                <p class="biz-benefit-desc">Kein öffentliches Inserat. Ihr Unternehmen wird erst nach Prüfung gezielt passenden Investoren oder Käufern vorgestellt.</p>
+            </div>
+            <div class="biz-benefit">
+                <span class="biz-benefit-icon">⚡</span>
+                <span class="biz-benefit-title">Schnelle عملe</span>
+                <p class="biz-benefit-desc">Keine bürokratischen Endlosverhandlungen. Wir arbeiten strukturiert und effizient — mit klaren Timelines für Sie.</p>
+            </div>
+            <div class="biz-benefit">
+                <span class="biz-benefit-icon">💬</span>
+                <span class="biz-benefit-title">Direkt mit Entscheidern</span>
+                <p class="biz-benefit-desc">Sie sprechen nicht mit Assistenten oder Maklern. Bei aBest.co reden Sie direkt mit denjenigen, die entscheiden und kaufen.</p>
+            </div>
+            <div class="biz-benefit">
+                <span class="biz-benefit-icon">🎯</span>
+                <span class="biz-benefit-title">Kein Massenportal</span>
+                <p class="biz-benefit-desc">Gezieltes Matching statt Masseninserat. Jedes Unternehmen wird individuell geprüft und strategisch platziert.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECURITY -->
+    <section class="biz-section" style="padding-top:0">
+        <p class="biz-section-label">🔐 Vertraulichkeit</p>
+        <h2>Diskret, professionell, strukturiert</h2>
+        <p class="biz-section-intro">Unternehmensverkäufe sind sensibel. Wir wissen das — und handeln entsprechend.</p>
+        <div class="biz-security-grid">
+            <div class="biz-sec-card">
+                <span class="sec-icon">🔒</span>
+                <strong>NDA vor Einblick</strong>
+                <p>Kein Investor sieht Details Ihres Unternehmens ohne vorab unterzeichnete Vertraulichkeitsvereinbarung.</p>
+            </div>
+            <div class="biz-sec-card">
+                <span class="sec-icon">🎯</span>
+                <strong>Gezielte Weitergabe</strong>
+                <p>Informationen werden nur an geprüfte, qualifizierte Investoren oder Käufer weitergegeben — nie öffentlich.</p>
+            </div>
+            <div class="biz-sec-card">
+                <span class="sec-icon">📋</span>
+                <strong>Strukturierter عمل</strong>
+                <p>Klare Schritte, transparente Kommunikation, kein Wildwuchs. Sie wissen immer, wo der عمل steht.</p>
+            </div>
+            <div class="biz-sec-card">
+                <span class="sec-icon">🤝</span>
+                <strong>Kein Druck</strong>
+                <p>Sie entscheiden Tempo und Zeitpunkt. Kein Verkaufsdruck, kein Zeitlimit, keine Verpflichtung.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="biz-section" style="padding-top:0">
+        <p class="biz-section-label">💬 تجربات</p>
+        <h2>Was Unternehmer sagen</h2>
+        <div class="biz-testimonials">
+            <div class="biz-testi">
+                <div class="biz-stars">★★★★★</div>
+                <p class="biz-testi-text">"Ich hatte ein Self-Storage-Unternehmen, das ich nach 12 Jahren übergeben wollte. aBest.co hat innerhalb von 72 Stunden ein konkretes Kaufangebot gemacht. Kein Makler, keine langen Verhandlungen — einfach direkt und fair."</p>
+                <div class="biz-testi-author">
+                    <div class="biz-testi-avatar">MK</div>
+                    <div>
+                        <div class="biz-testi-name">M. Kaya</div>
+                        <div class="biz-testi-loc">Unternehmer · Texas, USA</div>
+                    </div>
+                </div>
+            </div>
+            <div class="biz-testi">
+                <div class="biz-stars">★★★★★</div>
+                <p class="biz-testi-text">"Wir haben nicht verkauft, sondern Wachstumskapital gesucht. aBest.co hat uns innerhalb von 3 Wochen den passenden Investor aus dem DACH-Raum vermittelt. Diskret, professionell, genau das was wir gebraucht haben."</p>
+                <div class="biz-testi-author">
+                    <div class="biz-testi-avatar">SW</div>
+                    <div>
+                        <div class="biz-testi-name">S. Weber</div>
+                        <div class="biz-testi-loc">Franchise-Inhaber · Wien, Österreich</div>
+                    </div>
+                </div>
+            </div>
+            <div class="biz-testi">
+                <div class="biz-stars">★★★★★</div>
+                <p class="biz-testi-text">"Was mich überzeugt hat: Man spricht direkt mit Entscheidern. Nicht mit Maklern, nicht mit Assistenten. Das Gespräch mit aBest.co war von Anfang an auf Augenhöhe — Unternehmer zu Unternehmer."</p>
+                <div class="biz-testi-author">
+                    <div class="biz-testi-avatar">RA</div>
+                    <div>
+                        <div class="biz-testi-name">R. Aydın</div>
+                        <div class="biz-testi-loc">Produktionsbetrieb · Antalya, Türkei</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FORM -->
+    <section class="biz-section" style="padding-top:0" id="biz-form">
+        <p class="biz-section-label">📩 Anfrage</p>
+        <h2>کمپنی جمع کریں</h2>
+        <div class="biz-form-wrap">
+            <p class="biz-form-title">Ihr Unternehmen — kostenlos &amp; diskret einreichen</p>
+            <p class="biz-form-sub">Wir melden uns innerhalb von 48 Stunden. Unverbindlich, vertraulich, kein Makler.</p>
+
+            <p style="font-size:0.8rem;font-weight:600;color:var(--text-muted);margin-bottom:8px;">Ihr gewünschter Weg *</p>
+            <div class="biz-way-btns">
+                <button class="biz-way-btn" id="biz-btn-direct" onclick="bizSelectWayForm('direct')" type="button">
+                    <span class="btn-icon">🤝</span>براہ راست خریداری
+                </button>
+                <button class="biz-way-btn" id="biz-btn-invest" onclick="bizSelectWayForm('invest')" type="button">
+                    <span class="btn-icon">🌍</span>Investor finden
+                </button>
+                <button class="biz-way-btn" id="biz-btn-develop" onclick="bizSelectWayForm('develop')" type="button">
+                    <span class="btn-icon">🏗️</span>Entwickeln
+                </button>
+            </div>
+
+            <div id="biz-form-fields">
+                <div class="biz-form-grid">
+                    <input class="biz-input" id="biz-name" placeholder="Ihr Name *" type="text" />
+                    <input class="biz-input" id="biz-email" placeholder="E-Mail *" type="email" />
+                </div>
+                <div class="biz-form-grid">
+                    <input class="biz-input" id="biz-phone" placeholder="Telefon" type="tel" />
+                    <input class="biz-input" id="biz-country" placeholder="Land / Region" type="text" />
+                </div>
+                <div class="biz-form-grid">
+                    <select class="biz-select" id="biz-sector">
+                        <option value="">Branche *</option>
+                        <option>Self-Storage</option>
+                        <option>Logistik &amp; Lager</option>
+                        <option>Werkstatt / Produktion</option>
+                        <option>Gastronomie / Hotel</option>
+                        <option>Handel / Retail</option>
+                        <option>Franchise-Konzept</option>
+                        <option>Dienstleistung</option>
+                        <option>Gewerbeimmobilie mit Betrieb</option>
+                        <option>Startup / Wachstumsunternehmen</option>
+                        <option>Produktionsbetrieb</option>
+                        <option>Nachfolge / Umstrukturierung</option>
+                        <option>Andere Branche</option>
+                    </select>
+                    <input class="biz-input" id="biz-revenue" placeholder="Jahresumsatz (ca.)" type="text" />
+                </div>
+                <div class="biz-form-grid">
+                    <input class="biz-input" id="biz-price" placeholder="Preisvorstellung (optional)" type="text" />
+                    <input class="biz-input" id="biz-employees" placeholder="Mitarbeiterzahl (ca.)" type="text" />
+                </div>
+                <div class="biz-form-grid full">
+                    <textarea class="biz-textarea" id="biz-desc" placeholder="Kurzbeschreibung Ihres Unternehmens — was macht es, seit wann, was suchen Sie genau?"></textarea>
+                </div>
+                <p class="biz-form-note">🔒 Ihre Angaben werden vertraulich behandelt und nicht ohne Ihre Zustimmung weitergegeben.</p>
+                <button class="biz-submit-btn" onclick="bizSubmit(event)" type="button">🏢 ابھی جمع کریں — kostenlos &amp; diskret</button>
+            </div>
+            <div class="biz-form-success" id="biz-success">
+                <div class="success-icon">✅</div>
+                <strong>Vielen Dank — Anfrage eingegangen!</strong>
+                <p>Unser Team meldet sich innerhalb von 48 Stunden bei Ihnen. Alles vertraulich — kein Makler, kein öffentliches Inserat.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- اکثر پوچھے جانے والے سوالات -->
+    <section class="biz-section" style="padding-top:0;padding-bottom:80px;">
+        <p class="biz-section-label">❓ اکثر پوچھے جانے والے سوالات</p>
+        <h2>Häufige Fragen</h2>
+        <div class="biz-faq">
+            <div class="biz-faq-item">
+                <button class="biz-faq-q">Kauft aBest.co wirklich selbst Unternehmen? <span class="biz-faq-arrow">▾</span></button>
+                <div class="biz-faq-a"><div class="biz-faq-a-inner">Ja — in vielen Fällen tritt aBest.co nicht nur als Vermittler auf, sondern als direkter Käufer. Wenn Ihr Unternehmen zu unserer Strategie passt, prüfen wir die Möglichkeit einer Übernahme, Beteiligung oder gemeinsamen Weiterentwicklung. Sie erhalten ein konkretes Angebot — direkt, ohne Zwischenhändler.</div></div>
+            </div>
+            <div class="biz-faq-item">
+                <button class="biz-faq-q">Was passiert mit meinen Daten — wer sieht mein Unternehmen? <span class="biz-faq-arrow">▾</span></button>
+                <div class="biz-faq-a"><div class="biz-faq-a-inner">Ihre Daten werden absolut vertraulich behandelt. Keine Informationen werden ohne Ihre ausdrückliche Zustimmung weitergegeben. Interessierte Investoren unterzeichnen zunächst eine NDA, bevor sie Details erhalten. Es gibt kein öffentliches Inserat.</div></div>
+            </div>
+            <div class="biz-faq-item">
+                <button class="biz-faq-q">Was kostet das Einreichen meines Unternehmens? <span class="biz-faq-arrow">▾</span></button>
+                <div class="biz-faq-a"><div class="biz-faq-a-inner">Das Einreichen ist vollständig kostenlos und unverbindlich. Es entstehen keine Vorabkosten. Erst bei einem erfolgreichen Abschluss — براہ راست خریداری oder vermitteltem Investment — besprechen wir die Modalitäten transparent und individuell.</div></div>
+            </div>
+            <div class="biz-faq-item">
+                <button class="biz-faq-q">Muss ich sofort verkaufen — oder kann ich erst prüfen? <span class="biz-faq-arrow">▾</span></button>
+                <div class="biz-faq-a"><div class="biz-faq-a-inner">Kein Druck, kein Zeitlimit. Sie können Ihr کمپنی جمع کریں, das Angebot oder die Investorenoptionen prüfen und vollkommen frei entscheiden. Wir begleiten Sie — ohne Verkaufsdruck und ohne Verpflichtung.</div></div>
+            </div>
+            <div class="biz-faq-item">
+                <button class="biz-faq-q">Wie groß muss mein Unternehmen sein? <span class="biz-faq-arrow">▾</span></button>
+                <div class="biz-faq-a"><div class="biz-faq-a-inner">Es gibt keine feste Mindestgröße. Wir prüfen Unternehmen ab ca. €50.000 Jahresumsatz aufwärts — aus vielen Branchen, auch in Nachfolge- oder Umstrukturierungssituationen. Reichen Sie ein — wir prüfen ehrlich und geben Ihnen eine klare Einschätzung.</div></div>
+            </div>
+            <div class="biz-faq-item">
+                <button class="biz-faq-q">Kann ich nur einen Investor suchen, ohne zu verkaufen? <span class="biz-faq-arrow">▾</span></button>
+                <div class="biz-faq-a"><div class="biz-faq-a-inner">Ja, absolut. Viele Unternehmer suchen Kapital für Wachstum, strategische Partner oder Teilhaber — ohne vollständig zu verkaufen. Über unser internationales Netzwerk finden wir genau die richtigen Partner für Ihr Wachstumsprojekt.</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STICKY CTA -->
+    <div class="biz-sticky">
+        <span class="biz-sticky-text">🏢 براہ راست خریداری oder Investor finden — kostenlos einreichen · 48h Rückmeldung</span>
+        <button class="biz-sticky-btn" onclick="document.getElementById('biz-form').scrollIntoView({behavior:'smooth'})">ابھی جمع کریں</button>
+    </div>
+
+    <script src="/app.js"></script>
+    <script>
+        // Nav scroll
+        (function(){
+            var nav = document.getElementById('main-nav');
+            window.addEventListener('scroll', function(){
+                nav && nav.classList.toggle('scrolled', window.scrollY > 40);
+            }, {passive: true});
+        })();
+
+        // Way selector (hero cards → scroll + preselect form)
+        function bizSelectWay(way) {
+            document.getElementById('biz-form').scrollIntoView({behavior: 'smooth'});
+            setTimeout(function(){ bizSelectWayForm(way); }, 600);
+        }
+
+        // Sector card click → select in form + scroll
+        function bizSelectSector(sector) {
+            var sel = document.getElementById('biz-sector');
+            if (sel) {
+                for (var i = 0; i < sel.options.length; i++) {
+                    if (sel.options[i].value === sector || sel.options[i].text === sector) {
+                        sel.selectedIndex = i; break;
+                    }
+                }
+            }
+            document.getElementById('biz-form').scrollIntoView({behavior: 'smooth'});
+        }
+
+        // Way form buttons
+        var _bizWay = '';
+        function bizSelectWayForm(way) {
+            _bizWay = way;
+            document.getElementById('biz-btn-direct').className = 'biz-way-btn' + (way === 'direct' ? ' active-direct' : '');
+            document.getElementById('biz-btn-invest').className = 'biz-way-btn' + (way === 'invest' ? ' active-invest' : '');
+            document.getElementById('biz-btn-develop').className = 'biz-way-btn' + (way === 'develop' ? ' active-develop' : '');
+        }
+
+        // Form submit → mailto
+        function bizSubmit(e) {
+            e.preventDefault();
+            var name = document.getElementById('biz-name').value.trim();
+            var email = document.getElementById('biz-email').value.trim();
+            if (!name || !email) { alert('Bitte Name und E-Mail angeben.'); return; }
+            var wayLabel = { direct: 'براہ راست خریداری durch aBest.co', invest: 'Investor / Partner finden', develop: 'Standort entwickeln & vermieten' }[_bizWay] || 'Nicht angegeben';
+            var body = 'NEUE UNTERNEHMENS-ANFRAGE — aBest.co\n\n'
+                + 'Weg: ' + wayLabel + '\n'
+                + 'Name: ' + name + '\n'
+                + 'E-Mail: ' + email + '\n'
+                + 'Telefon: ' + (document.getElementById('biz-phone').value.trim() || '—') + '\n'
+                + 'Land / Region: ' + (document.getElementById('biz-country').value.trim() || '—') + '\n'
+                + 'Branche: ' + (document.getElementById('biz-sector').value || '—') + '\n'
+                + 'Jahresumsatz: ' + (document.getElementById('biz-revenue').value.trim() || '—') + '\n'
+                + 'Preisvorstellung: ' + (document.getElementById('biz-price').value.trim() || '—') + '\n'
+                + 'Mitarbeiterzahl: ' + (document.getElementById('biz-employees').value.trim() || '—') + '\n\n'
+                + 'Beschreibung:\n' + (document.getElementById('biz-desc').value.trim() || '—');
+            window.location.href = 'mailto:info@abest.co?subject=Unternehmensanfrage: ' + encodeURIComponent(name) + '&body=' + encodeURIComponent(body);
+            document.getElementById('biz-form-fields').style.display = 'none';
+            document.getElementById('biz-success').style.display = 'block';
+        }
+
+        // اکثر پوچھے جانے والے سوالات accordion
+        document.querySelectorAll('.biz-faq-q').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var item = btn.closest('.biz-faq-item');
+                var isOpen = item.classList.contains('open');
+                document.querySelectorAll('.biz-faq-item').forEach(function(i){ i.classList.remove('open'); });
+                if (!isOpen) item.classList.add('open');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>投资者 – 与我们一起或在我们这里投资 | aBest.co</title>
+<meta content="为活跃投资者：在aBest.co投资初创企业、项目或公司 - 国际化、保密、结构化。" name="description"/>
+<link href="/favicon.png" rel="icon" type="image/png"/>
+<link href="/index.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="canonical" href="https://www.abest.co/zh/earn-money/investor"/>
+<style>
+:root {
+    --inv-gold:#f59e0b;
+    --inv-gold-dim:rgba(245,158,11,0.15);
+    --inv-orange:#f97316;
+    --inv-green:#22c55e;
+}
+
+/* ── HERO ── */
+.inv-hero {
+    position:relative;
+    display:flex; flex-direction:column; align-items:center; justify-content:flex-start;
+    padding:90px 20px 16px; text-align:center; overflow:hidden;
+}
+.inv-hero::before {
+    content:''; position:absolute; inset:0;
+    background:
+        radial-gradient(ellipse 60% 45% at 25% 25%, rgba(245,158,11,0.16) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 50% at 80% 70%, rgba(249,115,22,0.1) 0%, transparent 60%);
+    pointer-events:none;
+}
+.inv-badge {
+    display:inline-flex; align-items:center; gap:7px; padding:5px 16px; border-radius:22px;
+    background:rgba(245,158,11,0.12); border:1px solid rgba(245,158,11,0.35);
+    font-size:0.72rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--inv-gold); margin-bottom:20px;
+}
+.inv-dot { width:7px; height:7px; border-radius:50%; background:var(--inv-gold); animation:inv-pulse 1.8s infinite; }
+@keyframes inv-pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.7)} }
+.inv-hero h1 { font-size:clamp(1.9rem,5vw,3rem); font-weight:800; line-height:1.12; margin:0 0 6px; color:var(--text-main); }
+.inv-hero h1 span { color:var(--inv-gold); }
+.inv-hero-sub { font-size:clamp(1.05rem,3vw,1.45rem); font-weight:600; color:var(--inv-orange); margin:0 0 16px; }
+.inv-hero-desc { font-size:0.97rem; color:var(--text-muted); max-width:540px; margin:0 auto 28px; line-height:1.65; }
+.inv-chips { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-bottom:32px; }
+.inv-chip { display:inline-flex; align-items:center; gap:6px; padding:6px 14px; border-radius:20px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); font-size:0.78rem; font-weight:600; color:var(--text-main); }
+.inv-chip i { font-style:normal; color:var(--inv-gold); }
+.inv-hero-ctas { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; }
+.inv-btn-primary { padding:14px 28px; border-radius:12px; font-size:0.95rem; font-weight:700; background:linear-gradient(135deg,var(--inv-gold),var(--inv-orange)); color:#000; border:none; cursor:pointer; transition:opacity .2s, transform .2s; text-decoration:none; display:inline-block; }
+.inv-btn-primary:hover { opacity:.88; transform:translateY(-1px); }
+.inv-btn-ghost { padding:14px 28px; border-radius:12px; font-size:0.95rem; font-weight:600; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); color:var(--text-main); cursor:pointer; transition:background .2s; text-decoration:none; display:inline-block; }
+.inv-btn-ghost:hover { background:rgba(255,255,255,0.1); }
+
+/* ── STATS ── */
+.inv-stats { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; background:rgba(255,255,255,0.05); border-radius:16px; overflow:hidden; border:1px solid rgba(255,255,255,0.08); margin:0 20px; }
+.inv-stat { padding:20px 10px; text-align:center; background:var(--glass-bg); }
+.inv-stat-val { font-size:1.8rem; font-weight:800; color:var(--inv-gold); display:block; }
+.inv-stat-lbl { font-size:0.72rem; color:var(--text-muted); margin-top:2px; }
+@media(max-width:480px){ .inv-stats { grid-template-columns:repeat(2,1fr); } }
+
+/* ── SECTION ── */
+.inv-section { padding:52px 20px; max-width:780px; margin:0 auto; }
+.inv-label { font-size:0.7rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--inv-gold); margin-bottom:8px; }
+.inv-section h2 { font-size:clamp(1.35rem,3.5vw,1.85rem); font-weight:800; margin:0 0 8px; color:var(--text-main); }
+.inv-section-intro { font-size:0.93rem; color:var(--text-muted); margin:0 0 28px; line-height:1.6; }
+.inv-accent { display:block; width:36px; height:3px; border-radius:2px; background:var(--inv-gold); margin:10px 0; }
+
+/* ── 2 TYPES ── */
+.inv-type-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
+@media(min-width:600px){ .inv-type-grid { grid-template-columns:repeat(3,1fr); } }
+.inv-type-card { border-radius:16px; padding:18px 16px; background:rgba(255,255,255,0.04); border:1.5px solid rgba(255,255,255,0.09); transition:border-color .2s, transform .2s; cursor:pointer; }
+.inv-type-card:hover { border-color:rgba(245,158,11,0.4); transform:translateY(-2px); }
+.inv-type-icon { font-size:1.8rem; margin-bottom:8px; }
+.inv-type-title { font-size:0.88rem; font-weight:700; color:var(--text-main); margin:0 0 4px; }
+.inv-type-desc { font-size:0.75rem; color:var(--text-muted); margin:0; line-height:1.45; }
+
+/* ── BENEFITS ── */
+.inv-benefit-grid { display:grid; gap:12px; }
+.inv-benefit-card { display:flex; gap:16px; align-items:flex-start; background:rgba(255,255,255,0.04); border:1.5px solid rgba(255,255,255,0.09); border-radius:16px; padding:18px 16px; transition:border-color .2s; }
+.inv-benefit-card:hover { border-color:rgba(245,158,11,0.35); }
+.inv-ben-icon { font-size:1.8rem; flex-shrink:0; margin-top:2px; }
+.inv-ben-body h4 { font-size:0.9rem; font-weight:700; color:var(--text-main); margin:0 0 5px; }
+.inv-ben-body p { font-size:0.8rem; color:var(--text-muted); margin:0; line-height:1.5; }
+.inv-ben-tag { display:inline-block; margin-top:8px; padding:3px 10px; border-radius:20px; font-size:0.7rem; font-weight:700; background:rgba(245,158,11,0.15); color:var(--inv-gold); border:1px solid rgba(245,158,11,0.25); }
+
+/* ── STEPS ── */
+.inv-steps { display:flex; flex-direction:column; }
+.inv-step { display:flex; gap:18px; align-items:flex-start; padding:18px 0; border-bottom:1px solid rgba(255,255,255,0.06); }
+.inv-step:last-child { border-bottom:none; padding-bottom:0; }
+.inv-step-num { flex-shrink:0; width:40px; height:40px; border-radius:50%; background:rgba(245,158,11,0.15); border:2px solid var(--inv-gold); display:flex; align-items:center; justify-content:center; font-size:1rem; font-weight:800; color:var(--inv-gold); }
+.inv-step-body h4 { font-size:0.9rem; font-weight:700; color:var(--text-main); margin:0 0 4px; }
+.inv-step-body p { font-size:0.8rem; color:var(--text-muted); margin:0; line-height:1.5; }
+
+/* ── TESTIMONIALS ── */
+.inv-testi-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; }
+.inv-testi-card { background:rgba(255,255,255,0.04); border:1.5px solid rgba(255,255,255,0.09); border-radius:16px; padding:18px; }
+.inv-testi-stars { color:var(--inv-gold); font-size:0.88rem; margin-bottom:8px; }
+.inv-testi-text { font-size:0.82rem; color:var(--text-muted); line-height:1.6; margin-bottom:12px; font-style:italic; }
+.inv-testi-author { display:flex; align-items:center; gap:10px; }
+.inv-testi-avatar { width:36px; height:36px; border-radius:50%; background:rgba(245,158,11,0.15); border:1.5px solid var(--inv-gold); display:flex; align-items:center; justify-content:center; font-size:0.9rem; flex-shrink:0; }
+.inv-testi-name { font-size:0.82rem; font-weight:700; color:var(--text-main); }
+.inv-testi-loc { font-size:0.7rem; color:var(--text-muted); }
+
+/* ── FAQ ── */
+.inv-faq-item { border-bottom:1px solid rgba(255,255,255,0.07); }
+.inv-faq-item:last-child { border-bottom:none; }
+.inv-faq-q { width:100%; background:none; border:none; color:var(--text-main); font-size:0.88rem; font-weight:600; text-align:left; padding:16px 0; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:10px; font-family:inherit; }
+.inv-faq-q::after { content:'＋'; font-size:1rem; color:var(--inv-gold); flex-shrink:0; }
+.inv-faq-item.open .inv-faq-q::after { content:'－'; }
+.inv-faq-a { display:none; font-size:0.82rem; color:var(--text-muted); line-height:1.6; padding-bottom:14px; }
+.inv-faq-item.open .inv-faq-a { display:block; }
+
+/* ── STICKY CTA ── */
+.inv-sticky { position:fixed; bottom:0; left:0; right:0; z-index:99; background:rgba(245,158,11,0.90); backdrop-filter:blur(12px); padding:12px 20px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.inv-sticky-text { font-size:0.78rem; font-weight:600; color:#001a00; line-height:1.3; }
+.inv-sticky-btn { flex-shrink:0; padding:10px 20px; border-radius:10px; font-size:0.85rem; font-weight:700; background:#001a00; color:var(--inv-gold); border:none; cursor:pointer; white-space:nowrap; text-decoration:none; display:inline-block; transition:opacity .2s; }
+.inv-sticky-btn:hover { opacity:.88; }
+</style>
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#007aff" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="aBest.co" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="aBest.co" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:url" content="https://www.abest.co/zh/earn-money" />
+    <meta property="og:title" content="投资者 – 与我们一起或在我们这里投资 | aBest.co" />
+    <meta property="og:description" content="全球高端地产和房地产开发。" />
+    <meta property="og:image" content="https://www.abest.co/assets/images/bg_main_blurred_new.webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@aBestco" />
+    <meta name="twitter:title" content="投资者 – 与我们一起或在我们这里投资 | aBest.co" />
+    <meta name="twitter:description" content="全球高端地产和房地产开发。" />
+    <meta name="twitter:image" content="https://www.abest.co/assets/images/bg_main_blurred_new.webp" />
+</head>
+<body class="dark-mode">
+<div class="background-wrapper">
+  <img alt="背景" class="main-bg" src="/assets/images/bg_main_blurred_new.webp"/>
+  <div class="bg-gradient-overlay"></div>
+</div>
+
+<header class="app-header">
+  <a class="logo-link" href="/zh/">
+    <span style="font-size:1.4rem;font-weight:500;color:var(--text-main);">
+      <span style="color:var(--primary-blue);">a</span>Best<span style="color:var(--primary-blue);">.co</span>
+    </span>
+  </a>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <a href="/zh/" class="header-icon-v2" aria-label="首页"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></a>
+    <a href="/zh/profil" class="header-icon-v2" aria-label="个人资料"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+  </div>
+</header>
+
+<main class="page-main" style="padding-bottom:90px;">
+
+  <!-- ── HERO ─────────────────────────────────────────── -->
+  <section class="inv-hero">
+    <div class="inv-badge"><span class="inv-dot"></span>即刻投资 — 随时可得</div>
+    <h1>您准备投资了吗？<br><span>我们为您提供机会。</span></h1>
+    <p class="inv-hero-sub">多元化投资。可靠回报。国际范围。</p>
+    <p class="inv-hero-desc">在aBest.co，您可以直接投资初创企业、房地产项目或成熟公司 — 从最小的参与到大型投资，所有投资都以国际标准结构化和保密。</p>
+    <div class="inv-chips">
+      <span class="inv-chip"><i>📈</i> 多样化投资组合</span>
+      <span class="inv-chip"><i>🌍</i> 14个国家</span>
+      <span class="inv-chip"><i>🏢</i> 起价€25,000</span>
+      <span class="inv-chip"><i>✅</i> 100%保密</span>
+      <span class="inv-chip"><i>🤝</i> 个人经理</span>
+    </div>
+    <div class="inv-hero-ctas">
+      <a class="inv-btn-primary" href="/zh/login?next=/profile/my-role/investor">💼 现在投资</a>
+      <button class="inv-btn-ghost" onclick="document.getElementById('inv-types').scrollIntoView({behavior:'smooth'})">机会类型 →</button>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="inv-stats">
+    <div class="inv-stat"><span class="inv-stat-val">47+</span><span class="inv-stat-lbl">活跃项目</span></div>
+    <div class="inv-stat"><span class="inv-stat-val">14</span><span class="inv-stat-lbl">国家范围</span></div>
+    <div class="inv-stat"><span class="inv-stat-val">€25k</span><span class="inv-stat-lbl">起最低投资</span></div>
+    <div class="inv-stat"><span class="inv-stat-val">6</span><span class="inv-stat-lbl">投资类型</span></div>
+  </div>
+
+  <!-- 投资机会 -->
+  <section class="inv-section" id="inv-types">
+    <p class="inv-label">📊 您可以投资什么</p>
+    <h2>投资机会</h2>
+    <p class="inv-section-intro">从初创企业到房地产，从能源项目到并购交易 — 我们为各种风险偏好和投资目标提供机会。</p>
+    <span class="inv-accent"></span>
+    <div class="inv-type-grid">
+      <div class="inv-type-card" onclick="window.location.href='/zh/login?next=/profile/my-role/investor'">
+        <div class="inv-type-icon">🚀</div>
+        <div class="inv-type-title">初创企业</div>
+        <div class="inv-type-desc">早期和增长阶段的科技项目</div>
+      </div>
+      <div class="inv-type-card" onclick="window.location.href='/zh/login?next=/profile/my-role/investor'">
+        <div class="inv-type-icon">🏠</div>
+        <div class="inv-type-title">房地产</div>
+        <div class="inv-type-desc">住宅、商业和开发项目</div>
+      </div>
+      <div class="inv-type-card" onclick="window.location.href='/zh/login?next=/profile/my-role/investor'">
+        <div class="inv-type-icon">⚡</div>
+        <div class="inv-type-title">能源</div>
+        <div class="inv-type-desc">太阳能、风能、基础设施</div>
+      </div>
+      <div class="inv-type-card" onclick="window.location.href='/zh/login?next=/profile/my-role/investor'">
+        <div class="inv-type-icon">🏦</div>
+        <div class="inv-type-title">金融科技</div>
+        <div class="inv-type-desc">支付、贷款和区块链</div>
+      </div>
+      <div class="inv-type-card" onclick="window.location.href='/zh/login?next=/profile/my-role/investor'">
+        <div class="inv-type-icon">🤝</div>
+        <div class="inv-type-title">并购</div>
+        <div class="inv-type-desc">现成的、盈利的公司</div>
+      </div>
+      <div class="inv-type-card" onclick="window.location.href='/zh/login?next=/profile/my-role/investor'">
+        <div class="inv-type-icon">🌾</div>
+        <div class="inv-type-title">农业</div>
+        <div class="inv-type-desc">农场、林地、配额</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 优势 -->
+  <section class="inv-section" style="padding-top:0;">
+    <p class="inv-label">💡 为何选择aBest.co</p>
+    <h2>投资的优势</h2>
+    <p class="inv-section-intro">不仅仅是获取交易的平台 — 我们是您的投资伙伴，从尽职调查到投资后管理。</p>
+    <span class="inv-accent" style="margin-bottom:24px;"></span>
+    <div class="inv-benefit-grid">
+      <div class="inv-benefit-card">
+        <span class="inv-ben-icon">🎯</span>
+        <div class="inv-ben-body">
+          <h4>精心挑选的交易</h4>
+          <p>每个项目都经过我们团队的严格审查。无虚假利益、无虚假承诺 — 只有真实的投资机会。</p>
+          <span class="inv-ben-tag">经验丰富的尽调</span>
+        </div>
+      </div>
+      <div class="inv-benefit-card">
+        <span class="inv-ben-icon">🌍</span>
+        <div class="inv-ben-body">
+          <h4>国际多样化</h4>
+          <p>跨越14个国家和多个行业的投资 — 减少集中风险，获得全球机会。</p>
+          <span class="inv-ben-tag">全球覆盖</span>
+        </div>
+      </div>
+      <div class="inv-benefit-card">
+        <span class="inv-ben-icon">🔒</span>
+        <div class="inv-ben-body">
+          <h4>完全保密</h4>
+          <p>您的投资档案保持严格保密。没有公众知晓您的投资或参与。</p>
+          <span class="inv-ben-tag">最高隐私</span>
+        </div>
+      </div>
+      <div class="inv-benefit-card">
+        <span class="inv-ben-icon">📊</span>
+        <div class="inv-ben-body">
+          <h4>定期报告</h4>
+          <p>获得透明的更新、财务报告和关键指标 — 完全掌控您的投资进展。</p>
+          <span class="inv-ben-tag">实时监测</span>
+        </div>
+      </div>
+      <div class="inv-benefit-card">
+        <span class="inv-ben-icon">🤝</span>
+        <div class="inv-ben-body">
+          <h4>专属顾问</h4>
+          <p>从注册的那一刻起，您就拥有一名个人投资经理，了解您的目标和偏好。</p>
+          <span class="inv-ben-tag">白手套服务</span>
+        </div>
+      </div>
+      <div class="inv-benefit-card">
+        <span class="inv-ben-icon">💼</span>
+        <div class="inv-ben-body">
+          <h4>灵活条款</h4>
+          <p>从短期（3-6个月）到长期结构 — 选择适合您财务计划的投资期限。</p>
+          <span class="inv-ben-tag">量身定制</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 步骤 -->
+  <section class="inv-section" style="padding-top:0;">
+    <div style="background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.09);border-radius:20px;padding:28px 24px;">
+      <p class="inv-label">🛤️ 只需3个步骤</p>
+      <h2>开始投资</h2>
+      <p class="inv-section-intro">从注册到首次投资 — 一个清晰、安全的流程。</p>
+      <div class="inv-steps">
+        <div class="inv-step">
+          <div class="inv-step-num">1</div>
+          <div class="inv-step-body">
+            <h4>完成您的投资档案</h4>
+            <p>告诉我们您的投资目标、风险偏好和资金可用性。我们了解您越多，我们就能更好地为您推荐项目。</p>
+          </div>
+        </div>
+        <div class="inv-step">
+          <div class="inv-step-num">2</div>
+          <div class="inv-step-body">
+            <h4>浏览经过审查的机会</h4>
+            <p>获取完整访问权限查看所有活跃项目、财务数据和深度分析。没有浓缩摘要 — 真实数字。</p>
+          </div>
+        </div>
+        <div class="inv-step">
+          <div class="inv-step-num">3</div>
+          <div class="inv-step-body">
+            <h4>投资并追踪进展</h4>
+            <p>选择机会，进行投资，并通过我们的定期报告和管理门户网站监控您的回报。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 推荐 -->
+  <section class="inv-section" style="padding-top:0;">
+    <p class="inv-label">⭐ 投资者反馈</p>
+    <h2>我们的投资者怎么说</h2>
+    <p class="inv-section-intro">实际经验来自世界各地的活跃投资者。</p>
+    <span class="inv-accent" style="margin-bottom:24px;"></span>
+    <div class="inv-testi-grid">
+      <div class="inv-testi-card">
+        <div class="inv-testi-stars">★★★★★</div>
+        <p class="inv-testi-text">"我尝试了许多投资平台。aBest.co 是唯一真正执行尽职调查并透明报告的平台。这里没有虚假承诺。"</p>
+        <div class="inv-testi-author">
+          <div class="inv-testi-avatar">K</div>
+          <div>
+            <div class="inv-testi-name">Klaus S.</div>
+            <div class="inv-testi-loc">柏林，德国</div>
+          </div>
+        </div>
+      </div>
+      <div class="inv-testi-card">
+        <div class="inv-testi-stars">★★★★★</div>
+        <p class="inv-testi-text">"作为海外投资者，我需要完全的保密。aBest.co 理解这一点，从未曾有任何问题。投资过程很顺利。"</p>
+        <div class="inv-testi-author">
+          <div class="inv-testi-avatar">R</div>
+          <div>
+            <div class="inv-testi-name">Rajesh P.</div>
+            <div class="inv-testi-loc">孟买，印度</div>
+          </div>
+        </div>
+      </div>
+      <div class="inv-testi-card">
+        <div class="inv-testi-stars">★★★★★</div>
+        <p class="inv-testi-text">"我的个人经理太棒了。她帮我理解了复杂的项目，从不急于催促我做决定。真正的专业服务。"</p>
+        <div class="inv-testi-author">
+          <div class="inv-testi-avatar">A</div>
+          <div>
+            <div class="inv-testi-name">Amélie M.</div>
+            <div class="inv-testi-loc">巴黎，法国</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="inv-section" style="padding-top:0;">
+    <div style="background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.09);border-radius:20px;padding:28px 24px;">
+      <p class="inv-label">❓ FAQ</p>
+      <h2>常见问题</h2>
+      <div>
+        <div class="inv-faq-item">
+          <button class="inv-faq-q" onclick="invFaq(this)">最小投资金额是多少？</button>
+          <div class="inv-faq-a">我们的最小投资额为€25,000。许多项目也接受更高的投资。在您的初始咨询中，我们会讨论具体的项目需求。</div>
+        </div>
+        <div class="inv-faq-item">
+          <button class="inv-faq-q" onclick="invFaq(this)">投资期限有多长？</button>
+          <div class="inv-faq-a">这取决于项目。一些机会是短期的（3-6个月），而其他可能会持续数年。我们确保您在承诺前完全了解期限。</div>
+        </div>
+        <div class="inv-faq-item">
+          <button class="inv-faq-q" onclick="invFaq(this)">费用是多少？</button>
+          <div class="inv-faq-a">没有隐藏的费用。每个项目的具体费用在尽职调查期间清楚地说明。通常，费用在年度回报的1-3%之间。</div>
+        </div>
+        <div class="inv-faq-item">
+          <button class="inv-faq-q" onclick="invFaq(this)">我可以在投资后提前退出吗？</button>
+          <div class="inv-faq-a">这取决于项目的条款。某些项目提供早期出口选项，而其他则固定期限。在投资前我们会详细讨论。</div>
+        </div>
+        <div class="inv-faq-item">
+          <button class="inv-faq-q" onclick="invFaq(this)">报告的频率如何？</button>
+          <div class="inv-faq-a">大多数项目提供季度报告。某些高价值项目提供月度更新。您将能够在我们的投资者门户网站上实时查看关键指标。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BACK LINK -->
+  <section class="inv-section" style="padding-top:1.2rem;padding-bottom:0.5rem;">
+    <a href="/zh/earn-money" style="font-size:0.82rem;color:var(--text-muted);text-decoration:none;">← 返回赚钱</a>
+  </section>
+
+</main>
+
+<!-- STICKY CTA -->
+<div class="inv-sticky">
+  <span class="inv-sticky-text">💼 <strong>准备投资</strong> — 立即开始 · 个人顾问</span>
+  <a class="inv-sticky-btn" href="/zh/login?next=/profile/my-role/investor">立即开始</a>
+</div>
+
+<script src="/app.js"></script>
+<script>
+function invFaq(btn) {
+    var item = btn.closest ? btn.closest('.inv-faq-item') : btn.parentElement;
+    var wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.inv-faq-item').forEach(function(i){ i.classList.remove('open'); });
+    if (!wasOpen) item.classList.add('open');
+}
+</script>
+</body>
+</html>

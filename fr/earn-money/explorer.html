@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Explorateur – Märkte & Opportunitén explorer | aBest.co</title>
+<meta content="Als Explorateur bei aBest.co erhalten Sie kostenlosen Zugang zu geprüften Propriétér, Projeten und Investissementsmöglichkeiten aus 14 Ländern — ohne Verpflichtung, jederzeit wechselbar." name="description"/>
+<link href="/favicon.png" rel="icon" type="image/png"/>
+<link href="/index.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="canonical" href="https://www.abest.co/fr/earn-money/explorer"/>
+<style>
+:root {
+    --exp-cyan:#06b6d4;
+    --exp-cyan-dim:rgba(6,182,212,0.14);
+    --exp-purple:#8b5cf6;
+    --exp-purple-dim:rgba(139,92,246,0.12);
+}
+
+/* ── HERO ── */
+.exp-hero {
+    position:relative;
+    display:flex; flex-direction:column; align-items:center; justify-content:flex-start;
+    padding:90px 20px 16px; text-align:center; overflow:hidden;
+}
+.exp-hero::before {
+    content:''; position:absolute; inset:0;
+    background:
+        radial-gradient(ellipse 55% 45% at 20% 30%, rgba(6,182,212,0.13) 0%, transparent 60%),
+        radial-gradient(ellipse 45% 50% at 85% 65%, rgba(139,92,246,0.09) 0%, transparent 60%);
+    pointer-events:none;
+}
+.exp-badge {
+    display:inline-flex; align-items:center; gap:7px; padding:5px 16px; border-radius:22px;
+    background:var(--exp-cyan-dim); border:1px solid rgba(6,182,212,0.35);
+    font-size:0.72rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase;
+    color:var(--exp-cyan); margin-bottom:20px; position:relative; z-index:1;
+}
+.exp-dot { width:7px; height:7px; border-radius:50%; background:var(--exp-cyan); animation:exp-pulse 1.8s infinite; }
+@keyframes exp-pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.7)} }
+.exp-hero h1 { font-size:clamp(1.9rem,5vw,3rem); font-weight:800; line-height:1.12; margin:0 0 6px; color:var(--text-main); position:relative; z-index:1; }
+.exp-hero h1 span { color:var(--exp-cyan); }
+.exp-hero-sub { font-size:clamp(1.05rem,3vw,1.45rem); font-weight:600; color:var(--exp-purple); margin:0 0 16px; position:relative; z-index:1; }
+.exp-hero-desc { font-size:0.97rem; color:var(--text-muted); max-width:540px; margin:0 auto 28px; line-height:1.65; position:relative; z-index:1; }
+
+/* Chips */
+.exp-chips { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-bottom:32px; position:relative; z-index:1; }
+.exp-chip {
+    display:inline-flex; align-items:center; gap:6px; padding:6px 14px; border-radius:20px;
+    background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12);
+    font-size:0.78rem; font-weight:600; color:var(--text-main);
+}
+.exp-chip i { font-style:normal; color:var(--exp-cyan); }
+
+/* CTAs */
+.exp-hero-ctas { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; position:relative; z-index:1; }
+.exp-btn-primary {
+    padding:14px 28px; border-radius:12px; font-size:0.95rem; font-weight:700;
+    background:linear-gradient(135deg, var(--exp-cyan), var(--exp-purple));
+    color:#fff; border:none; cursor:pointer; transition:opacity .2s, transform .2s;
+    text-decoration:none; display:inline-block;
+}
+.exp-btn-primary:hover { opacity:.88; transform:translateY(-1px); }
+.exp-btn-ghost {
+    padding:14px 28px; border-radius:12px; font-size:0.95rem; font-weight:600;
+    background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15);
+    color:var(--text-main); cursor:pointer; transition:background .2s; text-decoration:none; display:inline-block;
+}
+.exp-btn-ghost:hover { background:rgba(255,255,255,0.1); }
+
+/* ── STATS ── */
+.exp-stats {
+    display:grid; grid-template-columns:repeat(4,1fr); gap:2px;
+    background:rgba(255,255,255,0.05); border-radius:16px; overflow:hidden;
+    border:1px solid rgba(255,255,255,0.08); margin:0 20px;
+}
+.exp-stat { padding:20px 10px; text-align:center; background:var(--glass-bg); }
+.exp-stat-val { font-size:1.8rem; font-weight:800; color:var(--exp-cyan); display:block; }
+.exp-stat-lbl { font-size:0.72rem; color:var(--text-muted); margin-top:2px; }
+@media(max-width:480px){ .exp-stats { grid-template-columns:repeat(2,1fr); } }
+
+/* ── SECTION ── */
+.exp-section { padding:52px 20px; max-width:780px; margin:0 auto; }
+.exp-label {
+    font-size:0.7rem; font-weight:700; letter-spacing:0.1em;
+    text-transform:uppercase; color:var(--exp-cyan); margin-bottom:8px;
+}
+.exp-section h2 { font-size:clamp(1.35rem,3.5vw,1.85rem); font-weight:800; margin:0 0 8px; color:var(--text-main); }
+.exp-section-intro { font-size:0.93rem; color:var(--text-muted); margin:0 0 28px; line-height:1.6; }
+.exp-accent { display:block; width:36px; height:3px; border-radius:2px; background:var(--exp-cyan); margin:10px 0; }
+
+/* ── WHAT YOU SEE — Entdeckungs-Karten ── */
+.exp-discover-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
+@media(min-width:600px){ .exp-discover-grid { grid-template-columns:repeat(3,1fr); } }
+.exp-disc-card {
+    border-radius:16px; padding:18px 16px;
+    background:rgba(255,255,255,0.04); border:1.5px solid rgba(255,255,255,0.09);
+    transition:border-color .2s, transform .2s;
+}
+.exp-disc-card:hover { border-color:rgba(6,182,212,0.4); transform:translateY(-2px); }
+.exp-disc-icon { font-size:1.8rem; margin-bottom:8px; }
+.exp-disc-title { font-size:0.88rem; font-weight:700; color:var(--text-main); margin:0 0 4px; }
+.exp-disc-desc { font-size:0.75rem; color:var(--text-muted); margin:0; line-height:1.45; }
+
+/* ── VORTEILE ── */
+.exp-benefit-grid { display:grid; gap:12px; }
+.exp-benefit-card {
+    display:flex; gap:16px; align-items:flex-start;
+    background:rgba(255,255,255,0.04); border:1.5px solid rgba(255,255,255,0.09);
+    border-radius:16px; padding:18px 16px;
+    transition:border-color .2s;
+}
+.exp-benefit-card:hover { border-color:rgba(6,182,212,0.35); }
+.exp-ben-icon { font-size:1.8rem; flex-shrink:0; margin-top:2px; }
+.exp-ben-body h4 { font-size:0.9rem; font-weight:700; color:var(--text-main); margin:0 0 5px; }
+.exp-ben-body p { font-size:0.8rem; color:var(--text-muted); margin:0; line-height:1.5; }
+.exp-ben-tag {
+    display:inline-block; margin-top:8px; padding:3px 10px; border-radius:20px; font-size:0.7rem; font-weight:700;
+    background:var(--exp-cyan-dim); color:var(--exp-cyan); border:1px solid rgba(6,182,212,0.25);
+}
+
+/* ── WIE ES FUNKTIONIERT ── */
+.exp-steps { display:flex; flex-direction:column; }
+.exp-step { display:flex; gap:18px; align-items:flex-start; padding:18px 0; border-bottom:1px solid rgba(255,255,255,0.06); }
+.exp-step:last-child { border-bottom:none; padding-bottom:0; }
+.exp-step-num {
+    flex-shrink:0; width:40px; height:40px; border-radius:50%;
+    background:var(--exp-cyan-dim); border:2px solid var(--exp-cyan);
+    display:flex; align-items:center; justify-content:center;
+    font-size:1rem; font-weight:800; color:var(--exp-cyan);
+}
+.exp-step-body h4 { font-size:0.9rem; font-weight:700; color:var(--text-main); margin:0 0 4px; }
+.exp-step-body p { font-size:0.8rem; color:var(--text-muted); margin:0; line-height:1.5; }
+
+/* ── TESTIMONIALS ── */
+.exp-testi-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; }
+.exp-testi-card { background:rgba(255,255,255,0.04); border:1.5px solid rgba(255,255,255,0.09); border-radius:16px; padding:18px; }
+.exp-testi-stars { color:#f59e0b; font-size:0.88rem; margin-bottom:8px; }
+.exp-testi-text { font-size:0.82rem; color:var(--text-muted); line-height:1.6; margin-bottom:12px; font-style:italic; }
+.exp-testi-author { display:flex; align-items:center; gap:10px; }
+.exp-testi-avatar { width:36px; height:36px; border-radius:50%; background:var(--exp-cyan-dim); border:1.5px solid var(--exp-cyan); display:flex; align-items:center; justify-content:center; font-size:0.9rem; flex-shrink:0; }
+.exp-testi-name { font-size:0.82rem; font-weight:700; color:var(--text-main); }
+.exp-testi-loc { font-size:0.7rem; color:var(--text-muted); }
+
+/* ── ROLLEN-VERGLEICH ── */
+.exp-compare-grid { display:grid; gap:10px; }
+.exp-compare-row {
+    display:flex; align-items:center; justify-content:space-between;
+    background:rgba(255,255,255,0.04); border:1.5px solid rgba(255,255,255,0.08);
+    border-radius:14px; padding:14px 16px; gap:10px;
+    text-decoration:none; color:var(--text-main);
+    transition:border-color .2s, transform .2s;
+}
+.exp-compare-row:hover { border-color:rgba(6,182,212,0.4); transform:translateX(3px); }
+.exp-compare-left { display:flex; align-items:center; gap:12px; }
+.exp-compare-icon { font-size:1.4rem; flex-shrink:0; }
+.exp-compare-label { font-size:0.85rem; font-weight:700; color:var(--text-main); margin:0 0 2px; }
+.exp-compare-sub { font-size:0.73rem; color:var(--text-muted); }
+.exp-compare-arrow { color:var(--exp-cyan); font-size:1rem; flex-shrink:0; }
+
+/* ── FAQ ── */
+.exp-faq-item { border-bottom:1px solid rgba(255,255,255,0.07); }
+.exp-faq-item:last-child { border-bottom:none; }
+.exp-faq-q {
+    width:100%; background:none; border:none; color:var(--text-main);
+    font-size:0.88rem; font-weight:600; text-align:left;
+    padding:16px 0; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:10px;
+    font-family:inherit;
+}
+.exp-faq-q::after { content:'＋'; font-size:1rem; color:var(--exp-cyan); flex-shrink:0; }
+.exp-faq-item.open .exp-faq-q::after { content:'－'; }
+.exp-faq-a { display:none; font-size:0.82rem; color:var(--text-muted); line-height:1.6; padding-bottom:14px; }
+.exp-faq-item.open .exp-faq-a { display:block; }
+
+/* ── STICKY CTA ── */
+.exp-sticky {
+    position:fixed; bottom:0; left:0; right:0; z-index:99;
+    background:rgba(6,182,212,0.90); backdrop-filter:blur(12px);
+    padding:12px 20px; display:flex; align-items:center; justify-content:space-between; gap:12px;
+}
+.exp-sticky-text { font-size:0.78rem; font-weight:600; color:#001a1f; line-height:1.3; }
+.exp-sticky-btn {
+    flex-shrink:0; padding:10px 20px; border-radius:10px; font-size:0.85rem; font-weight:700;
+    background:#001a1f; color:var(--exp-cyan); border:none; cursor:pointer; white-space:nowrap;
+    text-decoration:none; display:inline-block; transition:opacity .2s;
+}
+.exp-sticky-btn:hover { opacity:.88; }
+</style>
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#007aff" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="aBest.co" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="aBest.co" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:url" content="https://www.abest.co/fr/earn-money" />
+    <meta property="og:title" content="Explorateur – Märkte & Opportunitén explorer | aBest.co" />
+    <meta property="og:description" content="Global Premium Land & Real Estate Development." />
+    <meta property="og:image" content="https://www.abest.co/assets/images/bg_main_blurred_new.webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@aBestco" />
+    <meta name="twitter:title" content="Explorateur – Märkte & Opportunitén explorer | aBest.co" />
+    <meta name="twitter:description" content="Global Premium Land & Real Estate Development." />
+    <meta name="twitter:image" content="https://www.abest.co/assets/images/bg_main_blurred_new.webp" />
+</head>
+<body class="dark-mode">
+
+<!-- Background -->
+<div class="background-wrapper">
+    <img alt="Background" class="main-bg" src="/assets/images/bg_main_blurred_new.webp"/>
+    <div class="bg-gradient-overlay"></div>
+</div>
+
+<!-- Header -->
+<header class="app-header">
+    <a class="logo-link" href="/fr/">
+        <span style="font-size:1.4rem;font-weight:500;color:var(--text-main);">
+            <span style="color:var(--primary-blue);">a</span>Best<span style="color:var(--primary-blue);">.co</span>
+        </span>
+    </a>
+    <div style="display:flex;align-items:center;gap:12px;">
+        <a href="/fr/" class="header-icon-v2" aria-label="Accueil"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></a>
+        <a href="/fr/profil" class="header-icon-v2" aria-label="Profil"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+    </div>
+</header>
+
+<!-- BREADCRUMB + HERO -->
+<section class="exp-hero">
+    <nav style="font-size:0.75rem;color:var(--text-muted);margin-bottom:20px;align-self:flex-start;width:100%;max-width:780px;">
+        <a href="/fr/earn-money" style="color:var(--text-muted);text-decoration:none;">Gagner de l'argent</a>
+        <span style="margin:0 6px;opacity:0.5;">/</span>
+        <span style="color:var(--exp-cyan);font-weight:600;">Explorateur</span>
+    </nav>
+    <div class="exp-badge"><span class="exp-dot"></span>Gratuit · Aucune obligation</div>
+    <h1>Sie wollen schauen,<br>bevor Sie <span>entscheiden?</span></h1>
+    <p class="exp-hero-sub">Accès privilégié. Kein Druck. Ihr Tempo.</p>
+    <p class="exp-hero-desc">Als Explorateur erhalten Sie kostenlosen Zugang zu geprüften Projeten, Propriétér und Investissementschancen aus 14 Ländern — noch bevor Sie sich festlegen. Lernen Sie den Markt kennen, bauen Sie Wissen auf und entscheiden Sie, wenn Sie bereit sind.</p>
+    <div class="exp-chips">
+        <span class="exp-chip"><i>🆓</i> Vollständig kostenlos</span>
+        <span class="exp-chip"><i>🌍</i> 14 Länder</span>
+        <span class="exp-chip"><i>📊</i> Aktuelle Transaction-Einblicke</span>
+        <span class="exp-chip"><i>🔒</i> Aucune obligation</span>
+        <span class="exp-chip"><i>🔄</i> Jederzeit Rolle wechseln</span>
+    </div>
+    <div class="exp-hero-ctas">
+        <a class="exp-btn-primary" href="/fr/login?next=/profile/my-role/explorer">🔍 Jetzt kostenlos starten</a>
+        <button class="exp-btn-ghost" onclick="document.getElementById('exp-was').scrollIntoView({behavior:'smooth'})">Was Sie sehen werden →</button>
+    </div>
+</section>
+
+<!-- STATS -->
+<div class="exp-stats">
+    <div class="exp-stat"><span class="exp-stat-val">47+</span><span class="exp-stat-lbl">aktive Projete</span></div>
+    <div class="exp-stat"><span class="exp-stat-val">14</span><span class="exp-stat-lbl">pays dans le monde</span></div>
+    <div class="exp-stat"><span class="exp-stat-val">100%</span><span class="exp-stat-lbl">kostenloser Zugang</span></div>
+    <div class="exp-stat"><span class="exp-stat-val">6</span><span class="exp-stat-lbl">Rollen verfügbar</span></div>
+</div>
+
+<!-- WAS SIE SEHEN -->
+<section class="exp-section" id="exp-was">
+    <p class="exp-label">🔍 Ihr Zugang als Explorateur</p>
+    <h2>Was Sie als Explorateur sehen</h2>
+    <p class="exp-section-intro">Kein leeres Profil — Sie erhalten sofort Einblick in echte Transactions, Märkte und Zahlen aus unserem aktiven Netzwerk.</p>
+    <span class="exp-accent"></span>
+    <div class="exp-discover-grid">
+        <div class="exp-disc-card">
+            <div class="exp-disc-icon">🏠</div>
+            <div class="exp-disc-title">Propriétér & Terraine</div>
+            <div class="exp-disc-desc">Terraine, Propriété commercialen, Küstenobjekte und Agrarflächen aus Europa, USA und der Türkei.</div>
+        </div>
+        <div class="exp-disc-card">
+            <div class="exp-disc-icon">🚀</div>
+            <div class="exp-disc-title">Startups & Projete</div>
+            <div class="exp-disc-desc">Entreprises en phase précoce und Wachstumsprojekte mit Investissementsbedarf — direkt vom Team kuratiert.</div>
+        </div>
+        <div class="exp-disc-card">
+            <div class="exp-disc-icon">🤝</div>
+            <div class="exp-disc-title">M&A und Entreprise</div>
+            <div class="exp-disc-desc">Entreprise, die verkauft werden oder Partner suchen — mit echten Kennzahlen und Hintergrundinformationen.</div>
+        </div>
+        <div class="exp-disc-card">
+            <div class="exp-disc-icon">⚡</div>
+            <div class="exp-disc-title">Énergie & Infrastruktur</div>
+            <div class="exp-disc-desc">Solar, Wind, Agrarland und Infrastrukturprojekte mit langfristigem Potenzial.</div>
+        </div>
+        <div class="exp-disc-card">
+            <div class="exp-disc-icon">📊</div>
+            <div class="exp-disc-title">Analyses de marché</div>
+            <div class="exp-disc-desc">Regelmäßige Reports zu Märkten in Deutschland, USA, Türkei und weiteren Ländern aus unserem Netzwerk.</div>
+        </div>
+        <div class="exp-disc-card">
+            <div class="exp-disc-icon">🔔</div>
+            <div class="exp-disc-title">Transaction-Benachrichtigungen</div>
+            <div class="exp-disc-desc">Erhalten Sie neue Angebote direkt — nach Type, Region und Volumen gefiltert nach Ihren Interessen.</div>
+        </div>
+    </div>
+</section>
+
+<!-- VORTEILE -->
+<section class="exp-section" style="padding-top:0;">
+    <p class="exp-label">💡 Warum als Explorateur starten</p>
+    <h2>4 Gründe, jetzt zu starten</h2>
+    <p class="exp-section-intro">Sie müssen nicht sofort investieren oder verkaufen. Wissen aufzubauen ist der erste und wichtigste Schritt.</p>
+    <span class="exp-accent" style="margin-bottom:24px;"></span>
+    <div class="exp-benefit-grid">
+        <div class="exp-benefit-card">
+            <span class="exp-ben-icon">🎯</span>
+            <div class="exp-ben-body">
+                <h4>Echter Accès privilégié — kostenlos</h4>
+                <p>Sehen Sie dieselben Projete und Transactions, die unsere aktiven Investisseuren und Capitalpartner sehen — ohne einen Cent zu bezahlen. Viele Möglichkeiten werden nie öffentlich inseriert.</p>
+                <span class="exp-ben-tag">Exklusiver Einblick</span>
+            </div>
+        </div>
+        <div class="exp-benefit-card">
+            <span class="exp-ben-icon">🧠</span>
+            <div class="exp-ben-body">
+                <h4>Wissen aufbauen — in Ihrem Tempo</h4>
+                <p>Propriétér in der Türkei? Startups in Deutschland? M&A in den USA? Erkunden Sie Märkte, die Sie noch nicht kennen — ohne Risiko. Jeder Profi hat einmal als Einsteiger begonnen.</p>
+                <span class="exp-ben-tag">Kein Druck</span>
+            </div>
+        </div>
+        <div class="exp-benefit-card">
+            <span class="exp-ben-icon">🔄</span>
+            <div class="exp-ben-body">
+                <h4>Wechseln, wenn Sie bereit sind</h4>
+                <p>Aus dem Explorateur wird der Investisseur — oder der Capitalpartner, der Fondateur, der Vendeur. Sie entscheiden, wann und in welche Richtung. Der Wechsel ist kostenlos und sofort möglich.</p>
+                <span class="exp-ben-tag">Volle Flexibilität</span>
+            </div>
+        </div>
+        <div class="exp-benefit-card">
+            <span class="exp-ben-icon">🌍</span>
+            <div class="exp-ben-body">
+                <h4>Internationales Netzwerk — von Tag 1</h4>
+                <p>Mit der Registrierung werden Sie Teil eines Netzwerks aus über 100 geprüften Partnern, Investisseuren und Entrepreneurn in 14 Ländern. Kontakte, die Sie sonst ans kosten würden.</p>
+                <span class="exp-ben-tag">100+ Partner</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- WIE ES FUNKTIONIERT -->
+<section class="exp-section" style="padding-top:0;">
+    <div style="background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.09);border-radius:20px;padding:28px 24px;">
+        <p class="exp-label">🛤️ In 3 Schritten</p>
+        <h2>So einfach funktioniert es</h2>
+        <p class="exp-section-intro">Von der Registrierung bis zum ersten Einblick in echte Transactions — in weniger als 3 minutes.</p>
+        <div class="exp-steps">
+            <div class="exp-step">
+                <div class="exp-step-num">1</div>
+                <div class="exp-step-body">
+                    <h4>Gratuites Profil erstellen</h4>
+                    <p>Registrieren Sie sich in unter 2 minutes — keine Kreditkarte, keine Verpflichtung. Wählen Sie die Rolle "Explorateur" und geben Sie an, welche Märkte und Themen Sie interessieren.</p>
+                </div>
+            </div>
+            <div class="exp-step">
+                <div class="exp-step-num">2</div>
+                <div class="exp-step-body">
+                    <h4>Projete, Transactions und Märkte explorer</h4>
+                    <p>Durchsuchen Sie aktuelle Propriétér, Startups, Entreprisesverkäufe und Analyses de marché. Merken Sie sich Favoriten, aktivieren Sie Benachrichtigungen und lesen Sie Hintergrundinformationen.</p>
+                </div>
+            </div>
+            <div class="exp-step">
+                <div class="exp-step-num">3</div>
+                <div class="exp-step-body">
+                    <h4>Zur passenden Rolle wechseln</h4>
+                    <p>Sobald Sie wissen, was Sie möchten, wechseln Sie einfach zu Investisseur, Capitalpartner, Vendeur oder Fondateur — im Profil, mit einem Klick, ohne Kosten.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="exp-section" style="padding-top:0;">
+    <p class="exp-label">💬 Erfahrungen</p>
+    <h2>Was andere Explorateur sagen</h2>
+    <p class="exp-section-intro">Viele unserer aktivsten Investisseuren haben als Explorateur begonnen.</p>
+    <span class="exp-accent" style="margin-bottom:24px;"></span>
+    <div class="exp-testi-grid">
+        <div class="exp-testi-card">
+            <div class="exp-testi-stars">★★★★★</div>
+            <p class="exp-testi-text">"Ich hatte keine Ahnung, wo ich anfangen soll. Als Explorateur konnte ich monatelang Projete beobachten, ohne irgendeinen Druck zu spüren. Inzwischen bin ich aktiver Investisseur."</p>
+            <div class="exp-testi-author">
+                <div class="exp-testi-avatar">M</div>
+                <div>
+                    <div class="exp-testi-name">Markus T.</div>
+                    <div class="exp-testi-loc">Hamburg — jetzt Investisseur</div>
+                </div>
+            </div>
+        </div>
+        <div class="exp-testi-card">
+            <div class="exp-testi-stars">★★★★★</div>
+            <p class="exp-testi-text">"Die Marktberichte sind allein schon den Zugang wert. Ich habe Projete in der Türkei entdeckt, von denen ich nicht mal wusste, dass sie existieren. Und das kostenlos."</p>
+            <div class="exp-testi-author">
+                <div class="exp-testi-avatar">S</div>
+                <div>
+                    <div class="exp-testi-name">Sandra K.</div>
+                    <div class="exp-testi-loc">München — Capitalpartnerin</div>
+                </div>
+            </div>
+        </div>
+        <div class="exp-testi-card">
+            <div class="exp-testi-stars">★★★★★</div>
+            <p class="exp-testi-text">"Als Selbstständiger wollte ich wissen, ob Propriétér als Capitalanlage für mich Sinn machen. Durch aBest.co habe ich in 6 semaines mehr gelernt als in 2 ansn YouTube-Videos."</p>
+            <div class="exp-testi-author">
+                <div class="exp-testi-avatar">A</div>
+                <div>
+                    <div class="exp-testi-name">Andreas M.</div>
+                    <div class="exp-testi-loc">Frankfurt — Explorateur</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ANDERE ROLLEN -->
+<section class="exp-section" style="padding-top:0;">
+    <p class="exp-label">↗ Nächste Schritte</p>
+    <h2>Schon eine Idee, wohin Sie wollen?</h2>
+    <p class="exp-section-intro">Wenn Sie wissen, was Sie suchen — wechseln Sie direkt in die passende Rolle.</p>
+    <div class="exp-compare-grid">
+        <a href="/fr/earn-money/investor" class="exp-compare-row">
+            <div class="exp-compare-left">
+                <div class="exp-compare-icon">📈</div>
+                <div>
+                    <div class="exp-compare-label">Investisseur werden</div>
+                    <div class="exp-compare-sub">Aktiv in Projete und Entreprise investieren</div>
+                </div>
+            </div>
+            <span class="exp-compare-arrow">→</span>
+        </a>
+        <a href="/fr/earn-money/capital-partner" class="exp-compare-row">
+            <div class="exp-compare-left">
+                <div class="exp-compare-icon">🏦</div>
+                <div>
+                    <div class="exp-compare-label">Capitalpartner werden</div>
+                    <div class="exp-compare-sub">5 % p.a. Festzins – à partir de € 1.000, ab 1 Jahr</div>
+                </div>
+            </div>
+            <span class="exp-compare-arrow">→</span>
+        </a>
+        <a href="/fr/earn-money/seller" class="exp-compare-row">
+            <div class="exp-compare-left">
+                <div class="exp-compare-icon">🏠</div>
+                <div>
+                    <div class="exp-compare-label">Vendeur werden</div>
+                    <div class="exp-compare-sub">Propriété oder Terrain verkaufen</div>
+                </div>
+            </div>
+            <span class="exp-compare-arrow">→</span>
+        </a>
+        <a href="/fr/earn-money/business" class="exp-compare-row">
+            <div class="exp-compare-left">
+                <div class="exp-compare-icon">🏢</div>
+                <div>
+                    <div class="exp-compare-label">Entreprise einreichen</div>
+                    <div class="exp-compare-sub">Verkaufen oder Investisseur finden</div>
+                </div>
+            </div>
+            <span class="exp-compare-arrow">→</span>
+        </a>
+        <a href="/fr/earn-money/founder" class="exp-compare-row">
+            <div class="exp-compare-left">
+                <div class="exp-compare-icon">💡</div>
+                <div>
+                    <div class="exp-compare-label">Fondateur werden</div>
+                    <div class="exp-compare-sub">Soumets ton idée und Partner finden</div>
+                </div>
+            </div>
+            <span class="exp-compare-arrow">→</span>
+        </a>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="exp-section" style="padding-top:0;">
+    <div style="background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.09);border-radius:20px;padding:28px 24px;">
+        <p class="exp-label">❓ FAQ</p>
+        <h2>Häufig gestellte Fragen</h2>
+        <div>
+            <div class="exp-faq-item">
+                <button class="exp-faq-q" onclick="expFaq(this)">Was genau sehe ich als Explorateur?</button>
+                <div class="exp-faq-a">Als Explorateur erhalten Sie Einblick in aktuelle Propriétérangebote, Projetlisten, Startup-Übersichten und M&A-Möglichkeiten aus unserem Netzwerk. Dazu kommen regelmäßige Marktberichte, Transaction-Benachrichtigungen nach Ihren Interessen sowie Hintergrundinformationen zu Projeten und Märkten in 14 Ländern.</div>
+            </div>
+            <div class="exp-faq-item">
+                <button class="exp-faq-q" onclick="expFaq(this)">Kostet der Explorateur-Zugang wirklich nichts?</button>
+                <div class="exp-faq-a">Ja, vollständig kostenlos — und das dauerhaft. Es gibt keine versteckten Kosten, keine Testphase und keine automatische Umwandlung in ein Bezahlmodell. Der Explorateur-Zugang ist und bleibt gratis.</div>
+            </div>
+            <div class="exp-faq-item">
+                <button class="exp-faq-q" onclick="expFaq(this)">Wie wechsle ich später zu einer anderen Rolle?</button>
+                <div class="exp-faq-a">Jederzeit und kostenlos. In Ihrem Profil unter "Meine Rolle" können Sie mit einem Klick zu Investisseur, Capitalpartner, Vendeur, Fondateur oder Entreprise wechseln. Der Wechsel ist sofort wirksam.</div>
+            </div>
+            <div class="exp-faq-item">
+                <button class="exp-faq-q" onclick="expFaq(this)">Werden meine Daten weitergegeben?</button>
+                <div class="exp-faq-a">Nein. Ihre Registrierungsdaten bleiben vertraulich. Kein Transaction-Partner, kein Investisseur und kein Vendeur sieht Ihr Profil, solange Sie das nicht aktiv freigeben. Als Explorateur bleiben Sie anonym im Hintergrund.</div>
+            </div>
+            <div class="exp-faq-item">
+                <button class="exp-faq-q" onclick="expFaq(this)">Was unterscheidet aBest.co von anderen Plattformen?</button>
+                <div class="exp-faq-a">Bei aBest.co sehen Sie keine Plattform-generierten Dummy-Projete — jedes Angebot kommt aus unserem realen internationalen Netzwerk. Projete werden intern geprüft, bevor sie sichtbar werden. Als Explorateur profitieren Sie von demselben kuratierten Zugang wie unsere aktiven Investisseuren.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FINALES CTA -->
+<section class="exp-section" style="padding-top:0;padding-bottom:80px;">
+    <div style="background:linear-gradient(135deg,rgba(6,182,212,0.1),rgba(139,92,246,0.08));border:1.5px solid rgba(6,182,212,0.3);border-radius:20px;padding:32px 24px;text-align:center;">
+        <div style="font-size:2.2rem;margin-bottom:14px;">🔍</div>
+        <h2 style="font-size:1.4rem;font-weight:800;margin:0 0 10px;color:var(--text-main);">Starten Sie jetzt — kostenlos.</h2>
+        <p style="color:var(--text-muted);font-size:0.88rem;max-width:380px;margin:0 auto 22px;line-height:1.6;">Kein Risiko, kein Engagement. Einfach anmelden und sofort Einblick in echte Projete und Märkte erhalten.</p>
+        <a href="/fr/login?next=/profile/my-role/explorer" class="exp-btn-primary" style="font-size:1rem;padding:15px 36px;">🔍 Explorateur-Profil erstellen →</a>
+        <p style="font-size:0.72rem;color:var(--text-muted);margin-top:12px;">Gratuit · Keine Kreditkarte · Résiliable à tout moment</p>
+    </div>
+</section>
+
+<!-- STICKY CTA -->
+<div class="exp-sticky">
+    <span class="exp-sticky-text">🔍 Als Explorateur starten — kostenlos &amp; unverbindlich</span>
+    <a class="exp-sticky-btn" href="/fr/login?next=/profile/my-role/explorer">Commencer maintenant</a>
+</div>
+
+<script src="/app.js"></script>
+<script>
+function expFaq(btn) {
+    var item = btn.closest ? btn.closest('.exp-faq-item') : btn.parentElement;
+    var wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.exp-faq-item').forEach(function(i){ i.classList.remove('open'); });
+    if (!wasOpen) item.classList.add('open');
+}
+</script>
+</body>
+</html>

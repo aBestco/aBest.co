@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>להיות משקיע – Bei uns oder mit uns investieren | aBest.co</title>
+<meta content="למשקיעים פעילים: Investieren Sie in Startups, Projekte oder Unternehmen — bei aBest.co oder gemeinsam mit uns. International, diskret, strukturiert." name="description"/>
+<link href="/favicon.png" rel="icon" type="image/png"/>
+<link href="/index.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="canonical" href="https://www.abest.co/he/earn-money/investor"/>
+<style>
+:root {
+    --inv-gold:#f59e0b;
+    --inv-gold-dim:rgba(245,158,11,0.15);
+    --inv-orange:#f97316;
+    --inv-green:#22c55e;
+}
+
+/* ── HERO ── */
+.inv-hero {
+    position:relative;
+    display:flex; flex-direction:column; align-items:center; justify-content:flex-start;
+    padding:90px 20px 16px; text-align:center; overflow:hidden;
+}
+.inv-hero::before {
+    content:''; position:absolute; inset:0;
+    background:
+        radial-gradient(ellipse 60% 45% at 25% 25%, rgba(245,158,11,0.16) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 50% at 80% 70%, rgba(249,115,22,0.1) 0%, transparent 60%);
+    pointer-events:none;
+}
+.inv-badge {
+    display:inline-flex; align-items:center; gap:7px; padding:5px 16px; border-radius:22px;
+    background:rgba(245,158,11,0.12); border:1px solid rgba(245,158,11,0.35);
+    font-size:0.72rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase;
+    color:var(--inv-gold); margin-bottom:20px;
+}
+.inv-dot { width:7px; height:7px; border-radius:50%; background:var(--inv-gold); animation:inv-pulse 1.8s infinite; }
+@keyframes inv-pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.7)} }
+.inv-hero h1 { font-size:clamp(1.9rem,5vw,3.2rem); font-weight:800; line-height:1.12; margin:0 0 6px; color:var(--text-main); }
+.inv-hero h1 span { color:var(--inv-gold); }
+.inv-hero-sub { font-size:clamp(1.05rem,3vw,1.55rem); font-weight:600; color:var(--inv-orange); margin:0 0 16px; }
+.inv-hero-desc { font-size:0.97rem; color:var(--text-muted); max-width:560px; margin:0 auto 28px; line-height:1.65; }
+
+/* Trust chips */
+.inv-chips { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-bottom:32px; }
+.inv-chip {
+    display:inline-flex; align-items:center; gap:6px; padding:6px 14px; border-radius:20px;
+    background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12);
+    font-size:0.78rem; font-weight:600; color:var(--text-main);
+}
+.inv-chip i { color:var(--inv-gold); font-style:normal; }
+
+/* CTAs */
+.inv-hero-ctas { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; }
+.inv-btn-primary {
+    padding:14px 28px; border-radius:12px; font-size:0.95rem; font-weight:700;
+    background:linear-gradient(135deg, var(--inv-gold), var(--inv-orange));
+    color:#fff; border:none; cursor:pointer; transition:opacity .2s, transform .2s;
+}
+.inv-btn-primary:hover { opacity:.88; transform:translateY(-1px); }
+.inv-btn-ghost {
+    padding:14px 28px; border-radius:12px; font-size:0.95rem; font-weight:600;
+    background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15);
+    color:var(--text-main); cursor:pointer; transition:background .2s;
+}
+.inv-btn-ghost:hover { background:rgba(255,255,255,0.1); }
+
+/* ── SECTIONS ── */
+.inv-section { padding:56px 20px; max-width:780px; margin:0 auto; }
+.inv-section-label {
+    font-size:0.7rem; font-weight:700; letter-spacing:0.1em;
+    text-transform:uppercase; color:var(--inv-gold); margin-bottom:8px;
+}
+.inv-section h2 { font-size:clamp(1.4rem,3.5vw,1.9rem); font-weight:800; margin:0 0 8px; color:var(--text-main); }
+.inv-section-intro { font-size:0.93rem; color:var(--text-muted); margin:0 0 28px; line-height:1.6; }
+.inv-accent-line { display:block; width:36px; height:3px; border-radius:2px; background:var(--inv-gold); margin:10px 0 0; }
+
+/* ── STATS ── */
+.inv-stats {
+    display:grid; grid-template-columns:repeat(4,1fr); gap:2px;
+    background:rgba(255,255,255,0.05); border-radius:16px; overflow:hidden;
+    border:1px solid rgba(255,255,255,0.08); margin:0 20px;
+}
+.inv-stat { padding:20px 10px; text-align:center; background:var(--glass-bg); }
+.inv-stat-val { font-size:1.8rem; font-weight:800; color:var(--inv-gold); display:block; }
+.inv-stat-lbl { font-size:0.72rem; color:var(--text-muted); margin-top:2px; }
+@media(max-width:480px){ .inv-stats { grid-template-columns:repeat(2,1fr); } }
+
+/* ── TWO WAYS ── */
+.inv-ways-grid { display:grid; gap:14px; }
+.inv-way-card {
+    border-radius:18px; padding:26px 22px;
+    border:1px solid rgba(255,255,255,0.1); background:var(--glass-bg);
+    cursor:pointer; transition:border-color .2s, transform .2s;
+    position:relative; overflow:hidden;
+}
+.inv-way-card::before { content:''; position:absolute; inset:0; opacity:0; transition:opacity .2s; }
+.inv-way-card.bei { border-color:rgba(245,158,11,0.35); }
+.inv-way-card.bei::before { background:radial-gradient(ellipse 80% 80% at 10% 0%, rgba(245,158,11,0.08), transparent); }
+.inv-way-card.mit { border-color:rgba(249,115,22,0.3); }
+.inv-way-card.mit::before { background:radial-gradient(ellipse 80% 80% at 10% 0%, rgba(249,115,22,0.08), transparent); }
+.inv-way-card:hover { transform:translateY(-2px); }
+.inv-way-card:hover::before { opacity:1; }
+.inv-way-top { display:flex; align-items:flex-start; gap:14px; margin-bottom:14px; }
+.inv-way-icon { font-size:2.2rem; flex-shrink:0; }
+.inv-way-title { font-size:1.1rem; font-weight:800; color:var(--text-main); margin-bottom:5px; }
+.inv-way-tag {
+    display:inline-block; padding:2px 10px; border-radius:10px; font-size:0.7rem; font-weight:700;
+}
+.inv-way-card.bei .inv-way-tag { background:var(--inv-gold-dim); color:var(--inv-gold); }
+.inv-way-card.mit .inv-way-tag { background:rgba(249,115,22,0.12); color:var(--inv-orange); }
+.inv-way-body { font-size:0.87rem; color:var(--text-muted); line-height:1.6; margin-bottom:16px; }
+.inv-way-checks { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:7px; }
+.inv-way-checks li { font-size:0.83rem; color:var(--text-muted); display:flex; align-items:flex-start; gap:9px; }
+.inv-way-checks li::before { content:'✓'; font-weight:700; flex-shrink:0; margin-top:1px; }
+.inv-way-card.bei .inv-way-checks li::before { color:var(--inv-gold); }
+.inv-way-card.mit .inv-way-checks li::before { color:var(--inv-orange); }
+
+/* ── COMPARISON ── */
+.inv-compare { border-radius:16px; overflow:hidden; border:1px solid rgba(255,255,255,0.1); }
+.inv-compare-head { display:grid; grid-template-columns:1.2fr 1fr 1fr; background:rgba(255,255,255,0.06); }
+.inv-compare-head div { padding:12px 14px; font-size:0.78rem; font-weight:700; text-align:center; }
+.inv-compare-head div:first-child { text-align:left; color:var(--text-muted); }
+.ch-bei { color:var(--inv-gold); }
+.ch-mit { color:var(--inv-orange); }
+.inv-compare-row { display:grid; grid-template-columns:1.2fr 1fr 1fr; border-top:1px solid rgba(255,255,255,0.06); }
+.inv-compare-row div { padding:11px 14px; font-size:0.8rem; }
+.inv-compare-row div:first-child { color:var(--text-muted); }
+.inv-compare-row div:not(:first-child) { text-align:center; font-weight:600; }
+.inv-compare-row:nth-child(odd) { background:rgba(255,255,255,0.02); }
+.txt-gold { color:var(--inv-gold); }
+.txt-orange { color:var(--inv-orange); }
+
+/* ── PROJECT TYPES ── */
+.inv-types { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+.inv-type-card {
+    border-radius:14px; padding:18px 14px; text-align:center;
+    background:var(--glass-bg); border:1px solid rgba(255,255,255,0.09);
+    cursor:pointer; transition:border-color .2s, background .2s, transform .2s;
+}
+.inv-type-card:hover { border-color:rgba(245,158,11,0.4); background:var(--inv-gold-dim); transform:translateY(-2px); }
+.inv-type-icon { font-size:1.8rem; margin-bottom:7px; display:block; }
+.inv-type-name { font-size:0.8rem; font-weight:600; color:var(--text-main); display:block; }
+.inv-type-sub { font-size:0.68rem; color:var(--text-muted); margin-top:3px; display:block; }
+@media(max-width:420px){ .inv-types { grid-template-columns:repeat(2,1fr); } }
+
+/* ── PROJECT EXAMPLES ── */
+.inv-projects { display:flex; flex-direction:column; gap:14px; }
+.inv-project-card {
+    border-radius:16px; padding:20px 18px;
+    background:var(--glass-bg); border:1px solid rgba(255,255,255,0.09);
+}
+.inv-proj-tag {
+    display:inline-block; padding:3px 10px; border-radius:8px;
+    font-size:0.7rem; font-weight:700; margin-bottom:10px;
+}
+.tag-bei { background:var(--inv-gold-dim); color:var(--inv-gold); }
+.tag-mit { background:rgba(249,115,22,0.12); color:var(--inv-orange); }
+.tag-offen { background:rgba(34,197,94,0.12); color:var(--inv-green); }
+.inv-proj-name { font-size:1rem; font-weight:700; color:var(--text-main); margin-bottom:4px; }
+.inv-proj-loc { font-size:0.78rem; color:var(--text-muted); margin-bottom:12px; }
+.inv-proj-meta { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.inv-proj-row { display:flex; flex-direction:column; }
+.inv-proj-row span:first-child { font-size:0.7rem; color:var(--text-muted); margin-bottom:2px; }
+.inv-proj-row span:last-child { font-size:0.84rem; font-weight:600; color:var(--text-main); }
+.gold-val { color:var(--inv-gold); }
+.orange-val { color:var(--inv-orange); }
+.green-val { color:var(--inv-green); }
+
+/* ── PROCESS ── */
+.inv-steps { display:flex; flex-direction:column; }
+.inv-step {
+    display:flex; gap:16px; align-items:flex-start;
+    padding:20px 0; border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.inv-step:last-child { border-bottom:none; padding-bottom:0; }
+.inv-step-num {
+    flex-shrink:0; width:40px; height:40px; border-radius:50%;
+    background:var(--inv-gold-dim); border:2px solid rgba(245,158,11,0.4);
+    display:flex; align-items:center; justify-content:center;
+    font-size:0.95rem; font-weight:800; color:var(--inv-gold);
+}
+.inv-step-title { font-size:0.92rem; font-weight:700; color:var(--text-main); margin-bottom:5px; }
+.inv-step-desc { font-size:0.82rem; color:var(--text-muted); line-height:1.55; margin:0; }
+
+/* ── INVESTOR TYPES ── */
+.inv-profiles { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
+.inv-profile {
+    border-radius:14px; padding:18px 14px;
+    background:var(--glass-bg); border:1px solid rgba(255,255,255,0.09);
+}
+.inv-profile-icon { font-size:1.6rem; margin-bottom:8px; display:block; }
+.inv-profile-title { font-size:0.85rem; font-weight:700; color:var(--text-main); margin-bottom:5px; display:block; }
+.inv-profile-desc { font-size:0.78rem; color:var(--text-muted); line-height:1.5; margin:0; }
+
+/* ── TESTIMONIALS ── */
+.inv-testimons { display:flex; flex-direction:column; gap:14px; }
+.inv-testi {
+    border-radius:16px; padding:20px 18px;
+    background:var(--glass-bg); border:1px solid rgba(255,255,255,0.09);
+}
+.inv-stars { color:#f59e0b; font-size:0.9rem; margin-bottom:10px; letter-spacing:2px; }
+.inv-testi-text { font-size:0.87rem; color:var(--text-muted); font-style:italic; line-height:1.6; margin-bottom:14px; }
+.inv-testi-author { display:flex; align-items:center; gap:10px; }
+.inv-testi-avatar {
+    width:38px; height:38px; border-radius:50%;
+    background:var(--inv-gold-dim); border:2px solid rgba(245,158,11,0.3);
+    display:flex; align-items:center; justify-content:center;
+    font-size:0.85rem; font-weight:700; color:var(--inv-gold);
+}
+.inv-testi-name { font-size:0.83rem; font-weight:700; color:var(--text-main); }
+.inv-testi-loc { font-size:0.74rem; color:var(--text-muted); }
+
+/* ── FORM ── */
+.inv-form-wrap {
+    border-radius:20px; padding:28px 20px;
+    background:var(--glass-bg); border:1px solid rgba(245,158,11,0.25);
+}
+.inv-form-title { font-size:1.1rem; font-weight:800; color:var(--text-main); margin-bottom:6px; }
+.inv-form-sub { font-size:0.83rem; color:var(--text-muted); margin-bottom:20px; }
+
+/* Way buttons in form */
+.inv-way-btns { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-bottom:18px; }
+.inv-way-btn {
+    padding:12px 10px; border-radius:10px; font-size:0.8rem; font-weight:600;
+    border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.04);
+    color:var(--text-muted); cursor:pointer; text-align:center; transition:all .2s;
+}
+.inv-way-btn .btn-icon { font-size:1.2rem; display:block; margin-bottom:4px; }
+.inv-way-btn.active-bei { background:var(--inv-gold-dim); border-color:var(--inv-gold); color:var(--inv-gold); }
+.inv-way-btn.active-mit { background:rgba(249,115,22,0.12); border-color:var(--inv-orange); color:var(--inv-orange); }
+
+/* Form fields */
+.inv-form-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px; }
+.inv-form-grid.full { grid-template-columns:1fr; }
+.inv-input {
+    width:100%; padding:11px 14px; border-radius:10px; font-size:0.85rem;
+    background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12);
+    color:var(--text-main); outline:none; transition:border-color .2s; box-sizing:border-box;
+    font-family:'Outfit',sans-serif;
+}
+.inv-input:focus { border-color:var(--inv-gold); }
+.inv-input::placeholder { color:var(--text-muted); }
+.inv-select {
+    width:100%; padding:11px 14px; border-radius:10px; font-size:0.85rem;
+    background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12);
+    color:var(--text-main); outline:none; transition:border-color .2s; box-sizing:border-box;
+    font-family:'Outfit',sans-serif; appearance:none; cursor:pointer;
+}
+.inv-select:focus { border-color:var(--inv-gold); }
+.inv-select option { background:#1a1a2e; color:var(--text-main); }
+.inv-textarea {
+    width:100%; padding:11px 14px; border-radius:10px; font-size:0.85rem;
+    background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12);
+    color:var(--text-main); outline:none; transition:border-color .2s; box-sizing:border-box;
+    font-family:'Outfit',sans-serif; resize:vertical; min-height:80px;
+}
+.inv-textarea:focus { border-color:var(--inv-gold); }
+.inv-textarea::placeholder { color:var(--text-muted); }
+.inv-form-note { font-size:0.74rem; color:var(--text-muted); margin:12px 0 16px; }
+.inv-submit-btn {
+    width:100%; padding:15px; border-radius:12px; font-size:1rem; font-weight:700;
+    background:linear-gradient(135deg, var(--inv-gold), var(--inv-orange));
+    color:#fff; border:none; cursor:pointer; transition:opacity .2s, transform .2s;
+}
+.inv-submit-btn:hover { opacity:.88; transform:translateY(-1px); }
+.inv-form-success {
+    display:none; text-align:center; padding:24px 0;
+}
+.inv-form-success .s-icon { font-size:2.5rem; margin-bottom:10px; }
+.inv-form-success p { font-size:0.88rem; color:var(--text-muted); }
+.inv-form-success strong { color:var(--inv-gold); font-size:1.05rem; display:block; margin-bottom:6px; }
+
+/* ── FAQ ── */
+.inv-faq { display:flex; flex-direction:column; gap:8px; }
+.inv-faq-item {
+    border-radius:12px; overflow:hidden;
+    background:var(--glass-bg); border:1px solid rgba(255,255,255,0.09);
+}
+.inv-faq-q {
+    width:100%; padding:16px 18px; text-align:left; background:none;
+    border:none; color:var(--text-main); font-size:0.88rem; font-weight:600;
+    cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:12px;
+    font-family:'Outfit',sans-serif;
+}
+.inv-faq-arrow { font-size:0.75rem; color:var(--text-muted); transition:transform .25s; flex-shrink:0; }
+.inv-faq-item.open .inv-faq-arrow { transform:rotate(180deg); }
+.inv-faq-a {
+    max-height:0; overflow:hidden; transition:max-height .3s ease;
+    font-size:0.83rem; color:var(--text-muted); line-height:1.6;
+}
+.inv-faq-item.open .inv-faq-a { max-height:300px; }
+.inv-faq-a-inner { padding:0 18px 16px; }
+
+/* ── STICKY CTA ── */
+.inv-sticky {
+    position:fixed; bottom:0; left:0; right:0; z-index:99;
+    background:rgba(245,158,11,0.92); backdrop-filter:blur(12px);
+    padding:12px 20px; display:flex; align-items:center; justify-content:space-between; gap:12px;
+}
+.inv-sticky-text { font-size:0.78rem; font-weight:600; color:#1a1a00; line-height:1.3; }
+.inv-sticky-btn {
+    flex-shrink:0; padding:10px 20px; border-radius:10px; font-size:0.85rem; font-weight:700;
+    background:#1a1a00; color:var(--inv-gold); border:none; cursor:pointer; white-space:nowrap;
+    transition:opacity .2s;
+}
+.inv-sticky-btn:hover { opacity:.88; }
+</style>
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#007aff" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="aBest.co" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="aBest.co" />
+    <meta property="og:locale" content="he_IL" />
+    <meta property="og:url" content="https://www.abest.co/he/earn-money" />
+    <meta property="og:title" content="להיות משקיע – Bei uns oder mit uns investieren | aBest.co" />
+    <meta property="og:description" content="Global Premium Land & Real Estate Development." />
+    <meta property="og:image" content="https://www.abest.co/assets/images/bg_main_blurred_new.webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@aBestco" />
+    <meta name="twitter:title" content="להיות משקיע – Bei uns oder mit uns investieren | aBest.co" />
+    <meta name="twitter:description" content="Global Premium Land & Real Estate Development." />
+    <meta name="twitter:image" content="https://www.abest.co/assets/images/bg_main_blurred_new.webp" />
+</head>
+<body class="dark-mode">
+
+<!-- Background -->
+<div class="background-wrapper">
+    <img alt="Background" class="main-bg" src="/assets/images/bg_main_blurred_new.webp"/>
+    <div class="bg-gradient-overlay"></div>
+</div>
+
+<!-- Header -->
+<header class="app-header">
+    <a class="logo-link" href="/he/">
+        <span style="font-size:1.4rem;font-weight:500;color:var(--text-main);">
+            <span style="color:var(--primary-blue);">a</span>Best<span style="color:var(--primary-blue);">.co</span>
+        </span>
+    </a>
+    <div style="display:flex;align-items:center;gap:12px;">
+        <a href="/he/" class="header-icon-v2" aria-label="Home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></a>
+        <a href="/he/profil" class="header-icon-v2" aria-label="פרופיל"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+    </div>
+</header>
+
+<!-- BREADCRUMB + HERO -->
+<section class="inv-hero">
+    <nav style="font-size:0.75rem;color:var(--text-muted);margin-bottom:20px;align-self:flex-start;padding-left:0;max-width:780px;width:100%;">
+        <a href="/he/earn-money" style="color:var(--text-muted);text-decoration:none;">Earn Money</a>
+        <span style="margin:0 6px;opacity:0.5;">/</span>
+        <span style="color:var(--inv-gold);font-weight:600;">Investor</span>
+    </nav>
+    <div class="inv-badge"><span class="inv-dot"></span>למשקיעים פעילים</div>
+    <h1>Sie wollen <span>investieren?</span></h1>
+    <p class="inv-hero-sub">Bei uns — oder mit uns.</p>
+    <p class="inv-hero-desc">Für Investoren, die aktiv in Startups, Projekte oder Unternehmen investieren möchten. Investieren Sie in unsere geprüften Deals — oder investieren Sie gemeinsam mit dem aBest.co-Team.</p>
+    <div class="inv-chips">
+        <span class="inv-chip"><i>💼</i> Bei uns investieren</span>
+        <span class="inv-chip"><i>🤝</i> Mit uns co-investieren</span>
+        <span class="inv-chip"><i>🌍</i> 47+ geprüfte Deals</span>
+        <span class="inv-chip"><i>📍</i> 14 Länder</span>
+        <span class="inv-chip"><i>🔒</i> 100 % Diskret</span>
+    </div>
+    <div class="inv-hero-ctas">
+        <button class="inv-btn-primary" onclick="document.getElementById('inv-form').scrollIntoView({behavior:'smooth'})">💼 Als Investor anfragen</button>
+        <button class="inv-btn-ghost" onclick="document.getElementById('inv-ways').scrollIntoView({behavior:'smooth'})">Wie es funktioniert →</button>
+    </div>
+</section>
+
+<!-- STATS -->
+<div class="inv-stats">
+    <div class="inv-stat"><span class="inv-stat-val">47+</span><span class="inv-stat-lbl">geprüfte Deals</span></div>
+    <div class="inv-stat"><span class="inv-stat-val">14</span><span class="inv-stat-lbl">Länder weltweit</span></div>
+    <div class="inv-stat"><span class="inv-stat-val">48h</span><span class="inv-stat-lbl">erste Rückmeldung</span></div>
+    <div class="inv-stat"><span class="inv-stat-val">€4,2M</span><span class="inv-stat-lbl">vermitteltes Kapital</span></div>
+</div>
+
+<!-- TWO WAYS -->
+<section class="inv-section" id="inv-ways">
+    <p class="inv-section-label">🛤️ Ihre zwei Wege</p>
+    <h2>Bei uns oder mit uns</h2>
+    <p class="inv-section-intro">Zwei klare Wege für aktive Investoren — Sie entscheiden, wie Sie einsteigen möchten.</p>
+    <span class="inv-accent-line" style="margin-bottom:24px;"></span>
+    <div class="inv-ways-grid">
+
+        <div class="inv-way-card bei" onclick="invSelectWay('bei')">
+            <div class="inv-way-top">
+                <span class="inv-way-icon">💼</span>
+                <div>
+                    <div class="inv-way-title">Bei uns investieren</div>
+                    <span class="inv-way-tag">🎯 In unsere Deals</span>
+                </div>
+            </div>
+            <p class="inv-way-body">Sie investieren Kapital in geprüfte Projekte, Startups oder Unternehmen, die aBest.co aktiv betreut. Wir strukturieren den Deal, Sie beteiligen sich als Investor.</p>
+            <ul class="inv-way-checks">
+                <li>Zugang zu geprüften, vorselektierten Deals</li>
+                <li>Investition in Immobilien-, Energie- oder Unternehmensprojekte</li>
+                <li>Strukturierter Prozess mit klaren Konditionen</li>
+                <li>Regelmäßige Berichterstattung und Transparenz</li>
+                <li>Einstieg ab individuell vereinbarter Summe</li>
+            </ul>
+        </div>
+
+        <div class="inv-way-card mit" onclick="invSelectWay('mit')">
+            <div class="inv-way-top">
+                <span class="inv-way-icon">🤝</span>
+                <div>
+                    <div class="inv-way-title">Mit uns investieren</div>
+                    <span class="inv-way-tag">🚀 Co-Investment</span>
+                </div>
+            </div>
+            <p class="inv-way-body">Sie investieren gemeinsam mit aBest.co als aktiver Co-Investor. Wir bringen das Netzwerk, die Projekte und die Struktur — Sie bringen Kapital und profitieren von unserer Expertise.</p>
+            <ul class="inv-way-checks">
+                <li>Gemeinsame Investitionsentscheidungen</li>
+                <li>Aktiver Zugang zum Deal-Flow des aBest.co-Teams</li>
+                <li>Co-Investment in Startups, M&amp;A und Entwicklungsprojekte</li>
+                <li>Direkte Partnerschaft — Unternehmer zu Unternehmer</li>
+                <li>Langfristige strategische Zusammenarbeit möglich</li>
+            </ul>
+        </div>
+
+    </div>
+    <div style="border-radius:14px;padding:16px 18px;background:rgba(245,158,11,0.05);border:1px solid rgba(245,158,11,0.2);font-size:0.84rem;color:var(--text-muted);line-height:1.5;margin-top:14px;">
+        <strong style="color:var(--inv-gold);">💡 Nicht sicher, welcher Weg passt?</strong> Kontaktieren Sie uns einfach. Wir besprechen Ihre Investitionsstrategie und finden gemeinsam den richtigen Einstieg.
+    </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="inv-section" style="padding-top:0">
+    <p class="inv-section-label">📊 Vergleich</p>
+    <h2>Bei uns vs. Mit uns</h2>
+    <p class="inv-section-intro">Beide Wege bieten direkten Zugang zu realen Projekten — mit unterschiedlichem Involvement:</p>
+    <div class="inv-compare">
+        <div class="inv-compare-head">
+            <div></div>
+            <div class="ch-bei">💼 Bei uns</div>
+            <div class="ch-mit">🤝 Mit uns</div>
+        </div>
+        <div class="inv-compare-row">
+            <div>Rolle</div>
+            <div class="txt-gold">Investor</div>
+            <div class="txt-orange">Co-Investor / Partner</div>
+        </div>
+        <div class="inv-compare-row">
+            <div>Involvement</div>
+            <div class="txt-gold">Passiv bis aktiv</div>
+            <div class="txt-orange">Aktiv</div>
+        </div>
+        <div class="inv-compare-row">
+            <div>Deal-Zugang</div>
+            <div class="txt-gold">Vorselektierte Deals</div>
+            <div class="txt-orange">Voller Deal-Flow</div>
+        </div>
+        <div class="inv-compare-row">
+            <div>Partnerschaft</div>
+            <div class="txt-gold">Projektbasiert</div>
+            <div class="txt-orange">Strategisch, langfristig</div>
+        </div>
+        <div class="inv-compare-row">
+            <div>Ideal für</div>
+            <div class="txt-gold">Gezieltes Investment</div>
+            <div class="txt-orange">Strategische Expansion</div>
+        </div>
+    </div>
+</section>
+
+<!-- INVEST TYPES -->
+<section class="inv-section" style="padding-top:0">
+    <p class="inv-section-label">🏭 Projekttypen</p>
+    <h2>Wo Ihr Kapital arbeitet</h2>
+    <p class="inv-section-intro">Wir investieren in verschiedene Bereiche — diskret, geprüft und mit echtem Potenzial.</p>
+    <div class="inv-types">
+        <div class="inv-type-card" onclick="invSelectType('Startup / Wachstumsunternehmen')">
+            <span class="inv-type-icon">🚀</span>
+            <span class="inv-type-name">Startups</span>
+            <span class="inv-type-sub">Wachstum &amp; Umsatz</span>
+        </div>
+        <div class="inv-type-card" onclick="invSelectType('Immobilienprojekt')">
+            <span class="inv-type-icon">🏗️</span>
+            <span class="inv-type-name">Immobilien</span>
+            <span class="inv-type-sub">Entwicklung &amp; Handel</span>
+        </div>
+        <div class="inv-type-card" onclick="invSelectType('Unternehmensübernahme / M&A')">
+            <span class="inv-type-icon">🏢</span>
+            <span class="inv-type-name">Unternehmen</span>
+            <span class="inv-type-sub">M&amp;A &amp; Übernahmen</span>
+        </div>
+        <div class="inv-type-card" onclick="invSelectType('Energieprojekt')">
+            <span class="inv-type-icon">⚡</span>
+            <span class="inv-type-name">Energie</span>
+            <span class="inv-type-sub">Solar, EV, Infrastruktur</span>
+        </div>
+        <div class="inv-type-card" onclick="invSelectType('Gastronomie / Franchise')">
+            <span class="inv-type-icon">🍽️</span>
+            <span class="inv-type-name">Gastronomie</span>
+            <span class="inv-type-sub">Franchise &amp; Konzepte</span>
+        </div>
+        <div class="inv-type-card" onclick="invSelectType('Logistik / Lager')">
+            <span class="inv-type-icon">🏬</span>
+            <span class="inv-type-name">Logistik</span>
+            <span class="inv-type-sub">Self-Storage &amp; Lager</span>
+        </div>
+        <div class="inv-type-card" onclick="invSelectType('Agrarland / Rohstoffe')">
+            <span class="inv-type-icon">🌾</span>
+            <span class="inv-type-name">Agrarland</span>
+            <span class="inv-type-sub">Land &amp; Rohstoffe</span>
+        </div>
+        <div class="inv-type-card" onclick="invSelectType('Technologie / Software')">
+            <span class="inv-type-icon">💻</span>
+            <span class="inv-type-name">Technologie</span>
+            <span class="inv-type-sub">Software &amp; SaaS</span>
+        </div>
+        <div class="inv-type-card" onclick="invSelectType('Anderes Projekt')">
+            <span class="inv-type-icon">➕</span>
+            <span class="inv-type-name">Anderes</span>
+            <span class="inv-type-sub">Weitere Bereiche</span>
+        </div>
+    </div>
+</section>
+
+<!-- EXAMPLE PROJECTS -->
+<section class="inv-section" style="padding-top:0">
+    <p class="inv-section-label">📋 Beispiele</p>
+    <h2>Aktuelle Investitionsprojekte</h2>
+    <p class="inv-section-intro">Projekttypen aus unserem Portfolio — so sehen echte Deals aus.</p>
+    <div class="inv-projects">
+
+        <div class="inv-project-card">
+            <span class="inv-proj-tag tag-bei">💼 Bei uns</span>
+            <div class="inv-proj-name">Baulandentwicklung — Half Moon Bay</div>
+            <div class="inv-proj-loc">📍 San Mateo County, Kalifornien · USA</div>
+            <div class="inv-proj-meta">
+                <div class="inv-proj-row"><span>Typ</span><span>Grundstücksentwicklung</span></div>
+                <div class="inv-proj-row"><span>Investitionsweg</span><span class="gold-val">Bei aBest.co investieren</span></div>
+                <div class="inv-proj-row"><span>Fläche</span><span>ca. 2.800 m²</span></div>
+                <div class="inv-proj-row"><span>Status</span><span class="green-val">🟢 Aktiv</span></div>
+            </div>
+        </div>
+
+        <div class="inv-project-card">
+            <span class="inv-proj-tag tag-mit">🤝 Mit uns</span>
+            <div class="inv-proj-name">Gastronomie-Franchise DACH-Region</div>
+            <div class="inv-proj-loc">📍 Wien, Österreich / DACH</div>
+            <div class="inv-proj-meta">
+                <div class="inv-proj-row"><span>Typ</span><span>Gastronomie / Franchise</span></div>
+                <div class="inv-proj-row"><span>Investitionsweg</span><span class="orange-val">Co-Investment mit aBest.co</span></div>
+                <div class="inv-proj-row"><span>Kapital</span><span>€ 280.000 gesucht</span></div>
+                <div class="inv-proj-row"><span>Status</span><span class="green-val">🟢 Offen für Investoren</span></div>
+            </div>
+        </div>
+
+        <div class="inv-project-card">
+            <span class="inv-proj-tag tag-bei">💼 Bei uns</span>
+            <div class="inv-proj-name">EV-Ladeinfrastruktur — Glendale, USA</div>
+            <div class="inv-proj-loc">📍 Glendale, California · USA</div>
+            <div class="inv-proj-meta">
+                <div class="inv-proj-row"><span>Typ</span><span>Energieprojekt / Infrastruktur</span></div>
+                <div class="inv-proj-row"><span>Investitionsweg</span><span class="gold-val">Bei aBest.co investieren</span></div>
+                <div class="inv-proj-row"><span>Laufzeit</span><span>36 Monate</span></div>
+                <div class="inv-proj-row"><span>Status</span><span class="green-val">🟢 In Entwicklung</span></div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- PROCESS -->
+<section class="inv-section" style="padding-top:0">
+    <p class="inv-section-label">⚙️ Ablauf</p>
+    <h2>In 4 Schritten zum ersten Investment</h2>
+    <span class="inv-accent-line" style="margin-bottom:24px;"></span>
+    <div class="inv-steps">
+        <div class="inv-step">
+            <div class="inv-step-num">1</div>
+            <div>
+                <p class="inv-step-title">Anfrage einreichen — kostenlos &amp; diskret</p>
+                <p class="inv-step-desc">Sie geben uns einen kurzen Überblick: Investitionsinteresse, bevorzugter Weg (Bei uns / Mit uns), Ticketgröße, Branchen. Kein langer Prozess.</p>
+            </div>
+        </div>
+        <div class="inv-step">
+            <div class="inv-step-num">2</div>
+            <div>
+                <p class="inv-step-title">Persönliches Gespräch innerhalb von 48 Stunden</p>
+                <p class="inv-step-desc">Unser Team kontaktiert Sie direkt. Wir besprechen Ihre Investitionsstrategie und zeigen Ihnen passende aktuelle Projekte — diskret und ohne öffentliche Plattform.</p>
+            </div>
+        </div>
+        <div class="inv-step">
+            <div class="inv-step-num">3</div>
+            <div>
+                <p class="inv-step-title">Deal-Matching &amp; Projektvorstellung</p>
+                <p class="inv-step-desc">Sie erhalten detaillierte Unterlagen zu geprüften Projekten, die zu Ihrer Strategie passen. Transparente Konditionen, klare Strukturen — keine Überraschungen.</p>
+            </div>
+        </div>
+        <div class="inv-step">
+            <div class="inv-step-num">4</div>
+            <div>
+                <p class="inv-step-title">Investment &amp; laufende Partnerschaft</p>
+                <p class="inv-step-desc">Sie entscheiden, wann und wie viel Sie investieren. Wir begleiten Sie durch den gesamten Prozess — bei Einzelprojekten oder als langfristiger Co-Investment-Partner.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- INVESTOR PROFILES -->
+<section class="inv-section" style="padding-top:0">
+    <p class="inv-section-label">👥 Für wen</p>
+    <h2>Welche Investoren wir suchen</h2>
+    <p class="inv-section-intro">aBest.co arbeitet mit aktiven, erfahrenen Investoren zusammen — die mehr suchen als ein Sparkonto.</p>
+    <div class="inv-profiles">
+        <div class="inv-profile">
+            <span class="inv-profile-icon">💼</span>
+            <span class="inv-profile-title">Unternehmer &amp; Business Angels</span>
+            <p class="inv-profile-desc">Sie haben selbst aufgebaut und wollen jetzt in andere Unternehmen oder Projekte investieren — strategisch und mit echtem Einblick.</p>
+        </div>
+        <div class="inv-profile">
+            <span class="inv-profile-icon">🌍</span>
+            <span class="inv-profile-title">Internationale Kapitalpartner</span>
+            <p class="inv-profile-desc">Sie suchen Zugang zu geprüften Projekten in Europa, USA und anderen Märkten — jenseits lokaler Grenzen und klassischer Fonds.</p>
+        </div>
+        <div class="inv-profile">
+            <span class="inv-profile-icon">📈</span>
+            <span class="inv-profile-title">Wachstumsinvestoren</span>
+            <p class="inv-profile-desc">Sie wollen in Startups, Franchise oder expandierende Unternehmen investieren — mit aktivem Deal-Flow statt passiver Warteliste.</p>
+        </div>
+        <div class="inv-profile">
+            <span class="inv-profile-icon">🏗️</span>
+            <span class="inv-profile-title">Immobilien- &amp; Projektentwickler</span>
+            <p class="inv-profile-desc">Ihr Kapital soll in reale Sachwerte und Entwicklungsprojekte fließen — mit einem erfahrenen Partner an der Seite.</p>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="inv-section" style="padding-top:0">
+    <p class="inv-section-label">💬 Erfahrungen</p>
+    <h2>Was Investoren sagen</h2>
+    <div class="inv-testimons">
+        <div class="inv-testi">
+            <div class="inv-stars">★★★★★</div>
+            <p class="inv-testi-text">"Was mich überzeugt hat: aBest.co zeigt nicht einfach Projekte — sie erklären die Strategie dahinter. Als Co-Investor weiß ich immer, warum wir in etwas investieren. Das ist echter Unterschied."</p>
+            <div class="inv-testi-author">
+                <div class="inv-testi-avatar">TM</div>
+                <div>
+                    <div class="inv-testi-name">T. Müller</div>
+                    <div class="inv-testi-loc">Business Angel · Frankfurt, Deutschland</div>
+                </div>
+            </div>
+        </div>
+        <div class="inv-testi">
+            <div class="inv-stars">★★★★★</div>
+            <p class="inv-testi-text">"Ich investiere seit Jahren in Immobilien — aber aBest.co hat mir Projekte in den USA zugänglich gemacht, die ich alleine nie gefunden hätte. Das Netzwerk ist real und das Team kennt sich aus."</p>
+            <div class="inv-testi-author">
+                <div class="inv-testi-avatar">AK</div>
+                <div>
+                    <div class="inv-testi-name">A. Kowalski</div>
+                    <div class="inv-testi-loc">Investor · Warschau, Polen</div>
+                </div>
+            </div>
+        </div>
+        <div class="inv-testi">
+            <div class="inv-stars">★★★★★</div>
+            <p class="inv-testi-text">"Co-Investment mit aBest.co bedeutet: ich bringe Kapital, sie bringen Deal-Flow, Netzwerk und Struktur. Genau das, was ich als Unternehmer suche — keine Bürokratie, sondern echte Partnerschaft."</p>
+            <div class="inv-testi-author">
+                <div class="inv-testi-avatar">SB</div>
+                <div>
+                    <div class="inv-testi-name">S. Baloğlu</div>
+                    <div class="inv-testi-loc">Unternehmer &amp; Investor · Istanbul, Türkei</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FORM -->
+<section class="inv-section" style="padding-top:0" id="inv-form">
+    <p class="inv-section-label">📩 Anfrage</p>
+    <h2>Als Investor anfragen</h2>
+    <div class="inv-form-wrap">
+        <p class="inv-form-title">Investitionsinteresse einreichen</p>
+        <p class="inv-form-sub">Wir melden uns innerhalb von 48 Stunden. Vertraulich, unverbindlich, kein Verkaufsgespräch.</p>
+
+        <p style="font-size:0.8rem;font-weight:600;color:var(--text-muted);margin-bottom:8px;">Ihr gewünschter Weg *</p>
+        <div class="inv-way-btns">
+            <button class="inv-way-btn" id="inv-btn-bei" onclick="invSelectWayForm('bei')" type="button">
+                <span class="btn-icon">💼</span>Bei uns investieren
+            </button>
+            <button class="inv-way-btn" id="inv-btn-mit" onclick="invSelectWayForm('mit')" type="button">
+                <span class="btn-icon">🤝</span>Mit uns co-investieren
+            </button>
+        </div>
+
+        <div id="inv-form-fields">
+            <div class="inv-form-grid">
+                <input class="inv-input" id="inv-name" placeholder="Ihr Name *" type="text"/>
+                <input class="inv-input" id="inv-email" placeholder="E-Mail *" type="email"/>
+            </div>
+            <div class="inv-form-grid">
+                <input class="inv-input" id="inv-phone" placeholder="Telefon" type="tel"/>
+                <input class="inv-input" id="inv-country" placeholder="Land / Herkunft" type="text"/>
+            </div>
+            <div class="inv-form-grid">
+                <select class="inv-select" id="inv-type">
+                    <option value="">Projektinteresse *</option>
+                    <option>Startup / Wachstumsunternehmen</option>
+                    <option>Immobilienprojekt</option>
+                    <option>Unternehmensübernahme / M&amp;A</option>
+                    <option>Energieprojekt</option>
+                    <option>Gastronomie / Franchise</option>
+                    <option>Logistik / Lager</option>
+                    <option>Agrarland / Rohstoffe</option>
+                    <option>Technologie / Software</option>
+                    <option>Offen für Vorschläge</option>
+                </select>
+                <input class="inv-input" id="inv-ticket" placeholder="Investitionsvolumen (ca.)" type="text"/>
+            </div>
+            <div class="inv-form-grid full">
+                <textarea class="inv-textarea" id="inv-desc" placeholder="Kurze Beschreibung Ihrer Investitionsstrategie — was suchen Sie, was haben Sie bisher investiert?"></textarea>
+            </div>
+            <p class="inv-form-note">🔒 Ihre Angaben werden vertraulich behandelt. Kein öffentliches פרופיל ohne Ihre Zustimmung.</p>
+            <button class="inv-submit-btn" onclick="invSubmit(event)" type="button">💼 Jetzt als Investor anfragen</button>
+        </div>
+        <div class="inv-form-success" id="inv-success">
+            <div class="s-icon">✅</div>
+            <strong>Anfrage eingegangen — vielen Dank!</strong>
+            <p>Unser Team meldet sich innerhalb von 48 Stunden bei Ihnen. Vertraulich und ohne Verpflichtung.</p>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="inv-section" style="padding-top:0;padding-bottom:80px;">
+    <p class="inv-section-label">❓ FAQ</p>
+    <h2>Häufige Fragen</h2>
+    <div class="inv-faq">
+        <div class="inv-faq-item">
+            <button class="inv-faq-q">Was ist der Unterschied zwischen "bei uns" und "mit uns" investieren? <span class="inv-faq-arrow">▾</span></button>
+            <div class="inv-faq-a"><div class="inv-faq-a-inner">"Bei uns investieren" bedeutet: Sie investieren Kapital in spezifische Projekte, die aBest.co kuratiert und betreut. "Mit uns investieren" bedeutet: Sie werden Co-Investor und investieren gemeinsam mit dem aBest.co-Team als aktiver Partner — mit Zugang zum vollen Deal-Flow und strategischer Zusammenarbeit.</div></div>
+        </div>
+        <div class="inv-faq-item">
+            <button class="inv-faq-q">Gibt es eine feste Rendite oder garantierten Ertrag? <span class="inv-faq-arrow">▾</span></button>
+            <div class="inv-faq-a"><div class="inv-faq-a-inner">Nein — wir bieten keine garantierten Renditen an. Jedes Investment hat eigene Konditionen, Risiken und Chancen, die wir transparent mit Ihnen besprechen. Unser Ziel ist echte Wertschöpfung durch geprüfte Projekte — nicht Marketing-Versprechen.</div></div>
+        </div>
+        <div class="inv-faq-item">
+            <button class="inv-faq-q">Wie werden die Projekte ausgewählt und geprüft? <span class="inv-faq-arrow">▾</span></button>
+            <div class="inv-faq-a"><div class="inv-faq-a-inner">Jedes Projekt durchläuft eine interne Prüfung durch das aBest.co-Team: Standortanalyse, Marktrecherche, Due Diligence und Rentabilitätsbewertung. Nur Projekte, in die wir selbst investieren würden, werden unseren Investoren vorgestellt.</div></div>
+        </div>
+        <div class="inv-faq-item">
+            <button class="inv-faq-q">Ab welchem Betrag kann ich investieren? <span class="inv-faq-arrow">▾</span></button>
+            <div class="inv-faq-a"><div class="inv-faq-a-inner">Das hängt vom jeweiligen Projekt ab. Es gibt keine universelle Mindestgrenze — wir besprechen die Ticketgröße im persönlichen Gespräch, je nach Projekt und Ihrer Strategie. Schreiben Sie uns einfach an.</div></div>
+        </div>
+        <div class="inv-faq-item">
+            <button class="inv-faq-q">Ist mein Kapital oder meine Anfrage vertraulich? <span class="inv-faq-arrow">▾</span></button>
+            <div class="inv-faq-a"><div class="inv-faq-a-inner">Ja, absolut. Ihre Anfrage und alle Details werden streng vertraulich behandelt. Kein öffentliches פרופיל, keine Weitergabe an Dritte ohne Ihre ausdrückliche Zustimmung. Wir arbeiten nach dem Prinzip: Diskretion zuerst.</div></div>
+        </div>
+        <div class="inv-faq-item">
+            <button class="inv-faq-q">Kann ich in mehrere Projekte gleichzeitig investieren? <span class="inv-faq-arrow">▾</span></button>
+            <div class="inv-faq-a"><div class="inv-faq-a-inner">Ja. Viele unserer Partner investieren in mehrere Projekte parallel — zum Beispiel eine Immobilienentwicklung in den USA und ein Co-Investment in ein Franchise-Konzept in Europa. Wir helfen Ihnen dabei, eine sinnvolle Diversifikation aufzubauen.</div></div>
+        </div>
+    </div>
+</section>
+
+<!-- STICKY CTA -->
+<div class="inv-sticky">
+    <span class="inv-sticky-text">💼 Bei uns oder mit uns investieren — kostenlos anfragen · 48h Rückmeldung</span>
+    <button class="inv-sticky-btn" onclick="document.getElementById('inv-form').scrollIntoView({behavior:'smooth'})">Jetzt anfragen</button>
+</div>
+
+<script src="/app.js"></script>
+<script>
+    // Nav scroll
+    (function(){
+        var nav = document.getElementById('main-nav');
+        window.addEventListener('scroll', function(){
+            nav && nav.classList.toggle('scrolled', window.scrollY > 40);
+        }, {passive:true});
+    })();
+
+    // Way card click → scroll + preselect
+    function invSelectWay(way) {
+        document.getElementById('inv-form').scrollIntoView({behavior:'smooth'});
+        setTimeout(function(){ invSelectWayForm(way); }, 600);
+    }
+
+    // Type card click → form select + scroll
+    function invSelectType(type) {
+        var sel = document.getElementById('inv-type');
+        if (sel) {
+            for (var i = 0; i < sel.options.length; i++) {
+                if (sel.options[i].value === type || sel.options[i].text === type) {
+                    sel.selectedIndex = i; break;
+                }
+            }
+        }
+        document.getElementById('inv-form').scrollIntoView({behavior:'smooth'});
+    }
+
+    // Form way buttons
+    var _invWay = '';
+    function invSelectWayForm(way) {
+        _invWay = way;
+        document.getElementById('inv-btn-bei').className = 'inv-way-btn' + (way === 'bei' ? ' active-bei' : '');
+        document.getElementById('inv-btn-mit').className = 'inv-way-btn' + (way === 'mit' ? ' active-mit' : '');
+    }
+
+    // Form submit → mailto
+    function invSubmit(e) {
+        e.preventDefault();
+        var name = document.getElementById('inv-name').value.trim();
+        var email = document.getElementById('inv-email').value.trim();
+        if (!name || !email) { alert('Bitte Name und E-Mail angeben.'); return; }
+        var wayLabel = { bei: 'Bei uns investieren', mit: 'Mit uns co-investieren' }[_invWay] || 'Nicht angegeben';
+        var body = 'NEUE INVESTOR-ANFRAGE — aBest.co\n\n'
+            + 'Weg: ' + wayLabel + '\n'
+            + 'Name: ' + name + '\n'
+            + 'E-Mail: ' + email + '\n'
+            + 'Telefon: ' + (document.getElementById('inv-phone').value.trim() || '—') + '\n'
+            + 'Land: ' + (document.getElementById('inv-country').value.trim() || '—') + '\n'
+            + 'Projektinteresse: ' + (document.getElementById('inv-type').value || '—') + '\n'
+            + 'Investitionsvolumen: ' + (document.getElementById('inv-ticket').value.trim() || '—') + '\n\n'
+            + 'Strategie / Beschreibung:\n' + (document.getElementById('inv-desc').value.trim() || '—');
+        window.location.href = 'mailto:info@abest.co?subject=Investor-Anfrage: ' + encodeURIComponent(name) + '&body=' + encodeURIComponent(body);
+        document.getElementById('inv-form-fields').style.display = 'none';
+        document.getElementById('inv-success').style.display = 'block';
+    }
+
+    // FAQ accordion
+    document.querySelectorAll('.inv-faq-q').forEach(function(btn){
+        btn.addEventListener('click', function(){
+            var item = btn.closest('.inv-faq-item');
+            var isOpen = item.classList.contains('open');
+            document.querySelectorAll('.inv-faq-item').forEach(function(i){ i.classList.remove('open'); });
+            if (!isOpen) item.classList.add('open');
+        });
+    });
+</script>
+</body>
+</html>

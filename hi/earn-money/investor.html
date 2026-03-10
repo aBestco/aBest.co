@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>निवेशक – हमारे साथ निवेश करें | aBest.co</title>
+<meta content="सक्रिय निवेशकों के लिए: स्टार्टअप, परियोजनाओं या कंपनियों में निवेश करें — अंतर्राष्ट्रीय, गोपनीय, संरचित।" name="description"/>
+<link href="/favicon.png" rel="icon" type="image/png"/>
+<link href="/index.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="canonical" href="https://www.abest.co/hi/earn-money/investor"/>
+<style>
+:root { --inv-gold:#f59e0b; --inv-gold-dim:rgba(245,158,11,0.15); --inv-orange:#f97316; --inv-green:#22c55e; }
+.inv-badge { display:inline-flex;align-items:center;gap:7px;padding:5px 16px;border-radius:22px;background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.35);font-size:0.72rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--inv-gold);margin-bottom:20px; }
+.inv-dot { width:7px;height:7px;border-radius:50%;background:var(--inv-gold);animation:inv-pulse 1.8s infinite; }
+@keyframes inv-pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.7)} }
+.inv-hero { position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:90px 20px 16px;text-align:center;overflow:hidden; }
+.inv-hero::before { content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 45% at 25% 25%, rgba(245,158,11,0.16) 0%, transparent 60%),radial-gradient(ellipse 50% 50% at 80% 70%, rgba(249,115,22,0.1) 0%, transparent 60%);pointer-events:none; }
+.inv-hero h1 { font-size:clamp(1.9rem,5vw,3rem);font-weight:800;line-height:1.12;margin:0 0 6px;color:var(--text-main); }
+.inv-hero h1 span { color:var(--inv-gold); }
+.inv-stats { display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:rgba(255,255,255,0.05);border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,0.08);margin:0 20px; }
+.inv-stat { padding:20px 10px;text-align:center;background:var(--glass-bg); }
+.inv-stat-val { font-size:1.8rem;font-weight:800;color:var(--inv-gold);display:block; }
+.inv-stat-lbl { font-size:0.72rem;color:var(--text-muted);margin-top:2px; }
+.inv-section { padding:52px 20px;max-width:780px;margin:0 auto; }
+.inv-benefit-grid { display:grid;gap:12px; }
+.inv-benefit-card { display:flex;gap:16px;align-items:flex-start;background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.09);border-radius:16px;padding:18px 16px; }
+.inv-ben-icon { font-size:1.8rem;flex-shrink:0;margin-top:2px; }
+.inv-ben-body h4 { font-size:0.9rem;font-weight:700;color:var(--text-main);margin:0 0 5px; }
+.inv-ben-body p { font-size:0.8rem;color:var(--text-muted);margin:0;line-height:1.5; }
+.inv-steps { display:flex;flex-direction:column; }
+.inv-step { display:flex;gap:18px;align-items:flex-start;padding:18px 0;border-bottom:1px solid rgba(255,255,255,0.06); }
+.inv-step-num { flex-shrink:0;width:40px;height:40px;border-radius:50%;background:rgba(245,158,11,0.15);border:2px solid var(--inv-gold);display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:800;color:var(--inv-gold); }
+.inv-step-body h4 { font-size:0.9rem;font-weight:700;color:var(--text-main);margin:0 0 4px; }
+.inv-step-body p { font-size:0.8rem;color:var(--text-muted);margin:0;line-height:1.5; }
+.inv-testi-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px; }
+.inv-testi-card { background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.09);border-radius:16px;padding:18px; }
+.inv-testi-stars { color:var(--inv-gold);font-size:0.88rem;margin-bottom:8px; }
+.inv-testi-text { font-size:0.82rem;color:var(--text-muted);line-height:1.6;margin-bottom:12px;font-style:italic; }
+.inv-testi-author { display:flex;align-items:center;gap:10px; }
+.inv-testi-avatar { width:36px;height:36px;border-radius:50%;background:rgba(245,158,11,0.15);border:1.5px solid var(--inv-gold);display:flex;align-items:center;justify-content:center;font-size:0.9rem;flex-shrink:0; }
+.inv-testi-name { font-size:0.82rem;font-weight:700;color:var(--text-main); }
+.inv-testi-loc { font-size:0.7rem;color:var(--text-muted); }
+.inv-faq-item { border-bottom:1px solid rgba(255,255,255,0.07); }
+.inv-faq-item:last-child { border-bottom:none; }
+.inv-faq-q { width:100%;background:none;border:none;color:var(--text-main);font-size:0.88rem;font-weight:600;text-align:left;padding:16px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;font-family:inherit; }
+.inv-faq-q::after { content:'＋';font-size:1rem;color:var(--inv-gold);flex-shrink:0; }
+.inv-faq-item.open .inv-faq-q::after { content:'－'; }
+.inv-faq-a { display:none;font-size:0.82rem;color:var(--text-muted);line-height:1.6;padding-bottom:14px; }
+.inv-faq-item.open .inv-faq-a { display:block; }
+.inv-sticky { position:fixed;bottom:0;left:0;right:0;z-index:99;background:rgba(245,158,11,0.90);backdrop-filter:blur(12px);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px; }
+.inv-sticky-text { font-size:0.78rem;font-weight:600;color:#001a00;line-height:1.3; }
+.inv-sticky-btn { flex-shrink:0;padding:10px 20px;border-radius:10px;font-size:0.85rem;font-weight:700;background:#001a00;color:var(--inv-gold);border:none;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-block;transition:opacity .2s; }
+.inv-sticky-btn:hover { opacity:.88; }
+.inv-btn-primary { padding:14px 28px;border-radius:12px;font-size:0.95rem;font-weight:700;background:linear-gradient(135deg,var(--inv-gold),var(--inv-orange));color:#000;border:none;cursor:pointer;transition:opacity .2s;text-decoration:none;display:inline-block; }
+.inv-btn-ghost { padding:14px 28px;border-radius:12px;font-size:0.95rem;font-weight:600;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:var(--text-main);cursor:pointer;transition:background .2s;text-decoration:none;display:inline-block; }
+</style>
+<link rel="manifest" href="/manifest.json" />
+<meta name="theme-color" content="#007aff" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="aBest.co" />
+<meta property="og:locale" content="hi_IN" />
+<meta property="og:url" content="https://www.abest.co/hi/earn-money" />
+<meta property="og:title" content="निवेशक – हमारे साथ निवेश करें | aBest.co" />
+<meta property="og:image" content="https://www.abest.co/assets/images/bg_main_blurred_new.webp" />
+</head>
+<body class="dark-mode">
+<div class="background-wrapper">
+  <img alt="पृष्ठभूमि" class="main-bg" src="/assets/images/bg_main_blurred_new.webp"/>
+  <div class="bg-gradient-overlay"></div>
+</div>
+
+<header class="app-header">
+  <a class="logo-link" href="/hi/">
+    <span style="font-size:1.4rem;font-weight:500;color:var(--text-main);">
+      <span style="color:var(--primary-blue);">a</span>Best<span style="color:var(--primary-blue);">.co</span>
+    </span>
+  </a>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <a href="/hi/" class="header-icon-v2" aria-label="होम"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></a>
+    <a href="/hi/profil" class="header-icon-v2" aria-label="प्रोफ़ाइल"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+  </div>
+</header>
+
+<main class="page-main" style="padding-bottom:90px;">
+  <section class="inv-hero">
+    <div class="inv-badge"><span class="inv-dot"></span>निवेश के अवसर प्रतीक्षा कर रहे हैं</div>
+    <h1>क्या आप निवेश करने के लिए तैयार हैं?<br><span>हम आपको अवसर प्रदान करते हैं।</span></h1>
+    <p style="font-size:1rem;color:var(--text-muted);max-width:490px;margin:0 auto 14px;line-height:1.65;">
+      aBest.co में, आप स्टार्टअप, रियल एस्टेट परियोजनाओं या परिपक्व कंपनियों में सीधे निवेश कर सकते हैं — न्यूनतम भागीदारी से लेकर बड़े निवेश तक, सभी अंतर्राष्ट्रीय मानकों के अनुसार संरचित और गोपनीय।
+    </p>
+    <div style="margin-top:1.6rem;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="/hi/login?next=/profile/my-role/investor" style="padding:13px 28px;font-size:1rem;font-weight:700;border-radius:14px;background:linear-gradient(135deg,var(--inv-gold),var(--inv-orange));color:#000;text-decoration:none;">💼 अभी निवेश करें</a>
+      <a href="#" style="padding:13px 22px;font-size:0.9rem;border-radius:14px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:var(--text-main);text-decoration:none;">कैसे काम करता है →</a>
+    </div>
+  </section>
+
+  <div class="inv-stats">
+    <div class="inv-stat"><span class="inv-stat-val">47+</span><span class="inv-stat-lbl">सक्रिय परियोजनाएं</span></div>
+    <div class="inv-stat"><span class="inv-stat-val">14</span><span class="inv-stat-lbl">देशों में</span></div>
+    <div class="inv-stat"><span class="inv-stat-val">€25k</span><span class="inv-stat-lbl">न्यूनतम निवेश</span></div>
+    <div class="inv-stat"><span class="inv-stat-val">6</span><span class="inv-stat-lbl">निवेश प्रकार</span></div>
+  </div>
+
+  <section class="inv-section" style="padding-top:1.8rem;">
+    <h2 style="font-size:1.2rem;font-weight:700;color:var(--text-main);margin:4px 0 6px;">निवेश के अवसर</h2>
+    <p style="font-size:0.93rem;color:var(--text-muted);margin:0 0 28px;line-height:1.6;">स्टार्टअप से लेकर रियल एस्टेट तक, ऊर्जा परियोजनाओं से लेकर M&A सौदों तक — हम विभिन्न जोखिम प्राथमिकताओं और निवेश लक्ष्यों के लिए अवसर प्रदान करते हैं।</p>
+  </section>
+
+  <section class="inv-section" style="padding-top:1.8rem;">
+    <h2 style="font-size:1.2rem;font-weight:700;color:var(--text-main);margin:4px 0 6px;">aBest.co क्यों चुनें</h2>
+    <div class="inv-benefit-grid" style="margin-top:16px;">
+      <div class="inv-benefit-card">
+        <span class="inv-ben-icon">🎯</span>
+        <div class="inv-ben-body">
+          <h4>सावधानीपूर्वक चयनित सौदे</h4>
+          <p>प्रत्येक परियोजना हमारी टीम द्वारा कठोर समीक्षा से गुजरती है। कोई झूठे दावे नहीं — केवल वास्तविक निवेश के अवसर।</p>
+        </div>
+      </div>
+      <div class="inv-benefit-card">
+        <span class="inv-ben-icon">🌍</span>
+        <div class="inv-ben-body">
+          <h4>अंतर्राष्ट्रीय विविधता</h4>
+          <p>14 देशों और कई उद्योगों में निवेश — एकाग्रता जोखिम को कम करें और वैश्विक अवसर प्राप्त करें।</p>
+        </div>
+      </div>
+      <div class="inv-benefit-card">
+        <span class="inv-ben-icon">🔒</span>
+        <div class="inv-ben-body">
+          <h4>पूर्ण गोपनीयता</h4>
+          <p>आपका निवेश प्रोफाइल सख्ती से गोपनीय रहता है। कोई भी जनता को आपके निवेश या भागीदारी के बारे में नहीं पता।</p>
+        </div>
+      </div>
+      <div class="inv-benefit-card">
+        <span class="inv-ben-icon">📊</span>
+        <div class="inv-ben-body">
+          <h4>नियमित रिपोर्टिंग</h4>
+          <p>स्पष्ट अपडेट, वित्तीय रिपोर्ट और मुख्य मेट्रिक्स प्राप्त करें — अपने निवेश की प्रगति पर पूर्ण नियंत्रण।</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="inv-section" style="padding-top:1.8rem;">
+    <div style="background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.09);border-radius:20px;padding:28px 24px;">
+      <h2 style="font-size:1.15rem;font-weight:700;color:var(--text-main);margin:0 0 20px;">3 सरल चरणों में शुरु करें</h2>
+      <div class="inv-steps">
+        <div class="inv-step">
+          <div class="inv-step-num">1</div>
+          <div class="inv-step-body">
+            <h4>अपनी निवेश प्रोफाइल पूरी करें</h4>
+            <p>हमें अपने निवेश लक्ष्य, जोखिम प्राथमिकता और निधि उपलब्धता के बारे में बताएं।</p>
+          </div>
+        </div>
+        <div class="inv-step">
+          <div class="inv-step-num">2</div>
+          <div class="inv-step-body">
+            <h4>समीक्षा किए गए अवसरों को ब्राउज़ करें</h4>
+          <p>सभी सक्रिय परियोजनाओं, वित्तीय डेटा और गहन विश्लेषण तक पूर्ण पहुंच प्राप्त करें।</p>
+          </div>
+        </div>
+        <div class="inv-step">
+          <div class="inv-step-num">3</div>
+          <div class="inv-step-body">
+            <h4>निवेश करें और प्रगति को ट्रैक करें</h4>
+            <p>अवसर चुनें, निवेश करें और नियमित रिपोर्ट के माध्यम से अपने रिटर्न की निगरानी करें।</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="inv-section" style="padding-top:1.8rem;">
+    <h2 style="font-size:1.2rem;font-weight:700;color:var(--text-main);margin:0 0 16px;">हमारे निवेशक क्या कहते हैं</h2>
+    <div class="inv-testi-grid">
+      <div class="inv-testi-card">
+        <div class="inv-testi-stars">★★★★★</div>
+        <p class="inv-testi-text">"मैंने कई निवेश मंच आजमाए हैं। aBest.co ही एकमात्र है जो वास्तव में उचित परिश्रम करता है और पारदर्शी रूप से रिपोर्ट करता है।"</p>
+        <div class="inv-testi-author">
+          <div class="inv-testi-avatar">K</div>
+          <div>
+            <div class="inv-testi-name">Klaus S.</div>
+            <div class="inv-testi-loc">बर्लिन, जर्मनी</div>
+          </div>
+        </div>
+      </div>
+      <div class="inv-testi-card">
+        <div class="inv-testi-stars">★★★★★</div>
+        <p class="inv-testi-text">"एक विदेशी निवेशक के रूप में, मुझे पूर्ण गोपनीयता की आवश्यकता है। aBest.co इसे समझता है और कभी कोई समस्या नहीं हुई।"</p>
+        <div class="inv-testi-author">
+          <div class="inv-testi-avatar">R</div>
+          <div>
+            <div class="inv-testi-name">Rajesh P.</div>
+            <div class="inv-testi-loc">मुंबई, भारत</div>
+          </div>
+        </div>
+      </div>
+      <div class="inv-testi-card">
+        <div class="inv-testi-stars">★★★★★</div>
+        <p class="inv-testi-text">"मेरा व्यक्तिगत प्रबंधक बहुत सहायक है। वह जटिल परियोजनाओं को समझने में मेरी मदद करता है और कभी मुझे जल्दबाजी नहीं करता।"</p>
+        <div class="inv-testi-author">
+          <div class="inv-testi-avatar">A</div>
+          <div>
+            <div class="inv-testi-name">Amélie M.</div>
+            <div class="inv-testi-loc">पेरिस, फ्रांस</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="inv-section" style="padding-top:1.8rem;">
+    <div style="background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.09);border-radius:20px;padding:28px 24px;">
+      <h2 style="font-size:1.15rem;font-weight:700;color:var(--text-main);margin:0 0 16px;">अक्सर पूछे जाने वाले प्रश्न</h2>
+      <div class="inv-faq-item">
+        <button class="inv-faq-q" onclick="invFaq(this)">न्यूनतम निवेश राशि क्या है?</button>
+        <div class="inv-faq-a">हमारा न्यूनतम निवेश €25,000 है। कई परियोजनाएं उच्च निवेश को भी स्वीकार करती हैं।</div>
+      </div>
+      <div class="inv-faq-item">
+        <button class="inv-faq-q" onclick="invFaq(this)">निवेश की अवधि कितनी है?</button>
+        <div class="inv-faq-a">यह परियोजना पर निर्भर करता है। कुछ अवसर अल्पकालिक (3-6 महीने) हैं, जबकि अन्य कई वर्षों तक चल सकते हैं।</div>
+      </div>
+      <div class="inv-faq-item">
+        <button class="inv-faq-q" onclick="invFaq(this)">क्या कोई छिपा हुआ शुल्क है?</button>
+        <div class="inv-faq-a">कोई नहीं। प्रत्येक परियोजना के विशिष्ट शुल्क उचित परिश्रम के दौरान स्पष्ट हैं। आम तौर पर, शुल्क वार्षिक रिटर्न का 1-3% होता है।</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="inv-section" style="padding-top:1.2rem;padding-bottom:0.5rem;">
+    <a href="/hi/earn-money" style="font-size:0.82rem;color:var(--text-muted);text-decoration:none;">← अर्थ कमाना पर वापस जाएं</a>
+  </section>
+
+</main>
+
+<div class="inv-sticky">
+  <span class="inv-sticky-text">💼 <strong>निवेश के लिए तैयार</strong> — अभी शुरु करें · व्यक्तिगत सलाहकार</span>
+  <a class="inv-sticky-btn" href="/hi/login?next=/profile/my-role/investor">अभी शुरु करें</a>
+</div>
+
+<script src="/app.js"></script>
+<script>
+function invFaq(btn) {
+    var item = btn.closest ? btn.closest('.inv-faq-item') : btn.parentElement;
+    var wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.inv-faq-item').forEach(function(i){ i.classList.remove('open'); });
+    if (!wasOpen) item.classList.add('open');
+}
+</script>
+</body>
+</html>

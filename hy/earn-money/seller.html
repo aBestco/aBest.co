@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Թունաստ Վաճառել – Wir kaufen oder finden den Käufer | aBest.co</title>
+<meta content="Immobilie, Grundstück oder Gewerbeobjekt verkaufen? aBest.co kauft direkt oder findet den passenden internationalen Investor. Արագ, Շորհ, առանց միջնորդի." name="description"/>
+<link href="/favicon.png" rel="icon" type="image/png"/>
+<link href="/index.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="canonical" href="https://www.abest.co/hy/earn-money/seller"/>
+<style>
+:root {
+  --sl-green: #22c55e;
+  --sl-green-dim: rgba(34,197,94,0.15);
+  --sl-emerald: #10b981;
+  --sl-gold: #f59e0b;
+  --sl-blue: #3b82f6;
+}
+
+/* ── HERO ── */
+.sl-badge { display:inline-flex;align-items:center;gap:7px;padding:5px 15px;border-radius:22px;background:rgba(34,197,94,0.12);border:1px solid rgba(34,197,94,0.35);font-size:0.72rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--sl-green);margin-bottom:16px; }
+.sl-dot { width:7px;height:7px;border-radius:50%;background:var(--sl-green);animation:sl-pulse 1.8s infinite; }
+@keyframes sl-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.3)}}
+.sl-trust-strip { display:flex;flex-wrap:wrap;gap:8px;margin-top:1.4rem;justify-content:center; }
+.sl-trust-chip { background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:5px 13px;font-size:0.74rem;color:var(--text-muted); }
+.sl-trust-chip strong { color:var(--text-main); }
+.sl-trust-chip.green { background:rgba(34,197,94,0.1);border-color:rgba(34,197,94,0.3);color:var(--sl-green); }
+.sl-trust-chip.green strong { color:var(--sl-green); }
+
+/* ── 2 WEGE ── */
+.sl-two-ways { display:grid;grid-template-columns:1fr 1fr;gap:16px; }
+@media(max-width:560px){ .sl-two-ways{grid-template-columns:1fr;} }
+.sl-way-card { border-radius:20px;padding:24px 20px;position:relative;overflow:hidden;cursor:pointer;transition:transform 0.22s; }
+.sl-way-card:hover { transform:translateY(-3px); }
+.sl-way-card.direct { background:linear-gradient(135deg,rgba(34,197,94,0.12),rgba(16,185,129,0.08));border:2px solid rgba(34,197,94,0.35); }
+.sl-way-card.find { background:linear-gradient(135deg,rgba(59,130,246,0.12),rgba(139,92,246,0.08));border:2px solid rgba(59,130,246,0.35); }
+.sl-way-card .sl-way-icon { font-size:2.2rem;margin-bottom:10px; }
+.sl-way-card h3 { font-size:1.05rem;font-weight:800;color:var(--text-main);margin:0 0 8px; }
+.sl-way-card p { font-size:0.82rem;color:var(--text-muted);margin:0 0 14px;line-height:1.55; }
+.sl-way-tag { display:inline-block;padding:4px 12px;border-radius:20px;font-size:0.73rem;font-weight:700; }
+.sl-way-tag.green { background:rgba(34,197,94,0.15);color:var(--sl-green);border:1px solid rgba(34,197,94,0.3); }
+.sl-way-tag.blue { background:rgba(59,130,246,0.15);color:#60a5fa;border:1px solid rgba(59,130,246,0.3); }
+.sl-way-card ul { list-style:none;margin:12px 0 0;padding:0;display:flex;flex-direction:column;gap:6px; }
+.sl-way-card ul li { font-size:0.79rem;color:var(--text-muted);display:flex;align-items:center;gap:7px; }
+.sl-way-card ul li::before { content:'✓';color:var(--sl-green);font-weight:700;flex-shrink:0; }
+.sl-way-card.find ul li::before { color:#60a5fa; }
+
+/* ── STATS ── */
+.sl-stats-row { display:grid;grid-template-columns:repeat(4,1fr);gap:14px; }
+@media(max-width:600px){ .sl-stats-row{grid-template-columns:repeat(2,1fr);} }
+.sl-stat-card { background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.09);border-radius:16px;padding:20px 14px;text-align:center; }
+.sl-stat-val { font-size:1.8rem;font-weight:700;color:var(--sl-green);line-height:1; }
+.sl-stat-label { font-size:0.75rem;color:var(--text-muted);margin-top:5px; }
+
+/* ── OBJEKT TYPEN GRID ── */
+.sl-type-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:10px; }
+@media(max-width:580px){ .sl-type-grid{grid-template-columns:repeat(2,1fr);} }
+.sl-type-card { background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);border-radius:14px;padding:14px 12px;text-align:center;cursor:pointer;transition:all 0.2s; }
+.sl-type-card:hover,.sl-type-card.selected { border-color:var(--sl-green);background:rgba(34,197,94,0.08);transform:translateY(-2px); }
+.sl-type-card .sl-t-icon { font-size:1.7rem;margin-bottom:6px; }
+.sl-type-card h4 { font-size:0.8rem;font-weight:600;color:var(--text-main);margin:0 0 2px; }
+.sl-type-card p { font-size:0.7rem;color:var(--text-muted);margin:0; }
+
+/* ── BEISPIELE ── */
+.sl-ex-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px; }
+.sl-ex-card { background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.09);border-radius:16px;padding:18px;position:relative;overflow:hidden; }
+.sl-ex-card::before { content:'';position:absolute;top:0;left:0;right:0;height:3px; }
+.sl-ex-card.sold::before { background:linear-gradient(90deg,var(--sl-green),var(--sl-emerald)); }
+.sl-ex-card.active::before { background:linear-gradient(90deg,var(--sl-blue),#8b5cf6); }
+.sl-ex-badge { display:inline-block;padding:3px 10px;border-radius:8px;font-size:0.67rem;font-weight:700;letter-spacing:0.04em;margin-bottom:10px; }
+.sl-ex-badge.sold { background:rgba(34,197,94,0.15);color:var(--sl-green);border:1px solid rgba(34,197,94,0.25); }
+.sl-ex-badge.active { background:rgba(59,130,246,0.15);color:#60a5fa;border:1px solid rgba(59,130,246,0.25); }
+.sl-ex-title { font-size:0.95rem;font-weight:700;color:var(--text-main);margin:0 0 4px; }
+.sl-ex-loc { font-size:0.77rem;color:var(--text-muted);margin:0 0 12px; }
+.sl-ex-row { display:flex;justify-content:space-between;align-items:center;font-size:0.78rem;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.06); }
+.sl-ex-row:last-of-type { border-bottom:none; }
+.sl-ex-row span { color:var(--text-muted); }
+.sl-ex-row strong { color:var(--text-main); }
+.sl-ex-row strong.green { color:var(--sl-green); }
+
+/* ── PROZESS ── */
+.sl-steps { display:flex;flex-direction:column; }
+.sl-step { display:flex;gap:18px;align-items:flex-start;padding:18px 0;border-bottom:1px solid rgba(255,255,255,0.06); }
+.sl-step:last-child { border-bottom:none;padding-bottom:0; }
+.sl-step-num { flex-shrink:0;width:40px;height:40px;border-radius:50%;background:var(--sl-green-dim);border:2px solid var(--sl-green);display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:800;color:var(--sl-green); }
+.sl-step-body h4 { font-size:0.9rem;font-weight:700;color:var(--text-main);margin:0 0 4px; }
+.sl-step-body p { font-size:0.8rem;color:var(--text-muted);margin:0;line-height:1.5; }
+
+/* ── VORTEILE ── */
+.sl-ben-grid { display:grid;grid-template-columns:repeat(2,1fr);gap:12px; }
+@media(max-width:500px){ .sl-ben-grid{grid-template-columns:1fr;} }
+.sl-ben-card { display:flex;gap:14px;align-items:flex-start;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:16px; }
+.sl-ben-icon { font-size:1.6rem;flex-shrink:0;margin-top:2px; }
+.sl-ben-card h4 { font-size:0.85rem;font-weight:700;color:var(--text-main);margin:0 0 4px; }
+.sl-ben-card p { font-size:0.77rem;color:var(--text-muted);margin:0;line-height:1.45; }
+
+/* ── TESTIMONIALS ── */
+.sl-testi-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px; }
+.sl-testi-card { background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:16px;padding:18px; }
+.sl-testi-stars { color:var(--sl-gold);font-size:0.9rem;margin-bottom:8px; }
+.sl-testi-text { font-size:0.82rem;color:var(--text-muted);line-height:1.6;margin-bottom:12px;font-style:italic; }
+.sl-testi-author { display:flex;align-items:center;gap:10px; }
+.sl-testi-avatar { width:36px;height:36px;border-radius:50%;background:var(--sl-green-dim);border:1.5px solid var(--sl-green);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0; }
+.sl-testi-name { font-size:0.82rem;font-weight:700;color:var(--text-main); }
+.sl-testi-loc { font-size:0.72rem;color:var(--text-muted); }
+
+/* ── FAQ ── */
+.sl-faq-item { border-bottom:1px solid rgba(255,255,255,0.07);padding:16px 0; }
+.sl-faq-item:last-child { border-bottom:none; }
+.sl-faq-q { font-size:0.88rem;font-weight:600;color:var(--text-main);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px; }
+.sl-faq-q::after { content:'＋';font-size:1rem;color:var(--sl-green);flex-shrink:0; }
+.sl-faq-item.open .sl-faq-q::after { content:'－'; }
+.sl-faq-a { display:none;font-size:0.81rem;color:var(--text-muted);line-height:1.6;padding-top:8px; }
+.sl-faq-item.open .sl-faq-a { display:block; }
+
+/* ── STICKY CTA ── */
+.sl-sticky { position:fixed;bottom:0;left:0;right:0;z-index:999;padding:12px 16px;background:rgba(10,12,20,0.92);backdrop-filter:blur(12px);border-top:1px solid rgba(34,197,94,0.2);display:flex;align-items:center;justify-content:space-between;gap:10px; }
+.sl-sticky span { font-size:0.78rem;color:var(--text-muted);line-height:1.3; }
+.sl-sticky strong { color:var(--sl-green); }
+.sl-sticky a { flex-shrink:0;padding:10px 22px;border-radius:12px;background:linear-gradient(135deg,var(--sl-green),var(--sl-emerald));color:#000;font-size:0.85rem;font-weight:800;text-decoration:none;white-space:nowrap; }
+
+/* ── MISC ── */
+.sl-sec-label { font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--sl-green);margin-bottom:6px; }
+.sl-sec-sub { font-size:0.85rem;color:var(--text-muted);margin-top:6px;line-height:1.5; }
+.sl-highlight { background:linear-gradient(135deg,rgba(34,197,94,0.1),rgba(16,185,129,0.06));border:1.5px solid rgba(34,197,94,0.25);border-radius:16px;padding:20px;margin-top:16px; }
+.sl-highlight h4 { color:var(--sl-green);font-size:0.95rem;margin:0 0 8px; }
+.sl-highlight p { color:var(--text-muted);font-size:0.82rem;margin:0;line-height:1.55; }
+</style>
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#007aff" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="aBest.co" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="aBest.co" />
+    <meta property="og:locale" content="hy_AM" />
+    <meta property="og:url" content="https://www.abest.co/hy/earn-money" />
+    <meta property="og:title" content="Թունաստ Վաճառել – Wir kaufen oder finden den Käufer | aBest.co" />
+    <meta property="og:description" content="Global Premium Land & Real Estate Development." />
+    <meta property="og:image" content="https://www.abest.co/assets/images/bg_main_blurred_new.webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@aBestco" />
+    <meta name="twitter:title" content="Թունաստ Վաճառել – Wir kaufen oder finden den Käufer | aBest.co" />
+    <meta name="twitter:description" content="Global Premium Land & Real Estate Development." />
+    <meta name="twitter:image" content="https://www.abest.co/assets/images/bg_main_blurred_new.webp" />
+</head>
+<body class="dark-mode">
+<div class="background-wrapper">
+  <img alt="Background" class="main-bg" src="/assets/images/bg_main_blurred_new.webp"/>
+  <div class="bg-gradient-overlay"></div>
+</div>
+
+<header class="app-header">
+  <a class="logo-link" href="/hy/">
+    <span style="font-size:1.4rem;font-weight:500;color:var(--text-main);">
+      <span style="color:var(--primary-blue);">a</span>Best<span style="color:var(--primary-blue);">.co</span>
+    </span>
+  </a>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <a href="/hy/" class="header-icon-v2" aria-label="Home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></a>
+    <a href="/hy/profil" class="header-icon-v2" aria-label="Պրոֆիլ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+  </div>
+</header>
+
+<main class="page-main" style="padding-bottom:90px;">
+
+  <!-- ── HERO ─────────────────────────────────────────────── -->
+  <section class="page-section" style="text-align:center;padding-top:2.5rem;">
+    <div class="sl-badge"><span class="sl-dot"></span> Aktive Käufer warten — jetzt anfragen</div>
+    <h1 class="page-title" style="font-size:clamp(1.65rem,5vw,2.5rem);line-height:1.15;max-width:620px;margin:0 auto 14px;">
+      Sie wollen verkaufen?<br/>
+      <span style="color:var(--sl-green);">Wir kaufen — oder finden den Käufer.</span>
+    </h1>
+    <p style="font-size:1rem;color:var(--text-muted);max-width:490px;margin:0 auto;line-height:1.65;">
+      Zwei Wege. Ein Ziel: Ihr Grundstück, Ihre Immobilie oder Ihr Gewerbeobjekt zum besten Ergebnis verkaufen — schnell, diskret und mit internationalem Netzwerk.
+    </p>
+    <div class="sl-trust-strip">
+      <span class="sl-trust-chip green">🏠 <strong>Direktkauf</strong> durch aBest.co</span>
+      <span class="sl-trust-chip green">🌍 <strong>Käufer finden</strong> weltweit</span>
+      <span class="sl-trust-chip"><strong>47</strong> aktive Investoren</span>
+      <span class="sl-trust-chip"><strong>14</strong> Länder</span>
+      <span class="sl-trust-chip">🔒 <strong>100 %</strong> Diskret</span>
+    </div>
+    <div style="margin-top:1.6rem;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="/hy/login?next=/profile/my-role/seller" style="padding:13px 28px;font-size:1rem;font-weight:700;border-radius:14px;background:linear-gradient(135deg,var(--sl-green),var(--sl-emerald));color:#000;text-decoration:none;">🏠 Objekt jetzt einreichen</a>
+      <a href="#sl-ways" style="padding:13px 22px;font-size:0.9rem;border-radius:14px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:var(--text-main);text-decoration:none;">Wie es funktioniert →</a>
+    </div>
+  </section>
+
+  <!-- ── DIE 2 WEGE ─────────────────────────────────────────── -->
+  <section class="page-section" style="padding-top:1.8rem;" id="sl-ways">
+    <div class="sl-sec-label">🔀 Ihre zwei Optionen</div>
+    <h2 style="font-size:1.2rem;font-weight:700;color:var(--text-main);margin:4px 0 16px;">Wählen Sie, was zu Ihnen passt</h2>
+    <div class="sl-two-ways">
+
+      <div class="sl-way-card direct" onclick="window.location.href='/hy/login?next=/profile/my-role/seller'">
+        <div class="sl-way-icon">🤝</div>
+        <h3>Weg 1: Direktkauf</h3>
+        <p>aBest.co kauft Ihr Objekt direkt. Kein langes Warten auf einen Käufer, keine ungewissen Verhandlungen. Sie erhalten ein konkretes Angebot.</p>
+        <span class="sl-way-tag green">⚡ Schnellste Option</span>
+        <ul>
+          <li>Direktes Angebot von aBest.co</li>
+          <li>Kein Makler, kein Zwischenhändler</li>
+          <li>Schnelle Abwicklung möglich</li>
+          <li>Diskret und vertraulich</li>
+        </ul>
+      </div>
+
+      <div class="sl-way-card find" onclick="window.location.href='/hy/login?next=/profile/my-role/seller'">
+        <div class="sl-way-icon">🌍</div>
+        <h3>Weg 2: Käufer finden</h3>
+        <p>Sie möchten den besten Preis am Markt erzielen? Wir präsentieren Ihr Objekt unserem internationalen Investorennetzwerk — aktiv, gezielt, diskret.</p>
+        <span class="sl-way-tag blue">💰 Maximaler Preis</span>
+        <ul>
+          <li>Zugang zu 47+ aktiven Investoren</li>
+          <li>14 Länder — internationale Reichweite</li>
+          <li>Gezielte Präsentation, kein Massenportal</li>
+          <li>Wir übernehmen die Kommunikation</li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="sl-highlight">
+      <h4>💡 Nicht sicher, welcher Weg der richtige ist?</h4>
+      <p>Kein Problem — schreiben Sie uns einfach. Wir analysieren Ihr Objekt und empfehlen gemeinsam die beste Strategie. Անվճար und unverbindlich.</p>
+    </div>
+  </section>
+
+  <!-- ── STATS ──────────────────────────────────────────────── -->
+  <section class="page-section" style="padding-top:1.4rem;">
+    <div class="sl-stats-row">
+      <div class="sl-stat-card">
+        <div class="sl-stat-val">47+</div>
+        <div class="sl-stat-label">aktive Investoren</div>
+      </div>
+      <div class="sl-stat-card">
+        <div class="sl-stat-val">14</div>
+        <div class="sl-stat-label">Länder weltweit</div>
+      </div>
+      <div class="sl-stat-card">
+        <div class="sl-stat-val" style="color:var(--sl-gold);">24h</div>
+        <div class="sl-stat-label">erste Rückmeldung</div>
+      </div>
+      <div class="sl-stat-card">
+        <div class="sl-stat-val">€ 4,2M</div>
+        <div class="sl-stat-label">vermitteltes Kapital</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── OBJEKT TYPEN ───────────────────────────────────────── -->
+  <section class="page-section" style="padding-top:1.8rem;">
+    <div class="sl-sec-label">🏗 Welche Objekte?</div>
+    <h2 style="font-size:1.2rem;font-weight:700;color:var(--text-main);margin:4px 0 6px;">Was können Sie bei uns einreichen?</h2>
+    <p class="sl-sec-sub">Wählen Sie Ihren Objekttyp — wir nehmen Ihren Fokus direkt ins Anfrage-Formular auf.</p>
+    <div class="sl-type-grid" style="margin-top:16px;" id="sl-type-grid">
+      <div class="sl-type-card" onclick="window.location.href='/hy/login?next=/profile/my-role/seller'">
+        <div class="sl-t-icon">🌍</div>
+        <h4>Grundstück</h4>
+        <p>Bauland, Rohland</p>
+      </div>
+      <div class="sl-type-card" onclick="window.location.href='/hy/login?next=/profile/my-role/seller'">
+        <div class="sl-t-icon">🏡</div>
+        <h4>Wohnimmobilie</h4>
+        <p>Haus, Wohnung, MFH</p>
+      </div>
+      <div class="sl-type-card" onclick="window.location.href='/hy/login?next=/profile/my-role/seller'">
+        <div class="sl-t-icon">🏬</div>
+        <h4>Gewerbe</h4>
+        <p>Büro, Laden, Halle</p>
+      </div>
+      <div class="sl-type-card" onclick="window.location.href='/hy/login?next=/profile/my-role/seller'">
+        <div class="sl-t-icon">🌾</div>
+        <h4>Agrarfläche</h4>
+        <p>Felder, Farmen</p>
+      </div>
+      <div class="sl-type-card" onclick="window.location.href='/hy/login?next=/profile/my-role/seller'">
+        <div class="sl-t-icon">🏨</div>
+        <h4>Hotel / Tourismus</h4>
+        <p>Hotels, Resorts</p>
+      </div>
+      <div class="sl-type-card" onclick="window.location.href='/hy/login?next=/profile/my-role/seller'">
+        <div class="sl-t-icon">🏗️</div>
+        <h4>Entwicklungsprojekt</h4>
+        <p>Bauvorhaben, Projekte</p>
+      </div>
+      <div class="sl-type-card" onclick="window.location.href='/hy/login?next=/profile/my-role/seller'">
+        <div class="sl-t-icon">🏭</div>
+        <h4>Lager / Logistik</h4>
+        <p>Hallen, Storage</p>
+      </div>
+      <div class="sl-type-card" onclick="window.location.href='/hy/login?next=/profile/my-role/seller'">
+        <div class="sl-t-icon">🏖️</div>
+        <h4>Küste / See</h4>
+        <p>Wasserlagen, Küste</p>
+      </div>
+      <div class="sl-type-card" onclick="window.location.href='/hy/login?next=/profile/my-role/seller'">
+        <div class="sl-t-icon">🏢</div>
+        <h4>Unternehmen</h4>
+        <p>Beteiligung, Firma</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── BEISPIEL-DEALS ─────────────────────────────────────── -->
+  <section class="page-section" style="padding-top:1.8rem;">
+    <div class="sl-sec-label">📋 Beispiele</div>
+    <h2 style="font-size:1.2rem;font-weight:700;color:var(--text-main);margin:4px 0 6px;">So laufen Deals auf aBest.co</h2>
+    <p class="sl-sec-sub">Echte Projekttypen — so funktioniert es in der Praxis.</p>
+    <div class="sl-ex-grid" style="margin-top:16px;">
+
+      <div class="sl-ex-card sold">
+        <span class="sl-ex-badge sold">✓ Direktkauf</span>
+        <div class="sl-ex-title">Bauland Rosamond, California</div>
+        <div class="sl-ex-loc">📍 Kern County, USA</div>
+        <div class="sl-ex-row"><span>Typ</span><strong>Rohland 4,5 Acres</strong></div>
+        <div class="sl-ex-row"><span>Objekt APN</span><strong>5663-003-002</strong></div>
+        <div class="sl-ex-row"><span>Weg</span><strong class="green">Direktkauf durch aBest.co</strong></div>
+        <div class="sl-ex-row"><span>Dauer bis Angebot</span><strong>48 Stunden</strong></div>
+      </div>
+
+      <div class="sl-ex-card active">
+        <span class="sl-ex-badge active">🔵 Käufer gesucht</span>
+        <div class="sl-ex-title">Küstengrundstück Half Moon Bay</div>
+        <div class="sl-ex-loc">📍 San Mateo County, Kalifornien</div>
+        <div class="sl-ex-row"><span>Typ</span><strong>Coastal Act Grundstück</strong></div>
+        <div class="sl-ex-row"><span>Fläche</span><strong>ca. 2.800 m²</strong></div>
+        <div class="sl-ex-row"><span>Weg</span><strong style="color:#60a5fa;">Käufer aus int. Netzwerk</strong></div>
+        <div class="sl-ex-row"><span>Investoren kontaktiert</span><strong>12 aktive Anfragen</strong></div>
+      </div>
+
+      <div class="sl-ex-card sold">
+        <span class="sl-ex-badge sold">✓ Vermittelt</span>
+        <div class="sl-ex-title">Gewerbeimmobilie Glendale</div>
+        <div class="sl-ex-loc">📍 Los Angeles, Kalifornien</div>
+        <div class="sl-ex-row"><span>Typ</span><strong>Gewerbe / Mixed-Use</strong></div>
+        <div class="sl-ex-row"><span>Fläche</span><strong>APN 5663-003-002</strong></div>
+        <div class="sl-ex-row"><span>Weg</span><strong class="green">Käufer gefunden</strong></div>
+        <div class="sl-ex-row"><span>Zeit bis Käufer</span><strong>3 Wochen</strong></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── PROZESS ────────────────────────────────────────────── -->
+  <section class="page-section" style="padding-top:1.8rem;">
+    <div class="glass-panel" style="padding:24px 20px;">
+      <div class="sl-sec-label">🔄 Prozess</div>
+      <h2 style="font-size:1.15rem;font-weight:700;color:var(--text-main);margin:4px 0 20px;">In 4 Schritten zum Verkauf</h2>
+      <div class="sl-steps">
+        <div class="sl-step">
+          <div class="sl-step-num">1</div>
+          <div class="sl-step-body">
+            <h4>Objekt einreichen — kostenlos &amp; diskret</h4>
+            <p>Sie füllen das Formular unten aus: Objekttyp, Standort, Fläche, Preiswunsch. Kein langer Prozess — wenige Angaben genügen für den Start.</p>
+          </div>
+        </div>
+        <div class="sl-step">
+          <div class="sl-step-num">2</div>
+          <div class="sl-step-body">
+            <h4>Wir melden uns innerhalb von 24 Stunden</h4>
+            <p>Unser Team prüft Ihr Objekt und kontaktiert Sie persönlich. Wir besprechen gemeinsam: Direktkauf oder Käufer suchen — was macht für Sie Sinn?</p>
+          </div>
+        </div>
+        <div class="sl-step">
+          <div class="sl-step-num">3</div>
+          <div class="sl-step-body">
+            <h4>Angebot oder Investoren-Matching</h4>
+            <p>Beim Direktkauf erhalten Sie ein konkretes Kaufangebot von aBest.co. Bei der Käufersuche präsentieren wir Ihr Objekt aktiv unserem Investorennetzwerk — gezielt, nicht öffentlich.</p>
+          </div>
+        </div>
+        <div class="sl-step">
+          <div class="sl-step-num">4</div>
+          <div class="sl-step-body">
+            <h4>Abschluss — zu Ihren Bedingungen</h4>
+            <p>Sie entscheiden, ob und wann Sie verkaufen. Kein Druck, kein Zeitlimit. Wir begleiten Sie bis zum erfolgreichen Abschluss.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── VORTEILE ───────────────────────────────────────────── -->
+  <section class="page-section" style="padding-top:1.8rem;">
+    <div class="sl-sec-label">✅ Vorteile</div>
+    <h2 style="font-size:1.2rem;font-weight:700;color:var(--text-main);margin:4px 0 6px;">Warum Eigentümer aBest.co wählen</h2>
+    <div class="sl-ben-grid" style="margin-top:16px;">
+      <div class="sl-ben-card">
+        <span class="sl-ben-icon">🌍</span>
+        <div>
+          <h4>Internationales Netzwerk</h4>
+          <p>Ihr Objekt erreicht Investoren aus 14 Ländern — nicht nur lokale Käufer, sondern internationale Kapitalgeber, die gezielt suchen.</p>
+        </div>
+      </div>
+      <div class="sl-ben-card">
+        <span class="sl-ben-icon">⚡</span>
+        <div>
+          <h4>Direktkauf möglich</h4>
+          <p>Kein langes Warten. Wenn Ihr Objekt passt, kaufen wir direkt. Sie erhalten ein konkretes Angebot — innerhalb von 48 Stunden.</p>
+        </div>
+      </div>
+      <div class="sl-ben-card">
+        <span class="sl-ben-icon">🔒</span>
+        <div>
+          <h4>100 % diskret</h4>
+          <p>Ihr Objekt wird nicht öffentlich inseriert, wenn Sie das nicht möchten. Gezielte Ansprache nur ausgewählter, geprüfter Investoren.</p>
+        </div>
+      </div>
+      <div class="sl-ben-card">
+        <span class="sl-ben-icon">🤝</span>
+        <div>
+          <h4>Mehr als nur Verkauf</h4>
+          <p>Viele Deals auf aBest.co entstehen als Kooperationen, Beteiligungen oder Entwicklungspartnerschaften — nicht nur ein einfacher Verkauf.</p>
+        </div>
+      </div>
+      <div class="sl-ben-card">
+        <span class="sl-ben-icon">📋</span>
+        <div>
+          <h4>Kein Makler nötig</h4>
+          <p>Direkter Zugang zu Käufern und Investoren — ohne Maklergebühr und ohne unnötige Zwischenschritte.</p>
+        </div>
+      </div>
+      <div class="sl-ben-card">
+        <span class="sl-ben-icon">💬</span>
+        <div>
+          <h4>Persönlicher Ansprechpartner</h4>
+          <p>Sie haben von Anfang an einen festen Kontakt bei aBest.co. Kein automatisiertes System — ein echter Mensch, der Ihr Objekt kennt.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TESTIMONIALS ───────────────────────────────────────── -->
+  <section class="page-section" style="padding-top:1.8rem;">
+    <div class="sl-sec-label">⭐ Eigentümer berichten</div>
+    <h2 style="font-size:1.2rem;font-weight:700;color:var(--text-main);margin:4px 0 16px;">Was Verkäufer über aBest.co sagen</h2>
+    <div class="sl-testi-grid">
+      <div class="sl-testi-card">
+        <div class="sl-testi-stars">★★★★★</div>
+        <p class="sl-testi-text">"Ich hatte ein Grundstück, das jahrelang unverkäuflich schien. aBest.co hat innerhalb von drei Wochen einen internationalen Investor gefunden. Ich hätte das alleine nie erreicht."</p>
+        <div class="sl-testi-author">
+          <div class="sl-testi-avatar">👤</div>
+          <div>
+            <div class="sl-testi-name">H. Güler</div>
+            <div class="sl-testi-loc">Antalya, Türkei</div>
+          </div>
+        </div>
+      </div>
+      <div class="sl-testi-card">
+        <div class="sl-testi-stars">★★★★★</div>
+        <p class="sl-testi-text">"Der Direktkauf war für mich die perfekte Lösung. Kein Stress, kein langer Prozess — ein konkretes Angebot, schnelle Abwicklung. Genau das wollte ich."</p>
+        <div class="sl-testi-author">
+          <div class="sl-testi-avatar">👤</div>
+          <div>
+            <div class="sl-testi-name">J. Bauer</div>
+            <div class="sl-testi-loc">Bayern, Deutschland</div>
+          </div>
+        </div>
+      </div>
+      <div class="sl-testi-card">
+        <div class="sl-testi-stars">★★★★★</div>
+        <p class="sl-testi-text">"Was mich überzeugt hat: Mein Objekt wurde nicht einfach öffentlich inseriert. aBest.co hat gezielt die richtigen Investoren angesprochen. Das ist ein echter Unterschied."</p>
+        <div class="sl-testi-author">
+          <div class="sl-testi-avatar">👤</div>
+          <div>
+            <div class="sl-testi-name">A. Kowalski</div>
+            <div class="sl-testi-loc">Warschau, Polen</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ───────────────────────────────────────────────── -->
+  <section class="page-section" style="padding-top:1.8rem;">
+    <div class="glass-panel" style="padding:24px 20px;">
+      <div class="sl-sec-label">❓ FAQ</div>
+      <h2 style="font-size:1.15rem;font-weight:700;color:var(--text-main);margin:4px 0 16px;">Häufig gestellte Fragen</h2>
+      <div class="sl-faq-item">
+        <div class="sl-faq-q" onclick="slFaq(this)">Kauft aBest.co wirklich direkt?</div>
+        <div class="sl-faq-a">Ja. Wenn Ihr Objekt zu unseren Kriterien passt, unterbreiten wir Ihnen ein konkretes Kaufangebot — direkt, ohne Zwischenhändler. Welche Objekte wir kaufen, klären wir im persönlichen Gespräch nach Ihrer Anfrage.</div>
+      </div>
+      <div class="sl-faq-item">
+        <div class="sl-faq-q" onclick="slFaq(this)">Was kostet das Einreichen meines Objekts?</div>
+        <div class="sl-faq-a">Das Einreichen ist <strong>komplett kostenlos</strong> und unverbindlich. Sie entscheiden, ob und wann Sie verkaufen. Es entstehen keine versteckten Kosten für die Anfrage.</div>
+      </div>
+      <div class="sl-faq-item">
+        <div class="sl-faq-q" onclick="slFaq(this)">Wird mein Objekt öffentlich inseriert?</div>
+        <div class="sl-faq-a">Nur wenn Sie das möchten. Standardmäßig präsentieren wir Ihr Objekt <strong>diskret und gezielt</strong> an ausgewählte Investoren aus unserem Netzwerk — ohne öffentliche Ausschreibung.</div>
+      </div>
+      <div class="sl-faq-item">
+        <div class="sl-faq-q" onclick="slFaq(this)">Welche Objekte kauft oder vermittelt aBest.co?</div>
+        <div class="sl-faq-a">Grundstücke, Bauland, Gewerbeimmobilien, Wohnimmobilien, Agrarflächen, Hotels, Logistikflächen, Küstengrundstücke und Unternehmensbeteiligungen — national und international. Besondere oder große Projekte sind besonders interessant.</div>
+      </div>
+      <div class="sl-faq-item">
+        <div class="sl-faq-q" onclick="slFaq(this)">Wie lange dauert es, bis ich eine Rückmeldung bekomme?</div>
+        <div class="sl-faq-a">Wir melden uns in der Regel <strong>innerhalb von 24 Stunden</strong> persönlich bei Ihnen. Beim Direktkauf-Interesse erhalten Sie eine erste Einschätzung innerhalb von 48 Stunden.</div>
+      </div>
+      <div class="sl-faq-item">
+        <div class="sl-faq-q" onclick="slFaq(this)">Kann ich auch verkaufen, ohne zu wissen, was mein Objekt wert ist?</div>
+        <div class="sl-faq-a">Ja. Sie brauchen keine fertige Bewertung. Unser Team hilft Ihnen, eine realistische Preisvorstellung zu entwickeln — basierend auf Lage, Typ und aktuellem Marktinteresse aus unserem Netzwerk.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── BACK LINK ──────────────────────────────────────────── -->
+  <section class="page-section" style="padding-top:1.2rem;padding-bottom:0.5rem;">
+    <a href="/hy/earn-money" style="font-size:0.82rem;color:var(--text-muted);text-decoration:none;">← Վերադարձ Earn Money-ին</a>
+  </section>
+
+</main>
+
+<!-- ── STICKY CTA ─────────────────────────────────────────── -->
+<div class="sl-sticky">
+  <span>🏠 <strong>Direktkauf oder Käufer finden</strong> — kostenlos einreichen · 24h Rückmeldung</span>
+  <a href="/hy/login?next=/profile/my-role/seller">Jetzt einreichen</a>
+</div>
+
+<script src="/app.js"></script>
+<script>
+// ── FAQ Toggle ─────────────────────────────────────────────
+function slFaq(el) {
+  var item = el.parentElement;
+  var wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.sl-faq-item').forEach(function(i){ i.classList.remove('open'); });
+  if (!wasOpen) item.classList.add('open');
+}
+</script>
+</body>
+</html>

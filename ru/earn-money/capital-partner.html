@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Стать партнером капитала – 5% в год, от € 1.000 | aBest.co</title>
+<meta content="Партнер капитала в aBest.co: 5% в год на проверенные проекты - недвижимость, энергетика, стартапы. От €1000. Срок от 1 года. Прозрачно." name="description"/>
+<link href="/favicon.png" rel="icon" type="image/png"/>
+<link href="/index.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="canonical" href="https://www.abest.co/ru/earn-money/capital-partner"/>
+<style>
+:root {
+  --cp-purple: #8b5cf6;
+  --cp-purple-dim: rgba(139,92,246,0.15);
+  --cp-gold: #f59e0b;
+  --cp-green: #22c55e;
+  --cp-blue: #3b82f6;
+}
+
+/* ── BADGE / HERO ── */
+.cp-badge { display:inline-flex;align-items:center;gap:7px;padding:5px 15px;border-radius:22px;background:rgba(139,92,246,0.12);border:1px solid rgba(139,92,246,0.35);font-size:0.72rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--cp-purple);margin-bottom:16px; }
+.cp-dot { width:7px;height:7px;border-radius:50%;background:var(--cp-green);animation:cp-pulse 1.8s infinite; }
+@keyframes cp-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.3)}}
+
+.cp-trust-strip { display:flex;flex-wrap:wrap;gap:8px;margin-top:1.4rem;justify-content:center; }
+.cp-trust-chip { background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:5px 13px;font-size:0.74rem;color:var(--text-muted); }
+.cp-trust-chip strong { color:var(--text-main); }
+.cp-trust-chip.purple { background:rgba(139,92,246,0.1);border-color:rgba(139,92,246,0.3);color:var(--cp-purple); }
+.cp-trust-chip.purple strong { color:var(--cp-purple); }
+
+/* ── DIFFERENCE STRIP ── */
+.cp-diff-strip { display:grid;grid-template-columns:1fr auto 1fr;gap:0;align-items:stretch;background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.09);border-radius:16px;overflow:hidden; }
+.cp-diff-col { padding:20px 16px; }
+.cp-diff-col.left { border-right:1px solid rgba(255,255,255,0.07); }
+.cp-diff-col.right { border-left:1px solid rgba(255,255,255,0.07);background:rgba(139,92,246,0.06); }
+.cp-diff-divider { display:flex;align-items:center;justify-content:center;padding:0 12px;background:rgba(255,255,255,0.03);font-size:0.75rem;font-weight:700;color:var(--text-muted);white-space:nowrap;writing-mode:horizontal-tb; }
+.cp-diff-label { font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px; }
+.cp-diff-label.muted { color:var(--text-muted); }
+.cp-diff-label.purple { color:var(--cp-purple); }
+.cp-diff-row { display:flex;align-items:center;gap:8px;font-size:0.8rem;margin-bottom:7px;color:var(--text-muted); }
+.cp-diff-row:last-child { margin-bottom:0; }
+.cp-diff-row .icon { font-size:0.9rem;flex-shrink:0; }
+@media(max-width:560px){
+  .cp-diff-strip { grid-template-columns:1fr;grid-template-rows:auto auto auto; }
+  .cp-diff-col.left { border-right:none;border-bottom:1px solid rgba(255,255,255,0.07); }
+  .cp-diff-col.right { border-left:none;border-top:1px solid rgba(255,255,255,0.07); }
+  .cp-diff-divider { padding:10px;writing-mode:horizontal-tb; }
+}
+
+/* ── STATS ── */
+.cp-stats-row { display:grid;grid-template-columns:repeat(4,1fr);gap:14px; }
+@media(max-width:600px){ .cp-stats-row{grid-template-columns:repeat(2,1fr);} }
+.cp-stat-card { background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.09);border-radius:16px;padding:20px 14px;text-align:center; }
+.cp-stat-val { font-size:1.8rem;font-weight:700;color:var(--cp-purple);line-height:1; }
+.cp-stat-label { font-size:0.75rem;color:var(--text-muted);margin-top:5px; }
+
+/* ── RENDITE MODELLE ── */
+.cp-model-grid { display:grid;grid-template-columns:repeat(2,1fr);gap:12px; }
+@media(max-width:540px){ .cp-model-grid{grid-template-columns:1fr;} }
+.cp-model-card { background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.09);border-radius:16px;padding:18px;position:relative;overflow:hidden;transition:transform 0.2s; }
+.cp-model-card:hover { transform:translateY(-2px);border-color:rgba(139,92,246,0.4); }
+.cp-model-card::before { content:'';position:absolute;top:0;left:0;right:0;height:3px; }
+.cp-model-card.m1::before { background:linear-gradient(90deg,var(--cp-purple),var(--cp-blue)); }
+.cp-model-card.m2::before { background:linear-gradient(90deg,var(--cp-gold),#f97316); }
+.cp-model-card.m3::before { background:linear-gradient(90deg,var(--cp-green),#16a34a); }
+.cp-model-card.m4::before { background:linear-gradient(90deg,#ec4899,#a855f7); }
+.cp-model-card .cp-m-icon { font-size:1.6rem;margin-bottom:8px; }
+.cp-model-card h4 { font-size:0.9rem;font-weight:700;color:var(--text-main);margin:0 0 5px; }
+.cp-model-card .cp-m-rate { font-size:0.85rem;font-weight:700;margin-bottom:6px; }
+.cp-model-card p { font-size:0.77rem;color:var(--text-muted);margin:0;line-height:1.45; }
+
+/* ── RENDITE RECHNER ── */
+.cp-calc-wrap { background:rgba(139,92,246,0.06);border:1.5px solid rgba(139,92,246,0.2);border-radius:18px;padding:24px 20px; }
+.cp-calc-row { display:flex;justify-content:space-between;align-items:center;margin-bottom:6px; }
+.cp-calc-row span { font-size:0.8rem;color:var(--text-muted); }
+.cp-calc-row strong { font-size:1.1rem;font-weight:700;color:var(--cp-purple); }
+input[type=range].cp-range { width:100%;accent-color:var(--cp-purple);margin-bottom:4px;cursor:pointer; }
+.cp-calc-result { display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px; }
+@media(max-width:480px){ .cp-calc-result{grid-template-columns:1fr;} }
+.cp-calc-item { background:rgba(255,255,255,0.05);border-radius:12px;padding:14px;text-align:center; }
+.cp-calc-item .cclabel { font-size:0.71rem;color:var(--text-muted);margin-bottom:4px; }
+.cp-calc-item .ccval { font-size:1.05rem;font-weight:700;color:var(--cp-purple); }
+.cp-calc-disclaimer { font-size:0.68rem;color:var(--text-muted);margin-top:12px;opacity:0.7;line-height:1.5; }
+
+/* ── BEISPIELPROJEKTE ── */
+.cp-proj-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px; }
+.cp-proj-card { background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.09);border-radius:18px;padding:20px;position:relative;overflow:hidden;transition:transform 0.2s; }
+.cp-proj-card:hover { transform:translateY(-3px);border-color:rgba(139,92,246,0.3); }
+.cp-proj-card::before { content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--cp-purple),var(--cp-blue)); }
+.cp-proj-badge { display:inline-block;padding:3px 10px;border-radius:10px;font-size:0.67rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:12px; }
+.cp-proj-badge.re { background:rgba(59,130,246,0.15);color:#60a5fa;border:1px solid rgba(59,130,246,0.25); }
+.cp-proj-badge.en { background:rgba(34,197,94,0.15);color:#22c55e;border:1px solid rgba(34,197,94,0.25); }
+.cp-proj-badge.biz { background:rgba(245,158,11,0.15);color:var(--cp-gold);border:1px solid rgba(245,158,11,0.25); }
+.cp-proj-title { font-size:1rem;font-weight:700;color:var(--text-main);margin:0 0 5px; }
+.cp-proj-loc { font-size:0.78rem;color:var(--text-muted);margin:0 0 14px; }
+.cp-proj-meta { display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px; }
+.cp-proj-meta-item { background:rgba(255,255,255,0.04);border-radius:10px;padding:8px 10px; }
+.cp-proj-meta-item .cml { font-size:0.67rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.04em; }
+.cp-proj-meta-item .cmv { font-size:0.88rem;font-weight:700;color:var(--text-main);margin-top:2px; }
+.cp-proj-meta-item .cmv.purple { color:var(--cp-purple); }
+.cp-proj-tag { display:inline-block;padding:4px 10px;border-radius:8px;font-size:0.73rem;font-weight:600;background:rgba(139,92,246,0.12);border:1px solid rgba(139,92,246,0.25);color:var(--cp-purple);margin-bottom:12px; }
+.cp-proj-cta { width:100%;padding:11px;border-radius:12px;background:linear-gradient(135deg,var(--cp-purple),var(--cp-blue));border:none;color:#fff;font-size:0.85rem;font-weight:700;cursor:pointer;transition:opacity 0.2s; }
+.cp-proj-cta:hover { opacity:0.85; }
+.cp-proj-demo-note { font-size:0.68rem;color:var(--text-muted);text-align:center;margin-top:6px;opacity:0.6; }
+
+/* ── PROZESS ── */
+.cp-steps { display:flex;flex-direction:column;gap:0; }
+.cp-step { display:flex;gap:18px;align-items:flex-start;padding:18px 0;border-bottom:1px solid rgba(255,255,255,0.06); }
+.cp-step:last-child { border-bottom:none;padding-bottom:0; }
+.cp-step-num { flex-shrink:0;width:40px;height:40px;border-radius:50%;background:var(--cp-purple-dim);border:2px solid var(--cp-purple);display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:800;color:var(--cp-purple); }
+.cp-step-body h4 { font-size:0.9rem;font-weight:700;color:var(--text-main);margin:0 0 4px; }
+.cp-step-body p { font-size:0.8rem;color:var(--text-muted);margin:0;line-height:1.5; }
+
+/* ── SICHERHEIT ── */
+.cp-sec-grid { display:grid;grid-template-columns:repeat(2,1fr);gap:12px; }
+@media(max-width:540px){ .cp-sec-grid{grid-template-columns:1fr;} }
+.cp-sec-card { display:flex;gap:14px;align-items:flex-start;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:16px; }
+.cp-sec-icon { font-size:1.6rem;flex-shrink:0;margin-top:2px; }
+.cp-sec-card h4 { font-size:0.85rem;font-weight:700;color:var(--text-main);margin:0 0 4px; }
+.cp-sec-card p { font-size:0.77rem;color:var(--text-muted);margin:0;line-height:1.45; }
+
+/* ── FÜR WEN ── */
+.cp-types-grid { display:grid;grid-template-columns:repeat(2,1fr);gap:12px; }
+@media(max-width:480px){ .cp-types-grid{grid-template-columns:1fr;} }
+.cp-type-card { background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);border-radius:16px;padding:18px 14px; }
+.cp-type-card .cp-type-icon { font-size:1.6rem;margin-bottom:8px; }
+.cp-type-card h4 { font-size:0.9rem;font-weight:700;color:var(--text-main);margin:0 0 5px; }
+.cp-type-card p { font-size:0.78rem;color:var(--text-muted);margin:0;line-height:1.45; }
+
+/* ── TESTIMONIALS ── */
+.cp-testi-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px; }
+.cp-testi-card { background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:16px;padding:18px; }
+.cp-testi-stars { color:var(--cp-gold);font-size:0.9rem;margin-bottom:8px; }
+.cp-testi-text { font-size:0.82rem;color:var(--text-muted);line-height:1.6;margin-bottom:12px;font-style:italic; }
+.cp-testi-author { display:flex;align-items:center;gap:10px; }
+.cp-testi-avatar { width:36px;height:36px;border-radius:50%;background:var(--cp-purple-dim);border:1.5px solid var(--cp-purple);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0; }
+.cp-testi-name { font-size:0.82rem;font-weight:700;color:var(--text-main); }
+.cp-testi-loc { font-size:0.72rem;color:var(--text-muted); }
+
+/* ── HIGHLIGHT BOX ── */
+.cp-highlight { background:linear-gradient(135deg,rgba(139,92,246,0.1),rgba(59,130,246,0.08));border:1.5px solid rgba(139,92,246,0.25);border-radius:16px;padding:22px 20px;margin-top:16px; }
+.cp-highlight h4 { color:var(--cp-purple);font-size:0.95rem;margin:0 0 8px; }
+.cp-highlight p { color:var(--text-muted);font-size:0.82rem;margin:0;line-height:1.55; }
+
+/* ── FORM ── */
+.cp-form { display:flex;flex-direction:column;gap:1rem;margin-top:1.2rem; }
+.cp-form-row { display:grid;grid-template-columns:1fr 1fr;gap:1rem; }
+@media(max-width:540px){ .cp-form-row{grid-template-columns:1fr;} }
+.cp-input,.cp-select,.cp-textarea { width:100%;background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.1);border-radius:12px;padding:11px 14px;color:var(--text-main);font-family:inherit;font-size:0.88rem;outline:none;transition:border-color 0.2s;box-sizing:border-box; }
+.cp-input:focus,.cp-select:focus,.cp-textarea:focus { border-color:var(--cp-purple); }
+.cp-select { appearance:none;cursor:pointer; }
+.cp-textarea { resize:vertical;min-height:90px; }
+.cp-submit { width:100%;padding:14px;border-radius:14px;background:linear-gradient(135deg,var(--cp-purple),var(--cp-blue));border:none;color:#fff;font-size:1rem;font-weight:800;cursor:pointer;transition:opacity 0.2s;margin-top:4px; }
+.cp-submit:hover { opacity:0.85; }
+.cp-success { display:none;text-align:center;padding:2rem; }
+.cp-success .cp-suc-icon { font-size:2.5rem;margin-bottom:10px; }
+.cp-success h3 { color:var(--cp-purple);margin:0 0 6px; }
+.cp-success p { color:var(--text-muted);font-size:0.88rem;margin:0; }
+.cp-conf-badge { display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:8px 12px;font-size:0.76rem;color:var(--text-muted);margin-top:4px; }
+.cp-conf-badge strong { color:var(--text-main); }
+
+/* ── Часто задаваемые вопросы ── */
+.cp-faq-item { border-bottom:1px solid rgba(255,255,255,0.07);padding:16px 0; }
+.cp-faq-item:last-child { border-bottom:none; }
+.cp-faq-q { font-size:0.88rem;font-weight:600;color:var(--text-main);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px; }
+.cp-faq-q::after { content:'＋';font-size:1rem;color:var(--cp-purple);flex-shrink:0; }
+.cp-faq-item.open .cp-faq-q::after { content:'－'; }
+.cp-faq-a { display:none;font-size:0.81rem;color:var(--text-muted);line-height:1.6;padding-top:8px; }
+.cp-faq-item.open .cp-faq-a { display:block; }
+
+/* ── STICKY CTA ── */
+.cp-sticky { position:fixed;bottom:0;left:0;right:0;z-index:999;padding:12px 16px;background:rgba(10,12,20,0.92);backdrop-filter:blur(12px);border-top:1px solid rgba(139,92,246,0.2);display:flex;align-items:center;justify-content:space-between;gap:10px; }
+.cp-sticky span { font-size:0.78rem;color:var(--text-muted);line-height:1.3; }
+.cp-sticky strong { color:var(--cp-purple); }
+.cp-sticky a { flex-shrink:0;padding:10px 22px;border-radius:12px;background:linear-gradient(135deg,var(--cp-purple),var(--cp-blue));color:#fff;font-size:0.85rem;font-weight:800;text-decoration:none;white-space:nowrap; }
+
+/* ── MISC ── */
+.cp-sec-label { font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--cp-purple);margin-bottom:6px; }
+.cp-sec-sub { font-size:0.85rem;color:var(--text-muted);margin-top:6px;line-height:1.5; }
+</style>
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#007aff" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="aBest.co" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="aBest.co" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:url" content="https://www.abest.co/ru/earn-money" />
+    <meta property="og:title" content="Стать партнером капитала – 5% в год, от € 1.000 | aBest.co" />
+    <meta property="og:description" content="Global Premium Land & Real Estate Development." />
+    <meta property="og:image" content="https://www.abest.co/assets/images/bg_main_blurred_new.webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@aBestco" />
+    <meta name="twitter:title" content="Стать партнером капитала – 5% в год, от € 1.000 | aBest.co" />
+    <meta name="twitter:description" content="Global Premium Land & Real Estate Development." />
+    <meta name="twitter:image" content="https://www.abest.co/assets/images/bg_main_blurred_new.webp" />
+</head>
+<body class="dark-mode">
+<div class="background-wrapper">
+  <img alt="Background" class="main-bg" src="/assets/images/bg_main_blurred_new.webp"/>
+  <div class="bg-gradient-overlay"></div>
+</div>
+
+<header class="app-header">
+  <a class="logo-link" href="/ru/">
+    <span style="font-size:1.4rem;font-weight:500;color:var(--text-main);">
+      <span style="color:var(--primary-blue);">a</span>Best<span style="color:var(--primary-blue);">.co</span>
+    </span>
+  </a>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <a href="/ru/" class="header-icon-v2" aria-label="Главная"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></a>
+    <a href="/ru/profil" class="header-icon-v2" aria-label="Профиль"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+  </div>
+</header>
+
+<main class="page-main" style="padding-bottom:90px;">
+
+  <!-- ── HERO ─────────────────────────────────────────────── -->
+  <section class="page-section" style="text-align:center;padding-top:2.5rem;">
+    <div class="cp-badge"><span class="cp-dot"></span> Exklusive Партнер капиталаschaften — jetzt verfügbar</div>
+    <h1 class="page-title" style="font-size:clamp(1.7rem,5vw,2.6rem);line-height:1.15;max-width:620px;margin:0 auto 12px;">
+      Ihr Kapital. Echte Проекты.<br/>
+      <span style="color:var(--cp-purple);">Echte Partnerschaft.</span>
+    </h1>
+    <p style="font-size:1rem;color:var(--text-muted);max-width:500px;margin:0 auto;line-height:1.65;">
+      Viele der besten Проекты scheitern nicht an der Idee — sondern daran, dass das richtige Kapital zum falschen Zeitpunkt fehlt. Als Capital Partner auf aBest.co schließen Sie genau diese Lücke. Und werden Teil des Erfolgs.
+    </p>
+    <div class="cp-trust-strip">
+      <span class="cp-trust-chip purple"><strong>5 % p.a.</strong> Festzins</span>
+      <span class="cp-trust-chip"><strong>ab € 1.000</strong> Einstieg</span>
+      <span class="cp-trust-chip"><strong>ab 1 Jahr</strong> Laufzeit</span>
+      <span class="cp-trust-chip"><strong>Individuelle</strong> Konditionen</span>
+      <span class="cp-trust-chip"><strong>Priorität</strong> bei Проектыn</span>
+      <span class="cp-trust-chip">🔒 <strong>100 %</strong> Vertraulich</span>
+    </div>
+    <div style="margin-top:1.6rem;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="#cp-form" style="padding:13px 28px;font-size:1rem;font-weight:700;border-radius:14px;background:linear-gradient(135deg,var(--cp-purple),var(--cp-blue));color:#fff;text-decoration:none;">💼 Jetzt Стать партнером капитала</a>
+      <a href="#cp-projects" style="padding:13px 22px;font-size:0.9rem;border-radius:14px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:var(--text-main);text-decoration:none;">Проекты ansehen →</a>
+    </div>
+  </section>
+
+  <!-- ── INVESTOR vs. CAPITAL PARTNER ──────────────────────── -->
+  <section class="page-section" style="padding-top:1.8rem;">
+    <div class="cp-sec-label">🆚 Der Unterschied</div>
+    <h2 style="font-size:1.2rem;font-weight:700;color:var(--text-main);margin:4px 0 16px;">Warum Capital Partner — und nicht einfach Investor?</h2>
+    <div class="cp-diff-strip">
+      <div class="cp-diff-col left">
+        <div class="cp-diff-label muted">📊 Investor</div>
+        <div class="cp-diff-row"><span class="icon">✅</span> Standardprojekte, öffentlich</div>
+        <div class="cp-diff-row"><span class="icon">✅</span> Feste Rendite 5 % p.a. — ab 1 Jahr</div>
+        <div class="cp-diff-row"><span class="icon">✅</span> Ab € 10.000 Einstieg</div>
+        <div class="cp-diff-row"><span class="icon">⬜</span> Standardkonditionen</div>
+        <div class="cp-diff-row"><span class="icon">⬜</span> Kein Mitspracherecht</div>
+        <div class="cp-diff-row"><span class="icon">⬜</span> Kein Zugang zu exklusiven Deals</div>
+      </div>
+      <div class="cp-diff-divider">VS</div>
+      <div class="cp-diff-col right">
+        <div class="cp-diff-label purple">💼 Capital Partner</div>
+        <div class="cp-diff-row"><span class="icon">⭐</span> <span style="color:var(--text-main);">Exklusive Проекты, Prioritätszugang</span></div>
+        <div class="cp-diff-row"><span class="icon">⭐</span> <span style="color:var(--text-main);">Ab 5 % + Gewinnbeteiligung möglich</span></div>
+        <div class="cp-diff-row"><span class="icon">⭐</span> <span style="color:var(--text-main);">Ab € 1.000 — größere Tickets welcome</span></div>
+        <div class="cp-diff-row"><span class="icon">⭐</span> <span style="color:var(--text-main);">Individuelle Kapitalstruktur</span></div>
+        <div class="cp-diff-row"><span class="icon">⭐</span> <span style="color:var(--text-main);">Direkte Kommunikation mit Projektteam</span></div>
+        <div class="cp-diff-row"><span class="icon">⭐</span> <span style="color:var(--text-main);">Langfristige strategische Partnerschaft</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── STATS ROW ──────────────────────────────────────────── -->
+  <section class="page-section" style="padding-top:1.4rem;">
+    <div class="cp-stats-row">
+      <div class="cp-stat-card">
+        <div class="cp-stat-val">€ 4,2M</div>
+        <div class="cp-stat-label">bereitgestelltes Kapital</div>
+      </div>
+      <div class="cp-stat-card">
+        <div class="cp-stat-val">47</div>
+        <div class="cp-stat-label">aktive Проекты</div>
+      </div>
+      <div class="cp-stat-card">
+        <div class="cp-stat-val" style="color:var(--cp-green);">ab 5 %</div>
+        <div class="cp-stat-label">Rendite p.a.</div>
+      </div>
+      <div class="cp-stat-card">
+        <div class="cp-stat-val">14</div>
+        <div class="cp-stat-label">стран мира</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── RENDITE MODELLE ────────────────────────────────────── -->
+  <section class="page-section" style="padding-top:1.8rem;">
+    <div class="cp-sec-label">💰 Rendite-Modelle</div>
+    <h2 style="font-size:1.2rem;font-weight:700;color:var(--text-main);margin:4px 0 6px;">Wie wird Ihr Kapital vergütet?</h2>
+    <p class="cp-sec-sub">Je nach Projekt und Ihrer bevorzugten Struktur stehen folgende Modelle zur Auswahl.</p>
+    <div class="cp-model-grid" style="margin-top:16px;">
+      <div class="cp-model-card m1">
+        <div class="cp-m-icon">📈</div>
+        <h4>Festzins</h4>
+        <div class="cp-m-rate" style="color:var(--cp-purple);">ab 5 % p.a.</div>
+        <p>Planbare, feste Rendite auf Ihr eingesetztes Kapital. Jährliche oder quartalsweise Auszahlung. Ideal für Kapitalgeber mit Fokus auf Stabilität.</p>
+      </div>
+      <div class="cp-model-card m2">
+        <div class="cp-m-icon">🤝</div>
+        <h4>Gewinnbeteiligung</h4>
+        <div class="cp-m-rate" style="color:var(--cp-gold);">variabel — nach Проектыerfolg</div>
+        <p>Sie profitieren direkt vom Проектыrfolg. Höheres Upside-Potenzial bei entsprechendem Projekttyp — z. B. Immobilienentwicklung mit Exit.</p>
+      </div>
+      <div class="cp-model-card m3">
+        <div class="cp-m-icon">🏗️</div>
+        <h4>Exit-Beteiligung</h4>
+        <div class="cp-m-rate" style="color:var(--cp-green);">Erlös beim Projektverkauf</div>
+        <p>Bei Проектыn mit geplanter Veräußerung (z. B. entwickeltes Bauland, Unternehmensverkauf) erhalten Sie eine Beteiligung am Exit-Erlös.</p>
+      </div>
+      <div class="cp-model-card m4">
+        <div class="cp-m-icon">⚖️</div>
+        <h4>Hybridmodell</h4>
+        <div class="cp-m-rate" style="color:#c084fc;">Festzins + Beteiligung</div>
+        <p>Kombination aus gesichertem Festzins und zusätzlicher Beteiligung am Gewinn. Das beliebteste Modell für größere Tickets.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── RENDITE RECHNER ────────────────────────────────────── -->
+  <section class="page-section" style="padding-top:1.8rem;">
+    <div class="glass-panel" style="padding:24px 20px;">
+      <div class="cp-sec-label">🧮 Rendite-Rechner</div>
+      <h2 style="font-size:1.15rem;font-weight:700;color:var(--text-main);margin:4px 0 16px;">Was bringt Ihr Kapital als Partner?</h2>
+      <div class="cp-calc-wrap">
+        <div class="cp-calc-row">
+          <span>Kapitalvolumen</span>
+          <strong id="cpc-amount">€ 50.000</strong>
+        </div>
+        <input type="range" class="cp-range" id="cpc-slider" min="0" max="10" value="5" oninput="cpcUpdate(this.value)"/>
+        <div style="display:flex;justify-content:space-between;font-size:0.7rem;color:var(--text-muted);margin-top:-8px;margin-bottom:14px;">
+          <span>€ 1.000</span><span>€ 1 Mio.+</span>
+        </div>
+        <div class="cp-calc-row" style="margin-bottom:12px;">
+          <span>Rendite-Modell</span>
+          <select id="cpc-model" onchange="cpcUpdate(document.getElementById('cpc-slider').value)" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:4px 10px;color:var(--text-main);font-family:inherit;font-size:0.82rem;cursor:pointer;">
+            <option value="5">Festzins 5 % p.a.</option>
+            <option value="7">Gewinnbeteiligung ~7 % p.a.</option>
+            <option value="9">Hybridmodell ~9 % p.a.</option>
+          </select>
+        </div>
+        <div class="cp-calc-result">
+          <div class="cp-calc-item">
+            <div class="cclabel">Pro Jahr</div>
+            <div class="ccval" id="cpc-y1">€ 5.000</div>
+          </div>
+          <div class="cp-calc-item">
+            <div class="cclabel">Nach 5 Jahren</div>
+            <div class="ccval" id="cpc-y5">€ 127.628</div>
+          </div>
+          <div class="cp-calc-item">
+            <div class="cclabel">Nach 10 Jahren</div>
+            <div class="ccval" id="cpc-y10">€ 162.889</div>
+          </div>
+        </div>
+        <p class="cp-calc-disclaimer">* Berechnung mit gewählter Rendite (Zinseszins). Keine Garantie auf zukünftige Ergebnisse. Investitionen unterliegen unternehmerischen Risiken.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── BEISPIELPROJEKTE ───────────────────────────────────── -->
+  <section class="page-section" style="padding-top:1.8rem;" id="cp-projects">
+    <div class="cp-sec-label">📂 Beispielprojekte</div>
+    <h2 style="font-size:1.2rem;font-weight:700;color:var(--text-main);margin:4px 0 6px;">So sehen reale Capital-Partner-Deals aus</h2>
+    <p class="cp-sec-sub">Diese Проекты werden Capital Partnern vor der öffentlichen Ausschreibung exklusiv vorgestellt.</p>
+    <div class="cp-proj-grid" style="margin-top:18px;">
+
+      <div class="cp-proj-card">
+        <span class="cp-proj-badge re">🏗 Immobilien</span>
+        <div class="cp-proj-title">Baulandentwicklung Half Moon Bay</div>
+        <div class="cp-proj-loc">📍 Kalifornien, USA — Pazifikküste</div>
+        <div class="cp-proj-meta">
+          <div class="cp-proj-meta-item">
+            <div class="cml">Kapitalbedarf</div>
+            <div class="cmv">€ 1,5 Mio</div>
+          </div>
+          <div class="cp-proj-meta-item">
+            <div class="cml">Modell</div>
+            <div class="cmv purple">Hybrid 7 %</div>
+          </div>
+          <div class="cp-proj-meta-item">
+            <div class="cml">Laufzeit</div>
+            <div class="cmv">6 Jahre</div>
+          </div>
+          <div class="cp-proj-meta-item">
+            <div class="cml">Min. Ticket</div>
+            <div class="cmv">€ 50.000</div>
+          </div>
+        </div>
+        <span class="cp-proj-tag">⭐ Prioritätsprojekt für Capital Partner</span>
+        <button class="cp-proj-cta" onclick="cpSmooth('cp-form')">Interesse anmelden →</button>
+        <p class="cp-proj-demo-note">Beispielprojekt zur Illustration</p>
+      </div>
+
+      <div class="cp-proj-card">
+        <span class="cp-proj-badge en">☀ Energie</span>
+        <div class="cp-proj-title">EV-Ladeinfrastruktur Glendale</div>
+        <div class="cp-proj-loc">📍 Los Angeles, Kalifornien, USA</div>
+        <div class="cp-proj-meta">
+          <div class="cp-proj-meta-item">
+            <div class="cml">Kapitalbedarf</div>
+            <div class="cmv">€ 2,9 Mio</div>
+          </div>
+          <div class="cp-proj-meta-item">
+            <div class="cml">Modell</div>
+            <div class="cmv purple">Festzins 5 %</div>
+          </div>
+          <div class="cp-proj-meta-item">
+            <div class="cml">Laufzeit</div>
+            <div class="cmv">5 Jahre</div>
+          </div>
+          <div class="cp-proj-meta-item">
+            <div class="cml">Min. Ticket</div>
+            <div class="cmv">€ 1.000</div>
+          </div>
+        </div>
+        <span class="cp-proj-tag">🔥 Hohe Nachfrage</span>
+        <button class="cp-proj-cta" onclick="cpSmooth('cp-form')">Interesse anmelden →</button>
+        <p class="cp-proj-demo-note">Beispielprojekt zur Illustration</p>
+      </div>
+
+      <div class="cp-proj-card">
+        <span class="cp-proj-badge en">☀ Energie</span>
+        <div class="cp-proj-title">Solarpark Rosamond</div>
+        <div class="cp-proj-loc">📍 Kern County, Kalifornien, USA</div>
+        <div class="cp-proj-meta">
+          <div class="cp-proj-meta-item">
+            <div class="cml">Kapitalbedarf</div>
+            <div class="cmv">€ 1,9 Mio</div>
+          </div>
+          <div class="cp-proj-meta-item">
+            <div class="cml">Modell</div>
+            <div class="cmv purple">Festzins 5 %</div>
+          </div>
+          <div class="cp-proj-meta-item">
+            <div class="cml">Laufzeit</div>
+            <div class="cmv">7 Jahre</div>
+          </div>
+          <div class="cp-proj-meta-item">
+            <div class="cml">Min. Ticket</div>
+            <div class="cmv">€ 1.000</div>
+          </div>
+        </div>
+        <span class="cp-proj-tag">🌱 Nachhaltige Infrastruktur</span>
+        <button class="cp-proj-cta" onclick="cpSmooth('cp-form')">Interesse anmelden →</button>
+        <p class="cp-proj-demo-note">Beispielprojekt zur Illustration</p>
+      </div>
+
+      <div class="cp-proj-card">
+        <span class="cp-proj-badge biz">🏢 Unternehmen</span>
+        <div class="cp-proj-title">Expansion: Gastronomie-Franchise</div>
+        <div class="cp-proj-loc">📍 Deutschland</div>
+        <div class="cp-proj-meta">
+          <div class="cp-proj-meta-item">
+            <div class="cml">Kapitalbedarf</div>
+            <div class="cmv">€ 1 Mio</div>
+          </div>
+          <div class="cp-proj-meta-item">
+            <div class="cml">Modell</div>
+            <div class="cmv purple">Gewinnbet. ~8 %</div>
+          </div>
+          <div class="cp-proj-meta-item">
+            <div class="cml">Laufzeit</div>
+            <div class="cmv">3 Jahre</div>
+          </div>
+          <div class="cp-proj-meta-item">
+            <div class="cml">Min. Ticket</div>
+            <div class="cmv">€ 1.000</div>
+          </div>
+        </div>
+        <span class="cp-proj-tag">🤝 Strategische Partnerschaft möglich</span>
+        <button class="cp-proj-cta" onclick="cpSmooth('cp-form')">Interesse anmelden →</button>
+        <p class="cp-proj-demo-note">Beispielprojekt zur Illustration</p>
+      </div>
+
+    </div>
+    <div class="cp-highlight">
+      <h4>💡 Exklusive Проекты — nur für Capital Partner</h4>
+      <p>Einige Проекты werden nie öffentlich ausgeschrieben. Sie sind ausschließlich für registrierte Capital Partner zugänglich — mit direktem Zugang zum Projektteam und individuell verhandelten Konditionen.</p>
+    </div>
+  </section>
+
+  <!-- ── PROZESS ────────────────────────────────────────────── -->
+  <section class="page-section" style="padding-top:1.8rem;">
+    <div class="glass-panel" style="padding:24px 20px;">
+      <div class="cp-sec-label">🔄 Процесс</div>
+      <h2 style="font-size:1.15rem;font-weight:700;color:var(--text-main);margin:4px 0 20px;">In 4 Schritten zum Capital Partner</h2>
+      <div class="cp-steps">
+        <div class="cp-step">
+          <div class="cp-step-num">1</div>
+          <div class="cp-step-body">
+            <h4>Anfrage stellen &amp; Kennenlernen</h4>
+            <p>Sie senden eine unverbindliche Anfrage. Wir kontaktieren Sie innerhalb von 24 Stunden persönlich, besprechen Ihre Kapitalstrategie und klären, welche Projekttypen zu Ihnen passen.</p>
+          </div>
+        </div>
+        <div class="cp-step">
+          <div class="cp-step-num">2</div>
+          <div class="cp-step-body">
+            <h4>Passende Проекты erhalten</h4>
+            <p>Auf Basis Ihrer Strategie stellen wir Ihnen gezielt passende Проекты vor — inklusive aller relevanten Informationen, Dokumente und Kontaktmöglichkeiten zum Projektträger.</p>
+          </div>
+        </div>
+        <div class="cp-step">
+          <div class="cp-step-num">3</div>
+          <div class="cp-step-body">
+            <h4>Konditionen vereinbaren &amp; investieren</h4>
+            <p>Gemeinsam legen wir die Kapitalstruktur fest — Renditemodell, Laufzeit, Auszahlungsrhythmus. Alles schriftlich, klar und transparent. Kein Kleingedrucktes.</p>
+          </div>
+        </div>
+        <div class="cp-step">
+          <div class="cp-step-num">4</div>
+          <div class="cp-step-body">
+            <h4>Rendite erhalten &amp; Portfolio aufbauen</h4>
+            <p>Im persönlichen Dashboard verfolgen Sie alle Investitionen, Renditeentwicklung und Ausschüttungen. Viele Capital Partner bauen über Zeit ein diversifiziertes Portfolio auf.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SICHERHEIT ─────────────────────────────────────────── -->
+  <section class="page-section" style="padding-top:1.8rem;">
+    <div class="cp-sec-label">🔒 Sicherheit &amp; Transparenz</div>
+    <h2 style="font-size:1.2rem;font-weight:700;color:var(--text-main);margin:4px 0 6px;">Was passiert mit Ihrem Kapital?</h2>
+    <p class="cp-sec-sub">Wir wissen: Vertrauen entsteht durch Klarheit, nicht durch Versprechen.</p>
+    <div class="cp-sec-grid" style="margin-top:16px;">
+      <div class="cp-sec-card">
+        <span class="cp-sec-icon">📋</span>
+        <div>
+          <h4>Schriftlicher Partnervertrag</h4>
+          <p>Jede Партнер капиталаschaft wird durch einen klaren, schriftlichen Vertrag mit festen Konditionen, Laufzeit, Renditemodell und Auszahlungsplan gesichert.</p>
+        </div>
+      </div>
+      <div class="cp-sec-card">
+        <span class="cp-sec-icon">🔍</span>
+        <div>
+          <h4>Geprüfte Проекты</h4>
+          <p>Alle Проекты werden vor der Vorstellung intern geprüft. Capital Partnern werden nur Проекты präsentiert, die unsere Qualitätskriterien erfüllen.</p>
+        </div>
+      </div>
+      <div class="cp-sec-card">
+        <span class="cp-sec-icon">📊</span>
+        <div>
+          <h4>Live-Dashboard</h4>
+          <p>Sie sehen jederzeit: investiertes Kapital, aufgelaufene Rendite, laufende Проекты, Ausschüttungen und den aktuellen Projektstatus — in Echtzeit.</p>
+        </div>
+      </div>
+      <div class="cp-sec-card">
+        <span class="cp-sec-icon">💬</span>
+        <div>
+          <h4>Direkter Ansprechpartner</h4>
+          <p>Capital Partner haben einen festen Ansprechpartner bei aBest.co. Kein automatisiertes System — ein echter Mensch, der Ihre Investitionen kennt.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FÜR WEN? ───────────────────────────────────────────── -->
+  <section class="page-section" style="padding-top:1.8rem;">
+    <div class="cp-sec-label">👥 Für wen?</div>
+    <h2 style="font-size:1.2rem;font-weight:700;color:var(--text-main);margin:4px 0 16px;">Die Capital Partner Rolle ist gemacht für…</h2>
+    <div class="cp-types-grid">
+      <div class="cp-type-card">
+        <div class="cp-type-icon">💰</div>
+        <h4>Privatpersonen mit freiem Kapital</h4>
+        <p>Sie haben Kapital ab € 1.000, das Sie produktiv einsetzen möchten — jenseits von Tagesgeld und Aktienmarkt. Echte Проекты, 5 % p.a. ab 1 Jahr Laufzeit.</p>
+      </div>
+      <div class="cp-type-card">
+        <div class="cp-type-icon">🏦</div>
+        <h4>Family Offices</h4>
+        <p>Strukturierte Партнер капиталаschaften in Sachwertprojekte — als Alternative oder Ergänzung zu klassischen Portfolios. Individuelle Ticket-Größen.</p>
+      </div>
+      <div class="cp-type-card">
+        <div class="cp-type-icon">💼</div>
+        <h4>Unternehmer mit freiem Kapital</h4>
+        <p>Sie kennen das Business, haben Kapital und möchten diversifizieren? Als Capital Partner investieren Sie in Проекты, die Sie verstehen — und profitieren aktiv.</p>
+      </div>
+      <div class="cp-type-card">
+        <div class="cp-type-icon">🌍</div>
+        <h4>Internationale Kapitalgeber</h4>
+        <p>aBest.co unterstützt Партнер капиталаschaften in EUR und USD, in 14 Sprachen und über Ländergrenzen hinweg — für Investoren weltweit.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TESTIMONIALS ───────────────────────────────────────── -->
+  <section class="page-section" style="padding-top:1.8rem;">
+    <div class="cp-sec-label">⭐ Capital Partner sprechen</div>
+    <h2 style="font-size:1.2rem;font-weight:700;color:var(--text-main);margin:4px 0 16px;">Was unsere Capital Partner sagen</h2>
+    <div class="cp-testi-grid">
+      <div class="cp-testi-card">
+        <div class="cp-testi-stars">★★★★★</div>
+        <p class="cp-testi-text">"Der Unterschied zu einem normalen Investment ist der direkte Kontakt. Ich weiß genau, wer mein Kapital einsetzt und wie. Das gibt mir ein ganz anderes Vertrauen."</p>
+        <div class="cp-testi-author">
+          <div class="cp-testi-avatar">👤</div>
+          <div>
+            <div class="cp-testi-name">K. Berger</div>
+            <div class="cp-testi-loc">Frankfurt, Deutschland</div>
+          </div>
+        </div>
+      </div>
+      <div class="cp-testi-card">
+        <div class="cp-testi-stars">★★★★★</div>
+        <p class="cp-testi-text">"Als Family Office suchen wir nach realen Проектыn mit klaren Strukturen. aBest.co liefert beides — und das persönliche Gespräch vorab macht den entscheidenden Unterschied."</p>
+        <div class="cp-testi-author">
+          <div class="cp-testi-avatar">👤</div>
+          <div>
+            <div class="cp-testi-name">A. Özdemir</div>
+            <div class="cp-testi-loc">Zürich, Schweiz</div>
+          </div>
+        </div>
+      </div>
+      <div class="cp-testi-card">
+        <div class="cp-testi-stars">★★★★★</div>
+        <p class="cp-testi-text">"Ich habe in drei verschiedene Проекты investiert. Das Hybridmodell mit Festzins und Beteiligung passt perfekt zu meiner Strategie. Klar, transparent, wie versprochen."</p>
+        <div class="cp-testi-author">
+          <div class="cp-testi-avatar">👤</div>
+          <div>
+            <div class="cp-testi-name">T. Novak</div>
+            <div class="cp-testi-loc">Wien, Österreich</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── KONTAKTFORMULAR ────────────────────────────────────── -->
+  <section class="page-section" style="padding-top:1.8rem;" id="cp-form">
+    <div class="glass-panel" style="padding:24px 20px;">
+      <div class="cp-sec-label">📩 Стать партнером капитала</div>
+      <h2 style="font-size:1.15rem;font-weight:700;color:var(--text-main);margin:4px 0 4px;">Партнер капиталаschaft anfragen</h2>
+      <p style="font-size:0.82rem;color:var(--text-muted);margin:0 0 4px;">Unverbindlich, kostenlos, 100 % vertraulich. Kein automatisiertes System — ein echter Mensch meldet sich innerhalb von 24 Stunden.</p>
+      <div id="cp-form-success" class="cp-success">
+        <div class="cp-suc-icon">✅</div>
+        <h3>Anfrage eingegangen!</h3>
+        <p>Wir melden uns innerhalb von 24 Stunden persönlich. Wir freuen uns auf das Gespräch.</p>
+      </div>
+      <form class="cp-form" id="cp-form-el" onsubmit="cpSubmit(event)">
+        <div class="cp-form-row">
+          <input class="cp-input" id="cp-name" placeholder="Ihr Name *" required type="text"/>
+          <input class="cp-input" id="cp-email" placeholder="E-Mail *" required type="email"/>
+        </div>
+        <div class="cp-form-row">
+          <input class="cp-input" id="cp-phone" placeholder="Telefon" type="tel"/>
+          <input class="cp-input" id="cp-country" placeholder="Land / Region" type="text"/>
+        </div>
+        <div class="cp-form-row">
+          <select class="cp-select" id="cp-volume">
+            <option value="">Kapitalvolumen *</option>
+            <option>€ 1.000 – € 5.000</option>
+            <option>€ 5.000 – € 25.000</option>
+            <option>€ 25.000 – € 100.000</option>
+            <option>€ 100.000 – € 250.000</option>
+            <option>€ 250.000 – € 500.000</option>
+            <option>€ 500.000 – € 1 Mio.</option>
+            <option>über € 1 Mio.</option>
+          </select>
+          <select class="cp-select" id="cp-model-sel">
+            <option value="">Bevorzugtes Modell</option>
+            <option>Festzins (ab 5 % p.a.)</option>
+            <option>Gewinnbeteiligung</option>
+            <option>Exit-Beteiligung</option>
+            <option>Hybridmodell (Festzins + Beteiligung)</option>
+            <option>Offen / nach Beratung</option>
+          </select>
+        </div>
+        <div class="cp-form-row">
+          <select class="cp-select" id="cp-sector">
+            <option value="">Interessenbereich</option>
+            <option>Immobilien &amp; Grundstücke</option>
+            <option>Energie &amp; Solar</option>
+            <option>Logistik &amp; Self-Storage</option>
+            <option>Стартапы &amp; Tech</option>
+            <option>Unternehmensbeteiligung</option>
+            <option>Mehrere Bereiche</option>
+          </select>
+          <select class="cp-select" id="cp-horizon">
+            <option value="">Anlagehorizont</option>
+            <option>ab 1 Jahr</option>
+            <option>1 – 3 Jahre</option>
+            <option>3 – 5 Jahre</option>
+            <option>5 – 10 Jahre</option>
+            <option>Über 10 Jahre</option>
+            <option>Flexibel</option>
+          </select>
+        </div>
+        <textarea class="cp-textarea" id="cp-message" placeholder="Ihre Fragen oder Anmerkungen (optional)"></textarea>
+        <div class="cp-conf-badge">🔒 <div><strong>100 % vertraulich.</strong> Ihre Daten werden nicht weitergegeben.</div></div>
+        <button class="cp-submit" type="submit">💼 Партнер капиталаschaft anfragen →</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ── Часто задаваемые вопросы ───────────────────────────────────────────────── -->
+  <section class="page-section" style="padding-top:1.8rem;">
+    <div class="glass-panel" style="padding:24px 20px;">
+      <div class="cp-sec-label">❓ Часто задаваемые вопросы</div>
+      <h2 style="font-size:1.15rem;font-weight:700;color:var(--text-main);margin:4px 0 16px;">Часто задаваемые вопросы</h2>
+      <div class="cp-faq-item">
+        <div class="cp-faq-q" onclick="cpFaq(this)">Was ist der Unterschied zwischen Capital Partner und Investor?</div>
+        <div class="cp-faq-a">Als Capital Partner gehen Sie eine tiefere, individuell strukturierte Zusammenarbeit ein. Sie erhalten Prioritätszugang zu exklusiven Проектыn, können zwischen verschiedenen Renditemodellen wählen (Festzins, Gewinnbeteiligung, Hybrid) und haben direkten Kontakt zum Projektteam. Investoren erhalten Standardprojekte mit festen 5 % p.a. Capital Partner bekommen mehr Flexibilität, mehr Zugang und mehr Potenzial.</div>
+      </div>
+      <div class="cp-faq-item">
+        <div class="cp-faq-q" onclick="cpFaq(this)">Ab welchem Betrag kann ich Стать партнером капитала?</div>
+        <div class="cp-faq-a">Der Mindesteinstieg für Capital Partner beträgt <strong>€ 1.000</strong> — ab 1 Jahr Laufzeit, 5 % p.a. Für das Hybridmodell und exklusive Deals empfehlen wir Tickets ab € 25.000. Es gibt kein festgelegtes Maximum — größere Tickets werden immer individuell und prioritär behandelt.</div>
+      </div>
+      <div class="cp-faq-item">
+        <div class="cp-faq-q" onclick="cpFaq(this)">Welche Rendite kann ich als Capital Partner erwarten?</div>
+        <div class="cp-faq-a">Je nach gewähltem Modell und Projekt liegt die Rendite zwischen 5 % p.a. (Festzins) und höheren Beträgen bei Gewinnbeteiligung oder Hybridmodellen. Die genauen Konditionen werden vor Vertragsabschluss individuell und transparent vereinbart.</div>
+      </div>
+      <div class="cp-faq-item">
+        <div class="cp-faq-q" onclick="cpFaq(this)">Wie werden Auszahlungen gehandhabt?</div>
+        <div class="cp-faq-a">Die Auszahlungsmodalitäten werden im Partnervertrag individuell vereinbart — monatlich, quartalsweise, jährlich oder am Laufzeitende. Bei Exit-Modellen erfolgt die Hauptauszahlung nach Projektabschluss. Alle Ausschüttungen sind im Live-Dashboard einsehbar.</div>
+      </div>
+      <div class="cp-faq-item">
+        <div class="cp-faq-q" onclick="cpFaq(this)">Kann ich in mehrere Проекты gleichzeitig investieren?</div>
+        <div class="cp-faq-a">Ja — und viele Capital Partner tun genau das. Ein diversifiziertes Portfolio aus mehreren Проектыn und Branchen reduziert das Risiko und erhöht die Chancen auf stabile Gesamtrenditen. Wir unterstützen Sie dabei, das passende Portfolio aufzubauen.</div>
+      </div>
+      <div class="cp-faq-item">
+        <div class="cp-faq-q" onclick="cpFaq(this)">Wie schnell werde ich nach meiner Anfrage kontaktiert?</div>
+        <div class="cp-faq-a">Wir melden uns in der Regel <strong>innerhalb von 24 Stunden</strong> persönlich bei Ihnen. Capital Partner bekommen immer einen festen, persönlichen Ansprechpartner — kein Bot, kein Call-Center.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── RISIKOHINWEIS (US-RECHT) ──────────────────────────── -->
+  <section class="page-section" style="padding-top:1.2rem;">
+    <div style="background:rgba(255,149,0,0.06);border:1px solid rgba(255,149,0,0.25);border-radius:14px;padding:18px 20px;">
+      <p style="font-size:0.75rem;color:rgba(255,255,255,0.45);margin:0 0 8px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;">⚠ Important Risk &amp; Legal Disclosure</p>
+      <p style="font-size:0.78rem;color:var(--text-muted);margin:0 0 8px;line-height:1.6;">
+        <strong style="color:rgba(255,255,255,0.6);">No Securities Registration.</strong>
+        The Capital Partner participation interests described on this page have not been registered under
+        the U.S. Securities Act of 1933, as amended, or any state securities laws. They are offered
+        exclusively to non-U.S. persons (as defined under Regulation S, 17 CFR §230.902(k)) or,
+        where applicable, to accredited investors as defined under Rule 501 of Regulation D.
+        U.S. persons may not participate without prior written authorization from aBest.co.
+      </p>
+      <p style="font-size:0.78rem;color:var(--text-muted);margin:0 0 8px;line-height:1.6;">
+        <strong style="color:rgba(255,255,255,0.6);">Risk of Loss.</strong>
+        A Capital Partner participation is an unsecured business investment with risk of partial or
+        total loss of capital. It is not a bank deposit and is not insured by the FDIC, SIPC, or
+        any government agency. Projected returns of 5% p.a. are illustrative only and do not
+        guarantee future performance. Past results do not predict future outcomes.
+      </p>
+      <p style="font-size:0.78rem;color:var(--text-muted);margin:0;line-height:1.6;">
+        <strong style="color:rgba(255,255,255,0.6);">No Investment Advice.</strong>
+        aBest.co (aUS2001 LLC, Sheridan, Wyoming, USA) is not a registered investment adviser,
+        broker-dealer, or financial institution under U.S. federal or state law. Nothing on this
+        page constitutes investment, legal, or tax advice. You should consult your own qualified
+        financial and legal advisors before making any investment decision.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── BACK LINK ──────────────────────────────────────────── -->
+  <section class="page-section" style="padding-top:0.8rem;padding-bottom:0.5rem;">
+    <a href="/ru/earn-money" style="font-size:0.82rem;color:var(--text-muted);text-decoration:none;">← Вернуться к заработку</a>
+  </section>
+
+</main>
+
+<!-- ── STICKY CTA ─────────────────────────────────────────── -->
+<div class="cp-sticky">
+  <span>💼 <strong>Capital Partner</strong> — ab € 1.000 · 5 % p.a. · ab 1 Jahr · 24h Rückmeldung</span>
+  <a href="#cp-form">Jetzt anfragen</a>
+</div>
+
+<script src="/app.js"></script>
+<script>
+// ── Rendite-Rechner ──────────────────────────────────────────
+function cpcUpdate(val) {
+  var amounts = [1000,2500,5000,10000,25000,50000,100000,250000,500000,750000,1000000];
+  var amt = amounts[parseInt(val)] || 50000;
+  var rateStr = document.getElementById('cpc-model').value;
+  var rate = parseFloat(rateStr) / 100 || 0.05;
+  document.getElementById('cpc-amount').textContent = '€ ' + amt.toLocaleString('de-DE');
+  var y1 = Math.round(amt * rate);
+  var y5 = Math.round(amt * Math.pow(1 + rate, 5));
+  var y10 = Math.round(amt * Math.pow(1 + rate, 10));
+  document.getElementById('cpc-y1').textContent = '€ ' + y1.toLocaleString('de-DE');
+  document.getElementById('cpc-y5').textContent = '€ ' + y5.toLocaleString('de-DE');
+  document.getElementById('cpc-y10').textContent = '€ ' + y10.toLocaleString('de-DE');
+}
+cpcUpdate(5); // index 5 = €50.000
+
+// ── Smooth scroll ──────────────────────────────────────────
+function cpSmooth(id) {
+  var el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ── Form Submit ────────────────────────────────────────────
+function cpSubmit(e) {
+  e.preventDefault();
+  var name    = document.getElementById('cp-name').value;
+  var email   = document.getElementById('cp-email').value;
+  var phone   = document.getElementById('cp-phone').value;
+  var country = document.getElementById('cp-country').value;
+  var volume  = document.getElementById('cp-volume').value;
+  var model   = document.getElementById('cp-model-sel').value;
+  var sector  = document.getElementById('cp-sector').value;
+  var horizon = document.getElementById('cp-horizon').value;
+  var msg     = document.getElementById('cp-message').value;
+  var body = [
+    'NEUE CAPITAL-PARTNER-ANFRAGE — aBest.co',
+    '========================================',
+    'Name: '    + name,
+    'E-Mail: '  + email,
+    'Telefon: ' + (phone   || '–'),
+    'Land: '    + (country || '–'),
+    'Kapitalvolumen: ' + (volume  || '–'),
+    'Modell: '  + (model   || '–'),
+    'Bereich: ' + (sector  || '–'),
+    'Horizont: '+ (horizon || '–'),
+    '',
+    'Nachricht:',
+    msg || '–',
+    '',
+    'Gesendet über: abest.co/ru/earn-money/capital-partner'
+  ].join('\n');
+  document.getElementById('cp-form-el').style.display = 'none';
+  document.getElementById('cp-form-success').style.display = 'block';
+  var mailto = 'mailto:info@abest.co'
+    + '?subject=' + encodeURIComponent('Capital-Partner-Anfrage von ' + name + ' – aBest.co')
+    + '&body='    + encodeURIComponent(body);
+  setTimeout(function () { window.location.href = mailto; }, 600);
+}
+
+// ── Часто задаваемые вопросы Toggle ─────────────────────────────────────────────
+function cpFaq(el) {
+  var item = el.parentElement;
+  var wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.cp-faq-item').forEach(function (i) { i.classList.remove('open'); });
+  if (!wasOpen) item.classList.add('open');
+}
+</script>
+</body>
+</html>
