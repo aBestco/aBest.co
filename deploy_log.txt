@@ -7,12 +7,15 @@ npm warn exec The following package was not found and will be installed: wrangle
   To silence this warning, pass in --commit-dirty=true
 
 
-Uploading... (473/473)
-✨ Success! Uploaded 0 files (473 already uploaded) (0.26 sec)
+Uploading... (133/551)
+Uploading... (272/551)
+Uploading... (411/551)
+Uploading... (551/551)
+✨ Success! Uploaded 418 files (133 already uploaded) (6.58 sec)
 
 ✨ Uploading _redirects
 ✨ Compiled Worker successfully
 ✨ Uploading Worker bundle
 🌎 Deploying...
-✨ Deployment complete! Take a peek over at https://99f4a679.abest-co-4nj.pages.dev
+✨ Deployment complete! Take a peek over at https://40796146.abest-co-4nj.pages.dev
 DEPLOY_SUCCESS
