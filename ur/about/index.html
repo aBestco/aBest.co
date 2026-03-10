@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        name="viewport" />
+    <title>ہمارے بارے میں – aBest.co | اختراع، سرمایہ اور منصوبوں کا عالمی منصہ</title>
+    <meta content="aBest.co سرمایہ کاروں، بانیوں، سرمایہ کاری کے ساتھیوں اور فروخت کنندگان کو بین الاقوامی منڈیوں میں جوڑتا ہے - 14 زبانوں میں چار براعظموں پر۔ ٹیکنالوجی، توانائی، بنیادی ڈھانچہ، اور رئیل اسٹیٹ۔"
+        name="description" />
+    <meta property="og:title" content="ہمارے بارے میں – aBest.co | اختراع، سرمایہ اور منصوبے" />
+    <meta property="og:description" content="aBest.co دنیا بھر میں سرمایہ کاروں، بانیوں، سرمایہ کاری کے ساتھیوں اور فروخت کنندگان کو جوڑتا ہے۔ ٹیکنالوجی، توانائی، بنیادی ڈھانچہ، اور رئیل اسٹیٹ - 14 زبانوں میں۔" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://abest.co/ur/about/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="ہمارے بارے میں – aBest.co" />
+    <link href="/favicon.png" rel="icon" type="image/png" />
+    <link href="/index.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
+    <link rel="canonical" href="https://www.abest.co/ur/about/" />
+    <link href="https://abest.co/de/about/" hreflang="de" rel="alternate" />
+    <link href="https://abest.co/en/about/" hreflang="en" rel="alternate" />
+    <link href="https://abest.co/es/about/" hreflang="es" rel="alternate" />
+    <link href="https://abest.co/fr/about/" hreflang="fr" rel="alternate" />
+    <link href="https://abest.co/tr/about/" hreflang="tr" rel="alternate" />
+    <link href="https://abest.co/ru/about/" hreflang="ru" rel="alternate" />
+    <link href="https://abest.co/zh/about/" hreflang="zh" rel="alternate" />
+    <link href="https://abest.co/ar/about/" hreflang="ar" rel="alternate" />
+    <link href="https://abest.co/pt/about/" hreflang="pt" rel="alternate" />
+    <link href="https://abest.co/hi/about/" hreflang="hi" rel="alternate" />
+    <link href="https://abest.co/ur/about/" hreflang="ur" rel="alternate" />
+    <link href="https://abest.co/ku/about/" hreflang="ku" rel="alternate" />
+    <link href="https://abest.co/he/about/" hreflang="he" rel="alternate" />
+    <link href="https://abest.co/hy/about/" hreflang="hy" rel="alternate" />
+    <style>
+        .about-hero { text-align: center; padding: 2rem 0 1rem; }
+        .about-hero h1 { font-size: var(--font-size-hero); font-weight: 700; line-height: 1.15; margin-bottom: 0.75rem; }
+        .about-hero .lead { color: var(--text-muted); font-size: clamp(1rem, 1.5vw + 0.7rem, 1.15rem); max-width: 640px; margin: 0 auto; line-height: 1.6; }
+
+        .about-section { margin-bottom: 1.5rem; }
+        .about-section h2 { font-size: var(--font-size-h2); font-weight: 600; margin-bottom: 0.75rem; }
+        .about-section p { color: var(--text-muted); line-height: 1.7; margin-bottom: 0.75rem; }
+
+        .branch-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .branch-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 1.25rem;
+            transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+        }
+        .branch-card:hover {
+            border-color: var(--glass-border-hover);
+            box-shadow: var(--glass-shadow-hover);
+        }
+        .branch-icon { font-size: 1.8rem; margin-bottom: 0.5rem; display: block; }
+        .branch-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.35rem; color: var(--text-main); }
+        .branch-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin: 0; }
+
+        .roles-list { margin-top: 1rem; }
+        .role-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.85rem 0;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .role-item:last-child { border-bottom: none; }
+        .role-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+        .role-item strong { color: var(--text-main); display: block; margin-bottom: 2px; }
+        .role-item span { color: var(--text-muted); font-size: 0.92rem; line-height: 1.5; }
+
+        .locations-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        .loc-chip {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 0.75rem 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+        }
+        .loc-chip .flag { font-size: 1.3rem; }
+
+        .mission-box {
+            background: linear-gradient(135deg, rgba(10,132,255,0.12), rgba(48,209,88,0.08));
+            border: 1px solid rgba(10,132,255,0.25);
+            border-radius: 20px;
+            padding: 1.75rem;
+            margin-top: 1rem;
+            text-align: center;
+        }
+        .mission-box p { color: var(--text-main); font-size: 1.05rem; line-height: 1.7; margin: 0; font-weight: 400; }
+
+        .about-cta {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1.5rem 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background-wrapper">
+        <img alt="پس منظر" class="main-bg" src="/assets/images/bg_main_blurred_new.webp" />
+        <div class="bg-gradient-overlay"></div>
+    </div>
+    <div class="app-container">
+        <nav class="mobile-nav" id="mobile-nav">
+            <a class="nav-link" href="/ur/earn-money">نئے خیالات</a>
+            <a class="nav-link" href="/ur/">ہوم</a>
+            <a class="nav-link" href="/ur/about/">ہمارے بارے میں</a>
+            <a class="nav-link" href="/ur/contact">رابطہ کریں</a>
+        </nav>
+        <header class="app-header fade-in-up" style="animation-delay: 0.1s;">
+            <a class="logo-link" href="/ur/">
+                <span style="font-size: 1.5rem; font-weight: 500; letter-spacing: -0.5px; color: var(--text-main);">
+                    <span style="color: var(--primary-blue);">a</span>Best<span style="color: var(--primary-blue);">.co</span>
+                </span>
+            </a>
+            <div class="header-actions-v2">
+                <a href="/ur/" class="header-icon-v2" aria-label="ہوم" title="ہوم"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><polyline points="9 22 9 12 15 12 15 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></polyline></svg></a>
+                <a href="/login" class="header-icon-v2" aria-label="لاگ ان کریں">
+                    <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </a>
+                <a href="/ur/contact" class="header-icon-v2" aria-label="رابطہ کریں">
+                    <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                </a>
+                <div aria-label="نیویگیشن مینو کو ٹوگل کریں" class="nav-icon" id="menu-btn"><span></span><span></span></div>
+            </div>
+        </header>
+
+        <main class="scroll-content">
+            <!-- Hero -->
+            <section class="about-hero fade-in-up" style="animation-delay: 0.2s;">
+                <div class="glass-chip" style="padding: 2rem 1.5rem;">
+                    <p style="color: var(--primary-blue); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;">ہمارے بارے میں</p>
+                    <h1>اختراع، سرمایہ کاری اور <span class="highlight">منصوبوں کا عالمی منصہ۔</span></h1>
+                    <p class="lead"><span class="brand-style"><span class="brand-a">a</span>Best<span class="brand-dot-co">.co</span></span> سرمایہ کاروں، بانیوں، سرمایہ کاری کے ساتھیوں اور فروخت کنندگان کو بین الاقوامی منڈیوں میں جوڑتا ہے - 14 زبانوں میں چار براعظموں پر۔</p>
+                </div>
+            </section>
+
+            <!-- What we do -->
+            <section class="about-section fade-in-up" style="animation-delay: 0.3s;">
+                <div class="glass-panel" style="padding: 1.5rem;">
+                    <h2>ہم کیا کرتے ہیں</h2>
+                    <p>ہم مستقبل کی اہم صنعتوں میں منصوبوں کو تیار کرتے ہیں، مالیت فراہم کرتے ہیں اور انہیں جوڑتے ہیں۔ ہم پورے سفر کا ساتھ دیتے ہیں - پہلے خیال سے لے کر سرمایہ جمع کرنے اور کامیاب نفاذ تک۔</p>
+                    <p>ہماری طاقت بین الاقوامی نیٹ ورک، کاروباری تجربہ اور حکمت عملی سے بھرپور سرمایہ کو ملا کر آتی ہے۔</p>
+                </div>
+            </section>
+
+            <!-- Industries -->
+            <section class="about-section fade-in-up" style="animation-delay: 0.35s;">
+                <div class="glass-panel" style="padding: 1.5rem;">
+                    <h2>ہماری صنعتیں</h2>
+                    <div class="branch-grid">
+                        <div class="branch-card">
+                            <span class="branch-icon">⚡</span>
+                            <h3>الیکٹرک نقل و حمل اور چارجنگ بنیادی ڈھانچہ</h3>
+                            <p>الیکٹرک بائیک اور الیکٹرک گاڑیوں کے چارجنگ سٹیشنوں کے لیے مقامات کی تطویر۔</p>
+                        </div>
+                        <div class="branch-card">
+                            <span class="branch-icon">☀️</span>
+                            <h3>سورج کی روشنی اور قابل تجدید توانائی</h3>
+                            <p>پائیدار توانائی کے منصوبے اور نئی توانائی کی ٹیکنالوجیز۔</p>
+                        </div>
+                        <div class="branch-card">
+                            <span class="branch-icon">🏗️</span>
+                            <h3>رئیل اسٹیٹ اور زمین کی تطویر</h3>
+                            <p>امریکا، یورپ اور ترکی میں منصوبوں کی منصوبہ بندی، تطویر اور دوبارہ فروخت۔</p>
+                        </div>
+                        <div class="branch-card">
+                            <span class="branch-icon">🏨</span>
+                            <h3>ہوٹل اور مہمان نوازی کے تصورات</h3>
+                            <p>جدید رہائش اور سیاحت کے منصوبے۔</p>
+                        </div>
+                        <div class="branch-card">
+                            <span class="branch-icon">📦</span>
+                            <h3>خود ذخیرہ کرنے اور بنیادی ڈھانچہ</h3>
+                            <p>جدید ذخیرہ کاری اور لاجسٹک حل۔</p>
+                        </div>
+                        <div class="branch-card">
+                            <span class="branch-icon">☁️</span>
+                            <h3>انٹرنیٹ، کلاؤڈ اور ڈیٹا سینٹرز</h3>
+                            <p>مستقبل کے لیے ڈیجیٹل بنیادی ڈھانچہ۔</p>
+                        </div>
+                        <div class="branch-card">
+                            <span class="branch-icon">🤖</span>
+                            <h3>مصنوعی ذہانت اور خودکاری</h3>
+                            <p>کاروبار اور صنعت کے لیے نئی ٹیکنالوجیز۔</p>
+                        </div>
+                        <div class="branch-card">
+                            <span class="branch-icon">🔬</span>
+                            <h3>روبوٹکس اور اعلیٰ ٹیک اختراع</h3>
+                            <p>ذہین نظاموں کی تطویر اور انضمام۔</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Who works with us -->
+            <section class="about-section fade-in-up" style="animation-delay: 0.4s;">
+                <div class="glass-panel" style="padding: 1.5rem;">
+                    <h2>ہمارے ساتھ کون کام کرتا ہے</h2>
+                    <div class="roles-list">
+                        <div class="role-item">
+                            <span class="role-icon">💼</span>
+                            <div>
+                                <strong>سرمایہ کار</strong>
+                                <span>ہمارے ساتھ پرکھے ہوئے ڈیل اور مشترکہ سرمایہ کاری کے مواقع تلاش کریں۔</span>
+                            </div>
+                        </div>
+                        <div class="role-item">
+                            <span class="role-icon">🚀</span>
+                            <div>
+                                <strong>بانی</strong>
+                                <span>اپنے خیالات پیش کریں اور مماثل سرمایہ کاروں سے جڑیں۔</span>
+                            </div>
+                        </div>
+                        <div class="role-item">
+                            <span class="role-icon">🏦</span>
+                            <div>
+                                <strong>سرمایہ کاری کے ساتھی</strong>
+                                <span>متوقع منافع کے ساتھ منظم شراکت سے فائدہ اٹھائیں۔</span>
+                            </div>
+                        </div>
+                        <div class="role-item">
+                            <span class="role-icon">🏠</span>
+                            <div>
+                                <strong>فروخت کنندگان</strong>
+                                <span>ہمارے بین الاقوامی خریداروں اور سرمایہ کاروں کے نیٹ ورک تک رسائی حاصل کریں۔</span>
+                            </div>
+                        </div>
+                        <div class="role-item">
+                            <span class="role-icon">🔍</span>
+                            <div>
+                                <strong>ایکسپلورز</strong>
+                                <span>ہمارے منصہ کو دریافت کریں اور منڈیوں اور منصوبوں میں ابتدائی بصیرت حاصل کریں۔</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Locations -->
+            <section class="about-section fade-in-up" style="animation-delay: 0.45s;">
+                <div class="glass-panel" style="padding: 1.5rem;">
+                    <h2>ہماری مقامات</h2>
+                    <p>ہم امریکا، جرمنی اور ترکی میں فعال ہیں - ایک نیٹ ورک کے ساتھ جو یورپ، شمالی امریکا اور مشرق وسطیٰ پر پھیلا ہوا ہے۔</p>
+                    <div class="locations-row">
+                        <div class="loc-chip"><span class="flag">🇺🇸</span> امریکا</div>
+                        <div class="loc-chip"><span class="flag">🇩🇪</span> جرمنی</div>
+                        <div class="loc-chip"><span class="flag">🇹🇷</span> ترکی</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Mission -->
+            <section class="about-section fade-in-up" style="animation-delay: 0.5s;">
+                <div class="mission-box">
+                    <p style="color: var(--primary-blue); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.75rem;">ہمارا مشن</p>
+                    <p>عالمی منصوبوں کو تیزی سے حقیقت میں بدلیں، سرمایہ کاروں اور کاروباری افراد کو موثر طریقے سے جوڑیں، اور نئی ٹیکنالوجیز کو حقیقی بنیادی ڈھانچہ میں تبدیل کریں۔</p>
+                    <p style="margin-top: 0.75rem;"><span class="brand-style"><span class="brand-a">a</span>Best<span class="brand-dot-co">.co</span></span> بین الاقوامی تعاون، اختراع اور پائیدار قیمت کی تخلیق کے لیے کھڑا ہے - پہلے خیال سے کامیاب نفاذ تک۔</p>
+                </div>
+            </section>
+
+            <!-- CTA -->
+            <section class="about-cta fade-in-up" style="animation-delay: 0.55s;">
+                <div class="glass-panel text-center" style="padding: 1.5rem;">
+                    <h2>شروع کرنے کے لیے تیار ہیں؟</h2>
+                    <div class="divider mt-2"></div>
+                    <p style="color: var(--text-muted); margin-bottom: 1rem;">اپنا کردار منتخب کریں اور ہمارے عالمی منصہ کا حصہ بن جائیں۔</p>
+                    <a class="glass-button ripple" href="/ur/earn-money" style="text-decoration: none; display: inline-block; width: auto; padding: 16px 32px; margin-bottom: 12px;">
+                        ← کردار منتخب کریں اور شروع کریں
+                    </a>
+                    <br />
+                    <a href="/ur/contact" style="color: var(--text-muted); font-size: 0.82rem; text-decoration: none;">
+                        سوالات؟ <span class="brand-style">i@<span class="brand-a">a</span>Best<span class="brand-dot-co">.co</span></span>
+                    </a>
+                </div>
+            </section>
+        </main>
+
+        <footer class="app-footer section-spacing fade-in-up" style="animation-delay: 0.8s;">
+            <div class="slim-footer-content">
+                <a href="/ur/terms" class="footer-link">خدمات کی شرائط</a>
+                <span class="footer-separator">|</span>
+                <a href="/ur/cookie-policy" class="footer-link">کوکی پالیسی</a>
+                <span class="footer-separator">|</span>
+                <a href="/ur/disclaimer" class="footer-link">اعلان سے انکار</a>
+                <span class="footer-separator">|</span>
+                <a href="/ur/impressum" class="footer-link">شناخت</a>
+                <span class="footer-separator">|</span>
+                <a href="/ur/datenschutz" class="footer-link">نجی پالیسی</a>
+                <span class="footer-separator">|</span>
+                <a href="/ur/contact" class="footer-link">رابطہ کریں</a>
+                <div class="language-switcher">
+                    <button class="lang-btn" aria-label="زبان کے اختیارات">🇵🇰</button>
+                    <div class="lang-dropdown">
+                        <a href="/de/about/" class="lang-dropdown-link" aria-label="جرمنی میں تبدیل کریں">🇩🇪</a>
+                        <a href="/es/about/" class="lang-dropdown-link" aria-label="ہسپانوی میں تبدیل کریں">🇪🇸</a>
+                        <a href="/fr/about/" class="lang-dropdown-link" aria-label="فرانسیسی میں تبدیل کریں">🇫🇷</a>
+                        <a href="/tr/about/" class="lang-dropdown-link" aria-label="ترکی میں تبدیل کریں">🇹🇷</a>
+                        <a href="/ru/about/" class="lang-dropdown-link" aria-label="روسی میں تبدیل کریں">🇷🇺</a>
+                        <a href="/zh/about/" class="lang-dropdown-link" aria-label="چینی میں تبدیل کریں">🇨🇳</a>
+                        <a href="/ar/about/" class="lang-dropdown-link" aria-label="عربی میں تبدیل کریں">🇸🇦</a>
+                        <a href="/pt/about/" class="lang-dropdown-link" aria-label="پرتگالی میں تبدیل کریں">🇵🇹</a>
+                        <a href="/hi/about/" class="lang-dropdown-link" aria-label="ہندی میں تبدیل کریں">🇮🇳</a>
+                        <a href="/ur/about/" class="lang-dropdown-link" aria-label="اردو میں تبدیل کریں">🇵🇰</a>
+                        <a href="/ku/about/" class="lang-dropdown-link" aria-label="کردی میں تبدیل کریں"><img src="/ku-flag.svg" alt="کردی" class="ku-flag-icon"></a>
+                        <a href="/he/about/" class="lang-dropdown-link" aria-label="عبرانی میں تبدیل کریں">🇮🇱</a>
+                        <a href="/hy/about/" class="lang-dropdown-link" aria-label="آرمینی میں تبدیل کریں">🇦🇲</a>
+                    </div>
+                </div>
+                <span class="footer-separator">|</span>
+                <p class="copyright">© 2026 <span class="brand-style"><span class="brand-a">a</span>Best<span class="brand-dot-co">.co</span></span></p>
+            </div>
+        </footer>
+
+        <script src="/app.js"></script>
+    </div>
+</body>
+
+</html>

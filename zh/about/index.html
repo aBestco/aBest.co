@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        name="viewport" />
+    <title>关于我们 – aBest.co | 创新、资本和项目的全球平台</title>
+    <meta content="aBest.co 连接国际市场中的投资者、创始人、资本合作伙伴和卖家 – 在14种语言中跨越四大洲。技术、能源、基础设施、房地产。"
+        name="description" />
+    <meta property="og:title" content="关于我们 – aBest.co | 创新、资本和项目" />
+    <meta property="og:description" content="aBest.co 在全球范围内连接投资者、创始人、资本合作伙伴和卖家。技术、能源、基础设施、房地产 – 14种语言。" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://abest.co/zh/about/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="关于我们 – aBest.co" />
+    <link href="/favicon.png" rel="icon" type="image/png" />
+    <link href="/index.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
+    <link rel="canonical" href="https://www.abest.co/zh/about/" />
+    <link href="https://abest.co/de/about/" hreflang="de" rel="alternate" />
+    <link href="https://abest.co/en/about/" hreflang="en" rel="alternate" />
+    <link href="https://abest.co/es/about/" hreflang="es" rel="alternate" />
+    <link href="https://abest.co/fr/about/" hreflang="fr" rel="alternate" />
+    <link href="https://abest.co/tr/about/" hreflang="tr" rel="alternate" />
+    <link href="https://abest.co/ru/about/" hreflang="ru" rel="alternate" />
+    <link href="https://abest.co/zh/about/" hreflang="zh" rel="alternate" />
+    <link href="https://abest.co/ar/about/" hreflang="ar" rel="alternate" />
+    <link href="https://abest.co/pt/about/" hreflang="pt" rel="alternate" />
+    <link href="https://abest.co/hi/about/" hreflang="hi" rel="alternate" />
+    <link href="https://abest.co/ur/about/" hreflang="ur" rel="alternate" />
+    <link href="https://abest.co/ku/about/" hreflang="ku" rel="alternate" />
+    <link href="https://abest.co/he/about/" hreflang="he" rel="alternate" />
+    <link href="https://abest.co/hy/about/" hreflang="hy" rel="alternate" />
+    <style>
+        .about-hero { text-align: center; padding: 2rem 0 1rem; }
+        .about-hero h1 { font-size: var(--font-size-hero); font-weight: 700; line-height: 1.15; margin-bottom: 0.75rem; }
+        .about-hero .lead { color: var(--text-muted); font-size: clamp(1rem, 1.5vw + 0.7rem, 1.15rem); max-width: 640px; margin: 0 auto; line-height: 1.6; }
+
+        .about-section { margin-bottom: 1.5rem; }
+        .about-section h2 { font-size: var(--font-size-h2); font-weight: 600; margin-bottom: 0.75rem; }
+        .about-section p { color: var(--text-muted); line-height: 1.7; margin-bottom: 0.75rem; }
+
+        .branch-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .branch-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 1.25rem;
+            transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+        }
+        .branch-card:hover {
+            border-color: var(--glass-border-hover);
+            box-shadow: var(--glass-shadow-hover);
+        }
+        .branch-icon { font-size: 1.8rem; margin-bottom: 0.5rem; display: block; }
+        .branch-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.35rem; color: var(--text-main); }
+        .branch-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin: 0; }
+
+        .roles-list { margin-top: 1rem; }
+        .role-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.85rem 0;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .role-item:last-child { border-bottom: none; }
+        .role-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+        .role-item strong { color: var(--text-main); display: block; margin-bottom: 2px; }
+        .role-item span { color: var(--text-muted); font-size: 0.92rem; line-height: 1.5; }
+
+        .locations-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        .loc-chip {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 0.75rem 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+        }
+        .loc-chip .flag { font-size: 1.3rem; }
+
+        .mission-box {
+            background: linear-gradient(135deg, rgba(10,132,255,0.12), rgba(48,209,88,0.08));
+            border: 1px solid rgba(10,132,255,0.25);
+            border-radius: 20px;
+            padding: 1.75rem;
+            margin-top: 1rem;
+            text-align: center;
+        }
+        .mission-box p { color: var(--text-main); font-size: 1.05rem; line-height: 1.7; margin: 0; font-weight: 400; }
+
+        .about-cta {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1.5rem 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background-wrapper">
+        <img alt="Background" class="main-bg" src="/assets/images/bg_main_blurred_new.webp" />
+        <div class="bg-gradient-overlay"></div>
+    </div>
+    <div class="app-container">
+        <nav class="mobile-nav" id="mobile-nav">
+            <a class="nav-link" href="/zh/earn-money">想法</a>
+            <a class="nav-link" href="/zh/">首页</a>
+            <a class="nav-link" href="/zh/about/">关于我们</a>
+            <a class="nav-link" href="/zh/contact">联系</a>
+        </nav>
+        <header class="app-header fade-in-up" style="animation-delay: 0.1s;">
+            <a class="logo-link" href="/zh/">
+                <span style="font-size: 1.5rem; font-weight: 500; letter-spacing: -0.5px; color: var(--text-main);">
+                    <span style="color: var(--primary-blue);">a</span>Best<span style="color: var(--primary-blue);">.co</span>
+                </span>
+            </a>
+            <div class="header-actions-v2">
+                <a href="/zh/" class="header-icon-v2" aria-label="Home" title="Home"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><polyline points="9 22 9 12 15 12 15 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></polyline></svg></a>
+                <a href="/login" class="header-icon-v2" aria-label="Login">
+                    <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </a>
+                <a href="/zh/contact" class="header-icon-v2" aria-label="Contact">
+                    <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                </a>
+                <div aria-label="Toggle Navigation Menu" class="nav-icon" id="menu-btn"><span></span><span></span></div>
+            </div>
+        </header>
+
+        <main class="scroll-content">
+            <!-- Hero -->
+            <section class="about-hero fade-in-up" style="animation-delay: 0.2s;">
+                <div class="glass-chip" style="padding: 2rem 1.5rem;">
+                    <p style="color: var(--primary-blue); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;">关于我们</p>
+                    <h1>创新、资本<span class="highlight">和项目的全球平台。</span></h1>
+                    <p class="lead"><span class="brand-style"><span class="brand-a">a</span>Best<span class="brand-dot-co">.co</span></span> 连接国际市场中的投资者、创始人、资本合作伙伴和卖家 – 在14种语言中跨越四大洲。</p>
+                </div>
+            </section>
+
+            <!-- What we do -->
+            <section class="about-section fade-in-up" style="animation-delay: 0.3s;">
+                <div class="glass-panel" style="padding: 1.5rem;">
+                    <h2>我们做什么</h2>
+                    <p>我们开发、融资和连接未来关键行业的项目。我们陪伴整个旅程 — 从最初的想法通过融资到成功实施。</p>
+                    <p>我们的优势在于结合了国际网络、创业经验和战略资本。</p>
+                </div>
+            </section>
+
+            <!-- Industries -->
+            <section class="about-section fade-in-up" style="animation-delay: 0.35s;">
+                <div class="glass-panel" style="padding: 1.5rem;">
+                    <h2>我们的行业</h2>
+                    <div class="branch-grid">
+                        <div class="branch-card">
+                            <span class="branch-icon">⚡</span>
+                            <h3>电动出行和充电基础设施</h3>
+                            <p>电动自行车和电动汽车充电站的地点开发。</p>
+                        </div>
+                        <div class="branch-card">
+                            <span class="branch-icon">☀️</span>
+                            <h3>太阳能和可再生能源</h3>
+                            <p>可持续能源项目和新能源技术。</p>
+                        </div>
+                        <div class="branch-card">
+                            <span class="branch-icon">🏗️</span>
+                            <h3>房地产和土地开发</h3>
+                            <p>在美国、欧洲和土耳其的项目规划、开发和转售。</p>
+                        </div>
+                        <div class="branch-card">
+                            <span class="branch-icon">🏨</span>
+                            <h3>酒店和招待概念</h3>
+                            <p>现代住宿和旅游项目。</p>
+                        </div>
+                        <div class="branch-card">
+                            <span class="branch-icon">📦</span>
+                            <h3>自存储和基础设施</h3>
+                            <p>创新的存储和物流解决方案。</p>
+                        </div>
+                        <div class="branch-card">
+                            <span class="branch-icon">☁️</span>
+                            <h3>互联网、云计算和数据中心</h3>
+                            <p>未来的数字基础设施。</p>
+                        </div>
+                        <div class="branch-card">
+                            <span class="branch-icon">🤖</span>
+                            <h3>人工智能和自动化</h3>
+                            <p>业务和工业的新技术。</p>
+                        </div>
+                        <div class="branch-card">
+                            <span class="branch-icon">🔬</span>
+                            <h3>机器人和高科技创新</h3>
+                            <p>智能系统的开发和整合。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Who works with us -->
+            <section class="about-section fade-in-up" style="animation-delay: 0.4s;">
+                <div class="glass-panel" style="padding: 1.5rem;">
+                    <h2>谁与我们合作</h2>
+                    <div class="roles-list">
+                        <div class="role-item">
+                            <span class="role-icon">💼</span>
+                            <div>
+                                <strong>投资者</strong>
+                                <span>找到审查过的交易和我们的联合投资机会。</span>
+                            </div>
+                        </div>
+                        <div class="role-item">
+                            <span class="role-icon">🚀</span>
+                            <div>
+                                <strong>创始人</strong>
+                                <span>提交他们的想法并与匹配的投资者联系。</span>
+                            </div>
+                        </div>
+                        <div class="role-item">
+                            <span class="role-icon">🏦</span>
+                            <div>
+                                <strong>资本合作伙伴</strong>
+                                <span>从具有可预测回报的结构化合作伙伴关系中受益。</span>
+                            </div>
+                        </div>
+                        <div class="role-item">
+                            <span class="role-icon">🏠</span>
+                            <div>
+                                <strong>卖家</strong>
+                                <span>获得我们国际买家和投资者网络的访问权限。</span>
+                            </div>
+                        </div>
+                        <div class="role-item">
+                            <span class="role-icon">🔍</span>
+                            <div>
+                                <strong>探索者</strong>
+                                <span>探索我们的平台并获得对市场和项目的初步见解。</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Locations -->
+            <section class="about-section fade-in-up" style="animation-delay: 0.45s;">
+                <div class="glass-panel" style="padding: 1.5rem;">
+                    <h2>我们的位置</h2>
+                    <p>我们在美国、德国和土耳其积极开展业务 — 网络覆盖欧洲、北美和中东。</p>
+                    <div class="locations-row">
+                        <div class="loc-chip"><span class="flag">🇺🇸</span> 美国</div>
+                        <div class="loc-chip"><span class="flag">🇩🇪</span> 德国</div>
+                        <div class="loc-chip"><span class="flag">🇹🇷</span> 土耳其</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Mission -->
+            <section class="about-section fade-in-up" style="animation-delay: 0.5s;">
+                <div class="mission-box">
+                    <p style="color: var(--primary-blue); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.75rem;">我们的使命</p>
+                    <p>更快地实现全球项目，有效地连接投资者和企业家，并将新技术转变为真实的基础设施。</p>
+                    <p style="margin-top: 0.75rem;"><span class="brand-style"><span class="brand-a">a</span>Best<span class="brand-dot-co">.co</span></span> 代表国际合作、创新和可持续价值创造 — 从第一个想法到成功实施。</p>
+                </div>
+            </section>
+
+            <!-- CTA -->
+            <section class="about-cta fade-in-up" style="animation-delay: 0.55s;">
+                <div class="glass-panel text-center" style="padding: 1.5rem;">
+                    <h2>准备开始了吗？</h2>
+                    <div class="divider mt-2"></div>
+                    <p style="color: var(--text-muted); margin-bottom: 1rem;">选择您的角色并成为我们全球平台的一部分。</p>
+                    <a class="glass-button ripple" href="/zh/earn-money" style="text-decoration: none; display: inline-block; width: auto; padding: 16px 32px; margin-bottom: 12px;">
+                        选择角色并开始 →
+                    </a>
+                    <br />
+                    <a href="/zh/contact" style="color: var(--text-muted); font-size: 0.82rem; text-decoration: none;">
+                        有问题？ <span class="brand-style">i@<span class="brand-a">a</span>Best<span class="brand-dot-co">.co</span></span>
+                    </a>
+                </div>
+            </section>
+        </main>
+
+        <footer class="app-footer section-spacing fade-in-up" style="animation-delay: 0.8s;">
+            <div class="slim-footer-content">
+                <a href="/zh/terms" class="footer-link">服务条款</a>
+                <span class="footer-separator">|</span>
+                <a href="/zh/cookie-policy" class="footer-link">Cookie政策</a>
+                <span class="footer-separator">|</span>
+                <a href="/zh/disclaimer" class="footer-link">免责声明</a>
+                <span class="footer-separator">|</span>
+                <a href="/zh/impressum" class="footer-link">印刷</a>
+                <span class="footer-separator">|</span>
+                <a href="/zh/datenschutz" class="footer-link">隐私政策</a>
+                <span class="footer-separator">|</span>
+                <a href="/zh/contact" class="footer-link">联系</a>
+                <div class="language-switcher">
+                    <button class="lang-btn" aria-label="Language options">🇨🇳</button>
+                    <div class="lang-dropdown">
+                        <a href="/de/about/" class="lang-dropdown-link" aria-label="Switch to DE">🇩🇪</a>
+                        <a href="/es/about/" class="lang-dropdown-link" aria-label="Switch to ES">🇪🇸</a>
+                        <a href="/fr/about/" class="lang-dropdown-link" aria-label="Switch to FR">🇫🇷</a>
+                        <a href="/tr/about/" class="lang-dropdown-link" aria-label="Switch to TR">🇹🇷</a>
+                        <a href="/ru/about/" class="lang-dropdown-link" aria-label="Switch to RU">🇷🇺</a>
+                        <a href="/zh/about/" class="lang-dropdown-link" aria-label="Switch to ZH">🇨🇳</a>
+                        <a href="/ar/about/" class="lang-dropdown-link" aria-label="Switch to AR">🇸🇦</a>
+                        <a href="/pt/about/" class="lang-dropdown-link" aria-label="Switch to PT">🇵🇹</a>
+                        <a href="/hi/about/" class="lang-dropdown-link" aria-label="Switch to HI">🇮🇳</a>
+                        <a href="/ur/about/" class="lang-dropdown-link" aria-label="Switch to UR">🇵🇰</a>
+                        <a href="/ku/about/" class="lang-dropdown-link" aria-label="Switch to KU"><img src="/ku-flag.svg" alt="KU" class="ku-flag-icon"></a>
+                        <a href="/he/about/" class="lang-dropdown-link" aria-label="Switch to HE">🇮🇱</a>
+                        <a href="/hy/about/" class="lang-dropdown-link" aria-label="Switch to HY">🇦🇲</a>
+                    </div>
+                </div>
+                <span class="footer-separator">|</span>
+                <p class="copyright">© 2026 <span class="brand-style"><span class="brand-a">a</span>Best<span class="brand-dot-co">.co</span></span></p>
+            </div>
+        </footer>
+
+        <script src="/app.js"></script>
+    </div>
+</body>
+
+</html>

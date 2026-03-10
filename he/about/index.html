@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        name="viewport" />
+    <title>אודותינו – aBest.co | פלטפורמה גלובלית לחדשנות, הון וביטחון</title>
+    <meta content="aBest.co מחברת משקיעים, מייסדים, שותפי הון ומוכרים בשווקים בינלאומיים - ב-14 שפות על פני ארבע יבשות. טכנולוגיה, אנרגיה, תשתיות, נדלן."
+        name="description" />
+    <meta property="og:title" content="אודותינו – aBest.co | חדשנות, הון וביטחון" />
+    <meta property="og:description" content="aBest.co מחברת משקיעים, מייסדים, שותפי הון ומוכרים בעולם. טכנולוגיה, אנרגיה, תשתיות, נדלן - ב-14 שפות." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://abest.co/he/about/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="אודותינו – aBest.co" />
+    <link href="/favicon.png" rel="icon" type="image/png" />
+    <link href="/index.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
+    <link rel="canonical" href="https://www.abest.co/he/about/" />
+    <link href="https://abest.co/de/about/" hreflang="de" rel="alternate" />
+    <link href="https://abest.co/en/about/" hreflang="en" rel="alternate" />
+    <link href="https://abest.co/es/about/" hreflang="es" rel="alternate" />
+    <link href="https://abest.co/fr/about/" hreflang="fr" rel="alternate" />
+    <link href="https://abest.co/tr/about/" hreflang="tr" rel="alternate" />
+    <link href="https://abest.co/ru/about/" hreflang="ru" rel="alternate" />
+    <link href="https://abest.co/zh/about/" hreflang="zh" rel="alternate" />
+    <link href="https://abest.co/ar/about/" hreflang="ar" rel="alternate" />
+    <link href="https://abest.co/pt/about/" hreflang="pt" rel="alternate" />
+    <link href="https://abest.co/hi/about/" hreflang="hi" rel="alternate" />
+    <link href="https://abest.co/ur/about/" hreflang="ur" rel="alternate" />
+    <link href="https://abest.co/ku/about/" hreflang="ku" rel="alternate" />
+    <link href="https://abest.co/he/about/" hreflang="he" rel="alternate" />
+    <link href="https://abest.co/hy/about/" hreflang="hy" rel="alternate" />
+    <style>
+        .about-hero { text-align: center; padding: 2rem 0 1rem; }
+        .about-hero h1 { font-size: var(--font-size-hero); font-weight: 700; line-height: 1.15; margin-bottom: 0.75rem; }
+        .about-hero .lead { color: var(--text-muted); font-size: clamp(1rem, 1.5vw + 0.7rem, 1.15rem); max-width: 640px; margin: 0 auto; line-height: 1.6; }
+
+        .about-section { margin-bottom: 1.5rem; }
+        .about-section h2 { font-size: var(--font-size-h2); font-weight: 600; margin-bottom: 0.75rem; }
+        .about-section p { color: var(--text-muted); line-height: 1.7; margin-bottom: 0.75rem; }
+
+        .branch-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .branch-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 1.25rem;
+            transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+        }
+        .branch-card:hover {
+            border-color: var(--glass-border-hover);
+            box-shadow: var(--glass-shadow-hover);
+        }
+        .branch-icon { font-size: 1.8rem; margin-bottom: 0.5rem; display: block; }
+        .branch-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.35rem; color: var(--text-main); }
+        .branch-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin: 0; }
+
+        .roles-list { margin-top: 1rem; }
+        .role-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.85rem 0;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .role-item:last-child { border-bottom: none; }
+        .role-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+        .role-item strong { color: var(--text-main); display: block; margin-bottom: 2px; }
+        .role-item span { color: var(--text-muted); font-size: 0.92rem; line-height: 1.5; }
+
+        .locations-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        .loc-chip {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 0.75rem 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+        }
+        .loc-chip .flag { font-size: 1.3rem; }
+
+        .mission-box {
+            background: linear-gradient(135deg, rgba(10,132,255,0.12), rgba(48,209,88,0.08));
+            border: 1px solid rgba(10,132,255,0.25);
+            border-radius: 20px;
+            padding: 1.75rem;
+            margin-top: 1rem;
+            text-align: center;
+        }
+        .mission-box p { color: var(--text-main); font-size: 1.05rem; line-height: 1.7; margin: 0; font-weight: 400; }
+
+        .about-cta {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1.5rem 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background-wrapper">
+        <img alt="רקע" class="main-bg" src="/assets/images/bg_main_blurred_new.webp" />
+        <div class="bg-gradient-overlay"></div>
+    </div>
+    <div class="app-container">
+        <nav class="mobile-nav" id="mobile-nav">
+            <a class="nav-link" href="/he/earn-money">רעיונות</a>
+            <a class="nav-link" href="/he/">בית</a>
+            <a class="nav-link" href="/he/about/">אודותינו</a>
+            <a class="nav-link" href="/he/contact">יצור קשר</a>
+        </nav>
+        <header class="app-header fade-in-up" style="animation-delay: 0.1s;">
+            <a class="logo-link" href="/he/">
+                <span style="font-size: 1.5rem; font-weight: 500; letter-spacing: -0.5px; color: var(--text-main);">
+                    <span style="color: var(--primary-blue);">a</span>Best<span style="color: var(--primary-blue);">.co</span>
+                </span>
+            </a>
+            <div class="header-actions-v2">
+                <a href="/he/" class="header-icon-v2" aria-label="בית" title="בית"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><polyline points="9 22 9 12 15 12 15 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></polyline></svg></a>
+                <a href="/login" class="header-icon-v2" aria-label="התחברות">
+                    <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </a>
+                <a href="/he/contact" class="header-icon-v2" aria-label="יצור קשר">
+                    <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                </a>
+                <div aria-label="הפעל/כבה תפריט ניווט" class="nav-icon" id="menu-btn"><span></span><span></span></div>
+            </div>
+        </header>
+
+        <main class="scroll-content">
+            <!-- Hero -->
+            <section class="about-hero fade-in-up" style="animation-delay: 0.2s;">
+                <div class="glass-chip" style="padding: 2rem 1.5rem;">
+                    <p style="color: var(--primary-blue); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;">אודותינו</p>
+                    <h1>פלטפורמה גלובלית לחדשנות, הון <span class="highlight">וביטחון.</span></h1>
+                    <p class="lead"><span class="brand-style"><span class="brand-a">a</span>Best<span class="brand-dot-co">.co</span></span> מחברת משקיעים, מייסדים, שותפי הון ומוכרים בשווקים בינלאומיים - ב-14 שפות על פני ארבע יבשות.</p>
+                </div>
+            </section>
+
+            <!-- What we do -->
+            <section class="about-section fade-in-up" style="animation-delay: 0.3s;">
+                <div class="glass-panel" style="padding: 1.5rem;">
+                    <h2>מה אנחנו עושים</h2>
+                    <p>אנו מפתחים, ממממנים ומחברים פרויקטים בתעשיות המרכזיות של העתיד. אנחנו מלווים את כל הדרך - מהרעיון הראשון דרך גיוס הון ליישום מוצלח.</p>
+                    <p>כוחנו הוא בשילוב של רשת בינלאומית, ניסיון יזמי והון אסטרטגי.</p>
+                </div>
+            </section>
+
+            <!-- Industries -->
+            <section class="about-section fade-in-up" style="animation-delay: 0.35s;">
+                <div class="glass-panel" style="padding: 1.5rem;">
+                    <h2>התעשיות שלנו</h2>
+                    <div class="branch-grid">
+                        <div class="branch-card">
+                            <span class="branch-icon">⚡</span>
+                            <h3>ניידות חשמלית ותשתיות טעינה</h3>
+                            <p>פיתוח מיקומים לתחנות טעינה של אופניים חשמליים וחשמליים.</p>
+                        </div>
+                        <div class="branch-card">
+                            <span class="branch-icon">☀️</span>
+                            <h3>אנרגיה סולארית ואנרגיה מתחדשת</h3>
+                            <p>פרויקטי אנרגיה בת קיימא וטכנולוגיות אנרגיה חדשות.</p>
+                        </div>
+                        <div class="branch-card">
+                            <span class="branch-icon">🏗️</span>
+                            <h3>נדלן וקידום קרקע</h3>
+                            <p>תכנון, פיתוח ומכירה חוזרת של פרויקטים בארה"ב, אירופה וטורקיה.</p>
+                        </div>
+                        <div class="branch-card">
+                            <span class="branch-icon">🏨</span>
+                            <h3>קונספטים של מלון ותיירות</h3>
+                            <p>פרויקטי אירוח וטיוריזם מודרניים.</p>
+                        </div>
+                        <div class="branch-card">
+                            <span class="branch-icon">📦</span>
+                            <h3>אחסון עצמי ותשתיות</h3>
+                            <p>פתרונות אחסון ולוגיסטיקה חדשניים.</p>
+                        </div>
+                        <div class="branch-card">
+                            <span class="branch-icon">☁️</span>
+                            <h3>אינטרנט, ענן ומרכזי נתונים</h3>
+                            <p>תשתיות דיגיטליות לעתיד.</p>
+                        </div>
+                        <div class="branch-card">
+                            <span class="branch-icon">🤖</span>
+                            <h3>בינה מלאכותית ואוטומציה</h3>
+                            <p>טכנולוגיות חדשות לעסק ותעשייה.</p>
+                        </div>
+                        <div class="branch-card">
+                            <span class="branch-icon">🔬</span>
+                            <h3>רובוטיקה וחדשנות היי-טק</h3>
+                            <p>פיתוח ואינטגרציה של מערכות חכמות.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Who works with us -->
+            <section class="about-section fade-in-up" style="animation-delay: 0.4s;">
+                <div class="glass-panel" style="padding: 1.5rem;">
+                    <h2>מי עובד איתנו</h2>
+                    <div class="roles-list">
+                        <div class="role-item">
+                            <span class="role-icon">💼</span>
+                            <div>
+                                <strong>משקיעים</strong>
+                                <span>מצא עסקות ממוקדות והזדמנויות השקעה משותפת איתנו.</span>
+                            </div>
+                        </div>
+                        <div class="role-item">
+                            <span class="role-icon">🚀</span>
+                            <div>
+                                <strong>מייסדים</strong>
+                                <span>הגש את הרעיונות שלך והתחבר עם משקיעים מתאימים.</span>
+                            </div>
+                        </div>
+                        <div class="role-item">
+                            <span class="role-icon">🏦</span>
+                            <div>
+                                <strong>שותפי הון</strong>
+                                <span>תלו מהשותפויות המובנות עם תשואות צפויות.</span>
+                            </div>
+                        </div>
+                        <div class="role-item">
+                            <span class="role-icon">🏠</span>
+                            <div>
+                                <strong>מוכרים</strong>
+                                <span>קבל גישה לרשת קונים ומשקיעים בינלאומית שלנו.</span>
+                            </div>
+                        </div>
+                        <div class="role-item">
+                            <span class="role-icon">🔍</span>
+                            <div>
+                                <strong>מחקרים</strong>
+                                <span>חקור את הפלטפורמה שלנו וקבל תובנות ראשוניות לשווקים ופרויקטים.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Locations -->
+            <section class="about-section fade-in-up" style="animation-delay: 0.45s;">
+                <div class="glass-panel" style="padding: 1.5rem;">
+                    <h2>המיקומים שלנו</h2>
+                    <p>אנחנו פעילים בארה"ב, גרמניה וטורקיה - עם רשת המשתרעת על אירופה, צפון אמריקה והמזרח התיכון.</p>
+                    <div class="locations-row">
+                        <div class="loc-chip"><span class="flag">🇺🇸</span> ארה"ב</div>
+                        <div class="loc-chip"><span class="flag">🇩🇪</span> גרמניה</div>
+                        <div class="loc-chip"><span class="flag">🇹🇷</span> טורקיה</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Mission -->
+            <section class="about-section fade-in-up" style="animation-delay: 0.5s;">
+                <div class="mission-box">
+                    <p style="color: var(--primary-blue); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.75rem;">משימתנו</p>
+                    <p>מימוש פרויקטים גלובליים מהר יותר, חיבור משקיעים ויזמים בדיוק, והפוך טכנולוגיות חדשות לתשתיות אמיתיות.</p>
+                    <p style="margin-top: 0.75rem;"><span class="brand-style"><span class="brand-a">a</span>Best<span class="brand-dot-co">.co</span></span> עומד על השיתוף הפעולה הבינלאומי, החדשנות ויצירת ערך בר קיימא - מהרעיון הראשון ליישום מוצלח.</p>
+                </div>
+            </section>
+
+            <!-- CTA -->
+            <section class="about-cta fade-in-up" style="animation-delay: 0.55s;">
+                <div class="glass-panel text-center" style="padding: 1.5rem;">
+                    <h2>מוכן להתחיל?</h2>
+                    <div class="divider mt-2"></div>
+                    <p style="color: var(--text-muted); margin-bottom: 1rem;">בחר את התפקיד שלך והיה חלק מהפלטפורמה הגלובלית שלנו.</p>
+                    <a class="glass-button ripple" href="/he/earn-money" style="text-decoration: none; display: inline-block; width: auto; padding: 16px 32px; margin-bottom: 12px;">
+                        ← בחר תפקיד והתחל
+                    </a>
+                    <br />
+                    <a href="/he/contact" style="color: var(--text-muted); font-size: 0.82rem; text-decoration: none;">
+                        שאלות? <span class="brand-style">i@<span class="brand-a">a</span>Best<span class="brand-dot-co">.co</span></span>
+                    </a>
+                </div>
+            </section>
+        </main>
+
+        <footer class="app-footer section-spacing fade-in-up" style="animation-delay: 0.8s;">
+            <div class="slim-footer-content">
+                <a href="/he/terms" class="footer-link">תנאי שירות</a>
+                <span class="footer-separator">|</span>
+                <a href="/he/cookie-policy" class="footer-link">מדיניות עוגיות</a>
+                <span class="footer-separator">|</span>
+                <a href="/he/disclaimer" class="footer-link">הנחה</a>
+                <span class="footer-separator">|</span>
+                <a href="/he/impressum" class="footer-link">פרטי החברה</a>
+                <span class="footer-separator">|</span>
+                <a href="/he/datenschutz" class="footer-link">מדיניות פרטיות</a>
+                <span class="footer-separator">|</span>
+                <a href="/he/contact" class="footer-link">יצור קשר</a>
+                <div class="language-switcher">
+                    <button class="lang-btn" aria-label="אפשרויות שפה">🇮🇱</button>
+                    <div class="lang-dropdown">
+                        <a href="/de/about/" class="lang-dropdown-link" aria-label="החלף לגרמנית">🇩🇪</a>
+                        <a href="/es/about/" class="lang-dropdown-link" aria-label="החלף לספרדית">🇪🇸</a>
+                        <a href="/fr/about/" class="lang-dropdown-link" aria-label="החלף לצרפתית">🇫🇷</a>
+                        <a href="/tr/about/" class="lang-dropdown-link" aria-label="החלף לטורקית">🇹🇷</a>
+                        <a href="/ru/about/" class="lang-dropdown-link" aria-label="החלף לרוסית">🇷🇺</a>
+                        <a href="/zh/about/" class="lang-dropdown-link" aria-label="החלף לסינית">🇨🇳</a>
+                        <a href="/ar/about/" class="lang-dropdown-link" aria-label="החלף לערבית">🇸🇦</a>
+                        <a href="/pt/about/" class="lang-dropdown-link" aria-label="החלף לפורטוגזית">🇵🇹</a>
+                        <a href="/hi/about/" class="lang-dropdown-link" aria-label="החלף להינדית">🇮🇳</a>
+                        <a href="/ur/about/" class="lang-dropdown-link" aria-label="החלף לאردו">🇵🇰</a>
+                        <a href="/ku/about/" class="lang-dropdown-link" aria-label="החלף לכורדית"><img src="/ku-flag.svg" alt="כורדית" class="ku-flag-icon"></a>
+                        <a href="/he/about/" class="lang-dropdown-link" aria-label="החלף לעברית">🇮🇱</a>
+                        <a href="/hy/about/" class="lang-dropdown-link" aria-label="החלף לארמנית">🇦🇲</a>
+                    </div>
+                </div>
+                <span class="footer-separator">|</span>
+                <p class="copyright">© 2026 <span class="brand-style"><span class="brand-a">a</span>Best<span class="brand-dot-co">.co</span></span></p>
+            </div>
+        </footer>
+
+        <script src="/app.js"></script>
+    </div>
+</body>
+
+</html>

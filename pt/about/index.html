@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        name="viewport" />
+    <title>Sobre Nós – aBest.co | Plataforma Global para Inovação, Capital e Projetos</title>
+    <meta content="aBest.co conecta investidores, fundadores, parceiros de capital e vendedores em mercados internacionais – em 14 idiomas em quatro continentes. Tecnologia, energia, infraestrutura, imóveis."
+        name="description" />
+    <meta property="og:title" content="Sobre Nós – aBest.co | Inovação, Capital e Projetos" />
+    <meta property="og:description" content="aBest.co conecta investidores, fundadores, parceiros de capital e vendedores em todo o mundo. Tecnologia, energia, infraestrutura, imóveis – em 14 idiomas." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://abest.co/pt/about/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Sobre Nós – aBest.co" />
+    <link href="/favicon.png" rel="icon" type="image/png" />
+    <link href="/index.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
+    <link rel="canonical" href="https://www.abest.co/pt/about/" />
+    <link href="https://abest.co/de/about/" hreflang="de" rel="alternate" />
+    <link href="https://abest.co/en/about/" hreflang="en" rel="alternate" />
+    <link href="https://abest.co/es/about/" hreflang="es" rel="alternate" />
+    <link href="https://abest.co/fr/about/" hreflang="fr" rel="alternate" />
+    <link href="https://abest.co/tr/about/" hreflang="tr" rel="alternate" />
+    <link href="https://abest.co/ru/about/" hreflang="ru" rel="alternate" />
+    <link href="https://abest.co/zh/about/" hreflang="zh" rel="alternate" />
+    <link href="https://abest.co/ar/about/" hreflang="ar" rel="alternate" />
+    <link href="https://abest.co/pt/about/" hreflang="pt" rel="alternate" />
+    <link href="https://abest.co/hi/about/" hreflang="hi" rel="alternate" />
+    <link href="https://abest.co/ur/about/" hreflang="ur" rel="alternate" />
+    <link href="https://abest.co/ku/about/" hreflang="ku" rel="alternate" />
+    <link href="https://abest.co/he/about/" hreflang="he" rel="alternate" />
+    <link href="https://abest.co/hy/about/" hreflang="hy" rel="alternate" />
+    <style>
+        .about-hero { text-align: center; padding: 2rem 0 1rem; }
+        .about-hero h1 { font-size: var(--font-size-hero); font-weight: 700; line-height: 1.15; margin-bottom: 0.75rem; }
+        .about-hero .lead { color: var(--text-muted); font-size: clamp(1rem, 1.5vw + 0.7rem, 1.15rem); max-width: 640px; margin: 0 auto; line-height: 1.6; }
+
+        .about-section { margin-bottom: 1.5rem; }
+        .about-section h2 { font-size: var(--font-size-h2); font-weight: 600; margin-bottom: 0.75rem; }
+        .about-section p { color: var(--text-muted); line-height: 1.7; margin-bottom: 0.75rem; }
+
+        .branch-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .branch-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 1.25rem;
+            transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+        }
+        .branch-card:hover {
+            border-color: var(--glass-border-hover);
+            box-shadow: var(--glass-shadow-hover);
+        }
+        .branch-icon { font-size: 1.8rem; margin-bottom: 0.5rem; display: block; }
+        .branch-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.35rem; color: var(--text-main); }
+        .branch-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin: 0; }
+
+        .roles-list { margin-top: 1rem; }
+        .role-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.85rem 0;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .role-item:last-child { border-bottom: none; }
+        .role-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+        .role-item strong { color: var(--text-main); display: block; margin-bottom: 2px; }
+        .role-item span { color: var(--text-muted); font-size: 0.92rem; line-height: 1.5; }
+
+        .locations-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        .loc-chip {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 0.75rem 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+        }
+        .loc-chip .flag { font-size: 1.3rem; }
+
+        .mission-box {
+            background: linear-gradient(135deg, rgba(10,132,255,0.12), rgba(48,209,88,0.08));
+            border: 1px solid rgba(10,132,255,0.25);
+            border-radius: 20px;
+            padding: 1.75rem;
+            margin-top: 1rem;
+            text-align: center;
+        }
+        .mission-box p { color: var(--text-main); font-size: 1.05rem; line-height: 1.7; margin: 0; font-weight: 400; }
+
+        .about-cta {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1.5rem 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background-wrapper">
+        <img alt="Background" class="main-bg" src="/assets/images/bg_main_blurred_new.webp" />
+        <div class="bg-gradient-overlay"></div>
+    </div>
+    <div class="app-container">
+        <nav class="mobile-nav" id="mobile-nav">
+            <a class="nav-link" href="/pt/earn-money">Ideias</a>
+            <a class="nav-link" href="/pt/">Início</a>
+            <a class="nav-link" href="/pt/about/">Sobre Nós</a>
+            <a class="nav-link" href="/pt/contato">Contato</a>
+        </nav>
+        <header class="app-header fade-in-up" style="animation-delay: 0.1s;">
+            <a class="logo-link" href="/pt/">
+                <span style="font-size: 1.5rem; font-weight: 500; letter-spacing: -0.5px; color: var(--text-main);">
+                    <span style="color: var(--primary-blue);">a</span>Best<span style="color: var(--primary-blue);">.co</span>
+                </span>
+            </a>
+            <div class="header-actions-v2">
+                <a href="/pt/" class="header-icon-v2" aria-label="Home" title="Home"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><polyline points="9 22 9 12 15 12 15 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></polyline></svg></a>
+                <a href="/login" class="header-icon-v2" aria-label="Login">
+                    <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </a>
+                <a href="/pt/contato" class="header-icon-v2" aria-label="Contact">
+                    <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                </a>
+                <div aria-label="Toggle Navigation Menu" class="nav-icon" id="menu-btn"><span></span><span></span></div>
+            </div>
+        </header>
+
+        <main class="scroll-content">
+            <!-- Hero -->
+            <section class="about-hero fade-in-up" style="animation-delay: 0.2s;">
+                <div class="glass-chip" style="padding: 2rem 1.5rem;">
+                    <p style="color: var(--primary-blue); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;">Sobre Nós</p>
+                    <h1>Plataforma Global para Inovação, Capital <span class="highlight">e Projetos.</span></h1>
+                    <p class="lead"><span class="brand-style"><span class="brand-a">a</span>Best<span class="brand-dot-co">.co</span></span> conecta investidores, fundadores, parceiros de capital e vendedores em mercados internacionais – em 14 idiomas em quatro continentes.</p>
+                </div>
+            </section>
+
+            <!-- What we do -->
+            <section class="about-section fade-in-up" style="animation-delay: 0.3s;">
+                <div class="glass-panel" style="padding: 1.5rem;">
+                    <h2>O Que Fazemos</h2>
+                    <p>Desenvolvemos, financiamos e conectamos projetos em indústrias-chave do futuro. Acompanhamos toda a jornada — desde a primeira ideia até a captação de capital e implementação bem-sucedida.</p>
+                    <p>Nossa força reside em combinar uma rede internacional, experiência empreendedora e capital estratégico.</p>
+                </div>
+            </section>
+
+            <!-- Industries -->
+            <section class="about-section fade-in-up" style="animation-delay: 0.35s;">
+                <div class="glass-panel" style="padding: 1.5rem;">
+                    <h2>Nossas Indústrias</h2>
+                    <div class="branch-grid">
+                        <div class="branch-card">
+                            <span class="branch-icon">⚡</span>
+                            <h3>Mobilidade Elétrica e Infraestrutura de Carregamento</h3>
+                            <p>Desenvolvimento de locais para estações de carregamento de bicicletas elétricas e veículos elétricos.</p>
+                        </div>
+                        <div class="branch-card">
+                            <span class="branch-icon">☀️</span>
+                            <h3>Energia Solar e Renováveis</h3>
+                            <p>Projetos de energia sustentável e novas tecnologias energéticas.</p>
+                        </div>
+                        <div class="branch-card">
+                            <span class="branch-icon">🏗️</span>
+                            <h3>Imóveis e Desenvolvimento de Terras</h3>
+                            <p>Planejamento, desenvolvimento e revenda de projetos nos EUA, Europa e Turquia.</p>
+                        </div>
+                        <div class="branch-card">
+                            <span class="branch-icon">🏨</span>
+                            <h3>Conceitos de Hotel e Hospitalidade</h3>
+                            <p>Projetos modernos de hospedagem e turismo.</p>
+                        </div>
+                        <div class="branch-card">
+                            <span class="branch-icon">📦</span>
+                            <h3>Auto-Armazenamento e Infraestrutura</h3>
+                            <p>Soluções inovadoras de armazenamento e logística.</p>
+                        </div>
+                        <div class="branch-card">
+                            <span class="branch-icon">☁️</span>
+                            <h3>Internet, Nuvem e Data Centers</h3>
+                            <p>Infraestrutura digital para o futuro.</p>
+                        </div>
+                        <div class="branch-card">
+                            <span class="branch-icon">🤖</span>
+                            <h3>Inteligência Artificial e Automação</h3>
+                            <p>Novas tecnologias para negócios e indústria.</p>
+                        </div>
+                        <div class="branch-card">
+                            <span class="branch-icon">🔬</span>
+                            <h3>Robótica e Inovação de Alta Tecnologia</h3>
+                            <p>Desenvolvimento e integração de sistemas inteligentes.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Who works with us -->
+            <section class="about-section fade-in-up" style="animation-delay: 0.4s;">
+                <div class="glass-panel" style="padding: 1.5rem;">
+                    <h2>Quem Trabalha Conosco</h2>
+                    <div class="roles-list">
+                        <div class="role-item">
+                            <span class="role-icon">💼</span>
+                            <div>
+                                <strong>Investidores</strong>
+                                <span>Encontrem negócios verificados e oportunidades de co-investimento conosco.</span>
+                            </div>
+                        </div>
+                        <div class="role-item">
+                            <span class="role-icon">🚀</span>
+                            <div>
+                                <strong>Fundadores</strong>
+                                <span>Enviem suas ideias e conectem-se com investidores correspondentes.</span>
+                            </div>
+                        </div>
+                        <div class="role-item">
+                            <span class="role-icon">🏦</span>
+                            <div>
+                                <strong>Parceiros de Capital</strong>
+                                <span>Beneficiem-se de parcerias estruturadas com retornos previsíveis.</span>
+                            </div>
+                        </div>
+                        <div class="role-item">
+                            <span class="role-icon">🏠</span>
+                            <div>
+                                <strong>Vendedores</strong>
+                                <span>Obtenham acesso à nossa rede internacional de compradores e investidores.</span>
+                            </div>
+                        </div>
+                        <div class="role-item">
+                            <span class="role-icon">🔍</span>
+                            <div>
+                                <strong>Exploradores</strong>
+                                <span>Explorem nossa plataforma e obtenham insights iniciais sobre mercados e projetos.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Locations -->
+            <section class="about-section fade-in-up" style="animation-delay: 0.45s;">
+                <div class="glass-panel" style="padding: 1.5rem;">
+                    <h2>Nossas Localizações</h2>
+                    <p>Estamos ativos nos EUA, Alemanha e Turquia — com uma rede abrangendo Europa, América do Norte e Oriente Médio.</p>
+                    <div class="locations-row">
+                        <div class="loc-chip"><span class="flag">🇺🇸</span> EUA</div>
+                        <div class="loc-chip"><span class="flag">🇩🇪</span> Alemanha</div>
+                        <div class="loc-chip"><span class="flag">🇹🇷</span> Turquia</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Mission -->
+            <section class="about-section fade-in-up" style="animation-delay: 0.5s;">
+                <div class="mission-box">
+                    <p style="color: var(--primary-blue); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.75rem;">Nossa Missão</p>
+                    <p>Realizar projetos globais mais rapidamente, conectar investidores e empreendedores com eficiência, e transformar novas tecnologias em infraestrutura real.</p>
+                    <p style="margin-top: 0.75rem;"><span class="brand-style"><span class="brand-a">a</span>Best<span class="brand-dot-co">.co</span></span> representa cooperação internacional, inovação e criação de valor sustentável — desde a primeira ideia até a implementação bem-sucedida.</p>
+                </div>
+            </section>
+
+            <!-- CTA -->
+            <section class="about-cta fade-in-up" style="animation-delay: 0.55s;">
+                <div class="glass-panel text-center" style="padding: 1.5rem;">
+                    <h2>Pronto para Começar?</h2>
+                    <div class="divider mt-2"></div>
+                    <p style="color: var(--text-muted); margin-bottom: 1rem;">Escolha seu papel e faça parte de nossa plataforma global.</p>
+                    <a class="glass-button ripple" href="/pt/earn-money" style="text-decoration: none; display: inline-block; width: auto; padding: 16px 32px; margin-bottom: 12px;">
+                        Escolher Papel e Começar →
+                    </a>
+                    <br />
+                    <a href="/pt/contato" style="color: var(--text-muted); font-size: 0.82rem; text-decoration: none;">
+                        Dúvidas? <span class="brand-style">i@<span class="brand-a">a</span>Best<span class="brand-dot-co">.co</span></span>
+                    </a>
+                </div>
+            </section>
+        </main>
+
+        <footer class="app-footer section-spacing fade-in-up" style="animation-delay: 0.8s;">
+            <div class="slim-footer-content">
+                <a href="/pt/terms" class="footer-link">Termos de Serviço</a>
+                <span class="footer-separator">|</span>
+                <a href="/pt/cookie-policy" class="footer-link">Política de Cookie</a>
+                <span class="footer-separator">|</span>
+                <a href="/pt/disclaimer" class="footer-link">Aviso Legal</a>
+                <span class="footer-separator">|</span>
+                <a href="/pt/impressum" class="footer-link">Aviso Legal</a>
+                <span class="footer-separator">|</span>
+                <a href="/pt/datenschutz" class="footer-link">Política de Privacidade</a>
+                <span class="footer-separator">|</span>
+                <a href="/pt/contato" class="footer-link">Contato</a>
+                <div class="language-switcher">
+                    <button class="lang-btn" aria-label="Language options">🇵🇹</button>
+                    <div class="lang-dropdown">
+                        <a href="/de/about/" class="lang-dropdown-link" aria-label="Switch to DE">🇩🇪</a>
+                        <a href="/es/about/" class="lang-dropdown-link" aria-label="Switch to ES">🇪🇸</a>
+                        <a href="/fr/about/" class="lang-dropdown-link" aria-label="Switch to FR">🇫🇷</a>
+                        <a href="/tr/about/" class="lang-dropdown-link" aria-label="Switch to TR">🇹🇷</a>
+                        <a href="/ru/about/" class="lang-dropdown-link" aria-label="Switch to RU">🇷🇺</a>
+                        <a href="/zh/about/" class="lang-dropdown-link" aria-label="Switch to ZH">🇨🇳</a>
+                        <a href="/ar/about/" class="lang-dropdown-link" aria-label="Switch to AR">🇸🇦</a>
+                        <a href="/pt/about/" class="lang-dropdown-link" aria-label="Switch to PT">🇵🇹</a>
+                        <a href="/hi/about/" class="lang-dropdown-link" aria-label="Switch to HI">🇮🇳</a>
+                        <a href="/ur/about/" class="lang-dropdown-link" aria-label="Switch to UR">🇵🇰</a>
+                        <a href="/ku/about/" class="lang-dropdown-link" aria-label="Switch to KU"><img src="/ku-flag.svg" alt="KU" class="ku-flag-icon"></a>
+                        <a href="/he/about/" class="lang-dropdown-link" aria-label="Switch to HE">🇮🇱</a>
+                        <a href="/hy/about/" class="lang-dropdown-link" aria-label="Switch to HY">🇦🇲</a>
+                    </div>
+                </div>
+                <span class="footer-separator">|</span>
+                <p class="copyright">© 2026 <span class="brand-style"><span class="brand-a">a</span>Best<span class="brand-dot-co">.co</span></span></p>
+            </div>
+        </footer>
+
+        <script src="/app.js"></script>
+    </div>
+</body>
+
+</html>
