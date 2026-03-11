@@ -8,11 +8,11 @@ npm warn exec The following package was not found and will be installed: wrangle
 
 
 Uploading... (565/565)
-✨ Success! Uploaded 0 files (565 already uploaded) (0.24 sec)
+✨ Success! Uploaded 0 files (565 already uploaded) (0.26 sec)
 
 ✨ Uploading _redirects
 ✨ Compiled Worker successfully
 ✨ Uploading Worker bundle
 🌎 Deploying...
-✨ Deployment complete! Take a peek over at https://5f9ef072.abest-co-4nj.pages.dev
+✨ Deployment complete! Take a peek over at https://61df0559.abest-co-4nj.pages.dev
 DEPLOY_SUCCESS
