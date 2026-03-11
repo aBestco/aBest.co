@@ -26,3 +26,4 @@ Uploading... (565/565)
 
 🪵  Logs were written to "/home/runner/.config/.wrangler/logs/wrangler-2026-03-11_03-27-41_098.log"
 DEPLOY_FAILED
+# Trigger redeploy - ASCII only
