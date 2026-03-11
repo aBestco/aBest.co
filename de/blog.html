@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <title>Blog & News | aBest.co – Globale Projekte &amp; Immobilien</title>
+    <meta content="Aktuelle Berichte, Analysen und Hintergrundwissen zu internationalen Immobilien, Energie- und Infrastrukturprojekten von aBest.co – USA, Deutschland, Türkei, England." name="description" />
+    <link href="/favicon.png" rel="icon" type="image/png" />
+    <link href="/index.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="canonical" href="https://www.abest.co/de/blog" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#007aff" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="aBest.co" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="aBest.co" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:url" content="https://www.abest.co/de/blog" />
+    <meta property="og:title" content="Blog & News | aBest.co" />
+    <meta property="og:description" content="Berichte, Analysen und Einblicke zu globalen Immobilien- und Investitionsprojekten." />
+    <style>
+        /* ── Blog grid ── */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 18px;
+        }
+        @media (min-width: 640px) {
+            .blog-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 1000px) {
+            .blog-grid { grid-template-columns: repeat(3, 1fr); }
+            .blog-card-featured {
+                grid-column: span 3;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 0;
+            }
+        }
+
+        /* ── Blog Card ── */
+        .blog-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+            border-color: rgba(10,132,255,0.35);
+        }
+        .blog-card-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+            filter: brightness(0.75) saturate(1.1);
+            transition: filter 0.3s;
+        }
+        .blog-card:hover .blog-card-img {
+            filter: brightness(0.9) saturate(1.2);
+        }
+        .blog-card-img-placeholder {
+            width: 100%;
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+        }
+        .blog-card-body {
+            padding: 20px 18px 18px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .blog-card-meta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+        .blog-tag {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 20px;
+            background: rgba(10,132,255,0.1);
+            border: 1px solid rgba(10,132,255,0.25);
+            color: var(--primary-blue);
+        }
+        .blog-tag.green { background:rgba(48,209,88,0.1); border-color:rgba(48,209,88,0.25); color:#30D158; }
+        .blog-tag.orange { background:rgba(255,159,10,0.1); border-color:rgba(255,159,10,0.25); color:#FF9F0A; }
+        .blog-tag.purple { background:rgba(139,92,246,0.1); border-color:rgba(139,92,246,0.25); color:#8b5cf6; }
+        .blog-tag.cyan { background:rgba(6,182,212,0.1); border-color:rgba(6,182,212,0.25); color:#06b6d4; }
+        .blog-date {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+        }
+        .blog-card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.4;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+        .blog-card-excerpt {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            flex: 1;
+            margin-bottom: 14px;
+        }
+        .blog-read-more {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .blog-read-more svg {
+            width: 13px; height: 13px;
+            transition: transform 0.15s;
+        }
+        .blog-card:hover .blog-read-more svg {
+            transform: translateX(4px);
+        }
+
+        /* Featured card overrides */
+        .blog-card-featured .blog-card-img-placeholder,
+        .blog-card-featured .blog-card-img {
+            height: 100%;
+            min-height: 220px;
+        }
+        .blog-card-featured .blog-card-title {
+            font-size: 1.25rem;
+        }
+
+        /* ── Filter bar ── */
+        .blog-filters {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+        .blog-filter-btn {
+            font-size: 0.78rem;
+            padding: 7px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.05);
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: background 0.15s, color 0.15s, border-color 0.15s;
+            font-family: var(--font-family);
+        }
+        .blog-filter-btn:hover,
+        .blog-filter-btn.active {
+            background: rgba(10,132,255,0.12);
+            color: var(--primary-blue);
+            border-color: rgba(10,132,255,0.3);
+        }
+
+        /* ── Newsletter strip ── */
+        .newsletter-strip {
+            background: rgba(10,132,255,0.07);
+            border: 1px solid rgba(10,132,255,0.18);
+            border-radius: 20px;
+            padding: 28px 24px;
+            text-align: center;
+        }
+        .newsletter-strip h3 { font-size: 1.1rem; margin-bottom: 6px; }
+        .newsletter-strip p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px; }
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+            max-width: 420px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .newsletter-form input {
+            flex: 1;
+            min-width: 200px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 0.88rem;
+        }
+        .newsletter-form button {
+            padding: 12px 22px;
+            background: rgba(10,132,255,0.2);
+            border: 1px solid rgba(10,132,255,0.4);
+            border-radius: 12px;
+            color: var(--primary-blue);
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: var(--font-family);
+            transition: background 0.2s, transform 0.2s;
+        }
+        .newsletter-form button:hover {
+            background: rgba(10,132,255,0.3);
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background-wrapper">
+        <img alt="Hintergrund" class="main-bg" id="hero-bg" src="/assets/images/bg_main_blurred_new.webp" />
+        <div class="bg-gradient-overlay"></div>
+    </div>
+
+    <div class="app-container">
+        <!-- Mobile Navigation -->
+        <nav class="mobile-nav" id="mobile-nav">
+            <a class="nav-link" href="/de/earn-money">Ideen</a>
+            <a class="nav-link" href="/de/">Home</a>
+            <a class="nav-link" href="/de/usa">USA</a>
+            <a class="nav-link" href="/de/deutschland">Deutschland</a>
+            <a class="nav-link" href="/de/turkiye">Türkei</a>
+            <a class="nav-link" href="/de/blog">Blog</a>
+            <a class="nav-link" href="/de/faq">FAQ</a>
+            <a class="nav-link" href="/de/kontakt">Kontakt</a>
+        </nav>
+
+        <!-- Header -->
+        <header class="app-header fade-in-up" style="animation-delay: 0.1s;">
+            <a class="logo-link" href="/de/">
+                <span style="font-size: 1.5rem; font-weight: 500; letter-spacing: -0.5px; color: var(--text-main);">
+                    <span style="color: var(--primary-blue);">a</span>Best<span style="color: var(--primary-blue);">.co</span>
+                </span>
+            </a>
+            <div class="header-actions-v2">
+                <button class="header-icon-v2" id="search-btn" aria-label="Suche" title="Suche" style="background:none;border:1px solid var(--glass-border);cursor:pointer;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
+                </button>
+                <a href="/de/earn-money" class="header-icon-v2" aria-label="Geld verdienen" title="Geld verdienen" style="font-size:1.3rem;">💰</a>
+                <a href="/login" class="header-icon-v2" aria-label="Login">
+                    <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </a>
+                <a href="/de/kontakt" class="header-icon-v2" aria-label="Kontakt">
+                    <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                </a>
+                <div aria-label="Toggle Navigation Menu" class="nav-icon" id="menu-btn">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </header>
+
+        <main class="scroll-content">
+
+            <!-- Hero -->
+            <section class="hero fade-in-up" style="animation-delay: 0.2s;">
+                <div class="hero-content glass-chip">
+                    <h1>Blog &amp; <span class="highlight">News</span></h1>
+                    <p class="subtext">Aktuelle Berichte, Marktanalysen und Einblicke zu unseren globalen Projekten in USA, Deutschland, England und der Türkei.</p>
+                </div>
+            </section>
+
+            <!-- Filter Bar -->
+            <section class="fade-in-up" style="animation-delay: 0.25s; margin-bottom: 1.5rem;">
+                <div class="blog-filters">
+                    <button class="blog-filter-btn active" data-filter="all">Alle</button>
+                    <button class="blog-filter-btn" data-filter="usa">🇺🇸 USA</button>
+                    <button class="blog-filter-btn" data-filter="de">🇩🇪 Deutschland</button>
+                    <button class="blog-filter-btn" data-filter="tr">🇹🇷 Türkei</button>
+                    <button class="blog-filter-btn" data-filter="kapital">💰 Kapital &amp; Investment</button>
+                    <button class="blog-filter-btn" data-filter="energie">⚡ Energie</button>
+                </div>
+            </section>
+
+            <!-- Blog Grid -->
+            <section class="section-spacing fade-in-up" style="animation-delay: 0.3s;">
+                <div class="blog-grid" id="blog-grid">
+
+                    <!-- Featured: Artikel 1 -->
+                    <a href="/de/faq" class="blog-card blog-card-featured" data-cat="kapital">
+                        <div class="blog-card-img-placeholder" style="background: linear-gradient(135deg, rgba(10,132,255,0.2), rgba(16,185,129,0.15));">🏦</div>
+                        <div class="blog-card-body">
+                            <div class="blog-card-meta">
+                                <span class="blog-tag">💰 Kapital &amp; Investment</span>
+                                <span class="blog-date">11. März 2026</span>
+                            </div>
+                            <div class="blog-card-title">Was ist stille Beteiligung? Der Kapitalpartner-Leitfaden von aBest.co</div>
+                            <div class="blog-card-excerpt">
+                                Stille Beteiligung, 5 % p.a. Festzins, Option A und B – wir erklären alle Begriffe einfach und verständlich. Ideal für Erstinvestoren und alle, die Kapital sicher anlegen möchten.
+                            </div>
+                            <span class="blog-read-more">Mehr erfahren <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                        </div>
+                    </a>
+
+                    <!-- Artikel 2 -->
+                    <a href="/de/usa" class="blog-card" data-cat="usa energie">
+                        <div class="blog-card-img-placeholder" style="background: linear-gradient(135deg, rgba(255,159,10,0.15), rgba(10,132,255,0.1));">⚡</div>
+                        <div class="blog-card-body">
+                            <div class="blog-card-meta">
+                                <span class="blog-tag orange">⚡ Energie</span>
+                                <span class="blog-date">8. März 2026</span>
+                            </div>
+                            <div class="blog-card-title">Solarprojekte in Rosamond, Kalifornien – Chancen für internationale Investoren</div>
+                            <div class="blog-card-excerpt">
+                                Rosamond im Antelope Valley ist eines der sonnenstärksten Gebiete Nordamerikas. aBest.co erschließt Grundstücke für Solar- und Energieprojekte – ideal für europäische Kapitalpartner.
+                            </div>
+                            <span class="blog-read-more">Mehr erfahren <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                        </div>
+                    </a>
+
+                    <!-- Artikel 3 -->
+                    <a href="/de/deutschland" class="blog-card" data-cat="de">
+                        <div class="blog-card-img-placeholder" style="background: linear-gradient(135deg, rgba(48,209,88,0.15), rgba(10,132,255,0.1));">🇩🇪</div>
+                        <div class="blog-card-body">
+                            <div class="blog-card-meta">
+                                <span class="blog-tag green">🇩🇪 Deutschland</span>
+                                <span class="blog-date">5. März 2026</span>
+                            </div>
+                            <div class="blog-card-title">Berlin Immobilienmarkt 2026 – Hotellerie und Wohnimmobilien im Aufwind</div>
+                            <div class="blog-card-excerpt">
+                                Berlin entwickelt sich zum attraktivsten Immobilienstandort Deutschlands. Wir analysieren die aktuelle Marktlage in Hotellerie und Wohnimmobilien und zeigen, wo sich Investitionen 2026 lohnen.
+                            </div>
+                            <span class="blog-read-more">Mehr erfahren <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                        </div>
+                    </a>
+
+                    <!-- Artikel 4 -->
+                    <a href="/de/turkiye" class="blog-card" data-cat="tr">
+                        <div class="blog-card-img-placeholder" style="background: linear-gradient(135deg, rgba(239,68,68,0.15), rgba(255,159,10,0.1));">🇹🇷</div>
+                        <div class="blog-card-body">
+                            <div class="blog-card-meta">
+                                <span class="blog-tag orange">🇹🇷 Türkei</span>
+                                <span class="blog-date">1. März 2026</span>
+                            </div>
+                            <div class="blog-card-title">Türkei 2026 – Istanbul, Antalya &amp; Gaziantep: Wo investieren sich lohnt</div>
+                            <div class="blog-card-excerpt">
+                                Die Türkei boomt: Istanbul als Global City, Antalya als Tourismusmagnet, Gaziantep als aufstrebendes Industrie- und Handelszentrum. aBest.co analysiert drei Märkte im Vergleich.
+                            </div>
+                            <span class="blog-read-more">Mehr erfahren <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                        </div>
+                    </a>
+
+                    <!-- Artikel 5 -->
+                    <a href="/de/earn-money" class="blog-card" data-cat="kapital">
+                        <div class="blog-card-img-placeholder" style="background: linear-gradient(135deg, rgba(139,92,246,0.15), rgba(10,132,255,0.1));">🌐</div>
+                        <div class="blog-card-body">
+                            <div class="blog-card-meta">
+                                <span class="blog-tag purple">🌐 Plattform</span>
+                                <span class="blog-date">26. Februar 2026</span>
+                            </div>
+                            <div class="blog-card-title">Wie aBest.co internationale Projekte verbindet – in 14 Sprachen auf 4 Kontinenten</div>
+                            <div class="blog-card-excerpt">
+                                Von Kapitalpartnern in Deutschland zu Projekten in den USA: aBest.co ist die Brücke zwischen Kapital und Gelegenheit. Ein Blick hinter die Plattform und ihre globale Vision.
+                            </div>
+                            <span class="blog-read-more">Mehr erfahren <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                        </div>
+                    </a>
+
+                    <!-- Artikel 6 -->
+                    <a href="/de/usa" class="blog-card" data-cat="usa">
+                        <div class="blog-card-img-placeholder" style="background: linear-gradient(135deg, rgba(6,182,212,0.15), rgba(10,132,255,0.1));">🏡</div>
+                        <div class="blog-card-body">
+                            <div class="blog-card-meta">
+                                <span class="blog-tag cyan">🇺🇸 USA</span>
+                                <span class="blog-date">20. Februar 2026</span>
+                            </div>
+                            <div class="blog-card-title">Half Moon Bay &amp; Los Angeles – Premium-Grundstücke direkt am Pazifik</div>
+                            <div class="blog-card-excerpt">
+                                Los Angeles und Half Moon Bay bieten außergewöhnliche Grundstückslagen mit direktem Zugang zu Küste, Infrastruktur und wachsenden Märkten. Ein exklusiver Einblick in aktuelle aBest.co Objekte.
+                            </div>
+                            <span class="blog-read-more">Mehr erfahren <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                        </div>
+                    </a>
+
+                </div>
+            </section>
+
+            <!-- Newsletter -->
+            <section class="section-spacing fade-in-up" style="animation-delay: 0.4s;">
+                <div class="newsletter-strip">
+                    <h3>📬 Bleiben Sie informiert</h3>
+                    <p>Neue Projektnews, Marktanalysen und Investment-Updates – direkt in Ihr Postfach.</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Ihre E-Mail-Adresse" id="newsletter-email" />
+                        <button onclick="handleNewsletter()">Abonnieren →</button>
+                    </div>
+                    <p id="newsletter-msg" style="margin-top:10px;font-size:0.8rem;color:var(--primary-blue);display:none;"></p>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="app-footer section-spacing fade-in-up" style="animation-delay: 0.8s;">
+            <div class="slim-footer-content">
+                <!-- Social Media Icons -->
+                <div class="social-icons-row" style="width:100%;display:flex;justify-content:center;gap:18px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,0.07);margin-bottom:4px;">
+                    <a href="https://tiktok.com/@abest.co" target="_blank" rel="noopener" aria-label="TikTok" class="social-icon-link" title="TikTok">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.78a4.85 4.85 0 0 1-1.01-.09z"/></svg>
+                    </a>
+                    <a href="https://instagram.com/abest.co" target="_blank" rel="noopener" aria-label="Instagram" class="social-icon-link" title="Instagram">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    </a>
+                    <a href="https://x.com/abest_co" target="_blank" rel="noopener" aria-label="X (Twitter)" class="social-icon-link" title="X.com">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                    <a href="https://facebook.com/abest.co" target="_blank" rel="noopener" aria-label="Facebook" class="social-icon-link" title="Facebook">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    </a>
+                    <a href="https://linkedin.com/company/abest-co" target="_blank" rel="noopener" aria-label="LinkedIn" class="social-icon-link" title="LinkedIn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    </a>
+                    <a href="https://youtube.com/@abest.co" target="_blank" rel="noopener" aria-label="YouTube" class="social-icon-link" title="YouTube">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    </a>
+                    <a href="https://vk.com/abest_co" target="_blank" rel="noopener" aria-label="VK" class="social-icon-link" title="VK.com">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M15.07 2H8.93C3.33 2 2 3.33 2 8.93v6.14C2 20.67 3.33 22 8.93 22h6.14C20.67 22 22 20.67 22 15.07V8.93C22 3.33 20.67 2 15.07 2zm3.08 13.5h-1.71c-.65 0-.85-.52-2.01-1.69-1-.99-1.45-1.12-1.71-1.12-.36 0-.46.1-.46.6v1.54c0 .43-.14.69-1.29.69-1.9 0-4.01-1.15-5.49-3.29C4.27 9.8 3.73 7.94 3.73 7.5c0-.26.1-.5.6-.5h1.71c.45 0 .62.2.79.67.87 2.51 2.33 4.71 2.93 4.71.22 0 .33-.1.33-.65V9.9c-.07-1.17-.68-1.27-.68-1.68 0-.2.16-.4.42-.4h2.69c.38 0 .51.2.51.63v3.39c0 .38.17.51.28.51.22 0 .41-.13.82-.54 1.27-1.42 2.18-3.61 2.18-3.61.12-.26.33-.5.78-.5h1.71c.51 0 .62.26.51.63-.22 1.01-2.36 4.04-2.36 4.04-.18.3-.25.43 0 .76.18.25.78.77 1.18 1.23.74.83 1.3 1.53 1.45 2.02.16.49-.09.73-.58.73z"/></svg>
+                    </a>
+                </div>
+                <a href="/de/terms" class="footer-link">Nutzungsbedingungen</a>
+                <span class="footer-separator">|</span>
+                <a href="/de/cookie-policy" class="footer-link">Cookie-Richtlinie</a>
+                <span class="footer-separator">|</span>
+                <a href="/de/disclaimer" class="footer-link">Disclaimer</a>
+                <span class="footer-separator">|</span>
+                <a href="/de/impressum" class="footer-link">Impressum</a>
+                <span class="footer-separator">|</span>
+                <a href="/de/datenschutz" class="footer-link">Datenschutz</a>
+                <span class="footer-separator">|</span>
+                <a href="/de/kontakt" class="footer-link">Kontakt</a>
+                <div class="language-switcher">
+                    <button class="lang-btn" aria-label="Language options">🇩🇪</button>
+                    <div class="lang-dropdown">
+                        <a href="/en/" class="lang-dropdown-link" aria-label="Switch to EN">🇺🇸</a>
+                        <a href="/zh/" class="lang-dropdown-link" aria-label="Switch to ZH">🇨🇳</a>
+                        <a href="/hi/" class="lang-dropdown-link" aria-label="Switch to HI">🇮🇳</a>
+                        <a href="/es/" class="lang-dropdown-link" aria-label="Switch to ES">🇪🇸</a>
+                        <a href="/fr/" class="lang-dropdown-link" aria-label="Switch to FR">🇫🇷</a>
+                        <a href="/ar/" class="lang-dropdown-link" aria-label="Switch to AR">🇸🇦</a>
+                        <a href="/pt/" class="lang-dropdown-link" aria-label="Switch to PT">🇵🇹</a>
+                        <a href="/ru/" class="lang-dropdown-link" aria-label="Switch to RU">🇷🇺</a>
+                        <a href="/ur/" class="lang-dropdown-link" aria-label="Switch to UR">🇵🇰</a>
+                        <a href="/tr/" class="lang-dropdown-link" aria-label="Switch to TR">🇹🇷</a>
+                        <a href="/ku/" class="lang-dropdown-link" aria-label="Switch to KU"><img src="/ku-flag.svg" alt="KU" class="ku-flag-icon"></a>
+                        <a href="/he/" class="lang-dropdown-link" aria-label="Switch to HE">🇮🇱</a>
+                        <a href="/hy/" class="lang-dropdown-link" aria-label="Switch to HY">🇦🇲</a>
+                    </div>
+                </div>
+                <span class="footer-separator">|</span>
+                <p class="copyright">© 2026 <span class="brand-style"><span class="brand-a">a</span>Best<span class="brand-dot-co">.co</span></span></p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Search Overlay -->
+    <div id="search-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(20px);z-index:2000;padding:20px;">
+        <div style="max-width:600px;margin:80px auto 0;">
+            <div style="display:flex;gap:12px;align-items:center;background:rgba(44,44,46,0.9);border:1px solid rgba(255,255,255,0.15);border-radius:16px;padding:14px 18px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a1a1a6" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input id="search-input" type="text" placeholder="Suchen Sie auf aBest.co…" autocomplete="off"
+                    style="flex:1;background:none;border:none;color:#f5f5f7;font-size:1rem;font-family:inherit;outline:none;"/>
+                <button id="search-close" style="background:none;border:none;color:#a1a1a6;cursor:pointer;font-size:1.4rem;padding:0;line-height:1;">×</button>
+            </div>
+            <div id="search-results" style="margin-top:16px;display:flex;flex-direction:column;gap:10px;max-height:60vh;overflow-y:auto;"></div>
+        </div>
+    </div>
+
+    <style>
+        .social-icon-link { color:var(--text-muted);text-decoration:none;transition:color 0.2s,transform 0.2s;display:flex;align-items:center; }
+        .social-icon-link:hover { color:var(--primary-blue);transform:translateY(-2px); }
+        .search-result-item { display:block;padding:14px 18px;background:rgba(44,44,46,0.7);border:1px solid rgba(255,255,255,0.1);border-radius:12px;text-decoration:none;color:#f5f5f7;transition:background 0.15s,border-color 0.15s; }
+        .search-result-item:hover { background:rgba(58,58,60,0.9);border-color:rgba(10,132,255,0.4); }
+        .search-result-item .sr-title { font-weight:600;font-size:0.95rem;margin-bottom:3px; }
+        .search-result-item .sr-desc { font-size:0.8rem;color:#a1a1a6; }
+    </style>
+
+    <script src="/app.js"></script>
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileNav = document.getElementById('mobile-nav');
+        if (menuBtn && mobileNav) {
+            menuBtn.addEventListener('click', () => {
+                mobileNav.classList.toggle('open');
+                menuBtn.classList.toggle('open');
+            });
+        }
+
+        // Category filter
+        document.querySelectorAll('.blog-filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.blog-filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.dataset.filter;
+                document.querySelectorAll('#blog-grid .blog-card').forEach(card => {
+                    if (filter === 'all' || (card.dataset.cat || '').includes(filter)) {
+                        card.style.display = '';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Newsletter
+        function handleNewsletter() {
+            const email = document.getElementById('newsletter-email').value;
+            const msg = document.getElementById('newsletter-msg');
+            if (!email || !email.includes('@')) {
+                msg.style.color = '#ff453a';
+                msg.textContent = 'Bitte geben Sie eine gültige E-Mail-Adresse ein.';
+                msg.style.display = 'block';
+                return;
+            }
+            msg.style.color = '#30D158';
+            msg.textContent = '✓ Danke! Sie wurden erfolgreich angemeldet.';
+            msg.style.display = 'block';
+            document.getElementById('newsletter-email').value = '';
+        }
+
+        // Search
+        const searchData = [
+            { title: 'Startseite', desc: 'Globale Projekte entwickeln. Kapital verbinden. Zukunft bauen.', url: '/de/' },
+            { title: 'Geld verdienen', desc: 'Kapitalpartner, Gründer, Investor, Verkäufer, Explorer', url: '/de/earn-money' },
+            { title: 'Kapitalpartner – 5% p.a.', desc: 'Stille Beteiligung, Festzins, Option A und B, ab €1.000', url: '/de/earn-money/capital-partner' },
+            { title: 'Gründer / Founder', desc: 'Idee oder Projekt einbringen, Investoren finden', url: '/de/earn-money/founder' },
+            { title: 'Investor', desc: 'Aktiv in Projekte investieren, Co-Investor', url: '/de/earn-money/investor' },
+            { title: 'Verkäufer', desc: 'Immobilien, Grundstücke, Liegenschaften verkaufen', url: '/de/earn-money/seller' },
+            { title: 'USA Projekte', desc: 'Grundstücke und Solar in Kalifornien – Rosamond, LA, Half Moon Bay', url: '/de/usa' },
+            { title: 'Deutschland Projekte', desc: 'Immobilien und Hotellerie in Berlin', url: '/de/deutschland' },
+            { title: 'Türkei Projekte', desc: 'Istanbul, Antalya, Gaziantep – Gewerbe & Immobilien', url: '/de/turkiye' },
+            { title: 'England Projekte', desc: 'London – internationale Projektentwicklung', url: '/de/england' },
+            { title: 'FAQ', desc: 'Stille Beteiligung, Zinssatz, Option A/B, DSGVO, Mindestanlage', url: '/de/faq' },
+            { title: 'Blog & News', desc: 'Aktuelle Berichte zu Projekten, Märkten und Investments', url: '/de/blog' },
+            { title: 'Kontakt', desc: 'Schreiben Sie uns – in Ihrer Sprache', url: '/de/kontakt' },
+            { title: 'Impressum', desc: 'Rechtliche Angaben zu aBest.co', url: '/de/impressum' },
+            { title: 'Datenschutz', desc: 'DSGVO-konforme Datenschutzerklärung', url: '/de/datenschutz' },
+        ];
+        const overlay = document.getElementById('search-overlay');
+        const searchBtn = document.getElementById('search-btn');
+        const searchClose = document.getElementById('search-close');
+        const searchInput = document.getElementById('search-input');
+        const searchResults = document.getElementById('search-results');
+
+        searchBtn.addEventListener('click', () => { overlay.style.display = 'block'; searchInput.focus(); });
+        searchClose.addEventListener('click', () => { overlay.style.display = 'none'; searchInput.value = ''; searchResults.innerHTML = ''; });
+        overlay.addEventListener('click', (e) => { if (e.target === overlay) { overlay.style.display = 'none'; searchInput.value = ''; searchResults.innerHTML = ''; } });
+        searchInput.addEventListener('input', () => {
+            const q = searchInput.value.toLowerCase().trim();
+            searchResults.innerHTML = '';
+            if (!q) return;
+            const hits = searchData.filter(d => d.title.toLowerCase().includes(q) || d.desc.toLowerCase().includes(q));
+            if (hits.length === 0) { searchResults.innerHTML = '<p style="color:#a1a1a6;text-align:center;padding:20px;">Keine Ergebnisse gefunden.</p>'; return; }
+            hits.forEach(h => {
+                const a = document.createElement('a');
+                a.href = h.url; a.className = 'search-result-item';
+                a.innerHTML = `<div class="sr-title">${h.title}</div><div class="sr-desc">${h.desc}</div>`;
+                searchResults.appendChild(a);
+            });
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && overlay.style.display === 'block') {
+                overlay.style.display = 'none'; searchInput.value = ''; searchResults.innerHTML = '';
+            }
+        });
+    </script>
+</body>
+</html>
