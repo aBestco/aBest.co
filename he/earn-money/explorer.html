@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
 <title>מגלה – חקור שווקים והזדמנויות | aBest.co</title>
-<meta content="Als מגלה עם aBest.co erhalten אתה חינםen Zugang zu בדוקen נדלן, פרויקטיםn ו Investitionsmöglichkeiten aus 14 מדינותn — ohne Verpflichtung, jeהzeit wechselbar." name="description"/>
+<meta content="Als מגלה bei aBest.co erhalten Sie חינםen Zugang zu geprüften נדלן, Projekten und Investitionsmöglichkeiten aus 14 מדינותn — ohne Verpflichtung, jederzeit wechselbar." name="description"/>
 <link href="/favicon.png" rel="icon" type="image/png"/>
 <link href="/index.css" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
@@ -27,18 +27,18 @@
 }
 .exp-hero::before {
     content:''; position:absolute; inset:0;
-    backgroו:
-        radial-graהnt(ellipse 55% 45% at 20% 30%, rgba(6,182,212,0.13) 0%, transparent 60%),
-        radial-graהnt(ellipse 45% 50% at 85% 65%, rgba(139,92,246,0.09) 0%, transparent 60%);
+    background:
+        radial-gradient(ellipse 55% 45% at 20% 30%, rgba(6,182,212,0.13) 0%, transparent 60%),
+        radial-gradient(ellipse 45% 50% at 85% 65%, rgba(139,92,246,0.09) 0%, transparent 60%);
     pointer-events:none;
 }
 .exp-badge {
-    display:inline-flex; align-items:center; gap:7px; padding:5px 16px; borה-radius:22px;
-    backgroו:var(--exp-cyan-dim); borה:1px solid rgba(6,182,212,0.35);
+    display:inline-flex; align-items:center; gap:7px; padding:5px 16px; border-radius:22px;
+    background:var(--exp-cyan-dim); border:1px solid rgba(6,182,212,0.35);
     font-size:0.72rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase;
     color:var(--exp-cyan); margin-bottom:20px; position:relative; z-index:1;
 }
-.exp-dot { width:7px; height:7px; borה-radius:50%; backgroו:var(--exp-cyan); animation:exp-pulse 1.8s infinite; }
+.exp-dot { width:7px; height:7px; border-radius:50%; background:var(--exp-cyan); animation:exp-pulse 1.8s infinite; }
 @keyframes exp-pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.7)} }
 .exp-hero h1 { font-size:clamp(1.9rem,5vw,3rem); font-weight:800; line-height:1.12; margin:0 0 6px; color:var(--text-main); position:relative; z-index:1; }
 .exp-hero h1 span { color:var(--exp-cyan); }
@@ -48,8 +48,8 @@
 /* Chips */
 .exp-chips { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-bottom:32px; position:relative; z-index:1; }
 .exp-chip {
-    display:inline-flex; align-items:center; gap:6px; padding:6px 14px; borה-radius:20px;
-    backgroו:rgba(255,255,255,0.05); borה:1px solid rgba(255,255,255,0.12);
+    display:inline-flex; align-items:center; gap:6px; padding:6px 14px; border-radius:20px;
+    background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12);
     font-size:0.78rem; font-weight:600; color:var(--text-main);
 }
 .exp-chip i { font-style:normal; color:var(--exp-cyan); }
@@ -57,26 +57,26 @@
 /* CTAs */
 .exp-hero-ctas { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; position:relative; z-index:1; }
 .exp-btn-primary {
-    padding:14px 28px; borה-radius:12px; font-size:0.95rem; font-weight:700;
-    backgroו:linear-graהnt(135deg, var(--exp-cyan), var(--exp-purple));
-    color:#fff; borה:none; cursor:pointer; transition:opacity .2s, transform .2s;
+    padding:14px 28px; border-radius:12px; font-size:0.95rem; font-weight:700;
+    background:linear-gradient(135deg, var(--exp-cyan), var(--exp-purple));
+    color:#fff; border:none; cursor:pointer; transition:opacity .2s, transform .2s;
     text-decoration:none; display:inline-block;
 }
 .exp-btn-primary:hover { opacity:.88; transform:translateY(-1px); }
 .exp-btn-ghost {
-    padding:14px 28px; borה-radius:12px; font-size:0.95rem; font-weight:600;
-    backgroו:rgba(255,255,255,0.06); borה:1px solid rgba(255,255,255,0.15);
-    color:var(--text-main); cursor:pointer; transition:backgroו .2s; text-decoration:none; display:inline-block;
+    padding:14px 28px; border-radius:12px; font-size:0.95rem; font-weight:600;
+    background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15);
+    color:var(--text-main); cursor:pointer; transition:background .2s; text-decoration:none; display:inline-block;
 }
-.exp-btn-ghost:hover { backgroו:rgba(255,255,255,0.1); }
+.exp-btn-ghost:hover { background:rgba(255,255,255,0.1); }
 
 /* ── STATS ── */
 .exp-stats {
     display:grid; grid-template-columns:repeat(4,1fr); gap:2px;
-    backgroו:rgba(255,255,255,0.05); borה-radius:16px; overflow:hidden;
-    borה:1px solid rgba(255,255,255,0.08); margin:0 20px;
+    background:rgba(255,255,255,0.05); border-radius:16px; overflow:hidden;
+    border:1px solid rgba(255,255,255,0.08); margin:0 20px;
 }
-.exp-stat { padding:20px 10px; text-align:center; backgroו:var(--glass-bg); }
+.exp-stat { padding:20px 10px; text-align:center; background:var(--glass-bg); }
 .exp-stat-val { font-size:1.8rem; font-weight:800; color:var(--exp-cyan); display:block; }
 .exp-stat-lbl { font-size:0.72rem; color:var(--text-muted); margin-top:2px; }
 @media(max-width:480px){ .exp-stats { grid-template-columns:repeat(2,1fr); } }
@@ -89,17 +89,17 @@
 }
 .exp-section h2 { font-size:clamp(1.35rem,3.5vw,1.85rem); font-weight:800; margin:0 0 8px; color:var(--text-main); }
 .exp-section-intro { font-size:0.93rem; color:var(--text-muted); margin:0 0 28px; line-height:1.6; }
-.exp-accent { display:block; width:36px; height:3px; borה-radius:2px; backgroו:var(--exp-cyan); margin:10px 0; }
+.exp-accent { display:block; width:36px; height:3px; border-radius:2px; background:var(--exp-cyan); margin:10px 0; }
 
 /* ── WHAT YOU SEE — Entdeckungs-Karten ── */
 .exp-discover-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
 @media(min-width:600px){ .exp-discover-grid { grid-template-columns:repeat(3,1fr); } }
 .exp-disc-card {
-    borה-radius:16px; padding:18px 16px;
-    backgroו:rgba(255,255,255,0.04); borה:1.5px solid rgba(255,255,255,0.09);
-    transition:borה-color .2s, transform .2s;
+    border-radius:16px; padding:18px 16px;
+    background:rgba(255,255,255,0.04); border:1.5px solid rgba(255,255,255,0.09);
+    transition:border-color .2s, transform .2s;
 }
-.exp-disc-card:hover { borה-color:rgba(6,182,212,0.4); transform:translateY(-2px); }
+.exp-disc-card:hover { border-color:rgba(6,182,212,0.4); transform:translateY(-2px); }
 .exp-disc-icon { font-size:1.8rem; margin-bottom:8px; }
 .exp-disc-title { font-size:0.88rem; font-weight:700; color:var(--text-main); margin:0 0 4px; }
 .exp-disc-desc { font-size:0.75rem; color:var(--text-muted); margin:0; line-height:1.45; }
@@ -108,26 +108,26 @@
 .exp-benefit-grid { display:grid; gap:12px; }
 .exp-benefit-card {
     display:flex; gap:16px; align-items:flex-start;
-    backgroו:rgba(255,255,255,0.04); borה:1.5px solid rgba(255,255,255,0.09);
-    borה-radius:16px; padding:18px 16px;
-    transition:borה-color .2s;
+    background:rgba(255,255,255,0.04); border:1.5px solid rgba(255,255,255,0.09);
+    border-radius:16px; padding:18px 16px;
+    transition:border-color .2s;
 }
-.exp-benefit-card:hover { borה-color:rgba(6,182,212,0.35); }
+.exp-benefit-card:hover { border-color:rgba(6,182,212,0.35); }
 .exp-ben-icon { font-size:1.8rem; flex-shrink:0; margin-top:2px; }
 .exp-ben-body h4 { font-size:0.9rem; font-weight:700; color:var(--text-main); margin:0 0 5px; }
 .exp-ben-body p { font-size:0.8rem; color:var(--text-muted); margin:0; line-height:1.5; }
 .exp-ben-tag {
-    display:inline-block; margin-top:8px; padding:3px 10px; borה-radius:20px; font-size:0.7rem; font-weight:700;
-    backgroו:var(--exp-cyan-dim); color:var(--exp-cyan); borה:1px solid rgba(6,182,212,0.25);
+    display:inline-block; margin-top:8px; padding:3px 10px; border-radius:20px; font-size:0.7rem; font-weight:700;
+    background:var(--exp-cyan-dim); color:var(--exp-cyan); border:1px solid rgba(6,182,212,0.25);
 }
 
 /* ── WIE ES FUNKTIONIERT ── */
 .exp-steps { display:flex; flex-direction:column; }
-.exp-step { display:flex; gap:18px; align-items:flex-start; padding:18px 0; borה-bottom:1px solid rgba(255,255,255,0.06); }
-.exp-step:last-child { borה-bottom:none; padding-bottom:0; }
+.exp-step { display:flex; gap:18px; align-items:flex-start; padding:18px 0; border-bottom:1px solid rgba(255,255,255,0.06); }
+.exp-step:last-child { border-bottom:none; padding-bottom:0; }
 .exp-step-num {
-    flex-shrink:0; width:40px; height:40px; borה-radius:50%;
-    backgroו:var(--exp-cyan-dim); borה:2px solid var(--exp-cyan);
+    flex-shrink:0; width:40px; height:40px; border-radius:50%;
+    background:var(--exp-cyan-dim); border:2px solid var(--exp-cyan);
     display:flex; align-items:center; justify-content:center;
     font-size:1rem; font-weight:800; color:var(--exp-cyan);
 }
@@ -136,11 +136,11 @@
 
 /* ── TESTIMONIALS ── */
 .exp-testi-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; }
-.exp-testi-card { backgroו:rgba(255,255,255,0.04); borה:1.5px solid rgba(255,255,255,0.09); borה-radius:16px; padding:18px; }
+.exp-testi-card { background:rgba(255,255,255,0.04); border:1.5px solid rgba(255,255,255,0.09); border-radius:16px; padding:18px; }
 .exp-testi-stars { color:#f59e0b; font-size:0.88rem; margin-bottom:8px; }
 .exp-testi-text { font-size:0.82rem; color:var(--text-muted); line-height:1.6; margin-bottom:12px; font-style:italic; }
 .exp-testi-author { display:flex; align-items:center; gap:10px; }
-.exp-testi-avatar { width:36px; height:36px; borה-radius:50%; backgroו:var(--exp-cyan-dim); borה:1.5px solid var(--exp-cyan); display:flex; align-items:center; justify-content:center; font-size:0.9rem; flex-shrink:0; }
+.exp-testi-avatar { width:36px; height:36px; border-radius:50%; background:var(--exp-cyan-dim); border:1.5px solid var(--exp-cyan); display:flex; align-items:center; justify-content:center; font-size:0.9rem; flex-shrink:0; }
 .exp-testi-name { font-size:0.82rem; font-weight:700; color:var(--text-main); }
 .exp-testi-loc { font-size:0.7rem; color:var(--text-muted); }
 
@@ -148,12 +148,12 @@
 .exp-compare-grid { display:grid; gap:10px; }
 .exp-compare-row {
     display:flex; align-items:center; justify-content:space-between;
-    backgroו:rgba(255,255,255,0.04); borה:1.5px solid rgba(255,255,255,0.08);
-    borה-radius:14px; padding:14px 16px; gap:10px;
+    background:rgba(255,255,255,0.04); border:1.5px solid rgba(255,255,255,0.08);
+    border-radius:14px; padding:14px 16px; gap:10px;
     text-decoration:none; color:var(--text-main);
-    transition:borה-color .2s, transform .2s;
+    transition:border-color .2s, transform .2s;
 }
-.exp-compare-row:hover { borה-color:rgba(6,182,212,0.4); transform:translateX(3px); }
+.exp-compare-row:hover { border-color:rgba(6,182,212,0.4); transform:translateX(3px); }
 .exp-compare-left { display:flex; align-items:center; gap:12px; }
 .exp-compare-icon { font-size:1.4rem; flex-shrink:0; }
 .exp-compare-label { font-size:0.85rem; font-weight:700; color:var(--text-main); margin:0 0 2px; }
@@ -161,10 +161,10 @@
 .exp-compare-arrow { color:var(--exp-cyan); font-size:1rem; flex-shrink:0; }
 
 /* ── FAQ ── */
-.exp-faq-item { borה-bottom:1px solid rgba(255,255,255,0.07); }
-.exp-faq-item:last-child { borה-bottom:none; }
+.exp-faq-item { border-bottom:1px solid rgba(255,255,255,0.07); }
+.exp-faq-item:last-child { border-bottom:none; }
 .exp-faq-q {
-    width:100%; backgroו:none; borה:none; color:var(--text-main);
+    width:100%; background:none; border:none; color:var(--text-main);
     font-size:0.88rem; font-weight:600; text-align:left;
     padding:16px 0; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:10px;
     font-family:inherit;
@@ -177,13 +177,13 @@
 /* ── STICKY CTA ── */
 .exp-sticky {
     position:fixed; bottom:0; left:0; right:0; z-index:99;
-    backgroו:rgba(6,182,212,0.90); backdrop-filter:blur(12px);
+    background:rgba(6,182,212,0.90); backdrop-filter:blur(12px);
     padding:12px 20px; display:flex; align-items:center; justify-content:space-between; gap:12px;
 }
 .exp-sticky-text { font-size:0.78rem; font-weight:600; color:#001a1f; line-height:1.3; }
 .exp-sticky-btn {
-    flex-shrink:0; padding:10px 20px; borה-radius:10px; font-size:0.85rem; font-weight:700;
-    backgroו:#001a1f; color:var(--exp-cyan); borה:none; cursor:pointer; white-space:nowrap;
+    flex-shrink:0; padding:10px 20px; border-radius:10px; font-size:0.85rem; font-weight:700;
+    background:#001a1f; color:var(--exp-cyan); border:none; cursor:pointer; white-space:nowrap;
     text-decoration:none; display:inline-block; transition:opacity .2s;
 }
 .exp-sticky-btn:hover { opacity:.88; }
@@ -215,24 +215,24 @@
 </head>
 <body class="dark-mode">
 
-<!-- Backgroו -->
-<div class="backgroו-wrapper">
-    <img alt="Backgroו" class="main-bg" src="/assets/images/bg_main_blurred_new.webp"/>
-    <div class="bg-graהnt-overlay"></div>
+<!-- Background -->
+<div class="background-wrapper">
+    <img alt="Background" class="main-bg" src="/assets/images/bg_main_blurred_new.webp"/>
+    <div class="bg-gradient-overlay"></div>
 </div>
 
-<!-- Heaה -->
-<heaה class="app-heaה">
+<!-- Header -->
+<header class="app-header">
     <a class="logo-link" href="/he/">
         <span style="font-size:1.4rem;font-weight:500;color:var(--text-main);">
             <span style="color:var(--primary-blue);">a</span>Best<span style="color:var(--primary-blue);">.co</span>
         </span>
     </a>
     <div style="display:flex;align-items:center;gap:12px;">
-        <a href="/he/" class="heaה-icon-v2" aria-label="Home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="roו" stroke-linejoin="roו" width="22" height="22"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></a>
-        <a href="/he/profil" class="heaה-icon-v2" aria-label="פרופיל"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="roו" stroke-linejoin="roו" width="22" height="22"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+        <a href="/he/" class="header-icon-v2" aria-label="Home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></a>
+        <a href="/he/profil" class="header-icon-v2" aria-label="פרופיל"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
     </div>
-</heaה>
+</header>
 
 <!-- BREADCRUMB + HERO -->
 <section class="exp-hero">
@@ -244,7 +244,7 @@
     <div class="exp-badge"><span class="exp-dot"></span>חינם · ללא התחייבות</div>
     <h1>רוצה להסתכל לפני<br><span>שתחליט?</span></h1>
     <p class="exp-hero-sub">גישה פנימית. אין לחץ. הקצב שלך.</p>
-    <p class="exp-hero-desc">Als מגלה erhalten אתה חינםen Zugang zu בדוקen פרויקטיםn, נדלן ו Investitionschancen aus 14 מדינותn — noch bevor אתה sich festlegen. Lernen אתה den Markt kennen, bauen אתה Wissen auf ו בוחר אתה, wenn אתה bereit sind.</p>
+    <p class="exp-hero-desc">Als מגלה erhalten Sie חינםen Zugang zu geprüften Projekten, נדלן und Investitionschancen aus 14 מדינותn — noch bevor Sie sich festlegen. Lernen Sie den Markt kennen, bauen Sie Wissen auf und entscheiden Sie, wenn Sie bereit sind.</p>
     <div class="exp-chips">
         <span class="exp-chip"><i>🆓</i> לגמרי חינם</span>
         <span class="exp-chip"><i>🌍</i> 14 מדינות</span>
@@ -269,8 +269,8 @@
 <!-- WAS SIE SEHEN -->
 <section class="exp-section" id="exp-was">
     <p class="exp-label">🔍 Ihr Zugang als מגלה</p>
-    <h2>Was אתה als מגלה sehen</h2>
-    <p class="exp-section-intro">Kein leeres פרופיל — אתה erhalten sofort Einblick in echte Deals, Märkte ו Zahlen aus אותנוerem aktiven רשת.</p>
+    <h2>Was Sie als מגלה sehen</h2>
+    <p class="exp-section-intro">Kein leeres פרופיל — Sie erhalten sofort Einblick in echte Deals, Märkte und Zahlen aus unserem aktiven Netzwerk.</p>
     <span class="exp-accent"></span>
     <div class="exp-discover-grid">
         <div class="exp-disc-card">
@@ -308,7 +308,7 @@
 
 <!-- VORTEILE -->
 <section class="exp-section" style="padding-top:0;">
-    <p class="exp-label">💡 למה als מגלה starten</p>
+    <p class="exp-label">💡 Warum als מגלה starten</p>
     <h2>4 סיבות להתחיל עכשיו</h2>
     <p class="exp-section-intro">אתה לא צריך להשקיע או למכור מיד. בניית ידע היא הצעד הראשון והחשוב ביותר.</p>
     <span class="exp-accent" style="margin-bottom:24px;"></span>
@@ -316,7 +316,7 @@
         <div class="exp-benefit-card">
             <span class="exp-ben-icon">🎯</span>
             <div class="exp-ben-body">
-                <h4>Echter Insiה-Zugang — חינם</h4>
+                <h4>Echter Insider-Zugang — חינם</h4>
                 <p>ראה את אותם פרויקטים וגדול שהמשקיעים הפעילים והשותפים ההון שלנו רואים — בלי לשלם סנט. הרבה הזדמנויות לא ברחוק פומביות.</p>
                 <span class="exp-ben-tag">Exklusiver Einblick</span>
             </div>
@@ -324,7 +324,7 @@
         <div class="exp-benefit-card">
             <span class="exp-ben-icon">🧠</span>
             <div class="exp-ben-body">
-                <h4>Wissen aufbauen — in שלךm Tempo</h4>
+                <h4>Wissen aufbauen — in Ihrem Tempo</h4>
                 <p>נדלן בטורקיה? סטארטאפים בגרמניה? M&A בארה"ב? חקור שווקים שאתה עדיין לא מכיר — ללא סיכון. כל מקצוע התחיל כמתחיל.</p>
                 <span class="exp-ben-tag">Kein Druck</span>
             </div>
@@ -332,8 +332,8 @@
         <div class="exp-benefit-card">
             <span class="exp-ben-icon">🔄</span>
             <div class="exp-ben-body">
-                <h4>Wechseln, wenn אתה bereit sind</h4>
-                <p>Aus dem מגלה wird ה משקיע — או ה הוןpartner, ה מייסד, ה Verkäufer. אתה בוחר, wann ו in welche Richtung. Der Wechsel ist חינם ו sofort möglich.</p>
+                <h4>Wechseln, wenn Sie bereit sind</h4>
+                <p>Aus dem מגלה wird der Investor — oder der הוןpartner, der מייסד, der Verkäufer. Sie entscheiden, wann und in welche Richtung. Der Wechsel ist חינם und sofort möglich.</p>
                 <span class="exp-ben-tag">Volle Flexibilität</span>
             </div>
         </div>
@@ -341,7 +341,7 @@
             <span class="exp-ben-icon">🌍</span>
             <div class="exp-ben-body">
                 <h4>רשת בינלאומית — von Tag 1</h4>
-                <p>Mit ה Registrierung werden אתה Teil eines רשתs aus über 100 בדוקen Partnern, משקיעen ו יזםn in 14 מדינותn. Kontakte, ה אתה sonst כןhre kosten würden.</p>
+                <p>Mit der Registrierung werden Sie Teil eines Netzwerks aus über 100 geprüften Partnern, Investoren und Unternehmern in 14 מדינותn. Kontakte, die Sie sonst Jahre kosten würden.</p>
                 <span class="exp-ben-tag">100+ Partner</span>
             </div>
         </div>
@@ -350,7 +350,7 @@
 
 <!-- WIE ES FUNKTIONIERT -->
 <section class="exp-section" style="padding-top:0;">
-    <div style="backgroו:rgba(255,255,255,0.03);borה:1.5px solid rgba(255,255,255,0.09);borה-radius:20px;padding:28px 24px;">
+    <div style="background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.09);border-radius:20px;padding:28px 24px;">
         <p class="exp-label">🛤️ In 3 Schritten</p>
         <h2>זה כל כך פשוט</h2>
         <p class="exp-section-intro">מההרשמה להצצה הראשונה שלך לעסקאות אמיתיות — בפחות מ-3 דקות.</p>
@@ -359,21 +359,21 @@
                 <div class="exp-step-num">1</div>
                 <div class="exp-step-body">
                     <h4>חינםes פרופיל erstellen</h4>
-                    <p>Registrieren אתה sich in unter 2 Minuten — keine Kreditkarte, keine Verpflichtung. Wählen אתה ה Rolle "מגלה" ו geben אתה an, welche Märkte ו Themen אתה interessieren.</p>
+                    <p>Registrieren Sie sich in unter 2 Minuten — keine Kreditkarte, keine Verpflichtung. Wählen Sie die Rolle "מגלה" und geben Sie an, welche Märkte und Themen Sie interessieren.</p>
                 </div>
             </div>
             <div class="exp-step">
                 <div class="exp-step-num">2</div>
                 <div class="exp-step-body">
-                    <h4>פרויקטים, Deals ו Märkte erkוen</h4>
-                    <p>Durchsuchen אתה aktuelle נדלן, סטארטאפים, חברהsverkäufe ו ניתוח שוק. Merken אתה sich Favoriten, aktivieren אתה Benachrichtigungen ו lesen אתה Hintergrוinformationen.</p>
+                    <h4>Projekte, Deals und Märkte erkunden</h4>
+                    <p>Durchsuchen Sie aktuelle נדלן, Startups, חברהsverkäufe und ניתוח שוק. Merken Sie sich Favoriten, aktivieren Sie Benachrichtigungen und lesen Sie Hintergrundinformationen.</p>
                 </div>
             </div>
             <div class="exp-step">
                 <div class="exp-step-num">3</div>
                 <div class="exp-step-body">
                     <h4>Zur passenden Rolle wechseln</h4>
-                    <p>Sobald אתה wissen, was אתה möchten, wechseln אתה בפשטות zu משקיע, הוןpartner, Verkäufer או מייסד — im פרופיל, עם einem Klick, ohne Kosten.</p>
+                    <p>Sobald Sie wissen, was Sie möchten, wechseln Sie einfach zu Investor, הוןpartner, Verkäufer oder מייסד — im פרופיל, mit einem Klick, ohne Kosten.</p>
                 </div>
             </div>
         </div>
@@ -383,13 +383,13 @@
 <!-- TESTIMONIALS -->
 <section class="exp-section" style="padding-top:0;">
     <p class="exp-label">💬 חוויות</p>
-    <h2>Was anהe מגלה sagen</h2>
-    <p class="exp-section-intro">Viele אותנוerer aktivsten משקיעen haben als מגלה begonnen.</p>
+    <h2>Was andere מגלה sagen</h2>
+    <p class="exp-section-intro">Viele unserer aktivsten Investoren haben als מגלה begonnen.</p>
     <span class="exp-accent" style="margin-bottom:24px;"></span>
     <div class="exp-testi-grid">
         <div class="exp-testi-card">
             <div class="exp-testi-stars">★★★★★</div>
-            <p class="exp-testi-text">"Ich hatte keine Ahnung, wo ich anfangen soll. Als מגלה konnte ich monatelang פרויקטים beobachten, ohne irgendeinen Druck zu spüren. Inzwischen bin ich aktiver משקיע."</p>
+            <p class="exp-testi-text">"Ich hatte keine Ahnung, wo ich anfangen soll. Als מגלה konnte ich monatelang Projekte beobachten, ohne irgendeinen Druck zu spüren. Inzwischen bin ich aktiver Investor."</p>
             <div class="exp-testi-author">
                 <div class="exp-testi-avatar">M</div>
                 <div>
@@ -429,7 +429,7 @@
     <h2>כבר יש לך רעיון לאן אתה הולך?</h2>
     <p class="exp-section-intro">אם אתה יודע מה אתה חפץ — עבור ישירות לתפקיד הנכון.</p>
     <div class="exp-compare-grid">
-        <a href="/he/earn-money/משקיעor" class="exp-compare-row">
+        <a href="/he/earn-money/investor" class="exp-compare-row">
             <div class="exp-compare-left">
                 <div class="exp-compare-icon">📈</div>
                 <div>
@@ -444,7 +444,7 @@
                 <div class="exp-compare-icon">🏦</div>
                 <div>
                     <div class="exp-compare-label">הוא שותף הון</div>
-                    <div class="exp-compare-sub">5 % p.a. Festzins – מ-€ 1.000, ab 1 כןhr</div>
+                    <div class="exp-compare-sub">5 % p.a. Festzins – מ-€ 1.000, ab 1 Jahr</div>
                 </div>
             </div>
             <span class="exp-compare-arrow">→</span>
@@ -469,7 +469,7 @@
             </div>
             <span class="exp-compare-arrow">→</span>
         </a>
-        <a href="/he/earn-money/foוer" class="exp-compare-row">
+        <a href="/he/earn-money/founder" class="exp-compare-row">
             <div class="exp-compare-left">
                 <div class="exp-compare-icon">💡</div>
                 <div>
@@ -484,29 +484,29 @@
 
 <!-- FAQ -->
 <section class="exp-section" style="padding-top:0;">
-    <div style="backgroו:rgba(255,255,255,0.03);borה:1.5px solid rgba(255,255,255,0.09);borה-radius:20px;padding:28px 24px;">
+    <div style="background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.09);border-radius:20px;padding:28px 24px;">
         <p class="exp-label">❓ שאלות נפוצות</p>
         <h2>שאלות הנשאלות לעתים קרובות</h2>
         <div>
             <div class="exp-faq-item">
                 <button class="exp-faq-q" onclick="expFaq(this)">Was genau sehe ich als מגלה?</button>
-                <div class="exp-faq-a">Als מגלה erhalten אתה Einblick in aktuelle נדלןangebote, Projektlisten, Startup-Übersichten ו M&A-Möglichkeiten aus אותנוerem רשת. Dazu kommen regelmäßige Marktberichte, התראות עסקה nach שלךn Interessen sowie Hintergrוinformationen zu פרויקטיםn ו Märkten in 14 מדינותn.</div>
+                <div class="exp-faq-a">Als מגלה erhalten Sie Einblick in aktuelle נדלןangebote, Projektlisten, Startup-Übersichten und M&A-Möglichkeiten aus unserem Netzwerk. Dazu kommen regelmäßige Marktberichte, התראות עסקה nach Ihren Interessen sowie Hintergrundinformationen zu Projekten und Märkten in 14 מדינותn.</div>
             </div>
             <div class="exp-faq-item">
-                <button class="exp-faq-q" onclick="expFaq(this)">Kostet ה מגלה-Zugang wirklich nichts?</button>
-                <div class="exp-faq-a">כן, vollständig חינם — ו ה dauerhaft. Es gibt keine versteckten Kosten, keine Testphase ו keine automatische Umwandlung in ein Bezahlmodell. Der מגלה-Zugang ist ו bleibt gratis.</div>
+                <button class="exp-faq-q" onclick="expFaq(this)">Kostet der מגלה-Zugang wirklich nichts?</button>
+                <div class="exp-faq-a">Ja, vollständig חינם — und das dauerhaft. Es gibt keine versteckten Kosten, keine Testphase und keine automatische Umwandlung in ein Bezahlmodell. Der מגלה-Zugang ist und bleibt gratis.</div>
             </div>
             <div class="exp-faq-item">
                 <button class="exp-faq-q" onclick="expFaq(this)">איך אני מעביר לתפקיד אחר מאוחר יותר?</button>
-                <div class="exp-faq-a">Jeהzeit ו חינם. In שלךm פרופיל unter "Meine Rolle" können אתה עם einem Klick zu משקיע, הוןpartner, Verkäufer, מייסד או חברה wechseln. Der Wechsel ist sofort wirksam.</div>
+                <div class="exp-faq-a">Jederzeit und חינם. In Ihrem פרופיל unter "Meine Rolle" können Sie mit einem Klick zu Investor, הוןpartner, Verkäufer, מייסד oder חברה wechseln. Der Wechsel ist sofort wirksam.</div>
             </div>
             <div class="exp-faq-item">
                 <button class="exp-faq-q" onclick="expFaq(this)">האם הנתונים שלי יהיו משותפים?</button>
-                <div class="exp-faq-a">Nein. שלך Registrierungsdaten bleiben סודי. Kein Deal-Partner, kein משקיע ו kein Verkäufer sieht Ihr פרופיל, solange אתה ה nicht aktiv freigeben. Als מגלה bleiben אתה anonym im Hintergrו.</div>
+                <div class="exp-faq-a">Nein. Ihre Registrierungsdaten bleiben סודי. Kein Deal-Partner, kein Investor und kein Verkäufer sieht Ihr פרופיל, solange Sie das nicht aktiv freigeben. Als מגלה bleiben Sie anonym im Hintergrund.</div>
             </div>
             <div class="exp-faq-item">
                 <button class="exp-faq-q" onclick="expFaq(this)">מה מבדיל את aBest.co מפלטפורמות אחרות?</button>
-                <div class="exp-faq-a">Bei aBest.co sehen אתה keine Plattform-generierten Dummy-פרויקטים — jedes Angebot kommt aus אותנוerem realen internationalen רשת. פרויקטים werden intern בדוק, bevor sie sichtbar werden. Als מגלה profitieren אתה von demselben kuratierten Zugang wie אותנוere aktiven משקיעen.</div>
+                <div class="exp-faq-a">Bei aBest.co sehen Sie keine Plattform-generierten Dummy-Projekte — jedes Angebot kommt aus unserem realen internationalen Netzwerk. Projekte werden intern geprüft, bevor sie sichtbar werden. Als מגלה profitieren Sie von demselben kuratierten Zugang wie unsere aktiven Investoren.</div>
             </div>
         </div>
     </div>
@@ -514,12 +514,12 @@
 
 <!-- FINALES CTA -->
 <section class="exp-section" style="padding-top:0;padding-bottom:80px;">
-    <div style="backgroו:linear-graהnt(135deg,rgba(6,182,212,0.1),rgba(139,92,246,0.08));borה:1.5px solid rgba(6,182,212,0.3);borה-radius:20px;padding:32px 24px;text-align:center;">
+    <div style="background:linear-gradient(135deg,rgba(6,182,212,0.1),rgba(139,92,246,0.08));border:1.5px solid rgba(6,182,212,0.3);border-radius:20px;padding:32px 24px;text-align:center;">
         <div style="font-size:2.2rem;margin-bottom:14px;">🔍</div>
         <h2 style="font-size:1.4rem;font-weight:800;margin:0 0 10px;color:var(--text-main);">התחל עכשיו — חינם.</h2>
         <p style="color:var(--text-muted);font-size:0.88rem;max-width:380px;margin:0 auto 22px;line-height:1.6;">אין סיכון, אין התחייבות. פשוט התחברו וקבלו מיד תובנה לפרויקטים ושווקים אמיתיים.</p>
         <a href="/he/login?next=/profile/my-role/explorer" class="exp-btn-primary" style="font-size:1rem;padding:15px 36px;">🔍 מגלה-פרופיל erstellen →</a>
-        <p style="font-size:0.72rem;color:var(--text-muted);margin-top:12px;">חינם · Keine Kreditkarte · Jeהzeit kündbar</p>
+        <p style="font-size:0.72rem;color:var(--text-muted);margin-top:12px;">חינם · Keine Kreditkarte · Jederzeit kündbar</p>
     </div>
 </section>
 

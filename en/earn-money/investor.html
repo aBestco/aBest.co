@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
 <title>Become an Investor – Invest With Us or Alongside Us | aBest.co</title>
-<meta content="For active investors: Invest in startups, projects or companies — with aBest.co or alongside us. International, discreet, structured." name="description"/>
+<meta content="For active investors: Investieren Sie in Startups, Projekte oder Unternehmen — bei aBest.co oder gemeinsam mit uns. International, diskret, strukturiert." name="description"/>
 <link href="/favicon.png" rel="icon" type="image/png"/>
 <link href="/index.css" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
@@ -368,11 +368,11 @@
     <p class="inv-hero-sub">With us — or alongside us.</p>
     <p class="inv-hero-desc">For investors who want to actively invest in startups, projects, or companies. Invest in our vetted deals — or invest alongside the aBest.co team.</p>
     <div class="inv-chips">
-        <span class="inv-chip"><i>💼</i> Invest with us</span>
-        <span class="inv-chip"><i>🤝</i> Co-invest with us</span>
-        <span class="inv-chip"><i>🌍</i> 47+ vetted deals</span>
-        <span class="inv-chip"><i>📍</i> 14 countries</span>
-        <span class="inv-chip"><i>🔒</i> 100% discreet</span>
+        <span class="inv-chip"><i>💼</i> Bei uns investieren</span>
+        <span class="inv-chip"><i>🤝</i> Mit uns co-investieren</span>
+        <span class="inv-chip"><i>🌍</i> 47+ geprüfte Deals</span>
+        <span class="inv-chip"><i>📍</i> 14 Länder</span>
+        <span class="inv-chip"><i>🔒</i> 100 % Diskret</span>
     </div>
     <div class="inv-hero-ctas">
         <button class="inv-btn-primary" onclick="document.getElementById('inv-form').scrollIntoView({behavior:'smooth'})">💼 Apply as Investor</button>
@@ -493,7 +493,7 @@
             <span class="inv-type-name">Real Estate</span>
             <span class="inv-type-sub">Development &amp; Trading</span>
         </div>
-        <div class="inv-type-card" onclick="invSelectType('Company acquisition / M&A')">
+        <div class="inv-type-card" onclick="invSelectType('Unternehmensübernahme / M&A')">
             <span class="inv-type-icon">🏢</span>
             <span class="inv-type-name">Companies</span>
             <span class="inv-type-sub">M&amp;A &amp; Acquisitions</span>
@@ -695,10 +695,10 @@
         <p style="font-size:0.8rem;font-weight:600;color:var(--text-muted);margin-bottom:8px;">Your preferred path *</p>
         <div class="inv-way-btns">
             <button class="inv-way-btn" id="inv-btn-bei" onclick="invSelectWayForm('bei')" type="button">
-                <span class="btn-icon">💼</span>Invest with us
+                <span class="btn-icon">💼</span>Bei uns investieren
             </button>
             <button class="inv-way-btn" id="inv-btn-mit" onclick="invSelectWayForm('mit')" type="button">
-                <span class="btn-icon">🤝</span>Co-invest with us
+                <span class="btn-icon">🤝</span>Mit uns co-investieren
             </button>
         </div>
 
@@ -821,7 +821,7 @@
         var name = document.getElementById('inv-name').value.trim();
         var email = document.getElementById('inv-email').value.trim();
         if (!name || !email) { alert('Bitte Name und E-Mail angeben.'); return; }
-        var wayLabel = { bei: 'Invest with us', mit: 'Co-invest with us' }[_invWay] || 'Nicht angegeben';
+        var wayLabel = { bei: 'Bei uns investieren', mit: 'Mit uns co-investieren' }[_invWay] || 'Nicht angegeben';
         var body = 'NEUE INVESTOR-ANFRAGE — aBest.co\n\n'
             + 'Weg: ' + wayLabel + '\n'
             + 'Name: ' + name + '\n'

@@ -3,16 +3,16 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
-    <title>Vender empresa – Compramos o encontramos el inversor | aBest.co</title>
-    <meta content="Vende tu empresa con aBest.co – Compra directa, coincidencia de inversores o desarrollo juntos. Internacional, discreto, profesional." name="description" />
+    <title>Empresa verkaufen – Wir kaufen oder finden den Investor | aBest.co</title>
+    <meta content="Empresa verkaufen mit aBest.co – Direktkauf, Investor-Matching oder gemeinsame Weiterentwicklung. International, diskret, professionell." name="description" />
     <link href="/favicon.png" rel="icon" type="image/png" />
     <link href="/index.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="canonical" href="https://www.abest.co/de/earn-money/businss" />
+    <link rel="canonical" href="https://www.abest.co/de/earn-money/business" />
     <style>
-        /* ── Businss Page — Tema azul verdoso/cian ── */
+        /* ── Business Page — Teal/Cyan Theme ── */
         :root {
             --biz-teal: #14b8a6;
             --biz-cyan: #06b6d4;
@@ -33,11 +33,11 @@
         }
         .biz-hero::before {
             content: '';
-            position: absolutoe;
+            position: absolute;
             inset: 0;
             background:
-                radial-gralant(ellipse 60% 40% at 30% 30%, rgba(20,184,166,0.18) 0%, transparent 60%),
-                radial-gralant(ellipse 50% 50% at 75% 70%, rgba(6,182,212,0.12) 0%, transparent 60%);
+                radial-gradient(ellipse 60% 40% at 30% 30%, rgba(20,184,166,0.18) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 50% at 75% 70%, rgba(6,182,212,0.12) 0%, transparent 60%);
             pointer-events: none;
         }
         .biz-badge {
@@ -77,7 +77,7 @@
         .biz-hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
         .biz-btn-primary {
             padding: 14px 28px; border-radius: 12px; font-size: 0.95rem; font-weight: 700;
-            background: linear-gralant(135deg, var(--biz-teal), var(--biz-cyan));
+            background: linear-gradient(135deg, var(--biz-teal), var(--biz-cyan));
             color: #fff; border: none; cursor: pointer; transition: opacity .2s, transform .2s;
         }
         .biz-btn-primary:hover { opacity: .88; transform: translateY(-1px); }
@@ -120,13 +120,13 @@
             cursor: pointer; transition: border-color .2s, transform .2s;
             position: relative; overflow: hidden;
         }
-        .biz-way-card::before { content: ''; position: absolutoe; inset: 0; opacity: 0; transition: opacity .2s; }
+        .biz-way-card::before { content: ''; position: absolute; inset: 0; opacity: 0; transition: opacity .2s; }
         .biz-way-card.direct { border-color: rgba(20,184,166,0.3); }
-        .biz-way-card.direct::before { background: radial-gralant(ellipse 80% 80% at 10% 0%, rgba(20,184,166,0.08), transparent); }
+        .biz-way-card.direct::before { background: radial-gradient(ellipse 80% 80% at 10% 0%, rgba(20,184,166,0.08), transparent); }
         .biz-way-card.invest { border-color: rgba(6,182,212,0.3); }
-        .biz-way-card.invest::before { background: radial-gralant(ellipse 80% 80% at 10% 0%, rgba(6,182,212,0.08), transparent); }
+        .biz-way-card.invest::before { background: radial-gradient(ellipse 80% 80% at 10% 0%, rgba(6,182,212,0.08), transparent); }
         .biz-way-card.develop { border-color: rgba(251,191,36,0.25); }
-        .biz-way-card.develop::before { background: radial-gralant(ellipse 80% 80% at 10% 0%, rgba(251,191,36,0.06), transparent); }
+        .biz-way-card.develop::before { background: radial-gradient(ellipse 80% 80% at 10% 0%, rgba(251,191,36,0.06), transparent); }
         .biz-way-card:hover { transform: translateY(-2px); }
         .biz-way-card:hover::before { opacity: 1; }
         .biz-way-top { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 12px; }
@@ -239,7 +239,7 @@
         .biz-sec-card strong { font-size: 0.83rem; font-weight: 700; color: var(--text-main); display: block; margin-bottom: 4px; }
         .biz-sec-card p { font-size: 0.76rem; color: var(--text-muted); line-height: 1.45; margin: 0; }
 
-        /* ── TESTIMONIOS ── */
+        /* ── TESTIMONIALS ── */
         .biz-testimonials { display: flex; flex-direction: column; gap: 14px; }
         .biz-testi {
             border-radius: 16px; padding: 20px 18px;
@@ -287,7 +287,7 @@
             font-family: 'Outfit', sans-serif;
         }
         .biz-input:focus { border-color: var(--biz-teal); }
-        .biz-input::placeholel { color: var(--text-muted); }
+        .biz-input::placeholder { color: var(--text-muted); }
         .biz-select {
             width: 100%; padding: 11px 14px; border-radius: 10px; font-size: 0.85rem;
             background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12);
@@ -303,14 +303,14 @@
             font-family: 'Outfit', sans-serif; resize: vertical; min-height: 90px;
         }
         .biz-textarea:focus { border-color: var(--biz-teal); }
-        .biz-textarea::placeholel { color: var(--text-muted); }
+        .biz-textarea::placeholder { color: var(--text-muted); }
         .biz-form-note { font-size: 0.74rem; color: var(--text-muted); margin: 12px 0 16px; }
-        .biz-subcon-btn {
+        .biz-submit-btn {
             width: 100%; padding: 15px; border-radius: 12px; font-size: 1rem; font-weight: 700;
-            background: linear-gralant(135deg, var(--biz-teal), var(--biz-cyan));
+            background: linear-gradient(135deg, var(--biz-teal), var(--biz-cyan));
             color: #fff; border: none; cursor: pointer; transition: opacity .2s, transform .2s;
         }
-        .biz-subcon-btn:hover { opacity: .88; transform: translateY(-1px); }
+        .biz-submit-btn:hover { opacity: .88; transform: translateY(-1px); }
         .biz-form-success {
             display: none; text-align: center; padding: 24px 0;
         }
@@ -366,7 +366,7 @@
     <meta property="og:site_name" content="aBest.co" />
     <meta property="og:locale" content="de_DE" />
     <meta property="og:url" content="https://www.abest.co/de/earn-money" />
-    <meta property="og:title" content="Vender empresa – Compramos o encontramos el inversor | aBest.co" />
+    <meta property="og:title" content="Empresa verkaufen – Wir kaufen oder finden den Investor | aBest.co" />
     <meta property="og:description" content="Global Premium Land & Real Estate Development." />
     <meta property="og:image" content="https://www.abest.co/assets/images/bg_main_blurred_new.webp" />
     <meta property="og:image:width" content="1200" />
@@ -374,7 +374,7 @@
     <meta property="og:image:type" content="image/webp" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@aBestco" />
-    <meta name="twitter:title" content="Vender empresa – Compramos o encontramos el inversor | aBest.co" />
+    <meta name="twitter:title" content="Empresa verkaufen – Wir kaufen oder finden den Investor | aBest.co" />
     <meta name="twitter:description" content="Global Premium Land & Real Estate Development." />
     <meta name="twitter:image" content="https://www.abest.co/assets/images/bg_main_blurred_new.webp" />
 </head>
@@ -383,11 +383,11 @@
     <!-- Background -->
     <div class="background-wrapper">
         <img alt="Background" class="main-bg" src="/assets/images/bg_main_blurred_new.webp"/>
-        <div class="bg-gralant-overlay"></div>
+        <div class="bg-gradient-overlay"></div>
     </div>
 
-    <!-- Heael -->
-    <heael class="app-header">
+    <!-- Header -->
+    <header class="app-header">
         <a class="logo-link" href="/de/">
             <span style="font-size:1.4rem;font-weight:500;color:var(--text-main);">
                 <span style="color:var(--primary-blue);">a</span>Best<span style="color:var(--primary-blue);">.co</span>
@@ -406,36 +406,36 @@
             <span style="margin:0 6px;opacity:0.5;">/</span>
             <span style="color:var(--biz-teal);font-weight:600;">Empresa</span>
         </nav>
-        <div class="biz-badge"><span class="biz-badge-dot"></span>Para emprendedores &amp; propietarios de negocios</div>
-        <h1>¿Desea vender su empresa?</h1>
-        <p class="biz-hero-sub">Nosotros compramos — o encontramos el inversor adecuado.</p>
-        <p class="biz-hero-desc">Compra directa, emparejamiento de inversores o desarrollo conjunto — elija su camino. Internacional, discreto y profesional.</p>
+        <div class="biz-badge"><span class="biz-badge-dot"></span>Für Unternehmer &amp; Geschäftsinhaber</div>
+        <h1>Sie wollen Ihr Empresa <span>verkaufen?</span></h1>
+        <p class="biz-hero-sub">Wir kaufen — oder wir finden den richtigen Investor.</p>
+        <p class="biz-hero-desc">Direktkauf, Investor-Matching oder gemeinsame Weiterentwicklung — Sie entscheiden den Weg. International, diskret und professionell.</p>
         <div class="biz-chips">
-            <span class="biz-chip"><i class="c-icon">🤝</i> Compra directa por aBest.co</span>
-            <span class="biz-chip"><i class="c-icon">🌍</i> 47+ inversores activos</span>
-            <span class="biz-chip"><i class="c-icon">⚡</i> Respuesta en 48h</span>
-            <span class="biz-chip"><i class="c-icon">🔒</i> 100 % Discreto</span>
-            <span class="biz-chip"><i class="c-icon">📍</i> 14 países</span>
+            <span class="biz-chip"><i class="c-icon">🤝</i> Direktkauf durch aBest.co</span>
+            <span class="biz-chip"><i class="c-icon">🌍</i> 47+ aktive Investoren</span>
+            <span class="biz-chip"><i class="c-icon">⚡</i> 48h erste Rückmeldung</span>
+            <span class="biz-chip"><i class="c-icon">🔒</i> 100 % Diskret</span>
+            <span class="biz-chip"><i class="c-icon">📍</i> 14 Länder</span>
         </div>
         <div class="biz-hero-ctas">
-            <button class="biz-btn-primary" onclick="document.getElementById('biz-form').scrollIntoView({behavior:'smooth'})">🏢 Empresa presentar</button>
+            <button class="biz-btn-primary" onclick="document.getElementById('biz-form').scrollIntoView({behavior:'smooth'})">🏢 Empresa einreichen</button>
             <button class="biz-btn-ghost" onclick="document.getElementById('biz-ways').scrollIntoView({behavior:'smooth'})">Cómo funciona →</button>
         </div>
     </section>
 
     <!-- STATS -->
     <div class="biz-stats">
-        <div class="biz-stat"><span class="biz-stat-val">47+</span><span class="biz-stat-lbl">inversores activos</span></div>
-        <div class="biz-stat"><span class="biz-stat-val">14</span><span class="biz-stat-lbl">países en todo el mundo</span></div>
-        <div class="biz-stat"><span class="biz-stat-val">48h</span><span class="biz-stat-lbl">primera respuesta</span></div>
-        <div class="biz-stat"><span class="biz-stat-val">€4,2M</span><span class="biz-stat-lbl">capital intermediado</span></div>
+        <div class="biz-stat"><span class="biz-stat-val">47+</span><span class="biz-stat-lbl">aktive Investoren</span></div>
+        <div class="biz-stat"><span class="biz-stat-val">14</span><span class="biz-stat-lbl">Länder weltweit</span></div>
+        <div class="biz-stat"><span class="biz-stat-val">48h</span><span class="biz-stat-lbl">erste Rückmeldung</span></div>
+        <div class="biz-stat"><span class="biz-stat-val">€4,2M</span><span class="biz-stat-lbl">vermitteltes Capital</span></div>
     </div>
 
     <!-- THREE WAYS -->
     <section class="biz-section" id="biz-ways">
-        <p class="biz-section-label">🛤️ sus tres opciones</p>
-        <h2>Elija su camino</h2>
-        <p class="biz-section-intro">Ninguna empresa es igual — por eso ofrecemos tres caminos claramente definidos. Elija, nosotros entregamos.</p>
+        <p class="biz-section-label">🛤️ Ihre drei Optionen</p>
+        <h2>Wählen Sie Ihren Weg</h2>
+        <p class="biz-section-intro">Kein Empresa ist gleich — deshalb bieten wir drei klar definierte Wege an. Sie entscheiden, wir liefern.</p>
         <span class="biz-accent-line" style="margin-bottom:24px;"></span>
         <div class="biz-ways-grid">
 
@@ -443,17 +443,17 @@
                 <div class="biz-way-top">
                     <span class="biz-way-icon">🤝</span>
                     <div>
-                        <div class="biz-way-title">Camino 1: Compra directa por aBest.co</div>
-                        <span class="biz-way-tag">⚡ Opción más rápida</span>
+                        <div class="biz-way-title">Weg 1: Direktkauf durch aBest.co</div>
+                        <span class="biz-way-tag">⚡ Schnellste Option</span>
                     </div>
                 </div>
-                <p class="biz-way-body">aBest.co compra su empresa directamente. Sin proceso largo, sin negociaciones con muchas partes — Habla directamente con tomadores de decisiones.</p>
+                <p class="biz-way-body">aBest.co kauft Ihr Empresa direkt. Kein langer Prozess, keine Verhandlungen mit vielen Parteien — Sie sprechen direkt mit Entscheidern.</p>
                 <ul class="biz-way-checks">
-                    <li>Oferta de compra directa de aBest.co</li>
-                    <li>Participación mayoritaria o minoritaria posible</li>
-                    <li>Desarrollo conjunto opcional</li>
-                    <li>Oferta concreta dentro de 48 horas</li>
-                    <li>Sin corredor, sin intermediarios</li>
+                    <li>Direktes Kaufangebot von aBest.co</li>
+                    <li>Mehrheits- oder Minderheitsbeteiligung möglich</li>
+                    <li>Gemeinsame Weiterentwicklung optional</li>
+                    <li>Konkretes Angebot innerhalb von 48 horas</li>
+                    <li>Kein Makler, keine Zwischenhändler</li>
                 </ul>
             </div>
 
@@ -461,17 +461,17 @@
                 <div class="biz-way-top">
                     <span class="biz-way-icon">🌍</span>
                     <div>
-                        <div class="biz-way-title">Camino 2: Encontrar inversor o socio</div>
-                        <span class="biz-way-tag">💰 Precio máximo</span>
+                        <div class="biz-way-title">Weg 2: Investor oder Partner finden</div>
+                        <span class="biz-way-tag">💰 Maximaler Preis</span>
                     </div>
                 </div>
-                <p class="biz-way-body">¿No desea vender completamente? Encontramos el inversor adecuado, capitalpartner o socio de nuestra red internacional.</p>
+                <p class="biz-way-body">Sie wollen nicht vollständig verkaufen? Wir finden den passenden Investor, Capitalpartner oder Teilhaber aus unserem internationalen Netzwerk.</p>
                 <ul class="biz-way-checks">
-                    <li>Acceso a 47+ inversores internacionales</li>
-                    <li>capital para crecimiento o expansión</li>
-                    <li>Socios estratégicos y sucesores</li>
-                    <li>Emparejamiento discreto — sin anuncio público</li>
-                    <li>Nosotros manejamos toda la comunicación</li>
+                    <li>Zugang zu 47+ internationalen Investoren</li>
+                    <li>Capital für Wachstum oder Expansion</li>
+                    <li>Strategische Partner und Nachfolger</li>
+                    <li>Diskretes Matching — kein öffentliches Inserat</li>
+                    <li>Wir übernehmen die gesamte Kommunikation</li>
                 </ul>
             </div>
 
@@ -479,35 +479,35 @@
                 <div class="biz-way-top">
                     <span class="biz-way-icon">🏗️</span>
                     <div>
-                        <div class="biz-way-title">camino 3: Standort entwickeln &amp; vermieten</div>
-                        <span class="biz-way-tag">📈 Langfristiger valor</span>
+                        <div class="biz-way-title">Weg 3: Standort entwickeln &amp; vermieten</div>
+                        <span class="biz-way-tag">📈 Langfristiger Wert</span>
                     </div>
                 </div>
-                <p class="biz-way-body">¿Su ubicación u objeto comercial tiene potencial? aBest.co asume, desarrolla y alquila an operador o Empresa.</p>
+                <p class="biz-way-body">Ihr Standort oder Gewerbeobjekt hat Potenzial? aBest.co übernimmt, entwickelt und vermietet an Betreiber oder Empresa.</p>
                 <ul class="biz-way-checks">
-                    <li>Espacios comerciales, almacenes, almacenamiento propio, logística</li>
-                    <li>Monetización y desarrollo</li>
-                    <li>Alquiler a operadores calificados</li>
-                    <li>Ganar-ganar para vendedor, inversor y operador</li>
+                    <li>Gewerbeflächen, Lager, Self-Storage, Logistik</li>
+                    <li>Modernisierung und Weiterentwicklung</li>
+                    <li>Vermietung an qualifizierte Betreiber</li>
+                    <li>Win-Win für Verkäufer, Investor und Betreiber</li>
                 </ul>
             </div>
 
         </div>
         <div class="biz-choose-hint" style="margin-top:16px;">
-            <strong>💡 ¿No está seguro de qué camino elija?</strong> Sin problema — presente su empresa. Analizamos y recomendamos juntos la mejor estrategia. Gratis y sin obligación.
+            <strong>💡 Nicht sicher, welcher Weg passt?</strong> Kein Problem — reichen Sie Ihr Empresa ein. Wir analysieren es und empfehlen gemeinsam die beste Strategie. Kostenlos und unverbindlich.
         </div>
     </section>
 
     <!-- COMPARISON -->
     <section class="biz-section" style="padding-top:0">
         <p class="biz-section-label">📊 Comparación</p>
-        <h2>Compra directa vs. encontrar inversor</h2>
-        <p class="biz-section-intro">Ambos caminos tienen ventajas claras — según su situación:</p>
+        <h2>Direktkauf vs. Investor finden</h2>
+        <p class="biz-section-intro">Beide Wege haben klare Vorteile — je nach Ihrer Situation:</p>
         <div class="biz-compare">
             <div class="biz-compare-head">
                 <div></div>
-                <div class="ch-direct">🤝 Compra directa</div>
-                <div class="ch-invest">🌍 encontrar inversor</div>
+                <div class="ch-direct">🤝 Direktkauf</div>
+                <div class="ch-invest">🌍 Investor finden</div>
             </div>
             <div class="biz-compare-row">
                 <div>Geschwindigkeit</div>
@@ -515,13 +515,13 @@
                 <div class="txt-cyan">2–6 Wochen</div>
             </div>
             <div class="biz-compare-row">
-                <div>precio</div>
-                <div class="txt-teal">mercadonah</div>
-                <div class="txt-cyan">mercadomaximum</div>
+                <div>Preis</div>
+                <div class="txt-teal">Marktnah</div>
+                <div class="txt-cyan">Marktmaximum</div>
             </div>
             <div class="biz-compare-row">
                 <div>Kontrolle behalten</div>
-                <div class="txt-teal">opciónal</div>
+                <div class="txt-teal">Optional</div>
                 <div class="txt-cyan">Ja</div>
             </div>
             <div class="biz-compare-row">
@@ -532,73 +532,73 @@
             <div class="biz-compare-row">
                 <div>Ideal für</div>
                 <div class="txt-teal">Schnelle Übergabe</div>
-                <div class="txt-cyan">crecimiento + capital</div>
+                <div class="txt-cyan">Wachstum + Capital</div>
             </div>
         </div>
     </section>
 
     <!-- BRANCHEN GRID -->
     <section class="biz-section" style="padding-top:0">
-        <p class="biz-section-label">🏭 industrias</p>
-        <h2>Welche Empresa wir comprar</h2>
-        <p class="biz-section-intro">Nosotros prüfen Empresa  vielen industrias — auch en Umstrukturierung o Nachfolge-situaciónen.</p>
+        <p class="biz-section-label">🏭 Branchen</p>
+        <h2>Welche Empresa wir kaufen</h2>
+        <p class="biz-section-intro">Wir prüfen Empresa aus vielen Branchen — auch bei Umstrukturierung oder Nachfolge-Situationen.</p>
         <div class="biz-sectors">
-            <div class="biz-sector-card" onclick="bizSelectSector('almacenamiento propio')">
+            <div class="biz-sector-card" onclick="bizSelectSector('Self-Storage')">
                 <span class="biz-sector-icon">🏬</span>
-                <span class="biz-sector-name">almacenamiento propio</span>
-                <span class="biz-sector-sub">almacenes &amp; almacenamiento-Anlagen</span>
+                <span class="biz-sector-name">Self-Storage</span>
+                <span class="biz-sector-sub">Lager &amp; Storage-Anlagen</span>
             </div>
-            <div class="biz-sector-card" onclick="bizSelectSector('logística y almacenes')">
+            <div class="biz-sector-card" onclick="bizSelectSector('Logistik & Lager')">
                 <span class="biz-sector-icon">🚛</span>
-                <span class="biz-sector-name">logística &amp; almacenes</span>
+                <span class="biz-sector-name">Logistik &amp; Lager</span>
                 <span class="biz-sector-sub">Hallen, Verteilung</span>
             </div>
-            <div class="biz-sector-card" onclick="bizSelectSector('Taller / Producción')">
+            <div class="biz-sector-card" onclick="bizSelectSector('Werkstatt / Produktion')">
                 <span class="biz-sector-icon">🔧</span>
                 <span class="biz-sector-name">Werkstatt</span>
                 <span class="biz-sector-sub">KFZ, Produktion</span>
             </div>
-            <div class="biz-sector-card" onclick="bizSelectSector('Gastronomía / Hotel')">
+            <div class="biz-sector-card" onclick="bizSelectSector('Gastronomie / Hotel')">
                 <span class="biz-sector-icon">🍽️</span>
                 <span class="biz-sector-name">Gastronomie</span>
                 <span class="biz-sector-sub">Restaurant, Hotel, Café</span>
             </div>
-            <div class="biz-sector-card" onclick="bizSelectSector('Comercio / Retail')">
+            <div class="biz-sector-card" onclick="bizSelectSector('Handel / Retail')">
                 <span class="biz-sector-icon">🛒</span>
                 <span class="biz-sector-name">Handel</span>
                 <span class="biz-sector-sub">Retail, Großhandel</span>
             </div>
-            <div class="biz-sector-card" onclick="bizSelectSector('Concepto de franquicia')">
+            <div class="biz-sector-card" onclick="bizSelectSector('Franchise-Konzept')">
                 <span class="biz-sector-icon">🏪</span>
                 <span class="biz-sector-name">Franchise</span>
                 <span class="biz-sector-sub">Konzepte &amp; Systeme</span>
             </div>
-            <div class="biz-sector-card" onclick="bizSelectSector('Servicio')">
+            <div class="biz-sector-card" onclick="bizSelectSector('Dienstleistung')">
                 <span class="biz-sector-icon">💼</span>
-                <span class="biz-sector-name">Servicio</span>
+                <span class="biz-sector-name">Dienstleistung</span>
                 <span class="biz-sector-sub">B2B &amp; B2C</span>
             </div>
-            <div class="biz-sector-card" onclick="bizSelectSector('Inmueble comercial con negocio')">
+            <div class="biz-sector-card" onclick="bizSelectSector('Gewerbeimmobilie mit Betrieb')">
                 <span class="biz-sector-icon">🏢</span>
-                <span class="biz-sector-name">Gewerenmmobilie</span>
-                <span class="biz-sector-sub">Mit activamenteem Betrieb</span>
+                <span class="biz-sector-name">Gewerbeimmobilie</span>
+                <span class="biz-sector-sub">Mit aktivem Betrieb</span>
             </div>
-            <div class="biz-sector-card" onclick="bizSelectSector('startup / empresa en crecimiento')">
+            <div class="biz-sector-card" onclick="bizSelectSector('Startup / Wachstumsunternehmen')">
                 <span class="biz-sector-icon">🚀</span>
-                <span class="biz-sector-name">comienzoup</span>
-                <span class="biz-sector-sub">crecimiento &amp; ingresos</span>
+                <span class="biz-sector-name">Startup</span>
+                <span class="biz-sector-sub">Wachstum &amp; Umsatz</span>
             </div>
-            <div class="biz-sector-card" onclick="bizSelectSector('Empresa de producción')">
+            <div class="biz-sector-card" onclick="bizSelectSector('Produktionsbetrieb')">
                 <span class="biz-sector-icon">🏭</span>
                 <span class="biz-sector-name">Produktion</span>
                 <span class="biz-sector-sub">Fertigung &amp; Industrie</span>
             </div>
-            <div class="biz-sector-card" onclick="bizSelectSector('Sucesión / Reestructuración')">
+            <div class="biz-sector-card" onclick="bizSelectSector('Nachfolge / Umstrukturierung')">
                 <span class="biz-sector-icon">🔄</span>
                 <span class="biz-sector-name">Nachfolge</span>
                 <span class="biz-sector-sub">Umstrukturierung</span>
             </div>
-            <div class="biz-sector-card" onclick="bizSelectSector('Andere industria')">
+            <div class="biz-sector-card" onclick="bizSelectSector('Andere Branche')">
                 <span class="biz-sector-icon">➕</span>
                 <span class="biz-sector-name">Andere</span>
                 <span class="biz-sector-sub">Más industrias</span>
@@ -610,40 +610,40 @@
     <section class="biz-section" style="padding-top:0">
         <p class="biz-section-label">📋 Ejemplos</p>
         <h2>So laufen Deals auf aBest.co</h2>
-        <p class="biz-section-intro">Echte Transaktionstypen — so funciona es in el Praxis.</p>
+        <p class="biz-section-intro">Echte Transaktionstypen — so funktioniert es in der Praxis.</p>
         <div class="biz-deals">
 
             <div class="biz-deal-card">
-                <span class="biz-deal-tag tag-direct">✅ Compra directa</span>
-                <div class="biz-deal-name">almacenamiento propio Anlage — Texas, USA</div>
+                <span class="biz-deal-tag tag-direct">✅ Direktkauf</span>
+                <div class="biz-deal-name">Self-Storage Anlage — Texas, USA</div>
                 <div class="biz-deal-loc">📍 Glendale, Texas · USA</div>
                 <div class="biz-deal-meta">
-                    <div class="biz-deal-row"><span>industria</span><span>almacenamiento propio / almacenes</span></div>
-                    <div class="biz-deal-row"><span>camino</span><span class="highlight">Compra directa por aBest.co</span></div>
-                    <div class="biz-deal-row"><span>ofertasdauer</span><span>72 Stunden</span></div>
+                    <div class="biz-deal-row"><span>Branche</span><span>Self-Storage / Lager</span></div>
+                    <div class="biz-deal-row"><span>Weg</span><span class="highlight">Direktkauf durch aBest.co</span></div>
+                    <div class="biz-deal-row"><span>Angebotsdauer</span><span>72 Stunden</span></div>
                     <div class="biz-deal-row"><span>Status</span><span class="highlight">✅ Abgeschlossen</span></div>
                 </div>
             </div>
 
             <div class="biz-deal-card">
-                <span class="biz-deal-tag tag-invest">🌍 inversor intermediado</span>
+                <span class="biz-deal-tag tag-invest">🌍 Investor vermittelt</span>
                 <div class="biz-deal-name">Gastronomie-Franchise DACH</div>
                 <div class="biz-deal-loc">📍 Wien, Österreich / DACH-Region</div>
                 <div class="biz-deal-meta">
-                    <div class="biz-deal-row"><span>industria</span><span>Gastronomie / Franchise</span></div>
-                    <div class="biz-deal-row"><span>camino</span><span class="highlight txt-cyan">inversor-emparejamiento</span></div>
-                    <div class="biz-deal-row"><span>capital</span><span>€ 280.000 crecimientoskapital</span></div>
-                    <div class="biz-deal-row"><span>Dauer</span><span class="highlight">3 Wochen bis Cierre</span></div>
+                    <div class="biz-deal-row"><span>Branche</span><span>Gastronomie / Franchise</span></div>
+                    <div class="biz-deal-row"><span>Weg</span><span class="highlight txt-cyan">Investor-Matching</span></div>
+                    <div class="biz-deal-row"><span>Capital</span><span>€ 280.000 Wachstumskapital</span></div>
+                    <div class="biz-deal-row"><span>Dauer</span><span class="highlight">3 Wochen bis Abschluss</span></div>
                 </div>
             </div>
 
             <div class="biz-deal-card">
-                <span class="biz-deal-tag tag-develop">🏗️ Entwickelt &amp; alquila</span>
-                <div class="biz-deal-name">Gewerbeanlage Antalya — logística</div>
+                <span class="biz-deal-tag tag-develop">🏗️ Entwickelt &amp; vermietet</span>
+                <div class="biz-deal-name">Gewerbeanlage Antalya — Logistik</div>
                 <div class="biz-deal-loc">📍 Antalya, Türkei</div>
                 <div class="biz-deal-meta">
-                    <div class="biz-deal-row"><span>industria</span><span>logística / almacenes</span></div>
-                    <div class="biz-deal-row"><span>camino</span><span style="color:#fbbf24;">Entwicklung + alquiler</span></div>
+                    <div class="biz-deal-row"><span>Branche</span><span>Logistik / Lager</span></div>
+                    <div class="biz-deal-row"><span>Weg</span><span style="color:#fbbf24;">Entwicklung + Vermietung</span></div>
                     <div class="biz-deal-row"><span>Fläche</span><span>1.200 m²</span></div>
                     <div class="biz-deal-row"><span>Status</span><span style="color:#fbbf24;">📦 In Betrieb</span></div>
                 </div>
@@ -655,35 +655,35 @@
     <!-- PROCESS -->
     <section class="biz-section" style="padding-top:0">
         <p class="biz-section-label">⚙️ Proceso</p>
-        <h2>In 4 pasos zum Cierre</h2>
+        <h2>In 4 Schritten zum Abschluss</h2>
         <span class="biz-accent-line" style="margin-bottom:24px;"></span>
         <div class="biz-steps">
             <div class="biz-step">
                 <div class="biz-step-num">1</div>
                 <div>
-                    <p class="biz-step-title">Empresa presentar — gratis &amp; discreto</p>
-                    <p class="biz-step-desc">Completa nuestro formulario: Industria, ingresos, camino, región, precio deseado. Sin proceso largo — pocos detalles son suficientes para comenzar.</p>
+                    <p class="biz-step-title">Empresa einreichen — gratis &amp; diskret</p>
+                    <p class="biz-step-desc">Sie füllen unser Formular aus: Branche, Umsatz, Weg, Region, Preisvorstellung. Kein langer Prozess — wenige Angaben genügen für den Start.</p>
                 </div>
             </div>
             <div class="biz-step">
                 <div class="biz-step-num">2</div>
                 <div>
-                    <p class="biz-step-title">Analyse &amp; respuesta dentro de 48 horas</p>
-                    <p class="biz-step-desc">Nuestro equipo revisa su empresa und lo contacta personalmente. Discutimos juntos: Compra directa, coincidencia de inversores o desarrollo — ¿qué tiene sentido para usted?</p>
+                    <p class="biz-step-title">Analyse &amp; Rückmeldung innerhalb von 48 horas</p>
+                    <p class="biz-step-desc">Unser Team prüft Ihr Empresa und kontaktiert Sie persönlich. Wir besprechen gemeinsam: Direktkauf, Investor-Matching oder Weiterentwicklung — was macht für Sie Sinn?</p>
                 </div>
             </div>
             <div class="biz-step">
                 <div class="biz-step-num">3</div>
                 <div>
-                    <p class="biz-step-title">oferta o dirigidamentees inversor-emparejamiento</p>
-                    <p class="biz-step-desc">Con la compra directa, obtiene una oferta concreta. En la búsqueda de inversores, presentamos su empresa activamente a nuestra red — discreto, no públicamente.</p>
+                    <p class="biz-step-title">Angebot oder gezieltes Investor-Matching</p>
+                    <p class="biz-step-desc">Beim Direktkauf erhalten Sie ein konkretes Kaufangebot. Bei der Investorensuche präsentieren wir Ihr Empresa aktiv unserem Netzwerk — diskret, nicht öffentlich.</p>
                 </div>
             </div>
             <div class="biz-step">
                 <div class="biz-step-num">4</div>
                 <div>
-                    <p class="biz-step-title">Cierre — según sus condiciones</p>
-                    <p class="biz-step-desc">Elija, ob und wann Usted vender o einen socios aufnehmen. Sin presión, sin límite de tiempo. Nosotros begleiten Usted bis zum cierre exitoso.</p>
+                    <p class="biz-step-title">Abschluss — zu Ihren Bedingungen</p>
+                    <p class="biz-step-desc">Sie entscheiden, ob und wann Sie verkaufen oder einen Partner aufnehmen. Kein Druck, kein Zeitlimit. Wir begleiten Sie bis zum erfolgreichen Abschluss.</p>
                 </div>
             </div>
         </div>
@@ -691,38 +691,38 @@
 
     <!-- BENEFITS -->
     <section class="biz-section" style="padding-top:0">
-        <p class="biz-section-label">✅ ventajas</p>
-        <h2>Por qué emprendedores aBest.co wählen</h2>
+        <p class="biz-section-label">✅ Vorteile</p>
+        <h2>Warum Unternehmer aBest.co wählen</h2>
         <div class="biz-benefits">
             <div class="biz-benefit">
                 <span class="biz-benefit-icon">🌍</span>
                 <span class="biz-benefit-title">Red Internacional</span>
-                <p class="biz-benefit-desc">Su empresa llega a inversores de 14 países — no solo compradores locales, sino financistas internacionales que buscan específicamente.</p>
+                <p class="biz-benefit-desc">Ihr Empresa erreicht Investoren aus 14 Ländern — nicht nur lokale Käufer, sondern internationale Capitalgeber die gezielt suchen.</p>
             </div>
             <div class="biz-benefit">
                 <span class="biz-benefit-icon">🤝</span>
-                <span class="biz-benefit-title">Compra directa posible</span>
-                <p class="biz-benefit-desc">In vielen Fällen comprar wir selbst. Sin espera larga. Usted obtiene una oferta concreta — innerhalb von 48–72 Stunden.</p>
+                <span class="biz-benefit-title">Direktkauf möglich</span>
+                <p class="biz-benefit-desc">In vielen Fällen kaufen wir selbst. Kein langes Warten. Sie erhalten ein konkretes Angebot — innerhalb von 48–72 Stunden.</p>
             </div>
             <div class="biz-benefit">
                 <span class="biz-benefit-icon">🔒</span>
-                <span class="biz-benefit-title">100 % Discreto</span>
-                <p class="biz-benefit-desc">Sin anuncio público. Su empresa se presenta dirigidamente a inversores o compradores adecuados solo después de la revisión.</p>
+                <span class="biz-benefit-title">100 % Diskret</span>
+                <p class="biz-benefit-desc">Kein öffentliches Inserat. Ihr Empresa wird erst nach Prüfung gezielt passenden Investoren oder Käufern vorgestellt.</p>
             </div>
             <div class="biz-benefit">
                 <span class="biz-benefit-icon">⚡</span>
                 <span class="biz-benefit-title">Schnelle Prozesse</span>
-                <p class="biz-benefit-desc">Sin negociaciones burocráticas interminables. Operamos de manera estructurada y eficiente — con cronogramas claros para usted.</p>
+                <p class="biz-benefit-desc">Keine bürokratischen Endlosverhandlungen. Wir arbeiten strukturiert und effizient — mit klaren Timelines für Sie.</p>
             </div>
             <div class="biz-benefit">
                 <span class="biz-benefit-icon">💬</span>
-                <span class="biz-benefit-title">Direkt con tomadores de decisiones</span>
-                <p class="biz-benefit-desc">Hable nicht con Assistenten o corredorn. En aBest.co reden Usted direkt con denjenigen, la elija und comprar.</p>
+                <span class="biz-benefit-title">Direkt mit Entscheidern</span>
+                <p class="biz-benefit-desc">Sie sprechen nicht mit Assistenten oder Maklern. Bei aBest.co reden Sie direkt mit denjenigen, die entscheiden und kaufen.</p>
             </div>
             <div class="biz-benefit">
                 <span class="biz-benefit-icon">🎯</span>
-                <span class="biz-benefit-title">Sin portal masivo</span>
-                <p class="biz-benefit-desc">Gezieltes emparejamiento statt Masseninserat. Jedes Empresa wird individuell verificado und strategisch platziert.</p>
+                <span class="biz-benefit-title">Kein Massenportal</span>
+                <p class="biz-benefit-desc">Gezieltes Matching statt Masseninserat. Jedes Empresa wird individuell geprüft und strategisch platziert.</p>
             </div>
         </div>
     </section>
@@ -730,51 +730,51 @@
     <!-- SECURITY -->
     <section class="biz-section" style="padding-top:0">
         <p class="biz-section-label">🔐 Vertraulichkeit</p>
-        <h2>Discreto, profesional, estructurada</h2>
-        <p class="biz-section-intro">empresaverkäufe sind sensibel. Nosotros wissen lo — und handeln entsprechend.</p>
+        <h2>Diskret, professionell, strukturiert</h2>
+        <p class="biz-section-intro">Empresasverkäufe sind sensibel. Wir wissen das — und handeln entsprechend.</p>
         <div class="biz-security-grid">
             <div class="biz-sec-card">
                 <span class="sec-icon">🔒</span>
                 <strong>NDA antes de acceso</strong>
-                <p>Ningún inversor ve detalles de su empresa sin acuerdo de confidencialidad firmado previamente.</p>
+                <p>Kein Investor sieht Details Ihres Empresas ohne vorab unterzeichnete Vertraulichkeitsvereinbarung.</p>
             </div>
             <div class="biz-sec-card">
                 <span class="sec-icon">🎯</span>
                 <strong>Gezielte Weitergabe</strong>
-                <p>Informationen werden nur an verificados, calificados inversores o Käufer weitergegeben — nie públicamente.</p>
+                <p>Informationen werden nur an geprüfte, qualifizierte Investoren oder Käufer weitergegeben — nie öffentlich.</p>
             </div>
             <div class="biz-sec-card">
                 <span class="sec-icon">📋</span>
-                <strong>estructuraierter Prozess</strong>
-                <p>Klare Schritte, transparente comunicación, sin Wildwuchs. Usted wissen immer, wo el Prozess steht.</p>
+                <strong>Strukturierter Prozess</strong>
+                <p>Klare Schritte, transparente Kommunikation, kein Wildwuchs. Sie wissen immer, wo der Prozess steht.</p>
             </div>
             <div class="biz-sec-card">
                 <span class="sec-icon">🤝</span>
-                <strong>Sin presión</strong>
-                <p>Elige el ritmo y el momento. Sin presión de venta, sin límite de tiempo, sin obligación.</p>
+                <strong>Kein Druck</strong>
+                <p>Sie entscheiden Tempo und Zeitpunkt. Kein Verkaufsdruck, kein Zeitlimit, keine Verpflichtung.</p>
             </div>
         </div>
     </section>
 
-    <!-- TESTIMONIOS -->
+    <!-- TESTIMONIALS -->
     <section class="biz-section" style="padding-top:0">
         <p class="biz-section-label">💬 Experiencias</p>
-        <h2>Lo que dicen los emprendedores</h2>
+        <h2>Was Unternehmer sagen</h2>
         <div class="biz-testimonials">
             <div class="biz-testi">
                 <div class="biz-stars">★★★★★</div>
-                <p class="biz-testi-text">"Tenía un negocio de almacenamiento propio que quería entregar después de 12 años. aBest.co hizo una oferta concreta dentro de 72 horas. Sin corredor, sin largas negociaciones — simple, directo y justo."</p>
+                <p class="biz-testi-text">"Ich hatte ein Self-Storage-Empresa, das ich nach 12 Jahren übergeben wollte. aBest.co hat innerhalb von 72 Stunden ein konkretes Kaufangebot gemacht. Kein Makler, keine langen Verhandlungen — einfach direkt und fair."</p>
                 <div class="biz-testi-author">
                     <div class="biz-testi-avatar">MK</div>
                     <div>
                         <div class="biz-testi-name">M. Kaya</div>
-                        <div class="biz-testi-loc">emprendedores · Texas, USA</div>
+                        <div class="biz-testi-loc">Unternehmer · Texas, USA</div>
                     </div>
                 </div>
             </div>
             <div class="biz-testi">
                 <div class="biz-stars">★★★★★</div>
-                <p class="biz-testi-text">"No quisimos vender, buscábamos capital de crecimiento. aBest.co nos encontró el inversor adecuado en la región DACH dentro de 3 semanas. Discreto, profesional, exactamente lo que necesitábamos."</p>
+                <p class="biz-testi-text">"Wir haben nicht verkauft, sondern Wachstumskapital gesucht. aBest.co hat uns innerhalb von 3 Wochen den passenden Investor aus dem DACH-Raum vermittelt. Diskret, professionell, genau das was wir gebraucht haben."</p>
                 <div class="biz-testi-author">
                     <div class="biz-testi-avatar">SW</div>
                     <div>
@@ -785,12 +785,12 @@
             </div>
             <div class="biz-testi">
                 <div class="biz-stars">★★★★★</div>
-                <p class="biz-testi-text">"Lo que me convenció: Hablas directamente con los tomadores de decisiones. No con corredores, no con asistentes. La conversación con aBest.co fue de igual a igual desde el principio — emprendedor a emprendedor."</p>
+                <p class="biz-testi-text">"Was mich überzeugt hat: Man spricht direkt mit Entscheidern. Nicht mit Maklern, nicht mit Assistenten. Das Gespräch mit aBest.co war von Anfang an auf Augenhöhe — Unternehmer zu Unternehmer."</p>
                 <div class="biz-testi-author">
                     <div class="biz-testi-avatar">RA</div>
                     <div>
                         <div class="biz-testi-name">R. Aydın</div>
-                        <div class="biz-testi-loc">Empresa de producción · Antalya, Türkei</div>
+                        <div class="biz-testi-loc">Produktionsbetrieb · Antalya, Türkei</div>
                     </div>
                 </div>
             </div>
@@ -799,66 +799,66 @@
 
     <!-- FORM -->
     <section class="biz-section" style="padding-top:0" id="biz-form">
-        <p class="biz-section-label">📩 Solicitud</p>
-        <h2>Empresa presentar</h2>
+        <p class="biz-section-label">📩 Anfrage</p>
+        <h2>Empresa einreichen</h2>
         <div class="biz-form-wrap">
-            <p class="biz-form-title">su empresa — gratis &amp; discreto presentar</p>
-            <p class="biz-form-sub">Nos comunicaremos dentro de 48 horas. Sin obligación, confidencial, sin corredor.</p>
+            <p class="biz-form-title">Ihr Empresa — gratis &amp; diskret einreichen</p>
+            <p class="biz-form-sub">Wir melden uns innerhalb von 48 horas. Unverbindlich, confidencial, kein Makler.</p>
 
-            <p style="font-size:0.8rem;font-weight:600;color:var(--text-muted);margin-bottom:8px;">Su camino preferido *</p>
+            <p style="font-size:0.8rem;font-weight:600;color:var(--text-muted);margin-bottom:8px;">Tu camino preferido *</p>
             <div class="biz-way-btns">
                 <button class="biz-way-btn" id="biz-btn-direct" onclick="bizSelectWayForm('direct')" type="button">
-                    <span class="btn-icon">🤝</span>Compra directa
+                    <span class="btn-icon">🤝</span>Direktkauf
                 </button>
                 <button class="biz-way-btn" id="biz-btn-invest" onclick="bizSelectWayForm('invest')" type="button">
-                    <span class="btn-icon">🌍</span>encontrar inversor
+                    <span class="btn-icon">🌍</span>Investor finden
                 </button>
                 <button class="biz-way-btn" id="biz-btn-develop" onclick="bizSelectWayForm('develop')" type="button">
-                    <span class="btn-icon">🏗️</span>Desarrollar
+                    <span class="btn-icon">🏗️</span>Entwickeln
                 </button>
             </div>
 
             <div id="biz-form-fields">
                 <div class="biz-form-grid">
-                    <input class="biz-input" id="biz-name" placeholder="su nombre *" type="text" />
+                    <input class="biz-input" id="biz-name" placeholder="Ihr Name *" type="text" />
                     <input class="biz-input" id="biz-email" placeholder="E-Mail *" type="email" />
                 </div>
                 <div class="biz-form-grid">
-                    <input class="biz-input" id="biz-phone" placeholder="Teléfono" type="tel" />
-                    <input class="biz-input" id="biz-country" placeholder="País / Región" type="text" />
+                    <input class="biz-input" id="biz-phone" placeholder="Telefon" type="tel" />
+                    <input class="biz-input" id="biz-country" placeholder="Land / Region" type="text" />
                 </div>
                 <div class="biz-form-grid">
                     <select class="biz-select" id="biz-sector">
-                        <option value="">industria *</option>
-                        <option>almacenamiento propio</option>
-                        <option>logística &amp; almacenes</option>
-                        <option>Taller / Producción</option>
-                        <option>Gastronomía / Hotel</option>
-                        <option>Comercio / Retail</option>
-                        <option>Concepto de franquicia</option>
-                        <option>Servicio</option>
-                        <option>Inmueble comercial con negocio</option>
-                        <option>startup / empresa en crecimiento</option>
-                        <option>Empresa de producción</option>
-                        <option>Sucesión / Reestructuración</option>
-                        <option>Andere industria</option>
+                        <option value="">Branche *</option>
+                        <option>Self-Storage</option>
+                        <option>Logistik &amp; Lager</option>
+                        <option>Werkstatt / Produktion</option>
+                        <option>Gastronomie / Hotel</option>
+                        <option>Handel / Retail</option>
+                        <option>Franchise-Konzept</option>
+                        <option>Dienstleistung</option>
+                        <option>Gewerbeimmobilie mit Betrieb</option>
+                        <option>Startup / Wachstumsunternehmen</option>
+                        <option>Produktionsbetrieb</option>
+                        <option>Nachfolge / Umstrukturierung</option>
+                        <option>Andere Branche</option>
                     </select>
-                    <input class="biz-input" id="biz-revenue" placeholder="Ingresos anuales (aprox.)" type="text" />
+                    <input class="biz-input" id="biz-revenue" placeholder="Jahresumsatz (ca.)" type="text" />
                 </div>
                 <div class="biz-form-grid">
-                    <input class="biz-input" id="biz-price" placeholder="precio deseado (opcional)" type="text" />
-                    <input class="biz-input" id="biz-employees" placeholder="Número de empleados (aprox.)" type="text" />
+                    <input class="biz-input" id="biz-price" placeholder="Preisvorstellung (optional)" type="text" />
+                    <input class="biz-input" id="biz-employees" placeholder="Mitarbeiterzahl (ca.)" type="text" />
                 </div>
                 <div class="biz-form-grid full">
-                    <textarea class="biz-textarea" id="biz-desc" placeholder="Breve descripción de su empresa — qué hace, desde cuándo, qué busca exactamente?"></textarea>
+                    <textarea class="biz-textarea" id="biz-desc" placeholder="Kurzbeschreibung Ihres Empresas — was macht es, seit wann, was suchen Sie genau?"></textarea>
                 </div>
-                <p class="biz-form-note">🔒 Sus datos se tratan confidencialmente y no se comparten sin su consentimiento expreso.</p>
-                <button class="biz-subcon-btn" onclick="bizSubcon(event)" type="button">🏢 Jetzt presentar — gratis &amp; discreto</button>
+                <p class="biz-form-note">🔒 Ihre Angaben werden confidencial behandelt und nicht ohne Ihre Zustimmung weitergegeben.</p>
+                <button class="biz-submit-btn" onclick="bizSubmit(event)" type="button">🏢 Jetzt einreichen — gratis &amp; diskret</button>
             </div>
             <div class="biz-form-success" id="biz-success">
                 <div class="success-icon">✅</div>
                 <strong>¡Muchas gracias - Solicitud recibida!</strong>
-                <p>Unser equipo meldet sich dentro de 48 horas en Ihnen. Alles confidencial — sin corredor, sin anuncio publicado.</p>
+                <p>Unser Team meldet sich innerhalb von 48 horas bei Ihnen. Alles confidencial — kein Makler, kein öffentliches Inserat.</p>
             </div>
         </div>
     </section>
@@ -869,36 +869,36 @@
         <h2>Preguntas Frecuentes</h2>
         <div class="biz-faq">
             <div class="biz-faq-item">
-                <button class="biz-faq-q">¿aBest.co realmente compra empresas? <span class="biz-faq-arrow">▾</span></button>
-                <div class="biz-faq-a"><div class="biz-faq-a-inner">Sí — en muchos casos, aBest.co actúa no solo como intermediario sino como comprador directo. Si su empresa se ajusta a nuestra estrategia, examinamos la posibilidad de adquisición, participación o desarrollo conjunto. Obtiene una oferta concreta — directamente, sin intermediarios.</div></div>
+                <button class="biz-faq-q">Kauft aBest.co wirklich selbst Empresa? <span class="biz-faq-arrow">▾</span></button>
+                <div class="biz-faq-a"><div class="biz-faq-a-inner">Ja — in vielen Fällen tritt aBest.co nicht nur als Vermittler auf, sondern als direkter Käufer. Wenn Ihr Empresa zu unserer Strategie passt, prüfen wir die Möglichkeit einer Übernahme, Beteiligung oder gemeinsamen Weiterentwicklung. Sie erhalten ein konkretes Angebot — direkt, ohne Zwischenhändler.</div></div>
             </div>
             <div class="biz-faq-item">
-                <button class="biz-faq-q">¿Qué sucede con mis datos — quién ve mi empresa? <span class="biz-faq-arrow">▾</span></button>
-                <div class="biz-faq-a"><div class="biz-faq-a-inner">Sus datos se tratan absolutoamente confidencialmente. No se comparte información sin su consentimiento expreso. Los inversores interesados firman primero un NDA antes de obtener detalles. No hay anuncio público.</div></div>
+                <button class="biz-faq-q">Was passiert mit meinen Daten — wer sieht mein Empresa? <span class="biz-faq-arrow">▾</span></button>
+                <div class="biz-faq-a"><div class="biz-faq-a-inner">Ihre Daten werden absolut confidencial behandelt. Keine Informationen werden ohne Ihre ausdrückliche Zustimmung weitergegeben. Interessierte Investoren unterzeichnen zunächst eine NDA, bevor sie Details erhalten. Es gibt kein öffentliches Inserat.</div></div>
             </div>
             <div class="biz-faq-item">
-                <button class="biz-faq-q">¿Cuánto cuesta presentar mi empresa? <span class="biz-faq-arrow">▾</span></button>
-                <div class="biz-faq-a"><div class="biz-faq-a-inner">Presentar es completamente gratis y sin obligación. No hay costos previos. Solo en un cierre exitoso — compra directa o inversión intermediada — discutimos los términos de manera transparente e individual.</div></div>
+                <button class="biz-faq-q">Was kostet das Einreichen meines Empresas? <span class="biz-faq-arrow">▾</span></button>
+                <div class="biz-faq-a"><div class="biz-faq-a-inner">Das Einreichen ist vollständig gratis und unverbindlich. Es entstehen keine Vorabkosten. Erst bei einem erfolgreichen Abschluss — Direktkauf oder vermitteltem Investment — besprechen wir die Modalitäten transparent und individuell.</div></div>
             </div>
             <div class="biz-faq-item">
-                <button class="biz-faq-q">¿Debo vender inmediatamente — o puedo revisar primero? <span class="biz-faq-arrow">▾</span></button>
-                <div class="biz-faq-a"><div class="biz-faq-a-inner">Sin presión, sin límite de tiempo. Puede presentar su empresa, revisar la oferta u opciones de inversores y elija libremente. Lo acompañamos — sin presión de venta y sin obligación.</div></div>
+                <button class="biz-faq-q">Muss ich sofort verkaufen — oder kann ich erst prüfen? <span class="biz-faq-arrow">▾</span></button>
+                <div class="biz-faq-a"><div class="biz-faq-a-inner">Kein Druck, kein Zeitlimit. Sie können Ihr Empresa einreichen, das Angebot oder die Investorenoptionen prüfen und vollkommen frei entscheiden. Wir begleiten Sie — ohne Verkaufsdruck und ohne Verpflichtung.</div></div>
             </div>
             <div class="biz-faq-item">
-                <button class="biz-faq-q">¿Qué tan grande debe ser mi empresa? <span class="biz-faq-arrow">▾</span></button>
-                <div class="biz-faq-a"><div class="biz-faq-a-inner">No hay un tamaño mínimo fijo. Examinamos empresas a partir de aproximadamente €50.000 en ingresos anuales — en muchas industrias, incluso en situaciones de sucesión o reestructuración. Preséntela — la examinamos honestamente y le damos una evaluación clara.</div></div>
+                <button class="biz-faq-q">Wie groß muss mein Empresa sein? <span class="biz-faq-arrow">▾</span></button>
+                <div class="biz-faq-a"><div class="biz-faq-a-inner">Es gibt keine feste Mindestgröße. Wir prüfen Empresa ab ca. €50.000 Jahresumsatz aufwärts — aus vielen Branchen, auch in Nachfolge- oder Umstrukturierungssituationen. Reichen Sie ein — wir prüfen ehrlich und geben Ihnen eine klare Einschätzung.</div></div>
             </div>
             <div class="biz-faq-item">
-                <button class="biz-faq-q">Kann ich nur einen inversor suchen, ohne para vender? <span class="biz-faq-arrow">▾</span></button>
-                <div class="biz-faq-a"><div class="biz-faq-a-inner">Ja, absoluto. Viele emprendedores suchen capital für crecimiento, strategische socios o Teilhaber — ohne completamente para vender. Über nuestro internacionales red finden wir exactamente la adecuado socios für su crecimientosproyecto.</div></div>
+                <button class="biz-faq-q">Kann ich nur einen Investor suchen, ohne zu verkaufen? <span class="biz-faq-arrow">▾</span></button>
+                <div class="biz-faq-a"><div class="biz-faq-a-inner">Ja, absolut. Viele Unternehmer suchen Capital für Wachstum, strategische Partner oder Teilhaber — ohne vollständig zu verkaufen. Über unser internationales Netzwerk finden wir genau die richtigen Partner für Ihr Wachstumsprojekt.</div></div>
             </div>
         </div>
     </section>
 
     <!-- STICKY CTA -->
     <div class="biz-sticky">
-        <span class="biz-sticky-text">🏢 Compra directa o encontrar inversor — gratis presentar · 48h respuesta</span>
-        <button class="biz-sticky-btn" onclick="document.getElementById('biz-form').scrollIntoView({behavior:'smooth'})">Jetzt presentar</button>
+        <span class="biz-sticky-text">🏢 Direktkauf oder Investor finden — gratis einreichen · 48h Rückmeldung</span>
+        <button class="biz-sticky-btn" onclick="document.getElementById('biz-form').scrollIntoView({behavior:'smooth'})">Jetzt einreichen</button>
     </div>
 
     <script src="/app.js"></script>
@@ -939,25 +939,25 @@
             document.getElementById('biz-btn-develop').className = 'biz-way-btn' + (way === 'develop' ? ' active-develop' : '');
         }
 
-        // Form subcon → mailto
-        function bizSubcon(e) {
+        // Form submit → mailto
+        function bizSubmit(e) {
             e.preventDefault();
             var name = document.getElementById('biz-name').value.trim();
             var email = document.getElementById('biz-email').value.trim();
             if (!name || !email) { alert('Bitte Name und E-Mail angeben.'); return; }
-            var wayLabel = { direct: 'Compra directa por aBest.co', invest: 'inversor / socios finden', develop: 'Standort entwickeln & vermieten' }[_bizWay] || 'Nicht angegeben';
+            var wayLabel = { direct: 'Direktkauf durch aBest.co', invest: 'Investor / Partner finden', develop: 'Standort entwickeln & vermieten' }[_bizWay] || 'Nicht angegeben';
             var body = 'NEUE UNTERNEHMENS-ANFRAGE — aBest.co\n\n'
-                + 'camino: ' + wayLabel + '\n'
+                + 'Weg: ' + wayLabel + '\n'
                 + 'Name: ' + name + '\n'
                 + 'E-Mail: ' + email + '\n'
-                + 'Teléfono: ' + (document.getElementById('biz-phone').value.trim() || '—') + '\n'
-                + 'País / Región: ' + (document.getElementById('biz-country').value.trim() || '—') + '\n'
-                + 'industria: ' + (document.getElementById('biz-sector').value || '—') + '\n'
+                + 'Telefon: ' + (document.getElementById('biz-phone').value.trim() || '—') + '\n'
+                + 'Land / Region: ' + (document.getElementById('biz-country').value.trim() || '—') + '\n'
+                + 'Branche: ' + (document.getElementById('biz-sector').value || '—') + '\n'
                 + 'Jahresumsatz: ' + (document.getElementById('biz-revenue').value.trim() || '—') + '\n'
-                + 'precio deseado: ' + (document.getElementById('biz-price').value.trim() || '—') + '\n'
-                + 'Mitarenterzahl: ' + (document.getElementById('biz-employees').value.trim() || '—') + '\n\n'
+                + 'Preisvorstellung: ' + (document.getElementById('biz-price').value.trim() || '—') + '\n'
+                + 'Mitarbeiterzahl: ' + (document.getElementById('biz-employees').value.trim() || '—') + '\n\n'
                 + 'Beschreibung:\n' + (document.getElementById('biz-desc').value.trim() || '—');
-            window.location.href = 'mailto:info@abest.co?subject=empresaanpregunta: ' + encodeURIComponent(name) + '&body=' + encodeURIComponent(body);
+            window.location.href = 'mailto:info@abest.co?subject=Empresasanfrage: ' + encodeURIComponent(name) + '&body=' + encodeURIComponent(body);
             document.getElementById('biz-form-fields').style.display = 'none';
             document.getElementById('biz-success').style.display = 'block';
         }
