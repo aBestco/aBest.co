@@ -123,3 +123,31 @@
 /ku/ideen /ku/earn-money 301
 /he/ideen /he/earn-money 301
 /hy/ideen /hy/earn-money 301
+
+# Datenschutz-Redirects: alte /lang/datenschutz URLs → neue übersetzte Slugs
+/en/datenschutz /en/privacy 301
+/en/datenschutz.html /en/privacy 301
+/tr/datenschutz /tr/gizlilik 301
+/tr/datenschutz.html /tr/gizlilik 301
+/es/datenschutz /es/privacidad 301
+/es/datenschutz.html /es/privacidad 301
+/fr/datenschutz /fr/confidentialite 301
+/fr/datenschutz.html /fr/confidentialite 301
+/ru/datenschutz /ru/privacy 301
+/ru/datenschutz.html /ru/privacy 301
+/pt/datenschutz /pt/privacidade 301
+/pt/datenschutz.html /pt/privacidade 301
+/ar/datenschutz /ar/privacy 301
+/ar/datenschutz.html /ar/privacy 301
+/zh/datenschutz /zh/privacy 301
+/zh/datenschutz.html /zh/privacy 301
+/hi/datenschutz /hi/privacy 301
+/hi/datenschutz.html /hi/privacy 301
+/he/datenschutz /he/privacy 301
+/he/datenschutz.html /he/privacy 301
+/ur/datenschutz /ur/privacy 301
+/ur/datenschutz.html /ur/privacy 301
+/hy/datenschutz /hy/privacy 301
+/hy/datenschutz.html /hy/privacy 301
+/ku/datenschutz /ku/nepeniti 301
+/ku/datenschutz.html /ku/nepeniti 301
