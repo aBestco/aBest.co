@@ -331,7 +331,13 @@ body {
 
 @media (min-width: 640px) {
     .countries {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 900px) {
+    .countries {
+        grid-template-columns: repeat(4, 1fr);
     }
 }
 
@@ -1105,7 +1111,7 @@ p, li { font-size: clamp(1rem, 1vw + 0.8rem, 1.125rem); line-height: 1.7; }
 
 @media (min-width: 768px) and (max-width: 1023px) {
     .countries {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
     }
 
     .hero-content {
@@ -1115,7 +1121,7 @@ p, li { font-size: clamp(1rem, 1vw + 0.8rem, 1.125rem); line-height: 1.7; }
 
 @media (min-width: 1024px) {
     .countries {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
     }
 
     .glass-card:hover {
