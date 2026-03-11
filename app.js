@@ -938,7 +938,8 @@ window.loadUserProfile = async function () {
                 if (initialsEl) initialsEl.style.display = 'none';
                 let img = userAvatarLetters.querySelector('img');
                 if (!img) { img = document.createElement('img'); userAvatarLetters.appendChild(img); }
-                img.src = profile.avatar;
+                // Support both base64 (legacy) and R2 URLs (new)
+                img.src = profile.avatar.startsWith('data:') ? profile.avatar : '/api/auth/avatar?t=' + Date.now();
                 img.style.cssText = 'width:100%;height:100%;object-fit:cover;border-radius:50%;position:absolute;inset:0;';
             } else {
                 // Show initials
@@ -960,41 +961,8 @@ window.loadUserProfile = async function () {
     }
 };
 
-window.saveUserProfile = async function (event) {
-    event.preventDefault();
-    const token = localStorage.getItem('aBest_session');
-    if (!token) return;
-
-    const name = document.getElementById('profile-name').value;
-    const phone = document.getElementById('profile-phone').value;
-    const company = document.getElementById('profile-company').value;
-    const saveBtn = document.getElementById('profile-save-btn');
-
-    if (saveBtn) saveBtn.innerText = 'Speichert...';
-
-    try {
-        const res = await fetch('/api/auth/me', {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify({ name, phone, company })
-        });
-
-        if (res.ok) {
-            alert('Profil erfolgreich aktualisiert.');
-            loadUserProfile(); // refresh avatar
-        } else {
-            alert('Fehler beim Speichern.');
-        }
-    } catch (err) {
-        console.error(err);
-        alert('Netzwerkfehler beim Speichern.');
-    } finally {
-        if (saveBtn) saveBtn.innerText = 'Änderungen speichern';
-    }
-};
+// saveUserProfile is defined in profil.html (each language version)
+// Removed duplicate definition from app.js to avoid conflicts
 
 window.loadMessages = async function () {
     const token = localStorage.getItem('aBest_session');

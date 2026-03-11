@@ -15,14 +15,26 @@ body { background: #0a0a0f; }
 .db-wrapper { min-height: 100vh; padding: 66px 16px 16px; max-width: 700px; margin: 0 auto; }
 
 /* Hero card */
-.db-hero { display: flex; align-items: center; gap: 14px; padding: 16px 18px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10); border-radius: 16px; margin-bottom: 12px; }
+.db-hero { position: relative; display: flex; align-items: center; gap: 14px; padding: 16px 18px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10); border-radius: 16px; margin-bottom: 12px; }
 .db-avatar { width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg,rgba(0,122,255,0.4),rgba(0,200,150,0.25)); border: 2px solid rgba(0,122,255,0.5); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 700; color: #fff; flex-shrink: 0; cursor: pointer; position: relative; overflow: hidden; transition: opacity 0.2s; }
 .db-avatar:hover { opacity: 0.8; }
 .db-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
 .db-avatar-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.55); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s; font-size: 0.55rem; color: #fff; font-weight: 600; letter-spacing: 0.02em; border-radius: 50%; }
 .db-avatar:hover .db-avatar-overlay { opacity: 1; }
-.db-share-btn { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 6px 10px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 5px; font-size: 0.78rem; transition: all 0.2s; margin-top: 4px; }
+.db-share-btn { position: absolute; top: 16px; right: 16px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 50%; width: 36px; height: 36px; padding: 0; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
 .db-share-btn:hover { background: rgba(0,122,255,0.15); border-color: rgba(0,122,255,0.4); color: #fff; }
+
+/* Toggle switches and settings */
+.settings-toggle-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.settings-toggle-label { color: #fff; font-size: 0.88rem; font-weight: 500; }
+.settings-toggle-desc { color: var(--text-muted); font-size: 0.75rem; margin-top: 2px; }
+.toggle-switch { position: relative; display: inline-block; width: 44px; height: 24px; flex-shrink: 0; }
+.toggle-switch input { opacity: 0; width: 0; height: 0; }
+.toggle-slider { position: absolute; cursor: pointer; inset: 0; background: rgba(255,255,255,0.1); border-radius: 24px; transition: 0.3s; }
+.toggle-slider:before { content: ''; position: absolute; height: 18px; width: 18px; left: 3px; bottom: 3px; background: #fff; border-radius: 50%; transition: 0.3s; }
+.toggle-switch input:checked + .toggle-slider { background: rgba(0,122,255,0.7); }
+.toggle-switch input:checked + .toggle-slider:before { transform: translateX(20px); }
+select option { background: #1a1a2e; color: #fff; }
 .db-hero-info h2 { font-size: 1rem; font-weight: 600; color: var(--text-main); margin: 0 0 2px; }
 .db-hero-info p { font-size: 0.82rem; color: var(--text-muted); margin: 0 0 8px; }
 .db-badge { display: inline-block; font-size: 0.7rem; font-weight: 600; padding: 3px 10px; border-radius: 20px; background: rgba(0,122,255,0.15); border: 1px solid rgba(0,122,255,0.35); color: var(--primary-blue); text-transform: uppercase; letter-spacing: 0.06em; }
@@ -663,12 +675,17 @@ body { background: #0a0a0f; }
 
   <!-- Hero Card -->
   <div class="db-hero fade-in-up">
-    <div class="db-avatar" id="profile-avatar-letters">?</div>
+    <div class="db-avatar" id="profile-avatar-letters" onclick="document.getElementById('avatar-file-input').click()" title="Changer la photo de profil">
+      <span id="avatar-initials">?</span>
+      <div class="db-avatar-overlay">📷 Changer</div>
+    </div>
+    <input type="file" id="avatar-file-input" accept="image/*" style="display:none" onchange="uploadAvatar(this)"/>
     <div class="db-hero-info">
       <h2 id="hero-name">—</h2>
       <p id="hero-email">—</p>
       <span class="db-badge" id="hero-badge">Membre</span>
     </div>
+    <button class="db-share-btn" onclick="shareProfile()" title="Partager le lien du profil">🔗</button>
   </div>
 
   <!-- Tab Navigation -->
@@ -710,7 +727,7 @@ body { background: #0a0a0f; }
     </div>
   </div>
 
-  <!-- ── TAB: NACHRICHTEN ────────────────── -->
+  <!-- ── TAB: MESSAGES ────────────────── -->
   <div class="db-panel fade-in-up" id="panel-messages" style="animation-delay:0.2s;">
     <div class="glass-panel" style="padding:24px;">
       <div class="db-section-header">
@@ -720,9 +737,19 @@ body { background: #0a0a0f; }
       <div class="msg-thread" id="message-thread">
         <div style="text-align:center;color:var(--text-muted);font-size:0.85rem;padding:20px 0;">Chargement...</div>
       </div>
-      <div class="msg-input-row">
-        <input type="text" id="new-message-input" placeholder="Écrire un message..."onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMessage();}" />
-        <button id="send-message-btn" onclick="sendMessage()">Envoyer</button>
+      <div class="msg-compose glass-panel" style="padding:20px;margin-top:16px;border:1px solid rgba(255,255,255,0.08);border-radius:16px;">
+        <div class="db-section-header" style="margin-bottom:12px;">
+          <h4 style="font-size:0.95rem;margin:0;">Nouveau Message</h4>
+        </div>
+        <div class="db-field">
+          <label>Objet</label>
+          <input type="text" id="msg-subject" placeholder="Saisir l'objet..." style="width:100%;padding:10px 14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:10px;color:#fff;font-size:0.9rem;outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(0,122,255,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'"/>
+        </div>
+        <div class="db-field" style="margin-top:12px;">
+          <label>Message</label>
+          <textarea id="msg-text" placeholder="Écrivez votre message..." rows="3" style="width:100%;padding:10px 14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:10px;color:#fff;font-size:0.9rem;outline:none;resize:none;overflow:hidden;min-height:80px;line-height:1.5;transition:border-color 0.2s;font-family:inherit;" onfocus="this.style.borderColor='rgba(0,122,255,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'" oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px';"></textarea>
+        </div>
+        <button class="db-btn db-btn-primary" style="margin-top:14px;width:100%;padding:12px;" onclick="sendMessage()">Envoyer le message</button>
       </div>
     </div>
   </div>
@@ -1194,18 +1221,116 @@ body { background: #0a0a0f; }
 
   <!-- ── TAB: SETTINGS ──────────────────── -->
   <div class="db-panel fade-in-up" id="panel-settings" style="animation-delay:0.2s;">
+
+    <!-- Language & Region -->
     <div class="settings-card">
-      <h4>Changer le Mot de Passe</h4>
-      <div class="db-field"><label>Mot de Passe Actuel</label><input type="password" id="pw-current" autocomplete="current-password"/></div>
-      <div class="db-field"><label>Nouveau Mot de Passe</label><input type="password" id="pw-new" autocomplete="new-password"/></div>
-      <div class="db-field" style="margin-bottom:0;"><label>Confirmer le Nouveau Mot de Passe</label><input type="password" id="pw-confirm" autocomplete="new-password"/></div>
+      <h4>Langue et région</h4>
+      <div class="db-field">
+        <label>Langue</label>
+        <select id="set-language" style="width:100%;padding:10px 14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:10px;color:#fff;font-size:0.9rem;outline:none;">
+          <option value="auto">Détection automatique</option>
+          <option value="de">Deutsch</option>
+          <option value="en">English</option>
+          <option value="tr">Türkçe</option>
+          <option value="es">Español</option>
+          <option value="fr">Français</option>
+          <option value="ru">Русский</option>
+          <option value="zh">中文</option>
+          <option value="ar">العربية</option>
+          <option value="hi">हिन्दी</option>
+          <option value="pt">Português</option>
+          <option value="ur">اردو</option>
+          <option value="ku">Kurdî</option>
+          <option value="he">עברית</option>
+          <option value="hy">Հայերեն</option>
+        </select>
+      </div>
+      <div class="db-field" style="margin-top:10px;">
+        <label>Fuseau horaire</label>
+        <select id="set-timezone" style="width:100%;padding:10px 14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:10px;color:#fff;font-size:0.9rem;outline:none;">
+          <option value="auto">Automatique</option>
+          <option value="Europe/Berlin">Europe/Berlin (CET)</option>
+          <option value="Europe/London">Europe/London (GMT)</option>
+          <option value="America/New_York">America/New_York (EST)</option>
+          <option value="America/Los_Angeles">America/Los Angeles (PST)</option>
+          <option value="Asia/Tokyo">Asia/Tokyo (JST)</option>
+          <option value="Asia/Shanghai">Asia/Shanghai (CST)</option>
+          <option value="Asia/Istanbul">Asia/Istanbul (TRT)</option>
+        </select>
+      </div>
+      <div class="db-field" style="margin-top:10px;">
+        <label>Format de date</label>
+        <select id="set-dateformat" style="width:100%;padding:10px 14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:10px;color:#fff;font-size:0.9rem;outline:none;">
+          <option value="DD.MM.YYYY">DD.MM.YYYY</option>
+          <option value="MM/DD/YYYY">MM/DD/YYYY</option>
+          <option value="YYYY-MM-DD">YYYY-MM-DD</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Notifications -->
+    <div class="settings-card" style="margin-top:6px;">
+      <h4>Notifications</h4>
+      <div class="settings-toggle-row">
+        <div>
+          <div class="settings-toggle-label">Notifications par e-mail</div>
+          <div class="settings-toggle-desc">Recevoir des notifications pour les nouveaux messages</div>
+        </div>
+        <label class="toggle-switch"><input type="checkbox" id="set-email-notif" checked/><span class="toggle-slider"></span></label>
+      </div>
+      <div class="settings-toggle-row" style="margin-top:14px;">
+        <div>
+          <div class="settings-toggle-label">E-mails marketing</div>
+          <div class="settings-toggle-desc">Mises à jour sur les nouvelles fonctionnalités et offres</div>
+        </div>
+        <label class="toggle-switch"><input type="checkbox" id="set-marketing"/><span class="toggle-slider"></span></label>
+      </div>
+    </div>
+
+    <!-- Privacy -->
+    <div class="settings-card" style="margin-top:6px;">
+      <h4>Confidentialité</h4>
+      <div class="db-field">
+        <label>Visibilité du profil</label>
+        <select id="set-visibility" style="width:100%;padding:10px 14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:10px;color:#fff;font-size:0.9rem;outline:none;">
+          <option value="private">Privé — Moi uniquement</option>
+          <option value="team">Équipe — Mon équipe uniquement</option>
+          <option value="public">Public — Tout le monde</option>
+        </select>
+      </div>
+      <div class="settings-toggle-row" style="margin-top:14px;">
+        <div>
+          <div class="settings-toggle-label">Authentification à deux facteurs</div>
+          <div class="settings-toggle-desc">Sécurité supplémentaire pour votre compte</div>
+        </div>
+        <label class="toggle-switch"><input type="checkbox" id="set-2fa"/><span class="toggle-slider"></span></label>
+      </div>
+    </div>
+
+    <!-- Save Settings Button -->
+    <button class="db-btn db-btn-primary" style="margin-top:16px;width:100%;" id="save-settings-btn" onclick="saveSettings()">Enregistrer les paramètres</button>
+
+    <!-- Password Change -->
+    <div class="settings-card" style="margin-top:6px;">
+      <h4>Changer le mot de passe</h4>
+      <div class="db-field"><label>Mot de passe actuel</label><input type="password" id="pw-current" autocomplete="current-password"/></div>
+      <div class="db-field"><label>Nouveau mot de passe</label><input type="password" id="pw-new" autocomplete="new-password"/></div>
+      <div class="db-field" style="margin-bottom:0;"><label>Confirmer le nouveau mot de passe</label><input type="password" id="pw-confirm" autocomplete="new-password"/></div>
       <div id="pw-error" style="display:none;color:#ff453a;font-size:0.82rem;margin-top:8px;padding:6px 10px;background:rgba(255,69,58,0.1);border-radius:8px;"></div>
       <div id="pw-success" style="display:none;color:#30d158;font-size:0.82rem;margin-top:8px;padding:6px 10px;background:rgba(48,209,88,0.1);border-radius:8px;"></div>
-      <button class="db-btn db-btn-primary" style="margin-top:16px;" onclick="changePassword()">Mettre à Jour</button>
+      <button class="db-btn db-btn-primary" style="margin-top:16px;" onclick="changePassword()">Mettre à jour le mot de passe</button>
     </div>
-    
+
+    <!-- Data Export -->
+    <div class="settings-card" style="margin-top:6px;">
+      <h4>Données et export</h4>
+      <p style="color:var(--text-muted);font-size:0.82rem;margin-bottom:12px;">Téléchargez une copie de vos données personnelles</p>
+      <button class="db-btn" style="width:100%;" onclick="exportUserData()">📦 Exporter mes données</button>
+    </div>
+
+    <!-- Logout & Danger Zone -->
     <div class="settings-card danger-card" style="margin-top:6px;">
-      <h4>Déconnexion</h4>
+      <h4>Se déconnecter</h4>
       <button class="db-btn db-btn-danger" onclick="logout()">⎋ Se déconnecter</button>
     </div>
 
@@ -1241,24 +1366,35 @@ window.uploadAvatar = async function(input) {
   if (file.size > 50 * 1024 * 1024) { alert('Max 50 MB'); return; }
   const token = localStorage.getItem('aBest_session');
   if (!token) return;
+  // Show preview immediately
+  const avatarEl = document.getElementById('profile-avatar-letters');
+  const initialsEl = document.getElementById('avatar-initials');
+  if (initialsEl) initialsEl.style.display = 'none';
   const reader = new FileReader();
-  reader.onload = async function(e) {
-    const base64 = e.target.result;
-    const avatarEl = document.getElementById('profile-avatar-letters');
-    const initialsEl = document.getElementById('avatar-initials');
-    if (initialsEl) initialsEl.style.display = 'none';
+  reader.onload = function(e) {
     let img = avatarEl ? avatarEl.querySelector('img') : null;
     if (!img && avatarEl) { img = document.createElement('img'); avatarEl.appendChild(img); }
-    if (img) img.src = base64;
-    try {
-      await fetch('/api/auth/me', {
-        method: 'PUT',
-        headers: {'Content-Type':'application/json','Authorization':'Bearer '+token},
-        body: JSON.stringify({avatar: base64})
-      });
-    } catch(e) {}
+    if (img) img.src = e.target.result;
   };
   reader.readAsDataURL(file);
+  // Upload to R2 via API
+  try {
+    const formData = new FormData();
+    formData.append('file', file);
+    const res = await fetch('/api/auth/avatar', {
+      method: 'POST',
+      headers: { 'Authorization': 'Bearer ' + token },
+      body: formData
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      console.error('Avatar upload failed:', res.status, err);
+      alert('Failed to save avatar. Please try again.');
+    }
+  } catch(e) {
+    console.error('Avatar upload error:', e);
+    alert('Network error saving avatar. Please try again.');
+  }
   input.value = '';
 };
 
@@ -1294,6 +1430,7 @@ function switchTab(name, btn, _noPush) {
   if (name === 'messages') loadMessages();
   if (name === 'team') loadTeamMembers();
   if (name === 'role') loadRoleData();
+  if (name === 'settings') loadSettings();
   if (!_noPush) {
     const _slugMap = {profil:'',messages:'messages',team:'team',role:'my-role',settings:'settings'};
     const _slug = _slugMap[name] || '';
@@ -1350,6 +1487,91 @@ async function changePassword() {
   } catch(e) {}
 }
 
+// ── Settings ─────────────────────────────────────────
+async function loadSettings() {
+  const token = localStorage.getItem('aBest_session');
+  if (!token) return;
+  try {
+    const res = await fetch('/api/auth/settings', {
+      headers: { 'Authorization': 'Bearer ' + token }
+    });
+    if (!res.ok) return;
+    const settings = await res.json();
+    if (settings.language) document.getElementById('set-language').value = settings.language;
+    if (settings.timezone) document.getElementById('set-timezone').value = settings.timezone;
+    if (settings.dateFormat) document.getElementById('set-dateformat').value = settings.dateFormat;
+    if (settings.emailNotifications !== undefined) document.getElementById('set-email-notif').checked = settings.emailNotifications;
+    if (settings.marketingEmails !== undefined) document.getElementById('set-marketing').checked = settings.marketingEmails;
+    if (settings.profileVisibility) document.getElementById('set-visibility').value = settings.profileVisibility;
+    if (settings.twoFactorEnabled !== undefined) document.getElementById('set-2fa').checked = settings.twoFactorEnabled;
+  } catch(e) { console.error('Load settings error:', e); }
+}
+
+async function saveSettings() {
+  const token = localStorage.getItem('aBest_session');
+  if (!token) return;
+  const btn = document.getElementById('save-settings-btn');
+  const orig = btn.innerText;
+  btn.innerText = 'Enregistrement...';
+  btn.disabled = true;
+  try {
+    const res = await fetch('/api/auth/settings', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+      body: JSON.stringify({
+        language: document.getElementById('set-language').value,
+        timezone: document.getElementById('set-timezone').value,
+        dateFormat: document.getElementById('set-dateformat').value,
+        emailNotifications: document.getElementById('set-email-notif').checked,
+        marketingEmails: document.getElementById('set-marketing').checked,
+        profileVisibility: document.getElementById('set-visibility').value,
+        twoFactorEnabled: document.getElementById('set-2fa').checked
+      })
+    });
+    if (res.ok) {
+      btn.innerText = '✓ Enregistré';
+      const lang = document.getElementById('set-language').value;
+      if (lang !== 'auto') {
+        document.cookie = 'aBest_lang=' + lang + ';path=/;max-age=31536000';
+      }
+      setTimeout(() => { btn.innerText = orig; btn.disabled = false; }, 2000);
+    } else {
+      btn.innerText = '✗ Erreur';
+      setTimeout(() => { btn.innerText = orig; btn.disabled = false; }, 2000);
+    }
+  } catch(e) {
+    console.error('Save settings error:', e);
+    btn.innerText = orig;
+    btn.disabled = false;
+  }
+}
+
+async function exportUserData() {
+  const token = localStorage.getItem('aBest_session');
+  if (!token) return;
+  try {
+    const res = await fetch('/api/auth/me', {
+      headers: { 'Authorization': 'Bearer ' + token }
+    });
+    const profile = await res.json();
+    const msgRes = await fetch('/api/messages', {
+      headers: { 'Authorization': 'Bearer ' + token }
+    });
+    const messages = await msgRes.json();
+    const exportData = { profile: profile, messages: messages, exportDate: new Date().toISOString() };
+    const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'abest-data-export.json';
+    a.click();
+    URL.revokeObjectURL(url);
+  } catch(e) {
+    console.error('Export error:', e);
+    alert('Erreur lors de l\'export des données.');
+  }
+}
+
 // ── Load messages ─────────────────────────────────────
 window.loadMessages = async function() {
   const token = localStorage.getItem('aBest_session');
@@ -1368,7 +1590,8 @@ window.loadMessages = async function() {
       const cls = isUser ? 'user' : 'support';
       const who = isUser ? 'Vous' : 'aBest.co';
       const date = new Date(m.timestamp).toLocaleString();
-      return `<div class="msg-bubble ${cls}"><div class="bubble-inner"><div class="bubble-meta">${who} · ${date}</div>${m.text}</div></div>`;
+      const subject = m.subject ? `<strong style="display:block;margin-bottom:4px;color:#fff;">${m.subject}</strong>` : '';
+      return `<div class="msg-bubble ${cls}"><div class="bubble-inner"><div class="bubble-meta">${who} · ${date}</div>${subject}${m.text}</div></div>`;
     }).join('');
     thread.scrollTop = thread.scrollHeight;
   } catch(e) {
@@ -1379,19 +1602,27 @@ window.loadMessages = async function() {
 // ── Send message ──────────────────────────────────────
 window.sendMessage = async function() {
   const token = localStorage.getItem('aBest_session');
-  const input = document.getElementById('new-message-input');
-  const btn = document.getElementById('send-message-btn');
-  if (!token || !input.value.trim()) return;
-  const text = input.value.trim();
-  btn.disabled = true;
+  const subjectInput = document.getElementById('msg-subject');
+  const textInput = document.getElementById('msg-text');
+  const btn = document.querySelector('[onclick="sendMessage()"]');
+  if (!token) return;
+  const subject = subjectInput.value.trim();
+  const text = textInput.value.trim();
+  if (!text) { alert('Veuillez écrire un message.'); return; }
+  if (btn) btn.disabled = true;
   try {
     const res = await fetch('/api/messages', {
       method:'POST',
       headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},
-      body: JSON.stringify({text})
+      body: JSON.stringify({subject: subject, text: text})
     });
-    if (res.ok) { input.value=''; loadMessages(); }
-  } catch(e) {} finally { btn.disabled=false; }
+    if (res.ok) {
+      subjectInput.value='';
+      textInput.value='';
+      textInput.style.height='auto';
+      loadMessages();
+    }
+  } catch(e) {} finally { if (btn) btn.disabled=false; }
 };
 
 // ── TEAM MANAGEMENT ───────────────────────────────────

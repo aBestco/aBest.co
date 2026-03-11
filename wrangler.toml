@@ -22,6 +22,12 @@ binding = "ABEST_INQUIRIES"
 id = "9d4a94e280134e1abfcceb16568db8bd"
 # Stores: contact form submissions, business inquiries
 
+# ─── R2 BUCKETS ──────────────────────────────────────
+[[r2_buckets]]
+binding = "ABEST_R2"
+bucket_name = "abest-uploads"
+# Stores: avatar images, file uploads for listings and role forms
+
 # ─── ENVIRONMENT VARIABLES ───────────────────────────
 # Set as encrypted secrets in Cloudflare Dashboard:
 # Pages → abest-co → Settings → Environment variables

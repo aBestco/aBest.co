@@ -551,6 +551,7 @@ async function handleMessagesApi(request, env) {
                 id: crypto.randomUUID(),
                 sender: isAdmin && currentUser !== targetUser ? 'admin' : 'user',
                 text: text,
+                subject: body.subject || '',
                 timestamp: new Date().toISOString(),
                 unread: true
             };
@@ -848,12 +849,7 @@ async function handleAuthApi(request, env) {
                 if (updates.name !== undefined) profile.name = updates.name;
                 if (updates.phone !== undefined) profile.phone = updates.phone;
                 if (updates.company !== undefined) profile.company = updates.company;
-                // Avatar: accept base64 data URL (max ~2MB image)
-                if (updates.avatar !== undefined) {
-                    if (typeof updates.avatar === 'string' && updates.avatar.startsWith('data:image/')) {
-                        profile.avatar = updates.avatar;
-                    }
-                }
+                // Note: avatar is now handled via dedicated /api/auth/avatar endpoint
 
                 await env.ABEST_AUTH.put(`profile:${userEmail}`, JSON.stringify(profile));
                 return new Response(JSON.stringify({ success: true, profile }), {
@@ -888,6 +884,187 @@ async function handleAuthApi(request, env) {
             await env.ABEST_AUTH.put(`salt:${userEmail}`, newSalt);
             await env.ABEST_AUTH.put(`user:${userEmail}`, newHash);
             return new Response(JSON.stringify({ success: true }), { headers: { 'Content-Type': 'application/json', ...corsHeaders } });
+        }
+
+        // ── Avatar Upload (R2) ───────────────────────────────────────────────
+        if (method === 'POST' && url.pathname === '/api/auth/avatar') {
+            const userEmail = await checkAuth(request, env);
+            if (!userEmail) return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401, headers: corsHeaders });
+            if (!env.ABEST_R2) return new Response(JSON.stringify({ error: 'R2 not configured' }), { status: 500, headers: corsHeaders });
+
+            try {
+                const formData = await request.formData();
+                const file = formData.get('file');
+                if (!file) {
+                    return new Response(JSON.stringify({ error: 'No file provided' }), { status: 400, headers: corsHeaders });
+                }
+
+                // Validate content type
+                if (!file.type.startsWith('image/')) {
+                    return new Response(JSON.stringify({ error: 'File must be an image' }), { status: 400, headers: corsHeaders });
+                }
+
+                // Validate file size (50 MB)
+                if (file.size > 50 * 1024 * 1024) {
+                    return new Response(JSON.stringify({ error: 'File too large (max 50 MB)' }), { status: 413, headers: corsHeaders });
+                }
+
+                // Create R2 key: avatars/{email}/{timestamp}-{filename}
+                const timestamp = Date.now();
+                const filename = file.name || 'avatar';
+                const r2Key = `avatars/${userEmail}/${timestamp}-${filename}`;
+
+                // Upload to R2
+                const arrayBuffer = await file.arrayBuffer();
+                await env.ABEST_R2.put(r2Key, arrayBuffer, {
+                    httpMetadata: {
+                        contentType: file.type
+                    }
+                });
+
+                // Update profile with avatar key
+                if (env.ABEST_AUTH) {
+                    const profileStr = await env.ABEST_AUTH.get(`profile:${userEmail}`);
+                    const profile = profileStr ? JSON.parse(profileStr) : { email: userEmail, role: 'User' };
+                    profile.avatar = r2Key;
+                    await env.ABEST_AUTH.put(`profile:${userEmail}`, JSON.stringify(profile));
+                }
+
+                return new Response(JSON.stringify({ success: true, avatarUrl: '/api/auth/avatar' }), {
+                    headers: { 'Content-Type': 'application/json', ...corsHeaders }
+                });
+            } catch (err) {
+                return new Response(JSON.stringify({ error: err.message }), { status: 500, headers: corsHeaders });
+            }
+        }
+
+        // ── Get Avatar ───────────────────────────────────────────────────────
+        if (method === 'GET' && url.pathname.startsWith('/api/auth/avatar')) {
+            const pathParts = url.pathname.split('/');
+            let targetEmail = null;
+
+            // Check if requesting specific user's avatar: /api/auth/avatar/user@email.com
+            if (pathParts.length > 4) {
+                targetEmail = pathParts[4];
+                const userEmail = await checkAuth(request, env);
+                if (!userEmail) return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401, headers: corsHeaders });
+
+                // Only admin can request other users' avatars
+                let isAdmin = userEmail === 'admin';
+                if (!isAdmin && env.ABEST_AUTH) {
+                    const profileStr = await env.ABEST_AUTH.get(`profile:${userEmail}`);
+                    if (profileStr) {
+                        const p = JSON.parse(profileStr);
+                        isAdmin = (p.role === 'Admin' || p.role === 'Superadmin');
+                    }
+                }
+                if (!isAdmin) {
+                    return new Response(JSON.stringify({ error: 'Forbidden' }), { status: 403, headers: corsHeaders });
+                }
+            } else {
+                // Own avatar
+                targetEmail = await checkAuth(request, env);
+                if (!targetEmail) return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401, headers: corsHeaders });
+            }
+
+            if (!env.ABEST_AUTH || !env.ABEST_R2) {
+                return new Response(JSON.stringify({ error: 'Storage not configured' }), { status: 500, headers: corsHeaders });
+            }
+
+            try {
+                const profileStr = await env.ABEST_AUTH.get(`profile:${targetEmail}`);
+                if (!profileStr) {
+                    return new Response(JSON.stringify({ error: 'User not found' }), { status: 404, headers: corsHeaders });
+                }
+
+                const profile = JSON.parse(profileStr);
+                if (!profile.avatar) {
+                    return new Response(JSON.stringify({ error: 'No avatar' }), { status: 404, headers: corsHeaders });
+                }
+
+                // Fetch from R2
+                const object = await env.ABEST_R2.get(profile.avatar);
+                if (!object) {
+                    return new Response(JSON.stringify({ error: 'Avatar not found in storage' }), { status: 404, headers: corsHeaders });
+                }
+
+                const contentType = object.httpMetadata?.contentType || 'application/octet-stream';
+                return new Response(object.body, {
+                    headers: {
+                        'Content-Type': contentType,
+                        'Cache-Control': 'public, max-age=3600'
+                    }
+                });
+            } catch (err) {
+                return new Response(JSON.stringify({ error: err.message }), { status: 500, headers: corsHeaders });
+            }
+        }
+
+        // ── User Settings (GET) ──────────────────────────────────────────────
+        if (method === 'GET' && url.pathname === '/api/auth/settings') {
+            const userEmail = await checkAuth(request, env);
+            if (!userEmail) return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401, headers: corsHeaders });
+
+            if (env.ABEST_AUTH) {
+                const profileStr = await env.ABEST_AUTH.get(`profile:${userEmail}`);
+                const profile = profileStr ? JSON.parse(profileStr) : {};
+
+                // Default settings
+                const defaultSettings = {
+                    language: 'auto',
+                    theme: 'dark',
+                    emailNotifications: true,
+                    marketingEmails: false,
+                    profileVisibility: 'private',
+                    timezone: 'auto',
+                    dateFormat: 'DD.MM.YYYY',
+                    twoFactorEnabled: false
+                };
+
+                const settings = profile.settings ? { ...defaultSettings, ...profile.settings } : defaultSettings;
+                return new Response(JSON.stringify(settings), {
+                    headers: { 'Content-Type': 'application/json', ...corsHeaders }
+                });
+            }
+            return new Response(JSON.stringify({ error: 'Storage missing' }), { status: 500, headers: corsHeaders });
+        }
+
+        // ── User Settings (PUT) ──────────────────────────────────────────────
+        if (method === 'PUT' && url.pathname === '/api/auth/settings') {
+            const userEmail = await checkAuth(request, env);
+            if (!userEmail) return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401, headers: corsHeaders });
+
+            if (!env.ABEST_AUTH) return new Response(JSON.stringify({ error: 'Storage missing' }), { status: 500, headers: corsHeaders });
+
+            try {
+                const updates = await request.json();
+                const profileStr = await env.ABEST_AUTH.get(`profile:${userEmail}`);
+                const profile = profileStr ? JSON.parse(profileStr) : { email: userEmail, role: 'User' };
+
+                // Default settings
+                const defaultSettings = {
+                    language: 'auto',
+                    theme: 'dark',
+                    emailNotifications: true,
+                    marketingEmails: false,
+                    profileVisibility: 'private',
+                    timezone: 'auto',
+                    dateFormat: 'DD.MM.YYYY',
+                    twoFactorEnabled: false
+                };
+
+                // Merge with existing or defaults
+                const existingSettings = profile.settings ? { ...defaultSettings, ...profile.settings } : defaultSettings;
+                const newSettings = { ...existingSettings, ...updates };
+                profile.settings = newSettings;
+
+                await env.ABEST_AUTH.put(`profile:${userEmail}`, JSON.stringify(profile));
+                return new Response(JSON.stringify({ success: true, settings: newSettings }), {
+                    headers: { 'Content-Type': 'application/json', ...corsHeaders }
+                });
+            } catch (err) {
+                return new Response(JSON.stringify({ error: err.message }), { status: 500, headers: corsHeaders });
+            }
         }
 
         return new Response('Not Found', { status: 404, headers: corsHeaders });
