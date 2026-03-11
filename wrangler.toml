@@ -23,10 +23,10 @@ id = "9d4a94e280134e1abfcceb16568db8bd"
 # Stores: contact form submissions, business inquiries
 
 # ─── R2 BUCKETS ──────────────────────────────────────
-[[r2_buckets]]
-binding = "ABEST_R2"
-bucket_name = "abest-uploads"
-# Stores: avatar images, file uploads for listings and role forms
+# NOTE: R2 binding is configured in Cloudflare Dashboard (not here).
+# Pages → abest-co → Settings → Bindings → Add R2 binding
+# Binding name: ABEST_R2 / Bucket: abest-uploads
+# (Activate R2 in dashboard first, then create bucket & add binding)
 
 # ─── ENVIRONMENT VARIABLES ───────────────────────────
 # Set as encrypted secrets in Cloudflare Dashboard:
