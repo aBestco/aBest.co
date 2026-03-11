@@ -92,7 +92,7 @@
       aBest.co में, आप स्टार्टअप, रियल एस्टेट परियोजनाओं या परिपक्व कंपनियों में सीधे निवेश कर सकते हैं — न्यूनतम भागीदारी से लेकर बड़े निवेश तक, सभी अंतर्राष्ट्रीय मानकों के अनुसार संरचित और गोपनीय।
     </p>
     <div style="margin-top:1.6rem;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-      <a href="/hi/login?next=/profile/my-role/investor" style="padding:13px 28px;font-size:1rem;font-weight:700;border-radius:14px;background:linear-gradient(135deg,var(--inv-gold),var(--inv-orange));color:#000;text-decoration:none;">💼 अभी निवेश करें</a>
+      <a href="javascript:void(0)" onclick="roleRedirect('investor')" style="padding:13px 28px;font-size:1rem;font-weight:700;border-radius:14px;background:linear-gradient(135deg,var(--inv-gold),var(--inv-orange));color:#000;text-decoration:none;">💼 अभी निवेश करें</a>
       <a href="#" style="padding:13px 22px;font-size:0.9rem;border-radius:14px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:var(--text-main);text-decoration:none;">कैसे काम करता है →</a>
     </div>
   </section>
@@ -237,11 +237,21 @@
 
 <div class="inv-sticky">
   <span class="inv-sticky-text">💼 <strong>निवेश के लिए तैयार</strong> — अभी शुरु करें · व्यक्तिगत सलाहकार</span>
-  <a class="inv-sticky-btn" href="/hi/login?next=/profile/my-role/investor">अभी शुरु करें</a>
+  <a class="inv-sticky-btn" href="javascript:void(0)" onclick="roleRedirect('investor')">अभी शुरु करें</a>
 </div>
 
 <script src="/app.js"></script>
 <script>
+function roleRedirect(role) {
+  var token = localStorage.getItem('aBest_session');
+  var lang = window.location.pathname.split('/')[1] || 'de';
+  if (token) {
+    window.location.href = '/' + lang + '/profil/my-role/' + role;
+  } else {
+    window.location.href = '/' + lang + '/login?next=' + encodeURIComponent('/' + lang + '/profil/my-role/' + role);
+  }
+}
+
 function invFaq(btn) {
     var item = btn.closest ? btn.closest('.inv-faq-item') : btn.parentElement;
     var wasOpen = item.classList.contains('open');

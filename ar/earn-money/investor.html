@@ -50,7 +50,7 @@
       في aBest.co، يمكنك الاستثمار مباشرة في الشركات الناشئة أو مشاريع العقارات أو الشركات الناضجة — من الاستثمارات الصغيرة إلى الكبيرة، كل ذلك منظم وسري وفقًا للمعايير الدولية.
     </p>
     <div style="margin-top:1.6rem;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-      <a href="/ar/login?next=/profile/my-role/investor" style="padding:13px 28px;font-size:1rem;font-weight:700;border-radius:14px;background:linear-gradient(135deg,var(--inv-gold),var(--inv-orange));color:#000;text-decoration:none;">💼 ابدأ الآن</a>
+      <a href="javascript:void(0)" onclick="roleRedirect('investor')" style="padding:13px 28px;font-size:1rem;font-weight:700;border-radius:14px;background:linear-gradient(135deg,var(--inv-gold),var(--inv-orange));color:#000;text-decoration:none;">💼 ابدأ الآن</a>
       <a href="#" style="padding:13px 22px;font-size:0.9rem;border-radius:14px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:var(--text-main);text-decoration:none;">كيف تعمل →</a>
     </div>
   </section>
@@ -92,5 +92,16 @@
 </main>
 
 <script src="/app.js"></script>
+<script>
+function roleRedirect(role) {
+  var token = localStorage.getItem('aBest_session');
+  var lang = window.location.pathname.split('/')[1] || 'de';
+  if (token) {
+    window.location.href = '/' + lang + '/profil/my-role/' + role;
+  } else {
+    window.location.href = '/' + lang + '/login?next=' + encodeURIComponent('/' + lang + '/profil/my-role/' + role);
+  }
+}
+</script>
 </body>
 </html>

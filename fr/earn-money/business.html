@@ -418,7 +418,7 @@
             <span class="biz-chip"><i class="c-icon">📍</i> 14 Länder</span>
         </div>
         <div class="biz-hero-ctas">
-            <button class="biz-btn-primary" onclick="document.getElementById('biz-form').scrollIntoView({behavior:'smooth'})">🏢 Entreprise einreichen</button>
+            <button class="biz-btn-primary" onclick="roleRedirect('business')">🏢 Entreprise einreichen</button>
             <button class="biz-btn-ghost" onclick="document.getElementById('biz-ways').scrollIntoView({behavior:'smooth'})">Comment ça marche →</button>
         </div>
     </section>
@@ -798,70 +798,6 @@
     </section>
 
     <!-- FORM -->
-    <section class="biz-section" style="padding-top:0" id="biz-form">
-        <p class="biz-section-label">📩 Anfrage</p>
-        <h2>Entreprise einreichen</h2>
-        <div class="biz-form-wrap">
-            <p class="biz-form-title">Ihr Entreprise — gratuit &amp; diskret einreichen</p>
-            <p class="biz-form-sub">Wir melden uns innerhalb von 48 heures. Unverbindlich, confidentiel, kein Makler.</p>
-
-            <p style="font-size:0.8rem;font-weight:600;color:var(--text-muted);margin-bottom:8px;">Votre chemin préféré *</p>
-            <div class="biz-way-btns">
-                <button class="biz-way-btn" id="biz-btn-direct" onclick="bizSelectWayForm('direct')" type="button">
-                    <span class="btn-icon">🤝</span>Direktkauf
-                </button>
-                <button class="biz-way-btn" id="biz-btn-invest" onclick="bizSelectWayForm('invest')" type="button">
-                    <span class="btn-icon">🌍</span>Investor finden
-                </button>
-                <button class="biz-way-btn" id="biz-btn-develop" onclick="bizSelectWayForm('develop')" type="button">
-                    <span class="btn-icon">🏗️</span>Entwickeln
-                </button>
-            </div>
-
-            <div id="biz-form-fields">
-                <div class="biz-form-grid">
-                    <input class="biz-input" id="biz-name" placeholder="Ihr Name *" type="text" />
-                    <input class="biz-input" id="biz-email" placeholder="E-Mail *" type="email" />
-                </div>
-                <div class="biz-form-grid">
-                    <input class="biz-input" id="biz-phone" placeholder="Telefon" type="tel" />
-                    <input class="biz-input" id="biz-country" placeholder="Land / Region" type="text" />
-                </div>
-                <div class="biz-form-grid">
-                    <select class="biz-select" id="biz-sector">
-                        <option value="">Branche *</option>
-                        <option>Self-Storage</option>
-                        <option>Logistik &amp; Lager</option>
-                        <option>Werkstatt / Produktion</option>
-                        <option>Gastronomie / Hotel</option>
-                        <option>Handel / Retail</option>
-                        <option>Franchise-Konzept</option>
-                        <option>Dienstleistung</option>
-                        <option>Gewerbeimmobilie mit Betrieb</option>
-                        <option>Startup / Wachstumsunternehmen</option>
-                        <option>Produktionsbetrieb</option>
-                        <option>Nachfolge / Umstrukturierung</option>
-                        <option>Andere Branche</option>
-                    </select>
-                    <input class="biz-input" id="biz-revenue" placeholder="Jahresumsatz (ca.)" type="text" />
-                </div>
-                <div class="biz-form-grid">
-                    <input class="biz-input" id="biz-price" placeholder="Preisvorstellung (optional)" type="text" />
-                    <input class="biz-input" id="biz-employees" placeholder="Mitarbeiterzahl (ca.)" type="text" />
-                </div>
-                <div class="biz-form-grid full">
-                    <textarea class="biz-textarea" id="biz-desc" placeholder="Kurzbeschreibung Ihres Entreprises — was macht es, seit wann, was suchen Sie genau?"></textarea>
-                </div>
-                <p class="biz-form-note">🔒 Ihre Angaben werden confidentiel behandelt und nicht ohne Ihre Zustimmung weitergegeben.</p>
-                <button class="biz-submit-btn" onclick="bizSubmit(event)" type="button">🏢 Jetzt einreichen — gratuit &amp; diskret</button>
-            </div>
-            <div class="biz-form-success" id="biz-success">
-                <div class="success-icon">✅</div>
-                <strong>Merci beaucoup - Demande reçue!</strong>
-                <p>Unser Team meldet sich innerhalb von 48 heures bei Ihnen. Alles confidentiel — kein Makler, kein öffentliches Inserat.</p>
-            </div>
-        </div>
-    </section>
 
     <!-- FAQ -->
     <section class="biz-section" style="padding-top:0;padding-bottom:80px;">
@@ -898,7 +834,7 @@
     <!-- STICKY CTA -->
     <div class="biz-sticky">
         <span class="biz-sticky-text">🏢 Direktkauf oder Investor finden — gratuit einreichen · 48h Rückmeldung</span>
-        <button class="biz-sticky-btn" onclick="document.getElementById('biz-form').scrollIntoView({behavior:'smooth'})">Jetzt einreichen</button>
+        <button class="biz-sticky-btn" onclick="roleRedirect('business')">Jetzt einreichen</button>
     </div>
 
     <script src="/app.js"></script>
@@ -913,21 +849,18 @@
 
         // Way selector (hero cards → scroll + preselect form)
         function bizSelectWay(way) {
-            document.getElementById('biz-form').scrollIntoView({behavior: 'smooth'});
+            roleRedirect('business');
+        });
             setTimeout(function(){ bizSelectWayForm(way); }, 600);
         }
 
         // Sector card click → select in form + scroll
         function bizSelectSector(sector) {
-            var sel = document.getElementById('biz-sector');
-            if (sel) {
-                for (var i = 0; i < sel.options.length; i++) {
-                    if (sel.options[i].value === sector || sel.options[i].text === sector) {
-                        sel.selectedIndex = i; break;
-                    }
+            roleRedirect('business');
+        }
                 }
             }
-            document.getElementById('biz-form').scrollIntoView({behavior: 'smooth'});
+            roleRedirect('business');
         }
 
         // Way form buttons
@@ -972,5 +905,16 @@
             });
         });
     </script>
+<script>
+function roleRedirect(role) {
+  var token = localStorage.getItem('aBest_session');
+  var lang = window.location.pathname.split('/')[1] || 'de';
+  if (token) {
+    window.location.href = '/' + lang + '/profil/my-role/' + role;
+  } else {
+    window.location.href = '/' + lang + '/login?next=' + encodeURIComponent('/' + lang + '/profil/my-role/' + role);
+  }
+}
+</script>
 </body>
 </html>

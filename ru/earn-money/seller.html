@@ -192,7 +192,7 @@
       <span class="sl-trust-chip">🔒 <strong>100 %</strong> Diskret</span>
     </div>
     <div style="margin-top:1.6rem;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-      <a href="/ru/login?next=/profile/my-role/seller" style="padding:13px 28px;font-size:1rem;font-weight:700;border-radius:14px;background:linear-gradient(135deg,var(--sl-green),var(--sl-emerald));color:#000;text-decoration:none;">🏠 Отправьте объект сейчас</a>
+      <a href="javascript:void(0)" onclick="roleRedirect('seller')" style="padding:13px 28px;font-size:1rem;font-weight:700;border-radius:14px;background:linear-gradient(135deg,var(--sl-green),var(--sl-emerald));color:#000;text-decoration:none;">🏠 Отправьте объект сейчас</a>
       <a href="#sl-ways" style="padding:13px 22px;font-size:0.9rem;border-radius:14px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:var(--text-main);text-decoration:none;">Как это работает →</a>
     </div>
   </section>
@@ -203,7 +203,7 @@
     <h2 style="font-size:1.2rem;font-weight:700;color:var(--text-main);margin:4px 0 16px;">Выберите, что подходит вам</h2>
     <div class="sl-two-ways">
 
-      <div class="sl-way-card direct" onclick="window.location.href='/ru/login?next=/profile/my-role/seller'">
+      <div class="sl-way-card direct" onclick="roleRedirect('seller')">
         <div class="sl-way-icon">🤝</div>
         <h3>Weg 1: Прямая покупка</h3>
         <p>aBest.co kauft Ihr Objekt direkt. Kein langes Warten auf einen Käufer, keine ungewissen Verhandlungen. Sie erhalten ein konkretes Angebot.</p>
@@ -216,7 +216,7 @@
         </ul>
       </div>
 
-      <div class="sl-way-card find" onclick="window.location.href='/ru/login?next=/profile/my-role/seller'">
+      <div class="sl-way-card find" onclick="roleRedirect('seller')">
         <div class="sl-way-icon">🌍</div>
         <h3>Weg 2: Найти покупателя</h3>
         <p>Sie möchten den besten Preis am Markt erzielen? Wir präsentieren Ihr Objekt unserem internationalen Investorennetzwerk — aktiv, gezielt, diskret.</p>
@@ -264,47 +264,47 @@
     <h2 style="font-size:1.2rem;font-weight:700;color:var(--text-main);margin:4px 0 6px;">Что вы можете отправить к нам?</h2>
     <p class="sl-sec-sub">Wählen Sie Ihren Objekttyp — wir nehmen Ihren Fokus direkt ins Anfrage-Formular auf.</p>
     <div class="sl-type-grid" style="margin-top:16px;" id="sl-type-grid">
-      <div class="sl-type-card" onclick="window.location.href='/ru/login?next=/profile/my-role/seller'">
+      <div class="sl-type-card" onclick="roleRedirect('seller')">
         <div class="sl-t-icon">🌍</div>
         <h4>Участок земли</h4>
         <p>Bauland, Rohland</p>
       </div>
-      <div class="sl-type-card" onclick="window.location.href='/ru/login?next=/profile/my-role/seller'">
+      <div class="sl-type-card" onclick="roleRedirect('seller')">
         <div class="sl-t-icon">🏡</div>
         <h4>Wohnimmobilie</h4>
         <p>Haus, Wohnung, MFH</p>
       </div>
-      <div class="sl-type-card" onclick="window.location.href='/ru/login?next=/profile/my-role/seller'">
+      <div class="sl-type-card" onclick="roleRedirect('seller')">
         <div class="sl-t-icon">🏬</div>
         <h4>Gewerbe</h4>
         <p>Büro, Laden, Halle</p>
       </div>
-      <div class="sl-type-card" onclick="window.location.href='/ru/login?next=/profile/my-role/seller'">
+      <div class="sl-type-card" onclick="roleRedirect('seller')">
         <div class="sl-t-icon">🌾</div>
         <h4>Agrarfläche</h4>
         <p>Felder, Farmen</p>
       </div>
-      <div class="sl-type-card" onclick="window.location.href='/ru/login?next=/profile/my-role/seller'">
+      <div class="sl-type-card" onclick="roleRedirect('seller')">
         <div class="sl-t-icon">🏨</div>
         <h4>Hotel / Tourismus</h4>
         <p>Hotels, Resorts</p>
       </div>
-      <div class="sl-type-card" onclick="window.location.href='/ru/login?next=/profile/my-role/seller'">
+      <div class="sl-type-card" onclick="roleRedirect('seller')">
         <div class="sl-t-icon">🏗️</div>
         <h4>Entwicklungsprojekt</h4>
         <p>Bauvorhaben, Проекты</p>
       </div>
-      <div class="sl-type-card" onclick="window.location.href='/ru/login?next=/profile/my-role/seller'">
+      <div class="sl-type-card" onclick="roleRedirect('seller')">
         <div class="sl-t-icon">🏭</div>
         <h4>Lager / Logistik</h4>
         <p>Hallen, Storage</p>
       </div>
-      <div class="sl-type-card" onclick="window.location.href='/ru/login?next=/profile/my-role/seller'">
+      <div class="sl-type-card" onclick="roleRedirect('seller')">
         <div class="sl-t-icon">🏖️</div>
         <h4>Küste / See</h4>
         <p>Wasserlagen, Küste</p>
       </div>
-      <div class="sl-type-card" onclick="window.location.href='/ru/login?next=/profile/my-role/seller'">
+      <div class="sl-type-card" onclick="roleRedirect('seller')">
         <div class="sl-t-icon">🏢</div>
         <h4>Компания</h4>
         <p>Beteiligung, Firma</p>
@@ -523,11 +523,21 @@
 <!-- ── STICKY CTA ─────────────────────────────────────────── -->
 <div class="sl-sticky">
   <span>🏠 <strong>Прямая покупка oder Найти покупателя</strong> — бесплатно einreichen · 24h Rückmeldung</span>
-  <a href="/ru/login?next=/profile/my-role/seller">Отправить сейчас</a>
+  <a href="javascript:void(0)" onclick="roleRedirect('seller')">Отправить сейчас</a>
 </div>
 
 <script src="/app.js"></script>
 <script>
+function roleRedirect(role) {
+  var token = localStorage.getItem('aBest_session');
+  var lang = window.location.pathname.split('/')[1] || 'de';
+  if (token) {
+    window.location.href = '/' + lang + '/profil/my-role/' + role;
+  } else {
+    window.location.href = '/' + lang + '/login?next=' + encodeURIComponent('/' + lang + '/profil/my-role/' + role);
+  }
+}
+
 // ── Часто задаваемые вопросы Toggle ─────────────────────────────────────────────
 function slFaq(el) {
   var item = el.parentElement;

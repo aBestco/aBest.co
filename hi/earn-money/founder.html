@@ -28,7 +28,7 @@
   <section style="max-width:780px;margin:0 auto;text-align:center;">
     <h1 style="font-size:2rem;font-weight:800;margin:0 0 20px;">क्या आपके पास एक अच्छा विचार है?</h1>
     <p style="font-size:1.1rem;color:var(--text-muted);margin:0 0 30px;line-height:1.6;">हम आपको सही निवेशक खोजने में मदद कर सकते हैं। निःशुल्क, गोपनीय, और अंतर्राष्ट्रीय नेटवर्क के साथ।</p>
-    <a href="/hi/login?next=/profile/my-role/founder" style="padding:14px 32px;font-size:1rem;font-weight:700;border-radius:12px;background:linear-gradient(135deg,#3b82f6,#2563eb);color:#fff;text-decoration:none;display:inline-block;margin-bottom:40px;">💡 अब विचार प्रस्तुत करें</a>
+    <a href="javascript:void(0)" onclick="roleRedirect('founder')" style="padding:14px 32px;font-size:1rem;font-weight:700;border-radius:12px;background:linear-gradient(135deg,#3b82f6,#2563eb);color:#fff;text-decoration:none;display:inline-block;margin-bottom:40px;">💡 अब विचार प्रस्तुत करें</a>
     
     <div style="background:rgba(59,130,246,0.1);border:1.5px solid rgba(59,130,246,0.25);border-radius:16px;padding:24px 20px;margin-bottom:40px;">
       <h3 style="color:#3b82f6;font-size:1.2rem;font-weight:700;margin:0 0 10px;">निःशुल्क और गोपनीय</h3>
@@ -83,5 +83,16 @@
   </section>
 </main>
 <script src="/app.js"></script>
+<script>
+function roleRedirect(role) {
+  var token = localStorage.getItem('aBest_session');
+  var lang = window.location.pathname.split('/')[1] || 'de';
+  if (token) {
+    window.location.href = '/' + lang + '/profil/my-role/' + role;
+  } else {
+    window.location.href = '/' + lang + '/login?next=' + encodeURIComponent('/' + lang + '/profil/my-role/' + role);
+  }
+}
+</script>
 </body>
 </html>

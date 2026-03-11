@@ -253,7 +253,7 @@
         <span class="exp-chip"><i>🔄</i> Rolê biguherîne di her demek de</span>
     </div>
     <div class="exp-hero-ctas">
-        <a class="exp-btn-primary" href="/ku/login?next=/profile/my-role/explorer">🔍 Destpêk bikin belaş niha</a>
+        <a class="exp-btn-primary" href="javascript:void(0)" onclick="roleRedirect('explorer')">🔍 Destpêk bikin belaş niha</a>
         <button class="exp-btn-ghost" onclick="document.getElementById('exp-was').scrollIntoView({behavior:'smooth'})">Ya ku tu bibînî →</button>
     </div>
 </section>
@@ -518,7 +518,7 @@
         <div style="font-size:2.2rem;margin-bottom:14px;">🔍</div>
         <h2 style="font-size:1.4rem;font-weight:800;margin:0 0 10px;color:var(--text-main);">Destpê bikin niha — belaş.</h2>
         <p style="color:var(--text-muted);font-size:0.88rem;max-width:380px;margin:0 auto 22px;line-height:1.6;">Tu mexteq, tu heyamî. Tenê berdest bikin û tavilê bigihîştin neb li projeyên û merkaza rast.</p>
-        <a href="/ku/login?next=/profile/my-role/explorer" class="exp-btn-primary" style="font-size:1rem;padding:15px 36px;">🔍 Damezirandin-Profîl erstellen →</a>
+        <a href="javascript:void(0)" onclick="roleRedirect('explorer')" class="exp-btn-primary" style="font-size:1rem;padding:15px 36px;">🔍 Damezirandin-Profîl erstellen →</a>
         <p style="font-size:0.72rem;color:var(--text-muted);margin-top:12px;">Bê Biha · Keine Kreditkarte · Jederzeit kündbar</p>
     </div>
 </section>
@@ -526,11 +526,21 @@
 <!-- STICKY CTA -->
 <div class="exp-sticky">
     <span class="exp-sticky-text">🔍 Als Damezirandin starten — belaş &amp; unverbindlich</span>
-    <a class="exp-sticky-btn" href="/ku/login?next=/profile/my-role/explorer">Destpê bikin niha</a>
+    <a class="exp-sticky-btn" href="javascript:void(0)" onclick="roleRedirect('explorer')">Destpê bikin niha</a>
 </div>
 
 <script src="/app.js"></script>
 <script>
+function roleRedirect(role) {
+  var token = localStorage.getItem('aBest_session');
+  var lang = window.location.pathname.split('/')[1] || 'de';
+  if (token) {
+    window.location.href = '/' + lang + '/profil/my-role/' + role;
+  } else {
+    window.location.href = '/' + lang + '/login?next=' + encodeURIComponent('/' + lang + '/profil/my-role/' + role);
+  }
+}
+
 function expFaq(btn) {
     var item = btn.closest ? btn.closest('.exp-faq-item') : btn.parentElement;
     var wasOpen = item.classList.contains('open');

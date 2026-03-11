@@ -192,7 +192,7 @@
       <span class="sl-trust-chip">🔒 <strong>100 %</strong> Diskret</span>
     </div>
     <div style="margin-top:1.6rem;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-      <a href="/en/login?next=/profile/my-role/seller" style="padding:13px 28px;font-size:1rem;font-weight:700;border-radius:14px;background:linear-gradient(135deg,var(--sl-green),var(--sl-emerald));color:#000;text-decoration:none;">🏠 Submit property now</a>
+      <a href="javascript:void(0)" onclick="roleRedirect('seller')" style="padding:13px 28px;font-size:1rem;font-weight:700;border-radius:14px;background:linear-gradient(135deg,var(--sl-green),var(--sl-emerald));color:#000;text-decoration:none;">🏠 Submit property now</a>
       <a href="#sl-ways" style="padding:13px 22px;font-size:0.9rem;border-radius:14px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:var(--text-main);text-decoration:none;">How it works →</a>
     </div>
   </section>
@@ -203,7 +203,7 @@
     <h2 style="font-size:1.2rem;font-weight:700;color:var(--text-main);margin:4px 0 16px;">Choose what works for you</h2>
     <div class="sl-two-ways">
 
-      <div class="sl-way-card direct" onclick="window.location.href='/en/login?next=/profile/my-role/seller'">
+      <div class="sl-way-card direct" onclick="roleRedirect('seller')">
         <div class="sl-way-icon">🤝</div>
         <h3>Way 1: Direct purchase</h3>
         <p>aBest.co purchases your property directly. No long wait for a buyer, no uncertain negotiations. You receive a concrete offer.</p>
@@ -216,7 +216,7 @@
         </ul>
       </div>
 
-      <div class="sl-way-card find" onclick="window.location.href='/en/login?next=/profile/my-role/seller'">
+      <div class="sl-way-card find" onclick="roleRedirect('seller')">
         <div class="sl-way-icon">🌍</div>
         <h3>Way 2: Find buyers</h3>
         <p>Want to achieve the best market price? We present your property to our international investor network — actively, targeted, discreetly.</p>
@@ -264,47 +264,47 @@
     <h2 style="font-size:1.2rem;font-weight:700;color:var(--text-main);margin:4px 0 6px;">What can you submit to us?</h2>
     <p class="sl-sec-sub">Select your property type — we incorporate your focus directly into the inquiry form.</p>
     <div class="sl-type-grid" style="margin-top:16px;" id="sl-type-grid">
-      <div class="sl-type-card" onclick="window.location.href='/en/login?next=/profile/my-role/seller'">
+      <div class="sl-type-card" onclick="roleRedirect('seller')">
         <div class="sl-t-icon">🌍</div>
         <h4>Land</h4>
         <p>Building land, raw land</p>
       </div>
-      <div class="sl-type-card" onclick="window.location.href='/en/login?next=/profile/my-role/seller'">
+      <div class="sl-type-card" onclick="roleRedirect('seller')">
         <div class="sl-t-icon">🏡</div>
         <h4>Residential property</h4>
         <p>House, apartment, MFH</p>
       </div>
-      <div class="sl-type-card" onclick="window.location.href='/en/login?next=/profile/my-role/seller'">
+      <div class="sl-type-card" onclick="roleRedirect('seller')">
         <div class="sl-t-icon">🏬</div>
         <h4>Commercial</h4>
         <p>Office, store, warehouse</p>
       </div>
-      <div class="sl-type-card" onclick="window.location.href='/en/login?next=/profile/my-role/seller'">
+      <div class="sl-type-card" onclick="roleRedirect('seller')">
         <div class="sl-t-icon">🌾</div>
         <h4>Agricultural land</h4>
         <p>Fields, farms</p>
       </div>
-      <div class="sl-type-card" onclick="window.location.href='/en/login?next=/profile/my-role/seller'">
+      <div class="sl-type-card" onclick="roleRedirect('seller')">
         <div class="sl-t-icon">🏨</div>
         <h4>Hotel / Tourism</h4>
         <p>Hotels, resorts</p>
       </div>
-      <div class="sl-type-card" onclick="window.location.href='/en/login?next=/profile/my-role/seller'">
+      <div class="sl-type-card" onclick="roleRedirect('seller')">
         <div class="sl-t-icon">🏗️</div>
         <h4>Development project</h4>
         <p>Construction projects, projects</p>
       </div>
-      <div class="sl-type-card" onclick="window.location.href='/en/login?next=/profile/my-role/seller'">
+      <div class="sl-type-card" onclick="roleRedirect('seller')">
         <div class="sl-t-icon">🏭</div>
         <h4>Warehouse / Logistics</h4>
         <p>Warehouses, storage</p>
       </div>
-      <div class="sl-type-card" onclick="window.location.href='/en/login?next=/profile/my-role/seller'">
+      <div class="sl-type-card" onclick="roleRedirect('seller')">
         <div class="sl-t-icon">🏖️</div>
         <h4>Coast / Lake</h4>
         <p>Waterfront, coast</p>
       </div>
-      <div class="sl-type-card" onclick="window.location.href='/en/login?next=/profile/my-role/seller'">
+      <div class="sl-type-card" onclick="roleRedirect('seller')">
         <div class="sl-t-icon">🏢</div>
         <h4>Business</h4>
         <p>Stake, company</p>
@@ -523,11 +523,21 @@
 <!-- ── STICKY CTA ─────────────────────────────────────────── -->
 <div class="sl-sticky">
   <span>🏠 <strong>Direktkauf oder Käufer finden</strong> — kostenlos einreichen · 24h Rückmeldung</span>
-  <a href="/en/login?next=/profile/my-role/seller">Submit now</a>
+  <a href="javascript:void(0)" onclick="roleRedirect('seller')">Submit now</a>
 </div>
 
 <script src="/app.js"></script>
 <script>
+function roleRedirect(role) {
+  var token = localStorage.getItem('aBest_session');
+  var lang = window.location.pathname.split('/')[1] || 'de';
+  if (token) {
+    window.location.href = '/' + lang + '/profil/my-role/' + role;
+  } else {
+    window.location.href = '/' + lang + '/login?next=' + encodeURIComponent('/' + lang + '/profil/my-role/' + role);
+  }
+}
+
 // ── FAQ Toggle ─────────────────────────────────────────────
 function slFaq(el) {
   var item = el.parentElement;

@@ -375,7 +375,7 @@
         <span class="inv-chip"><i>🔒</i> 100 % Diskret</span>
     </div>
     <div class="inv-hero-ctas">
-        <button class="inv-btn-primary" onclick="document.getElementById('inv-form').scrollIntoView({behavior:'smooth'})">💼 Wek Serhûmende Bixwaze</button>
+        <button class="inv-btn-primary" onclick="roleRedirect('investor')">💼 Wek Serhûmende Bixwaze</button>
         <button class="inv-btn-ghost" onclick="document.getElementById('inv-ways').scrollIntoView({behavior:'smooth'})">Çawa dixebite →</button>
     </div>
 </section>
@@ -685,60 +685,6 @@
 </section>
 
 <!-- FORM -->
-<section class="inv-section" style="padding-top:0" id="inv-form">
-    <p class="inv-section-label">📩 Daxwazî</p>
-    <h2>Wek Serhûmende Bixwaze</h2>
-    <div class="inv-form-wrap">
-        <p class="inv-form-title">Beramberiya Seriştiya We Derberdî Bikin</p>
-        <p class="inv-form-sub">Em di 48 sattan de paşde bigerin. Rênîştiyek, bê wî, ne gotûbêja hilanan.</p>
-
-        <p style="font-size:0.8rem;font-weight:600;color:var(--text-muted);margin-bottom:8px;">Rêya we ya hevikar *</p>
-        <div class="inv-way-btns">
-            <button class="inv-way-btn" id="inv-btn-bei" onclick="invSelectWayForm('bei')" type="button">
-                <span class="btn-icon">💼</span>Bi me li ser veberhemê bike
-            </button>
-            <button class="inv-way-btn" id="inv-btn-mit" onclick="invSelectWayForm('mit')" type="button">
-                <span class="btn-icon">🤝</span>Di me de co-veberhemê bike
-            </button>
-        </div>
-
-        <div id="inv-form-fields">
-            <div class="inv-form-grid">
-                <input class="inv-input" id="inv-name" placeholder="Ihr Name *" type="text"/>
-                <input class="inv-input" id="inv-email" placeholder="E-Mail *" type="email"/>
-            </div>
-            <div class="inv-form-grid">
-                <input class="inv-input" id="inv-phone" placeholder="Telefon" type="tel"/>
-                <input class="inv-input" id="inv-country" placeholder="Land / Herkunft" type="text"/>
-            </div>
-            <div class="inv-form-grid">
-                <select class="inv-select" id="inv-type">
-                    <option value="">Beramberiya Proyê *</option>
-                    <option>Startup / Wachstumsunternehmen</option>
-                    <option>Îhtiyar/Mûlkprojekt</option>
-                    <option>Pargîdanîsübernahme / M&amp;A</option>
-                    <option>Energieprojekt</option>
-                    <option>Xwarinşinaslî / Franchise</option>
-                    <option>Logistik / Lager</option>
-                    <option>Agrarland / Rohstoffe</option>
-                    <option>Technologie / Software</option>
-                    <option>Offen für Vorschläge</option>
-                </select>
-                <input class="inv-input" id="inv-ticket" placeholder="Investitionsvolumen (ca.)" type="text"/>
-            </div>
-            <div class="inv-form-grid full">
-                <textarea class="inv-textarea" id="inv-desc" placeholder="Kurze Beschreibung Ihrer Investitionsstrategie — was suchen Sie, was haben Sie bisher investiert?"></textarea>
-            </div>
-            <p class="inv-form-note">🔒 Ihre Angaben werden veşartî behandelt. Kein öffentliches Profil ohne Ihre Zustimmung.</p>
-            <button class="inv-submit-btn" onclick="invSubmit(event)" type="button">💼 Jetzt als Investor anfragen</button>
-        </div>
-        <div class="inv-form-success" id="inv-success">
-            <div class="s-icon">✅</div>
-            <strong>Daxwaza Wergirt - Gelek Spas!</strong>
-            <p>Unser Team meldet sich innerhalb von 48 saet bei Ihnen. Vertraulich und ohne Verpflichtung.</p>
-        </div>
-    </div>
-</section>
 
 <!-- FAQ -->
 <section class="inv-section" style="padding-top:0;padding-bottom:80px;">
@@ -775,11 +721,21 @@
 <!-- STICKY CTA -->
 <div class="inv-sticky">
     <span class="inv-sticky-text">💼 Li me yan li ser me seriş bikin — bêasû bixwaze · 48h bersiv</span>
-    <button class="inv-sticky-btn" onclick="document.getElementById('inv-form').scrollIntoView({behavior:'smooth'})">Niha Bixwaze</button>
+    <button class="inv-sticky-btn" onclick="roleRedirect('investor')">Niha Bixwaze</button>
 </div>
 
 <script src="/app.js"></script>
 <script>
+function roleRedirect(role) {
+  var token = localStorage.getItem('aBest_session');
+  var lang = window.location.pathname.split('/')[1] || 'de';
+  if (token) {
+    window.location.href = '/' + lang + '/profil/my-role/' + role;
+  } else {
+    window.location.href = '/' + lang + '/login?next=' + encodeURIComponent('/' + lang + '/profil/my-role/' + role);
+  }
+}
+
     // Nav scroll
     (function(){
         var nav = document.getElementById('main-nav');
@@ -790,7 +746,7 @@
 
     // Way card click → scroll + preselect
     function invSelectWay(way) {
-        document.getElementById('inv-form').scrollIntoView({behavior:'smooth'});
+        roleRedirect('investor');
         setTimeout(function(){ invSelectWayForm(way); }, 600);
     }
 
@@ -804,7 +760,7 @@
                 }
             }
         }
-        document.getElementById('inv-form').scrollIntoView({behavior:'smooth'});
+        roleRedirect('investor');
     }
 
     // Form way buttons

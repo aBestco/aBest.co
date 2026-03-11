@@ -22,7 +22,7 @@
   <section style="max-width:780px;margin:0 auto;text-align:center;">
     <h1 style="font-size:2rem;font-weight:800;margin:0 0 20px;">पूंजी साथी</h1>
     <p style="font-size:1.1rem;color:var(--text-muted);margin:0 0 30px;">5% प्रति वर्ष निश्चित आय। कोई जोखिम नहीं। पारदर्शी रिटर्न। €1,000 से शुरू।</p>
-    <a href="/hi/login?next=/profile/my-role/capital-partner" style="padding:14px 32px;font-size:1rem;font-weight:700;border-radius:12px;background:linear-gradient(135deg,#8b5cf6,#7c3aed);color:#fff;text-decoration:none;display:inline-block;margin-bottom:40px;">🏦 अब पूंजी साथी बनें</a>
+    <a href="javascript:void(0)" onclick="roleRedirect('capital-partner')" style="padding:14px 32px;font-size:1rem;font-weight:700;border-radius:12px;background:linear-gradient(135deg,#8b5cf6,#7c3aed);color:#fff;text-decoration:none;display:inline-block;margin-bottom:40px;">🏦 अब पूंजी साथी बनें</a>
     <div style="background:linear-gradient(135deg,rgba(139,92,246,0.1),rgba(59,130,246,0.08));border:1.5px solid rgba(139,92,246,0.25);border-radius:16px;padding:24px;margin-bottom:40px;">
       <h3 style="color:#8b5cf6;font-weight:700;margin:0 0 10px;">निश्चित 5% प्रति वर्ष</h3>
       <p style="color:var(--text-muted);margin:0;font-size:0.95rem;">सत्यापित रियल एस्टेट, ऊर्जा और स्टार्टअप परियोजनाओं पर। पारदर्शी शर्तें। वार्षिक भुगतान।</p>
@@ -33,5 +33,16 @@
   </section>
 </main>
 <script src="/app.js"></script>
+<script>
+function roleRedirect(role) {
+  var token = localStorage.getItem('aBest_session');
+  var lang = window.location.pathname.split('/')[1] || 'de';
+  if (token) {
+    window.location.href = '/' + lang + '/profil/my-role/' + role;
+  } else {
+    window.location.href = '/' + lang + '/login?next=' + encodeURIComponent('/' + lang + '/profil/my-role/' + role);
+  }
+}
+</script>
 </body>
 </html>

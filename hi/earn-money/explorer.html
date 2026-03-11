@@ -22,7 +22,7 @@
   <section style="max-width:780px;margin:0 auto;text-align:center;">
     <h1 style="font-size:2rem;font-weight:800;margin:0 0 20px;">देखना चाहते हैं फिर फैसला करें?</h1>
     <p style="font-size:1.1rem;color:var(--text-muted);margin:0 0 30px;">अन्वेषक के रूप में निःशुल्क आंतरिक पहुंच प्राप्त करें। कोई दबाव नहीं। आपकी गति।</p>
-    <a href="/hi/login?next=/profile/my-role/explorer" style="padding:14px 32px;font-size:1rem;font-weight:700;border-radius:12px;background:linear-gradient(135deg,#06b6d4,#0891b2);color:#fff;text-decoration:none;display:inline-block;margin-bottom:40px;">🔍 अभी अन्वेषक के रूप में निःशुल्क शुरू करें</a>
+    <a href="javascript:void(0)" onclick="roleRedirect('explorer')" style="padding:14px 32px;font-size:1rem;font-weight:700;border-radius:12px;background:linear-gradient(135deg,#06b6d4,#0891b2);color:#fff;text-decoration:none;display:inline-block;margin-bottom:40px;">🔍 अभी अन्वेषक के रूप में निःशुल्क शुरू करें</a>
     <div style="background:linear-gradient(135deg,rgba(6,182,212,0.1),rgba(139,92,246,0.08));border:1.5px solid rgba(6,182,212,0.3);border-radius:16px;padding:24px;margin-bottom:40px;">
       <h3 style="color:#06b6d4;font-weight:700;margin:0 0 10px;">पूरी तरह निःशुल्क</h3>
       <p style="color:var(--text-muted);margin:0;font-size:0.95rem;">वास्तविक सौदों, बाजारों और निवेश अवसरों तक पहुंच प्राप्त करें — कोई शुल्क नहीं। कोई छिपी लागत नहीं। हमेशा निःशुल्क।</p>
@@ -33,5 +33,16 @@
   </section>
 </main>
 <script src="/app.js"></script>
+<script>
+function roleRedirect(role) {
+  var token = localStorage.getItem('aBest_session');
+  var lang = window.location.pathname.split('/')[1] || 'de';
+  if (token) {
+    window.location.href = '/' + lang + '/profil/my-role/' + role;
+  } else {
+    window.location.href = '/' + lang + '/login?next=' + encodeURIComponent('/' + lang + '/profil/my-role/' + role);
+  }
+}
+</script>
 </body>
 </html>

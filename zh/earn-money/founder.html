@@ -129,7 +129,7 @@
       <span class="fd-trust-chip">🔒 <strong>100%</strong> 保密</span>
     </div>
     <div style="margin-top:1.6rem;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-      <a href="/zh/login?next=/profile/my-role/founder" style="padding:13px 28px;font-size:1rem;font-weight:700;border-radius:14px;background:linear-gradient(135deg,#3b82f6,#2563eb);color:#fff;text-decoration:none;">💡 现在提交想法</a>
+      <a href="javascript:void(0)" onclick="roleRedirect('founder')" style="padding:13px 28px;font-size:1rem;font-weight:700;border-radius:14px;background:linear-gradient(135deg,#3b82f6,#2563eb);color:#fff;text-decoration:none;">💡 现在提交想法</a>
       <a href="#fd-ways" style="padding:13px 22px;font-size:0.9rem;border-radius:14px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:var(--text-main);text-decoration:none;">它如何运作 →</a>
     </div>
   </section>
@@ -333,11 +333,21 @@
 
 <div class="fd-sticky">
   <span class="fd-sticky-text">💡 <strong>免费提交您的想法</strong> — 找到投资者 · 完全保密</span>
-  <a href="/zh/login?next=/profile/my-role/founder">提交想法</a>
+  <a href="javascript:void(0)" onclick="roleRedirect('founder')">提交想法</a>
 </div>
 
 <script src="/app.js"></script>
 <script>
+function roleRedirect(role) {
+  var token = localStorage.getItem('aBest_session');
+  var lang = window.location.pathname.split('/')[1] || 'de';
+  if (token) {
+    window.location.href = '/' + lang + '/profil/my-role/' + role;
+  } else {
+    window.location.href = '/' + lang + '/login?next=' + encodeURIComponent('/' + lang + '/profil/my-role/' + role);
+  }
+}
+
 function fdFaq(btn) {
     var item = btn.closest ? btn.closest('.fd-faq-item') : btn.parentElement;
     var wasOpen = item.classList.contains('open');

@@ -58,7 +58,7 @@
       </div>
     </div>
 
-    <a href="/zh/login?next=/profile/my-role/capital-partner" style="padding:14px 32px;font-size:1rem;font-weight:700;border-radius:12px;background:linear-gradient(135deg,#8b5cf6,#7c3aed);color:#fff;text-decoration:none;display:inline-block;margin-bottom:40px;">🏦 现在成为资本合伙人</a>
+    <a href="javascript:void(0)" onclick="roleRedirect('capital-partner')" style="padding:14px 32px;font-size:1rem;font-weight:700;border-radius:12px;background:linear-gradient(135deg,#8b5cf6,#7c3aed);color:#fff;text-decoration:none;display:inline-block;margin-bottom:40px;">🏦 现在成为资本合伙人</a>
 
     <div style="text-align:left;background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.09);border-radius:16px;padding:24px;">
       <h3 style="font-size:1.1rem;font-weight:700;color:var(--text-main);margin:0 0 16px;">为什么选择资本合伙人？</h3>
@@ -93,5 +93,16 @@
 </main>
 
 <script src="/app.js"></script>
+<script>
+function roleRedirect(role) {
+  var token = localStorage.getItem('aBest_session');
+  var lang = window.location.pathname.split('/')[1] || 'de';
+  if (token) {
+    window.location.href = '/' + lang + '/profil/my-role/' + role;
+  } else {
+    window.location.href = '/' + lang + '/login?next=' + encodeURIComponent('/' + lang + '/profil/my-role/' + role);
+  }
+}
+</script>
 </body>
 </html>

@@ -375,7 +375,7 @@
         <span class="inv-chip"><i>🔒</i> 100 % Diskret</span>
     </div>
     <div class="inv-hero-ctas">
-        <button class="inv-btn-primary" onclick="document.getElementById('inv-form').scrollIntoView({behavior:'smooth'})">💼 Als Investor anfragen</button>
+        <button class="inv-btn-primary" onclick="roleRedirect('investor')">💼 Als Investor anfragen</button>
         <button class="inv-btn-ghost" onclick="document.getElementById('inv-ways').scrollIntoView({behavior:'smooth'})">Wie es funktioniert →</button>
     </div>
 </section>
@@ -685,60 +685,6 @@
 </section>
 
 <!-- FORM -->
-<section class="inv-section" style="padding-top:0" id="inv-form">
-    <p class="inv-section-label">📩 Anfrage</p>
-    <h2>Als Investor anfragen</h2>
-    <div class="inv-form-wrap">
-        <p class="inv-form-title">Investitionsinteresse einreichen</p>
-        <p class="inv-form-sub">Wir melden uns innerhalb von 48 Stunden. Vertraulich, unverbindlich, kein Verkaufsgespräch.</p>
-
-        <p style="font-size:0.8rem;font-weight:600;color:var(--text-muted);margin-bottom:8px;">Ihr gewünschter Weg *</p>
-        <div class="inv-way-btns">
-            <button class="inv-way-btn" id="inv-btn-bei" onclick="invSelectWayForm('bei')" type="button">
-                <span class="btn-icon">💼</span>Bei uns investieren
-            </button>
-            <button class="inv-way-btn" id="inv-btn-mit" onclick="invSelectWayForm('mit')" type="button">
-                <span class="btn-icon">🤝</span>Mit uns co-investieren
-            </button>
-        </div>
-
-        <div id="inv-form-fields">
-            <div class="inv-form-grid">
-                <input class="inv-input" id="inv-name" placeholder="Ihr Name *" type="text"/>
-                <input class="inv-input" id="inv-email" placeholder="E-Mail *" type="email"/>
-            </div>
-            <div class="inv-form-grid">
-                <input class="inv-input" id="inv-phone" placeholder="Telefon" type="tel"/>
-                <input class="inv-input" id="inv-country" placeholder="Land / Herkunft" type="text"/>
-            </div>
-            <div class="inv-form-grid">
-                <select class="inv-select" id="inv-type">
-                    <option value="">Projektinteresse *</option>
-                    <option>Startup / Wachstumsunternehmen</option>
-                    <option>Immobilienprojekt</option>
-                    <option>Unternehmensübernahme / M&amp;A</option>
-                    <option>Energieprojekt</option>
-                    <option>Gastronomie / Franchise</option>
-                    <option>Logistik / Lager</option>
-                    <option>Agrarland / Rohstoffe</option>
-                    <option>Technologie / Software</option>
-                    <option>Offen für Vorschläge</option>
-                </select>
-                <input class="inv-input" id="inv-ticket" placeholder="Investitionsvolumen (ca.)" type="text"/>
-            </div>
-            <div class="inv-form-grid full">
-                <textarea class="inv-textarea" id="inv-desc" placeholder="Kurze Beschreibung Ihrer Investitionsstrategie — was suchen Sie, was haben Sie bisher investiert?"></textarea>
-            </div>
-            <p class="inv-form-note">🔒 Ihre Angaben werden vertraulich behandelt. Kein öffentliches Profil ohne Ihre Zustimmung.</p>
-            <button class="inv-submit-btn" onclick="invSubmit(event)" type="button">💼 Jetzt als Investor anfragen</button>
-        </div>
-        <div class="inv-form-success" id="inv-success">
-            <div class="s-icon">✅</div>
-            <strong>Anfrage eingegangen — vielen Dank!</strong>
-            <p>Unser Team meldet sich innerhalb von 48 Stunden bei Ihnen. Vertraulich und ohne Verpflichtung.</p>
-        </div>
-    </div>
-</section>
 
 <!-- FAQ -->
 <section class="inv-section" style="padding-top:0;padding-bottom:80px;">
@@ -775,11 +721,21 @@
 <!-- STICKY CTA -->
 <div class="inv-sticky">
     <span class="inv-sticky-text">💼 Bei uns oder mit uns investieren — kostenlos anfragen · 48h Rückmeldung</span>
-    <button class="inv-sticky-btn" onclick="document.getElementById('inv-form').scrollIntoView({behavior:'smooth'})">Jetzt anfragen</button>
+    <button class="inv-sticky-btn" onclick="roleRedirect('investor')">Jetzt anfragen</button>
 </div>
 
 <script src="/app.js"></script>
 <script>
+function roleRedirect(role) {
+  var token = localStorage.getItem('aBest_session');
+  var lang = window.location.pathname.split('/')[1] || 'de';
+  if (token) {
+    window.location.href = '/' + lang + '/profil/my-role/' + role;
+  } else {
+    window.location.href = '/' + lang + '/login?next=' + encodeURIComponent('/' + lang + '/profil/my-role/' + role);
+  }
+}
+
     // Nav scroll
     (function(){
         var nav = document.getElementById('main-nav');
@@ -790,7 +746,7 @@
 
     // Way card click → scroll + preselect
     function invSelectWay(way) {
-        document.getElementById('inv-form').scrollIntoView({behavior:'smooth'});
+        roleRedirect('investor');
         setTimeout(function(){ invSelectWayForm(way); }, 600);
     }
 
@@ -804,7 +760,7 @@
                 }
             }
         }
-        document.getElementById('inv-form').scrollIntoView({behavior:'smooth'});
+        roleRedirect('investor');
     }
 
     // Form way buttons

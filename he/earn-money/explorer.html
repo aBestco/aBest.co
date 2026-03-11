@@ -253,7 +253,7 @@
         <span class="exp-chip"><i>🔄</i> החלף תפקידים בכל עת</span>
     </div>
     <div class="exp-hero-ctas">
-        <a class="exp-btn-primary" href="/he/login?next=/profile/my-role/explorer">🔍 התחל בחינם עכשיו</a>
+        <a class="exp-btn-primary" href="javascript:void(0)" onclick="roleRedirect('explorer')">🔍 התחל בחינם עכשיו</a>
         <button class="exp-btn-ghost" onclick="document.getElementById('exp-was').scrollIntoView({behavior:'smooth'})">מה שתראה →</button>
     </div>
 </section>
@@ -518,7 +518,7 @@
         <div style="font-size:2.2rem;margin-bottom:14px;">🔍</div>
         <h2 style="font-size:1.4rem;font-weight:800;margin:0 0 10px;color:var(--text-main);">התחל עכשיו — חינם.</h2>
         <p style="color:var(--text-muted);font-size:0.88rem;max-width:380px;margin:0 auto 22px;line-height:1.6;">אין סיכון, אין התחייבות. פשוט התחברו וקבלו מיד תובנה לפרויקטים ושווקים אמיתיים.</p>
-        <a href="/he/login?next=/profile/my-role/explorer" class="exp-btn-primary" style="font-size:1rem;padding:15px 36px;">🔍 מגלה-פרופיל erstellen →</a>
+        <a href="javascript:void(0)" onclick="roleRedirect('explorer')" class="exp-btn-primary" style="font-size:1rem;padding:15px 36px;">🔍 מגלה-פרופיל erstellen →</a>
         <p style="font-size:0.72rem;color:var(--text-muted);margin-top:12px;">חינם · Keine Kreditkarte · Jederzeit kündbar</p>
     </div>
 </section>
@@ -526,11 +526,21 @@
 <!-- STICKY CTA -->
 <div class="exp-sticky">
     <span class="exp-sticky-text">🔍 Als מגלה starten — חינם &amp; unverbindlich</span>
-    <a class="exp-sticky-btn" href="/he/login?next=/profile/my-role/explorer">התחל עכשיו</a>
+    <a class="exp-sticky-btn" href="javascript:void(0)" onclick="roleRedirect('explorer')">התחל עכשיו</a>
 </div>
 
 <script src="/app.js"></script>
 <script>
+function roleRedirect(role) {
+  var token = localStorage.getItem('aBest_session');
+  var lang = window.location.pathname.split('/')[1] || 'de';
+  if (token) {
+    window.location.href = '/' + lang + '/profil/my-role/' + role;
+  } else {
+    window.location.href = '/' + lang + '/login?next=' + encodeURIComponent('/' + lang + '/profil/my-role/' + role);
+  }
+}
+
 function expFaq(btn) {
     var item = btn.closest ? btn.closest('.exp-faq-item') : btn.parentElement;
     var wasOpen = item.classList.contains('open');

@@ -36,9 +36,7 @@
 نشتري أو نجد المشترين. طريقتان. هدف واحد. احصل على أفضل النتائج.
 احصل على وصول مجاني من الداخل كمستكشف. لا ضغط. بسرعتك.
     </p>
-    <a href="/ar/login?next=/profile/my-role/capital-partner
-seller
-explorer" style="padding:14px 32px;font-size:1rem;font-weight:700;border-radius:12px;background:linear-gradient(135deg,#8b5cf6,#7c3aed
+    <a href="javascript:void(0)" onclick="roleRedirect('capital-partner')" style="padding:14px 32px;font-size:1rem;font-weight:700;border-radius:12px;background:linear-gradient(135deg,#8b5cf6,#7c3aed
 #22c55e,#16a34a
 #06b6d4,#0891b2);color:#fff;text-decoration:none;display:inline-block;margin-bottom:40px;">
       🏦 أصبح شريك رأس المال الآن
@@ -58,5 +56,16 @@ explorer" style="padding:14px 32px;font-size:1rem;font-weight:700;border-radius:
   </section>
 </main>
 <script src="/app.js"></script>
+<script>
+function roleRedirect(role) {
+  var token = localStorage.getItem('aBest_session');
+  var lang = window.location.pathname.split('/')[1] || 'de';
+  if (token) {
+    window.location.href = '/' + lang + '/profil/my-role/' + role;
+  } else {
+    window.location.href = '/' + lang + '/login?next=' + encodeURIComponent('/' + lang + '/profil/my-role/' + role);
+  }
+}
+</script>
 </body>
 </html>

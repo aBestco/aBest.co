@@ -22,7 +22,7 @@
   <section style="max-width:780px;margin:0 auto;text-align:center;">
     <h1 style="font-size:2rem;font-weight:800;margin:0 0 20px;">क्या आप व्यवसाय बेचना या निवेशक खोजना चाहते हैं?</h1>
     <p style="font-size:1.1rem;color:var(--text-muted);margin:0 0 30px;">अंतर्राष्ट्रीय निवेशक नेटवर्क को अपना व्यवसाय दिखाएं। सीधी खरीद, निवेशक मिलान या रणनीतिक साझेदारी।</p>
-    <a href="/hi/login?next=/profile/my-role/business" style="padding:14px 32px;font-size:1rem;font-weight:700;border-radius:12px;background:linear-gradient(135deg,#14b8a6,#0d9488);color:#fff;text-decoration:none;display:inline-block;margin-bottom:40px;">🏢 अब व्यवसाय प्रस्तुत करें</a>
+    <a href="javascript:void(0)" onclick="roleRedirect('business')" style="padding:14px 32px;font-size:1rem;font-weight:700;border-radius:12px;background:linear-gradient(135deg,#14b8a6,#0d9488);color:#fff;text-decoration:none;display:inline-block;margin-bottom:40px;">🏢 अब व्यवसाय प्रस्तुत करें</a>
     <div style="background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.09);border-radius:16px;padding:24px;margin-bottom:40px;">
       <p style="color:var(--text-muted);font-size:0.9rem;margin:0;">✓ 47+ सक्रिय निवेशक · ✓ 14 देशों में · ✓ 24 घंटे में प्रतिक्रिया · ✓ निःशुल्क प्रस्तुति</p>
     </div>
@@ -32,5 +32,16 @@
   </section>
 </main>
 <script src="/app.js"></script>
+<script>
+function roleRedirect(role) {
+  var token = localStorage.getItem('aBest_session');
+  var lang = window.location.pathname.split('/')[1] || 'de';
+  if (token) {
+    window.location.href = '/' + lang + '/profil/my-role/' + role;
+  } else {
+    window.location.href = '/' + lang + '/login?next=' + encodeURIComponent('/' + lang + '/profil/my-role/' + role);
+  }
+}
+</script>
 </body>
 </html>

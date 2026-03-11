@@ -28,7 +28,7 @@
   <section style="max-width:780px;margin:0 auto;text-align:center;">
     <h1 style="font-size:2rem;font-weight:800;margin:0 0 20px;">您要出售房产吗？</h1>
     <p style="font-size:1.1rem;color:var(--text-muted);margin:0 0 30px;line-height:1.6;">我们购买或找到买家。两种方式。一个目标。获得最佳结果。</p>
-    <a href="/zh/login?next=/profile/my-role/seller" style="padding:14px 32px;font-size:1rem;font-weight:700;border-radius:12px;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;text-decoration:none;display:inline-block;margin-bottom:40px;">🏠 现在提交房产</a>
+    <a href="javascript:void(0)" onclick="roleRedirect('seller')" style="padding:14px 32px;font-size:1rem;font-weight:700;border-radius:12px;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;text-decoration:none;display:inline-block;margin-bottom:40px;">🏠 现在提交房产</a>
     
     <div style="background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.09);border-radius:16px;padding:24px;margin-bottom:40px;">
       <h3 style="font-size:1.2rem;font-weight:700;color:var(--text-main);margin:0 0 16px;">两条销售路线</h3>
@@ -86,5 +86,16 @@
   </section>
 </main>
 <script src="/app.js"></script>
+<script>
+function roleRedirect(role) {
+  var token = localStorage.getItem('aBest_session');
+  var lang = window.location.pathname.split('/')[1] || 'de';
+  if (token) {
+    window.location.href = '/' + lang + '/profil/my-role/' + role;
+  } else {
+    window.location.href = '/' + lang + '/login?next=' + encodeURIComponent('/' + lang + '/profil/my-role/' + role);
+  }
+}
+</script>
 </body>
 </html>

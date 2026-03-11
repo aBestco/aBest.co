@@ -28,7 +28,7 @@
     <p style="font-size:1.1rem;color:var(--text-muted);margin:0 0 30px;line-height:1.6;">
       اعرض شركتك على شبكة المستثمرين الدولية. شراء مباشر أو مطابقة مستثمرين أو شراكة استراتيجية.
     </p>
-    <a href="/ar/login?next=/profile/my-role/business" style="padding:14px 32px;font-size:1rem;font-weight:700;border-radius:12px;background:linear-gradient(135deg,#14b8a6,#0d9488);color:#fff;text-decoration:none;display:inline-block;margin-bottom:40px;">
+    <a href="javascript:void(0)" onclick="roleRedirect('business')" style="padding:14px 32px;font-size:1rem;font-weight:700;border-radius:12px;background:linear-gradient(135deg,#14b8a6,#0d9488);color:#fff;text-decoration:none;display:inline-block;margin-bottom:40px;">
       🏢 قدم الشركة الآن
     </a>
     <div style="background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.09);border-radius:16px;padding:24px;margin-bottom:40px;direction:rtl;text-align:right;">
@@ -42,5 +42,16 @@
   </section>
 </main>
 <script src="/app.js"></script>
+<script>
+function roleRedirect(role) {
+  var token = localStorage.getItem('aBest_session');
+  var lang = window.location.pathname.split('/')[1] || 'de';
+  if (token) {
+    window.location.href = '/' + lang + '/profil/my-role/' + role;
+  } else {
+    window.location.href = '/' + lang + '/login?next=' + encodeURIComponent('/' + lang + '/profil/my-role/' + role);
+  }
+}
+</script>
 </body>
 </html>

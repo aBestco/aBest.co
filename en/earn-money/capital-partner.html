@@ -245,7 +245,7 @@ input[type=range].cp-range { width:100%;accent-color:var(--cp-purple);margin-bot
       <span class="cp-trust-chip">🔒 <strong>100 %</strong> Vertraulich</span>
     </div>
     <div style="margin-top:1.6rem;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-      <a href="#cp-form" style="padding:13px 28px;font-size:1rem;font-weight:700;border-radius:14px;background:linear-gradient(135deg,var(--cp-purple),var(--cp-blue));color:#fff;text-decoration:none;">💼 Jetzt Capital Partner werden</a>
+      <a href="javascript:void(0)" onclick=\"roleRedirect('capital-partner')\"  style="padding:13px 28px;font-size:1rem;font-weight:700;border-radius:14px;background:linear-gradient(135deg,var(--cp-purple),var(--cp-blue));color:#fff;text-decoration:none;">💼 Jetzt Capital Partner werden</a>
       <a href="#cp-projects" style="padding:13px 22px;font-size:0.9rem;border-radius:14px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:var(--text-main);text-decoration:none;">Projekte ansehen →</a>
     </div>
   </section>
@@ -403,7 +403,7 @@ input[type=range].cp-range { width:100%;accent-color:var(--cp-purple);margin-bot
           </div>
         </div>
         <span class="cp-proj-tag">⭐ Prioritätsprojekt für Capital Partner</span>
-        <button class="cp-proj-cta" onclick="cpSmooth('cp-form')">Interesse anmelden →</button>
+        <button class="cp-proj-cta" onclick="roleRedirect('capital-partner')">Interesse anmelden →</button>
         <p class="cp-proj-demo-note">Beispielprojekt zur Illustration</p>
       </div>
 
@@ -430,7 +430,7 @@ input[type=range].cp-range { width:100%;accent-color:var(--cp-purple);margin-bot
           </div>
         </div>
         <span class="cp-proj-tag">🔥 Hohe Nachfrage</span>
-        <button class="cp-proj-cta" onclick="cpSmooth('cp-form')">Interesse anmelden →</button>
+        <button class="cp-proj-cta" onclick="roleRedirect('capital-partner')">Interesse anmelden →</button>
         <p class="cp-proj-demo-note">Beispielprojekt zur Illustration</p>
       </div>
 
@@ -457,7 +457,7 @@ input[type=range].cp-range { width:100%;accent-color:var(--cp-purple);margin-bot
           </div>
         </div>
         <span class="cp-proj-tag">🌱 Nachhaltige Infrastruktur</span>
-        <button class="cp-proj-cta" onclick="cpSmooth('cp-form')">Interesse anmelden →</button>
+        <button class="cp-proj-cta" onclick="roleRedirect('capital-partner')">Interesse anmelden →</button>
         <p class="cp-proj-demo-note">Beispielprojekt zur Illustration</p>
       </div>
 
@@ -484,7 +484,7 @@ input[type=range].cp-range { width:100%;accent-color:var(--cp-purple);margin-bot
           </div>
         </div>
         <span class="cp-proj-tag">🤝 Strategic Partnership Possible</span>
-        <button class="cp-proj-cta" onclick="cpSmooth('cp-form')">Interesse anmelden →</button>
+        <button class="cp-proj-cta" onclick="roleRedirect('capital-partner')">Interesse anmelden →</button>
         <p class="cp-proj-demo-note">Beispielprojekt zur Illustration</p>
       </div>
 
@@ -640,71 +640,6 @@ input[type=range].cp-range { width:100%;accent-color:var(--cp-purple);margin-bot
   </section>
 
   <!-- ── KONTAKTFORMULAR ────────────────────────────────────── -->
-  <section class="page-section" style="padding-top:1.8rem;" id="cp-form">
-    <div class="glass-panel" style="padding:24px 20px;">
-      <div class="cp-sec-label">📩 Become a Capital Partner</div>
-      <h2 style="font-size:1.15rem;font-weight:700;color:var(--text-main);margin:4px 0 4px;">Request Capital Partnership</h2>
-      <p style="font-size:0.82rem;color:var(--text-muted);margin:0 0 4px;">Non-binding, free, 100% confidential. No automated system — a real person will contact you within 24 hours.</p>
-      <div id="cp-form-success" class="cp-success">
-        <div class="cp-suc-icon">✅</div>
-        <h3>Inquiry received!</h3>
-        <p>We will contact you personally within 24 hours. We look forward to the conversation.</p>
-      </div>
-      <form class="cp-form" id="cp-form-el" onsubmit="cpSubmit(event)">
-        <div class="cp-form-row">
-          <input class="cp-input" id="cp-name" placeholder="Ihr Name *" required type="text"/>
-          <input class="cp-input" id="cp-email" placeholder="E-Mail *" required type="email"/>
-        </div>
-        <div class="cp-form-row">
-          <input class="cp-input" id="cp-phone" placeholder="Telefon" type="tel"/>
-          <input class="cp-input" id="cp-country" placeholder="Land / Region" type="text"/>
-        </div>
-        <div class="cp-form-row">
-          <select class="cp-select" id="cp-volume">
-            <option value="">Kapitalvolumen *</option>
-            <option>€ 1.000 – € 5.000</option>
-            <option>€ 5.000 – € 25.000</option>
-            <option>€ 25.000 – € 100.000</option>
-            <option>€ 100.000 – € 250.000</option>
-            <option>€ 250.000 – € 500.000</option>
-            <option>€ 500.000 – € 1 Mio.</option>
-            <option>über € 1 Mio.</option>
-          </select>
-          <select class="cp-select" id="cp-model-sel">
-            <option value="">Bevorzugtes Modell</option>
-            <option>Fixed Interest (ab 5 % p.a.)</option>
-            <option>Profit Sharing</option>
-            <option>Exit Participation</option>
-            <option>Hybrid Model (Fixed Interest + Beteiligung)</option>
-            <option>Offen / nach Beratung</option>
-          </select>
-        </div>
-        <div class="cp-form-row">
-          <select class="cp-select" id="cp-sector">
-            <option value="">Interessenbereich</option>
-            <option>Real Estate &amp; Land</option>
-            <option>Energie &amp; Solar</option>
-            <option>Logistik &amp; Self-Storage</option>
-            <option>Startups &amp; Tech</option>
-            <option>Business Participation</option>
-            <option>Mehrere Bereiche</option>
-          </select>
-          <select class="cp-select" id="cp-horizon">
-            <option value="">Anlagehorizont</option>
-            <option>ab 1 Jahr</option>
-            <option>1 – 3 Jahre</option>
-            <option>3 – 5 Jahre</option>
-            <option>5 – 10 Jahre</option>
-            <option>Über 10 Jahre</option>
-            <option>Flexibel</option>
-          </select>
-        </div>
-        <textarea class="cp-textarea" id="cp-message" placeholder="Ihre Fragen oder Anmerkungen (optional)"></textarea>
-        <div class="cp-conf-badge">🔒 <div><strong>100% confidential.</strong> Ihre Daten werden nicht weitergegeben.</div></div>
-        <button class="cp-submit" type="submit">💼 Request Capital Partnership →</button>
-      </form>
-    </div>
-  </section>
 
   <!-- ── FAQ ───────────────────────────────────────────────── -->
   <section class="page-section" style="padding-top:1.8rem;">
@@ -777,11 +712,21 @@ input[type=range].cp-range { width:100%;accent-color:var(--cp-purple);margin-bot
 <!-- ── STICKY CTA ─────────────────────────────────────────── -->
 <div class="cp-sticky">
   <span>💼 <strong>Capital Partner</strong> — ab € 1.000 · 5 % p.a. · ab 1 Jahr · 24h Rückmeldung</span>
-  <a href="#cp-form">Jetzt anfragen</a>
+  <a href="javascript:void(0)" onclick=\"roleRedirect('capital-partner')\" >Jetzt anfragen</a>
 </div>
 
 <script src="/app.js"></script>
 <script>
+function roleRedirect(role) {
+  var token = localStorage.getItem('aBest_session');
+  var lang = window.location.pathname.split('/')[1] || 'de';
+  if (token) {
+    window.location.href = '/' + lang + '/profil/my-role/' + role;
+  } else {
+    window.location.href = '/' + lang + '/login?next=' + encodeURIComponent('/' + lang + '/profil/my-role/' + role);
+  }
+}
+
 // ── Rendite-Rechner ──────────────────────────────────────────
 function cpcUpdate(val) {
   var amounts = [1000,2500,5000,10000,25000,50000,100000,250000,500000,750000,1000000];
@@ -833,8 +778,7 @@ function cpSubmit(e) {
     '',
     'Gesendet über: abest.co/de/earn-money/capital-partner'
   ].join('\n');
-  document.getElementById('cp-form-el').style.display = 'none';
-  document.getElementById('cp-form-success').style.display = 'block';
+
   var mailto = 'mailto:info@abest.co'
     + '?subject=' + encodeURIComponent('Capital-Partner-Anfrage von ' + name + ' – aBest.co')
     + '&body='    + encodeURIComponent(body);

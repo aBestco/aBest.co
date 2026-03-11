@@ -177,7 +177,7 @@
       <span class="inv-chip"><i>🤝</i> 个人经理</span>
     </div>
     <div class="inv-hero-ctas">
-      <a class="inv-btn-primary" href="/zh/login?next=/profile/my-role/investor">💼 现在投资</a>
+      <a class="inv-btn-primary" href="javascript:void(0)" onclick="roleRedirect('investor')">💼 现在投资</a>
       <button class="inv-btn-ghost" onclick="document.getElementById('inv-types').scrollIntoView({behavior:'smooth'})">机会类型 →</button>
     </div>
   </section>
@@ -403,11 +403,21 @@
 <!-- STICKY CTA -->
 <div class="inv-sticky">
   <span class="inv-sticky-text">💼 <strong>准备投资</strong> — 立即开始 · 个人顾问</span>
-  <a class="inv-sticky-btn" href="/zh/login?next=/profile/my-role/investor">立即开始</a>
+  <a class="inv-sticky-btn" href="javascript:void(0)" onclick="roleRedirect('investor')">立即开始</a>
 </div>
 
 <script src="/app.js"></script>
 <script>
+function roleRedirect(role) {
+  var token = localStorage.getItem('aBest_session');
+  var lang = window.location.pathname.split('/')[1] || 'de';
+  if (token) {
+    window.location.href = '/' + lang + '/profil/my-role/' + role;
+  } else {
+    window.location.href = '/' + lang + '/login?next=' + encodeURIComponent('/' + lang + '/profil/my-role/' + role);
+  }
+}
+
 function invFaq(btn) {
     var item = btn.closest ? btn.closest('.inv-faq-item') : btn.parentElement;
     var wasOpen = item.classList.contains('open');
