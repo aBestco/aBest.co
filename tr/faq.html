@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <title>SSS – Sıkça Sorulan Sorular | aBest.co</title>
+    <meta content="aBest.co hakkında en sık sorulan soruların yanıtları: Sermaye ortağı, sessiz ortaklık, yıllık %5, Seçenek A ve B, yatırımcılar, kurucular, satıcılar ve daha fazlası." name="description" />
+    <link href="/favicon.png" rel="icon" type="image/png" />
+    <link href="/index.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+        .faq-category { margin-bottom: 2rem; }
+        .faq-category-title { font-size: 1rem; font-weight: 600; color: var(--primary-blue); margin-bottom: 1rem; display: flex; align-items: center; gap: 8px; }
+        .faq-item { border-bottom: 1px solid rgba(255,255,255,0.07); }
+        .faq-question { width: 100%; background: none; border: none; color: var(--text-main); font-family: var(--font-family); font-size: 0.95rem; font-weight: 500; text-align: left; padding: 18px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+        .faq-chevron { width: 20px; height: 20px; color: var(--text-muted); transition: transform 0.3s; }
+        .faq-item.open .faq-chevron { transform: rotate(180deg); color: var(--primary-blue); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .faq-item.open .faq-answer { max-height: 500px; }
+        .faq-answer-inner { padding-bottom: 18px; color: var(--text-muted); font-size: 0.88rem; line-height: 1.75; }
+        .faq-contact-strip { background: rgba(10,132,255,0.08); border: 1px solid rgba(10,132,255,0.2); border-radius: 16px; padding: 22px 20px; display: flex; align-items: center; gap: 16px; margin-top: 2rem; }
+        .fcs-btn { margin-left: auto; padding: 10px 22px; background: rgba(10,132,255,0.15); border: 1px solid rgba(10,132,255,0.35); border-radius: 22px; color: var(--primary-blue); text-decoration: none; font-size: 0.85rem; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <div class="background-wrapper"><img class="main-bg" src="/assets/images/bg_main_blurred_new.webp" alt="BG" /><div class="bg-gradient-overlay"></div></div>
+    <div class="app-container">
+        <header class="app-header">
+            <a class="logo-link" href="/tr/"><span style="font-size: 1.5rem; font-weight: 500; color: var(--text-main);"><span style="color: var(--primary-blue);">a</span>Best<span style="color: var(--primary-blue);">.co</span></span></a>
+            <div class="header-actions-v2">
+                <button class="header-icon-v2" id="search-btn" aria-label="Arama"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
+                <a href="/tr/earn-money" class="header-icon-v2">💰</a>
+                <a href="/login" class="header-icon-v2"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></a>
+                <div class="nav-icon" id="menu-btn"><span></span><span></span><span></span></div>
+            </div>
+        </header>
+        <main class="scroll-content">
+            <section class="hero"><div class="hero-content glass-chip"><h1>Sıkça Sorulan<br><span class='highlight'>Sorular</span></h1><p class="subtext">aBest.co, sermaye ortaklığı, yatırımlar ve projelerimiz hakkında bilmeniz gereken her şey.</p></div></section>
+            <section class="section-spacing"><div class="glass-panel">
+                <div class="faq-category"><div class="faq-category-title">🌐 Genel</div><div class="faq-item"><button class="faq-question">What is aBest.co?<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">aBest.co is a global investment platform connecting investors, founders, and capital partners for international projects in 14 languages across 4 continents.</div></div></div></div>
+                <div class="faq-category"><div class="faq-category-title">🏦 Sermaye Ortağı ve Yatırımlar</div><div class="faq-item"><button class="faq-question">What does 5% p.a. mean?<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">As a capital partner, you receive a fixed annual interest rate of 5% on your capital, paid annually.</div></div></div></div>
+                <div class="faq-contact-strip"><div><h3>Sorunuz burada yok mu?</h3><p>Ekibimiz size kişisel olarak – kendi dilinizde yanıt verecektir.</p></div><a href="/tr/kontakt" class="fcs-btn">Şimdi sor →</a></div>
+            </div></section>
+        </main>
+        <footer class="app-footer section-spacing"><p>© 2026 aBest.co</p></footer>
+    </div>
+    <script>
+        document.querySelectorAll('.faq-question').forEach(btn => btn.addEventListener('click', () => {
+            const item = btn.closest('.faq-item'); if(item.classList.contains('open')) item.classList.remove('open'); else item.classList.add('open');
+        }));
+        document.getElementById('menu-btn').onclick = () => document.getElementById('mobile-nav').classList.toggle('open');
+    </script>
+</body>
+</html>
