@@ -5,6 +5,8 @@ const globalCache = {
     inquiries: { data: null, timestamp: 0 },
     users: { data: null, timestamp: 0 },
     docs: { data: null, timestamp: 0 },
+    listings: { data: null, timestamp: 0 },
+    roles: { data: null, timestamp: 0 },
     CACHE_TTL: 60000 // 60 seconds
 };
 
@@ -1545,6 +1547,8 @@ async function handleListingsApi(request, env) {
             idx.push(id);
             await env.ABEST_AUTH.put(`listings:${userEmail}`, JSON.stringify(idx));
 
+            globalCache.listings.data = null; // Invalidate cache
+
             return new Response(JSON.stringify({ ok: true, id }), {
                 headers: { 'Content-Type': 'application/json', ...corsHeaders }
             });
@@ -1562,7 +1566,13 @@ async function handleListingsApi(request, env) {
             }
 
             if (isAdmin && url.searchParams.get('all') === '1') {
-                // Return all listings
+                // Return all listings (Cached)
+                const now = Date.now();
+                if (globalCache.listings.data && (now - globalCache.listings.timestamp < globalCache.CACHE_TTL)) {
+                    return new Response(JSON.stringify(globalCache.listings.data), {
+                        headers: { 'Content-Type': 'application/json', ...corsHeaders }
+                    });
+                }
                 const list = await env.ABEST_AUTH.list({ prefix: 'listing:' });
                 const listings = [];
                 for (const key of list.keys) {
@@ -1570,6 +1580,10 @@ async function handleListingsApi(request, env) {
                     if (v) listings.push(JSON.parse(v));
                 }
                 listings.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+                
+                globalCache.listings.data = listings;
+                globalCache.listings.timestamp = now;
+
                 return new Response(JSON.stringify(listings), {
                     headers: { 'Content-Type': 'application/json', ...corsHeaders }
                 });
