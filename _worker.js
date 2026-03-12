@@ -1,3 +1,13 @@
+// --- IN-MEMORY CACHE FOR FREE TIER LIMITS ---
+// Workers are stateless, but this persists per edge node for the lifetime of the basic isolate.
+// Helps significantly reduce KV .list() operations (Free limit: 1000/day).
+const globalCache = {
+    inquiries: { data: null, timestamp: 0 },
+    users: { data: null, timestamp: 0 },
+    docs: { data: null, timestamp: 0 },
+    CACHE_TTL: 60000 // 60 seconds
+};
+
 export default {
     async fetch(request, env) {
         const url = new URL(request.url);
@@ -371,14 +381,26 @@ async function handleInquiriesApi(request, env) {
     try {
         // GET /api/inquiries : Fetch all inquiries
         if (method === 'GET' && url.pathname === '/api/inquiries') {
-            const list = await env.ABEST_INQUIRIES.list();
-            const inquiries = [];
-            for (const key of list.keys) {
-                const value = await env.ABEST_INQUIRIES.get(key.name);
-                if (value) inquiries.push(JSON.parse(value));
+            const now = Date.now();
+            let inquiries = [];
+
+            // Check In-Memory Cache first (save KV list operations)
+            if (globalCache.inquiries.data && (now - globalCache.inquiries.timestamp < globalCache.CACHE_TTL)) {
+                inquiries = globalCache.inquiries.data;
+            } else {
+                const list = await env.ABEST_INQUIRIES.list();
+                for (const key of list.keys) {
+                    const value = await env.ABEST_INQUIRIES.get(key.name);
+                    if (value) inquiries.push(JSON.parse(value));
+                }
+                // Sort newest first
+                inquiries.sort((a, b) => new Date(b.date) - new Date(a.date));
+                
+                // Update Cache
+                globalCache.inquiries.data = inquiries;
+                globalCache.inquiries.timestamp = now;
             }
-            // Sort newest first
-            inquiries.sort((a, b) => new Date(b.date) - new Date(a.date));
+
             return new Response(JSON.stringify(inquiries), {
                 headers: { 'Content-Type': 'application/json', ...corsHeaders }
             });
@@ -422,6 +444,9 @@ async function handleInquiriesApi(request, env) {
                  <p style="color:#888;font-size:12px">Eingegangen: ${data.date}</p>`
             );
 
+            // Invalidate cache on new inquiry
+            globalCache.inquiries.data = null;
+
             return new Response(JSON.stringify({ success: true, id }), {
                 headers: { 'Content-Type': 'application/json', ...corsHeaders }
             });
@@ -442,7 +467,9 @@ async function handleInquiriesApi(request, env) {
             const existing = JSON.parse(existingStr);
             const merged = { ...existing, ...updates };
 
-            await env.ABEST_INQUIRIES.put(id, JSON.stringify(merged));
+            // Invalidate cache on update
+            globalCache.inquiries.data = null;
+
             return new Response(JSON.stringify({ success: true, data: merged }), {
                 headers: { 'Content-Type': 'application/json', ...corsHeaders }
             });
@@ -469,22 +496,34 @@ async function handleUsersApi(request, env) {
 
     try {
         if (method === 'GET') {
-            const list = await env.ABEST_AUTH.list({ prefix: 'profile:' });
-            const users = [];
-            for (const key of list.keys) {
-                const profileStr = await env.ABEST_AUTH.get(key.name);
-                if (profileStr) {
-                    const profile = JSON.parse(profileStr);
-                    users.push({
-                        email: profile.email,
-                        name: profile.name || '-',
-                        company: profile.company || '-',
-                        role: profile.role || 'User',
-                        status: 'Aktiv',
-                        lastLogin: profile.lastLogin || '-'
-                    });
+            const now = Date.now();
+            let users = [];
+
+            // Check In-Memory Cache
+            if (globalCache.users.data && (now - globalCache.users.timestamp < globalCache.CACHE_TTL)) {
+                users = globalCache.users.data;
+            } else {
+                const list = await env.ABEST_AUTH.list({ prefix: 'profile:' });
+                for (const key of list.keys) {
+                    const profileStr = await env.ABEST_AUTH.get(key.name);
+                    if (profileStr) {
+                        const profile = JSON.parse(profileStr);
+                        users.push({
+                            email: profile.email,
+                            name: profile.name || '-',
+                            company: profile.company || '-',
+                            role: profile.role || 'User',
+                            status: 'Aktiv',
+                            lastLogin: profile.lastLogin || '-'
+                        });
+                    }
                 }
+                
+                // Update Cache
+                globalCache.users.data = users;
+                globalCache.users.timestamp = now;
             }
+            
             return new Response(JSON.stringify(users), {
                 headers: { 'Content-Type': 'application/json', ...corsHeaders }
             });
@@ -590,18 +629,25 @@ async function handleDocsApi(request, env) {
         if (!userEmail) return unauthorizedResponse();
 
         if (method === 'GET') {
-            // In a real app, you'd list files from R2 or KV metadata.
-            // Using KV for metadata here.
-            const list = await env.ABEST_AUTH.list({ prefix: 'doc:' });
-            const docs = [];
-            for (const key of list.keys) {
-                const docStr = await env.ABEST_AUTH.get(key.name);
-                if (docStr) docs.push(JSON.parse(docStr));
-            }
+            const now = Date.now();
+            let docs = [];
 
-            // Temporary Fallback if empty
-            if (docs.length === 0) {
-                docs.push({ name: "Unternehmensprofil.pdf", type: "PDF", size: "1.2 MB", date: new Date().toISOString(), owner: "System" });
+            if (globalCache.docs.data && (now - globalCache.docs.timestamp < globalCache.CACHE_TTL)) {
+                docs = globalCache.docs.data;
+            } else {
+                const list = await env.ABEST_AUTH.list({ prefix: 'doc:' });
+                for (const key of list.keys) {
+                    const docStr = await env.ABEST_AUTH.get(key.name);
+                    if (docStr) docs.push(JSON.parse(docStr));
+                }
+
+                // Temporary Fallback if empty
+                if (docs.length === 0) {
+                    docs.push({ name: "Unternehmensprofil.pdf", type: "PDF", size: "1.2 MB", date: new Date().toISOString(), owner: "System" });
+                }
+
+                globalCache.docs.data = docs;
+                globalCache.docs.timestamp = now;
             }
 
             return new Response(JSON.stringify(docs), {
@@ -801,20 +847,26 @@ async function handleAuthApi(request, env) {
                     return new Response(JSON.stringify({ error: 'User already exists' }), { status: 400, headers: corsHeaders });
                 }
 
-                // New accounts always get a unique random salt
                 const salt = generateSalt();
                 const hashedPassword = await hashPassword(password, salt);
                 await env.ABEST_AUTH.put(`salt:${email}`, salt);
                 await env.ABEST_AUTH.put(`user:${email}`, hashedPassword);
-
+                
                 // Preserve existing admin/superadmin role if pre-assigned (bootstrapping)
                 const existingRegProfile = await env.ABEST_AUTH.get(`profile:${email}`);
                 const existingRegData = existingRegProfile ? JSON.parse(existingRegProfile) : {};
                 const adminRoles = ['Admin', 'Superadmin'];
                 const assignedRole = adminRoles.includes(existingRegData.role) ? existingRegData.role : 'User';
+                
                 await env.ABEST_AUTH.put(`profile:${email}`, JSON.stringify({ email, name: existingRegData.name || '', phone: existingRegData.phone || '', company: existingRegData.company || '', role: assignedRole }));
 
-                return new Response(JSON.stringify({ success: true }), {
+                // Invalidate users cache
+                globalCache.users.data = null;
+
+                const sessionId = crypto.randomUUID();
+                await env.ABEST_AUTH.put(`session:${sessionId}`, email, { expirationTtl: 86400 });
+
+                return new Response(JSON.stringify({ success: true, token: sessionId, email }), {
                     headers: { 'Content-Type': 'application/json', ...corsHeaders }
                 });
             }

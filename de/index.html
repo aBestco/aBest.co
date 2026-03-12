@@ -240,12 +240,12 @@
     <div class="app-container">
         <!-- Mobile Navigation -->
         <nav class="mobile-nav" id="mobile-nav">
-            <a class="nav-link" href="/de/earn-money">Ideen</a>
+            <a class="nav-link" href="/de/earn-money.html">Ideen</a>
             <a class="nav-link" href="/de/">Home</a>
-            <a class="nav-link" href="/de/usa">USA</a>
-            <a class="nav-link" href="/de/deutschland">Deutschland</a>
-            <a class="nav-link" href="/de/turkiye">Türkei</a>
-            <a class="nav-link" href="/de/kontakt">Kontakt</a>
+            <a class="nav-link" href="/de/usa.html">USA</a>
+            <a class="nav-link" href="/de/deutschland.html">Deutschland</a>
+            <a class="nav-link" href="/de/turkiye.html">Türkei</a>
+            <a class="nav-link" href="/de/kontakt.html">Kontakt</a>
         </nav>
         <!-- Header -->
         <header class="app-header fade-in-up" style="animation-delay: 0.1s;">
@@ -260,7 +260,7 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                 </button>
                 <a href="/de/earn-money" class="header-icon-v2" aria-label="Geld verdienen" title="Geld verdienen" style="font-size:1.3rem;">💰</a>
-                <a href="/login" class="header-icon-v2" aria-label="Login">
+                <a href="/de/login.html" class="header-icon-v2" aria-label="Login">
                     <svg viewBox="0 0 24 24">
                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                         <circle cx="12" cy="7" r="4"></circle>
@@ -289,15 +289,15 @@
             </section>
             <!-- Countries Row -->
             <section class="countries fade-in-up" style="animation-delay: 0.3s;">
-                <a href="/de/usa" style="text-decoration: none;">
+                <a href="/de/usa.html" style="text-decoration: none;">
                     <div class="glass-card country-card">
-                        <img alt="USA" src="/assets/images/bg_usa_new.webp" />
+                        <img alt="USA" src="/assets/images/bg_usa.webp" onerror="this.src='/assets/images/bg_main_blurred_new.webp'" />
                         <div class="card-overlay">
                             <span class="flag">🇺🇸</span>USA
                         </div>
                     </div>
                 </a>
-                <a href="/de/deutschland" style="text-decoration: none;">
+                <a href="/de/deutschland.html" style="text-decoration: none;">
                     <div class="glass-card country-card">
                         <img alt="Deutschland" src="/assets/images/bg_germany_new.webp" />
                         <div class="card-overlay">
@@ -305,7 +305,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="/de/england" style="text-decoration: none;">
+                <a href="/de/england.html" style="text-decoration: none;">
                     <div class="glass-card country-card">
                         <img alt="England" src="/assets/images/bg_uk_new.webp" />
                         <div class="card-overlay">
@@ -313,7 +313,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="/de/turkiye" style="text-decoration: none;">
+                <a href="/de/turkiye.html" style="text-decoration: none;">
                     <div class="glass-card country-card">
                         <img alt="Türkiye" src="/assets/images/bg_turkey_new.webp" />
                         <div class="card-overlay">
@@ -452,6 +452,23 @@
         overlay.addEventListener('click',(e)=>{if(e.target===overlay){overlay.style.display='none';searchInput.value='';searchResults.innerHTML='';}});
         searchInput.addEventListener('input',()=>{const q=searchInput.value.toLowerCase().trim();searchResults.innerHTML='';if(!q)return;const hits=searchData.filter(d=>d.title.toLowerCase().includes(q)||d.desc.toLowerCase().includes(q));if(hits.length===0){searchResults.innerHTML='<p style="color:#a1a1a6;text-align:center;padding:20px;">Keine Ergebnisse gefunden.</p>';return;}hits.forEach(h=>{const a=document.createElement('a');a.href=h.url;a.className='search-result-item';a.innerHTML=`<div class="sr-title">${h.title}</div><div class="sr-desc">${h.desc}</div>`;searchResults.appendChild(a);});});
         document.addEventListener('keydown',(e)=>{if(e.key==='Escape'&&overlay.style.display==='block'){overlay.style.display='none';searchInput.value='';searchResults.innerHTML='';}});
+        
+        // Mobile Navigation Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileNav = document.getElementById('mobile-nav');
+        if(menuBtn && mobileNav) {
+            menuBtn.addEventListener('click', () => {
+                menuBtn.classList.toggle('active');
+                mobileNav.classList.toggle('active');
+            });
+            // Close mobile nav when clicking a link
+            mobileNav.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    menuBtn.classList.remove('active');
+                    mobileNav.classList.remove('active');
+                });
+            });
+        }
     </script>
 </body>
 
