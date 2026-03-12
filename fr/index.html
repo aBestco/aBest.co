@@ -319,31 +319,57 @@
             </section>
             <!-- Spacing for bottom scrolling on sticky mode -->
         
-<div class="map-container fade-in-up">
-    <h3>Our Global Presence</h3>
-    <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:20px;">Discover our active projects worldwide.</p>
-    <svg viewBox="0 0 1000 500" class="world-map-svg">
-        <path d="M150 150 L850 150 L850 350 L150 350 Z" opacity="0.1" /> <!-- Placeholder continent -->
-        <circle cx="120" cy="210" r="5" class="map-hotspot hotspot-pulse" data-tip="Los Angeles - Real Estate" />
-        <circle cx="135" cy="225" r="5" class="map-hotspot hotspot-pulse" data-tip="Rosamond - Solar Project (Antelope Valley)" />
-        <circle cx="485" cy="180" r="5" class="map-hotspot hotspot-pulse" data-tip="Berlin - Premium Real Estate" />
-        <circle cx="560" cy="220" r="5" class="map-hotspot hotspot-pulse" data-tip="Istanbul - Commercial & Residential" />
-    </svg>
-    <div class="map-tooltip" id="map-tooltip"></div>
-</div>
-<script>
-    const hotspots = document.querySelectorAll('.map-hotspot');
-    const tooltip = document.getElementById('map-tooltip');
-    hotspots.forEach(hs => {
-        hs.addEventListener('mousemove', (e) => {
-            tooltip.style.opacity = '1';
-            tooltip.innerText = hs.getAttribute('data-tip');
-            tooltip.style.left = (e.pageX - hs.closest('.map-container').offsetLeft + 15) + 'px';
-            tooltip.style.top = (e.pageY - hs.closest('.map-container').offsetTop - 20) + 'px';
-        });
-        hs.addEventListener('mouseleave', () => tooltip.style.opacity = '0');
-    });
-</script>
+<section class="section-spacing fade-in-up" style="animation-delay:0.5s;">
+    <div class="glass-panel" style="text-align:center; padding-bottom: 2rem;">
+        <h2 style="margin-bottom:0.4rem;">🌍 Projets Actifs</h2>
+        <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:1.8rem;">Nos sites sur 3 continents</p>
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:12px; text-align:left;">
+            <a href="/fr/usa-los-angeles" style="text-decoration:none;" class="glass-card">
+                <div style="padding:16px;">
+                    <div style="font-size:1.8rem; margin-bottom:8px;">🇺🇸</div>
+                    <div style="font-weight:600; color:var(--text-main); margin-bottom:4px;">Los Angeles</div>
+                    <div style="font-size:0.82rem; color:var(--text-muted);">Immobilier premium, Glendale & LA County</div>
+                </div>
+            </a>
+            <a href="/fr/usa-rosamond" style="text-decoration:none;" class="glass-card">
+                <div style="padding:16px;">
+                    <div style="font-size:1.8rem; margin-bottom:8px;">☀️</div>
+                    <div style="font-weight:600; color:var(--text-main); margin-bottom:4px;">Rosamond, CA</div>
+                    <div style="font-size:0.82rem; color:var(--text-muted);">Projet Solaire · Antelope Valley · 80 Acres</div>
+                </div>
+            </a>
+            <a href="/fr/usa-half-moon-bay" style="text-decoration:none;" class="glass-card">
+                <div style="padding:16px;">
+                    <div style="font-size:1.8rem; margin-bottom:8px;">🌊</div>
+                    <div style="font-weight:600; color:var(--text-main); margin-bottom:4px;">Half Moon Bay</div>
+                    <div style="font-size:0.82rem; color:var(--text-muted);">Terrain côtier · San Mateo County, CA</div>
+                </div>
+            </a>
+            <a href="/fr/deutschland" style="text-decoration:none;" class="glass-card">
+                <div style="padding:16px;">
+                    <div style="font-size:1.8rem; margin-bottom:8px;">🇩🇪</div>
+                    <div style="font-weight:600; color:var(--text-main); margin-bottom:4px;">Berlin</div>
+                    <div style="font-size:0.82rem; color:var(--text-muted);">Immobilier premium & hôtellerie</div>
+                </div>
+            </a>
+            <a href="/fr/turkiye" style="text-decoration:none;" class="glass-card">
+                <div style="padding:16px;">
+                    <div style="font-size:1.8rem; margin-bottom:8px;">🇹🇷</div>
+                    <div style="font-weight:600; color:var(--text-main); margin-bottom:4px;">Istanbul</div>
+                    <div style="font-size:0.82rem; color:var(--text-muted);">Commercial & résidentiel · Métropole</div>
+                </div>
+            </a>
+            <a href="/fr/earn-money" style="text-decoration:none;" class="glass-card">
+                <div style="padding:16px;">
+                    <div style="font-size:1.8rem; margin-bottom:8px;">💼</div>
+                    <div style="font-weight:600; color:var(--primary-blue); margin-bottom:4px;">Votre projet?</div>
+                    <div style="font-size:0.82rem; color:var(--text-muted);">Choisissez votre rôle & rejoignez →</div>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
 </main>
         <footer class="app-footer section-spacing fade-in-up" style="animation-delay: 0.8s;">
             <div class="slim-footer-content">
