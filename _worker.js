@@ -40,7 +40,6 @@ export default {
             const langCode = acceptLanguage.split(',')[0].split('-')[0].toLowerCase();
             const supportedLangs = ["en", "de", "tr", "es", "zh", "hi", "ar", "fr", "ru", "pt", "ur", "ku", "he", "hy"];
 
-            // Priority: URL prefix > Cookie > Accept-Language
             let targetLang = pathname.match(/^\/([a-z]{2})(?:\/|$)/)?.[1];
             if (!targetLang || !supportedLangs.includes(targetLang)) {
                 const cookies = request.headers.get('Cookie') || '';
@@ -54,16 +53,13 @@ export default {
             if (cleanPath === '/register') file = 'register';
             if (cleanPath === '/profile' || cleanPath.startsWith('/profile/') || cleanPath.startsWith('/profil/')) file = 'profil';
 
-            // We rewrite internal URL to serve the localized file
             const assetUrl = new URL(request.url);
             assetUrl.pathname = `/${targetLang}/${file}`;
 
-            // Internal fetch with loop protection
             const internalReq = new Request(assetUrl.toString(), request);
             internalReq.headers.set('X-Internal-Fetch', 'true');
             let res = await env.ASSETS.fetch(internalReq);
 
-            // Fallback to English if localized file not found
             if (res.status === 404 && targetLang !== 'en') {
                 assetUrl.pathname = `/en/${file}`;
                 const innerReq = new Request(assetUrl.toString(), request);
@@ -71,12 +67,7 @@ export default {
                 res = await env.ASSETS.fetch(innerReq);
             }
 
-            // If still not ok or a redirect (Clean URLs), just return as is
             if (!res.ok) return res;
-
-            // SEO: Inject localized meta tags
-            let html = await res.text();
-            if (!html) return res;
 
             const translations = {
                 de: { login: 'Login | aBest.co', register: 'Registrierung | aBest.co', profile: 'Mein Profil | aBest.co', desc: 'Premium Land- und Immobilienentwicklung.' },
@@ -88,17 +79,11 @@ export default {
             const t = translations[targetLang] || translations['en'];
             const pageKey = cleanPath === '/login' ? 'login' : (cleanPath === '/register' ? 'register' : 'profile');
 
-            html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${t[pageKey]}</title>`);
-            html = html.replace(/<meta name="description" content=".*?" \/>/g, `<meta name="description" content="${t.desc}" />`);
-            html = html.replace(/<meta content=".*?" name="description" \/>/g, `<meta name="description" content="${t.desc}" />`);
-
-            return new Response(html, {
-                headers: {
-                    'Content-Type': 'text/html; charset=utf-8',
-                    'X-Debug-Path': assetUrl.pathname,
-                    'X-Debug-Source': 'Worker-SEO'
-                }
-            });
+            return new HTMLRewriter()
+                .on('title', { element(el) { el.setInnerContent(t[pageKey]); } })
+                .on('meta[name="description"]', { element(el) { el.setAttribute('content', t.desc); } })
+                .on('meta[content][name="description"]', { element(el) { el.setAttribute('content', t.desc); } })
+                .transform(res);
         }
 
         // --- 1.3 PARTNERSCHAFTEN SUB-PATHS ---
@@ -279,23 +264,22 @@ export default {
         if (request.method === 'GET' &&
             !pathname.match(/\.(js|css|png|jpg|jpeg|webp|gif|svg|ico|json|woff|woff2|ttf|eot|pdf|xml|txt|map|gz)$/)) {
             const geoRes = await env.ASSETS.fetch(request);
-            if (geoRes && geoRes.ok) {
-                const ct = geoRes.headers.get('Content-Type') || '';
-                if (ct.includes('text/html')) {
-                    const cfCountry = (request.cf && request.cf.country) ? String(request.cf.country).replace(/[^A-Z]/g, '').slice(0, 2) : '';
-                    const acceptLang = request.headers.get('Accept-Language') || 'en';
-                    const bl = acceptLang.split(',')[0].split('-')[0].toLowerCase();
-                    const supportedL = ["en","de","tr","es","zh","hi","ar","fr","ru","pt","ur","ku","he","hy"];
-                    const detectedL = supportedL.includes(bl) ? bl : 'en';
-                    const geoTag = `<script>window._geo={c:"${cfCountry}",l:"${detectedL}"};</script>`;
-                    let html = await geoRes.text();
-                    html = html.replace('</head>', geoTag + '\n</head>');
-                    const newHeaders = new Headers(geoRes.headers);
-                    newHeaders.set('Content-Type', 'text/html; charset=utf-8');
-                    return new Response(html, { status: geoRes.status, headers: newHeaders });
-                }
+            if (geoRes && geoRes.ok && geoRes.headers.get('Content-Type')?.includes('text/html')) {
+                const cfCountry = (request.cf && request.cf.country) ? String(request.cf.country).replace(/[^A-Z]/g, '').slice(0, 2) : '';
+                const acceptLang = request.headers.get('Accept-Language') || 'en';
+                const bl = acceptLang.split(',')[0].split('-')[0].toLowerCase();
+                const supportedL = ["en", "de", "tr", "es", "zh", "hi", "ar", "fr", "ru", "pt", "ur", "ku", "he", "hy"];
+                const detectedL = supportedL.includes(bl) ? bl : 'en';
+
+                return new HTMLRewriter()
+                    .on('head', {
+                        element(el) {
+                            el.append(`<script>window._geo={c:"${cfCountry}",l:"${detectedL}"};</script>`, { html: true });
+                        }
+                    })
+                    .transform(geoRes);
             }
-            return geoRes || env.ASSETS.fetch(request);
+            return geoRes;
         }
         return env.ASSETS.fetch(request);
     },
